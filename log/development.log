@@ -1,0 +1,251 @@
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (74.8ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `schema_migrations`[0m
+  [1m[35mSQL (207.6ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Migrating to CreateAdminNotes (20110527181934)
+  [1m[35mSQL (83.2ms)[0m  CREATE TABLE `admin_notes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `resource_id` int(11) NOT NULL, `resource_type` varchar(255) NOT NULL, `admin_user_id` int(11), `admin_user_type` varchar(255), `body` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `admin_notes`[0m
+  [1m[35mSQL (147.0ms)[0m  CREATE INDEX `index_admin_notes_on_resource_type_and_resource_id` ON `admin_notes` (`resource_type`, `resource_id`)
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `admin_notes`[0m
+  [1m[35mSQL (90.1ms)[0m  CREATE INDEX `index_admin_notes_on_admin_user_type_and_admin_user_id` ON `admin_notes` (`admin_user_type`, `admin_user_id`)
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `schema_migrations`[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110527181934')
+Migrating to MoveAdminNotesToComments (20110527181935)
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW KEYS FROM `admin_notes`[0m
+  [1m[35mSQL (111.5ms)[0m  DROP INDEX `index_admin_notes_on_admin_user_type_and_admin_user_id` ON `admin_notes`
+  [1m[36mSQL (0.6ms)[0m  [1mRENAME TABLE `admin_notes` TO `active_admin_comments`[0m
+  [1m[35mSQL (2.0ms)[0m  SHOW COLUMNS FROM `active_admin_comments` LIKE 'admin_user_type'
+  [1m[36mSQL (111.7ms)[0m  [1mALTER TABLE `active_admin_comments` CHANGE `admin_user_type` `author_type` varchar(255) DEFAULT NULL[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW COLUMNS FROM `active_admin_comments` LIKE 'admin_user_id'
+  [1m[36mSQL (89.7ms)[0m  [1mALTER TABLE `active_admin_comments` CHANGE `admin_user_id` `author_id` int(11) DEFAULT NULL[0m
+  [1m[35mSQL (129.1ms)[0m  ALTER TABLE `active_admin_comments` ADD `namespace` varchar(255)
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (123.4ms)[0m  CREATE INDEX `index_active_admin_comments_on_namespace` ON `active_admin_comments` (`namespace`)
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (101.9ms)[0m  CREATE INDEX `index_active_admin_comments_on_author_type_and_author_id` ON `active_admin_comments` (`author_type`, `author_id`)
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE active_admin_comments SET namespace='admin'[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110527181935')
+Migrating to DeviseCreateAdminUsers (20110527221934)
+  [1m[36mSQL (99.7ms)[0m  [1mCREATE TABLE `admin_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT `admin_users`.`id` FROM `admin_users` WHERE (`admin_users`.`email` = BINARY 'admin@example.com') LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `admin_users`[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `admin_users` (`created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `last_sign_in_at`, `last_sign_in_ip`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `sign_in_count`, `updated_at`) VALUES ('2011-05-27 22:19:50', NULL, NULL, 'admin@example.com', '$2a$10$EPtwpOZDpOllMAzGafNjFOarjiudVl5tY6vc0Az4r3VN78kTbkReS', NULL, NULL, NULL, NULL, NULL, 0, '2011-05-27 22:19:50')
+  [1m[36mSQL (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `admin_users`
+  [1m[36mSQL (95.5ms)[0m  [1mCREATE UNIQUE INDEX `index_admin_users_on_email` ON `admin_users` (`email`)[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `admin_users`
+  [1m[36mSQL (105.0ms)[0m  [1mCREATE UNIQUE INDEX `index_admin_users_on_reset_password_token` ON `admin_users` (`reset_password_token`)[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110527221934')
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.9ms)[0m  describe `active_admin_comments`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `admin_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `admin_users`[0m
+
+
+Started GET "/rails/info/properties" for 127.0.0.1 at 2011-05-27 18:20:16 -0400
+  Processing by Rails::InfoController#properties as */*
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Rendered inline template (0.4ms)
+Completed 200 OK in 74ms (Views: 1.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:20:22 -0400
+  Processing by Admin::DashboardController#index as HTML
+Completed   in 1ms
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2011-05-27 18:20:22 -0400
+  Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/devise-1.3.4/app/views/devise/shared/_links.erb (1.1ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (44.2ms)
+Completed 200 OK in 59ms (Views: 48.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2011-05-27 18:20:25 -0400
+  Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Gv97sCWvjg19yM7JzxHFuoJK3fm2aW4Gex3UQKkcxDc=", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Login"}
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`email` = 'admin@example.com') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `admin_users` SET `remember_created_at` = '2011-05-27 22:20:25', `updated_at` = '2011-05-27 22:20:25' WHERE (`admin_users`.`id` = 1)
+  [1m[36mSQL (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `admin_users` SET `current_sign_in_at` = '2011-05-27 22:20:25', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_at` = '2011-05-27 22:20:25', `last_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2011-05-27 22:20:25' WHERE (`admin_users`.`id` = 1)[0m
+  [1m[35mSQL (0.3ms)[0m  COMMIT
+Redirected to http://0.0.0.0:3000/admin
+Completed 302 Found in 203ms
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:20:25 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (5.8ms)
+Completed 200 OK in 33ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/signup" for 127.0.0.1 at 2011-05-27 18:21:00 -0400
+
+ActionController::RoutingError (No route matches "/admin/signup"):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:21:04 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.4ms)
+Completed 200 OK in 28ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:24:15 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.4ms)
+Completed 200 OK in 28ms (Views: 8.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:24:16 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.4ms)
+Completed 200 OK in 28ms (Views: 8.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:24:17 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.4ms)
+Completed 200 OK in 30ms (Views: 8.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:24:52 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (5.6ms)
+Completed 200 OK in 74ms (Views: 12.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:24:54 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.5ms)
+Completed 200 OK in 30ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:25:02 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.4ms)
+Completed 200 OK in 91ms (Views: 8.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2011-05-27 18:25:03 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (3.6ms)
+Completed 200 OK in 43ms (Views: 14.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/signup" for 127.0.0.1 at 2011-05-27 18:25:06 -0400
+
+ActionController::RoutingError (No route matches "/admin/signup"):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:25:09 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.3ms)
+Completed 200 OK in 28ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:34:12 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.5ms)
+Completed 200 OK in 30ms (Views: 9.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:34:28 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mAdminUser Load (0.4ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (5.8ms)
+Completed 200 OK in 100ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:34:30 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.3ms)
+Completed 200 OK in 61ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:35:36 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.2ms)
+Completed 200 OK in 28ms (Views: 8.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:36:30 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.8ms)
+Completed 200 OK in 30ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:36:31 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.3ms)
+Completed 200 OK in 28ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:37:03 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mAdminUser Load (0.3ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (5.7ms)
+Completed 200 OK in 99ms (Views: 12.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:38:04 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.4ms)
+Completed 200 OK in 63ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:38:09 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.5ms)
+Completed 200 OK in 31ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:38:09 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1[0m
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (2.3ms)
+Completed 200 OK in 29ms (Views: 8.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/" for 127.0.0.1 at 2011-05-27 18:38:14 -0400
+  Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT `admin_users`.* FROM `admin_users` WHERE (`admin_users`.`id` = 1) LIMIT 1
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activeadmin-0.2.2/lib/active_admin/views/templates/active_admin_dashboard/index.html.arb (38.3ms)
+Completed 200 OK in 65ms (Views: 44.7ms | ActiveRecord: 0.0ms)
