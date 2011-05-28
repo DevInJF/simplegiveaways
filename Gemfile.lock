@@ -85,11 +85,13 @@ GEM
       activesupport (~> 3.0.0)
       arel (~> 1.0.1)
     mime-types (1.16)
+    mocha (0.9.12)
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.2)
     mysql2 (0.2.7)
     net-ldap (0.2.2)
+    nifty-generators (0.4.6)
     nokogiri (1.4.4)
     oa-basic (0.2.6)
       oa-core (= 0.2.6)
@@ -181,7 +183,9 @@ DEPENDENCIES
   awesome_print
   jammit
   jquery-rails
+  mocha
   mysql2 (= 0.2.7)
+  nifty-generators
   omniauth (~> 0.2.0)
   rails (= 3.0.1)
   rake (~> 0.8.7)

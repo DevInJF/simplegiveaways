@@ -1,9 +1,20 @@
 SGA::Application.routes.draw do
+
+  root :to => 'welcome#index'
+  
+  devise_for :users,
+             :singular => :user,
+             :controllers => {:registrations => 'registrations'}
+
+  resources :users
+
+  resources :authentications
+  
+  match '/auth/:provider/callback' => 'authentications#create'
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-
-  match '/auth/:provider/callback', :to => 'sessions#callback'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

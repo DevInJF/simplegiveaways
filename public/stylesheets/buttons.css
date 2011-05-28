@@ -1,0 +1,103 @@
+/* =========== */
+/* = Buttons = */
+/* =========== */
+
+.button a {
+	outline: none;
+	box-shadow: 0 1px 2px #aaaaaa;
+	-moz-box-shadow: 0 1px 2px #aaaaaa;
+	-webkit-box-shadow: 0 1px 2px #aaaaaa;
+	background: #838a90;
+	background: -webkit-gradient(linear, left top, left bottom, from(#838a90), to(#414549));
+	background: -moz-linear-gradient(-90deg, #838a90, #414549);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#838a90, endColorstr=#414549);
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#838a90, endColorstr=#414549);
+	-webkit-border-radius: 200px;
+	-moz-border-radius: 200px;
+	border-radius: 200px;
+	text-shadow: black 0 1px 0;
+	text-decoration: none;
+	margin-right: 3px;
+	font-weight: bold;
+	font-size: 1.0em;
+	cursor: pointer;
+	padding: .6em 1.4em .5em 1.3em;
+	border: none;
+	color: #efefef;
+	background: #f9f9f9;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#dddbdb));
+	background: -moz-linear-gradient(-90deg, #f9f9f9, #dddbdb);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9, endColorstr=#dddbdb);
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9, endColorstr=#dddbdb);
+	text-shadow: white 0 1px 0;
+	color: #777;
+	background: #f9f9f9;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#dddbdb));
+	background: -moz-linear-gradient(-90deg, #f9f9f9, #dddbdb);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9, endColorstr=#dddbdb);
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9, endColorstr=#dddbdb);
+	padding: .8em 1.5em .7em 1.5em;
+	border: 1px solid #f8f8f8;
+}
+
+.button a:hover {
+  color: #fff;
+  box-shadow: 0 1px 3px #888888;
+  -moz-box-shadow: 0 1px 3px #888888;
+  -webkit-box-shadow: 0 1px 3px #888888; 
+}
+
+.button a:hover span.icon svg path, .button a:hover span.icon svg polygon, .button a:hover span.icon svg rect, .button a:hover span.icon svg circle {
+  fill: white !important;
+}
+
+.button a:active {
+  box-shadow: inset 0 1px 2px black;
+  -moz-box-shadow: inset 0 1px 2px black;
+  -webkit-box-shadow: inset 0 1px 2px black;
+}
+
+.button a:hover {
+  color: #444;
+}
+
+.button a:hover span.icon svg path, .button a:hover span.icon svg polygon, .button a:hover span.icon svg rect, .button a:hover span.icon svg circle {
+  fill: #444444 !important;
+}
+
+.button a:active {
+  box-shadow: inset 0 1px 2px #aaaaaa;
+  -moz-box-shadow: inset 0 1px 2px #aaaaaa;
+  -webkit-box-shadow: inset 0 1px 2px #aaaaaa;
+}
+
+.button a span.icon svg path, .button a span.icon svg polygon, .button a span.icon svg rect, .button a span.icon svg circle {
+  fill: #777777 !important;
+}
+
+.button a span.icon {
+  width: 0.8em;
+  height: 0.8em;
+}
+
+.button a span.icon svg {
+  width: 0.8em;
+  height: 0.8em;
+}
+
+.button a span.icon {
+  vertical-align: bottom;
+  margin-right: 4px;
+}
+
+.button a:hover span.icon svg path, .button a:hover span.icon svg polygon, .button a:hover span.icon svg rect, .button a:hover span.icon svg circle {
+  fill: black !important;
+}
+
+.button a:active {
+  border: inherit;
+}
+
+.button.pill a {
+	padding: .6em 1.5em .5em 1.5em;
+}

@@ -1,0 +1,11 @@
+<% flash.each do |name, msg| %>
+	<%= content_tag :div, msg, :id => "flash_#{name}", :class => "flash" %>
+<% end %>
+<%= javascript_tag do %>
+	$(function(){
+		$flash = $(".flash");
+		$flash.click(function(){
+			$(this).slideUp();
+		});
+	});
+<% end %>

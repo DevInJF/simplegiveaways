@@ -1,0 +1,26 @@
+<nav class="clearfix">
+	<span class="root">
+		<%= link_to "SGA", root_path %>
+	</span>
+	<div class="session">
+	  <% if user_signed_in? %>
+			<div class="current-user">Signed in as <%= link_to current_user.email, user_path(current_user) %>. Not you?</div>
+			<div class="button-wrapper">
+		    <span class="button pill">
+					<%= link_to "Sign out", destroy_user_session_path %>
+				</span>
+			</div>
+	  <% else %>
+			<div class="button-wrapper">
+				<span class="button pill">
+		    	<%= link_to "Sign up", new_user_registration_path %>
+				</span>
+			</div>
+			<div class="button-wrapper">
+		    <span class="button pill">
+					<%= link_to "Sign in", new_user_session_path %>
+				</span>
+			</div>
+	  <% end %>
+	</div>
+</nav>

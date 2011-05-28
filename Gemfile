@@ -35,3 +35,5 @@ gem "omniauth", "~> 0.2.0"
 gem "settingslogic"
 gem "activeadmin", "~> 0.2.2"
 gem 'awesome_print'
+gem 'nifty-generators', :group => :development
+gem "mocha", :group => :test

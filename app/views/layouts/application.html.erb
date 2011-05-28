@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SGA</title>
+  <title>SGA &raquo; <%= content_for?(:title) ? content_for(:title) : "" %></title>
   <%= include_stylesheets :app %>
   <%= include_javascripts :app %>
   <%= csrf_meta_tag %>
+	<%= yield :head %>
 </head>
-<body>
-
-<%= yield %>
-
+<body class="<%= controller.controller_name %> <%= controller.action_name %>">
+	
+	<% if flash %>
+		<%= render :partial => "layouts/flash", :locals => { :flash => flash } %>
+	<% end %>
+	
+	<div id="container">
+		<%= render "layouts/nav" %>
+		<%= render "layouts/header" %>
+		<%= yield %>
+		<%= render "layouts/footer" %>
+	</div>
+	
 </body>
 </html>

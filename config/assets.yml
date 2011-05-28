@@ -1,6 +1,11 @@
 javascripts:
   app:
-    - public/javascripts/*.js
+    - public/javascripts/jquery.min.js
+    - public/javascripts/application.js
 stylesheets:
   app:
-    - public/stylesheets/*.css
+    - public/stylesheets/defaults.css
+    - public/stylesheets/application.css
+    - public/stylesheets/buttons.css
+    - public/stylesheets/flash.css
+    - public/stylesheets/auth.css
