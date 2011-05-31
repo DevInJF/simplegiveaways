@@ -3,13 +3,14 @@
 <head>
   <title>SGA &raquo; <%= content_for?(:title) ? content_for(:title) : "" %></title>
   <%= include_stylesheets :app %>
+	<%= yield :css %>
   <%= include_javascripts :app %>
+	<%= yield :js %>
   <%= csrf_meta_tag %>
-	<%= yield :head %>
 </head>
 <body class="<%= controller.controller_name %> <%= controller.action_name %>">
 	
-	<% if flash %>
+	<% unless flash.blank? or flash.nil? %>
 		<%= render :partial => "layouts/flash", :locals => { :flash => flash } %>
 	<% end %>
 	

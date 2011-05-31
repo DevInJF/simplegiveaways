@@ -1,4 +1,19 @@
+<% content_for :css do %>
+	<%= include_stylesheets :users %>
+<% end %>
+
 <%= title "My Account" %>
 <%= h1 "My Account" %>
 
 <h2><%= @user.email %></h2>
+
+<h3>Facebook Pages</h3>
+<% @user.facebook_pages.each do |page| %>
+	<ul>
+		<li>
+			<span class="avatar"><%= image_tag page.avatar %></span>
+			<span class="name"><%= page.name %></span>
+			<span class="likes"><%= page.likes %></span>
+		</li>
+	</ul>
+<% end %>

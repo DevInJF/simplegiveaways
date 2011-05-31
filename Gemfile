@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
-gem 'rake', '~> 0.8.7' # Temporary fix for Rake 0.9.0
+gem "rails", "3.0.1"
+gem "rake", "~> 0.8.7" # Temporary fix for Rake 0.9.0
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,6 +34,8 @@ gem "jquery-rails"
 gem "omniauth", "~> 0.2.0"
 gem "settingslogic"
 gem "activeadmin", "~> 0.2.2"
-gem 'awesome_print'
-gem 'nifty-generators', :group => :development
+gem "awesome_print"
+gem "nifty-generators", :group => :development
 gem "mocha", :group => :test
+gem "koala"
+gem "delayed_job"
