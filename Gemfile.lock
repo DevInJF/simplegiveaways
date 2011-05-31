@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/documentcloud/jammit.git
+  revision: 3dedc9dffe04a7b7850efc0e494213c92bfdb35f
+  specs:
+    jammit (0.6.3)
+      yui-compressor (>= 0.9.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -73,8 +80,6 @@ GEM
       formtastic (>= 0.9.8)
       inherited_resources (>= 1.0.6)
       will_paginate (>= 2.3.12)
-    jammit (0.6.3)
-      yui-compressor (>= 0.9.3)
     jquery-rails (1.0.9)
       railties (~> 3.0)
       thor (~> 0.14)
@@ -189,7 +194,7 @@ DEPENDENCIES
   activeadmin (~> 0.2.2)
   awesome_print
   delayed_job
-  jammit
+  jammit!
   jquery-rails
   koala
   mocha
