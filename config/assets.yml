@@ -9,5 +9,4 @@ stylesheets:
     - public/stylesheets/buttons.css
     - public/stylesheets/flash.css
     - public/stylesheets/auth.css
-  users:
     - public/stylesheets/users.css
