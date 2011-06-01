@@ -9,7 +9,6 @@ class AuthenticationsController < ApplicationController
     if authentication
       flash[:notice] = "Signed in successfully."
       sign_in_and_redirect(:user, authentication.user)
-      Delayed::Job.enqueue(authentication.user.generate_account)
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication successful."
