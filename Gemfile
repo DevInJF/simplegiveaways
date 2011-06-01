@@ -6,7 +6,7 @@ gem "rake", "~> 0.8.7" # Temporary fix for Rake 0.9.0
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '0.2.7'
+gem 'mysql2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
