@@ -17958,3 +17958,33 @@ Rendered layouts/_header.html.erb (0.4ms)
 Rendered layouts/_footer.html.erb (0.3ms)
 Rendered welcome/index.html.erb within layouts/application (18.8ms)
 Completed 200 OK in 24ms (Views: 23.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 23:20:51 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (14.6ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (18.8ms)
+Completed 200 OK in 24ms (Views: 22.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 23:20:52 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (14.5ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 23:22:04 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (29.9ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered welcome/index.html.erb within layouts/application (34.6ms)
+Completed 200 OK in 39ms (Views: 38.3ms | ActiveRecord: 0.5ms)
