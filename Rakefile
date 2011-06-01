@@ -4,4 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
+require 'jammit'
+Jammit.package!
+
 SGA::Application.load_tasks

@@ -17564,3 +17564,327 @@ Completed 200 OK in 49ms (Views: 43.1ms | ActiveRecord: 0.6ms)
   [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
   [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
   [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 01:44:05 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+  [1m[36mFacebookPage Load (0.5ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (9.8ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered users/show.html.erb within layouts/application (147.9ms)
+Completed 200 OK in 208ms (Views: 152.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 01:44:07 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+  [1m[35mFacebookPage Load (0.4ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (1.7ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (38.8ms)
+Completed 200 OK in 50ms (Views: 43.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 01:52:26 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (15.7ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 26ms (Views: 25.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 01:52:30 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+  [1m[35mFacebookPage Load (0.3ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (2.0ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (29.0ms)
+Completed 200 OK in 39ms (Views: 33.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 02:14:50 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+  [1m[36mFacebookPage Load (0.4ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (2.1ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered users/show.html.erb within layouts/application (33.5ms)
+Completed 200 OK in 44ms (Views: 37.8ms | ActiveRecord: 0.5ms)
+  [1m[36mSQL (18.8ms)[0m  [1mSHOW TABLES[0m
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 02:16:03 -0400
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_nav.html.erb (3.7ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered welcome/index.html.erb within layouts/application (169.5ms)
+Completed 200 OK in 177ms (Views: 175.5ms | ActiveRecord: 18.8ms)
+
+
+Started GET "/authentications" for 127.0.0.1 at 2011-05-31 02:16:16 -0400
+  Processing by AuthenticationsController#index as HTML
+Rendered layouts/_nav.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered authentications/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2011-05-31 02:16:17 -0400
+
+
+Started GET "/auth/facebook/callback?code=YuwY96Ib6vEBIHfGCc0Go1uMtymXwrqRxMO0CbKR-dE.eyJpdiI6ImItcEVJTk9IWHRQam1zZ1hhVmVFbmcifQ.SY5LoHadr6LNZq7YYheknjficGR5eJanQ4oVs5L756Yf4e5b5NSRiyaqB9e-p_4XakzMHJ-gr3zuNCYN2BBGx46xaogSncTXEecIPziVmC4" for 127.0.0.1 at 2011-05-31 02:16:18 -0400
+  Processing by AuthenticationsController#create as HTML
+  Parameters: {"code"=>"YuwY96Ib6vEBIHfGCc0Go1uMtymXwrqRxMO0CbKR-dE.eyJpdiI6ImItcEVJTk9IWHRQam1zZ1hhVmVFbmcifQ.SY5LoHadr6LNZq7YYheknjficGR5eJanQ4oVs5L756Yf4e5b5NSRiyaqB9e-p_4XakzMHJ-gr3zuNCYN2BBGx46xaogSncTXEecIPziVmC4", "provider"=>"facebook"}
+  [1m[35mAuthentication Load (0.6ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE (`authentications`.`provider` = 'facebook') AND (`authentications`.`uid` = '808283') LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `users` SET `current_sign_in_at` = '2011-05-31 06:16:19', `last_sign_in_at` = '2011-05-31 05:00:26', `sign_in_count` = 4, `updated_at` = '2011-05-31 06:16:19' WHERE (`users`.`id` = 31)[0m
+  [1m[35mSQL (0.5ms)[0m  COMMIT
+Redirected to http://simplegiveawayapp.com/
+Completed 302 Found in 91ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 02:16:19 -0400
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_flash.html.erb (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (14.4ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (20.4ms)
+Completed 200 OK in 25ms (Views: 24.0ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 02:16:22 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+  [1m[36mFacebookPage Load (0.4ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (1.7ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (43.5ms)
+Completed 200 OK in 54ms (Views: 47.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 02:16:23 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+  [1m[35mFacebookPage Load (0.4ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (1.6ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (74.2ms)
+Completed 200 OK in 84ms (Views: 78.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 03:12:47 -0400
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_nav.html.erb (1.1ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/authentications" for 127.0.0.1 at 2011-05-31 03:12:59 -0400
+  Processing by AuthenticationsController#index as HTML
+Rendered layouts/_nav.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered authentications/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2011-05-31 03:13:01 -0400
+
+
+Started GET "/auth/facebook/callback?code=WrNDW7ow4DmpwkrlzWGVoapqftRervB-VIK5RH-94KI.eyJpdiI6InZnNU5RYkpoQ3VEakVLbkVDc3Utb3cifQ.5awwi_JbmrK3WwG__O-rimpxNnGah2zaf0MQwlv55-gB9iKX334Td5rFKvVPn2CHu526ylV_2o_SolOp1eGanIBRPaIumBqw0iMNRicg2Ic" for 127.0.0.1 at 2011-05-31 03:13:18 -0400
+  Processing by AuthenticationsController#create as HTML
+  Parameters: {"code"=>"WrNDW7ow4DmpwkrlzWGVoapqftRervB-VIK5RH-94KI.eyJpdiI6InZnNU5RYkpoQ3VEakVLbkVDc3Utb3cifQ.5awwi_JbmrK3WwG__O-rimpxNnGah2zaf0MQwlv55-gB9iKX334Td5rFKvVPn2CHu526ylV_2o_SolOp1eGanIBRPaIumBqw0iMNRicg2Ic", "provider"=>"facebook"}
+  [1m[35mAuthentication Load (0.2ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE (`authentications`.`provider` = 'facebook') AND (`authentications`.`uid` = '808283') LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE `users` SET `current_sign_in_at` = '2011-05-31 07:13:19', `last_sign_in_at` = '2011-05-31 06:16:19', `sign_in_count` = 5, `updated_at` = '2011-05-31 07:13:19' WHERE (`users`.`id` = 31)[0m
+  [1m[35mSQL (0.8ms)[0m  COMMIT
+Redirected to http://simplegiveawayapp.com/
+Completed 302 Found in 31ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 03:13:19 -0400
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_flash.html.erb (0.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (14.1ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 25ms (Views: 23.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 03:13:23 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+  [1m[36mFacebookPage Load (0.6ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (1.6ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (38.8ms)
+Completed 200 OK in 49ms (Views: 42.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/31" for 127.0.0.1 at 2011-05-31 21:37:28 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+  [1m[35mFacebookPage Load (0.3ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.user_id = 31)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (1.9ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (36.3ms)
+Completed 200 OK in 46ms (Views: 40.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:52:18 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (14.2ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered welcome/index.html.erb within layouts/application (19.8ms)
+Completed 200 OK in 73ms (Views: 71.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:52:20 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (14.6ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (19.7ms)
+Completed 200 OK in 25ms (Views: 23.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:52:41 -0400
+  Processing by WelcomeController#index as HTML
+Rendered welcome/index.html.erb within layouts/application (22.7ms)
+Completed   in 28ms
+
+ActionView::Template::Error (No such file or directory - Asset file not found at '/Users/Harris/git/SGA/public/stylesheets/assets/all.css'):
+    2: <html>
+    3: <head>
+    4:   <title>SGA &raquo; <%= content_for?(:title) ? content_for(:title) : "" %></title>
+    5:   <%= stylesheet_link_tag "assets/all", :cache => "assets/all" %>
+    6:   <%= include_javascripts :app %>
+    7:   <%= csrf_meta_tag %>
+    8: </head>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3368981979981094968_2166593920__3058501158790931164'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.5ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (32.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:53:12 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (14.2ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (19.8ms)
+Completed 200 OK in 25ms (Views: 23.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:54:13 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (13.8ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 23ms (Views: 22.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:54:26 -0400
+  Processing by WelcomeController#index as HTML
+Rendered welcome/index.html.erb within layouts/application (1.4ms)
+Completed   in 6ms
+
+ActionView::Template::Error (assets.yml does not contain a "all" CSS package):
+    2: <html>
+    3: <head>
+    4:   <title>SGA &raquo; <%= content_for?(:title) ? content_for(:title) : "" %></title>
+    5:   <%= include_stylesheets :all %>
+    6:   <%= include_javascripts :app %>
+    7:   <%= csrf_meta_tag %>
+    8: </head>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3368981979981094968_2169450520__3058501158790931164'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:54:30 -0400
+  Processing by WelcomeController#index as HTML
+Rendered welcome/index.html.erb within layouts/application (1.4ms)
+Completed   in 6ms
+
+ActionView::Template::Error (assets.yml does not contain a "all" CSS package):
+    2: <html>
+    3: <head>
+    4:   <title>SGA &raquo; <%= content_for?(:title) ? content_for(:title) : "" %></title>
+    5:   <%= include_stylesheets :all %>
+    6:   <%= include_javascripts :app %>
+    7:   <%= csrf_meta_tag %>
+    8: </head>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3368981979981094968_2190442440__3058501158790931164'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.4ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:54:35 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1
+Rendered layouts/_nav.html.erb (14.2ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 23ms (Views: 22.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-31 21:54:48 -0400
+  Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 31) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (14.3ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 24ms (Views: 23.5ms | ActiveRecord: 0.2ms)

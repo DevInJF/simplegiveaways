@@ -29,7 +29,7 @@ gem 'mysql2', '0.2.7'
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "jammit", "~> 0.6"
+gem "jammit", :git => "git://github.com/documentcloud/jammit.git"
 gem "jquery-rails"
 gem "omniauth", "~> 0.2.0"
 gem "settingslogic"
