@@ -3,8 +3,8 @@
   <%= f.semantic_errors %>
 
 	<%= f.inputs do %>
-		<%= f.input :facebook_page %>
-	  <%= f.input :title %>
+		<%= f.input :facebook_page, :collection => current_user.facebook_pages, :required => true, :prompt => "Select one..." %>
+	  <%= f.input :title, :required => true %>
 	  <%= f.input :description %>
 	  <%= f.input :start_date, :as => :date_picker %>
 	  <%= f.input :end_date, :as => :date_picker %>

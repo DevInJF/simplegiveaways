@@ -2,7 +2,7 @@ class Giveaway < ActiveRecord::Base
   belongs_to :user, :foreign_key => "user_id"
   belongs_to :facebook_page, :foreign_key => "facebook_page_id"
 
-  validates_presence_of :title, :start_date, :end_date
+  validates_presence_of :facebook_page_id, :title, :start_date, :end_date
   
   def is_live?
     today = Date.today
