@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @giveaway.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @giveaway.description %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @giveaway.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @giveaway.end_date %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @giveaway.content %>
+</p>
+
+<p>
+  <b>Is live:</b>
+  <%= @giveaway.is_live? %>
+</p>
+
+
+<%= link_to 'Edit', edit_giveaway_path(@giveaway) %> |
+<%= link_to 'Back', giveaways_path %>

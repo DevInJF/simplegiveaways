@@ -1,5 +1,5 @@
 h2 {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
 h3 {
@@ -8,4 +8,12 @@ h3 {
 
 ul li {
 	list-style-type: none;
+}
+
+nav.subnav {
+	height: 50px;
+}
+
+article.module {
+	padding: 20px 0;
 }

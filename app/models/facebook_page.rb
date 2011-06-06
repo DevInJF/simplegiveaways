@@ -1,5 +1,6 @@
 class FacebookPage < ActiveRecord::Base
   belongs_to :user
+  has_many :giveaways, :dependent => :destroy
   
   validates_uniqueness_of :pid, :scope => :user_id
   

@@ -1,0 +1,10 @@
+<h3>Facebook Pages</h3>
+<% @user.facebook_pages.each do |page| %>
+	<ul>
+		<li>
+			<span class="avatar"><%= image_tag page.avatar %></span>
+			<span class="name"><%= page.name %></span>
+			<span class="likes"><%= page.likes %></span>
+		</li>
+	</ul>
+<% end %>

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :authentications
-  has_many :facebook_pages
+  has_many :authentications, :dependent => :destroy
+  has_many :facebook_pages, :dependent => :destroy
+  has_many :giveaways, :dependent => :destroy
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

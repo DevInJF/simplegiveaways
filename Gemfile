@@ -39,3 +39,6 @@ gem "nifty-generators", :group => :development
 gem "mocha", :group => :test
 gem "koala"
 gem "delayed_job"
+gem "paperclip"
+gem "formtastic"
+gem "formtastic_datepicker_inputs", :git => "git://github.com/demersus/formtastic_datepicker_inputs.git"

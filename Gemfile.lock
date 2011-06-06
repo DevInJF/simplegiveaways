@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/demersus/formtastic_datepicker_inputs.git
+  revision: 96a5ee6e4be2762a060e1a55b0b3ef9b285d2cfa
+  specs:
+    formtastic_datepicker_inputs (1.0.0)
+      actionpack (>= 2.3.7)
+      activesupport (>= 2.3.7)
+      formtastic
+      i18n (>= 0.4.0)
+
+GIT
   remote: git://github.com/documentcloud/jammit.git
   revision: 3dedc9dffe04a7b7850efc0e494213c92bfdb35f
   specs:
@@ -145,6 +155,9 @@ GEM
       oa-openid (= 0.2.6)
     open4 (1.0.1)
     orm_adapter (0.0.5)
+    paperclip (2.3.11)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.3)
@@ -195,6 +208,8 @@ DEPENDENCIES
   activeadmin (~> 0.2.2)
   awesome_print
   delayed_job
+  formtastic
+  formtastic_datepicker_inputs!
   jammit!
   jquery-rails
   koala
@@ -202,6 +217,7 @@ DEPENDENCIES
   mysql2 (= 0.2.7)
   nifty-generators
   omniauth (~> 0.2.0)
+  paperclip
   rails (= 3.0.1)
   rake (~> 0.8.7)
   settingslogic

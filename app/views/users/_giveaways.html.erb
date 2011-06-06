@@ -1,0 +1,9 @@
+<h3>Giveaways</h3>
+<% @user.giveaways.each do |giveaway| %>
+	<ul>
+		<li>
+			<span class="title"><strong><%= link_to giveaway.title, giveaway %></strong></span><br />
+			<span class="description"><%= giveaway.description %></span>
+		</li>
+	</ul>
+<% end %>

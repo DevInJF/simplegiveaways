@@ -22,7 +22,7 @@ time, mark, audio, video {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
- 	cursor: default;
+	cursor: auto;
 }
 
 article, aside, details, figcaption, figure,

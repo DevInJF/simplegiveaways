@@ -1,5 +1,7 @@
 SGA::Application.routes.draw do
 
+  resources :giveaways
+
   root :to => 'welcome#index'
   
   devise_for :users,

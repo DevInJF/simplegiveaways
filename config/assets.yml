@@ -7,6 +7,9 @@ css_compressor_options:
 javascripts:
   app:
     - public/javascripts/jquery.min.js
+    - public/javascripts/jquery-ui.min.js
+    - public/javascripts/jquery-ui-timepicker-addon.js
+    - public/javascripts/rails.js
     - public/javascripts/application.js
 stylesheets:
   app:
@@ -16,3 +19,4 @@ stylesheets:
     - public/stylesheets/flash.css
     - public/stylesheets/auth.css
     - public/stylesheets/users.css
+    - public/stylesheets/smoothness/smoothness.css
