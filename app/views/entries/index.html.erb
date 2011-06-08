@@ -1,0 +1,35 @@
+<% title "Entries" %>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Has Liked Mandatory</th>
+    <th>Has Liked Optional</th>
+    <th>Name</th>
+    <th>Fb Url</th>
+    <th>Datetime Entered</th>
+    <th>Has Shared</th>
+    <th>Share Count</th>
+    <th>Invite Count</th>
+    <th>Convert Count</th>
+  </tr>
+  <% for entry in @entries %>
+    <tr>
+      <td><%= entry.email %></td>
+      <td><%= entry.has_liked_mandatory %></td>
+      <td><%= entry.has_liked_optional %></td>
+      <td><%= entry.name %></td>
+      <td><%= entry.fb_url %></td>
+      <td><%= entry.datetime_entered %></td>
+      <td><%= entry.has_shared %></td>
+      <td><%= entry.share_count %></td>
+      <td><%= entry.invite_count %></td>
+      <td><%= entry.convert_count %></td>
+      <td><%= link_to "Show", entry %></td>
+      <td><%= link_to "Edit", edit_entry_path(entry) %></td>
+      <td><%= link_to "Destroy", entry, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Entry", new_entry_path %></p>

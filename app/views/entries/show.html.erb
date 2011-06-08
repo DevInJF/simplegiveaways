@@ -1,0 +1,48 @@
+<% title "Entry" %>
+
+<p>
+  <strong>Email:</strong>
+  <%= @entry.email %>
+</p>
+<p>
+  <strong>Has Liked Mandatory:</strong>
+  <%= @entry.has_liked_mandatory %>
+</p>
+<p>
+  <strong>Has Liked Optional:</strong>
+  <%= @entry.has_liked_optional %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @entry.name %>
+</p>
+<p>
+  <strong>Fb Url:</strong>
+  <%= @entry.fb_url %>
+</p>
+<p>
+  <strong>Datetime Entered:</strong>
+  <%= @entry.datetime_entered %>
+</p>
+<p>
+  <strong>Has Shared:</strong>
+  <%= @entry.has_shared %>
+</p>
+<p>
+  <strong>Share Count:</strong>
+  <%= @entry.share_count %>
+</p>
+<p>
+  <strong>Invite Count:</strong>
+  <%= @entry.invite_count %>
+</p>
+<p>
+  <strong>Convert Count:</strong>
+  <%= @entry.convert_count %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_entry_path(@entry) %> |
+  <%= link_to "Destroy", @entry, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", entries_path %>
+</p>

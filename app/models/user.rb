@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
-  has_many :facebook_pages, :dependent => :destroy
-  has_many :giveaways, :dependent => :destroy
+  has_and_belongs_to_many :facebook_pages
+  has_and_belongs_to_many :giveaways
+  has_and_belongs_to_many :credit_cards
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -30,6 +31,7 @@ class User < ActiveRecord::Base
   def generate_account
     self.retrieve_pages
   end
+  handle_asynchronously :generate_account
 
 
   protected
@@ -50,7 +52,7 @@ class User < ActiveRecord::Base
       page_id = page["id"]
       page_token = page["access_token"]
       unless page_id.nil? or page_id.blank?
-        self.facebook_pages.build(
+        self.facebook_pages.create(
           :name => page_name,
           :category => page_cat,
           :pid => page_id,

@@ -1,0 +1,56 @@
+<% title "Credit Card" %>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @credit_card.nickname %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @credit_card.name %>
+</p>
+<p>
+  <strong>Street Address 1:</strong>
+  <%= @credit_card.street_address_1 %>
+</p>
+<p>
+  <strong>Street Address 2:</strong>
+  <%= @credit_card.street_address_2 %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @credit_card.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @credit_card.state %>
+</p>
+<p>
+  <strong>Postal Code:</strong>
+  <%= @credit_card.postal_code %>
+</p>
+<p>
+  <strong>Country:</strong>
+  <%= @credit_card.country %>
+</p>
+<p>
+  <strong>Type:</strong>
+  <%= @credit_card.type %>
+</p>
+<p>
+  <strong>Number:</strong>
+  <%= @credit_card.number %>
+</p>
+<p>
+  <strong>Expiration:</strong>
+  <%= @credit_card.expiration %>
+</p>
+<p>
+  <strong>Cvv:</strong>
+  <%= @credit_card.cvv %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_credit_card_path(@credit_card) %> |
+  <%= link_to "Destroy", @credit_card, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", credit_cards_path %>
+</p>

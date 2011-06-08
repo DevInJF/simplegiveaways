@@ -1,8 +1,8 @@
 class FacebookPage < ActiveRecord::Base
-  belongs_to :user
-  has_many :giveaways, :dependent => :destroy
+  has_and_belongs_to_many :users
+  has_many :giveaways
   
-  validates_uniqueness_of :pid, :scope => :user_id
+  validates_uniqueness_of :pid
   
   def self.retrieve_meta(user)  
     pages = user.facebook_pages

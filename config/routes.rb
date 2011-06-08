@@ -1,5 +1,9 @@
 SGA::Application.routes.draw do
 
+  resources :credit_cards
+
+  resources :entries
+
   resources :giveaways
 
   root :to => 'welcome#index'

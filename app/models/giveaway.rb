@@ -1,6 +1,9 @@
 class Giveaway < ActiveRecord::Base
-  belongs_to :user, :foreign_key => "user_id"
-  belongs_to :facebook_page, :foreign_key => "facebook_page_id"
+  has_and_belongs_to_many :users
+  belongs_to :facebook_page
+  has_many :entries
+  
+  serialize :optional_likes
 
   validates_presence_of :facebook_page_id, :title, :start_date, :end_date
   

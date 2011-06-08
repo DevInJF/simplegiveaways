@@ -1,0 +1,39 @@
+<% title "Credit Cards" %>
+
+<table>
+  <tr>
+    <th>Nickname</th>
+    <th>Name</th>
+    <th>Street Address 1</th>
+    <th>Street Address 2</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Postal Code</th>
+    <th>Country</th>
+    <th>Type</th>
+    <th>Number</th>
+    <th>Expiration</th>
+    <th>Cvv</th>
+  </tr>
+  <% for credit_card in @credit_cards %>
+    <tr>
+      <td><%= credit_card.nickname %></td>
+      <td><%= credit_card.name %></td>
+      <td><%= credit_card.street_address_1 %></td>
+      <td><%= credit_card.street_address_2 %></td>
+      <td><%= credit_card.city %></td>
+      <td><%= credit_card.state %></td>
+      <td><%= credit_card.postal_code %></td>
+      <td><%= credit_card.country %></td>
+      <td><%= credit_card.type %></td>
+      <td><%= credit_card.number %></td>
+      <td><%= credit_card.expiration %></td>
+      <td><%= credit_card.cvv %></td>
+      <td><%= link_to "Show", credit_card %></td>
+      <td><%= link_to "Edit", edit_credit_card_path(credit_card) %></td>
+      <td><%= link_to "Destroy", credit_card, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Credit Card", new_credit_card_path %></p>

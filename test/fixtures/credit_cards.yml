@@ -1,0 +1,27 @@
+one:
+  nickname: MyString
+  name: MyString
+  street_address_1: MyString
+  street_address_2: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  country: MyString
+  type: MyString
+  number: MyString
+  expiration: 2011-06-07
+  cvv: MyString
+
+two:
+  nickname: MyString
+  name: MyString
+  street_address_1: MyString
+  street_address_2: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  country: MyString
+  type: MyString
+  number: MyString
+  expiration: 2011-06-07
+  cvv: MyString

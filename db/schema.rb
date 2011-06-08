@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606004056) do
+ActiveRecord::Schema.define(:version => 20110608024941) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -54,6 +54,28 @@ ActiveRecord::Schema.define(:version => 20110606004056) do
     t.string   "token"
   end
 
+  create_table "credit_cards", :force => true do |t|
+    t.string   "nickname"
+    t.string   "name"
+    t.string   "street_address_1"
+    t.string   "street_address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "type"
+    t.string   "number"
+    t.date     "expiration"
+    t.string   "cvv"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "credit_cards_users", :id => false, :force => true do |t|
+    t.integer "credit_card_id", :null => false
+    t.integer "user_id",        :null => false
+  end
+
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -69,8 +91,23 @@ ActiveRecord::Schema.define(:version => 20110606004056) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "entries", :force => true do |t|
+    t.string   "email"
+    t.boolean  "has_liked_mandatory"
+    t.boolean  "has_liked_optional"
+    t.string   "name"
+    t.string   "fb_url"
+    t.datetime "datetime_entered"
+    t.boolean  "has_shared"
+    t.integer  "share_count"
+    t.integer  "invite_count"
+    t.integer  "convert_count"
+    t.integer  "giveaway_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "facebook_pages", :force => true do |t|
-    t.integer  "user_id"
     t.string   "name"
     t.string   "category"
     t.string   "pid"
@@ -80,9 +117,15 @@ ActiveRecord::Schema.define(:version => 20110606004056) do
     t.string   "avatar"
     t.text     "description"
     t.integer  "likes"
+    t.string   "url"
   end
 
-  add_index "facebook_pages", ["pid", "user_id"], :name => "index_facebook_pages_on_pid_and_user_id", :unique => true
+  add_index "facebook_pages", ["pid"], :name => "index_facebook_pages_on_pid_and_user_id", :unique => true
+
+  create_table "facebook_pages_users", :id => false, :force => true do |t|
+    t.integer "facebook_page_id", :null => false
+    t.integer "user_id",          :null => false
+  end
 
   create_table "giveaways", :force => true do |t|
     t.string   "title"
@@ -92,8 +135,18 @@ ActiveRecord::Schema.define(:version => 20110606004056) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.integer  "facebook_page_id"
+    t.string   "prize"
+    t.string   "feed_content"
+    t.boolean  "must_like"
+    t.text     "optional_likes"
+    t.text     "terms"
+    t.string   "giveaway_url"
+  end
+
+  create_table "giveaways_users", :id => false, :force => true do |t|
+    t.integer "giveaway_id", :null => false
+    t.integer "user_id",     :null => false
   end
 
   create_table "users", :force => true do |t|

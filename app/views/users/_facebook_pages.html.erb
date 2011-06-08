@@ -2,9 +2,9 @@
 <% @user.facebook_pages.each do |page| %>
 	<ul>
 		<li>
-			<span class="avatar"><%= image_tag page.avatar %></span>
-			<span class="name"><%= page.name %></span>
-			<span class="likes"><%= page.likes %></span>
+			<span class="avatar"><%= image_tag page.avatar rescue nil %></span>
+			<span class="name"><%= page.name rescue nil %></span>
+			<span class="likes"><%= page.likes rescue nil %></span>
 		</li>
 	</ul>
 <% end %>
