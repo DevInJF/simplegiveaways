@@ -2,7 +2,7 @@ class FacebookPage < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :giveaways
   
-  validates_uniqueness_of :pid
+  validates :pid, :uniqueness => true
   
   def self.retrieve_meta(user)  
     pages = user.facebook_pages

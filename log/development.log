@@ -29892,3 +29892,1128 @@ Rendered layouts/_header.html.erb (0.3ms)
 Rendered layouts/_footer.html.erb (0.2ms)
 Rendered users/show.html.erb within layouts/application (47.2ms)
 Completed 200 OK in 58ms (Views: 51.8ms | ActiveRecord: 4.5ms)
+  [1m[36mSQL (45.2ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (3.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (9.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (52.7ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `giveaways_users`
+
+
+Started GET "/" for 127.0.0.1 at 2011-06-12 17:18:42 -0400
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_nav.html.erb (2.5ms)
+Rendered layouts/_header.html.erb (0.7ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered welcome/index.html.erb within layouts/application (197.2ms)
+Completed 200 OK in 221ms (Views: 220.0ms | ActiveRecord: 57.4ms)
+
+
+Started GET "/authentications" for 127.0.0.1 at 2011-06-12 17:18:46 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by AuthenticationsController#index as HTML
+Rendered layouts/_nav.html.erb (1.0ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered authentications/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 37ms (Views: 34.9ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2011-06-12 17:18:47 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+
+
+Started GET "/auth/facebook/callback?code=TIJJqgW3hmCsQaGXtHISuK2lXM50mIlbAnsq89HMDYA.eyJpdiI6IkN1ZDBoVURYaUZzMXd3MHBzVlN5SFEifQ.yu7y9z28f2_oSiW2tiMVQAB8aF_Hqul2G_Y4HDBgzOhWeRMHsx7kWR9ZpZT_2b-RvP_iVEg8PStvWBJKQqIiK4TWNFD1fdN92uOnzKJvpuY" for 127.0.0.1 at 2011-06-12 17:18:49 -0400
+  [1m[36mSQL (1.3ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by AuthenticationsController#create as HTML
+  Parameters: {"code"=>"TIJJqgW3hmCsQaGXtHISuK2lXM50mIlbAnsq89HMDYA.eyJpdiI6IkN1ZDBoVURYaUZzMXd3MHBzVlN5SFEifQ.yu7y9z28f2_oSiW2tiMVQAB8aF_Hqul2G_Y4HDBgzOhWeRMHsx7kWR9ZpZT_2b-RvP_iVEg8PStvWBJKQqIiK4TWNFD1fdN92uOnzKJvpuY", "provider"=>"facebook"}
+  [1m[35mAuthentication Load (0.3ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE (`authentications`.`provider` = 'facebook') AND (`authentications`.`uid` = '808283') LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `users` SET `current_sign_in_at` = '2011-06-12 21:18:51', `sign_in_count` = 2, `updated_at` = '2011-06-12 21:18:51' WHERE (`users`.`id` = 48)[0m
+  [1m[35mSQL (1.0ms)[0m  COMMIT
+Redirected to http://simplegiveawayapp.com/
+Completed 302 Found in 154ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-06-12 17:18:51 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_flash.html.erb (0.7ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered layouts/_nav.html.erb (15.6ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (83.3ms)
+Completed 200 OK in 88ms (Views: 87.4ms | ActiveRecord: 19.4ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:18:56 -0400
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (15.4ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered users/_subnav.html.erb (0.9ms)
+  [1m[36mGiveaway Load (7.1ms)[0m  [1mSELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )[0m
+Rendered users/_giveaways.html.erb (16.3ms)
+  [1m[35mFacebookPage Load (7.6ms)[0m  SELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )
+Rendered users/_facebook_pages.html.erb (71.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (2.3ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered users/show.html.erb within layouts/application (119.5ms)
+Completed 200 OK in 152ms (Views: 131.0ms | ActiveRecord: 34.5ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:45:00 -0400
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+
+TypeError (can't convert nil into Hash):
+  app/models/facebook_page.rb:5:in `<class:FacebookPage>'
+  app/models/facebook_page.rb:1:in `<top (required)>'
+  app/admin/facebook_pages.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.9ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:45:07 -0400
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.5ms)[0m  [1mdescribe `facebook_pages_users`[0m
+
+TypeError (can't convert nil into Hash):
+  app/models/facebook_page.rb:5:in `<class:FacebookPage>'
+  app/models/facebook_page.rb:1:in `<top (required)>'
+  app/admin/facebook_pages.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.8ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:45:27 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+
+TypeError (can't convert nil into Hash):
+  app/models/facebook_page.rb:5:in `<class:FacebookPage>'
+  app/models/facebook_page.rb:1:in `<top (required)>'
+  app/admin/facebook_pages.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.1ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:45:29 -0400
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+
+TypeError (can't convert nil into Hash):
+  app/models/facebook_page.rb:5:in `<class:FacebookPage>'
+  app/models/facebook_page.rb:1:in `<top (required)>'
+  app/admin/facebook_pages.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.7ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:45:53 -0400
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+
+TypeError (can't convert nil into Hash):
+  app/models/giveaway.rb:9:in `<class:Giveaway>'
+  app/models/giveaway.rb:1:in `<top (required)>'
+  app/admin/giveaways.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.7ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:46:04 -0400
+  [1m[36mSQL (1.5ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.3ms)[0m  [1mdescribe `giveaways_users`[0m
+
+ArgumentError (Attribute names must be symbols):
+  app/models/giveaway.rb:9:in `<class:Giveaway>'
+  app/models/giveaway.rb:1:in `<top (required)>'
+  app/admin/giveaways.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:46:06 -0400
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.5ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+
+ArgumentError (Attribute names must be symbols):
+  app/models/giveaway.rb:9:in `<class:Giveaway>'
+  app/models/giveaway.rb:1:in `<top (required)>'
+  app/admin/giveaways.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:46:18 -0400
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+
+SyntaxError (/Users/Harris/git/SGA/app/models/giveaway.rb:9: syntax error, unexpected ',', expecting '}'
+...  validates {:facebook_page_id, :title, :start_date, :end_da...
+...                               ^
+/Users/Harris/git/SGA/app/models/giveaway.rb:9: syntax error, unexpected ',', expecting keyword_end
+...title, :start_date, :end_date}, :presence => :true
+...                               ^):
+  app/admin/giveaways.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.5ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:46:27 -0400
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (3.1ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+
+ArgumentError (Attribute names must be symbols):
+  app/models/giveaway.rb:9:in `<class:Giveaway>'
+  app/models/giveaway.rb:1:in `<top (required)>'
+  app/admin/giveaways.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.7ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:47:07 -0400
+  [1m[35mSQL (1.4ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `giveaways_users`
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered users/_subnav.html.erb (1.2ms)
+  [1m[35mGiveaway Load (0.4ms)[0m  SELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )
+Rendered users/_giveaways.html.erb (10.8ms)
+  [1m[36mFacebookPage Load (0.4ms)[0m  [1mSELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )[0m
+Rendered users/_facebook_pages.html.erb (18.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered layouts/_nav.html.erb (2.1ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered users/show.html.erb within layouts/application (57.7ms)
+Completed 200 OK in 69ms (Views: 61.4ms | ActiveRecord: 52.8ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:47:26 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+
+TypeError (can't convert nil into Hash):
+  app/models/facebook_page.rb:5:in `<class:FacebookPage>'
+  app/models/facebook_page.rb:1:in `<top (required)>'
+  app/admin/facebook_pages.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.5ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:47:39 -0400
+  [1m[36mSQL (9.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+
+TypeError (can't convert nil into Hash):
+  app/models/facebook_page.rb:5:in `<class:FacebookPage>'
+  app/models/facebook_page.rb:1:in `<top (required)>'
+  app/admin/facebook_pages.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.2ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:47:40 -0400
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.9ms)[0m  describe `facebook_pages_users`
+
+TypeError (can't convert nil into Hash):
+  app/models/facebook_page.rb:5:in `<class:FacebookPage>'
+  app/models/facebook_page.rb:1:in `<top (required)>'
+  app/admin/facebook_pages.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.4ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:48:01 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered users/_subnav.html.erb (0.6ms)
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )[0m
+Rendered users/_giveaways.html.erb (10.6ms)
+  [1m[35mFacebookPage Load (0.7ms)[0m  SELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )
+Rendered users/_facebook_pages.html.erb (25.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (1.8ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered users/show.html.erb within layouts/application (57.3ms)
+Completed 200 OK in 150ms (Views: 62.1ms | ActiveRecord: 28.0ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:48:04 -0400
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (114.4ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (2.8ms)[0m  describe `giveaways_users`
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered users/_subnav.html.erb (1.0ms)
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )
+Rendered users/_giveaways.html.erb (10.6ms)
+  [1m[36mFacebookPage Load (0.4ms)[0m  [1mSELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )[0m
+Rendered users/_facebook_pages.html.erb (20.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered layouts/_nav.html.erb (2.5ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered users/show.html.erb within layouts/application (130.6ms)
+Completed 200 OK in 142ms (Views: 134.7ms | ActiveRecord: 121.0ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:48:53 -0400
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered users/_subnav.html.erb (0.8ms)
+  [1m[36mGiveaway Load (0.4ms)[0m  [1mSELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )[0m
+Rendered users/_giveaways.html.erb (80.6ms)
+  [1m[35mFacebookPage Load (0.4ms)[0m  SELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )
+Rendered users/_facebook_pages.html.erb (22.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (2.0ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered users/show.html.erb within layouts/application (135.9ms)
+Completed 200 OK in 150ms (Views: 141.2ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:49:08 -0400
+  [1m[35mSQL (3.4ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (3.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.4ms)[0m  describe `giveaways_users`
+
+ArgumentError (Attribute names must be symbols):
+  app/models/giveaway.rb:9:in `<class:Giveaway>'
+  app/models/giveaway.rb:1:in `<top (required)>'
+  app/admin/giveaways.rb:1:in `<top (required)>'
+  config/routes.rb:21:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.4ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.4ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:49:15 -0400
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.5ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.7ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.5ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered users/_subnav.html.erb (0.6ms)
+  [1m[36mGiveaway Load (0.5ms)[0m  [1mSELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )[0m
+Rendered users/_giveaways.html.erb (8.3ms)
+  [1m[35mFacebookPage Load (0.6ms)[0m  SELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )
+Rendered users/_facebook_pages.html.erb (22.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (2.1ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.6ms)
+Rendered users/show.html.erb within layouts/application (62.7ms)
+Completed 200 OK in 77ms (Views: 67.2ms | ActiveRecord: 18.2ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:49:22 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered users/_subnav.html.erb (0.7ms)
+  [1m[35mGiveaway Load (0.5ms)[0m  SELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )
+Rendered users/_giveaways.html.erb (9.9ms)
+  [1m[36mFacebookPage Load (0.4ms)[0m  [1mSELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )[0m
+Rendered users/_facebook_pages.html.erb (27.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered layouts/_nav.html.erb (2.2ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered users/show.html.erb within layouts/application (60.5ms)
+Completed 200 OK in 73ms (Views: 65.4ms | ActiveRecord: 6.3ms)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (2.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.9ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.3ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (11.3ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.4ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to CreateAdminNotes (20110527181934)
+Migrating to MoveAdminNotesToComments (20110527181935)
+Migrating to DeviseCreateAdminUsers (20110527221934)
+Migrating to CreateAuthentications (20110528004246)
+Migrating to DeviseCreateUsers (20110528004515)
+Migrating to AddTokenToAuthentications (20110530220121)
+Migrating to CreateFacebookPages (20110530222558)
+Migrating to CreateDelayedJobs (20110530224624)
+Migrating to AddUniqueIndexToPidWithScope (20110530230348)
+Migrating to AddAvatarToFacebookPages (20110531010514)
+Migrating to AddDescriptionToFacebookPage (20110531020934)
+Migrating to AddLikesCountToFacebookPage (20110531023803)
+Migrating to CreateGiveaways (20110605221202)
+Migrating to AddForeignKeysToGiveaways (20110605221512)
+Migrating to RemoveIsLiveFromGiveaways (20110606003554)
+Migrating to RenamePageIdToFacebookPageIdInGiveaways (20110606004056)
+Migrating to CreateUsersFacebookPagesJoinTable (20110608010107)
+Migrating to RemoveForeignKeysFromUserAndFacebookPage (20110608010906)
+Migrating to RemoveForeignKeysFromUserAndGiveaways (20110608011130)
+Migrating to CreateJoinTableForGiveawaysAndUsers (20110608011301)
+Migrating to CreateEntries (20110608021851)
+Migrating to AddDillonsColumnsToGiveaways (20110608022642)
+Migrating to AddGiveawayUrlToGiveaways (20110608023253)
+Migrating to AddPageUrlToFacebookPages (20110608023527)
+Migrating to CreateCreditCards (20110608024316)
+Migrating to CreateJoinTableForCreditCardsAndUsers (20110608024941)
+Migrating to AddUniqueIndexToGiveaways (20110612214954)
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW KEYS FROM `giveaways`[0m
+  [1m[35mSQL (60.0ms)[0m  CREATE UNIQUE INDEX `index_giveaways_on_title_and_facebook_page_id` ON `giveaways` (`title`, `facebook_page_id`)
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `schema_migrations`[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110612214954')
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.8ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.9ms)[0m  describe `active_admin_comments`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `admin_users`
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW KEYS FROM `admin_users`[0m
+  [1m[35mSQL (1.9ms)[0m  describe `authentications`
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW KEYS FROM `authentications`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+  [1m[35mSQL (1.6ms)[0m  describe `delayed_jobs`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `delayed_jobs`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `entries`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `entries`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `facebook_pages`[0m
+  [1m[35mSQL (1.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.3ms)[0m  [1mSHOW KEYS FROM `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `giveaways`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `users`
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW KEYS FROM `users`[0m
+
+
+Started GET "/giveaways/new" for 127.0.0.1 at 2011-06-12 17:53:53 -0400
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+  [1m[36mFacebookPage Load (0.6ms)[0m  [1mSELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )[0m
+Rendered giveaways/_form.html.erb (174.4ms)
+Rendered layouts/_nav.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered giveaways/new.html.erb within layouts/application (183.2ms)
+Completed 200 OK in 199ms (Views: 190.3ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/giveaways" for 127.0.0.1 at 2011-06-12 17:53:58 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.5ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#index as HTML
+  [1m[36mGiveaway Load (0.4ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways`[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered layouts/_nav.html.erb (19.8ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered giveaways/index.html.erb within layouts/application (26.4ms)
+Completed 200 OK in 49ms (Views: 41.2ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 17:54:01 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.3ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered users/_subnav.html.erb (0.8ms)
+  [1m[36mGiveaway Load (0.4ms)[0m  [1mSELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )[0m
+Rendered users/_giveaways.html.erb (10.2ms)
+  [1m[35mFacebookPage Load (0.4ms)[0m  SELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )
+Rendered users/_facebook_pages.html.erb (19.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (1.7ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered users/show.html.erb within layouts/application (55.7ms)
+Completed 200 OK in 68ms (Views: 59.7ms | ActiveRecord: 6.7ms)
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.3ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (6.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (7.2ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.4ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to CreateAdminNotes (20110527181934)
+Migrating to MoveAdminNotesToComments (20110527181935)
+Migrating to DeviseCreateAdminUsers (20110527221934)
+Migrating to CreateAuthentications (20110528004246)
+Migrating to DeviseCreateUsers (20110528004515)
+Migrating to AddTokenToAuthentications (20110530220121)
+Migrating to CreateFacebookPages (20110530222558)
+Migrating to CreateDelayedJobs (20110530224624)
+Migrating to AddUniqueIndexToPidWithScope (20110530230348)
+Migrating to AddAvatarToFacebookPages (20110531010514)
+Migrating to AddDescriptionToFacebookPage (20110531020934)
+Migrating to AddLikesCountToFacebookPage (20110531023803)
+Migrating to CreateGiveaways (20110605221202)
+Migrating to AddForeignKeysToGiveaways (20110605221512)
+Migrating to RemoveIsLiveFromGiveaways (20110606003554)
+Migrating to RenamePageIdToFacebookPageIdInGiveaways (20110606004056)
+Migrating to CreateUsersFacebookPagesJoinTable (20110608010107)
+Migrating to RemoveForeignKeysFromUserAndFacebookPage (20110608010906)
+Migrating to RemoveForeignKeysFromUserAndGiveaways (20110608011130)
+Migrating to CreateJoinTableForGiveawaysAndUsers (20110608011301)
+Migrating to CreateEntries (20110608021851)
+Migrating to AddDillonsColumnsToGiveaways (20110608022642)
+Migrating to AddGiveawayUrlToGiveaways (20110608023253)
+Migrating to AddPageUrlToFacebookPages (20110608023527)
+Migrating to CreateCreditCards (20110608024316)
+Migrating to CreateJoinTableForCreditCardsAndUsers (20110608024941)
+Migrating to AddUniqueIndexToGiveaways (20110612214954)
+Migrating to AddUniqueIndexToEntries (20110612215644)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.3ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to CreateAdminNotes (20110527181934)
+Migrating to MoveAdminNotesToComments (20110527181935)
+Migrating to DeviseCreateAdminUsers (20110527221934)
+Migrating to CreateAuthentications (20110528004246)
+Migrating to DeviseCreateUsers (20110528004515)
+Migrating to AddTokenToAuthentications (20110530220121)
+Migrating to CreateFacebookPages (20110530222558)
+Migrating to CreateDelayedJobs (20110530224624)
+Migrating to AddUniqueIndexToPidWithScope (20110530230348)
+Migrating to AddAvatarToFacebookPages (20110531010514)
+Migrating to AddDescriptionToFacebookPage (20110531020934)
+Migrating to AddLikesCountToFacebookPage (20110531023803)
+Migrating to CreateGiveaways (20110605221202)
+Migrating to AddForeignKeysToGiveaways (20110605221512)
+Migrating to RemoveIsLiveFromGiveaways (20110606003554)
+Migrating to RenamePageIdToFacebookPageIdInGiveaways (20110606004056)
+Migrating to CreateUsersFacebookPagesJoinTable (20110608010107)
+Migrating to RemoveForeignKeysFromUserAndFacebookPage (20110608010906)
+Migrating to RemoveForeignKeysFromUserAndGiveaways (20110608011130)
+Migrating to CreateJoinTableForGiveawaysAndUsers (20110608011301)
+Migrating to CreateEntries (20110608021851)
+Migrating to AddDillonsColumnsToGiveaways (20110608022642)
+Migrating to AddGiveawayUrlToGiveaways (20110608023253)
+Migrating to AddPageUrlToFacebookPages (20110608023527)
+Migrating to CreateCreditCards (20110608024316)
+Migrating to CreateJoinTableForCreditCardsAndUsers (20110608024941)
+Migrating to AddUniqueIndexToGiveaways (20110612214954)
+Migrating to AddUniqueIndexToEntries (20110612215644)
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `entries`[0m
+  [1m[35mSQL (49.9ms)[0m  CREATE UNIQUE INDEX `index_entries_on_email_and_giveaway_id` ON `entries` (`email`, `giveaway_id`)
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `schema_migrations`[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110612215644')
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.7ms)[0m  describe `active_admin_comments`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `admin_users`
+  [1m[36mSQL (1.5ms)[0m  [1mSHOW KEYS FROM `admin_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `authentications`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `authentications`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `credit_cards`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `delayed_jobs`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `delayed_jobs`[0m
+  [1m[35mSQL (2.5ms)[0m  describe `entries`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `entries`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `facebook_pages`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `giveaways`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `giveaways_users`[0m
+  [1m[35mSQL (2.0ms)[0m  describe `users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `users`[0m
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.3ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (18.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.5ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (5.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to CreateAdminNotes (20110527181934)
+Migrating to MoveAdminNotesToComments (20110527181935)
+Migrating to DeviseCreateAdminUsers (20110527221934)
+Migrating to CreateAuthentications (20110528004246)
+Migrating to DeviseCreateUsers (20110528004515)
+Migrating to AddTokenToAuthentications (20110530220121)
+Migrating to CreateFacebookPages (20110530222558)
+Migrating to CreateDelayedJobs (20110530224624)
+Migrating to AddUniqueIndexToPidWithScope (20110530230348)
+Migrating to AddAvatarToFacebookPages (20110531010514)
+Migrating to AddDescriptionToFacebookPage (20110531020934)
+Migrating to AddLikesCountToFacebookPage (20110531023803)
+Migrating to CreateGiveaways (20110605221202)
+Migrating to AddForeignKeysToGiveaways (20110605221512)
+Migrating to RemoveIsLiveFromGiveaways (20110606003554)
+Migrating to RenamePageIdToFacebookPageIdInGiveaways (20110606004056)
+Migrating to CreateUsersFacebookPagesJoinTable (20110608010107)
+Migrating to RemoveForeignKeysFromUserAndFacebookPage (20110608010906)
+Migrating to RemoveForeignKeysFromUserAndGiveaways (20110608011130)
+Migrating to CreateJoinTableForGiveawaysAndUsers (20110608011301)
+Migrating to CreateEntries (20110608021851)
+Migrating to AddDillonsColumnsToGiveaways (20110608022642)
+Migrating to AddGiveawayUrlToGiveaways (20110608023253)
+Migrating to AddPageUrlToFacebookPages (20110608023527)
+Migrating to CreateCreditCards (20110608024316)
+Migrating to CreateJoinTableForCreditCardsAndUsers (20110608024941)
+Migrating to AddUniqueIndexToGiveaways (20110612214954)
+Migrating to AddUniqueIndexToEntries (20110612215644)
+Migrating to AddUniquenessToCreditCardsUsers (20110612220722)
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+  [1m[35mSQL (55.0ms)[0m  CREATE UNIQUE INDEX `by_credit_card_and_user` ON `credit_cards_users` (`credit_card_id`, `user_id`)
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `schema_migrations`[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110612220722')
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.7ms)[0m  describe `active_admin_comments`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `admin_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `admin_users`[0m
+  [1m[35mSQL (2.4ms)[0m  describe `authentications`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `authentications`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `credit_cards`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `delayed_jobs`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `delayed_jobs`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `entries`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `entries`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages`
+  [1m[36mSQL (1.7ms)[0m  [1mSHOW KEYS FROM `facebook_pages`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `giveaways`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `users`[0m
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (19.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to AddUniquenessToCreditCardsUsers (20110612220722)
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+Index name 'index_credit_cards_users_on_credit_card_id_and_user_id' on table 'credit_cards_users' does not exist. Skipping.
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20110612220722'
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.7ms)[0m  describe `active_admin_comments`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `admin_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `admin_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `authentications`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `authentications`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `delayed_jobs`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `delayed_jobs`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `entries`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `entries`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `facebook_pages`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `giveaways`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `users`[0m
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (6.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.2ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to CreateAdminNotes (20110527181934)
+Migrating to MoveAdminNotesToComments (20110527181935)
+Migrating to DeviseCreateAdminUsers (20110527221934)
+Migrating to CreateAuthentications (20110528004246)
+Migrating to DeviseCreateUsers (20110528004515)
+Migrating to AddTokenToAuthentications (20110530220121)
+Migrating to CreateFacebookPages (20110530222558)
+Migrating to CreateDelayedJobs (20110530224624)
+Migrating to AddUniqueIndexToPidWithScope (20110530230348)
+Migrating to AddAvatarToFacebookPages (20110531010514)
+Migrating to AddDescriptionToFacebookPage (20110531020934)
+Migrating to AddLikesCountToFacebookPage (20110531023803)
+Migrating to CreateGiveaways (20110605221202)
+Migrating to AddForeignKeysToGiveaways (20110605221512)
+Migrating to RemoveIsLiveFromGiveaways (20110606003554)
+Migrating to RenamePageIdToFacebookPageIdInGiveaways (20110606004056)
+Migrating to CreateUsersFacebookPagesJoinTable (20110608010107)
+Migrating to RemoveForeignKeysFromUserAndFacebookPage (20110608010906)
+Migrating to RemoveForeignKeysFromUserAndGiveaways (20110608011130)
+Migrating to CreateJoinTableForGiveawaysAndUsers (20110608011301)
+Migrating to CreateEntries (20110608021851)
+Migrating to AddDillonsColumnsToGiveaways (20110608022642)
+Migrating to AddGiveawayUrlToGiveaways (20110608023253)
+Migrating to AddPageUrlToFacebookPages (20110608023527)
+Migrating to CreateCreditCards (20110608024316)
+Migrating to CreateJoinTableForCreditCardsAndUsers (20110608024941)
+Migrating to AddUniqueIndexToGiveaways (20110612214954)
+Migrating to AddUniqueIndexToEntries (20110612215644)
+Migrating to AddUniquenessToCreditCardsUsers (20110612220722)
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+Index name 'by_credit_card_and_user' on table 'credit_cards_users' already exists. Skipping.
+  [1m[35mSQL (1.0ms)[0m  describe `schema_migrations`
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110612220722')[0m
+  [1m[35mSQL (0.7ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `active_admin_comments`[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW KEYS FROM `active_admin_comments`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `admin_users`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `admin_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `authentications`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `authentications`
+  [1m[36mSQL (2.0ms)[0m  [1mdescribe `credit_cards`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `credit_cards`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `credit_cards_users`
+  [1m[36mSQL (1.7ms)[0m  [1mdescribe `delayed_jobs`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `delayed_jobs`
+  [1m[36mSQL (1.4ms)[0m  [1mdescribe `entries`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `entries`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `facebook_pages`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW KEYS FROM `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways`[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `giveaways`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW KEYS FROM `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `users`[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW KEYS FROM `users`
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.5ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.5ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to AddUniquenessToCreditCardsUsers (20110612220722)
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+Index name 'index_credit_cards_users_on_credit_card_id' on table 'credit_cards_users' does not exist. Skipping.
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20110612220722'
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.9ms)[0m  describe `active_admin_comments`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `admin_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `admin_users`[0m
+  [1m[35mSQL (1.7ms)[0m  describe `authentications`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `authentications`[0m
+  [1m[35mSQL (2.0ms)[0m  describe `credit_cards`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `credit_cards`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `delayed_jobs`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `delayed_jobs`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `entries`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `entries`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `facebook_pages`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `facebook_pages`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW KEYS FROM `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways`
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW KEYS FROM `giveaways`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `giveaways_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `users`
+  [1m[36mSQL (1.0ms)[0m  [1mSHOW KEYS FROM `users`[0m
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to CreateAdminNotes (20110527181934)
+Migrating to MoveAdminNotesToComments (20110527181935)
+Migrating to DeviseCreateAdminUsers (20110527221934)
+Migrating to CreateAuthentications (20110528004246)
+Migrating to DeviseCreateUsers (20110528004515)
+Migrating to AddTokenToAuthentications (20110530220121)
+Migrating to CreateFacebookPages (20110530222558)
+Migrating to CreateDelayedJobs (20110530224624)
+Migrating to AddUniqueIndexToPidWithScope (20110530230348)
+Migrating to AddAvatarToFacebookPages (20110531010514)
+Migrating to AddDescriptionToFacebookPage (20110531020934)
+Migrating to AddLikesCountToFacebookPage (20110531023803)
+Migrating to CreateGiveaways (20110605221202)
+Migrating to AddForeignKeysToGiveaways (20110605221512)
+Migrating to RemoveIsLiveFromGiveaways (20110606003554)
+Migrating to RenamePageIdToFacebookPageIdInGiveaways (20110606004056)
+Migrating to CreateUsersFacebookPagesJoinTable (20110608010107)
+Migrating to RemoveForeignKeysFromUserAndFacebookPage (20110608010906)
+Migrating to RemoveForeignKeysFromUserAndGiveaways (20110608011130)
+Migrating to CreateJoinTableForGiveawaysAndUsers (20110608011301)
+Migrating to CreateEntries (20110608021851)
+Migrating to AddDillonsColumnsToGiveaways (20110608022642)
+Migrating to AddGiveawayUrlToGiveaways (20110608023253)
+Migrating to AddPageUrlToFacebookPages (20110608023527)
+Migrating to CreateCreditCards (20110608024316)
+Migrating to CreateJoinTableForCreditCardsAndUsers (20110608024941)
+Migrating to AddUniqueIndexToGiveaways (20110612214954)
+Migrating to AddUniqueIndexToEntries (20110612215644)
+Migrating to AddUniquenessToCreditCardsUsers (20110612220722)
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+Index name 'by_credit_card_and_user' on table 'credit_cards_users' already exists. Skipping.
+  [1m[35mSQL (3.2ms)[0m  describe `schema_migrations`
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110612220722')[0m
+  [1m[35mSQL (0.8ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `active_admin_comments`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `active_admin_comments`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `admin_users`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `admin_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `authentications`[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW KEYS FROM `authentications`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `credit_cards`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  SHOW KEYS FROM `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `delayed_jobs`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `delayed_jobs`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `entries`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `entries`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `facebook_pages`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `facebook_pages`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `giveaways`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW KEYS FROM `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `users`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `users`
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.6ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.4ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (13.5ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+Migrating to CreateAdminNotes (20110527181934)
+Migrating to MoveAdminNotesToComments (20110527181935)
+Migrating to DeviseCreateAdminUsers (20110527221934)
+Migrating to CreateAuthentications (20110528004246)
+Migrating to DeviseCreateUsers (20110528004515)
+Migrating to AddTokenToAuthentications (20110530220121)
+Migrating to CreateFacebookPages (20110530222558)
+Migrating to CreateDelayedJobs (20110530224624)
+Migrating to AddUniqueIndexToPidWithScope (20110530230348)
+Migrating to AddAvatarToFacebookPages (20110531010514)
+Migrating to AddDescriptionToFacebookPage (20110531020934)
+Migrating to AddLikesCountToFacebookPage (20110531023803)
+Migrating to CreateGiveaways (20110605221202)
+Migrating to AddForeignKeysToGiveaways (20110605221512)
+Migrating to RemoveIsLiveFromGiveaways (20110606003554)
+Migrating to RenamePageIdToFacebookPageIdInGiveaways (20110606004056)
+Migrating to CreateUsersFacebookPagesJoinTable (20110608010107)
+Migrating to RemoveForeignKeysFromUserAndFacebookPage (20110608010906)
+Migrating to RemoveForeignKeysFromUserAndGiveaways (20110608011130)
+Migrating to CreateJoinTableForGiveawaysAndUsers (20110608011301)
+Migrating to CreateEntries (20110608021851)
+Migrating to AddDillonsColumnsToGiveaways (20110608022642)
+Migrating to AddGiveawayUrlToGiveaways (20110608023253)
+Migrating to AddPageUrlToFacebookPages (20110608023527)
+Migrating to CreateCreditCards (20110608024316)
+Migrating to CreateJoinTableForCreditCardsAndUsers (20110608024941)
+Migrating to AddUniqueIndexToGiveaways (20110612214954)
+Migrating to AddUniqueIndexToEntries (20110612215644)
+Migrating to AddUniquenessToCreditCardsUsers (20110612220722)
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.7ms)[0m  describe `active_admin_comments`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `active_admin_comments`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `admin_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `admin_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `authentications`
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW KEYS FROM `authentications`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `credit_cards_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `delayed_jobs`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `delayed_jobs`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `entries`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `entries`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `facebook_pages`
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW KEYS FROM `facebook_pages`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `giveaways`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `users`
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW KEYS FROM `users`[0m
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 18:17:02 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `giveaways_users`
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered users/_subnav.html.erb (1.0ms)
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )
+Rendered users/_giveaways.html.erb (11.2ms)
+  [1m[36mFacebookPage Load (0.4ms)[0m  [1mSELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )[0m
+Rendered users/_facebook_pages.html.erb (16.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered layouts/_nav.html.erb (2.6ms)
+Rendered layouts/_header.html.erb (0.7ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered users/show.html.erb within layouts/application (141.0ms)
+Completed 200 OK in 155ms (Views: 147.7ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/users/48" for 127.0.0.1 at 2011-06-12 18:17:18 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1
+Rendered users/_subnav.html.erb (1.1ms)
+  [1m[36mGiveaway Load (0.5ms)[0m  [1mSELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 48 )[0m
+Rendered users/_giveaways.html.erb (12.3ms)
+  [1m[35mFacebookPage Load (0.4ms)[0m  SELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )
+Rendered users/_facebook_pages.html.erb (24.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (2.3ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (153.4ms)
+Completed 200 OK in 165ms (Views: 157.7ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/giveaways/new" for 127.0.0.1 at 2011-06-12 18:18:21 -0400
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 48) LIMIT 1[0m
+  [1m[35mFacebookPage Load (0.4ms)[0m  SELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 48 )
+Rendered giveaways/_form.html.erb (113.9ms)
+Rendered layouts/_nav.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/new.html.erb within layouts/application (121.4ms)
+Completed 200 OK in 133ms (Views: 128.3ms | ActiveRecord: 5.8ms)

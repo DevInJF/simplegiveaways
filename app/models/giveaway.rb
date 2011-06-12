@@ -5,7 +5,8 @@ class Giveaway < ActiveRecord::Base
   
   serialize :optional_likes
 
-  validates_presence_of :facebook_page_id, :title, :start_date, :end_date
+  validates :title, :uniqueness => {:scope => :facebook_page_id}
+  validates :facebook_page_id, :title, :start_date, :end_date, :presence => true
   
   def is_live?
     today = Date.today
