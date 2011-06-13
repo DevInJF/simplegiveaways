@@ -6,7 +6,7 @@ ActiveAdmin.register Giveaway do
   # Filterable attributes on the index screen
   filter :title
   filter :description
-  filter :content
+  filter :image_file_name
   filter :is_live?
   filter :user_id
   filter :facebook_page_id
@@ -18,7 +18,7 @@ ActiveAdmin.register Giveaway do
   index do
     column :title
     column :description
-    column :content
+    column :image_file_name
     column :is_live?
     column :user_id
     column :facebook_page_id
