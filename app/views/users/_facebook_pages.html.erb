@@ -1,8 +1,8 @@
 <h3>Facebook Pages</h3>
 <% @user.facebook_pages.each do |page| %>
 	<ul>
-		<li>
-			<span class="avatar"><%= image_tag page.avatar rescue nil %></span>
+		<li class="clearfix">
+			<%= image_tag page.avatar, :class => "thumb" rescue nil %>
 			<span class="name"><%= page.name rescue nil %></span>
 			<span class="likes"><%= page.likes rescue nil %></span>
 		</li>

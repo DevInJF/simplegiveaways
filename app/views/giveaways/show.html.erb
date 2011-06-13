@@ -1,6 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Admins:</b>
+	<% @giveaway.users.each do |user| %>
+		<ul>
+			<li>
+				<span class="email"><strong><%= link_to user.email, user %></strong></span><br />
+			</li>
+		</ul>
+	<% end %>
+</p>
+
+<p>
   <b>Title:</b>
   <%= @giveaway.title %>
 </p>
@@ -21,14 +32,12 @@
 </p>
 
 <p>
-  <b>Content:</b>
-  <%= @giveaway.content %>
-</p>
-
-<p>
   <b>Is live:</b>
   <%= @giveaway.is_live? %>
 </p>
+
+<b>Image:</b><br />
+<%= image_tag @giveaway.image.url %>
 
 
 <%= link_to 'Edit', edit_giveaway_path(@giveaway) %> |

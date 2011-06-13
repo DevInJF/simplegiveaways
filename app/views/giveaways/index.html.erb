@@ -6,7 +6,7 @@
     <th>Description</th>
     <th>Start date</th>
     <th>End date</th>
-    <th>Content</th>
+    <th>Image</th>
     <th>Is live</th>
     <th></th>
     <th></th>
@@ -19,7 +19,7 @@
     <td><%= giveaway.description %></td>
     <td><%= giveaway.start_date %></td>
     <td><%= giveaway.end_date %></td>
-    <td><%= giveaway.content %></td>
+    <td><%= image_tag giveaway.image.url(:thumb) %></td>
     <td><%= giveaway.is_live? %></td>
     <td><%= link_to 'Show', giveaway %></td>
     <td><%= link_to 'Edit', edit_giveaway_path(giveaway) %></td>

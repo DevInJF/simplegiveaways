@@ -1,4 +1,4 @@
-<%= semantic_form_for @giveaway do |f| %>
+<%= semantic_form_for @giveaway, :html => { :multipart => true } do |f| %>
 
   <%= f.semantic_errors %>
 
@@ -8,8 +8,7 @@
 	  <%= f.input :description %>
 	  <%= f.input :start_date, :as => :date_picker %>
 	  <%= f.input :end_date, :as => :date_picker %>
-	  <%= f.input :content %>
-		<%= f.input :user_id, :as => :hidden, :value => current_user.id %>
+	  <%= f.input :image, :as => :file %>
 	<% end %>
 
   <%= f.buttons do %>

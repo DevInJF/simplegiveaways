@@ -28,11 +28,13 @@ class GiveawaysController < ApplicationController
   # POST /giveaways.xml
   def create
     @params = params[:giveaway]
-    
-    @giveaway = Giveaway.new(@params)
+
+    @giveaway = current_user.giveaways.new(@params)
     
     @giveaway.start_date = DateTime.strptime(@params[:start_date], "%m/%d/%Y %H:%M")
     @giveaway.end_date = DateTime.strptime(@params[:end_date], "%m/%d/%Y %H:%M")
+    
+    current_user.giveaways << @giveaway
     
     respond_to do |format|
       if @giveaway.save

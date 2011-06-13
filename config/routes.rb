@@ -12,7 +12,9 @@ SGA::Application.routes.draw do
              :singular => :user,
              :controllers => {:registrations => 'registrations'}
 
-  resources :users
+  resources :users do
+    resources :giveaways
+  end
 
   resources :authentications
   

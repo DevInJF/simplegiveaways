@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110612220722) do
+ActiveRecord::Schema.define(:version => 20110612225150) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -76,8 +76,6 @@ ActiveRecord::Schema.define(:version => 20110612220722) do
     t.integer "user_id",        :null => false
   end
 
-  add_index "credit_cards_users", ["credit_card_id", "user_id"], :name => "by_credit_card_and_user", :unique => true
-
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -136,7 +134,6 @@ ActiveRecord::Schema.define(:version => 20110612220722) do
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "facebook_page_id"
@@ -146,6 +143,9 @@ ActiveRecord::Schema.define(:version => 20110612220722) do
     t.text     "optional_likes"
     t.text     "terms"
     t.string   "giveaway_url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
   end
 
   add_index "giveaways", ["title", "facebook_page_id"], :name => "index_giveaways_on_title_and_facebook_page_id", :unique => true

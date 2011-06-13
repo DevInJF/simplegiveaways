@@ -41,6 +41,10 @@ module SGA
     
     # Jammit
     config.gem "jammit"
+    
+    # Paperclip
+    Paperclip::Railtie.insert 
+
   end
 end
 

@@ -16,4 +16,10 @@ nav.subnav {
 
 article.module {
 	padding: 20px 0;
+	clear: both;
+}
+
+img.thumb {
+	float: left;
+	margin-right: 20px;
 }
