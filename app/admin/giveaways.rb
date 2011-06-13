@@ -8,7 +8,6 @@ ActiveAdmin.register Giveaway do
   filter :description
   filter :image_file_name
   filter :is_live?
-  filter :user_id
   filter :facebook_page_id
   filter :start_date
   filter :end_date
@@ -20,7 +19,6 @@ ActiveAdmin.register Giveaway do
     column :description
     column :image_file_name
     column :is_live?
-    column :user_id
     column :facebook_page_id
     column :start_date
     column :end_date
