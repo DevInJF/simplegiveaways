@@ -1,0 +1,21 @@
+div.input-group {
+	width: 550px;
+	clear: both;
+	padding: 20px 0;
+	overflow: auto;
+}
+
+div.input-group li {
+	float: left;
+}
+
+div.input-group .button {
+	float: left;
+	margin: 23px 0 0 20px;
+	font-size: 12px;
+}
+
+div.input-group .error {
+	padding: 10px 0 10px 10px;
+	margin: 10px 0;
+}
