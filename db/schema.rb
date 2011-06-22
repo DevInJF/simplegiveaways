@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110612225150) do
+ActiveRecord::Schema.define(:version => 20110622011931) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -138,7 +138,6 @@ ActiveRecord::Schema.define(:version => 20110612225150) do
     t.datetime "updated_at"
     t.integer  "facebook_page_id"
     t.string   "prize"
-    t.string   "feed_content"
     t.boolean  "must_like"
     t.text     "optional_likes"
     t.text     "terms"
@@ -146,6 +145,9 @@ ActiveRecord::Schema.define(:version => 20110612225150) do
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
+    t.string   "feed_image_file_name"
+    t.string   "feed_image_content_type"
+    t.integer  "feed_image_file_size"
   end
 
   add_index "giveaways", ["title", "facebook_page_id"], :name => "index_giveaways_on_title_and_facebook_page_id", :unique => true

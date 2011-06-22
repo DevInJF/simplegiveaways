@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<div class="field">
   <b>Admins:</b>
 	<% @giveaway.users.each do |user| %>
 		<ul>
@@ -9,36 +9,57 @@
 			</li>
 		</ul>
 	<% end %>
-</p>
+</div>
 
-<p>
+<div class="field">
+  <b>Facebook Page:</b>
+  <%= @giveaway.facebook_page.name %>
+</div>
+
+<div class="field">
   <b>Title:</b>
   <%= @giveaway.title %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <b>Description:</b>
   <%= @giveaway.description %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <b>Start date:</b>
   <%= @giveaway.start_date %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <b>End date:</b>
   <%= @giveaway.end_date %>
-</p>
+</div>
 
-<p>
-  <b>Is live:</b>
+<div class="field">
+  <b>Prize:</b>
+  <%= @giveaway.prize %>
+</div>
+
+<div class="field">
+  <b>Is live?:</b>
   <%= @giveaway.is_live? %>
-</p>
+</div>
 
-<b>Image:</b><br />
-<%= image_tag @giveaway.image.url %>
+<div class="field">
+	<b>Image:</b><br />
+	<%= image_tag @giveaway.image.url %>
+</div>
 
+<div class="field">
+	<b>Feed Image:</b><br />
+	<%= image_tag @giveaway.feed_image.url(:feed) %>
+</div>
+
+<div class="field">
+  <b>Terms &amp; Conditions:</b>
+  <%= @giveaway.terms %>
+</div>
 
 <%= link_to 'Edit', edit_giveaway_path(@giveaway) %> |
 <%= link_to 'Back', giveaways_path %>

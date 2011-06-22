@@ -54,3 +54,6 @@
 2011-06-12T19:19:51-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:28959)] Starting job worker
 2011-06-12T20:18:41-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:28959)] Exiting...
 2011-06-12T20:18:45-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:31071)] Starting job worker
+2011-06-21T20:26:39-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:17289)] Starting job worker
+2011-06-21T20:41:19-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:17289)] User#generate_account_without_delay completed after 9.6672
+2011-06-21T20:41:19-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:17289)] 1 jobs processed at 0.1032 j/s, 0 failed ...

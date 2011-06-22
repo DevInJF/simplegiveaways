@@ -5,16 +5,29 @@ class Giveaway < ActiveRecord::Base
   
   serialize :optional_likes
 
-  validates :title, :uniqueness => {:scope => :facebook_page_id}
-  validates :facebook_page_id, :title, :start_date, :end_date, :presence => true
+  validates :title, :uniqueness => {:scope => :facebook_page_id}, :presence => true
+  validates :facebook_page_id, :presence => true
+  validates :description, :presence => true
+  validates :start_date, :presence => true
+  validates :end_date, :presence => true
+  validates :prize, :presence => true
+  validates :image, :presence => true
+  validates :feed_image, :presence => true
+  validates :terms, :presence => true
  
   # Paperclip 
   has_attached_file :image,
     :styles => {
-      :thumb=> "100x100>",
-      :small  => "150x150>",
-      :medium => "300x300>",
-      :large =>   "400x400>" },
+      :thumb  => "150x150>",
+      :medium => "300x300>" },
+    :storage => :s3,
+    :s3_credentials => S3_CREDENTIALS,
+    :path => "/:style/:id/:filename"
+    
+  has_attached_file :feed_image,
+    :styles => {
+      :thumb  => "45x45>",
+      :feed => "90x90>" },
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
