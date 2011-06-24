@@ -1,21 +1,27 @@
-div.input-group {
+span.input-group {
 	width: 550px;
 	clear: both;
 	padding: 20px 0;
 	overflow: auto;
+	display: block;
 }
 
-div.input-group li {
+.input-group li {
 	float: left;
+	clear: both;
 }
 
-div.input-group .button {
+.input-group label {
+	font-weight: bold;
+}
+
+.input-group .button {
 	float: left;
-	margin: 23px 0 0 20px;
 	font-size: 12px;
+	margin: 5px 0 0 15px;
 }
 
-div.input-group .error {
+.input-group .error {
 	padding: 10px 0 10px 10px;
 	margin: 10px 0;
 }

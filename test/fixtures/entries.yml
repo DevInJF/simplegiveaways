@@ -1,7 +1,7 @@
 one:
   email: MyString
+  has_liked_primary: false  
   has_liked_mandatory: false
-  has_liked_optional: false
   name: MyString
   fb_url: MyString
   datetime_entered: 2011-06-07 22:18:51
@@ -12,8 +12,8 @@ one:
 
 two:
   email: MyString
+  has_liked_primary: false  
   has_liked_mandatory: false
-  has_liked_optional: false
   name: MyString
   fb_url: MyString
   datetime_entered: 2011-06-07 22:18:51

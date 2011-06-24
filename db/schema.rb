@@ -10,7 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622011931) do
+ActiveRecord::Schema.define(:version => 20110624015125) do
+
+  create_table "accessory_fb_pages", :force => true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.string   "pid"
+    t.string   "avatar"
+    t.text     "description"
+    t.integer  "likes"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "giveaway_id"
+  end
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -94,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20110622011931) do
   create_table "entries", :force => true do |t|
     t.string   "email"
     t.boolean  "has_liked_mandatory"
-    t.boolean  "has_liked_optional"
+    t.boolean  "has_liked_primary"
     t.string   "name"
     t.string   "fb_url"
     t.datetime "datetime_entered"
@@ -122,8 +135,6 @@ ActiveRecord::Schema.define(:version => 20110622011931) do
     t.string   "url"
   end
 
-  add_index "facebook_pages", ["pid"], :name => "index_facebook_pages_on_pid_and_user_id", :unique => true
-
   create_table "facebook_pages_users", :id => false, :force => true do |t|
     t.integer "facebook_page_id", :null => false
     t.integer "user_id",          :null => false
@@ -138,8 +149,7 @@ ActiveRecord::Schema.define(:version => 20110622011931) do
     t.datetime "updated_at"
     t.integer  "facebook_page_id"
     t.string   "prize"
-    t.boolean  "must_like"
-    t.text     "optional_likes"
+    t.text     "mandatory_likes"
     t.text     "terms"
     t.string   "giveaway_url"
     t.string   "image_file_name"

@@ -3,7 +3,7 @@
   <%= f.semantic_errors %>
 
 	<%= f.inputs do %>
-		<%= f.input :facebook_page, :collection => current_user.facebook_pages, :prompt => "Select one..." %>
+		<%= f.input :facebook_page, :collection => current_user.facebook_pages, :prompt => "Select one...", :required => true %>
 	  <%= f.input :title %>
 	  <%= f.input :prize %>
 	  <%= f.input :description %>
@@ -11,12 +11,16 @@
 	  <%= f.input :end_date, :as => :date_picker %>
 		<%= f.input :image, :as => :file %>
 	  <%= f.input :feed_image, :as => :file %>
-		<div class="input-group">
-	  	<%= f.input :optional_likes, :as => :string, :input_html => { :class => 'optional-likes' } %>
+		<span class="input-group">
+			<label for="giveaway_mandatory_likes">Mandatory likes</label>
+			<li class="string optional">
+				<input class="mandatory-likes" type="text">
+			</li>
 			<span class="button pill">
 				<%= link_to "Add Another Page", "#", :class => "add-item" %>
 			</span>
-		</div>
+		</span>
+		<%= f.input :mandatory_likes, :as => :hidden %>
 	  <%= f.input :terms %>
 	<% end %>
 
@@ -27,19 +31,31 @@
 
 <%= javascript_tag do %>
 	$(function(){
+		// Enable datetime picker
 		$('input.ui-date-picker').datetimepicker({
 			ampm: true
-		});
+		});		
+		// Add form fields
 		$('a.add-item').click(function(e){
 			e.preventDefault();
 			var parent = $(this).parents(".input-group");
 			if (parent.find("input").length < 3) {
-				$(this).parents(".input-group").append('<li><input class="optional-likes" name="giveaway[optional_likes]" type="text"></li>');				
+				parent.find("li:eq(0)").clone().insertBefore(parent.find(".button")).find("input").val("");				
 			} else {
 				if (parent.find("div.error").length < 1) {
-					$(this).parents(".input-group").prepend('<div class="error">You have reached the maximum number of optional likes</div>');
+					$(this).parents(".input-group").prepend('<div class="error">You have reached the maximum number of mandatory likes</div>');
 				}
 			}
+		});
+		// beforeSubmit serialization
+		$('form#new_giveaway').one("submit", function(e){
+			e.preventDefault();
+			var mandatory_likes = [];
+			$(".mandatory-likes").each(function(){
+				mandatory_likes.push($(this).val());
+			});
+			$("#giveaway_mandatory_likes").val(mandatory_likes);
+			$(this).submit();
 		});
 	});
 <% end %>

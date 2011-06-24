@@ -3,8 +3,8 @@
 <table>
   <tr>
     <th>Email</th>
+    <th>Has Liked Primary</th>
     <th>Has Liked Mandatory</th>
-    <th>Has Liked Optional</th>
     <th>Name</th>
     <th>Fb Url</th>
     <th>Datetime Entered</th>
@@ -16,8 +16,8 @@
   <% for entry in @entries %>
     <tr>
       <td><%= entry.email %></td>
+      <td><%= entry.has_liked_primary %></td>
       <td><%= entry.has_liked_mandatory %></td>
-      <td><%= entry.has_liked_optional %></td>
       <td><%= entry.name %></td>
       <td><%= entry.fb_url %></td>
       <td><%= entry.datetime_entered %></td>

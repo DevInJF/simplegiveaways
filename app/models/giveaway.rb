@@ -2,8 +2,7 @@ class Giveaway < ActiveRecord::Base
   has_and_belongs_to_many :users
   belongs_to :facebook_page
   has_many :entries
-  
-  serialize :optional_likes
+  has_many :accessory_fb_pages
 
   validates :title, :uniqueness => {:scope => :facebook_page_id}, :presence => true
   validates :facebook_page_id, :presence => true
@@ -47,5 +46,9 @@ class Giveaway < ActiveRecord::Base
   
   def human_end_date
     self.end_date.strftime("%m/%d/%Y %H:%M")
+  end
+  
+  def fetch_mandatory_likes_meta
+    
   end
 end

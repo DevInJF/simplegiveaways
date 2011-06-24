@@ -1,6 +1,6 @@
 class AddUniqueIndexToPidWithScope < ActiveRecord::Migration
   def self.up
-    add_index :facebook_pages, [:pid, :user_id], :unique => true
+    add_index :facebook_pages, :pid, :unique => true
   end
 
   def self.down

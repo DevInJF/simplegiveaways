@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
       page_token = page["access_token"]
       unless page_id.nil? or page_id.blank?
         self.facebook_pages.create(
+          :kind => "primary",
           :name => page_name,
           :category => page_cat,
           :pid => page_id,
