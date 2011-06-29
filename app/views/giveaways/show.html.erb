@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= render "subnav" %>
+
 <div class="field">
   <b>Admins:</b>
 	<% @giveaway.users.each do |user| %>
@@ -70,3 +72,40 @@
 
 <%= link_to 'Edit', edit_giveaway_path(@giveaway) %> |
 <%= link_to 'Back', giveaways_path %>
+
+<div id="fb-root"></div>
+
+<%= javascript_tag do %>
+	$(function(){
+		// FB Init
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId  : '224405887571151',
+	      status : true, // check login status
+	      cookie : true, // enable cookies to allow the server to access the session
+	      xfbml  : true  // parse XFBML
+	    });
+			// Trigger add tab dialog
+			$("#start_giveaway").click(function(e){
+				e.preventDefault();
+				FB.ui(
+				  { method: 'profile.addtab' },
+				  function(response) {
+				    if (response && response.post_id) {
+				      alert('Giveaway was successfully started.');
+				    } else {
+				      alert('Giveaway could not be started.');
+				    }
+				  }
+				);
+			});
+	  };
+		// FB JavaScript Async Load
+	  (function() {
+	    var e = document.createElement('script');
+	    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+	    e.async = true;
+	    document.getElementById('fb-root').appendChild(e);
+	  }());
+	});
+<% end %>

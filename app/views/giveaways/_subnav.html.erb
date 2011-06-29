@@ -1,0 +1,11 @@
+<nav class="subnav">
+	<div class="button-wrapper">
+	  <span class="button pill">
+			<% if @giveaway.is_live? %>
+				<%= link_to "End Giveaway", "#", :id => "end_giveaway" %>
+			<% else %>
+				<%= link_to "Start Giveaway", "#", :id => "start_giveaway" %>
+			<% end %>
+		</span>
+	</div>
+</nav>

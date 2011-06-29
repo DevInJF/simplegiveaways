@@ -44378,3 +44378,1679 @@ Rendered layouts/_header.html.erb (0.3ms)
 Rendered layouts/_footer.html.erb (0.2ms)
 Rendered users/show.html.erb within layouts/application (62.0ms)
 Completed 200 OK in 73ms (Views: 65.4ms | ActiveRecord: 6.6ms)
+  [1m[36mSQL (56.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (18.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users`[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT `admin_users`.`id` FROM `admin_users` WHERE (`admin_users`.`email` = BINARY 'info@simplegiveawayapp.com') LIMIT 1[0m
+  [1m[35mSQL (7.7ms)[0m  describe `admin_users`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `admin_users` (`created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `last_sign_in_at`, `last_sign_in_ip`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `sign_in_count`, `updated_at`) VALUES ('2011-06-25 00:26:13', NULL, NULL, 'info@simplegiveawayapp.com', '$2a$10$7WL3zAFe7meAOdjm.N9t6exeByS3ItMXdWpqLMa/Baesp2xnaIg92', NULL, NULL, NULL, NULL, NULL, 0, '2011-06-25 00:26:13')[0m
+  [1m[35mSQL (17.4ms)[0m  COMMIT
+  [1m[36mAdminUser Load (0.3ms)[0m  [1mSELECT `admin_users`.* FROM `admin_users`[0m
+  [1m[36mSQL (76.9ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (16.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+
+
+Started GET "/" for 127.0.0.1 at 2011-06-28 18:59:25 -0400
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_nav.html.erb (2.9ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered welcome/index.html.erb within layouts/application (428.7ms)
+Completed 200 OK in 436ms (Views: 434.9ms | ActiveRecord: 96.5ms)
+
+
+Started GET "/authentications" for 127.0.0.1 at 2011-06-28 18:59:30 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by AuthenticationsController#index as HTML
+Rendered layouts/_nav.html.erb (0.9ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered authentications/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 14ms (Views: 12.7ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2011-06-28 18:59:32 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+
+
+Started GET "/auth/facebook/callback?code=_JDGrQS9PZE1cNhxJDV88KOmhQOPxs5XLPDrS2HTL0U.eyJpdiI6Imp4LTNNN2QteW9SU201eElqVFgxY0EifQ.1aXM9KCu9tCdl3_9EIX2Z8IQY8jXV6mw06PUlRcKlPUkS7TwUBTPTkiDCM-hOdci_jTstLc9yu8NnCpCb9Bdq4_Ma5S7Yo7B3PC-mmy233U" for 127.0.0.1 at 2011-06-28 18:59:34 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by AuthenticationsController#create as HTML
+  Parameters: {"code"=>"_JDGrQS9PZE1cNhxJDV88KOmhQOPxs5XLPDrS2HTL0U.eyJpdiI6Imp4LTNNN2QteW9SU201eElqVFgxY0EifQ.1aXM9KCu9tCdl3_9EIX2Z8IQY8jXV6mw06PUlRcKlPUkS7TwUBTPTkiDCM-hOdci_jTstLc9yu8NnCpCb9Bdq4_Ma5S7Yo7B3PC-mmy233U", "provider"=>"facebook"}
+  [1m[35mAuthentication Load (0.2ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE (`authentications`.`provider` = 'facebook') AND (`authentications`.`uid` = '808283') LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE `users` SET `current_sign_in_at` = '2011-06-28 22:59:36', `sign_in_count` = 2, `updated_at` = '2011-06-28 22:59:36' WHERE (`users`.`id` = 13)[0m
+  [1m[35mSQL (0.3ms)[0m  COMMIT
+Redirected to http://simplegiveawayapp.com/
+Completed 302 Found in 169ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-06-28 18:59:36 -0400
+  [1m[36mSQL (1.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (9.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by WelcomeController#index as HTML
+Rendered layouts/_flash.html.erb (0.6ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (13.7ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered welcome/index.html.erb within layouts/application (21.2ms)
+Completed 200 OK in 26ms (Views: 25.2ms | ActiveRecord: 22.5ms)
+
+
+Started GET "/users/13" for 127.0.0.1 at 2011-06-28 18:59:40 -0400
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered users/_subnav.html.erb (1.7ms)
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT * FROM `giveaways` INNER JOIN `giveaways_users` ON `giveaways`.id = `giveaways_users`.giveaway_id WHERE (`giveaways_users`.user_id = 13 )
+Rendered users/_giveaways.html.erb (972.5ms)
+  [1m[36mFacebookPage Load (0.3ms)[0m  [1mSELECT * FROM `facebook_pages` INNER JOIN `facebook_pages_users` ON `facebook_pages`.id = `facebook_pages_users`.facebook_page_id WHERE (`facebook_pages_users`.user_id = 13 )[0m
+Rendered users/_facebook_pages.html.erb (15.4ms)
+Rendered layouts/_nav.html.erb (0.9ms)
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered users/show.html.erb within layouts/application (1007.9ms)
+Completed 200 OK in 1046ms (Views: 1039.6ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 18:59:44 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (3.4ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (65.3ms)
+Completed 200 OK in 91ms (Views: 82.1ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 18:59:59 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.6ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (119.5ms)
+Completed 200 OK in 130ms (Views: 123.6ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:03:07 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"tab"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 0) LIMIT 1[0m
+Completed   in 6ms
+
+ActiveRecord::RecordNotFound (Couldn't find Giveaway with ID=tab):
+  app/controllers/giveaways_controller.rb:13:in `show'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (63.2ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.7ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (76.8ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:03:11 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"tab"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 0) LIMIT 1[0m
+Completed   in 6ms
+
+ActiveRecord::RecordNotFound (Couldn't find Giveaway with ID=tab):
+  app/controllers/giveaways_controller.rb:13:in `show'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.5ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.9ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:03:31 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (13.9ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/tab.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 28ms (Views: 23.9ms | ActiveRecord: 12.6ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:03:44 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (75.5ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/tab.html.erb within layouts/application (92.8ms)
+Completed 200 OK in 101ms (Views: 97.1ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:07:25 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (19.2ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered giveaways/tab.html.erb within layouts/application (101.3ms)
+Completed 200 OK in 110ms (Views: 105.9ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:07:53 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (14.3ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/tab.html.erb within layouts/application (97.8ms)
+Completed 200 OK in 106ms (Views: 102.4ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:08:23 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+Completed   in 2ms
+
+NoMethodError (undefined method `layout' for #<GiveawaysController:0x000001028e3c00>):
+  app/controllers/giveaways_controller.rb:80:in `tab'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.5ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.2ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:08:48 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+
+SyntaxError (/Users/Harris/git/SGA/app/controllers/giveaways_controller.rb:80: syntax error, unexpected tASSOC, expecting keyword_end
+    layout => :tab
+             ^):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.5ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:09:59 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Completed   in 4ms
+
+ArgumentError (Your layout method :tab returned #<Giveaway:0x00000102d03d80>. It should have returned a String, false, or nil):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:10:10 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+ERROR: compiling _app_views_layouts_tab_html_erb__3077365726679494144_2182005860__2915204985710101639 RAISED /Users/Harris/git/SGA/app/views/layouts/tab.html.erb:16: unknown regexp options - had
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:18: syntax error, unexpected '<'
+<body> 
+ ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected tIDENTIFIER, expecting ')'
+...tput_buffer = _old_virtual_path, _old_output_buffer
+...                               ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected '\n', expecting '='
+Function body:           def _app_views_layouts_tab_html_erb__3077365726679494144_2182005860__2915204985710101639(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "layouts/tab";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+	<title>');@output_buffer.append= ( @giveaway.title );@output_buffer.safe_concat('</title> 
+ 
+	<meta name="description" content="');@output_buffer.append= ( @giveaway.description );@output_buffer.safe_concat('" /> 
+	<meta name="keywords" content="" /> 
+	<meta name="author" content="" /> 
+ 
+	');@output_buffer.append= ( stylesheet_link_tag "http://www.simplegiveawayapp.com/css/tab.css" =>
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+</head> 
+ 
+<body> 
+	<%= yield );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('</body>
+</html>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:255:in `module_eval'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:255:in `compile'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:134:in `block in render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:54:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:127:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/layouts.rb:80:in `_render_layout'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/rendering.rb:62:in `block in _render_template'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `block in instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/rendering.rb:26:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:114:in `_render_template'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:108:in `render_to_body'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:101:in `render_to_string'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:92:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rendering.rb:17:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/Users/Harris/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/benchmark.rb:309:in `realtime'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/base.rb:150:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:440:in `_run__1475275440111011822__process_action__734358633763339838__callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:409:in `_run_process_action_callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:93:in `run_callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `block in instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/base.rb:119:in `process'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:40:in `process'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal.rb:133:in `dispatch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal.rb:173:in `block in action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `block in recognize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:68:in `optimized_each'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:492:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/oa-core-0.2.6/lib/omniauth/strategy.rb:44:in `call!'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/oa-core-0.2.6/lib/omniauth/strategy.rb:30:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/oa-core-0.2.6/lib/omniauth/builder.rb:30:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/sass-3.1.1/lib/sass/plugin/rack.rb:54:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/warden-1.0.4/lib/warden/manager.rb:35:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/warden-1.0.4/lib/warden/manager.rb:34:in `catch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/warden-1.0.4/lib/warden/manager.rb:34:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/cookies.rb:287:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:32:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:12:in `cache'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:31:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/railties-3.0.1/lib/rails/rack/logger.rb:13:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/railties-3.0.1/lib/rails/application.rb:168:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/railties-3.0.1/lib/rails/application.rb:77:in `method_missing'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:205:in `start_request_handler'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:170:in `block in handle_spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:165:in `handle_spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:180:in `start'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:128:in `start'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:253:in `block (2 levels) in spawn_rack_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:246:in `block in spawn_rack_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server_collection.rb:82:in `block in synchronize'
+<internal:prelude>:10:in `synchronize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:244:in `spawn_rack_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:137:in `spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/helper-scripts/passenger-spawn-server:99:in `<main>'
+Rendered giveaways/tab.html.erb within layouts/tab (76.6ms)
+Completed   in 83ms
+
+ActionView::Template::Error (/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:16: unknown regexp options - had
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:18: syntax error, unexpected '<'
+<body> 
+ ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected tIDENTIFIER, expecting ')'
+...tput_buffer = _old_virtual_path, _old_output_buffer
+...                               ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected '\n', expecting '='):
+    13: 	<!--[if lt IE 9]>
+    14: 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    15: 	<![endif]--> 
+    16: </head> 
+    17:  
+    18: <body> 
+    19: 	<%= yield %>
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.7ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:10:53 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Completed   in 4ms
+
+NoMethodError (You specified nil as the layout, but no such method was found):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.5ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:11:08 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Completed   in 4ms
+
+NoMethodError (You specified nil as the layout, but no such method was found):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.3ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:11:12 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+Completed   in 5ms
+
+ArgumentError (Your layout method :tab returned #<Giveaway:0x0000010421f4a8>. It should have returned a String, false, or nil):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.3ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:11:40 -0400
+  [1m[35mSQL (32.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+ERROR: compiling _app_views_layouts_tab_html_erb__3077365726679494144_2183226760__2915204985710101639 RAISED /Users/Harris/git/SGA/app/views/layouts/tab.html.erb:13: syntax error, unexpected '<'
+	<!--[if lt IE 9]>
+	 ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:13: syntax error, unexpected ']', expecting keyword_then or ';' or '\n'
+	<!--[if lt IE 9]>
+	                ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:14: syntax error, unexpected '<'
+...ecode.com/svn/trunk/html5.js"></script>
+...                               ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:16: unknown regexp options - had
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:18: syntax error, unexpected '<'
+<body> 
+ ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected tIDENTIFIER, expecting ')'
+...tput_buffer = _old_virtual_path, _old_output_buffer
+...                               ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected '\n', expecting '='
+Function body:           def _app_views_layouts_tab_html_erb__3077365726679494144_2183226760__2915204985710101639(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "layouts/tab";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+	<title>');@output_buffer.append= ( @giveaway.title );@output_buffer.safe_concat('</title> 
+ 
+	<meta name="description" content="');@output_buffer.append= ( @giveaway.description );@output_buffer.safe_concat('" /> 
+	<meta name="keywords" content="" /> 
+	<meta name="author" content="" /> 
+ 
+	');@output_buffer.append= ( stylesheet_link_tag "http://www.simplegiveawayapp.com/css/tab.css" =>
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+</head> 
+ 
+<body> 
+	<%= yield );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('</body>
+</html>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:255:in `module_eval'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:255:in `compile'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:134:in `block in render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:54:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/template.rb:127:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/layouts.rb:80:in `_render_layout'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/rendering.rb:62:in `block in _render_template'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `block in instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_view/render/rendering.rb:26:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:114:in `_render_template'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:108:in `render_to_body'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:101:in `render_to_string'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:92:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rendering.rb:17:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/Users/Harris/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/benchmark.rb:309:in `realtime'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/base.rb:150:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:440:in `_run__1475275440111011822__process_action__734358633763339838__callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:409:in `_run_process_action_callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:93:in `run_callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `block in instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/notifications.rb:52:in `instrument'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/base.rb:119:in `process'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/abstract_controller/rendering.rb:40:in `process'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal.rb:133:in `dispatch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_controller/metal.rb:173:in `block in action'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `block in recognize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:68:in `optimized_each'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/routing/route_set.rb:492:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/oa-core-0.2.6/lib/omniauth/strategy.rb:44:in `call!'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/oa-core-0.2.6/lib/omniauth/strategy.rb:30:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/oa-core-0.2.6/lib/omniauth/builder.rb:30:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/sass-3.1.1/lib/sass/plugin/rack.rb:54:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/warden-1.0.4/lib/warden/manager.rb:35:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/warden-1.0.4/lib/warden/manager.rb:34:in `catch'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/warden-1.0.4/lib/warden/manager.rb:34:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/cookies.rb:287:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:32:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:12:in `cache'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/query_cache.rb:31:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activerecord-3.0.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/activesupport-3.0.1/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/railties-3.0.1/lib/rails/rack/logger.rb:13:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/railties-3.0.1/lib/rails/application.rb:168:in `call'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/railties-3.0.1/lib/rails/application.rb:77:in `method_missing'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_request_handler.rb:513:in `accept_and_process_next_request'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:205:in `start_request_handler'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:170:in `block in handle_spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/utils.rb:479:in `safe_fork'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:165:in `handle_spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:180:in `start'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/rack/application_spawner.rb:128:in `start'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:253:in `block (2 levels) in spawn_rack_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:246:in `block in spawn_rack_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server_collection.rb:82:in `block in synchronize'
+<internal:prelude>:10:in `synchronize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:244:in `spawn_rack_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:137:in `spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+/Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/passenger-3.0.0/helper-scripts/passenger-spawn-server:99:in `<main>'
+Rendered giveaways/tab.html.erb within layouts/tab (12.6ms)
+Completed   in 18ms
+
+ActionView::Template::Error (/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:13: syntax error, unexpected '<'
+	<!--[if lt IE 9]>
+	 ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:13: syntax error, unexpected ']', expecting keyword_then or ';' or '\n'
+	<!--[if lt IE 9]>
+	                ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:14: syntax error, unexpected '<'
+...ecode.com/svn/trunk/html5.js"></script>
+...                               ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:16: unknown regexp options - had
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:18: syntax error, unexpected '<'
+<body> 
+ ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected tIDENTIFIER, expecting ')'
+...tput_buffer = _old_virtual_path, _old_output_buffer
+...                               ^
+/Users/Harris/git/SGA/app/views/layouts/tab.html.erb:23: syntax error, unexpected '\n', expecting '='):
+    10:  
+    11: 	<%= stylesheet_link_tag "http://www.simplegiveawayapp.com/css/tab.css" =>
+    12: 
+    13: 	<!--[if lt IE 9]>
+    14: 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    15: 	<![endif]--> 
+    16: </head> 
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.3ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:11:59 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+Rendered giveaways/tab.html.erb within layouts/tab (12.6ms)
+Completed 200 OK in 19ms (Views: 14.6ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:14:16 -0400
+  [1m[35mSQL (2.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+Rendered giveaways/tab.html.erb within layouts/tab (12.6ms)
+Completed 200 OK in 18ms (Views: 14.5ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:14:17 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+Rendered giveaways/tab.html.erb within layouts/tab (12.4ms)
+Completed 200 OK in 18ms (Views: 14.3ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:14:43 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+Rendered giveaways/tab.html.erb within layouts/tab (14.6ms)
+Completed 200 OK in 21ms (Views: 16.8ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:15:12 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+Rendered giveaways/tab.html.erb within layouts/tab (12.6ms)
+Completed 200 OK in 20ms (Views: 14.7ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:15:45 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (13.4ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
+Rendered giveaways/tab.html.erb within layouts/tab (14.6ms)
+Completed 200 OK in 21ms (Views: 16.6ms | ActiveRecord: 17.0ms)
+
+
+Started GET "/tab" for 127.0.0.1 at 2011-06-28 19:16:27 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (8.4ms)[0m  describe `giveaways_users`
+
+ActionController::RoutingError (No route matches "/tab"):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/giveaways/tab" for 127.0.0.1 at 2011-06-28 19:16:34 -0400
+  [1m[36mSQL (1.3ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Rendered giveaways/tab.html.erb within layouts/tab (13.8ms)
+Completed 200 OK in 20ms (Views: 15.7ms | ActiveRecord: 17.1ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:16:40 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (20.2ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Rendered giveaways/tab.html.erb within layouts/tab (13.1ms)
+Completed 200 OK in 19ms (Views: 14.9ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:18:06 -0400
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (5.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (14.9ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Rendered giveaways/tab.html.erb within layouts/tab (13.0ms)
+Completed 200 OK in 19ms (Views: 14.8ms | ActiveRecord: 24.2ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:25:37 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Rendered giveaways/tab.html.erb within layouts/tab (12.6ms)
+Completed 200 OK in 19ms (Views: 14.5ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/giveaways/" for 127.0.0.1 at 2011-06-28 19:25:40 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#index as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways`
+Rendered giveaways/index.html.erb (14.9ms)
+Completed 200 OK in 38ms (Views: 33.2ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:25:43 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+Rendered giveaways/show.html.erb (127.5ms)
+Completed 200 OK in 135ms (Views: 128.7ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:25:46 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+Rendered giveaways/show.html.erb (44.5ms)
+Completed 200 OK in 52ms (Views: 45.5ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:26:07 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+Rendered giveaways/show.html.erb (131.4ms)
+Completed 200 OK in 139ms (Views: 132.4ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:26:09 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+Rendered giveaways/show.html.erb (131.6ms)
+Completed 200 OK in 140ms (Views: 132.9ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:26:22 -0400
+  [1m[36mSQL (1.6ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (4.1ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (62.1ms)
+Completed 200 OK in 73ms (Views: 66.1ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:26:29 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+Completed   in 2ms
+
+NoMethodError (undefined method `layout' for #<GiveawaysController:0x00000102b58530>):
+  app/controllers/giveaways_controller.rb:80:in `tab'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.1ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:27:29 -0400
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Rendered giveaways/tab.html.erb (12.1ms)
+Completed 200 OK in 18ms (Views: 13.6ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:28:11 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.3ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+Completed   in 1ms
+
+ArgumentError (String, true, or false, expected for `layout'; you passed :tab):
+  app/controllers/giveaways_controller.rb:80:in `tab'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.2ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:28:18 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#tab as HTML
+Rendered giveaways/tab.html.erb within layouts/tab (0.5ms)
+Completed   in 3ms
+
+ActionView::Template::Error (undefined method `image' for nil:NilClass):
+    1: <%= image_tag @giveaway.image.url %>
+  app/views/giveaways/tab.html.erb:1:in `_app_views_giveaways_tab_html_erb___4469862491391500548_2195014720__2915204985710101639'
+  app/controllers/giveaways_controller.rb:80:in `tab'
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.6ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.4ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 19:28:32 -0400
+  [1m[36mSQL (1.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Rendered giveaways/tab.html.erb within layouts/tab (13.0ms)
+Completed 200 OK in 19ms (Views: 14.9ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:28:36 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (2.3ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.6ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (63.0ms)
+Completed 200 OK in 74ms (Views: 66.8ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:30:00 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (0.4ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (1.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (5.2ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (57.0ms)
+Completed 200 OK in 70ms (Views: 60.1ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:31:14 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (13.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.5ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (152.5ms)
+Completed 200 OK in 163ms (Views: 156.2ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:31:36 -0400
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.3ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (10.8ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (3.5ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (56.3ms)
+Completed 200 OK in 67ms (Views: 60.2ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:31:41 -0400
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (11.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (4.0ms)
+Rendered layouts/_header.html.erb (101.8ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (161.4ms)
+Completed 200 OK in 173ms (Views: 165.6ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:32:59 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (10.8ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (4.9ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (154.3ms)
+Completed 200 OK in 165ms (Views: 158.3ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:33:15 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.5ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (17.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.4ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (64.1ms)
+Completed 200 OK in 75ms (Views: 67.9ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:37:46 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (20.7ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (3.8ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (166.9ms)
+Completed 200 OK in 178ms (Views: 170.8ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:39:50 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (10.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.9ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (159.3ms)
+Completed 200 OK in 170ms (Views: 163.1ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:40:45 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (14.9ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (3.5ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered giveaways/show.html.erb within layouts/application (67.1ms)
+Completed 200 OK in 78ms (Views: 71.1ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:41:34 -0400
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (11.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.7ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (162.3ms)
+Completed 200 OK in 173ms (Views: 166.2ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:43:00 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (2.5ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (2.4ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (120.3ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (3.8ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (165.6ms)
+Completed 200 OK in 176ms (Views: 169.5ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:46:48 -0400
+  [1m[36mSQL (2.3ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (11.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (4.1ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (60.3ms)
+Completed 200 OK in 71ms (Views: 64.0ms | ActiveRecord: 6.4ms)
+
+
+Started POST "/xfbml/fb:add-profile-tab" for 127.0.0.1 at 2011-06-28 19:47:14 -0400
+  [1m[35mSQL (48.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (3.2ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+
+ActionController::RoutingError (No route matches "/xfbml/fb:add-profile-tab"):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started POST "/fb:add-profile-tab" for 127.0.0.1 at 2011-06-28 19:47:20 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.5ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+
+ActionController::RoutingError (No route matches "/fb:add-profile-tab"):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started POST "/fb:add-profile-tab" for 127.0.0.1 at 2011-06-28 19:47:22 -0400
+  [1m[35mSQL (11.3ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+
+ActionController::RoutingError (No route matches "/fb:add-profile-tab"):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started POST "/" for 127.0.0.1 at 2011-06-28 19:47:25 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (2.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by WelcomeController#index as HTML
+  Parameters: {"signed_request"=>"nstkO6wi9S-8JoJDhuRuUTlmVIWjSUcJMAz7MuBhw2I.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjAsImlzc3VlZF9hdCI6MTMwOTMwNDg0NSwib2F1dGhfdG9rZW4iOiIyMjQ0MDU4ODc1NzExNTF8ZDhjNTA5Zjg2OTg4NjFlNThhMzUyMDNmLjEtODA4MjgzfFlOdjV1a1pLUnZvVTdDc3cyX0U4MjRNb1prSSIsInVzZXIiOnsiY291bnRyeSI6InVzIiwibG9jYWxlIjoiZW5fVVMiLCJhZ2UiOnsibWluIjoyMX19LCJ1c2VyX2lkIjoiODA4MjgzIn0"}
+Completed   in 1ms
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.3ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.7ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:48:09 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (14.0ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (5.5ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (63.6ms)
+Completed 200 OK in 186ms (Views: 66.9ms | ActiveRecord: 84.5ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:48:42 -0400
+  [1m[36mSQL (31.4ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (14.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (4.3ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (68.3ms)
+Completed 200 OK in 80ms (Views: 72.1ms | ActiveRecord: 35.7ms)
+
+
+Started POST "/" for 127.0.0.1 at 2011-06-28 19:49:15 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `giveaways_users`
+  Processing by WelcomeController#index as HTML
+  Parameters: {"signed_request"=>"DbInN2RwfSzc5h8mIlK1qQWmgnBpZ4N9zSz7ZdippGw.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjAsImlzc3VlZF9hdCI6MTMwOTMwNDk1NSwib2F1dGhfdG9rZW4iOiIyMjQ0MDU4ODc1NzExNTF8ZDhjNTA5Zjg2OTg4NjFlNThhMzUyMDNmLjEtODA4MjgzfFlOdjV1a1pLUnZvVTdDc3cyX0U4MjRNb1prSSIsInVzZXIiOnsiY291bnRyeSI6InVzIiwibG9jYWxlIjoiZW5fVVMiLCJhZ2UiOnsibWluIjoyMX19LCJ1c2VyX2lkIjoiODA4MjgzIn0"}
+Completed   in 1ms
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.1ms)
+Rendered /Users/Harris/.rvm/gems/ruby-1.9.2-p0@rails3/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.6ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:54:05 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (16.9ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.6ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (181.3ms)
+Completed 200 OK in 194ms (Views: 185.2ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:54:18 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (126.1ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (3.3ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (172.4ms)
+Completed 200 OK in 186ms (Views: 176.3ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:55:27 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (20.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.4ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (66.1ms)
+Completed 200 OK in 77ms (Views: 70.0ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:55:33 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.2ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (11.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (5.2ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (177.9ms)
+Completed 200 OK in 188ms (Views: 181.7ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:56:29 -0400
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (11.9ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (3.5ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered giveaways/show.html.erb within layouts/application (56.9ms)
+Completed 200 OK in 188ms (Views: 180.8ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 19:59:02 -0400
+  [1m[35mSQL (0.9ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.4ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (15.9ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.2ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (3.4ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (63.3ms)
+Completed 200 OK in 75ms (Views: 67.5ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-06-28 20:06:35 -0400
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (19.4ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered welcome/index.html.erb within layouts/application (27.8ms)
+Completed 200 OK in 36ms (Views: 34.6ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-06-28 20:06:41 -0400
+  [1m[36mSQL (1.4ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (2.9ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.2ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#tab as HTML
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` LIMIT 1
+Rendered giveaways/tab.html.erb within layouts/tab (17.2ms)
+Completed 200 OK in 24ms (Views: 19.5ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 20:06:44 -0400
+  [1m[36mSQL (1.7ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.3ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (35.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (8.9ms)
+Rendered layouts/_header.html.erb (0.6ms)
+Rendered layouts/_footer.html.erb (0.7ms)
+Rendered giveaways/show.html.erb within layouts/application (250.2ms)
+Completed 200 OK in 265ms (Views: 255.1ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 20:08:53 -0400
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.9ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.5ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (182.7ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.3ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (4.4ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered giveaways/show.html.erb within layouts/application (236.2ms)
+Completed 200 OK in 250ms (Views: 239.8ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 20:09:36 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.6ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.4ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.4ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (14.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (4.2ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered giveaways/show.html.erb within layouts/application (75.5ms)
+Completed 200 OK in 92ms (Views: 80.9ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 20:12:45 -0400
+  [1m[35mSQL (0.8ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (0.7ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.5ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (15.2ms)
+  [1m[35mUser Load (0.9ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (0.4ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (5.4ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.6ms)
+Rendered giveaways/show.html.erb within layouts/application (238.1ms)
+Completed 200 OK in 252ms (Views: 242.3ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 20:15:39 -0400
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (0.8ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mGiveaway Load (0.2ms)[0m  SELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1
+Rendered giveaways/_subnav.html.erb (186.0ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )[0m
+  [1m[35mFacebookPage Load (0.2ms)[0m  SELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1[0m
+Rendered layouts/_nav.html.erb (4.9ms)
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered giveaways/show.html.erb within layouts/application (246.8ms)
+Completed 200 OK in 258ms (Views: 250.9ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/giveaways/3" for 127.0.0.1 at 2011-06-28 20:16:11 -0400
+  [1m[35mSQL (2.0ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.0ms)[0m  [1mdescribe `giveaways_users`[0m
+  [1m[35mSQL (1.0ms)[0m  describe `credit_cards_users`
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.2ms)[0m  describe `giveaways_users`
+  Processing by GiveawaysController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mGiveaway Load (0.3ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` WHERE (`giveaways`.`id` = 3) LIMIT 1[0m
+Rendered giveaways/_subnav.html.erb (18.9ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT * FROM `users` INNER JOIN `giveaways_users` ON `users`.id = `giveaways_users`.user_id WHERE (`giveaways_users`.giveaway_id = 3 )
+  [1m[36mFacebookPage Load (1.3ms)[0m  [1mSELECT `facebook_pages`.* FROM `facebook_pages` WHERE (`facebook_pages`.`id` = 126) LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 13) LIMIT 1
+Rendered layouts/_nav.html.erb (5.3ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered giveaways/show.html.erb within layouts/application (85.6ms)
+Completed 200 OK in 97ms (Views: 88.4ms | ActiveRecord: 8.5ms)

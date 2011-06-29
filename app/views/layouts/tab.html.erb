@@ -1,0 +1,23 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+	<title><%= @giveaway.title %></title> 
+ 
+	<meta name="description" content="<%= @giveaway.description %>" /> 
+	<meta name="keywords" content="" /> 
+	<meta name="author" content="" /> 
+ 
+	<%= stylesheet_link_tag "/stylesheets/tab.css" %>
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+</head> 
+ 
+<body>
+	<div id="tab_container">
+		<%= yield %>
+	</div>
+</body>
+</html>

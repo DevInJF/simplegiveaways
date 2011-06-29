@@ -74,5 +74,11 @@ class GiveawaysController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # GET /giveaways/tab.html
+  def tab
+    @giveaway = Giveaway.first
+    render :layout => "tab"
+  end
 
 end

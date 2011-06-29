@@ -4,7 +4,11 @@ SGA::Application.routes.draw do
 
   resources :entries
 
-  resources :giveaways
+  resources :giveaways do
+    collection do
+      get :tab
+    end
+  end
 
   root :to => 'welcome#index'
   
