@@ -2,6 +2,9 @@ class GiveawaysController < ApplicationController
   
   respond_to :html, :xml, :json
   
+  before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token, :only => [:tab]
+  
   # GET /giveaways
   def index
     respond_with(@giveaways = Giveaway.all)

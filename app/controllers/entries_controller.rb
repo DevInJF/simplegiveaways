@@ -2,6 +2,8 @@ class EntriesController < ApplicationController
   
   respond_to :html, :xml, :json  
   
+  before_filter :authenticate_user!
+  
   def index
     @entries = Entry.all
   end
