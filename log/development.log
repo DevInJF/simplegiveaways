@@ -47541,3 +47541,9 @@ Started GET "/giveaways/tab.html" for 127.0.0.1 at 2011-07-05 23:41:30 -0400
   [1m[36mGiveaway Load (0.5ms)[0m  [1mSELECT `giveaways`.* FROM `giveaways` LIMIT 1[0m
 Rendered giveaways/tab.html.erb within layouts/tab (69.3ms)
 Completed 200 OK in 110ms (Views: 96.1ms | ActiveRecord: 5.4ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from <top (required)> at /Users/Harris/git/SGA/config/environment.rb:5)
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `facebook_pages_users`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `giveaways_users`
+  [1m[36mSQL (0.7ms)[0m  [1mdescribe `credit_cards_users`[0m
+  [1m[35mSQL (1.1ms)[0m  describe `facebook_pages_users`
+  [1m[36mSQL (1.1ms)[0m  [1mdescribe `giveaways_users`[0m

@@ -79,9 +79,11 @@ class GiveawaysController < ApplicationController
   end
   
   # GET /giveaways/tab.html
+  # POST /giveaways/tab.html
   def tab
     @giveaway = Giveaway.first
+    
+    @signed_request = FacebookAuthentication::parse_signed_request(params[:signed_request], "da7dc60be4b02073a6b584722896e6c9")
     render :layout => "tab"
   end
-
 end

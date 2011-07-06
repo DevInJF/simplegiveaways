@@ -40,8 +40,10 @@ module SGA
     config.filter_parameters += [:password]
     
     # Paperclip
-    Paperclip::Railtie.insert 
-
+    Paperclip::Railtie.insert
+    
+    # Autoload library files
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
 
