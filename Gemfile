@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem "rails", "3.0.1"
-gem "rake", "~> 0.8.7" # Temporary fix for Rake 0.9.0
+gem "rails", "3.0.9"
+gem "rake"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,7 +19,7 @@ group :development, :test do
 end
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

@@ -6,7 +6,7 @@ SGA::Application.routes.draw do
 
   resources :giveaways do
     collection do
-      get :tab
+      get 'tab'
     end
   end
 

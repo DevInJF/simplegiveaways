@@ -1,11 +1,43 @@
 <% flash.each do |name, msg| %>
-	<%= content_tag :div, msg, :id => "flash_#{name}", :class => "flash" %>
+  <div class="flash #{name}">
+    <h3>Congrats, you did it!</h3>
+    <p>This is just a success notification message.</p>
+  </div>
 <% end %>
+
+
+
 <%= javascript_tag do %>
+
+  var myMessages = ['notice','warning','alert','success'];
+
+  function hideAllMessages() {
+    var messagesHeights = new Array(); // this array will store height for each
+    for (i = 0; i < myMessages.length; i++) {
+      messagesHeights[i] = $('.' + myMessages[i]).outerHeight(); // fill array
+      $('.' + myMessages[i]).css('top', -messagesHeights[i]); //move element outside viewport
+    }
+  }
+
+  function showMessage(type) {
+    $('.'+ type +'-trigger').click(function(){
+      hideAllMessages();
+      $('.'+type).animate({top:"0"}, 500);
+    });
+  }
+
 	$(function(){
-		$flash = $(".flash");
-		$flash.click(function(){
-			$(this).slideUp();
-		});
+    // Initially, hide them all
+    hideAllMessages();
+
+    // Show message
+    for(var i = 0; i < myMessages.length; i++) {
+      showMessage(myMessages[i]);
+    }
+
+    // When message is clicked, hide it
+    $('.message').click(function() {
+      $(this).animate({top: -$(this).outerHeight()}, 500);
+    });
 	});
 <% end %>
