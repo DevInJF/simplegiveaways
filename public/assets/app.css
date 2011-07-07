@@ -13,13 +13,6 @@ hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padd
 input,select{vertical-align:middle}
 body{color:#222;font-size:13px;font-family:"helvetica neue",arial,helvetica,"lucida grande",sans-serif}
 h1,h2,h3,h4,h5,h6{color:#111;font-family:"helvetica neue",Helvetica,arial,sans-serif}
-div.error,div.notice,div.success,#flash_failure,#flash_success,#flash_notice{border:1px solid #ddd}
-div.error,#flash_failure{background:#fbe3e4;border-color:#fbc2c4;color:#d12f19}
-div.error a,#flash_failure a{color:#d12f19}
-div.notice,#flash_notice{background:#fff6bf;border-color:#ffd324;color:#817134}
-div.notice a,#flash_notice a{color:#817134}
-div.success,#flash_success{background:#e6efc2;border-color:#c6d880;color:#529214}
-div.success a,#flash_success a{color:#529214}
 .box{background:#eee;margin-bottom:1.5em;padding:1.5em}
 hr{background:#ddd;border:none;clear:both;color:#ddd;float:none;height:1px;margin:0 0 1.4em;width:100%}
 hr.space{background:#fff;color:#fff}
@@ -152,7 +145,19 @@ span.input-group{width:550px;clear:both;padding:20px 0;overflow:auto;display:blo
 .button a:hover span.icon svg path,.button a:hover span.icon svg polygon,.button a:hover span.icon svg rect,.button a:hover span.icon svg circle{fill:black!important}
 .button a:active{border:inherit}
 .button.pill a{padding:.6em 1.5em .65em 1.5em}
-.flash{width:100%;padding:19px 0 18px;font-size:18px;cursor:pointer}
+.flash{-webkit-background-size:40px 40px;-moz-background-size:40px 40px;background-size:40px 40px;background-image:-webkit-gradient(linear,left top,right bottom,color-stop(.25,rgba(255,255,255,.05)),color-stop(.25,transparent),color-stop(.5,transparent),color-stop(.5,rgba(255,255,255,.05)),color-stop(.75,rgba(255,255,255,.05)),color-stop(.75,transparent),to(transparent));background-image:-webkit-linear-gradient(135deg,rgba(255,255,255,.05) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.05) 75%,transparent 75%,transparent);background-image:-moz-linear-gradient(135deg,rgba(255,255,255,.05) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.05) 75%,transparent 75%,transparent);background-image:-ms-linear-gradient(135deg,rgba(255,255,255,.05) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.05) 75%,transparent 75%,transparent);background-image:-o-linear-gradient(135deg,rgba(255,255,255,.05) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.05) 75%,transparent 75%,transparent);background-image:linear-gradient(135deg,rgba(255,255,255,.05) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.05) 75%,transparent 75%,transparent);-moz-box-shadow:inset 0 -1px 0 rgba(255,255,255,.4);-webkit-box-shadow:inset 0 -1px 0 rgba(255,255,255,.4);box-shadow:inset 0 -1px 0 rgba(255,255,255,.4);width:100%;border:1px solid;color:#fff;padding:15px;position:fixed;_position:absolute;text-shadow:0 1px 0 rgba(0,0,0,.5);-webkit-animation:animate-bg 5s linear infinite;-moz-animation:animate-bg 5s linear infinite}
+.notice{background-color:#4ea5cd;border-color:#3b8eb5}
+.alert{background-color:#de4343;border-color:#c43d3d}
+.warning{background-color:#eaaf51;border-color:#d99a36}
+.success{background-color:#61b832;border-color:#55a12c}
+.flash h3{margin:0 0 5px 0}
+.flash p{margin:0}
+@-webkit-keyframes animate-bg{from{background-position:0 0}
+to{background-position:-80px 0}
+}
+@-moz-keyframes animate-bg{from{background-position:0 0}
+to{background-position:-80px 0}
+}
 a.auth-provider{width:150px;height:24px;display:block;margin:30px 0;background-color:transparent;background-position:0 0;background-repeat:no-repeat;overflow:hidden;text-indent:-9999em;font-size:5%}
 a.auth-provider:hover{background-position:0 -24px}
 a.auth-provider:active,a.auth-provider:focus{background-position:0 -48px}
