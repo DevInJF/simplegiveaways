@@ -1,6 +1,12 @@
 <% flash.each do |name, msg| %>
   <div class="flash <%= name %>">
-    <h3>Congrats, you did it!</h3>
+    <h3><%= name.upcase %></h3>
     <p><%= msg %></p>
   </div>
+<% end %>
+
+<%= javascript_tag do %>
+  $(function(){
+    $(".flash").delay(2500).slideUp(600);
+  });
 <% end %>

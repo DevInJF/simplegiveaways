@@ -41,7 +41,8 @@ class GiveawaysController < ApplicationController
     
     respond_to do |format|
       if @giveaway.save
-        format.html { redirect_to(@giveaway, :notice => 'Giveaway was successfully created.') }
+        flash[:success] => 'Giveaway was successfully created.'
+        format.html { redirect_to @giveaway }
         format.xml  { render :xml => @giveaway, :status => :created, :location => @giveaway }
       else
         format.html { render :action => "new" }
