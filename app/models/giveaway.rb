@@ -13,6 +13,8 @@ class Giveaway < ActiveRecord::Base
   validates :image, :presence => true
   validates :feed_image, :presence => true
   validates :terms, :presence => true
+
+  validate :end_in_future
  
   # Paperclip 
   has_attached_file :image,
@@ -32,23 +34,26 @@ class Giveaway < ActiveRecord::Base
     :path => "/:style/:id/:filename"
 
   def is_live?
-    today = Date.today
-    if self.start_date < today && self.end_date > today
+    now = Time.now
+    if start_date < now && end_date > now
       return true
     else
-      return false
+      false
     end
   end
   
-  def human_start_date
-    self.start_date.strftime("%m/%d/%Y %H:%M")    
+  def is_installed?
+    fql = Facebook::Fql.new("224405887571151|d8c509f8698861e58a35203f.0-808283|B8A_LuTwhW5LNnXsz6_hI5cRjVI")
+    pid = facebook_page.pid
+    response = fql.query("SELECT has_added_app FROM page WHERE page_id=#{pid}")
+    response[0]["has_added_app"]
   end
-  
-  def human_end_date
-    self.end_date.strftime("%m/%d/%Y %H:%M")
-  end
-  
-  def fetch_mandatory_likes_meta
-    
+
+  private
+
+  def end_in_future
+    if end_date < start_date
+      errors[:base] << "End date must be in the future"
+    end
   end
 end

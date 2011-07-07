@@ -46,5 +46,3 @@ module SGA
     config.autoload_paths += %W(#{config.root}/lib)
   end
 end
-
-require 'settings'

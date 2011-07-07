@@ -2,6 +2,8 @@
 
 <%= render "subnav" %>
 
+<%= render "shared/error_messages", :target => @giveaway %>
+
 <div class="field">
   <b>Admins:</b>
 	<% @giveaway.users.each do |user| %>
@@ -11,6 +13,16 @@
 			</li>
 		</ul>
 	<% end %>
+</div>
+
+<div class="field">
+  <b>Is live?:</b>
+  <%= @giveaway.is_live? %>
+</div>
+
+<div class="field">
+  <b>Is installed?:</b>
+
 </div>
 
 <div class="field">
@@ -62,12 +74,7 @@
 
 <div class="field">
   <b>Terms &amp; Conditions:</b>
-  <%= @giveaway.terms %>
-</div>
-
-<div class="field">
-  <b>Is live?:</b>
-  <%= @giveaway.is_live? %>
+  <%= link_to @giveaway.terms %>
 </div>
 
 <%= link_to 'Edit', edit_giveaway_path(@giveaway) %> |

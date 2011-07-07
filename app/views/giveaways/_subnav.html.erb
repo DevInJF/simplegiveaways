@@ -2,9 +2,9 @@
 	<div class="button-wrapper">
 	  <span class="button pill">
 			<% if @giveaway.is_live? %>
-				<%= link_to "End Giveaway", "#", :id => "end_giveaway" %>
+				<%= link_to "End Giveaway", manual_end_giveaway_path(@giveaway), :id => "end_giveaway" %>
 			<% else %>
-				<%= link_to "Start Giveaway", "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway.facebook_page.pid}", :id => "start_giveaway" %>
+				<%= link_to "Start Giveaway", manual_start_giveaway_path(@giveaway), :id => "start_giveaway" %>
 			<% end %>
 		</span>
 	</div>

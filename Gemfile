@@ -20,6 +20,8 @@ gem "aws-s3"
 gem "formtastic"
 gem "formtastic_datepicker_inputs", :git => "git://github.com/demersus/formtastic_datepicker_inputs.git"
 
+
+
 group :development, :test do
   gem "rspec-rails"
   gem "capybara"
