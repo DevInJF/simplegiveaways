@@ -21,9 +21,9 @@
       FB.ui({
         method: 'oauth',
         client_id: '224405887571151',
-        perms: 'email,user_location,user_birthday'
-      }, function(){
-        alert("hello");
+        perms: 'email,user_location,user_birthday,user_likes,publish_stream'
+      }, function(response) {
+        alert(response.perms);
       });
     });
   });
