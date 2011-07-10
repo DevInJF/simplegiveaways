@@ -91,9 +91,7 @@ class GiveawaysController < ApplicationController
       oauth_access_token = @oauth.get_token_from_session_key(params[:session_key])
       graph = Koala::Facebook::GraphAPI.new(oauth_access_token)
       @profile = graph.get_object("me")
-      respond_to do |format|
-        format.json { render :json => @profile }
-      end
+      render :json => @profile
     else
       render :layout => "tab"
     end
