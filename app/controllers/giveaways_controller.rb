@@ -2,7 +2,7 @@ class GiveawaysController < ApplicationController
   
   respond_to :html, :xml, :json
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:tab]
   #skip_before_filter :verify_authenticity_token, :only => [:tab]
   
   # GET /giveaways
