@@ -4,6 +4,7 @@
 <div id="giveaway_image">
   <%= image_tag @giveaway.image.url %>
 </div>
+<%= @signed_request %>
 
 <div id="fb-root"></div>
 <%= javascript_include_tag "http://connect.facebook.net/en_US/all.js" %>
