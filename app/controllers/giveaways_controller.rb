@@ -75,11 +75,20 @@ class GiveawaysController < ApplicationController
   # GET /giveaways/tab.html
   # POST /giveaways/tab.html
   def tab
-    @signed_request = Facebook::SignedRequest::parse_signed_request(params[:signed_request],"da7dc60be4b02073a6b584722896e6c9")
+    if params[:signed_request]
+      @signed_request = Facebook::SignedRequest::parse_signed_request(params[:signed_request],"da7dc60be4b02073a6b584722896e6c9")
+    end
+
     if params[:session]
       @session = Facebook::SignedRequest::parse_signed_request(params[:session],"da7dc60be4b02073a6b584722896e6c9")
     end
-    @giveaway = FacebookPage.find_by_pid(@signed_request["page"]["id"]).giveaways.detect(&:is_live?)
+
+    if @signed_request
+      @giveaway = FacebookPage.find_by_pid(@signed_request["page"]["id"]).giveaways.detect(&:is_live?)
+    else
+      @giveaway = Giveaway.first
+    end
+
     render :layout => "tab"
   end
 
