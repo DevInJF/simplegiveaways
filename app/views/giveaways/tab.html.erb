@@ -10,7 +10,7 @@
 <%= javascript_include_tag "http://connect.facebook.net/en_US/all.js" %>
 <%= javascript_tag do %>
   FB.init({
-    appId  : '224405887571151',
+    appId  : '<%= FB_APP_ID %>',
     status : true, // check login status
     cookie : true, // enable cookies to allow the server to access the session
     xfbml  : true  // parse XFBML
@@ -21,7 +21,7 @@
       e.preventDefault();
       FB.ui({
         method: 'oauth',
-        client_id: '224405887571151',
+        client_id: '<%= FB_APP_ID %>',
         perms: 'email,user_location,user_birthday,user_likes,publish_stream'
       },
       function(response) {

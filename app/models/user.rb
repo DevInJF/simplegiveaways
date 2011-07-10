@@ -23,10 +23,6 @@ class User < ActiveRecord::Base
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
-
-  def facebook
-    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token)
-  end
   
   def generate_account
     self.retrieve_pages

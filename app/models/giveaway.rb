@@ -4,7 +4,7 @@ class Giveaway < ActiveRecord::Base
   has_many :entries
   has_many :accessory_fb_pages
 
-  validates :title, :uniqueness => {:scope => :facebook_page_id}, :presence => true
+  validates :title, :uniqueness => { :scope => :facebook_page_id }, :presence => true
   validates :facebook_page_id, :presence => true
   validates :description, :presence => true
   validates :start_date, :presence => true
@@ -35,18 +35,12 @@ class Giveaway < ActiveRecord::Base
 
   def is_live?
     now = Time.now
-    if start_date < now && end_date > now
-      return true
-    else
-      false
-    end
+    start_date < now && end_date > now ? true : false
   end
   
   def is_installed?
-    fql = Facebook::Fql.new("224405887571151|da3018ba6e8116249940548b.0-808283|EiZWzkK24PIah6wPJ94q0yvN7LY")
-    pid = facebook_page.pid
-    response = fql.query("SELECT has_added_app FROM page WHERE page_id=#{pid}")
-    response[0]["has_added_app"]
+    @rest = Koala::Facebook::RestAPI.new(FB_APP_KEY)
+    @rest.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
   end
 
   private

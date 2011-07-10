@@ -76,7 +76,8 @@ class GiveawaysController < ApplicationController
   # POST /giveaways/tab.html
   def tab
     if params[:signed_request]
-      @signed_request = Facebook::SignedRequest::parse_signed_request(params[:signed_request],"da7dc60be4b02073a6b584722896e6c9")
+      @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      @signed_request = @oauth.parse_signed_request(params[:signed_request])
     end
 
     if @signed_request
@@ -86,7 +87,7 @@ class GiveawaysController < ApplicationController
     end
 
     if params[:session_key]
-      @oauth = Koala::Facebook::OAuth.new(224405887571151, "da7dc60be4b02073a6b584722896e6c9","http://simplegiveawayapp.com/tab.html")
+      @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       oauth_access_token = @oauth.get_token_from_session_key(params[:session_key])
       graph = Koala::Facebook::GraphAPI.new(oauth_access_token)
       @profile = graph.get_object("me")
