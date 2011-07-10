@@ -26,6 +26,9 @@
       },
       function(response) {
         if (response.session) {
+          var thesession = response.session;
+          var thesession = eval('(' + thesession + ')'); //decode json
+          alert(thesession);
           $.ajax({
             type: "POST",
             url: "http://simplegiveawayapp.com/giveaways/tab.html",
