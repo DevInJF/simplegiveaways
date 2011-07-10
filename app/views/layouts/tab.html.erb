@@ -14,7 +14,17 @@
 
 	<!--[if lt IE 9]>
   <%= javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js" %>
-	<![endif]--> 
+	<![endif]-->
+
+  <%= javascript_tag do %>
+    window.fbAsyncInit = function() {
+      FB.Canvas.setSize();
+    }
+    // Do things that will sometimes call sizeChangeCallback()
+    function sizeChangeCallback() {
+      FB.Canvas.setSize();
+    }
+  <% end %>
 </head> 
  
 <body>
