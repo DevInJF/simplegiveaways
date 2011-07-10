@@ -73,16 +73,22 @@ body {
 
 #enter_giveaway {
   width: 520px;
-  height: 40px;
+  padding: 10px 0;
   background: #5e6469;
 }
 
 #enter_giveaway a {
   display: block;
-  width: 150px;
-  height: 30px;
+  width: 101px;
+  height: 3px;
   margin: 0 auto;
   padding: 10px 0;
-  text-align: center;
+  text-align: left;
+  text-indent: -9999em;
+  background: transparent url('../images/giveaway/enter_giveaway_button.png') no-repeat 0 0;
 }
 
+#enter_giveaway a:active,
+#enter_giveaway a:focus {
+  background: transparent url('../images/giveaway/enter_giveaway_button.png') no-repeat 0 -28px;
+}

@@ -43,7 +43,7 @@ class Giveaway < ActiveRecord::Base
   end
   
   def is_installed?
-    fql = Facebook::Fql.new("224405887571151|d8c509f8698861e58a35203f.0-808283|B8A_LuTwhW5LNnXsz6_hI5cRjVI")
+    fql = Facebook::Fql.new("224405887571151|da3018ba6e8116249940548b.0-808283|EiZWzkK24PIah6wPJ94q0yvN7LY")
     pid = facebook_page.pid
     response = fql.query("SELECT has_added_app FROM page WHERE page_id=#{pid}")
     response[0]["has_added_app"]
