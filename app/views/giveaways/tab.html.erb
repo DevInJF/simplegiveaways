@@ -28,7 +28,7 @@
         if (response.session) {
           $.ajax({
             type: "POST",
-            url: "#{tab_giveaways_path}",
+            url: "<%= tab_giveaways_path %>",
             data: "session=" + response.session,
             dataType: "json",
             success: function(decoded_session){
