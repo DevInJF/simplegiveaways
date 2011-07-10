@@ -23,8 +23,21 @@
         method: 'oauth',
         client_id: '224405887571151',
         perms: 'email,user_location,user_birthday,user_likes,publish_stream'
-      }, function(response) {
-        alert(response.perms);
+      },
+      function(response) {
+        if (response.session) {
+          $.ajax({
+            type: "POST",
+            url: "#{tab_giveaways_path}",
+            data: "session=" + response.session,
+            dataType: "json",
+            success: function(decoded_session){
+              alert(decoded_session);
+            }
+          });
+        } else {
+          // if permission Not Allowed
+        }
       });
     });
   });
