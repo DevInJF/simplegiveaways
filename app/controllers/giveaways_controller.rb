@@ -79,19 +79,21 @@ class GiveawaysController < ApplicationController
       @signed_request = Facebook::SignedRequest::parse_signed_request(params[:signed_request],"da7dc60be4b02073a6b584722896e6c9")
     end
 
-    if params[:token]
-      graph = Koala::Facebook::GraphAPI.new(params[:token])
-      @profile = graph.get_object("me")
-      format.json { @profile }
-    end
-
     if @signed_request
       @giveaway = FacebookPage.find_by_pid(@signed_request["page"]["id"]).giveaways.detect(&:is_live?)
     else
       @giveaway = Giveaway.first
     end
 
-    render :layout => "tab"
+    if params[:token]
+      graph = Koala::Facebook::GraphAPI.new(params[:token])
+      @profile = graph.get_object("me")
+      respond_to do |format|
+        format.json { render :json => @profile }
+      end
+    else
+      render :layout => "tab"
+    end
   end
 
   # POST /giveaways/1/manual_start
