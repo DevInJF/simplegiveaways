@@ -79,8 +79,10 @@ class GiveawaysController < ApplicationController
       @signed_request = Facebook::SignedRequest::parse_signed_request(params[:signed_request],"da7dc60be4b02073a6b584722896e6c9")
     end
 
-    if params[:session]
-      @session = Facebook::SignedRequest::parse_signed_request(params[:session],"da7dc60be4b02073a6b584722896e6c9")
+    if params[:token]
+      graph = Koala::Facebook::GraphAPI.new(params[:token])
+      @profile = graph.get_object("me")
+      format.json { @profile }
     end
 
     if @signed_request

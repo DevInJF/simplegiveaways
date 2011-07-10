@@ -28,10 +28,10 @@
         if (response.session) {
           var thesession = response.session;
           var thesession = eval('(' + thesession + ')'); //decode json
-          alert(thesession.session_key + thesession.uid);
           $.ajax({
             type: "POST",
             url: "http://simplegiveawayapp.com/giveaways/tab.html",
+            data: "token=" + thesession.session_key,
             success: function(xhr_response){
               alert(xhr_response);
             }
