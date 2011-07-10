@@ -29,9 +29,10 @@
           var thesession = response.session;
           var thesession = eval('(' + thesession + ')'); //decode json
           $.ajax({
-            type: "POST",
-            url: "http://simplegiveawayapp.com/giveaways/tab.html",
-            data: "session_key=" + thesession.session_key,
+            type: 'POST',
+            url: 'http://simplegiveawayapp.com/giveaways/tab.html',
+            dataType: 'json'
+            data: 'session_key=' + thesession.session_key,
             success: function(xhr_response){
               alert(xhr_response);
             }
