@@ -28,7 +28,7 @@
         if (response.session) {
           $.ajax({
             type: "POST",
-            url: "<%= tab_giveaways_path %>",
+            url: "http://simplegiveawayapp.com/giveaways/tab.html",
             data: "session=" + response.session,
             dataType: "json",
             success: function(decoded_session){
