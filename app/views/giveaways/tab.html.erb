@@ -1,12 +1,49 @@
-<%= image_tag @giveaway.image.url %>
+<div id="enter_giveaway">
+  <a class="one" href="#">Enter Giveaway</a>
+  <a class="two" href="#">Enter Giveaway 2</a>
+</div>
+<div id="giveaway_image">
+  <%= image_tag @giveaway.image.url %>
+</div>
 
 <div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
+<%= javascript_include_tag "http://connect.facebook.net/en_US/all.js" %>
 <script>
   FB.init({
     appId  : '224405887571151',
     status : true, // check login status
     cookie : true, // enable cookies to allow the server to access the session
     xfbml  : true  // parse XFBML
+  });
+  $(function(){
+    $("#enter_giveaway a.two").click(function(e){
+      e.preventDefault();
+      FB.ui(
+        {
+          method: 'oauth',
+          client_id: '224405887571151',
+          redirect_uri: 'http://host/report',
+          scope: 'publish_stream',
+          response_type: 'token'
+        },
+        function(response) {
+          console.log(response);
+        }
+      );
+    });
+    $("#enter_giveaway a.one").click(function(e){
+      e.preventDefault();
+      FB.login(function(response) {
+        if(response && response.session) {
+          FB.ui({
+            method: 'oauth',
+            client_id: '224405887571151',
+            perms: 'email,user_location,user_birthday'
+          }, function(){
+            alert("hello");
+          });
+        }
+      });
+    });
   });
 </script>

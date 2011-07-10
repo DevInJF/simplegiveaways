@@ -70,3 +70,19 @@ body {
 	padding: 0;
 	width: 500px;
 }
+
+#enter_giveaway {
+  width: 500px;
+  height: 40px;
+  background: #5e6469;
+}
+
+/*#enter_giveaway a {*/
+  /*display: block;*/
+  /*width: 150px;*/
+  /*height: 30px;*/
+  /*margin: 0 auto;*/
+  /*padding: 10px 0;*/
+  /*text-align: center;*/
+/*}*/
+

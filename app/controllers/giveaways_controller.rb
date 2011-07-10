@@ -75,15 +75,17 @@ class GiveawaysController < ApplicationController
   # GET /giveaways/tab.html
   # POST /giveaways/tab.html
   def tab
-    @signed_request = Facebook::SignedRequest::parse_signed_request(params[:signed_request], "da7dc60be4b02073a6b584722896e6c9")
-    @giveaway = FacebookPage.find_by_pid(@signed_request["page"]["id"]).giveaways.detect(&:is_live?)
+    #@signed_request = Facebook::SignedRequest::parse_signed_request(params[:signed_request],
+    #"da7dc60be4b02073a6b584722896e6c9")
+    #@giveaway = FacebookPage.find_by_pid(@signed_request["page"]["id"]).giveaways.detect(&:is_live?)
+    @giveaway = Giveaway.first
     render :layout => "tab"
   end
 
   # POST /giveaways/1/manual_start
   def manual_start
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.update_attributes(:start_date => Time.now)
+    if @giveaway.update_attributes(:start_date => DateTime.now)
       redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway
     .facebook_page.pid}"
     else
@@ -94,7 +96,7 @@ class GiveawaysController < ApplicationController
   # POST /giveaways/1/manual_end
   def manual_end
     @giveaway = Giveaway.find(params[:id])
-    @giveaway.update_attributes(:end_date => Time.now)
+    @giveaway.update_attributes(:end_date => DateTime.now)
     redirect_to @giveaway
   end
 end
