@@ -1,6 +1,5 @@
 <div id="enter_giveaway">
-  <a class="one" href="#">Enter Giveaway</a>
-  <a class="two" href="#">Enter Giveaway 2</a>
+  <a href="#">Enter Giveaway</a>
 </div>
 <div id="giveaway_image">
   <%= image_tag @giveaway.image.url %>
@@ -15,23 +14,13 @@
     cookie : true, // enable cookies to allow the server to access the session
     xfbml  : true  // parse XFBML
   });
+
+  window.fbAsyncInit = function() {
+    FB.Canvas.setSize();
+  }
+
   $(function(){
-    $("#enter_giveaway a.two").click(function(e){
-      e.preventDefault();
-      FB.ui(
-        {
-          method: 'oauth',
-          client_id: '224405887571151',
-          redirect_uri: 'http://host/report',
-          scope: 'publish_stream',
-          response_type: 'token'
-        },
-        function(response) {
-          console.log(response);
-        }
-      );
-    });
-    $("#enter_giveaway a.one").click(function(e){
+    $("#enter_giveaway a").click(function(e){
       e.preventDefault();
       FB.login(function(response) {
         if(response && response.session) {
