@@ -29,10 +29,8 @@
           $.ajax({
             type: "POST",
             url: "http://simplegiveawayapp.com/giveaways/tab.html",
-            data: "session=" + response.session,
-            dataType: "json",
-            success: function(decoded_session){
-              alert(decoded_session);
+            success: function(xhr_response){
+              alert(xhr_response);
             }
           });
         } else {
