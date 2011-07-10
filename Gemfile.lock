@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/demersus/formtastic_datepicker_inputs.git
-  revision: d4525dcc5a8c6931c9cc2e2fda0417a42bd3058d
-  specs:
-    formtastic_datepicker_inputs (1.0.0)
-      actionpack (>= 2.3.7)
-      activesupport (>= 2.3.7)
-      formtastic
-      i18n (>= 0.4.0)
-
-GIT
   remote: git://github.com/documentcloud/jammit.git
   revision: 3dedc9dffe04a7b7850efc0e494213c92bfdb35f
   specs:
@@ -95,7 +85,7 @@ GEM
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
-      rack (>= 1.1.0, < 2)
+      rack (< 2, >= 1.1.0)
     ffi (1.0.9)
     fixture_builder (0.2.2)
     formtastic (1.2.4)
@@ -114,17 +104,16 @@ GEM
     jquery-rails (1.0.12)
       railties (~> 3.0)
       thor (~> 0.14)
-    json (1.5.3)
     json_pure (1.5.3)
-    koala (1.0.0)
-      json (~> 1.0)
+    koala (1.1.0rc3)
+      multi_json (~> 1.0)
       multipart-post (~> 1.0)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_search (1.0.5)
+    meta_search (1.0.6)
       actionpack (~> 3.0.2)
       activerecord (~> 3.0.2)
       activesupport (~> 3.0.2)
@@ -134,7 +123,7 @@ GEM
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.2)
-    mysql2 (0.2.7)
+    mysql2 (0.2.6)
     net-ldap (0.2.2)
     nifty-generators (0.4.6)
     nokogiri (1.4.7)
@@ -177,10 +166,11 @@ GEM
       oa-openid (= 0.2.6)
     open4 (1.1.0)
     orm_adapter (0.0.5)
-    paperclip (2.3.12)
+    paperclip (2.3.14)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
+      mime-types
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.3)
@@ -234,7 +224,6 @@ GEM
       ffi (>= 1.0.7)
       json_pure
       rubyzip
-    settingslogic (2.0.6)
     thin (1.2.11)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -262,21 +251,20 @@ DEPENDENCIES
   aws-s3
   capybara
   delayed_job
+  devise
   factory_girl_rails
   fixture_builder
   formtastic
-  formtastic_datepicker_inputs!
   jammit!
   jquery-rails
-  koala
+  koala (~> 1.1rc)
   mocha
-  mysql2 (= 0.2.7)
+  mysql2 (= 0.2.6)
   nifty-generators
   omniauth (~> 0.2.0)
   paperclip (~> 2.3)
   rails (= 3.0.9)
   rake (= 0.8.7)
   rspec-rails
-  settingslogic
   thin
   timecop

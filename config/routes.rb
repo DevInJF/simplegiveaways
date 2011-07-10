@@ -5,8 +5,7 @@ SGA::Application.routes.draw do
   resources :entries
 
   resources :giveaways do
-    get 'tab', :on => :collection
-    post 'tab', :on => :collection
+    match :tab, :on => :collection
     get 'manual_start', :on => :member
     get 'manual_end', :on => :member
   end

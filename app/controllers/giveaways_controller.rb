@@ -3,7 +3,7 @@ class GiveawaysController < ApplicationController
   respond_to :html, :xml, :json
   
   before_filter :authenticate_user!
-  skip_before_filter :verify_authenticity_token, :only => [:tab]
+  #skip_before_filter :verify_authenticity_token, :only => [:tab]
   
   # GET /giveaways
   def index
@@ -30,15 +30,8 @@ class GiveawaysController < ApplicationController
   # POST /giveaways
   # POST /giveaways.xml
   def create
-    @params = params[:giveaway]
+    @giveaway = current_user.giveaways.create(params[:giveaway])
 
-    @giveaway = current_user.giveaways.new(@params)
-    
-    @giveaway.start_date = DateTime.strptime(@params[:start_date], "%m/%d/%Y %H:%M")
-    @giveaway.end_date = DateTime.strptime(@params[:end_date], "%m/%d/%Y %H:%M")
-    
-    current_user.giveaways << @giveaway
-    
     respond_to do |format|
       if @giveaway.save
         flash[:success] = 'Giveaway was successfully created.'

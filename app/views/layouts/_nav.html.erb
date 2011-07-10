@@ -11,16 +11,7 @@
 				</span>
 			</div>
 	  <% else %>
-			<div class="button-wrapper">
-				<span class="button pill">
-		    	<%= link_to "Sign up", authentications_path %>
-				</span>
-			</div>
-			<div class="button-wrapper">
-		    <span class="button pill">
-					<%= link_to "Sign in", authentications_path %>
-				</span>
-			</div>
+      <a href="/auth/facebook" class="auth-provider facebook clearfix">Facebook</a>
 	  <% end %>
 	</div>
 </nav>
