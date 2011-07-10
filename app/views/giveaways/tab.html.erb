@@ -18,16 +18,12 @@
   $(function(){
     $("#enter_giveaway a").click(function(e){
       e.preventDefault();
-      FB.login(function(response) {
-        if(response && response.session) {
-          FB.ui({
-            method: 'oauth',
-            client_id: '224405887571151',
-            perms: 'email,user_location,user_birthday'
-          }, function(){
-            alert("hello");
-          });
-        }
+      FB.ui({
+        method: 'oauth',
+        client_id: '224405887571151',
+        perms: 'email,user_location,user_birthday'
+      }, function(){
+        alert("hello");
       });
     });
   });
