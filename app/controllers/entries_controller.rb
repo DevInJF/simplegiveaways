@@ -13,7 +13,7 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @giveaway = Giveaway.find(params[:id])
+    @giveaway = Giveaway.find(params[:giveaway_id])
     @entry = @giveaway.entries.new
 
     if params[:session_key]
