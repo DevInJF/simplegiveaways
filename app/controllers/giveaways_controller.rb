@@ -100,18 +100,34 @@ class GiveawaysController < ApplicationController
   # POST /giveaways/1/manual_start
   def manual_start
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.update_attributes(:start_date => DateTime.now)
-      redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway
-    .facebook_page.pid}"
+    if @giveaway.is_installed?
+      if @giveaway.update_attributes(:start_date => DateTime.now)
+        flash["success"].now = "Giveaway has been successfully started."
+        render :show
+      else
+        flash["error"].now = "Giveaway could not be started."
+        render :show
+      end
     else
-      render :show
+      if @giveaway.update_attributes(:start_date => DateTime.now)
+        redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway
+      .facebook_page.pid}"
+      else
+        flash["error"].now = "Giveaway could not be started."
+        render :show
+      end
     end
   end
 
   # POST /giveaways/1/manual_end
   def manual_end
     @giveaway = Giveaway.find(params[:id])
-    @giveaway.update_attributes(:end_date => DateTime.now)
-    redirect_to @giveaway
+    if @giveaway.update_attributes(:end_date => DateTime.now)
+      flash["success"] = "Giveaway has been successfully ended."
+      redirect_to @giveaway
+    else
+      flash["error"].now = "Giveaway could not be ended."
+      render :show
+    end
   end
 end
