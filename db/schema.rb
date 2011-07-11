@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711003354) do
+ActiveRecord::Schema.define(:version => 20110711015848) do
 
   create_table "accessory_fb_pages", :force => true do |t|
     t.string   "name"
@@ -111,13 +111,14 @@ ActiveRecord::Schema.define(:version => 20110711003354) do
     t.string   "name"
     t.string   "fb_url"
     t.datetime "datetime_entered"
-    t.boolean  "has_shared"
     t.integer  "share_count"
     t.integer  "invite_count"
     t.integer  "convert_count"
     t.integer  "giveaway_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
+    t.integer  "uid"
   end
 
   add_index "entries", ["email", "giveaway_id"], :name => "index_entries_on_email_and_giveaway_id", :unique => true

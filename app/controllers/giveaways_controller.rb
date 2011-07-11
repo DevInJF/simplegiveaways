@@ -87,16 +87,6 @@ class GiveawaysController < ApplicationController
     else
       @giveaway = Giveaway.first
     end
-
-    if params[:session_key]
-      @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      oauth_access_token = @oauth.get_token_from_session_key(params[:session_key])
-      graph = Koala::Facebook::GraphAPI.new(oauth_access_token)
-      @profile = graph.get_object("me")
-      render :json => @profile
-    else
-      render :layout => "tab"
-    end
   end
 
   # POST /giveaways/1/manual_start

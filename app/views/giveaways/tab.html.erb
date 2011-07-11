@@ -30,12 +30,12 @@
           var thesession = eval('(' + thesession + ')'); //decode json
           $.ajax({
             type: 'POST',
-            url: 'http://simplegiveawayapp.com/giveaways/tab.html',
+            url: '<%= new_giveaway_entry_path(@giveaway) %>',
             dataType: 'json',
             data: 'session_key=' + thesession.session_key,
             success: function(xhr_response){
-              profile = xhr_response;
-              console.log(profile);
+              fb_user = xhr_response;
+              console.log(fb_user);
             }
           });
         } else {

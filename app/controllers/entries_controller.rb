@@ -13,15 +13,36 @@ class EntriesController < ApplicationController
   end
 
   def new
-    @entry = Entry.new
-  end
+    @giveaway = Giveaway.find_by_facebook_page_id(params[:id])
+    @entry = @giveaway.entries.new
 
-  def create
-    @entry = Entry.new(params[:entry])
-    if @entry.save
-      redirect_to @entry, :notice => "Successfully created entry."
+    if params[:session_key]
+      @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      oauth_access_token = @oauth.get_token_from_session_key(params[:session_key])
+
+      graph = Koala::Facebook::GraphAPI.new(oauth_access_token)
+      @profile = graph.get_object("me")
+
+      uid = @profile["id"]
+
+      if Entry.like_status(@giveaway.facebook_page.pid, uid) == false
+        status = "incomplete"
+      else
+        status = "complete"
+      end
+
+      @entry.create(
+        :uid => uid,
+        :name => @profile["name"],
+        :email => @profile["email"],
+        :fb_url => @profile["link"],
+        :datetime_entered => DateTime.now,
+        :status => status
+      )
+
+      render :json => @profile
     else
-      render :action => 'new'
+      render :text => "Session key was not provided."
     end
   end
 
