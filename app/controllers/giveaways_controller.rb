@@ -51,7 +51,8 @@ class GiveawaysController < ApplicationController
 
     respond_to do |format|
       if @giveaway.update_attributes(params[:giveaway])
-        format.html { redirect_to(@giveaway, :notice => 'Giveaway was successfully updated.') }
+        flash[:success] = 'Giveaway was successfully updated.'
+        format.html { redirect_to(@giveaway) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -67,7 +68,8 @@ class GiveawaysController < ApplicationController
     @giveaway.destroy
 
     respond_to do |format|
-      format.html { redirect_to(giveaways_url, :notice => 'Giveaway was successfully destroyed.') }
+      flash[:success] = 'Giveaway was successfully destroyed.'
+      format.html { redirect_to(giveaways_url) }
       format.xml  { head :ok }
     end
   end
@@ -102,10 +104,10 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.is_installed?
       if @giveaway.update_attributes(:start_date => DateTime.now)
-        flash["success"].now = "Giveaway has been successfully started."
+        flash[:success].now = "Giveaway has been successfully started."
         render :show
       else
-        flash["error"].now = "Giveaway could not be started."
+        flash[:error].now = "Giveaway could not be started."
         render :show
       end
     else
@@ -113,7 +115,7 @@ class GiveawaysController < ApplicationController
         redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway
       .facebook_page.pid}"
       else
-        flash["error"].now = "Giveaway could not be started."
+        flash[:error].now = "Giveaway could not be started."
         render :show
       end
     end
@@ -123,10 +125,10 @@ class GiveawaysController < ApplicationController
   def manual_end
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.update_attributes(:end_date => DateTime.now)
-      flash["success"] = "Giveaway has been successfully ended."
+      flash[:success] = "Giveaway has been successfully ended."
       redirect_to @giveaway
     else
-      flash["error"].now = "Giveaway could not be ended."
+      flash[:error].now = "Giveaway could not be ended."
       render :show
     end
   end
