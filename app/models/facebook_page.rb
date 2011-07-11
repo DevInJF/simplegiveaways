@@ -7,19 +7,20 @@ class FacebookPage < ActiveRecord::Base
   def self.retrieve_meta(user)  
     pages = user.facebook_pages
     pages.each do |page|
-      token = page.token
-      graph = Koala::Facebook::GraphAPI.new(token)
-      
-      avatar = graph.get_picture("me")
-      object = graph.get_object("me")
-      
-      description = object["description"]
-      likes = object["likes"].to_i
+      graph = Koala::Facebook::GraphAPI.new(page.token)
+
+      fb_page = graph.get_object("me")
+      fb_page_url = fb_page["link"]
+
+      unless fb_page_url.include? "facebook.com"
+        return page.destroy
+      end
       
       page.update_attributes(
-        :avatar => avatar,
-        :description => description,
-        :likes => likes
+        :avatar => fb_page["picture"],
+        :description => fb_page["description"],
+        :url => fb_page_url,
+        :likes => fb_page["likes"]
       )
     end
   end

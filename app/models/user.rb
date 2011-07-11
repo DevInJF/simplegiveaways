@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   def apply_omniauth(omniauth)
     case omniauth['provider']
     when 'facebook'
-      self.apply_facebook(omniauth)
+      apply_facebook(omniauth)
     end
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'], :token =>(omniauth['credentials']['token'] rescue nil))
   end
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
   
   def generate_account
-    self.retrieve_pages
+    retrieve_pages
   end
   handle_asynchronously :generate_account
 
@@ -39,20 +39,16 @@ class User < ActiveRecord::Base
   end
   
   def retrieve_pages
-    token = self.authentications.last.token
-    graph = Koala::Facebook::GraphAPI.new(token)
+    graph = Koala::Facebook::GraphAPI.new(authentications.last.token)
     pages = graph.get_connections("me", "accounts")
     pages.each do |page|
-      page_name = page["name"]
-      page_cat = page["category"]
-      page_id = page["id"]
-      page_token = page["access_token"]
-      unless page_id.nil? or page_id.blank?
+      page_category = page["category"]
+      unless page_category == "Application"
         self.facebook_pages.create(
-          :name => page_name,
-          :category => page_cat,
-          :pid => page_id,
-          :token => page_token
+          :name => page["name"],
+          :category => page_category,
+          :pid => page["id"],
+          :token => page["access_token"]
         )
       end
     end

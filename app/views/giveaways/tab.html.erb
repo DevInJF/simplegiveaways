@@ -34,7 +34,8 @@
             dataType: 'json',
             data: 'session_key=' + thesession.session_key,
             success: function(xhr_response){
-              alert(xhr_response);
+              profile = xhr_response;
+              console.log(profile);
             }
           });
         } else {

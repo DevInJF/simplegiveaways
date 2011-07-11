@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110624015125) do
+ActiveRecord::Schema.define(:version => 20110711000554) do
 
   create_table "accessory_fb_pages", :force => true do |t|
     t.string   "name"
@@ -133,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20110624015125) do
     t.text     "description"
     t.integer  "likes"
     t.string   "url"
-    t.string   "kind"
   end
 
   create_table "facebook_pages_users", :id => false, :force => true do |t|
