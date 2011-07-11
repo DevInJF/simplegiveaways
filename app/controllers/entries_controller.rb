@@ -17,28 +17,7 @@ class EntriesController < ApplicationController
     @entry = @giveaway.entries.new
 
     if params[:session_key]
-      @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      oauth_access_token = @oauth.get_token_from_session_key(params[:session_key])
-
-      graph = Koala::Facebook::GraphAPI.new(oauth_access_token)
-      @profile = graph.get_object("me")
-
-      uid = @profile["id"]
-
-      if Entry.like_status(@giveaway.facebook_page.pid, uid) == false
-        status = "incomplete"
-      else
-        status = "complete"
-      end
-
-      @entry = @giveaway.entries.build(
-        :uid => uid,
-        :name => @profile["name"],
-        :email => @profile["email"],
-        :fb_url => @profile["link"],
-        :datetime_entered => DateTime.now,
-        :status => status
-      )
+      @entry.build_from_session(params[:session_key])
 
       if @entry.save
         render :json => @entry
