@@ -17,7 +17,7 @@ class EntriesController < ApplicationController
     @entry = @giveaway.entries.new
 
     if params[:session_key]
-      @entry.build_from_session(params[:session_key])
+      @entry.build_from_session(@giveaway, params[:session_key])
 
       if @entry.save
         render :json => @entry

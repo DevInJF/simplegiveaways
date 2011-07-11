@@ -9,7 +9,7 @@ class Entry < ActiveRecord::Base
     status[0].nil? ? false : true
   end
 
-  def build_from_session(session)
+  def build_from_session(giveaway, session)
     @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
     oauth_access_token = @oauth.get_token_from_session_key(session)
 
@@ -18,7 +18,7 @@ class Entry < ActiveRecord::Base
 
     uid = @profile["id"]
 
-    @entry = @giveaway.entries.build(
+    @entry = giveaway.entries.build(
       :uid => uid,
       :name => @profile["name"],
       :email => @profile["email"],
@@ -26,7 +26,7 @@ class Entry < ActiveRecord::Base
       :datetime_entered => DateTime.now
     )
 
-    if Entry.like_status(@giveaway.facebook_page.pid, uid) == false
+    if Entry.like_status(giveaway.facebook_page.pid, uid) == false
       @entry.status = "incomplete"
     else
       @entry.status = "complete"
