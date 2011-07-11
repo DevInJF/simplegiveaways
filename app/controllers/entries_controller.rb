@@ -13,12 +13,12 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @giveaway = Giveaway.find(params[:giveaway_id])
-    @entry = @giveaway.entries.new
+    giveaway = Giveaway.find(params[:giveaway_id])
+    entry = @giveaway.entries.new
 
     if params[:session_key]
-      if @entry.build_from_session(@giveaway, params[:session_key])
-        render :json => @entry
+      if @saved_entry = entry.build_from_session(giveaway, params[:session_key])
+        render :json => @saved_entry
       else
         render :text => "Entry could not be created."
       end

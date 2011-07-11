@@ -18,7 +18,7 @@ class Entry < ActiveRecord::Base
 
     uid = @profile["id"]
 
-    @entry = giveaway.entries.build(
+    entry = giveaway.entries.build(
       :uid => uid,
       :name => @profile["name"],
       :email => @profile["email"],
@@ -27,13 +27,13 @@ class Entry < ActiveRecord::Base
     )
 
     if Entry.like_status(giveaway.facebook_page.pid, uid) == false
-      @entry.status = "incomplete"
+      entry.status = "incomplete"
     else
-      @entry.status = "complete"
-      @entry.has_liked_primary = true
+      entry.status = "complete"
+      entry.has_liked_primary = true
     end
 
-    @entry.save
-    @entry
+    entry.save
+    entry
   end
 end
