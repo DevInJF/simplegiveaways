@@ -30,7 +30,7 @@
           var thesession = eval('(' + thesession + ')'); //decode json
           $.ajax({
             type: 'POST',
-            url: '<%= new_giveaway_entry_path(@giveaway) %>',
+            url: '<%= giveaway_entries_path(@giveaway) %>',
             dataType: 'json',
             data: 'session_key=' + thesession.session_key,
             success: function(xhr_response){

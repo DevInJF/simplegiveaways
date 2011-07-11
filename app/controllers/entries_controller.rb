@@ -12,7 +12,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
   end
 
-  def new
+  def create
     @giveaway = Giveaway.find_by_facebook_page_id(params[:id])
     @entry = @giveaway.entries.new
 
