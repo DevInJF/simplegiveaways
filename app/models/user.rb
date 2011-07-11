@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :facebook_pages
   has_and_belongs_to_many :giveaways
   has_and_belongs_to_many :credit_cards
-  
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  
+
   def apply_omniauth(omniauth)
     case omniauth['provider']
     when 'facebook'
@@ -19,11 +19,15 @@ class User < ActiveRecord::Base
     end
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'], :token =>(omniauth['credentials']['token'] rescue nil))
   end
-  
+
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
-  
+
+  def facebook
+    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token)
+  end
+
   def generate_account
     retrieve_pages
   end
@@ -38,7 +42,7 @@ class User < ActiveRecord::Base
       self.name = (extra['first_name'] rescue '') + " " + (extra['last_name'] rescue '')
     end
   end
-  
+
   def retrieve_pages
     graph = Koala::Facebook::GraphAPI.new(authentications.last.token)
     pages = graph.get_connections("me", "accounts")
