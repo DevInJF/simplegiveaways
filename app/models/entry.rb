@@ -33,6 +33,6 @@ class Entry < ActiveRecord::Base
       @entry.has_liked_primary = true
     end
 
-    @entry
+    @entry.save
   end
 end
