@@ -34,5 +34,6 @@ class Entry < ActiveRecord::Base
     end
 
     @entry.save
+    @entry
   end
 end
