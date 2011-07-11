@@ -17,9 +17,7 @@ class EntriesController < ApplicationController
     @entry = @giveaway.entries.new
 
     if params[:session_key]
-      @entry.build_from_session(@giveaway, params[:session_key])
-
-      if @entry.save
+      if @entry.build_from_session(@giveaway, params[:session_key])
         render :json => @entry
       else
         render :text => "Entry could not be created."
