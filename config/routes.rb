@@ -3,7 +3,9 @@ SGA::Application.routes.draw do
   resources :credit_cards
 
   resources :giveaways do
-    resources :entries
+    resources :entries do
+      match :new, :on => :member
+    end
     match :tab, :on => :collection
     get 'manual_start', :on => :member
     get 'manual_end', :on => :member
