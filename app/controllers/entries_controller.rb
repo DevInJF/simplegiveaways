@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
         status = "complete"
       end
 
-      @entry.create(
+      @entry = @giveaway.entries.build(
         :uid => uid,
         :name => @profile["name"],
         :email => @profile["email"],
@@ -40,7 +40,11 @@ class EntriesController < ApplicationController
         :status => status
       )
 
-      render :json => @profile
+      if @entry.save
+        render :json => @profile
+      else
+        render :text => "Entry could not be created."
+      end
     else
       render :text => "Session key was not provided."
     end
