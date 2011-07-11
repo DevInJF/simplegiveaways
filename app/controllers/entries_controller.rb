@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   
   respond_to :html, :xml, :json  
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:tab]
   
   def index
     @entries = Entry.all
