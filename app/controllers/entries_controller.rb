@@ -41,7 +41,7 @@ class EntriesController < ApplicationController
       )
 
       if @entry.save
-        render :json => @profile
+        render :json => @entry
       else
         render :text => "Entry could not be created."
       end

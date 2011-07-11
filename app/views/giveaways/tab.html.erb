@@ -34,8 +34,8 @@
             dataType: 'json',
             data: 'session_key=' + thesession.session_key,
             success: function(xhr_response){
-              fb_user = xhr_response;
-              console.log(fb_user);
+              entry = xhr_response;
+              console.log(entry);
             }
           });
         } else {
