@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711015848) do
+ActiveRecord::Schema.define(:version => 20110711035347) do
 
   create_table "accessory_fb_pages", :force => true do |t|
     t.string   "name"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(:version => 20110711015848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.integer  "uid"
+    t.string   "uid"
   end
 
   add_index "entries", ["email", "giveaway_id"], :name => "index_entries_on_email_and_giveaway_id", :unique => true
