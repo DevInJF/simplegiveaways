@@ -104,10 +104,10 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.is_installed?
       if @giveaway.update_attributes(:start_date => DateTime.now)
-        flash[:success].now = "Giveaway has been successfully started."
+        flash.now[:success] = "Giveaway has been successfully started."
         render :show
       else
-        flash[:error].now = "Giveaway could not be started."
+        flash.now[:error] = "Giveaway could not be started."
         render :show
       end
     else
@@ -115,7 +115,7 @@ class GiveawaysController < ApplicationController
         redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway
       .facebook_page.pid}"
       else
-        flash[:error].now = "Giveaway could not be started."
+        flash.now[:error] = "Giveaway could not be started."
         render :show
       end
     end
@@ -128,7 +128,7 @@ class GiveawaysController < ApplicationController
       flash[:success] = "Giveaway has been successfully ended."
       redirect_to @giveaway
     else
-      flash[:error].now = "Giveaway could not be ended."
+      flash.now[:error] = "Giveaway could not be ended."
       render :show
     end
   end
