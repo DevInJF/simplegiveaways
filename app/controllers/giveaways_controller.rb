@@ -87,6 +87,8 @@ class GiveawaysController < ApplicationController
     else
       @giveaway = Giveaway.first
     end
+
+    render :layout => "tab"
   end
 
   # POST /giveaways/1/manual_start
