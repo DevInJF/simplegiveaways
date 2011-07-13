@@ -84,6 +84,7 @@ class GiveawaysController < ApplicationController
 
     if @signed_request
       @giveaway = FacebookPage.find_by_pid(@signed_request["page"]["id"]).giveaways.detect(&:is_live?)
+      @has_liked = @signed_request["page"]["liked"]
     else
       @giveaway = Giveaway.first
     end

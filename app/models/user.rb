@@ -45,14 +45,19 @@ class User < ActiveRecord::Base
     pages.each do |page|
       page_category = page["category"]
       unless page_category == "Application"
-        self.facebook_pages.create(
+        @page = FacebookPage.new(
           :name => page["name"],
           :category => page_category,
           :pid => page["id"],
           :token => page["access_token"]
-        )
+        ).retrieve_fb_meta
+
+        unless @page.url.include? "facebook.com"
+          @page.destroy
+        else
+          self.facebook_pages.create(@page.attributes)
+        end
       end
     end
-    FacebookPage.retrieve_meta(self)
   end
 end

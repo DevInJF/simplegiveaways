@@ -20,7 +20,7 @@ class AuthenticationsController < ApplicationController
       if user.save
         flash[:success] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
-        user.generate_account
+        current_user.generate_account
       else
         session[:omniauth] = omniauth
         redirect_to new_user_registration_url
