@@ -92,3 +92,33 @@ body {
 #enter_giveaway a:focus {
   background: transparent url('../images/giveaway/enter_giveaway_button.png') no-repeat 0 -28px;
 }
+
+#giveaway_modal {
+  width: 406px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  margin-left: -226px;
+  background: #fff;
+  border: 5px solid #3B5998;
+  padding: 20px;
+  z-index: 100;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  -webkit-box-shadow: 0px 0px 10px 1px #000000;
+  -moz-box-shadow: 0px 0px 10px 1px #000000;
+  box-shadow: 0px 0px 10px 1px #000000;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#giveaway_modal span {
+  display: block;
+  margin-bottom: 20px;
+}
+
+#giveaway_modal a {
+  display: block;
+  margin: 0 0 5px;
+}
