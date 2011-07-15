@@ -1,3 +1,5 @@
+<div id="fb-root"></div>
+
 <div id="enter_giveaway">
   <a href="#">Enter Giveaway</a>
 </div>
@@ -5,7 +7,17 @@
   <%= image_tag @giveaway.image.url %>
 </div>
 
-<div id="fb-root"></div>
+<div id="giveaway_modal" style="display:none">
+  <div class="step one">
+    <span>To be eligible for the giveaway, please like this page first.</span>
+    <fb:like href="http://www.facebook.com/pages/Simple-Giveaway-App/241368822556925" send="false" width="287"
+          show_faces="false" font=""></fb:like>
+  </div>
+  <div class="step two">
+    <a href="#">Click Here to Enter the Giveaway</a>
+  </div>
+</div>
+
 <%= javascript_include_tag "http://connect.facebook.net/en_US/all.js" %>
 <%= javascript_tag do %>
   window.fbAsyncInit = function() {
@@ -13,7 +25,7 @@
       appId  : '<%= FB_APP_ID %>',
       status : true, // check login status
       cookie : true, // enable cookies to allow the server to access the session
-      xfbml  : true  // parse XFBML,
+      xfbml  : true, // parse XFBML
       channelUrl  : 'http://simplegiveawayapp.com/channel.html'
     });
     FB.Canvas.setSize();
@@ -33,30 +45,34 @@
     var has_liked = <%= @has_liked %>;
 
     $("#enter_giveaway a").click(function(e){
-      e.preventDefault();
-      FB.ui({
-        method: 'oauth',
-        client_id: '<%= FB_APP_ID %>',
-        perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
-      },
-      function(response) {
-        if (response.session) {
-          var thesession = response.session;
-          var thesession = eval('(' + thesession + ')'); //decode json
-          $.ajax({
-            type: 'POST',
-            url: '<%= giveaway_entries_path(@giveaway) %>',
-            dataType: 'json',
-            data: 'session_key=' + thesession.session_key + '&has_liked=' + has_liked,
-            success: function(xhr_response){
-              entry = xhr_response;
-              console.log(entry);
-            }
-          });
-        } else {
-          // if permission Not Allowed
-        }
+      $("#giveaway_modal .step.two a").click(function(e){
+        e.preventDefault;
+        FB.ui({
+          method: 'oauth',
+          client_id: '<%= FB_APP_ID %>',
+          perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
+        },
+        function(response) {
+          if (response.session) {
+            var thesession = response.session;
+            var thesession = eval('(' + thesession + ')'); //decode json
+            $.ajax({
+              type: 'POST',
+              url: '<%= giveaway_entries_path(@giveaway) %>',
+              dataType: 'json',
+              data: 'session_key=' + thesession.session_key + '&has_liked=' + has_liked,
+              success: function(xhr_response){
+                entry = xhr_response;
+                console.log(entry);
+              }
+            });
+          } else {
+            // if permission Not Allowed
+          }
+        });
       });
+      e.preventDefault();
+      $("#giveaway_modal").show();
     });
   });
 <% end %>
