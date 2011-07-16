@@ -19,12 +19,12 @@ class EntriesController < ApplicationController
     if params[:session_key]
       @entry = entry.build_from_session(@giveaway, params[:session_key], params[:has_liked])
       if @entry.save
-        render :json => @entry
+        head :created
       else
-        render :text => "Entry could not be created."
+        head :not_acceptable
       end
     else
-      render :text => "Session key was not provided."
+      head :failed_dependency
     end
   end
 

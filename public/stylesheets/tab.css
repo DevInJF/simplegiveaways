@@ -122,3 +122,7 @@ body {
   display: block;
   margin: 0 0 5px;
 }
+
+#giveaway_modal p {
+  line-height: 24px;
+}
