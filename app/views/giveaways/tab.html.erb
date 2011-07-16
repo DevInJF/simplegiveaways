@@ -103,7 +103,8 @@
             dataType: "text",
             data: 'session_key=' + thesession.session_key + '&has_liked=' + Giveaway.eligible,
             statusCode: {
-              200: function() {
+              201: function() {
+                $loader.hide();
                 Giveaway.step.two.hide();
                 Giveaway.step.three.show();
               },
@@ -132,8 +133,10 @@
               },
               function(response) {
                 if (response.session) {
-                  Giveaway.entry.submit(response.session);
+                  $new_session = response.session;
+                  Giveaway.entry.submit(response.session, true);
                 } else {
+                  console.log($just_liked);
                   Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
                 }
               });
@@ -143,7 +146,11 @@
 
         eligible : function() {
           Giveaway.entry.loader();
-          Giveaway.entry.statusCheck();
+          if (typeof($new_session) === "undefined") {
+            Giveaway.entry.statusCheck();
+          } else {
+            Giveaway.entry.submit($new_session, true);
+          }
         }
       }
     };
