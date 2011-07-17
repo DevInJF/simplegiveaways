@@ -13,7 +13,7 @@ class GiveawaysController < ApplicationController
   # GET /giveaways/1
   # GET /giveaways/1.xml
   def show
-    respond_with(@giveaway = Giveaway.find(params[:id]))
+    respond_with(@giveaway = Giveaway.find(params[:id], :include => [:entries]))
   end
 
   # GET /giveaways/new
@@ -83,11 +83,14 @@ class GiveawaysController < ApplicationController
     end
 
     if @signed_request
-      @giveaway = FacebookPage.find_by_pid(@signed_request["page"]["id"]).giveaways.detect(&:is_live?)
+      @current_page = FacebookPage.find_by_pid(@signed_request["page"]["id"])
+      @giveaway = @current_page.giveaways.detect(&:is_live?)
       @has_liked = @signed_request["page"]["liked"]
     else
       @giveaway = Giveaway.first
     end
+
+    impressionist(@giveaway)
 
     render :layout => "tab"
   end

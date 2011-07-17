@@ -1,17 +1,19 @@
 class Giveaway < ActiveRecord::Base
+  is_impressionable
+
   has_and_belongs_to_many :users
   belongs_to :facebook_page
   has_many :entries
   has_many :accessory_fb_pages
 
-  validates :title, :uniqueness => { :scope => :facebook_page_id }, :presence => true
+  validates :title, :presence => true, :uniqueness => { :scope => :facebook_page_id }
   validates :facebook_page_id, :presence => true
   validates :description, :presence => true
   validates :start_date, :presence => true
   validates :end_date, :presence => true
   validates :prize, :presence => true
-  validates :image, :presence => true
-  validates :feed_image, :presence => true
+  validates_attachment_presence :image
+  validates_attachment_presence :feed_image
   validates :terms, :presence => true
 
   validate :end_in_future

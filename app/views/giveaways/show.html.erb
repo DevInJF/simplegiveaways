@@ -12,6 +12,16 @@
 </div>
 
 <div class="field">
+  <b>Unique Impressions:</b>
+  <%= @giveaway.impressionist_count(:filter=>:session_hash) %>
+</div>
+
+<div class="field">
+  <b>Entries:</b>
+  <%= @giveaway.entries.count %>
+</div>
+
+<div class="field">
   <b>Is live?:</b>
   <%= @giveaway.is_live? %>
 </div>
