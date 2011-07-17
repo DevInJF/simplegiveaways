@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110717000144) do
+ActiveRecord::Schema.define(:version => 20110717214728) do
 
   create_table "accessory_fb_pages", :force => true do |t|
     t.string   "name"
@@ -106,14 +106,14 @@ ActiveRecord::Schema.define(:version => 20110717000144) do
 
   create_table "entries", :force => true do |t|
     t.string   "email"
-    t.boolean  "has_liked_mandatory"
-    t.boolean  "has_liked_primary"
+    t.boolean  "has_liked_mandatory", :default => false
+    t.boolean  "has_liked_primary",   :default => false
     t.string   "name"
     t.string   "fb_url"
     t.datetime "datetime_entered"
-    t.integer  "share_count"
-    t.integer  "invite_count"
-    t.integer  "convert_count"
+    t.integer  "share_count",         :default => 0
+    t.integer  "request_count",       :default => 0
+    t.integer  "convert_count",       :default => 0
     t.integer  "giveaway_id"
     t.datetime "created_at"
     t.datetime "updated_at"

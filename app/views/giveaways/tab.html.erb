@@ -18,8 +18,10 @@
     <a href="#">Click Here to Enter the Giveaway</a>
   </div>
   <div class="step three" style="display:none">
-    <span>Congratulations!</span>
-    <span>You have successfully entered the giveaway.</span>
+    <div class="entry-status">
+      <span>Congratulations!</span>
+      <span>You have successfully entered the giveaway.</span>
+    </div>
     <div class="share-page">
       <span>Share this page to receive a bonus entry.</span>
       <a class="wall-post" href="#">Post to Wall</a>
@@ -94,21 +96,15 @@
         error : function(error) {
           $loader.hide();
           Giveaway.step.two.hide();
-          Giveaway.step.three.show().html('<p>' + error + '</p>');
+          Giveaway.step.three.show().find(".entry-status").html('<p>' + error + '</p>');
+          Giveaway.share.listener();
         },
 
         success : function() {
           $loader.hide();
           Giveaway.step.two.hide();
           Giveaway.step.three.show();
-          $("a.wall-post").click(function(e){
-            Giveaway.share.as_wall_post();
-            e.preventDefault();
-          });
-          $("a.app-request").click(function(e){
-            Giveaway.share.as_app_request();
-            e.preventDefault();
-          });
+          Giveaway.share.listener();
         },
 
         submit : function(thesession, json) {
@@ -119,14 +115,21 @@
           $.ajax({
             type: 'POST',
             url: '<%= giveaway_entries_path(@giveaway) %>',
-            dataType: "text",
+            dataType: "json",
             data: 'session_key=' + thesession.session_key + '&has_liked=' + Giveaway.eligible,
             statusCode: {
-              201: function() {
+              201: function(response) {
                 Giveaway.entry.success();
+                $entry_id = response;
+                $share_count = 0;
+                $request_count = 0;
               },
-              406: function() {
+              406: function(response) {
                 Giveaway.entry.error("You have already entered the giveaway.<br />Entry is limited to one per person.");
+                var $entry = jQuery.parseJSON(response.responseText);
+                $entry_id = $entry.entry.id;
+                $share_count = parseInt($entry.entry.share_count);
+                $request_count = parseInt($entry.entry.request_count);
               },
               404: function() {
                 Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");
@@ -173,18 +176,53 @@
 
       share : {
 
+        listener : function() {
+          $("a.wall-post").click(function(e){
+            Giveaway.share.as_wall_post();
+            e.preventDefault();
+          });
+          $("a.app-request").click(function(e){
+            Giveaway.share.as_app_request();
+            e.preventDefault();
+          });
+        },
+
+        callback : function(json) {
+          $.ajax({
+            type: 'PUT',
+            url: '<%= giveaway_entries_path(@giveaway) %>' + '/' + $entry_id,
+            dataType: "text",
+            data: json,
+            statusCode: {
+              202: function(response) {
+                alert(response);
+              },
+              406: function(response) {
+                alert(response);
+              },
+              404: function() {
+                Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");
+              }
+            }
+          });
+        },
+
         dialog : function(data) {
           FB.ui(
             data,
             function(response) {
               if (response && response.post_id) {
-                alert('Post was published.');
+                json = { entry : { share_count : $share_count + 1 } };
+                Giveaway.share.callback(json);
+                console.log('Post was published.' + $entry_id);
               }
               else if (response && response.request_ids) {
-                alert('Request was sent.');
+                json = { entry : { request_count : $request_count + 1 } };
+                Giveaway.share.callback(json);
+                console.log('Request was sent.' + $entry_id);
               }
               else {
-                alert('Nothing was shared.');
+                console.log('Nothing was shared.' + $entry_id);
               }
             }
           );
@@ -195,16 +233,16 @@
             method: "feed",
             name: '<%= @current_page.name %>',
             link: 'http://developers.facebook.com/docs/reference/dialogs/',
-            picture: 'http://fbrell.com/f8.jpg',
-            caption: 'Reference Documentation',
-            description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+            picture: '<%= @giveaway.feed_image.url %>',
+            caption: '<%= @giveaway.title %>',
+            description: '<%= @giveaway.description %>'
           });
         },
 
         as_app_request : function() {
           Giveaway.share.dialog({
             method: 'apprequests',
-            message: 'You should learn more about this awesome game.',
+            message: '<%= @giveaway.description %>',
             data: 'tracking information for the user'
           });
         }

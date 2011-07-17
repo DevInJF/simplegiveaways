@@ -18,27 +18,31 @@ class Entry < ActiveRecord::Base
 
     uid = @profile["id"]
 
-    @entry = giveaway.entries.build(
-      :uid => uid,
-      :name => @profile["name"],
-      :email => @profile["email"],
-      :fb_url => @profile["link"],
-      :datetime_entered => DateTime.now
-    )
-
-    if has_liked == true
-      @entry.status = "complete"
-      @entry.has_liked_primary = true
+    if @entry = Entry.find_by_uid(uid)
+      @entry
     else
-      if Entry.like_status(giveaway.facebook_page.pid, uid) == false
-        @entry.status = "incomplete"
-        @entry.has_liked_primary = false
-      else
+      @entry = giveaway.entries.build(
+        :uid => uid,
+        :name => @profile["name"],
+        :email => @profile["email"],
+        :fb_url => @profile["link"],
+        :datetime_entered => DateTime.now
+      )
+
+      if has_liked == true
         @entry.status = "complete"
         @entry.has_liked_primary = true
+      else
+        if Entry.like_status(giveaway.facebook_page.pid, uid) == false
+          @entry.status = "incomplete"
+          @entry.has_liked_primary = false
+        else
+          @entry.status = "complete"
+          @entry.has_liked_primary = true
+        end
       end
-    end
 
-    @entry
+      @entry
+    end
   end
 end

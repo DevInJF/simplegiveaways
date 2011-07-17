@@ -113,6 +113,10 @@ body {
   border-radius: 10px;
 }
 
+#giveaway_modal .entry-status {
+  margin-bottom: 15px;
+}
+
 #giveaway_modal span {
   display: block;
   margin-bottom: 20px;
