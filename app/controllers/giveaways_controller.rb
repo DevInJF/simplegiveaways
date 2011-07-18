@@ -78,21 +78,23 @@ class GiveawaysController < ApplicationController
   # POST /giveaways/tab.html
   def tab
     if params[:signed_request]
-      @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      @signed_request = @oauth.parse_signed_request(params[:signed_request])
-    end
+      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      signed_request = oauth.parse_signed_request(params[:signed_request])
 
-    if @signed_request
-      @current_page = FacebookPage.find_by_pid(@signed_request["page"]["id"])
-      @giveaway = @current_page.giveaways.detect(&:is_live?)
-      @has_liked = @signed_request["page"]["liked"]
+      current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
+      @giveaway = {
+        "app_data" => signed_request["app_data"],
+        "has_liked" => signed_request["page"]["liked"],
+        "current_page" => current_page,
+        "giveaway" => current_page.giveaways.detect(&:is_live?)
+      }
+
+      impressionist(@giveaway["giveaway"])
+
+      render :layout => "tab"
     else
-      @giveaway = Giveaway.first
+      redirect_to "/500.html"
     end
-
-    impressionist(@giveaway)
-
-    render :layout => "tab"
   end
 
   # POST /giveaways/1/manual_start

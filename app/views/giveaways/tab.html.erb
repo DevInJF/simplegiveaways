@@ -4,15 +4,15 @@
   <a href="#">Enter Giveaway</a>
 </div>
 <div id="giveaway_image">
-  <%= image_tag @giveaway.image.url %>
+  <%= image_tag @giveaway["giveaway"].image.url %>
 </div>
 
 <div id="giveaway_modal" style="display:none">
   <div class="step one">
     <span>To be eligible for the giveaway, please like this page first.</span>
-    <fb:like-box href="<%= @current_page.url %>" width="402" show_faces="true" border_color=""
+    <fb:like-box href="<%= @giveaway["current_page"]["url"] %>" width="402" show_faces="true" border_color=""
                  stream="false"
-    header="false"></fb:like-box>
+                 header="false"></fb:like-box>
   </div>
   <div class="step two" style="display:none">
     <a href="#">Click Here to Enter the Giveaway</a>
@@ -58,15 +58,19 @@
     document.getElementById('fb-root').appendChild(e);
   }());
 
-  $(function(){
+  $(function() {
 
     // init
     $just_liked = false;
 
+    $app_data = '<%= @giveaway["app_data"] %>';
+
+    console.log($app_data);
+
     var $modal = $("#giveaway_modal");
     var $loader = $modal.find(".loader");
 
-    $("#giveaway_image").click(function(){
+    $("#giveaway_image").click(function() {
       Giveaway.modal.hide();
     });
 
@@ -83,7 +87,7 @@
 
       loader : $loader,
 
-      eligible : <%= @has_liked %>,
+      eligible : <%= @giveaway["has_liked"] %>,
 
       entry : {
 
@@ -114,7 +118,7 @@
           }
           $.ajax({
             type: 'POST',
-            url: '<%= giveaway_entries_path(@giveaway) %>',
+            url: '<%= giveaway_entries_path(@giveaway["giveaway"]) %>',
             dataType: "json",
             data: 'session_key=' + thesession.session_key + '&has_liked=' + Giveaway.eligible,
             statusCode: {
@@ -147,19 +151,19 @@
               Giveaway.entry.submit(response.session);
             } else {
               FB.ui({
-                method: 'oauth',
-                client_id: '<%= FB_APP_ID %>',
-                perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
-              },
-              function(response) {
-                if (response.session) {
-                  $new_session = response.session;
-                  Giveaway.entry.submit(response.session, true);
-                } else {
-                  console.log($just_liked);
-                  Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
-                }
-              });
+                    method: 'oauth',
+                    client_id: '<%= FB_APP_ID %>',
+                    perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
+                  },
+                  function(response) {
+                    if (response.session) {
+                      $new_session = response.session;
+                      Giveaway.entry.submit(response.session, true);
+                    } else {
+                      console.log($just_liked);
+                      Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
+                    }
+                  });
             }
           });
         },
@@ -177,11 +181,11 @@
       share : {
 
         listener : function() {
-          $("a.wall-post").click(function(e){
+          $("a.wall-post").click(function(e) {
             Giveaway.share.as_wall_post();
             e.preventDefault();
           });
-          $("a.app-request").click(function(e){
+          $("a.app-request").click(function(e) {
             Giveaway.share.as_app_request();
             e.preventDefault();
           });
@@ -190,7 +194,7 @@
         callback : function(json) {
           $.ajax({
             type: 'PUT',
-            url: '<%= giveaway_entries_path(@giveaway) %>' + '/' + $entry_id,
+            url: '<%= giveaway_entries_path(@giveaway["giveaway"]) %>' + '/' + $entry_id,
             dataType: "text",
             data: json,
             statusCode: {
@@ -209,40 +213,40 @@
 
         dialog : function(data) {
           FB.ui(
-            data,
-            function(response) {
-              if (response && response.post_id) {
-                json = { entry : { share_count : $share_count + 1 } };
-                Giveaway.share.callback(json);
-                console.log('Post was published.' + $entry_id);
+              data,
+              function(response) {
+                if (response && response.post_id) {
+                  json = { entry : { share_count : $share_count + 1 } };
+                  Giveaway.share.callback(json);
+                  console.log('Post was published.' + $entry_id);
+                }
+                else if (response && response.request_ids) {
+                  json = { entry : { request_count : $request_count + 1 } };
+                  Giveaway.share.callback(json);
+                  console.log('Request was sent.' + $entry_id);
+                }
+                else {
+                  console.log('Nothing was shared.' + $entry_id);
+                }
               }
-              else if (response && response.request_ids) {
-                json = { entry : { request_count : $request_count + 1 } };
-                Giveaway.share.callback(json);
-                console.log('Request was sent.' + $entry_id);
-              }
-              else {
-                console.log('Nothing was shared.' + $entry_id);
-              }
-            }
           );
         },
 
         as_wall_post : function() {
           Giveaway.share.dialog({
             method: "feed",
-            name: '<%= @current_page.name %>',
+            name: '<%= @giveaway["current_page"]["name"] %>',
             link: 'http://developers.facebook.com/docs/reference/dialogs/',
-            picture: '<%= @giveaway.feed_image.url %>',
-            caption: '<%= @giveaway.title %>',
-            description: '<%= @giveaway.description %>'
+            picture: '<%= @giveaway["giveaway"].feed_image.url %>',
+            caption: '<%= @giveaway["giveaway"].title %>',
+            description: '<%= @giveaway["giveaway"].description %>'
           });
         },
 
         as_app_request : function() {
           Giveaway.share.dialog({
             method: 'apprequests',
-            message: '<%= @giveaway.description %>',
+            message: '<%= @giveaway["giveaway"].description %>',
             data: 'tracking information for the user'
           });
         }
@@ -255,7 +259,7 @@
         Giveaway.entry.eligible();
       } else {
         Giveaway.modal.show();
-        Giveaway.step.two.find("a").click(function(event){
+        Giveaway.step.two.find("a").click(function(event) {
           event.preventDefault();
           Giveaway.entry.statusCheck();
         });
