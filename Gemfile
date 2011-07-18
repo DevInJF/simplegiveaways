@@ -17,6 +17,7 @@ gem "paperclip", "~> 2.3.15"
 gem "aws-s3"
 gem "formtastic"
 gem "impressionist"
+gem "json"
 
 
 

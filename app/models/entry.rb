@@ -45,4 +45,17 @@ class Entry < ActiveRecord::Base
       @entry
     end
   end
+
+  def update_counts(count_type)
+    if count_type == "share"
+      self.share_count =+ share_count + 1
+    elsif count_type == "request"
+      self.request_count =+ 1
+    else
+      return false
+    end
+
+    save
+  end
+  handle_asynchronously :update_counts
 end

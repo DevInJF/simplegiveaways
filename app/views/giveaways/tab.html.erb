@@ -65,8 +65,6 @@
 
     $app_data = '<%= @giveaway["app_data"] %>';
 
-    console.log($app_data);
-
     var $modal = $("#giveaway_modal");
     var $loader = $modal.find(".loader");
 
@@ -224,6 +222,9 @@
                   json = { entry : { request_count : $request_count + 1 } };
                   Giveaway.share.callback(json);
                   console.log('Request was sent.' + $entry_id);
+                  FB.api('/' + response.request_ids, function(response) {
+                    console.log(response);
+                  });
                 }
                 else {
                   console.log('Nothing was shared.' + $entry_id);
@@ -247,7 +248,7 @@
           Giveaway.share.dialog({
             method: 'apprequests',
             message: '<%= @giveaway["giveaway"].description %>',
-            data: 'tracking information for the user'
+            data: { referrer_id : $entry_id.toString(), giveaway_id : '<%= @giveaway["giveaway"]["id"] %>' }
           });
         }
       }

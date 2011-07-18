@@ -1,9 +1,10 @@
+require 'json'
+
 class GiveawaysController < ApplicationController
   
   respond_to :html, :xml, :json
   
-  before_filter :authenticate_user!, :except => [:tab]
-  #skip_before_filter :verify_authenticity_token, :only => [:tab]
+  before_filter :authenticate_user!, :except => [:tab, :app_request]
   
   # GET /giveaways
   def index
@@ -82,16 +83,36 @@ class GiveawaysController < ApplicationController
       signed_request = oauth.parse_signed_request(params[:signed_request])
 
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
+
       @giveaway = {
         "app_data" => signed_request["app_data"],
         "has_liked" => signed_request["page"]["liked"],
+        "request_id" => params["request_ids"],
         "current_page" => current_page,
         "giveaway" => current_page.giveaways.detect(&:is_live?)
       }
 
       impressionist(@giveaway["giveaway"])
-
       render :layout => "tab"
+    else
+      redirect_to "/500.html"
+    end
+  end
+
+  # GET /giveaways/tab.html
+  def app_request
+    if params["request_ids"]
+
+      # TODO: Check to see if we've already counted this request
+
+      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      graph = Koala::Facebook::GraphAPI.new(oauth.get_app_access_token)
+
+      request = graph.get_object(params["request_ids"])
+      @giveaway = Giveaway.find_by_id(JSON.parse(request["data"])["giveaway_id"])
+      @referrer = @giveaway.entries.find_by_id(JSON.parse(request["data"])["referrer_id"])
+      @referrer.update_counts("request")
+      render :json => @giveaway
     else
       redirect_to "/500.html"
     end
