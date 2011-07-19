@@ -32,6 +32,7 @@ class GiveawaysController < ApplicationController
   # POST /giveaways.xml
   def create
     @giveaway = current_user.giveaways.create(params[:giveaway])
+    @giveaway.giveaway_url = "#{@giveaway.facebook_page.url}?sk=app_#{FB_APP_ID}"
 
     respond_to do |format|
       if @giveaway.save
@@ -109,10 +110,10 @@ class GiveawaysController < ApplicationController
       graph = Koala::Facebook::GraphAPI.new(oauth.get_app_access_token)
 
       request = graph.get_object(params["request_ids"])
-      @giveaway = Giveaway.find_by_id(JSON.parse(request["data"])["giveaway_id"])
-      @referrer = @giveaway.entries.find_by_id(JSON.parse(request["data"])["referrer_id"])
-      @referrer.update_counts("request")
-      render :json => @giveaway
+      referrer = JSON.parse(request["data"])["referrer_id"]
+      giveaway = Giveaway.find_by_id(JSON.parse(request["data"])["giveaway_id"])
+
+      redirect_to "#{giveaway.giveaway_url}&app_data=ref_#{referrer}"
     else
       redirect_to "/500.html"
     end

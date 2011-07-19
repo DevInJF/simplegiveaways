@@ -214,17 +214,22 @@
               data,
               function(response) {
                 if (response && response.post_id) {
-                  json = { entry : { share_count : $share_count + 1 } };
+                  json = {
+                    entry : {
+                      share_count : $share_count + 1
+                    }
+                  };
                   Giveaway.share.callback(json);
                   console.log('Post was published.' + $entry_id);
                 }
                 else if (response && response.request_ids) {
-                  json = { entry : { request_count : $request_count + 1 } };
+                  json = {
+                    entry : {
+                      request_count : $request_count + response.request_ids.length
+                    }
+                  };
                   Giveaway.share.callback(json);
                   console.log('Request was sent.' + $entry_id);
-                  FB.api('/' + response.request_ids, function(response) {
-                    console.log(response);
-                  });
                 }
                 else {
                   console.log('Nothing was shared.' + $entry_id);
@@ -237,7 +242,7 @@
           Giveaway.share.dialog({
             method: "feed",
             name: '<%= @giveaway["current_page"]["name"] %>',
-            link: 'http://developers.facebook.com/docs/reference/dialogs/',
+            link: '<%= @giveaway["giveaway"]["giveaway_url"] %>' + '&app_data=ref_' + $entry_id,
             picture: '<%= @giveaway["giveaway"].feed_image.url %>',
             caption: '<%= @giveaway["giveaway"].title %>',
             description: '<%= @giveaway["giveaway"].description %>'

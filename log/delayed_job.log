@@ -426,3 +426,11 @@ The error occurred while evaluating nil.delete - 0 failed attempts
 You might have expected an instance of Array.
 The error occurred while evaluating nil.delete - 1 failed attempts
 2011-07-18T03:32:19-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:36210)] 1 jobs processed at 28.1191 j/s, 1 failed ...
+2011-07-18T03:32:44-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:36210)] Entry#update_counts_without_delay failed with NoMethodError: You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.delete - 2 failed attempts
+2011-07-18T03:32:44-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:36210)] 1 jobs processed at 23.9193 j/s, 1 failed ...
+2011-07-18T03:34:10-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:36210)] Entry#update_counts_without_delay failed with NoMethodError: You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.delete - 3 failed attempts
+2011-07-18T03:34:10-0400: [Worker(delayed_job host:Harris-Novicks-iMac.local pid:36210)] 1 jobs processed at 20.0990 j/s, 1 failed ...
