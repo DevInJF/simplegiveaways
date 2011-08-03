@@ -63,7 +63,8 @@
     // init
     $just_liked = false;
 
-    $app_data = '<%= @giveaway["app_data"] %>';
+    $app_data = '<%= @giveaway["app_data"] || "ref_none" %>';
+    $referrer = $app_data.split("ref_")[1];
 
     var $modal = $("#giveaway_modal");
     var $loader = $modal.find(".loader");
@@ -118,7 +119,7 @@
             type: 'POST',
             url: '<%= giveaway_entries_path(@giveaway["giveaway"]) %>',
             dataType: "json",
-            data: 'session_key=' + thesession.session_key + '&has_liked=' + Giveaway.eligible,
+            data: 'session_key=' + thesession.session_key + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer,
             statusCode: {
               201: function(response) {
                 Giveaway.entry.success();
@@ -132,6 +133,10 @@
                 $entry_id = $entry.entry.id;
                 $share_count = parseInt($entry.entry.share_count);
                 $request_count = parseInt($entry.entry.request_count);
+              },
+              412: function() {
+                $loader.hide();
+                Giveaway.step.one.show();
               },
               404: function() {
                 Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");
@@ -197,10 +202,10 @@
             data: json,
             statusCode: {
               202: function(response) {
-                alert(response);
+                alert("Do something with this 202");
               },
               406: function(response) {
-                alert(response);
+                alert("Do something with this 406");
               },
               404: function() {
                 Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");

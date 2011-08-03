@@ -17,9 +17,11 @@ class EntriesController < ApplicationController
     entry = @giveaway.entries.new
 
     if params[:session_key]
-      @entry = entry.build_from_session(@giveaway, params[:session_key], params[:has_liked])
+      @entry = entry.build_from_session(@giveaway, params[:session_key], params[:has_liked], params[:ref_id])
       if @entry.persisted?
         render :json => @entry.as_json(:only => [:id, :share_count, :request_count]), :status => :not_acceptable
+      elsif @entry.status == "incomplete"
+        render :json => @entry.id, :status => :precondition_failed
       elsif @entry.save
         render :json => @entry.id, :status => :created
       end

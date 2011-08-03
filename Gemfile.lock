@@ -252,7 +252,7 @@ DEPENDENCIES
   awesome_print
   aws-s3
   capybara
-  delayed_job
+  delayed_job (~> 2.1.4)
   devise
   factory_girl_rails
   fixture_builder

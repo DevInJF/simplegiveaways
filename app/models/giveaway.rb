@@ -45,6 +45,13 @@ class Giveaway < ActiveRecord::Base
     @rest.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
   end
 
+  def count_conversion(ref)
+    ref = entries.find(ref)
+    ref.convert_count += 1
+    ref.save
+  end
+  handle_asynchronously :count_conversion
+
   private
 
   def end_in_future

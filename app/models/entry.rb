@@ -9,7 +9,7 @@ class Entry < ActiveRecord::Base
     status[0].nil? ? false : true
   end
 
-  def build_from_session(giveaway, session, has_liked)
+  def build_from_session(giveaway, session, has_liked, ref)
     @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
     oauth_access_token = @oauth.get_token_from_session_key(session)
 
@@ -30,16 +30,20 @@ class Entry < ActiveRecord::Base
       )
 
       if has_liked == true
-        @entry.status = "complete"
         @entry.has_liked_primary = true
+        @entry.status = "complete"
       else
         if Entry.like_status(giveaway.facebook_page.pid, uid) == false
           @entry.status = "incomplete"
           @entry.has_liked_primary = false
         else
-          @entry.status = "complete"
           @entry.has_liked_primary = true
+          @entry.status = "complete"
         end
+      end
+
+      if @entry.has_liked_primary && ref != "none"
+        giveaway.count_conversion(ref)
       end
 
       @entry
