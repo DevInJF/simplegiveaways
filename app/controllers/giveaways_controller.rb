@@ -1,26 +1,25 @@
 require 'json'
 
 class GiveawaysController < ApplicationController
-  
-  respond_to :html, :xml, :json
-  
+
   before_filter :authenticate_user!, :except => [:tab, :app_request]
   
   # GET /giveaways
   def index
-    respond_with(@giveaways = Giveaway.all)
+    @giveaways = Giveaway.all
   end
   
   # GET /giveaways/1
   # GET /giveaways/1.xml
   def show
-    respond_with(@giveaway = Giveaway.find(params[:id], :include => [:entries]))
+    @giveaway = Giveaway.find(params[:id], :include => [:entries])
   end
 
   # GET /giveaways/new
   # GET /giveaways/new.xml
   def new
-    respond_with(@giveaway = Giveaway.new)
+    @page = FacebookPage.find(params[:facebook_page_id])
+    @giveaway = Giveaway.new
   end
 
   # GET /giveaways/1/edit
@@ -31,18 +30,15 @@ class GiveawaysController < ApplicationController
   # POST /giveaways
   # POST /giveaways.xml
   def create
-    @giveaway = current_user.giveaways.create(params[:giveaway])
-    @giveaway.giveaway_url = "#{@giveaway.facebook_page.url}?sk=app_#{FB_APP_ID}"
+    @page = FacebookPage.find(params[:facebook_page_id])
+    @giveaway = @page.giveaways.build(params[:giveaway])
+    @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}"
 
-    respond_to do |format|
-      if @giveaway.save
-        flash[:success] = 'Giveaway was successfully created.'
-        format.html { redirect_to @giveaway }
-        format.xml  { render :xml => @giveaway, :status => :created, :location => @giveaway }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @giveaway.errors, :status => :unprocessable_entity }
-      end
+    if @giveaway.save
+      flash[:success] = 'Giveaway was successfully created.'
+      redirect_to @giveaway
+    else
+      render :action => "new"
     end
   end
 
@@ -51,15 +47,11 @@ class GiveawaysController < ApplicationController
   def update
     @giveaway = Giveaway.find(params[:id])
 
-    respond_to do |format|
-      if @giveaway.update_attributes(params[:giveaway])
-        flash[:success] = 'Giveaway was successfully updated.'
-        format.html { redirect_to(@giveaway) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @giveaway.errors, :status => :unprocessable_entity }
-      end
+    if @giveaway.update_attributes(params[:giveaway])
+      flash[:success] = 'Giveaway was successfully updated.'
+      redirect_to(@giveaway)
+    else
+      render :action => "edit"
     end
   end
 
@@ -69,11 +61,8 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
     @giveaway.destroy
 
-    respond_to do |format|
-      flash[:success] = 'Giveaway was successfully destroyed.'
-      format.html { redirect_to(giveaways_url) }
-      format.xml  { head :ok }
-    end
+    flash[:success] = 'Giveaway was successfully destroyed.'
+    redirect_to(giveaways_url)
   end
   
   # GET /giveaways/tab.html

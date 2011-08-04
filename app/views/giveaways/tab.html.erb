@@ -154,19 +154,19 @@
               Giveaway.entry.submit(response.session);
             } else {
               FB.ui({
-                    method: 'oauth',
-                    client_id: '<%= FB_APP_ID %>',
-                    perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
-                  },
-                  function(response) {
-                    if (response.session) {
-                      $new_session = response.session;
-                      Giveaway.entry.submit(response.session, true);
-                    } else {
-                      console.log($just_liked);
-                      Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
-                    }
-                  });
+                method: 'oauth',
+                client_id: '<%= FB_APP_ID %>',
+                perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
+              },
+              function(response) {
+                if (response.session) {
+                  $new_session = response.session;
+                  Giveaway.entry.submit(response.session, true);
+                } else {
+                  console.log($just_liked);
+                  Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
+                }
+              });
             }
           });
         },
@@ -216,30 +216,30 @@
 
         dialog : function(data) {
           FB.ui(
-              data,
-              function(response) {
-                if (response && response.post_id) {
-                  json = {
-                    entry : {
-                      share_count : $share_count + 1
-                    }
-                  };
-                  Giveaway.share.callback(json);
-                  console.log('Post was published.' + $entry_id);
-                }
-                else if (response && response.request_ids) {
-                  json = {
-                    entry : {
-                      request_count : $request_count + response.request_ids.length
-                    }
-                  };
-                  Giveaway.share.callback(json);
-                  console.log('Request was sent.' + $entry_id);
-                }
-                else {
-                  console.log('Nothing was shared.' + $entry_id);
-                }
+            data,
+            function(response) {
+              if (response && response.post_id) {
+                json = {
+                  entry : {
+                    share_count : $share_count + 1
+                  }
+                };
+                Giveaway.share.callback(json);
+                console.log('Post was published.' + $entry_id);
               }
+              else if (response && response.request_ids) {
+                json = {
+                  entry : {
+                    request_count : $request_count + response.request_ids.length
+                  }
+                };
+                Giveaway.share.callback(json);
+                console.log('Request was sent.' + $entry_id);
+              }
+              else {
+                console.log('Nothing was shared.' + $entry_id);
+              }
+            }
           );
         },
 

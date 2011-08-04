@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110717214728) do
+ActiveRecord::Schema.define(:version => 20110804011649) do
 
   create_table "accessory_fb_pages", :force => true do |t|
     t.string   "name"
@@ -65,28 +65,6 @@ ActiveRecord::Schema.define(:version => 20110717214728) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"
-  end
-
-  create_table "credit_cards", :force => true do |t|
-    t.string   "nickname"
-    t.string   "name"
-    t.string   "street_address_1"
-    t.string   "street_address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "postal_code"
-    t.string   "country"
-    t.string   "type"
-    t.string   "number"
-    t.date     "expiration"
-    t.string   "cvv"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "credit_cards_users", :id => false, :force => true do |t|
-    t.integer "credit_card_id", :null => false
-    t.integer "user_id",        :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -148,7 +126,6 @@ ActiveRecord::Schema.define(:version => 20110717214728) do
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "facebook_page_id"
     t.string   "prize"
     t.text     "mandatory_likes"
     t.text     "terms"
@@ -159,14 +136,10 @@ ActiveRecord::Schema.define(:version => 20110717214728) do
     t.string   "feed_image_file_name"
     t.string   "feed_image_content_type"
     t.integer  "feed_image_file_size"
+    t.integer  "facebook_page_id"
   end
 
   add_index "giveaways", ["title", "facebook_page_id"], :name => "index_giveaways_on_title_and_facebook_page_id", :unique => true
-
-  create_table "giveaways_users", :id => false, :force => true do |t|
-    t.integer "giveaway_id", :null => false
-    t.integer "user_id",     :null => false
-  end
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"

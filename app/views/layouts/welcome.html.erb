@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SGA &raquo; <%= content_for?(:title) ? content_for(:title) : "" %></title>
-  <%= include_stylesheets :app %>
+  <title>SGA</title>
+  <%= include_stylesheets :welcome %>
   <%= include_javascripts :app %>
   <%= csrf_meta_tag %>
 </head>
-<body class="<%= controller.controller_name %> <%= controller.action_name %>">
+<body class="welcome">
 
 	<% unless flash.blank? or flash.nil? %>
 		<%= render "shared/flash", :flash => flash %>

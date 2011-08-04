@@ -2,7 +2,7 @@
 
 <div class="field">
   <b>Admins:</b>
-	<% @giveaway.users.each do |user| %>
+	<% @giveaway.facebook_page.users.each do |user| %>
 		<ul>
 			<li>
 				<span class="email"><strong><%= link_to user.email, user %></strong></span><br />
@@ -38,7 +38,7 @@
 
 <div class="field">
   <b>Giveaway URL:</b>
-  <%= link_to @giveaway.giveaway_url %>
+  <%= link_to @giveaway.giveaway_url, @giveaway.giveaway_url %>
 </div>
 
 <div class="field">

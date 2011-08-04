@@ -1,5 +1,5 @@
 <h3>Giveaways</h3>
-<% @user.giveaways.each do |giveaway| %>
+<% @user.facebook_pages.giveaways.each do |giveaway| %>
 	<ul>
 		<li class="clearfix">
 			<%= image_tag giveaway.image.url(:thumb), :class => "thumb" rescue nil %>

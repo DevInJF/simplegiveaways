@@ -1,9 +1,8 @@
 <%= render "shared/error_messages", :target => @giveaway %>
 
-<%= semantic_form_for @giveaway, :html => { :multipart => true } do |f| %>
+<%= semantic_form_for [@page, @giveaway], :html => { :multipart => true } do |f| %>
 
 	<%= f.inputs do %>
-		<%= f.input :facebook_page, :collection => current_user.facebook_pages, :prompt => "Select one...", :required => true %>
 	  <%= f.input :title %>
 	  <%= f.input :prize %>
 	  <%= f.input :description %>
@@ -50,7 +49,7 @@
 			$(".mandatory-likes").each(function(){
 				mandatory_likes.push($(this).val());
 			});
-			$("#giveaway_mandatory_likes").val(mandatory_likes);
+			$("#giveaway_mandatory_likes_input").val(mandatory_likes);
 			$(this).submit();
 		});
 	});

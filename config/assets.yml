@@ -12,6 +12,12 @@ javascripts:
     - public/javascripts/rails.js
     - public/javascripts/application.js
 stylesheets:
+  welcome:
+    - public/stylesheets/defaults.css
+    - public/stylesheets/buttons.css
+    - public/stylesheets/flash.css
+    - public/stylesheets/auth.css
+    - public/stylesheets/welcome.css
   app:
     - public/stylesheets/defaults.css
     - public/stylesheets/application.css
