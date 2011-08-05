@@ -27,5 +27,10 @@ SGA::Application.configure do
   
   # Paperclip ImageMagick Path
   Paperclip.options[:command_path] = "/opt/local/bin/"
+  
+  # ActiveMerchant Sandbox Mode
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
 end
 

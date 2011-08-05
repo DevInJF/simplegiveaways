@@ -32,4 +32,9 @@ SGA::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  # ActiveMerchant Sandbox Mode
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
 end

@@ -18,7 +18,7 @@ gem "aws-s3"
 gem "formtastic"
 gem "impressionist"
 gem "json"
-
+gem "active_merchant"
 
 
 group :development, :test do
