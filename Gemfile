@@ -19,6 +19,7 @@ gem "formtastic"
 gem "impressionist"
 gem "json"
 gem "active_merchant"
+gem "cancan"
 
 
 group :development, :test do
