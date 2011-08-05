@@ -4,6 +4,6 @@ class AddUniqueIndexToGiveaway < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :giveaways, :title_and_facebook_page_id
+    remove_index :giveaways, :name => "index_giveaways_on_title_and_facebook_page_id"
   end
 end
