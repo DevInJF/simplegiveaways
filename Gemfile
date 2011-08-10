@@ -2,10 +2,8 @@ source 'http://rubygems.org'
 
 gem "rails", "3.0.9"
 gem "rake", "0.8.7"
-
 gem 'mysql2', '0.2.6'
 gem 'thin'
-
 gem "devise"
 gem "jammit", :git => "git://github.com/documentcloud/jammit.git"
 gem "jquery-rails"
@@ -21,7 +19,6 @@ gem "json"
 gem "active_merchant"
 gem "cancan"
 
-
 group :development, :test do
   gem "rspec-rails"
   gem "capybara"
@@ -31,4 +28,6 @@ group :development, :test do
   gem "fixture_builder"
   gem "mocha"
   gem "nifty-generators"
+  gem "shoulda-matchers"
+  gem "faker"
 end

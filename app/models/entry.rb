@@ -34,8 +34,8 @@ class Entry < ActiveRecord::Base
         @entry.status = "complete"
       else
         if Entry.like_status(giveaway.facebook_page.pid, uid) == false
-          @entry.status = "incomplete"
           @entry.has_liked_primary = false
+          @entry.status = "incomplete"
         else
           @entry.has_liked_primary = true
           @entry.status = "complete"
