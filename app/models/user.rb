@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
+  has_many :credit_cards, :dependent => :destroy
   has_and_belongs_to_many :facebook_pages
+
+  accepts_nested_attributes_for :credit_cards
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

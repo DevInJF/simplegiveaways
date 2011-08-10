@@ -10,47 +10,10 @@
 	  <%= f.input :end_date %>
 		<%= f.input :image, :as => :file %>
 	  <%= f.input :feed_image, :as => :file %>
-		<span class="input-group">
-			<label for="giveaway_mandatory_likes">Mandatory likes</label>
-			<li class="string optional">
-				<input class="mandatory-likes" type="text">
-			</li>
-			<span class="button pill">
-				<%= link_to "Add Another Page", "#", :class => "add-item" %>
-			</span>
-		</span>
-		<%= f.input :mandatory_likes, :as => :hidden %>
 	  <%= f.input :terms %>
 	<% end %>
 
   <%= f.buttons do %>
     <%= f.commit_button %>
   <% end %>
-<% end %>
-
-<%= javascript_tag do %>
-	$(function(){
-		// Add form fields
-		$('a.add-item').click(function(e){
-			e.preventDefault();
-			var parent = $(this).parents(".input-group");
-			if (parent.find("input").length < 3) {
-				parent.find("li:eq(0)").clone().insertBefore(parent.find(".button")).find("input").val("");				
-			} else {
-				if (parent.find("div.error").length < 1) {
-					$(this).parents(".input-group").prepend('<div class="error">You have reached the maximum number of mandatory likes</div>');
-				}
-			}
-		});
-		// beforeSubmit serialization
-		$('form#new_giveaway').one("submit", function(e){
-			e.preventDefault();
-			var mandatory_likes = [];
-			$(".mandatory-likes").each(function(){
-				mandatory_likes.push($(this).val());
-			});
-			$("#giveaway_mandatory_likes_input").val(mandatory_likes);
-			$(this).submit();
-		});
-	});
 <% end %>

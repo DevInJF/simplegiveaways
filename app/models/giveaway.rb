@@ -3,7 +3,6 @@ class Giveaway < ActiveRecord::Base
 
   belongs_to :facebook_page
   has_many :entries
-  has_many :accessory_fb_pages
 
   validates :title, :presence => true, :uniqueness => { :scope => :facebook_page_id }
   validates :description, :presence => true

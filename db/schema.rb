@@ -10,20 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110804011649) do
-
-  create_table "accessory_fb_pages", :force => true do |t|
-    t.string   "name"
-    t.string   "category"
-    t.string   "pid"
-    t.string   "avatar"
-    t.text     "description"
-    t.integer  "likes"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "giveaway_id"
-  end
+ActiveRecord::Schema.define(:version => 20110810012917) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -65,6 +52,33 @@ ActiveRecord::Schema.define(:version => 20110804011649) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"
+  end
+
+  create_table "billing_addresses", :force => true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip"
+    t.string   "phone"
+    t.integer  "credit_card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "credit_cards", :force => true do |t|
+    t.string   "number"
+    t.string   "month"
+    t.string   "year"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "verification_value"
+    t.string   "type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -127,7 +141,6 @@ ActiveRecord::Schema.define(:version => 20110804011649) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "prize"
-    t.text     "mandatory_likes"
     t.text     "terms"
     t.string   "giveaway_url"
     t.string   "image_file_name"

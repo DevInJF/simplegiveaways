@@ -82,8 +82,12 @@ class GiveawaysController < ApplicationController
         "giveaway" => current_page.giveaways.detect(&:is_live?)
       }
 
-      impressionist(@giveaway["giveaway"])
-      render :layout => "tab"
+      if @giveaway["giveaway"].nil?
+        redirect_to "/404.html"
+      else
+        impressionist(@giveaway["giveaway"])
+        render :layout => "tab"
+      end
     else
       redirect_to "/500.html"
     end
@@ -92,8 +96,6 @@ class GiveawaysController < ApplicationController
   # GET /giveaways/tab.html
   def app_request
     if params["request_ids"]
-
-      # TODO: Check to see if we've already counted this request
 
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       graph = Koala::Facebook::GraphAPI.new(oauth.get_app_access_token)
