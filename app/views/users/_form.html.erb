@@ -1,15 +1,14 @@
-<%= semantic_form_for @user do |f| %>
-
-  <%= f.inputs :for => :credit_cards do |j| %>
+<% semantic_form_for @user do |f| %>
+  <%= f.inputs :for => @credit_card do |j| %>
     <%= j.input :number %>
     <%= j.input :month %>
     <%= j.input :year %>
     <%= j.input :first_name %>
     <%= j.input :last_name %>
     <%= j.input :verification_value %>
-    <%= j.input :type %>
+    <%= j.input :card_type %>
 
-    <%= j.inputs :for => :billing_addresses do |p| %>
+    <%= j.inputs :for => @billing_address do |p| %>
       <%= p.input :name %>
       <%= p.input :address1 %>
       <%= p.input :address2 %>
@@ -20,4 +19,5 @@
       <%= p.input :phone %>
     <% end %>
   <% end %>
+  <%= f.buttons %>
 <% end %>

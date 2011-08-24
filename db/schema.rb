@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810012917) do
+ActiveRecord::Schema.define(:version => 20110823235516) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -75,11 +75,13 @@ ActiveRecord::Schema.define(:version => 20110810012917) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "verification_value"
-    t.string   "type"
+    t.string   "card_type"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "credit_cards", ["number", "user_id"], :name => "index_credit_cards_on_number_and_user_id", :unique => true
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

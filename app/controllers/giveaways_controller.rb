@@ -4,31 +4,23 @@ class GiveawaysController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:tab, :app_request]
   
-  # GET /giveaways
   def index
     @giveaways = Giveaway.all
   end
-  
-  # GET /giveaways/1
-  # GET /giveaways/1.xml
+
   def show
     @giveaway = Giveaway.find(params[:id], :include => [:entries])
   end
 
-  # GET /giveaways/new
-  # GET /giveaways/new.xml
   def new
     @page = FacebookPage.find(params[:facebook_page_id])
     @giveaway = Giveaway.new
   end
 
-  # GET /giveaways/1/edit
   def edit
     @giveaway = Giveaway.find(params[:id])
   end
 
-  # POST /giveaways
-  # POST /giveaways.xml
   def create
     @page = FacebookPage.find(params[:facebook_page_id])
     @giveaway = @page.giveaways.build(params[:giveaway])
@@ -42,8 +34,6 @@ class GiveawaysController < ApplicationController
     end
   end
 
-  # PUT /giveaways/1
-  # PUT /giveaways/1.xml
   def update
     @giveaway = Giveaway.find(params[:id])
 
@@ -55,8 +45,6 @@ class GiveawaysController < ApplicationController
     end
   end
 
-  # DELETE /giveaways/1
-  # DELETE /giveaways/1.xml
   def destroy
     @giveaway = Giveaway.find(params[:id])
     @giveaway.destroy
@@ -64,9 +52,7 @@ class GiveawaysController < ApplicationController
     flash[:success] = 'Giveaway was successfully destroyed.'
     redirect_to(giveaways_url)
   end
-  
-  # GET /giveaways/tab.html
-  # POST /giveaways/tab.html
+
   def tab
     if params[:signed_request]
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
@@ -93,7 +79,6 @@ class GiveawaysController < ApplicationController
     end
   end
 
-  # GET /giveaways/tab.html
   def app_request
     if params["request_ids"]
 
@@ -110,7 +95,6 @@ class GiveawaysController < ApplicationController
     end
   end
 
-  # POST /giveaways/1/manual_start
   def manual_start
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.is_installed?
@@ -132,7 +116,6 @@ class GiveawaysController < ApplicationController
     end
   end
 
-  # POST /giveaways/1/manual_end
   def manual_end
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.update_attributes(:end_date => DateTime.now)
