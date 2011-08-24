@@ -1,5 +1,5 @@
 <% semantic_form_for @user do |f| %>
-  <%= f.inputs :for => @credit_card do |j| %>
+  <%= f.inputs :for => :credit_cards do |j| %>
     <%= j.input :number %>
     <%= j.input :month %>
     <%= j.input :year %>
@@ -8,7 +8,7 @@
     <%= j.input :verification_value %>
     <%= j.input :card_type %>
 
-    <%= j.inputs :for => @billing_address do |p| %>
+    <%= j.inputs :for => :billing_address do |p| %>
       <%= p.input :name %>
       <%= p.input :address1 %>
       <%= p.input :address2 %>
