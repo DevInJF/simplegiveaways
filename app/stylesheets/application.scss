@@ -1,0 +1,44 @@
+/* ========== */
+/* = Layout = */
+/* ========== */
+
+html, body {
+  text-align: center; }
+
+nav {
+  padding: 30px 0 20px;
+  text-align: left; }
+
+header {
+  padding: 10px 0;
+  text-align: left; }
+
+#container {
+  width: 960px;
+  margin: 0 auto;
+  text-align: left; }
+
+footer {
+  padding: 40px 0;
+  text-align: center; }
+
+/* ======= */
+/* = Nav = */
+/* ======= */
+
+nav {
+  .root {
+    float: left;
+    font-weight: bold; }
+  .session {
+    float: right; } }
+
+.session {
+  .button-wrapper {
+    float: left;
+    width: 95px;
+    text-align: right; }
+  .current-user {
+    float: left;
+    padding-right: 15px;
+    text-align: right; } }

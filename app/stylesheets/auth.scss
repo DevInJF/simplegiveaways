@@ -1,0 +1,16 @@
+a.auth-provider {
+  width: 150px;
+  height: 24px;
+  display: block;
+  background-color: transparent;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-indent: -9999em;
+  font-size: 5%;
+  &:hover {
+    background-position: 0 -24px; }
+  &:active, &:focus {
+    background-position: 0 -48px; }
+  &.facebook {
+    background-image: url('../images/auth/facebook_signin.png'); } }
