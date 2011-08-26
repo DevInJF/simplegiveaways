@@ -1,5 +1,8 @@
 SGA::Application.routes.draw do
 
+  # Transactions
+  match '/users/:id/purchase' => 'transactions#purchase', :as => 'purchase'
+
   # Giveaway
   resources :giveaways do
     resources :entries

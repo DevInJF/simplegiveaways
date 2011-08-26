@@ -1,11 +1,9 @@
 class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
+  has_many :transactions
   has_and_belongs_to_many :facebook_pages
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :timeoutable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
