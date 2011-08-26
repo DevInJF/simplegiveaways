@@ -16,8 +16,8 @@ gem "aws-s3"
 gem "formtastic"
 gem "impressionist"
 gem "json"
-gem "active_merchant"
 gem "cancan"
+gem "braintree"
 
 group :development, :test do
   gem "rspec-rails"

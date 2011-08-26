@@ -48,4 +48,12 @@ SGA::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Braintree Config
+  config.after_initialize do
+    Braintree::Configuration.environment = :sandbox
+    Braintree::Configuration.merchant_id = "c2yxynty5ktwynr7"
+    Braintree::Configuration.public_key = "tcq29g4wj2t5nhpk"
+    Braintree::Configuration.private_key = "f44ckx5rm67bcjkh"
+  end
 end

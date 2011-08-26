@@ -1,0 +1,21 @@
+<script type="text/javascript">
+  FB.init({
+    appId  : '<%= FB_APP_ID %>',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : false // parse XFBML
+  });
+
+  FB.getLoginStatus(function(o) {
+    if (!o && o.status) return;
+    if (o.status == 'connected') {
+      // USER IS LOGGED IN AND HAS AUTHORIZED APP
+    } else if (o.status == 'notConnected') {
+      // USER IS LOGGED IN TO FACEBOOK (BUT HASN'T AUTHORIZED YOUR APP YET)
+      window.location = "<%= destroy_user_session_path %>";
+    } else {
+      // USER NOT CURRENTLY LOGGED IN TO FACEBOOK
+      window.location = "<%= destroy_user_session_path %>";
+    }
+  });
+</script>

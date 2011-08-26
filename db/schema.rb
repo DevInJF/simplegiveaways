@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823235516) do
+ActiveRecord::Schema.define(:version => 20110826013833) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -53,35 +53,6 @@ ActiveRecord::Schema.define(:version => 20110823235516) do
     t.datetime "updated_at"
     t.string   "token"
   end
-
-  create_table "billing_addresses", :force => true do |t|
-    t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "zip"
-    t.string   "phone"
-    t.integer  "credit_card_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "credit_cards", :force => true do |t|
-    t.string   "number"
-    t.string   "month"
-    t.string   "year"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "verification_value"
-    t.string   "card_type"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "credit_cards", ["number", "user_id"], :name => "index_credit_cards_on_number_and_user_id", :unique => true
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

@@ -4,9 +4,13 @@
   <title>SGA &raquo; <%= content_for?(:title) ? content_for(:title) : "" %></title>
   <%= include_stylesheets :app %>
   <%= include_javascripts :app %>
+  <%= javascript_include_tag "http://connect.facebook.net/en_US/all.js" %>
   <%= csrf_meta_tag %>
 </head>
 <body class="<%= controller.controller_name %> <%= controller.action_name %>">
+
+  <div id="fb-root"></div>
+  <%= render "shared/fb_auth_check" %>
 
 	<% unless flash.blank? or flash.nil? %>
 		<%= render "shared/flash", :flash => flash %>

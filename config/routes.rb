@@ -14,13 +14,15 @@ SGA::Application.routes.draw do
     resources :giveaways
   end
 
-  # User
-  resources :users
-
   # User Authentication
   devise_for :users,
              :singular => :user,
-             :controllers => {:registrations => 'registrations'}
+             :controllers => {:registrations => 'registrations'} do
+    get 'logout' => 'devise/sessions#destroy'
+  end
+
+  # User
+  resources :users
 
   # 3rd Party User Authentication
   resources :authentications

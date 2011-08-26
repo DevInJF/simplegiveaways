@@ -33,7 +33,6 @@
   </div>
 </div>
 
-<%= javascript_include_tag "http://connect.facebook.net/en_US/all.js" %>
 <script type="text/javascript">
   window.fbAsyncInit = function() {
     FB.init({
@@ -43,7 +42,9 @@
       xfbml  : true, // parse XFBML
       channelUrl  : 'http://simplegiveawayapp.com/channel.html'
     });
+
     FB.Canvas.setSize();
+
     FB.Event.subscribe('edge.create', function() {
       $just_liked = true;
       Giveaway.step.one.hide();

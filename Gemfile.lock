@@ -26,9 +26,6 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    active_merchant (1.5.2)
-      activesupport (>= 2.3.2)
-      builder (>= 2.0.0)
     activeadmin (0.2.2)
       devise (>= 1.1.2)
       formtastic (>= 1.1.0)
@@ -58,6 +55,8 @@ GEM
       mime-types
       xml-simple
     bcrypt-ruby (2.1.4)
+    braintree (2.11.0)
+      builder (>= 2.0.0)
     builder (2.1.2)
     cancan (1.6.5)
     capybara (1.0.0)
@@ -255,10 +254,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_merchant
   activeadmin (~> 0.2.2)
   awesome_print
   aws-s3
+  braintree
   cancan
   capybara
   delayed_job (~> 2.1.4)

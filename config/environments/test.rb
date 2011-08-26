@@ -32,9 +32,12 @@ SGA::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  
-  # ActiveMerchant Sandbox Mode
+
+  # Braintree Config
   config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
+    Braintree::Configuration.environment = :sandbox
+    Braintree::Configuration.merchant_id = "c2yxynty5ktwynr7"
+    Braintree::Configuration.public_key = "tcq29g4wj2t5nhpk"
+    Braintree::Configuration.private_key = "f44ckx5rm67bcjkh"
   end
 end
