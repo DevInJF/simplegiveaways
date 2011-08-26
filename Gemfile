@@ -6,6 +6,8 @@ gem 'mysql2', '0.2.6'
 gem 'thin'
 gem "devise"
 gem "jammit", :git => "git://github.com/documentcloud/jammit.git"
+gem "haml"
+gem "sass"
 gem "jquery-rails"
 gem "omniauth", "~> 0.2.0"
 gem "activeadmin", "~> 0.2.2"
