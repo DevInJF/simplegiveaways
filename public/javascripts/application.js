@@ -12,10 +12,9 @@ $(function(){
       sga_confirm(type, message, confirmText, cancelText, function(answer) {
         callback = $.rails.fire(element, 'confirm:complete', [answer]);
         if(callback) {
-          $element = element;
-          element.removeAttr('data-confirm');
           var oldAllowAction = $.rails.allowAction;
           $.rails.allowAction = function() { return true; };
+          element.trigger('click');
           $.rails.allowAction = oldAllowAction;
         }
       });
@@ -34,7 +33,6 @@ $(function(){
 
     $confirm.click(function(e){
       callback(message);
-      $dialog.fadeOut('slow');
       e.preventDefault();
     });
 
