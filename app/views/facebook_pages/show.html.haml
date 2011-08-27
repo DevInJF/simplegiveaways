@@ -1,0 +1,3 @@
+= link_to "Create a new giveaway for #{@page.name}", new_facebook_page_giveaway_path(@page)
+- @page.giveaways.each do |giveaway|
+  = link_to giveaway.title, giveaway_path(giveaway)

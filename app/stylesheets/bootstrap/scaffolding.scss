@@ -1,3 +1,5 @@
+@import "preboot.scss";
+
 /*
  * Scaffolding
  * Basic and global styles for generating a grid system, structural layout, and page templates
@@ -8,6 +10,7 @@
 // -----------
 
 .row {
+  clear: both;
   @include clearfix;
 
   // Default columns
@@ -27,6 +30,24 @@
   .span14    { @include columns(14); }
   .span15    { @include columns(15); }
   .span16    { @include columns(16); }
+
+  // Irregular columns
+  .span1-5     { @include columns(1.5); }
+  .span2-5     { @include columns(2.5); }
+  .span3-5     { @include columns(3.5); }
+  .span4-5     { @include columns(4.5); }
+  .span5-5     { @include columns(5.5); }
+  .span6-5     { @include columns(6.5); }
+  .span7-5     { @include columns(7.5); }
+  .span8-5     { @include columns(8.5); }
+  .span9-5     { @include columns(9.5); }
+  .span10-5    { @include columns(10.5); }
+  .span11-5    { @include columns(11.5); }
+  .span12-5    { @include columns(12.5); }
+  .span13-5    { @include columns(13.5); }
+  .span14-5    { @include columns(14.5); }
+  .span15-5    { @include columns(15.5); }
+  .span16-5    { @include columns(16.5); }
 
   // Offset column options
   .offset1   { @include offset(1); }
@@ -102,7 +123,8 @@ a {
   border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fade-in(rgba(0,0,0,.1), .15);
 }
 
-.btn {
+.btn,
+input.button {
   // .button(#1174C6);
   cursor: pointer;
   display: inline-block;

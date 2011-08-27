@@ -1,0 +1,66 @@
+@import "bootstrap/preboot.scss";
+
+body {
+  padding-top: 80px;
+
+  > .container {
+    position: relative;
+
+    > header {
+      position: relative;
+
+      > h1 {
+        width: 450px;
+        float: left;
+      }
+
+      > nav.subnav {
+        float: right;
+        position: absolute;
+        right: 0;
+        bottom: 14px;
+
+        .btn {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .sidebar {
+      position: relative;
+
+      .group {
+        margin-bottom: 20px;
+
+        .key {
+          font-weight: bold;
+        }
+      }
+
+      .field {
+        position: relative;
+        clear: both;
+        @include clearfix;
+
+        .key {
+          float: left;
+          width: 115px;
+          margin-left: 10px;
+          text-align: left;
+          font-weight: normal;
+          position: relative;
+          z-index: 25;
+        }
+
+        .value.highlight {
+          float: left;
+          margin: 7px 0 0;
+          text-align: center;
+          z-index: 0;
+          @include highlight;
+        }
+      }
+    }
+  }
+}
+

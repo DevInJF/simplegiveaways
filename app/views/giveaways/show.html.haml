@@ -1,0 +1,94 @@
+- content_for :h1 do
+  = @giveaway.title
+
+- content_for :subnav do
+  = link_to 'Edit Giveaway', edit_giveaway_path(@giveaway), :class => "btn large"
+  - if @giveaway.is_live?
+    = link_to "End Giveaway", manual_end_giveaway_path(@giveaway), :id => "end_giveaway", :class => "btn large danger",
+    :confirm => "Are you sure you want to end the giveaway?", :'data-type' => "Warning",
+    :'data-confirm-text' => "End the giveaway", :'data-cancel-text' => "Nevermind"
+  - else
+    = link_to "Start Giveaway", manual_start_giveaway_path(@giveaway), :id => "start_giveaway", :class => "btn large primary"
+
+.row
+  .span3-5.columns.sidebar
+    .group.engagement
+      %h3.key Engagement
+      .field
+        .value.highlight= @giveaway.entries.count
+        %h5.key= pluralize_without_count(@giveaway.entries.count, "Like")
+      .field
+        .value.highlight= @giveaway.entries.count
+        %h5.key= pluralize_without_count(@giveaway.entries.count, "Entry")
+    .group.virality
+      %h3.key Virality
+      .field
+        .value.highlight= @giveaway.total_shares
+        %h5.key= pluralize_without_count(@giveaway.total_shares, "Share")
+      .field
+        .value.highlight= @giveaway.total_requests
+        %h5.key= pluralize_without_count(@giveaway.total_requests, "Request")
+      .field
+        .value.highlight= @giveaway.total_conversions
+        %h5.key= pluralize_without_count(@giveaway.total_conversions, "Conversion")
+      .field
+        .value.highlight= @giveaway.conversion_rate
+        %h5.key Conversion Rate
+    .group.views
+      %h3.key Views
+      .field
+        .value.highlight= @giveaway.impressionist_count(:filter => :session_hash)
+        %h5.key Unique
+      .field
+        .value.highlight= @giveaway.impressionist_count
+        %h5.key Total
+
+  .span11-5.offset1.columns
+    .field
+      %h3 Page Administrators
+      - @giveaway.facebook_page.users.each do |user|
+        %ul.unstyled
+          %li
+            %span.email
+              %strong= link_to user.email, user
+    .field
+      %h3 Unique Impressions
+      = @giveaway.impressionist_count(:filter => :session_hash)
+    .field
+      %h3 Entries
+      = @giveaway.entries.count
+    .field
+      %h3 Is live?
+      = @giveaway.is_live?
+    .field
+      %h3 Is installed?
+      = @giveaway.is_installed?
+    .field
+      %h3 Facebook Page
+      = @giveaway.facebook_page.name
+    .field
+      %h3 Giveaway URL
+      = link_to @giveaway.giveaway_url, @giveaway.giveaway_url
+    .field
+      %h3 Prize
+      = @giveaway.prize
+    .field
+      %h3 Description
+      = @giveaway.description
+    .field
+      %h3 Start date
+      = @giveaway.start_date
+    .field
+      %h3 End date
+      = @giveaway.end_date
+    .field
+      %h3 Image
+      %br/
+      = image_tag @giveaway.image.url
+    .field
+      %h3 Feed Image
+      %br/
+      = image_tag @giveaway.feed_image.url(:feed)
+    .field
+      %h3 Terms &amp; Conditions
+      = link_to @giveaway.terms

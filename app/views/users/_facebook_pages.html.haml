@@ -1,0 +1,6 @@
+- if defined?(page)
+  %li.facebook-page.clearfix
+    = link_to image_tag(page.avatar, :class => "thumb"), facebook_page_path(page)
+    %span.name= link_to page.name, facebook_page_path(page)
+    %span.likes= page.likes
+    %span.category= page.category

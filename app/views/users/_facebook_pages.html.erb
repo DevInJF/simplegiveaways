@@ -1,8 +1,0 @@
-<% if defined?(page) %>
-  <li class="facebook-page clearfix">
-    <%= link_to image_tag(page.avatar, :class => "thumb"), facebook_page_path(page) %>
-    <span class="name"><%= link_to page.name, facebook_page_path(page) %></span>
-    <span class="likes"><%= page.likes %></span>
-    <span class="category"><%= page.category %></span>
-  </li>
-<% end %>

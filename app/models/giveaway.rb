@@ -49,6 +49,25 @@ class Giveaway < ActiveRecord::Base
   end
   handle_asynchronously :count_conversion
 
+  def total_conversions
+    all_conversions = entries.collect(&:convert_count)
+    all_conversions.inject(:+)
+  end
+
+  def total_shares
+    all_shares = entries.collect(&:share_count)
+    all_shares.inject(:+)
+  end
+
+  def total_requests
+    all_requests = entries.collect(&:request_count)
+    all_requests.inject(:+)
+  end
+
+  def conversion_rate
+    "#{((total_conversions.to_f / (total_shares.to_f + total_requests.to_f)) * 100).round(2)}%"
+  end
+
   private
 
   def end_in_future

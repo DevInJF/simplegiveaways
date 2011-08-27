@@ -1,0 +1,36 @@
+- title "Entry"
+%p
+  %strong Email:
+  = @entry.email
+%p
+  %strong Has Liked Primary:
+  = @entry.has_liked_primary
+%p
+  %strong Has Liked Mandatory:
+  = @entry.has_liked_mandatory
+%p
+  %strong Name:
+  = @entry.name
+%p
+  %strong Fb Url:
+  = @entry.fb_url
+%p
+  %strong Datetime Entered:
+  = @entry.datetime_entered
+%p
+  %strong Has Shared:
+  = @entry.has_shared
+%p
+  %strong Share Count:
+  = @entry.share_count
+%p
+  %strong Invite Count:
+  = @entry.invite_count
+%p
+  %strong Convert Count:
+  = @entry.convert_count
+%p
+  = link_to "Edit", edit_entry_path(@entry)
+  |
+  \#{link_to "Destroy", @entry, :confirm => 'Are you sure?', :method => :delete} |
+  \#{link_to "View All", entries_path}

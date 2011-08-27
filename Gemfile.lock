@@ -5,6 +5,14 @@ GIT
     jammit (0.6.3)
       yui-compressor (>= 0.9.3)
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: e16a9015288ea560d769012711ba550d48fb2fde
+  specs:
+    simple_form (1.5.0.dev)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -99,6 +107,7 @@ GEM
       i18n (~> 0.4)
     haml (3.1.2)
     has_scope (0.5.0)
+    hpricot (0.8.4)
     i18n (0.5.0)
     impressionist (0.4.0)
     inherited_resources (1.2.2)
@@ -224,6 +233,8 @@ GEM
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
+    ruby_parser (2.2.0)
+      sexp_processor (~> 3.0)
     rubyntlm (0.1.1)
     rubyzip (0.9.4)
     sass (3.1.4)
@@ -232,6 +243,7 @@ GEM
       ffi (>= 1.0.7)
       json_pure
       rubyzip
+    sexp_processor (3.0.6)
     shoulda-matchers (1.0.0.beta3)
     thin (1.2.11)
       daemons (>= 1.0.9)
@@ -266,11 +278,11 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fixture_builder
-  formtastic
   haml
+  hpricot
   impressionist
   jammit!
-  jquery-rails
+  jquery-rails (>= 1.0.12)
   json
   koala (~> 1.1rc)
   mocha
@@ -281,7 +293,9 @@ DEPENDENCIES
   rails (= 3.0.9)
   rake (= 0.8.7)
   rspec-rails
+  ruby_parser
   sass
   shoulda-matchers
+  simple_form!
   thin
   timecop

@@ -1,0 +1,23 @@
+<!doctype html>
+%html
+  %head
+    %title= content_for?(:title) ? content_for(:title) : DEFAULT_TITLE
+    = include_stylesheets :bootstrap, :common, :app
+    = include_javascripts :common, :app
+    = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+    = csrf_meta_tag
+  %body{:class => "#{controller.controller_name} #{controller.action_name}"}
+    #fb-root
+    = render "shared/fb_auth_check"
+
+    = render "layouts/nav"
+
+    .container
+      - unless flash.blank? or flash.nil?
+        = render "shared/flash_messages", :flash => flash
+
+      = render "layouts/header"
+      = yield
+      = render "layouts/footer"
+
+      = render "shared/block_messages"

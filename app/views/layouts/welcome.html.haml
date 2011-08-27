@@ -1,0 +1,18 @@
+<!doctype html>
+%html
+  %head
+    %title Easily Create and Launch Giveaways for Your Facebook Pages | Simple Giveaway App
+    = include_stylesheets :bootstrap, :common, :welcome
+    = include_javascripts :common, :welcome
+    = csrf_meta_tag
+  %body.welcome
+
+    = render "layouts/nav"
+
+    .container
+      - unless flash.blank? or flash.nil?
+        = render "shared/flash_messages", :flash => flash
+
+      = render "layouts/header"
+      = yield
+      = render "layouts/footer"

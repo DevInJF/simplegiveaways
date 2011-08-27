@@ -1,0 +1,14 @@
+= render "shared/error_messages", :target => @giveaway
+= simple_form_for [@page, @giveaway], :html => { :multipart => true, :class => "form-stacked" } do |f|
+  = f.input :title, :input_html => {:class => "xlarge"}
+  = f.input :prize, :input_html => {:class => "xlarge"}
+  = f.input :description, :input_html => {:class => "xlarge"}
+  .inline-inputs
+    = f.input :start_date, :as => :datetime, :input_html => {:class => "small"}
+    = f.input :end_date, :as => :datetime, :input_html => {:class => "small"}
+  = f.input :image, :as => :file, :input_html => {:class => "input-file"}
+  = image_tag @giveaway.image.url(:thumb) if @giveaway.image.file?
+  = f.input :feed_image, :as => :file
+  = image_tag @giveaway.feed_image.url(:thumb) if @giveaway.image.file?
+  = f.input :terms, :input_html => {:class => "xlarge"}
+  = f.button :submit, :class => "btn large primary"

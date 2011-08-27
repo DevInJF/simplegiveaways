@@ -5,26 +5,22 @@ css_compressor_options:
   line_break: 0
 
 javascripts:
-  app:
+  common:
     - public/javascripts/jquery.min.js
     - public/javascripts/jquery-ui.min.js
-    - public/javascripts/jquery-ui-timepicker-addon.js
-    - public/javascripts/rails.js
-    - public/javascripts/application.js
-stylesheets:
+    - public/javascripts/jquery_ujs.js
+    - public/javascripts/common.js
   welcome:
-    - public/stylesheets/defaults.css
-    - public/stylesheets/buttons.css
-    - public/stylesheets/flash.css
-    - public/stylesheets/auth.css
+    - public/javascripts/welcome.js
+  app:
+    - public/javascripts/application.js
+
+stylesheets:
+  bootstrap:
+    - public/stylesheets/bootstrap/bootstrap.css
+  common:
+    - public/stylesheets/common.css
+  welcome:
     - public/stylesheets/welcome.css
   app:
-    - public/stylesheets/defaults.css
     - public/stylesheets/application.css
-    - public/stylesheets/scaffold.css
-    - public/stylesheets/forms.css
-    - public/stylesheets/buttons.css
-    - public/stylesheets/flash.css
-    - public/stylesheets/auth.css
-    - public/stylesheets/users.css
-    - public/stylesheets/smoothness/smoothness.css

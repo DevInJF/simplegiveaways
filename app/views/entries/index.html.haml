@@ -1,0 +1,29 @@
+- title "Entries"
+%table
+  %tr
+    %th Email
+    %th Has Liked Primary
+    %th Has Liked Mandatory
+    %th Name
+    %th Fb Url
+    %th Datetime Entered
+    %th Has Shared
+    %th Share Count
+    %th Invite Count
+    %th Convert Count
+  - for entry in @entries
+    %tr
+      %td= entry.email
+      %td= entry.has_liked_primary
+      %td= entry.has_liked_mandatory
+      %td= entry.name
+      %td= entry.fb_url
+      %td= entry.datetime_entered
+      %td= entry.has_shared
+      %td= entry.share_count
+      %td= entry.invite_count
+      %td= entry.convert_count
+      %td= link_to "Show", entry
+      %td= link_to "Edit", edit_entry_path(entry)
+      %td= link_to "Destroy", entry, :confirm => 'Are you sure?', :method => :delete
+%p= link_to "New Entry", new_entry_path

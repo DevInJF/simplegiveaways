@@ -1,0 +1,23 @@
+#fb-root
+#enter_giveaway
+  %a{:href => "#"} Enter Giveaway
+#giveaway_image
+  = image_tag @giveaway["giveaway"].image.url
+#giveaway_modal{:style => "display:none"}
+  .step.one
+    %span To be eligible for the giveaway, please like this page first.
+    %fb:like-box{:border_color => "", :header => "false", :href => @giveaway["current_page"]["url"], :show_faces => "true", :stream => "false", :width => "402"}
+  .step.two{:style => "display:none"}
+    %a{:href => "#"} Click Here to Enter the Giveaway
+  .step.three{:style => "display:none"}
+    .entry-status
+      %span Congratulations!
+      %span You have successfully entered the giveaway.
+    .share-page
+      %span Share this page to receive a bonus entry.
+      %a.wall-post{:href => "#"} Post to Wall
+      %a.app-request{:href => "#"} Post to Friends
+  .loader{:style => "display:none"}
+    = image_tag "ajax-loader.gif", :alt => "Loading..."
+
+= render "tab_js_min"

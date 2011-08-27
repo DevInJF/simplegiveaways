@@ -1,0 +1,242 @@
+:javascript
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId  : '#{FB_APP_ID}',
+      status : true,
+      cookie : true,
+      xfbml  : true,
+      channelUrl  : 'http://simplegiveawayapp.com/channel.html'
+    });
+
+    FB.Canvas.setSize();
+
+    FB.Event.subscribe('edge.create', function() {
+      $jl = true;
+      sga.st.one.hide();
+      sga.st.two.show();
+    });
+  };
+
+  (function() {
+    var e = document.createElement('script');
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+  }());
+
+  $(function() {
+
+    // init
+    $jl = false;
+
+    $ad = '#{@giveaway["app_data"] || "ref_none"}';
+    $rf = $ad.split("ref_")[1];
+
+    var $md = $("#giveaway_modal");
+    var $ld = $md.find(".loader");
+
+    $("#giveaway_image").click(function() {
+      sga.md.hide();
+    });
+
+    sga = {
+
+      md : $md,
+
+      st : {
+        one : $md.find(".step.one"),
+        two : $md.find(".step.two"),
+        three : $md.find(".step.three")
+      },
+
+      eli : #{@giveaway["has_liked"]},
+
+      eee : {
+
+        ld : function() {
+          $md.find(".step").hide();
+          $ld.show();
+          $md.show();
+        },
+
+        xrx : function(xrx) {
+          $ld.hide();
+          sga.st.two.hide();
+          sga.st.three.show().find(".entry-status").html('<p>' + xrx + '</p>');
+          sga.shihs.ltis();
+        },
+
+        scs : function() {
+          $ld.hide();
+          sga.st.two.hide();
+          sga.st.three.show();
+          sga.shihs.ltis();
+        },
+
+        lil : function(thesession, json) {
+          sga.eee.ld();
+          if (json) {
+            thesession = eval('(' + thesession + ')'); //decode json
+          }
+          $.ajax({
+            type: 'POST',
+            url: '#{giveaway_entries_path(@giveaway["giveaway"])}',
+            dataType: "json",
+            data: 'session_key=' + thesession.session_key + '&has_liked=' + sga.eli + '&ref_id=' + $rf,
+            statusCode: {
+              201: function(response) {
+                sga.eee.scs();
+                $eed = response;
+                $sco = 0;
+                $rco = 0;
+              },
+              406: function(response) {
+                sga.eee.xrx("You have already entered the giveaway.<br />Entry is limited to one per person.");
+                var $eee = jQuery.parseJSON(response.responseText);
+                $eed = $eee.entry.id;
+                $sco = parseInt($eee.entry.share_count);
+                $rco = parseInt($eee.entry.request_count);
+              },
+              412: function() {
+                $ld.hide();
+                sga.st.one.show();
+              },
+              404: function() {
+                sga.eee.xrx("There was an unexpected error.<br />Please reload the page and try again.");
+              },
+              424: function() {
+                sga.eee.xrx("There was an unexpected error.<br />Please reload the page and try again.");
+              }
+            }
+          });
+        },
+
+        sCk : function() {
+          FB.getLoginStatus(function(response) {
+            if (response.session) {
+              sga.eee.lil(response.session);
+            } else {
+              FB.ui({
+                method: 'oauth',
+                client_id: '#{FB_APP_ID}',
+                perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
+              },
+              function(response) {
+                if (response.session) {
+                  $n_ess = response.session;
+                  sga.eee.lil(response.session, true);
+                } else {
+                  console.log($jl);
+                  sga.eee.xrx("You must grant permissions in order to enter the giveaway.");
+                }
+              });
+            }
+          });
+        },
+
+        eli : function() {
+          sga.eee.ld();
+          if (typeof($n_ess) === "undefined") {
+            sga.eee.sCk();
+          } else {
+            sga.eee.lil($n_ess, true);
+          }
+        }
+      },
+
+      shihs : {
+
+        ltis : function() {
+          $("a.wall-post").click(function(e) {
+            sga.shihs.a_wp();
+            e.preventDefault();
+          });
+          $("a.app-request").click(function(e) {
+            sga.shihs.a_ap();
+            e.preventDefault();
+          });
+        },
+
+        comh : function(json) {
+          $.ajax({
+            type: 'PUT',
+            url: '#{giveaway_entries_path(@giveaway["giveaway"])}' + '/' + $eed,
+            dataType: "text",
+            data: json,
+            statusCode: {
+              202: function(response) {
+                alert("Do something with this 202");
+              },
+              406: function(response) {
+                alert("Do something with this 406");
+              },
+              404: function() {
+                sga.eee.xrx("There was an unexpected error.<br />Please reload the page and try again.");
+              }
+            }
+          });
+        },
+
+        dgj : function(data) {
+          FB.ui(
+            data,
+            function(response) {
+              if (response && response.post_id) {
+                json = {
+                  entry : {
+                    share_count : $sco + 1
+                  }
+                };
+                sga.shihs.comh(json);
+                console.log('Post was published.' + $eed);
+              }
+              else if (response && response.request_ids) {
+                json = {
+                  entry : {
+                    request_count : $rco + response.request_ids.length
+                  }
+                };
+                sga.shihs.comh(json);
+                console.log('Request was sent.' + $eed);
+              }
+              else {
+                console.log('Nothing was shared.' + $eed);
+              }
+            }
+          );
+        },
+
+        a_wp : function() {
+          sga.shihs.dgj({
+            method: "feed",
+            name: '#{@giveaway["current_page"]["name"]}',
+            link: '#{@giveaway["giveaway"]["giveaway_url"]}' + '&app_data=ref_' + $eed,
+            picture: '#{@giveaway["giveaway"].feed_image.url}',
+            caption: '#{@giveaway["giveaway"].title}',
+            description: '#{@giveaway["giveaway"].description}'
+          });
+        },
+
+        a_ap : function() {
+          sga.shihs.dgj({
+            method: 'apprequests',
+            message: '#{@giveaway["giveaway"].description}',
+            data: { referrer_id : $eed.toString(), giveaway_id : '#{@giveaway["giveaway"]["id"]}' }
+          });
+        }
+      }
+    };
+
+    $("#enter_giveaway a").click(function(e) {
+      if (sga.eli || $jl) {
+        sga.eee.eli();
+      } else {
+        sga.md.show();
+        sga.st.two.find("a").click(function(event) {
+          event.preventDefault();
+          sga.eee.sCk();
+        });
+      }
+      e.preventDefault();
+    });
+  });

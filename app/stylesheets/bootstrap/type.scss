@@ -1,3 +1,5 @@
+@import "preboot.scss";
+
 /* Typography.scss
  * Headings, body text, lists, code, and more for a versatile and durable typography system
  * ---------------------------------------------------------------------------------------- */
@@ -89,7 +91,7 @@ li {
   line-height: $baseline;
   color: $gray;
 }
-ul.unstyled {
+.unstyled {
   list-style: none;
   margin-left: 0;
 }

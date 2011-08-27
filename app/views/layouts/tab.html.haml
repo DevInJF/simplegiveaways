@@ -1,0 +1,15 @@
+<!doctype html>
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title= @giveaway["giveaway"]["title"]
+    %meta{:content => @giveaway["giveaway"]["description"], :name => "description"}/
+    %meta{:content => "", :name => "keywords"}/
+    %meta{:content => "", :name => "author"}/
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"
+    = stylesheet_link_tag "/stylesheets/tab.css"
+    /[if lt IE 9]
+      <haml:loud> javascript_include_tag &amp;quot;http://html5shim.googlecode.com/svn/trunk/html5.js&amp;quot; </haml:loud>
+  %body
+    #tab_container
+      = yield

@@ -1,0 +1,75 @@
+/* Preboot.scss
+ * Variables and mixins to pre-ignite any new web development project
+ * ------------------------------------------------------------------ */
+.clearfix {
+  zoom: 1; }
+  .clearfix:before, .clearfix:after {
+    display: table;
+    content: ""; }
+  .clearfix:after {
+    clear: both; }
+
+.container {
+  width: 940px;
+  margin: 0 auto;
+  zoom: 1; }
+  .container:before, .container:after {
+    display: table;
+    content: ""; }
+  .container:after {
+    clear: both; }
+
+body {
+  padding-top: 80px; }
+  body > .container {
+    position: relative; }
+    body > .container > header {
+      position: relative; }
+      body > .container > header > h1 {
+        width: 450px;
+        float: left; }
+      body > .container > header > nav.subnav {
+        float: right;
+        position: absolute;
+        right: 0;
+        bottom: 14px; }
+        body > .container > header > nav.subnav .btn {
+          margin-left: 10px; }
+    body > .container .sidebar {
+      position: relative; }
+      body > .container .sidebar .group {
+        margin-bottom: 20px; }
+        body > .container .sidebar .group .key {
+          font-weight: bold; }
+      body > .container .sidebar .field {
+        position: relative;
+        clear: both;
+        zoom: 1; }
+        body > .container .sidebar .field:before, body > .container .sidebar .field:after {
+          display: table;
+          content: ""; }
+        body > .container .sidebar .field:after {
+          clear: both; }
+        body > .container .sidebar .field .key {
+          float: left;
+          width: 115px;
+          margin-left: 10px;
+          text-align: left;
+          font-weight: normal;
+          position: relative;
+          z-index: 25; }
+        body > .container .sidebar .field .value.highlight {
+          float: left;
+          margin: 7px 0 0;
+          text-align: center;
+          z-index: 0;
+          background-color: #FEE9CC;
+          color: rgba(0, 0, 0, 0.75);
+          padding: 2px 5px 1px;
+          font-family: "Monaco", Courier New, monospace;
+          font-size: 14px;
+          font-weight: normal;
+          line-height: 18px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px; }
