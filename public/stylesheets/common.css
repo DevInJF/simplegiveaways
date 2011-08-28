@@ -36,9 +36,10 @@ body {
         body > .container > header > nav.subnav .btn {
           margin-left: 10px; }
     body > .container .sidebar {
+      width: 190px;
       position: relative; }
       body > .container .sidebar .group {
-        margin-bottom: 20px; }
+        margin-bottom: 15px; }
         body > .container .sidebar .group .key {
           font-weight: bold; }
       body > .container .sidebar .field {
@@ -52,12 +53,14 @@ body {
           clear: both; }
         body > .container .sidebar .field .key {
           float: left;
-          width: 115px;
+          width: 85px;
           margin-left: 10px;
           text-align: left;
           font-weight: normal;
           position: relative;
           z-index: 25; }
+          body > .container .sidebar .field .key.wide {
+            width: 115px; }
         body > .container .sidebar .field .value.highlight {
           float: left;
           margin: 7px 0 0;
@@ -73,3 +76,41 @@ body {
           -webkit-border-radius: 3px;
           -moz-border-radius: 3px;
           border-radius: 3px; }
+    body > .container .sections {
+      width: 700px; }
+      body > .container .sections .field {
+        zoom: 1; }
+        body > .container .sections .field:before, body > .container .sections .field:after {
+          display: table;
+          content: ""; }
+        body > .container .sections .field:after {
+          clear: both; }
+    body > .container > footer {
+      margin: 17px 0 34px; }
+  body .alert-message {
+    width: 450px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5000;
+    margin-left: -239px; }
+  body .block-message {
+    top: 70px;
+    left: 50%;
+    z-index: 9100;
+    -webkit-box-shadow: 0 1px 50px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 1px 50px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 50px rgba(0, 0, 0, 0.6); }
+  body .message-mask {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9000;
+    background-color: #000;
+    display: none;
+    filter: alpha(opacity=70);
+    -khtml-opacity: 0.7;
+    -moz-opacity: 0.7;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%; }

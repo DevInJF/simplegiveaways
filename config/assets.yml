@@ -10,6 +10,8 @@ javascripts:
     - public/javascripts/jquery-ui.min.js
     - public/javascripts/jquery_ujs.js
     - public/javascripts/common.js
+  vendor:
+    - public/javascripts/vendor/*.js
   welcome:
     - public/javascripts/welcome.js
   app:
@@ -20,7 +22,10 @@ stylesheets:
     - public/stylesheets/bootstrap/bootstrap.css
   common:
     - public/stylesheets/common.css
+  vendor:
+    - public/stylesheets/vendor/tipsy.css
   welcome:
     - public/stylesheets/welcome.css
   app:
     - public/stylesheets/application.css
+    - public/stylesheets/dashboard.css

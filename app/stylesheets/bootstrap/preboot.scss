@@ -263,6 +263,12 @@ $analog2:           spin($baseColor, -22);
 }
 
 // Custom
+@mixin inline-block {
+	display: -moz-inline-stack;	// ff 2
+	display: inline-block;
+	zoom:1; *display: inline; _height: 15px; // ie 6-7
+}
+
 @mixin highlight {
   background-color: #FEE9CC;
   color: rgba(0, 0, 0, 0.75);

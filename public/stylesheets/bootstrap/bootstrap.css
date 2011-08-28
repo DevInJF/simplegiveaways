@@ -287,6 +287,18 @@ header, section, footer, article, aside {
     margin-left: 20px; }
     .row .span16-5:first-child {
       margin-left: 0; }
+  .row .offset-25 {
+    margin-left: 35px !important; }
+    .row .offset-25:first-child {
+      margin-left: 15px !important; }
+  .row .offset-5 {
+    margin-left: 50px !important; }
+    .row .offset-5:first-child {
+      margin-left: 30px !important; }
+  .row .offset-75 {
+    margin-left: 65px !important; }
+    .row .offset-75:first-child {
+      margin-left: 45px !important; }
   .row .offset1 {
     margin-left: 80px !important; }
     .row .offset1:first-child {
@@ -380,7 +392,11 @@ a {
 .btn,
 input.button {
   cursor: pointer;
+  display: -moz-inline-stack;
   display: inline-block;
+  zoom: 1;
+  *display: inline;
+  _height: 15px;
   background-color: #e6e6e6;
   background-repeat: no-repeat;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), color-stop(0.25, white), to(#e6e6e6));
@@ -410,13 +426,17 @@ input.button {
     background-position: 0 -15px;
     color: #333;
     text-decoration: none; }
-  .btn.primary, .btn.danger,
+  .btn.primary, .btn.danger, .btn.success, .btn.info,
   input.button.primary,
-  input.button.danger {
+  input.button.danger,
+  input.button.success,
+  input.button.info {
     color: #fff; }
-    .btn.primary:hover, .btn.danger:hover,
+    .btn.primary:hover, .btn.danger:hover, .btn.success:hover, .btn.info:hover,
     input.button.primary:hover,
-    input.button.danger:hover {
+    input.button.danger:hover,
+    input.button.success:hover,
+    input.button.info:hover {
       color: #fff; }
   .btn.primary,
   input.button.primary {
@@ -445,6 +465,34 @@ input.button {
     background-image: linear-gradient(#d83a2e, #9d261d);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     border-color: #9d261d #9d261d #5c1611;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+  .btn.success,
+  input.button.success {
+    background-color: #57a957;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#62c462), to(#57a957));
+    background-image: -moz-linear-gradient(top, #62c462, #57a957);
+    background-image: -ms-linear-gradient(top, #62c462, #57a957);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
+    background-image: -webkit-linear-gradient(top, #62c462, #57a957);
+    background-image: -o-linear-gradient(top, #62c462, #57a957);
+    background-image: linear-gradient(top, #62c462, #57a957);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-color: #57a957 #57a957 #3d773d;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+  .btn.info,
+  input.button.info {
+    background-color: #339bb9;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#5bc0de), to(#339bb9));
+    background-image: -moz-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: -ms-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5bc0de), color-stop(100%, #339bb9));
+    background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: linear-gradient(top, #5bc0de, #339bb9);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-color: #339bb9 #339bb9 #22697d;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
   .btn.large,
   input.button.large {
@@ -479,6 +527,24 @@ input.button {
     -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05); }
+
+span.btn.flag {
+  cursor: default;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-image: none; }
+  span.btn.flag:hover {
+    background-position: 0 0;
+    text-decoration: none; }
+  span.btn.flag:active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+  span.btn.flag.primary, span.btn.flag.danger, span.btn.flag.success, span.btn.flag.info {
+    color: #fff; }
+    span.btn.flag.primary:hover, span.btn.flag.danger:hover, span.btn.flag.success:hover, span.btn.flag.info:hover {
+      color: #fff; }
 
 button.btn::-moz-focus-inner,
 input[type=submit].btn::-moz-focus-inner {
@@ -1470,7 +1536,6 @@ footer {
       opacity: 0.4; }
 
 .block-message {
-  left: 50%;
   background-image: none;
   background-color: #FDF5D9;
   padding: 14px;

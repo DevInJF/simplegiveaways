@@ -2,8 +2,8 @@
 %html
   %head
     %title= content_for?(:title) ? content_for(:title) : DEFAULT_TITLE
-    = include_stylesheets :bootstrap, :common, :app
-    = include_javascripts :common, :app
+    = include_stylesheets :bootstrap, :common, :vendor, :app
+    = include_javascripts :common, :vendor, :app
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     = csrf_meta_tag
   %body{:class => "#{controller.controller_name} #{controller.action_name}"}
@@ -21,3 +21,5 @@
       = render "layouts/footer"
 
       = render "shared/block_messages"
+
+    .message-mask

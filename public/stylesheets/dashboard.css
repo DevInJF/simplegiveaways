@@ -1,0 +1,56 @@
+/* Preboot.scss
+ * Variables and mixins to pre-ignite any new web development project
+ * ------------------------------------------------------------------ */
+.clearfix {
+  zoom: 1; }
+  .clearfix:before, .clearfix:after {
+    display: table;
+    content: ""; }
+  .clearfix:after {
+    clear: both; }
+
+.container {
+  width: 940px;
+  margin: 0 auto;
+  zoom: 1; }
+  .container:before, .container:after {
+    display: table;
+    content: ""; }
+  .container:after {
+    clear: both; }
+
+h1 a.action {
+  padding-top: 2px;
+  margin-left: 10px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  _height: 15px;
+  line-height: 18px;
+  width: 24px;
+  height: 20px; }
+  h1 a.action img {
+    line-height: 18px; }
+
+.sections {
+  zoom: 1; }
+  .sections:before, .sections:after {
+    display: table;
+    content: ""; }
+  .sections:after {
+    clear: both; }
+  .sections section {
+    display: none;
+    position: relative; }
+    .sections section.active {
+      display: block; }
+
+.row .span4.aside {
+  float: right;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  top: 0; }
+  .row .span4.aside .field {
+    margin-bottom: 9px; }
