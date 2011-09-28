@@ -1,0 +1,41 @@
+• Create purchase action in TransactionController
+  • Associate the transaction with a Page and a User
+  • If user has a CC in Braintree vault, use that; else, use CC from form params
+
+• Create transaction after_create callbacks
+  • Mark the given page as "activated" (boolean)
+  • Mark the given page as "activated_from" (datetime)
+  • Mark the given page as "activated_until" (datetime)
+  • Mark the given page as "activated_by" (user_id)
+  • Mark the given page's given giveaway as "activated" (boolean)
+
+• Create /views/transactions/_form
+  • computed:
+		• amount (determined by page's number of likes)
+		• product (corresponds to page's number of likes)
+	• user submitted:
+	  • cc (only if user's cc is not already in vault)
+	  • pay through (time range)
+
+• Add an activated flag to /views/giveaways/show
+
+• Add logic to Giveaway that will not allow it to go live unless it and its parent page is activated
+
+• If a user tries to activate an unactivated giveaway for an active page, notify them that they can only
+  have one activated giveaway per page.  Give them an option to deactivate the currently activated
+  giveaway and activate the given unactivated giveaway
+
+• Implement the 4 types of giveaways
+
+• Improve security
+
+• Look into installing the app on a tab automatically (re: Brian Dillon's suggestion)
+
+• Implement winner selection
+
+• Look into adding open graph actions
+
+• Implement Brian Dillon's user interface
+
+• Ship it!
+

@@ -1,6 +1,8 @@
 class Transaction < ActiveRecord::Base
   belongs_to :user
   serialize :params
+  
+  after_create :activate_page, :activate_giveaway
 
   def response=(response)
     self.success       = response.success?
@@ -12,5 +14,23 @@ class Transaction < ActiveRecord::Base
     self.authorization = nil
     self.message       = e.message
     self.params        = {}
+  end
+  
+  def self.price_in_cents(price)
+    (price*100).round
+  end
+  
+  private
+  
+  def activate_page
+    if success?
+      
+    end
+  end
+  
+  def activate_giveaway
+    if success?
+      
+    end
   end
 end

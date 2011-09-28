@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
-  def purchase
+  def create
     response = Braintree::Transaction.sale(
       :amount => "25000.00",
       :credit_card => {
@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
     )
     transaction = Transaction.create!(
       :product => "test",
-      :amount => price_in_cents(25000.00),
+      :amount => Transaction.price_in_cents(25000.00),
       :response => response
     )
     transaction.update_attribute(:purchased_at, Time.now) if response.success?
@@ -23,9 +23,5 @@ class TransactionsController < ApplicationController
       flash["error"] = "Purchase was unsuccessful."
       redirect_to user_path(current_user)
     end
-  end
-
-  def price_in_cents(price)
-    (price*100).round
   end
 end
