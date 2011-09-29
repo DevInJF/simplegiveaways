@@ -20,8 +20,8 @@ SGA::Application.routes.draw do
   # User Authentication
   devise_for :users,
              :singular => :user,
-             :controllers => {:registrations => 'registrations'} do
-    get 'logout' => 'devise/sessions#destroy'
+             :controllers => {:registrations => "registrations"} do
+    get "logout" => "devise/sessions#destroy"
   end
 
   # User
@@ -29,7 +29,7 @@ SGA::Application.routes.draw do
 
   # 3rd Party User Authentication
   resources :authentications
-  match '/auth/:provider/callback' => 'authentications#create'
+  match "/auth/:provider/callback" => "authentications#create"
 
   # AdminUser
   ActiveAdmin.routes(self)
@@ -38,5 +38,5 @@ SGA::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   # Root
-  root :to => 'welcome#index'
+  root :to => "welcome#index"
 end
