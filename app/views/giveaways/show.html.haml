@@ -17,22 +17,17 @@
     .group.engagement
       %h3.key Engagement
       .field
-        .value.highlight= @giveaway.entries.count
-        %h5.key= pluralize_without_count(@giveaway.entries.count, "Like")
+        = stats(@giveaway.entries.count, "Like")
       .field
-        .value.highlight= @giveaway.entries.count
-        %h5.key= pluralize_without_count(@giveaway.entries.count, "Entry")
+        = stats(@giveaway.entries.count, "Entry")
     .group.virality
       %h3.key Virality
       .field
-        .value.highlight= @giveaway.total_shares
-        %h5.key= pluralize_without_count(@giveaway.total_shares, "Share")
+        = stats(@giveaway.total_shares, "Share")
       .field
-        .value.highlight= @giveaway.total_requests
-        %h5.key= pluralize_without_count(@giveaway.total_requests, "Request")
+        = stats(@giveaway.total_requests, "Request")
       .field
-        .value.highlight= @giveaway.total_conversions
-        %h5.key= pluralize_without_count(@giveaway.total_conversions, "Conversion")
+        = stats(@giveaway.total_conversions, "Conversion")
       .field
         .value.highlight= @giveaway.conversion_rate
         %h5.key.wide Conversion Rate

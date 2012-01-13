@@ -12,7 +12,6 @@ Factory.define :giveaway do |giveaway|
   giveaway.feed_image { fixture_file_upload("#{RAILS_ROOT}/spec/factories/pixel.png", "image/png") }
   giveaway.start_date now
   giveaway.end_date later
-  giveaway.mandatory_likes "http://facebook.com/skittles"
   giveaway.terms { "#{Faker::Internet.domain_name}/terms" }
   giveaway.facebook_page { (FacebookPage.count > 0 ? FacebookPage.all.sort_by{ rand }.first : Factory.create(:facebook_page)) }
 end

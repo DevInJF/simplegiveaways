@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
   protected
 
   def apply_facebook(omniauth)
-    if (extra = omniauth['extra']['user_hash'] rescue false)
-      self.email = (extra['email'] rescue '')
-      self.name = (extra['first_name'] rescue '') + " " + (extra['last_name'] rescue '')
+    if omniauth
+      self.email = omniauth['info']['email'] rescue ''
+      self.name = omniauth['info']['name'] rescue ''
     end
   end
 

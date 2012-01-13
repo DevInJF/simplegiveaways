@@ -38,8 +38,8 @@ class Giveaway < ActiveRecord::Base
   end
   
   def is_installed?
-    @rest = Koala::Facebook::RestAPI.new(FB_APP_KEY)
-    @rest.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+    @graph.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
   end
 
   def count_conversion(ref)
@@ -49,23 +49,25 @@ class Giveaway < ActiveRecord::Base
   end
   handle_asynchronously :count_conversion
 
-  def total_conversions
-    all_conversions = entries.collect(&:convert_count)
-    all_conversions.inject(:+)
-  end
-
   def total_shares
     all_shares = entries.collect(&:share_count)
-    all_shares.inject(:+)
+    all_shares.inject(:+) || 0
   end
 
   def total_requests
     all_requests = entries.collect(&:request_count)
-    all_requests.inject(:+)
+    all_requests.inject(:+) || 0
+  end
+
+  def total_conversions
+    all_conversions = entries.collect(&:convert_count)
+    all_conversions.inject(:+) || 0
   end
 
   def conversion_rate
     "#{((total_conversions.to_f / (total_shares.to_f + total_requests.to_f)) * 100).round(2)}%"
+  rescue StandardError
+    0
   end
 
   private
