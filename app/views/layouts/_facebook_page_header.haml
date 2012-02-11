@@ -1,0 +1,4 @@
+%header.page-header.facebook-page
+  .container
+    = link_to image_tag(@page.avatar, :alt => @page.name, :class => "avatar page")
+    %h1= link_to @page.name, facebook_page_path(@page)

@@ -1,30 +1,72 @@
 @import "bootstrap/preboot.scss";
 
+html {
+  background: #F2F2F2;
+}
+
 body {
-  padding-top: 80px;
+  padding-top: 40px;
+  background: #F2F2F2;
 
-  > .container {
+  > header.page-header {
+    padding: 17px 0 20px;
     position: relative;
+    background: #888;
 
-    > header {
-      position: relative;
+    h1 {
+      margin: 0;
+      padding: 0;
+      line-height: 38px;
+      font-size: 30px;
+      width: 480px;
+      float: left;
+      color: #0e0e0e;
+    }
 
-      > h1 {
-        width: 480px;
+    &.facebook-page {
+      padding: 17px 0;
+      margin: 0;
+      border-bottom: 0;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+      .avatar.page {
+        width: 38px;
+        height: 38px;
         float: left;
-      }
+        background: #4A4A4A;
+        margin: 0 20px 0 0;
+        padding: 0;
+      }  
+      
+      h1 {
+        
+        a {
+          color: #0e0e0e;
+          text-decoration: none;
 
-      > nav.subnav {
-        float: right;
-        position: absolute;
-        right: 0;
-        bottom: 14px;
-
-        .btn {
-          margin-left: 10px;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
     }
+
+    nav.subnav {
+      float: right;
+      position: absolute;
+      right: 0;
+      bottom: 14px;
+
+      .btn {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  > .container {
+    position: relative;
 
     .sidebar {
       width: 190px;

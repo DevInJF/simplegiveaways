@@ -19,22 +19,52 @@
   .container:after {
     clear: both; }
 
+html {
+  background: #F2F2F2; }
+
 body {
-  padding-top: 80px; }
+  padding-top: 40px;
+  background: #F2F2F2; }
+  body > header.page-header {
+    padding: 17px 0 20px;
+    position: relative;
+    background: #888; }
+    body > header.page-header h1 {
+      margin: 0;
+      padding: 0;
+      line-height: 38px;
+      font-size: 30px;
+      width: 480px;
+      float: left;
+      color: #0e0e0e; }
+    body > header.page-header.facebook-page {
+      padding: 17px 0;
+      margin: 0;
+      border-bottom: 0;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none; }
+      body > header.page-header.facebook-page .avatar.page {
+        width: 38px;
+        height: 38px;
+        float: left;
+        background: #4A4A4A;
+        margin: 0 20px 0 0;
+        padding: 0; }
+      body > header.page-header.facebook-page h1 a {
+        color: #0e0e0e;
+        text-decoration: none; }
+        body > header.page-header.facebook-page h1 a:hover {
+          text-decoration: none; }
+    body > header.page-header nav.subnav {
+      float: right;
+      position: absolute;
+      right: 0;
+      bottom: 14px; }
+      body > header.page-header nav.subnav .btn {
+        margin-left: 10px; }
   body > .container {
     position: relative; }
-    body > .container > header {
-      position: relative; }
-      body > .container > header > h1 {
-        width: 480px;
-        float: left; }
-      body > .container > header > nav.subnav {
-        float: right;
-        position: absolute;
-        right: 0;
-        bottom: 14px; }
-        body > .container > header > nav.subnav .btn {
-          margin-left: 10px; }
     body > .container .sidebar {
       width: 190px;
       position: relative; }

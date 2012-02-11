@@ -10,7 +10,8 @@
     #fb-root
     = render "shared/fb_auth_check"
     = render "layouts/nav"
-    = render "layouts/header"
+    = render "layouts/facebook_page_header"
+    = render "layouts/facebook_page_nav"
     .container
       - unless flash.blank? or flash.nil?
         = render "shared/flash_messages", :flash => flash

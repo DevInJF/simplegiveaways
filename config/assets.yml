@@ -29,3 +29,5 @@ stylesheets:
   app:
     - public/stylesheets/application.css
     - public/stylesheets/dashboard.css
+    - public/stylesheets/giveaways.css
+    - public/stylesheets/facebook_pages.css

@@ -1,18 +1,17 @@
-<!doctype html>
-%html
+!!!
+%html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
   %head
     %title Easily Create and Launch Giveaways for Your Facebook Pages | Simple Giveaway App
     = include_stylesheets :bootstrap, :common, :welcome
     = include_javascripts :common, :welcome
     = csrf_meta_tag
   %body.welcome
-
     = render "layouts/nav"
-
+    = render "layouts/header"
     .container
       - unless flash.blank? or flash.nil?
         = render "shared/flash_messages", :flash => flash
 
-      = render "layouts/header"
       = yield
+
       = render "layouts/footer"

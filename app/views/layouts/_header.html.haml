@@ -1,3 +1,4 @@
 %header.page-header
-  %h1= content_for?(:h1) ? content_for(:h1) : DEFAULT_H1
-  = render "layouts/subnav"
+  .container
+    %h1= content_for?(:h1) ? content_for(:h1) : DEFAULT_H1
+    = render "layouts/subnav"
