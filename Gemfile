@@ -19,11 +19,12 @@ gem "simple_form", "~> 1.5.2"
 gem "impressionist"
 gem "json"
 gem "braintree"
+gem "heroku"
 
 group :development, :test do
   gem "rspec-rails"
   gem "capybara"
-  gem "awesome_print"
+  gem "awesome_print", :require => "ap"
   gem "timecop"
   gem "factory_girl_rails"
   gem "fixture_builder", "~> 0.3.1"
