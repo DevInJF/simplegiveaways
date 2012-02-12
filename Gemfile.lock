@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/johnnytommy/itslog.git
+  revision: 90d6d780f51353780132954f5d8a0c4ee37ef33a
+  specs:
+    itslog (0.6.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -245,6 +251,7 @@ DEPENDENCIES
   heroku
   hpricot
   impressionist
+  itslog!
   jammit (~> 0.6.3)
   jquery-rails (>= 1.0.12)
   json

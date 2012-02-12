@@ -24,7 +24,7 @@ gem "heroku"
 group :development, :test do
   gem "rspec-rails"
   gem "capybara"
-  gem "awesome_print", :require => "ap"
+  gem "awesome_print", :require => "awesome_print"
   gem "timecop"
   gem "factory_girl_rails"
   gem "fixture_builder", "~> 0.3.1"
@@ -35,4 +35,5 @@ group :development, :test do
   gem "hpricot"
   gem "ruby_parser"
   gem 'thin'
+  gem 'itslog', :git => "git://github.com/johnnytommy/itslog.git"
 end
