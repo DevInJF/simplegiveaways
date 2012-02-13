@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def retrieve_pages
-    graph = Koala::Facebook::GraphAPI.new(authentications.last.token)
+    graph = Koala::Facebook::API.new(authentications.last.token)
     pages = graph.get_connections("me", "accounts")
     pages.each do |page|
       page_category = page["category"]

@@ -3,17 +3,16 @@ class Entry < ActiveRecord::Base
 
   validates :email, :uniqueness => {:scope => :giveaway_id}
 
-  def self.like_status(pid, uid)
-    @rest = Koala::Facebook::RestAPI.new(FB_APP_KEY)
+  def self.like_status(pid, uid, access_token)
+    @rest = Koala::Facebook::API.new(access_token)
     status = @rest.fql_query("SELECT uid FROM page_fan WHERE uid=#{uid} AND page_id=#{pid}")
     status[0].nil? ? false : true
   end
 
-  def build_from_session(giveaway, session, has_liked, ref)
+  def build_from_session(giveaway, access_token, has_liked, ref)
     @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-    oauth_access_token = @oauth.get_token_from_session_key(session)
 
-    graph = Koala::Facebook::GraphAPI.new(oauth_access_token)
+    graph = Koala::Facebook::API.new(access_token)
     @profile = graph.get_object("me")
 
     uid = @profile["id"]
@@ -29,11 +28,11 @@ class Entry < ActiveRecord::Base
         :datetime_entered => DateTime.now
       )
 
-      if has_liked == true
+      if has_liked == "true"
         @entry.has_liked_primary = true
         @entry.status = "complete"
       else
-        if Entry.like_status(giveaway.facebook_page.pid, uid) == false
+        if Entry.like_status(giveaway.facebook_page.pid, uid, access_token) == false
           @entry.has_liked_primary = false
           @entry.status = "incomplete"
         else

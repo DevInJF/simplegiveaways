@@ -75,16 +75,16 @@ $(function() {
         Giveaway.share.listener();
       },
 
-      submit : function(thesession, json) {
+      submit : function(access_token, json) {
         Giveaway.entry.loader();
         if (json) {
-          thesession = eval('(' + thesession + ')'); //decode json
+          access_token = eval('(' + access_token + ')'); //decode json
         }
         $.ajax({
           type: 'POST',
           url: '#{giveaway_entries_path(@giveaway["giveaway"])}',
           dataType: "json",
-          data: 'session_key=' + thesession.session_key + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer,
+          data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer,
           statusCode: {
             201: function(response) {
               Giveaway.entry.success();
@@ -115,23 +115,20 @@ $(function() {
 
       statusCheck : function() {
         FB.getLoginStatus(function(response) {
-          if (response.session) {
-            Giveaway.entry.submit(response.session);
+          if (response.authResponse) {
+            Giveaway.entry.submit(response.authResponse.accessToken);
           } else {
-            FB.ui({
-              method: 'oauth',
-              client_id: '#{FB_APP_ID}',
-              perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
-            },
-            function(response) {
-              if (response.session) {
-                $new_session = response.session;
-                Giveaway.entry.submit(response.session, true);
-              } else {
-                console.log($just_liked);
-                Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
-              }
-            });
+            FB.login({
+                      scope: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
+                    },
+                    function(response) {
+                      if (response.authResponse) {
+                        $new_session = response.authResponse.accessToken;
+                        Giveaway.entry.submit(response.authResponse.accessToken, true);
+                      } else {
+                        Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
+                      }
+                    });
           }
         });
       },
@@ -166,12 +163,8 @@ $(function() {
           dataType: "text",
           data: json,
           statusCode: {
-            202: function(response) {
-              alert("Do something with this 202");
-            },
-            406: function(response) {
-              alert("Do something with this 406");
-            },
+            202: function() {},
+            406: function() {},
             404: function() {
               Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");
             }
@@ -181,30 +174,30 @@ $(function() {
 
       dialog : function(data) {
         FB.ui(
-          data,
-          function(response) {
-            if (response && response.post_id) {
-              json = {
-                entry : {
-                  share_count : $share_count + 1
+                data,
+                function(response) {
+                  if (response && response.post_id) {
+                    json = {
+                      entry : {
+                        share_count : $share_count + 1
+                      }
+                    };
+                    Giveaway.share.callback(json);
+                    console.log('Post was published.' + $entry_id);
+                  }
+                  else if (response && response.to) {
+                    json = {
+                      entry : {
+                        request_count : $request_count + response.to.length
+                      }
+                    };
+                    Giveaway.share.callback(json);
+                    console.log('Request was sent.' + $entry_id);
+                  }
+                  else {
+                    console.log('Nothing was shared.' + $entry_id);
+                  }
                 }
-              };
-              Giveaway.share.callback(json);
-              console.log('Post was published.' + $entry_id);
-            }
-            else if (response && response.request_ids) {
-              json = {
-                entry : {
-                  request_count : $request_count + response.request_ids.length
-                }
-              };
-              Giveaway.share.callback(json);
-              console.log('Request was sent.' + $entry_id);
-            }
-            else {
-              console.log('Nothing was shared.' + $entry_id);
-            }
-          }
         );
       },
 
@@ -221,6 +214,7 @@ $(function() {
 
       as_app_request : function() {
         Giveaway.share.dialog({
+          title: 'Share this giveaway to receive a bonus entry.',
           method: 'apprequests',
           message: '#{@giveaway["giveaway"].description}',
           data: { referrer_id : $entry_id.toString(), giveaway_id : '#{@giveaway["giveaway"]["id"]}' }

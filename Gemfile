@@ -35,5 +35,5 @@ group :development, :test do
   gem "hpricot"
   gem "ruby_parser"
   gem 'thin'
-  gem 'itslog', :git => "git://github.com/johnnytommy/itslog.git"
+  gem 'itslog'
 end

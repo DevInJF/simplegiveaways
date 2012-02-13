@@ -2,18 +2,18 @@
   window.fbAsyncInit = function() {
     FB.init({
       appId  : '#{FB_APP_ID}',
-      status : true,
-      cookie : true,
-      xfbml  : true,
+      status : true, // check login status
+      cookie : true, // enable cookies to allow the server to access the session
+      xfbml  : true, // parse XFBML
       channelUrl  : 'http://simplegiveawayapp.com/channel.html'
     });
 
     FB.Canvas.setSize();
 
     FB.Event.subscribe('edge.create', function() {
-      $jl = true;
-      sga.st.one.hide();
-      sga.st.two.show();
+      $just_liked = true;
+      Giveaway.step.one.hide();
+      Giveaway.step.two.show();
     });
   };
 
@@ -27,214 +27,212 @@
   $(function() {
 
     // init
-    $jl = false;
+    $just_liked = false;
 
-    $ad = '#{@giveaway["app_data"] || "ref_none"}';
-    $rf = $ad.split("ref_")[1];
+    $app_data = '#{@giveaway["app_data"] || "ref_none"}';
+    $referrer = $app_data.split("ref_")[1];
 
-    var $md = $("#giveaway_modal");
-    var $ld = $md.find(".loader");
+    var $modal = $("#giveaway_modal");
+    var $loader = $modal.find(".loader");
 
     $("#giveaway_image").click(function() {
-      sga.md.hide();
+      Giveaway.modal.hide();
     });
 
-    sga = {
+    // Giveaway object
+    Giveaway = {
 
-      md : $md,
+      modal : $modal,
 
-      st : {
-        one : $md.find(".step.one"),
-        two : $md.find(".step.two"),
-        three : $md.find(".step.three")
+      step : {
+        one : $modal.find(".step.one"),
+        two : $modal.find(".step.two"),
+        three : $modal.find(".step.three")
       },
 
-      eli : #{@giveaway["has_liked"]},
+      loader : $loader,
 
-      eee : {
+      eligible : #{@giveaway["has_liked"]},
 
-        ld : function() {
-          $md.find(".step").hide();
-          $ld.show();
-          $md.show();
+      entry : {
+
+        loader : function() {
+          $modal.find(".step").hide();
+          $loader.show();
+          $modal.show();
         },
 
-        xrx : function(xrx) {
-          $ld.hide();
-          sga.st.two.hide();
-          sga.st.three.show().find(".entry-status").html('<p>' + xrx + '</p>');
-          sga.shihs.ltis();
+        error : function(error) {
+          $loader.hide();
+          Giveaway.step.two.hide();
+          Giveaway.step.three.show().find(".entry-status").html('<p>' + error + '</p>');
+          Giveaway.share.listener();
         },
 
-        scs : function() {
-          $ld.hide();
-          sga.st.two.hide();
-          sga.st.three.show();
-          sga.shihs.ltis();
+        success : function() {
+          $loader.hide();
+          Giveaway.step.two.hide();
+          Giveaway.step.three.show();
+          Giveaway.share.listener();
         },
 
-        lil : function(thesession, json) {
-          sga.eee.ld();
+        submit : function(access_token, json) {
+          Giveaway.entry.loader();
           if (json) {
-            thesession = eval('(' + thesession + ')'); //decode json
+            access_token = eval('(' + access_token + ')'); //decode json
           }
           $.ajax({
             type: 'POST',
             url: '#{giveaway_entries_path(@giveaway["giveaway"])}',
             dataType: "json",
-            data: 'session_key=' + thesession.session_key + '&has_liked=' + sga.eli + '&ref_id=' + $rf,
+            data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer,
             statusCode: {
               201: function(response) {
-                sga.eee.scs();
-                $eed = response;
-                $sco = 0;
-                $rco = 0;
+                Giveaway.entry.success();
+                $entry_id = response;
+                $share_count = 0;
+                $request_count = 0;
               },
               406: function(response) {
-                sga.eee.xrx("You have already entered the giveaway.<br />Entry is limited to one per person.");
-                var $eee = jQuery.parseJSON(response.responseText);
-                $eed = $eee.entry.id;
-                $sco = parseInt($eee.entry.share_count);
-                $rco = parseInt($eee.entry.request_count);
+                Giveaway.entry.error("You have already entered the giveaway.<br />Entry is limited to one per person.");
+                var $entry = jQuery.parseJSON(response.responseText);
+                $entry_id = $entry.entry.id;
+                $share_count = parseInt($entry.entry.share_count);
+                $request_count = parseInt($entry.entry.request_count);
               },
               412: function() {
-                $ld.hide();
-                sga.st.one.show();
+                $loader.hide();
+                Giveaway.step.one.show();
               },
               404: function() {
-                sga.eee.xrx("There was an unexpected error.<br />Please reload the page and try again.");
+                Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");
               },
               424: function() {
-                sga.eee.xrx("There was an unexpected error.<br />Please reload the page and try again.");
+                Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");
               }
             }
           });
         },
 
-        sCk : function() {
+        statusCheck : function() {
           FB.getLoginStatus(function(response) {
-            if (response.session) {
-              sga.eee.lil(response.session);
+            if (response.authResponse) {
+              Giveaway.entry.submit(response.authResponse.accessToken);
             } else {
-              FB.ui({
-                method: 'oauth',
-                client_id: '#{FB_APP_ID}',
-                perms: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
+              FB.login({
+                scope: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
               },
               function(response) {
-                if (response.session) {
-                  $n_ess = response.session;
-                  sga.eee.lil(response.session, true);
+                if (response.authResponse) {
+                  $new_session = response.authResponse.accessToken;
+                  Giveaway.entry.submit(response.authResponse.accessToken, true);
                 } else {
-                  console.log($jl);
-                  sga.eee.xrx("You must grant permissions in order to enter the giveaway.");
+                  Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
                 }
               });
             }
           });
         },
 
-        eli : function() {
-          sga.eee.ld();
-          if (typeof($n_ess) === "undefined") {
-            sga.eee.sCk();
+        eligible : function() {
+          Giveaway.entry.loader();
+          if (typeof($new_session) === "undefined") {
+            Giveaway.entry.statusCheck();
           } else {
-            sga.eee.lil($n_ess, true);
+            Giveaway.entry.submit($new_session, true);
           }
         }
       },
 
-      shihs : {
+      share : {
 
-        ltis : function() {
+        listener : function() {
           $("a.wall-post").click(function(e) {
-            sga.shihs.a_wp();
+            Giveaway.share.as_wall_post();
             e.preventDefault();
           });
           $("a.app-request").click(function(e) {
-            sga.shihs.a_ap();
+            Giveaway.share.as_app_request();
             e.preventDefault();
           });
         },
 
-        comh : function(json) {
+        callback : function(json) {
           $.ajax({
             type: 'PUT',
-            url: '#{giveaway_entries_path(@giveaway["giveaway"])}' + '/' + $eed,
+            url: '#{giveaway_entries_path(@giveaway["giveaway"])}' + '/' + $entry_id,
             dataType: "text",
             data: json,
             statusCode: {
-              202: function(response) {
-                alert("Do something with this 202");
-              },
-              406: function(response) {
-                alert("Do something with this 406");
-              },
+              202: function() {},
+              406: function() {},
               404: function() {
-                sga.eee.xrx("There was an unexpected error.<br />Please reload the page and try again.");
+                Giveaway.entry.error("There was an unexpected error.<br />Please reload the page and try again.");
               }
             }
           });
         },
 
-        dgj : function(data) {
+        dialog : function(data) {
           FB.ui(
             data,
             function(response) {
               if (response && response.post_id) {
                 json = {
                   entry : {
-                    share_count : $sco + 1
+                    share_count : $share_count + 1
                   }
                 };
-                sga.shihs.comh(json);
-                console.log('Post was published.' + $eed);
+                Giveaway.share.callback(json);
+                console.log('Post was published.' + $entry_id);
               }
-              else if (response && response.request_ids) {
+              else if (response && response.to) {
                 json = {
                   entry : {
-                    request_count : $rco + response.request_ids.length
+                    request_count : $request_count + response.to.length
                   }
                 };
-                sga.shihs.comh(json);
-                console.log('Request was sent.' + $eed);
+                Giveaway.share.callback(json);
+                console.log('Request was sent.' + $entry_id);
               }
               else {
-                console.log('Nothing was shared.' + $eed);
+                console.log('Nothing was shared.' + $entry_id);
               }
             }
           );
         },
 
-        a_wp : function() {
-          sga.shihs.dgj({
+        as_wall_post : function() {
+          Giveaway.share.dialog({
             method: "feed",
             name: '#{@giveaway["current_page"]["name"]}',
-            link: '#{@giveaway["giveaway"]["giveaway_url"]}' + '&app_data=ref_' + $eed,
+            link: '#{@giveaway["giveaway"]["giveaway_url"]}' + '&app_data=ref_' + $entry_id,
             picture: '#{@giveaway["giveaway"].feed_image.url}',
             caption: '#{@giveaway["giveaway"].title}',
             description: '#{@giveaway["giveaway"].description}'
           });
         },
 
-        a_ap : function() {
-          sga.shihs.dgj({
+        as_app_request : function() {
+          Giveaway.share.dialog({
+            title: 'Share this giveaway to receive a bonus entry.',
             method: 'apprequests',
             message: '#{@giveaway["giveaway"].description}',
-            data: { referrer_id : $eed.toString(), giveaway_id : '#{@giveaway["giveaway"]["id"]}' }
+            data: { referrer_id : $entry_id.toString(), giveaway_id : '#{@giveaway["giveaway"]["id"]}' }
           });
         }
       }
     };
 
+    // Event Listeners
     $("#enter_giveaway a").click(function(e) {
-      if (sga.eli || $jl) {
-        sga.eee.eli();
+      if (Giveaway.eligible || $just_liked) {
+        Giveaway.entry.eligible();
       } else {
-        sga.md.show();
-        sga.st.two.find("a").click(function(event) {
+        Giveaway.modal.show();
+        Giveaway.step.two.find("a").click(function(event) {
           event.preventDefault();
-          sga.eee.sCk();
+          Giveaway.entry.statusCheck();
         });
       }
       e.preventDefault();

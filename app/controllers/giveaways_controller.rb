@@ -2,8 +2,11 @@ require 'json'
 
 class GiveawaysController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:tab, :app_request]
-  
+  before_filter :authenticate_user!, :except => :tab
+
+  skip_before_filter :verify_authenticity_token, :only => :tab
+
+
   def index
     @giveaways = Giveaway.all
   end
@@ -54,19 +57,14 @@ class GiveawaysController < ApplicationController
   end
 
   def tab
-    if params[:signed_request]
-      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      signed_request = oauth.parse_signed_request(params[:signed_request])
+    if params[:request_ids]
+      if @redirect_url = Giveaway.redirect_app_request(params["request_ids"])
+        Giveaway.delete_app_request(params)
+        redirect_to @redirect_url
+      end
+    elsif params[:signed_request]
 
-      current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
-
-      @giveaway = {
-        "app_data" => signed_request["app_data"],
-        "has_liked" => signed_request["page"]["liked"],
-        "request_id" => params["request_ids"],
-        "current_page" => current_page,
-        "giveaway" => current_page.giveaways.detect(&:is_live?)
-      }
+      @giveaway = Giveaway.render(params)
 
       if @giveaway["giveaway"].nil?
         redirect_to "/404.html"
@@ -74,22 +72,6 @@ class GiveawaysController < ApplicationController
         impressionist(@giveaway["giveaway"])
         render :layout => "tab"
       end
-    else
-      redirect_to "/500.html"
-    end
-  end
-
-  def app_request
-    if params["request_ids"]
-
-      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      graph = Koala::Facebook::GraphAPI.new(oauth.get_app_access_token)
-
-      request = graph.get_object(params["request_ids"])
-      referrer = JSON.parse(request["data"])["referrer_id"]
-      giveaway = Giveaway.find_by_id(JSON.parse(request["data"])["giveaway_id"])
-
-      redirect_to "#{giveaway.giveaway_url}&app_data=ref_#{referrer}"
     else
       redirect_to "/500.html"
     end
