@@ -30,7 +30,9 @@
     $just_liked = false;
 
     $app_data = '#{@giveaway["app_data"] || "ref_none"}';
-    $referrer = $app_data.split("ref_")[1];
+    console.log($app_data);
+    $referrer =  $app_data.split("ref_")[1] || JSON.parse($app_data).referrer_id || "";
+    console.log($referrer);
 
     var $modal = $("#giveaway_modal");
     var $loader = $modal.find(".loader");
@@ -38,6 +40,8 @@
     $("#giveaway_image").click(function() {
       Giveaway.modal.hide();
     });
+
+    var $request_ids = '#{@giveaway["request_ids"] || [] }';
 
     // Giveaway object
     Giveaway = {
@@ -118,6 +122,7 @@
           FB.getLoginStatus(function(response) {
             if (response.authResponse) {
               Giveaway.entry.submit(response.authResponse.accessToken);
+              Giveaway.entry.delete_app_request($request_ids);
             } else {
               FB.login({
                 scope: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
@@ -126,12 +131,23 @@
                 if (response.authResponse) {
                   $new_session = response.authResponse.accessToken;
                   Giveaway.entry.submit(response.authResponse.accessToken, true);
+                  Giveaway.entry.delete_app_request($request_ids);
                 } else {
                   Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
                 }
               });
             }
           });
+        },
+
+        delete_app_request : function(request_ids) {
+          if (request_ids.length > 0) {
+            $.each(request_ids, function(i, rid) {
+              FB.api(rid, 'delete', function(response) {
+                console.log(response);
+              });  
+            });            
+          }  
         },
 
         eligible : function() {

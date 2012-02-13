@@ -57,13 +57,13 @@ class GiveawaysController < ApplicationController
   end
 
   def tab
+    logger.ap params
     if params[:request_ids]
-      if @redirect_url = Giveaway.redirect_app_request(params["request_ids"])
-        Giveaway.delete_app_request(params)
-        redirect_to @redirect_url
-      end
-    elsif params[:signed_request]
+      @giveaway = Giveaway.render(params, true)
 
+      impressionist(@giveaway["giveaway"])
+      render :layout => "tab"
+    elsif params[:signed_request]
       @giveaway = Giveaway.render(params)
 
       if @giveaway["giveaway"].nil?

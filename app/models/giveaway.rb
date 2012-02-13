@@ -72,35 +72,39 @@ class Giveaway < ActiveRecord::Base
 
   class << self
 
-    def render(params)
+    def render(params, *apprequest)
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
+
       signed_request = oauth.parse_signed_request(params[:signed_request])
 
-      current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
+      if apprequest.present?
+        request = graph.get_object(params[:request_ids])
 
-      {
-        "app_data" => signed_request["app_data"],
-        "has_liked" => signed_request["page"]["liked"],
-        "request_id" => params["request_ids"],
-        "current_page" => current_page,
-        "giveaway" => current_page.giveaways.detect(&:is_live?)
-      }
-    end
+        giveaway = Giveaway.find_by_id(JSON.parse(request["data"])["giveaway_id"])
 
-    def redirect_app_request(request_ids)
-      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      graph = Koala::Facebook::API.new(oauth.get_app_access_token)
+        {
+          "app_data" => request["data"],
+          "has_liked" => false,
+          "request_ids" => params["request_ids"],
+          "current_page" => giveaway.facebook_page,
+          "giveaway" => giveaway
+        }
+      else
+        current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
 
-      request = graph.get_object(request_ids)
-      referrer = JSON.parse(request["data"])["referrer_id"]
-      giveaway = Giveaway.find_by_id(JSON.parse(request["data"])["giveaway_id"])
-
-      "#{giveaway.giveaway_url}&app_data=ref_#{referrer}"
+        {
+          "app_data" => signed_request["app_data"],
+          "has_liked" => signed_request["page"]["liked"],
+          "current_page" => current_page,
+          "giveaway" => current_page.giveaways.detect(&:is_live?)
+        }
+      end
     end
 
     def delete_app_request(params)
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      graph = Koala::Facebook::API.new(oauth.get_app_access_token)
+      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
       signed_request = oauth.parse_signed_request(params[:signed_request])
       request_ids = params[:request_ids]
 
