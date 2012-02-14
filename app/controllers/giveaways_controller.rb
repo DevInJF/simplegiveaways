@@ -61,7 +61,7 @@ class GiveawaysController < ApplicationController
 
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
 
-      app_data = signed_request["app_data"]
+      app_data = signed_request["app_data"] || [];
 
       if app_data[0..3] == "ref_"
         app_data = { "referrer_id" => app_data.split("ref_")[1] }.to_json
