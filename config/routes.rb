@@ -3,6 +3,9 @@ SGA::Application.routes.draw do
   # Transaction
   resources :transactions
 
+  # Canvas on facebook.com
+  match "/canvas" => "canvas#index"
+
   # Giveaway
   resources :giveaways do
     resources :entries

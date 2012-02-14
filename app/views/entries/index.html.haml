@@ -2,8 +2,7 @@
 %table
   %tr
     %th Email
-    %th Has Liked Primary
-    %th Has Liked Mandatory
+    %th Has Liked
     %th Name
     %th Fb Url
     %th Datetime Entered
@@ -14,8 +13,7 @@
   - for entry in @entries
     %tr
       %td= entry.email
-      %td= entry.has_liked_primary
-      %td= entry.has_liked_mandatory
+      %td= entry.has_liked
       %td= entry.name
       %td= entry.fb_url
       %td= entry.datetime_entered

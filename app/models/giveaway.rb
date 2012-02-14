@@ -70,49 +70,6 @@ class Giveaway < ActiveRecord::Base
     0
   end
 
-  class << self
-
-    def render(params, *apprequest)
-      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
-
-      signed_request = oauth.parse_signed_request(params[:signed_request])
-
-      if apprequest.present?
-        request = graph.get_object(params[:request_ids])
-
-        giveaway = Giveaway.find_by_id(JSON.parse(request["data"])["giveaway_id"])
-
-        {
-          "app_data" => request["data"],
-          "has_liked" => false,
-          "request_ids" => params["request_ids"],
-          "current_page" => giveaway.facebook_page,
-          "giveaway" => giveaway
-        }
-      else
-        current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
-
-        {
-          "app_data" => signed_request["app_data"],
-          "has_liked" => signed_request["page"]["liked"],
-          "current_page" => current_page,
-          "giveaway" => current_page.giveaways.detect(&:is_live?)
-        }
-      end
-    end
-
-    def delete_app_request(params)
-      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
-      signed_request = oauth.parse_signed_request(params[:signed_request])
-      request_ids = params[:request_ids]
-
-      request_ids.split(",").each do |request|
-        graph.delete_object "#{request}_#{signed_request["user_id"]}"
-      end
-    end
-  end
 
   private
 

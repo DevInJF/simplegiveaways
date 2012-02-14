@@ -15,6 +15,8 @@ class Entry < ActiveRecord::Base
     graph = Koala::Facebook::API.new(access_token)
     @profile = graph.get_object("me")
 
+    logger.ap @profile
+
     uid = @profile["id"]
 
     if @entry = Entry.find_by_uid(uid)
@@ -29,19 +31,19 @@ class Entry < ActiveRecord::Base
       )
 
       if has_liked == "true"
-        @entry.has_liked_primary = true
+        @entry.has_liked = true
         @entry.status = "complete"
       else
         if Entry.like_status(giveaway.facebook_page.pid, uid, access_token) == false
-          @entry.has_liked_primary = false
+          @entry.has_liked = false
           @entry.status = "incomplete"
         else
-          @entry.has_liked_primary = true
+          @entry.has_liked = true
           @entry.status = "complete"
         end
       end
 
-      if @entry.has_liked_primary && ref != "none"
+      if @entry.has_liked && ref != "none"
         giveaway.count_conversion(ref)
       end
 

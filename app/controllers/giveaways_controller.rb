@@ -4,8 +4,6 @@ class GiveawaysController < ApplicationController
 
   before_filter :authenticate_user!, :except => :tab
 
-  skip_before_filter :verify_authenticity_token, :only => :tab
-
 
   def index
     @giveaways = Giveaway.all
@@ -57,14 +55,21 @@ class GiveawaysController < ApplicationController
   end
 
   def tab
-    logger.ap params
-    if params[:request_ids]
-      @giveaway = Giveaway.render(params, true)
+    if params[:signed_request]
+      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      signed_request = oauth.parse_signed_request(params[:signed_request])
 
-      impressionist(@giveaway["giveaway"])
-      render :layout => "tab"
-    elsif params[:signed_request]
-      @giveaway = Giveaway.render(params)
+      logger.ap params
+      logger.ap signed_request
+
+      current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
+
+      @giveaway = {
+        "app_data" => signed_request["app_data"],
+        "has_liked" => signed_request["page"]["liked"],
+        "current_page" => current_page,
+        "giveaway" => current_page.giveaways.detect(&:is_live?)
+      }
 
       if @giveaway["giveaway"].nil?
         redirect_to "/404.html"

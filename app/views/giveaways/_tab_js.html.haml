@@ -29,21 +29,16 @@
     // init
     $just_liked = false;
 
-    $app_data = '#{@giveaway["app_data"] || "ref_none"}';
-    console.log($app_data);
-    $referrer =  $app_data.split("ref_")[1] || JSON.parse($app_data).referrer_id || "";
-    console.log($referrer);
-
-    var $modal = $("#giveaway_modal");
-    var $loader = $modal.find(".loader");
+    var $app_data = '#{@giveaway["app_data"] || []}',
+        $referrer = JSON.parse($app_data).referrer_id || $app_data.split("ref_")[1] || "",
+        $request_ids = JSON.parse($app_data).request_ids || [],
+        $modal = $("#giveaway_modal"),
+        $loader = $modal.find(".loader");
 
     $("#giveaway_image").click(function() {
       Giveaway.modal.hide();
     });
 
-    var $request_ids = '#{@giveaway["request_ids"] || [] }';
-
-    // Giveaway object
     Giveaway = {
 
       modal : $modal,
@@ -83,7 +78,9 @@
         submit : function(access_token, json) {
           Giveaway.entry.loader();
           if (json) {
+          console.log(json);
             access_token = eval('(' + access_token + ')'); //decode json
+          console.log(access_token);
           }
           $.ajax({
             type: 'POST',
@@ -121,6 +118,7 @@
         statusCheck : function() {
           FB.getLoginStatus(function(response) {
             if (response.authResponse) {
+              console.log(response);
               Giveaway.entry.submit(response.authResponse.accessToken);
               Giveaway.entry.delete_app_request($request_ids);
             } else {
@@ -142,11 +140,11 @@
 
         delete_app_request : function(request_ids) {
           if (request_ids.length > 0) {
-            $.each(request_ids, function(i, rid) {
-              FB.api(rid, 'delete', function(response) {
+            for (var i = 0; i < request_ids.length; i++) {
+              FB.api(request_ids[i], 'delete', function(response) {
                 console.log(response);
-              });  
-            });            
+              });
+            }
           }  
         },
 

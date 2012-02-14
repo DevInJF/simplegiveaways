@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110826020625) do
+ActiveRecord::Schema.define(:version => 20120214025610) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -71,14 +71,13 @@ ActiveRecord::Schema.define(:version => 20110826020625) do
 
   create_table "entries", :force => true do |t|
     t.string   "email"
-    t.boolean  "has_liked_mandatory", :default => false
-    t.boolean  "has_liked_primary",   :default => false
+    t.boolean  "has_liked",        :default => false
     t.string   "name"
     t.string   "fb_url"
     t.datetime "datetime_entered"
-    t.integer  "share_count",         :default => 0
-    t.integer  "request_count",       :default => 0
-    t.integer  "convert_count",       :default => 0
+    t.integer  "share_count",      :default => 0
+    t.integer  "request_count",    :default => 0
+    t.integer  "convert_count",    :default => 0
     t.integer  "giveaway_id"
     t.datetime "created_at"
     t.datetime "updated_at"
