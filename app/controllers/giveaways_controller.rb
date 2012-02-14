@@ -59,13 +59,16 @@ class GiveawaysController < ApplicationController
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       signed_request = oauth.parse_signed_request(params[:signed_request])
 
-      logger.ap params
-      logger.ap signed_request
-
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
 
+      app_data = signed_request["app_data"]
+
+      if app_data[0..3] == "ref_"
+        app_data = { "referrer_id" => app_data.split("ref_")[1] }.to_json
+      end
+
       @giveaway = {
-        "app_data" => signed_request["app_data"],
+        "app_data" => app_data,
         "has_liked" => signed_request["page"]["liked"],
         "current_page" => current_page,
         "giveaway" => current_page.giveaways.detect(&:is_live?)

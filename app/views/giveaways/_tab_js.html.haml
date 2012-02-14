@@ -30,7 +30,7 @@
     $just_liked = false;
 
     var $app_data = '#{@giveaway["app_data"] || []}',
-        $referrer = JSON.parse($app_data).referrer_id || $app_data.split("ref_")[1] || "",
+        $referrer = JSON.parse($app_data).referrer_id || "",
         $request_ids = JSON.parse($app_data).request_ids || [],
         $modal = $("#giveaway_modal"),
         $loader = $modal.find(".loader");
