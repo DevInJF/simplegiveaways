@@ -20,7 +20,7 @@ class CanvasController < ApplicationController
                               .find_by_id(JSON.parse(request["data"])["giveaway_id"])
                               .giveaway_url
 
-      @app_data = { :request_ids => request_ids || [],
+      @app_data = { :request_ids => [request_ids.last] || [],
                     :referrer_id => JSON.parse(request["data"])["referrer_id"] }
 
       render "giveaways/apprequest", :layout => false
