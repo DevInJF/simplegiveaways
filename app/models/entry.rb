@@ -15,8 +15,6 @@ class Entry < ActiveRecord::Base
     graph = Koala::Facebook::API.new(access_token)
     @profile = graph.get_object("me")
 
-    logger.ap @profile
-
     uid = @profile["id"]
 
     if @entry = Entry.find_by_uid(uid)

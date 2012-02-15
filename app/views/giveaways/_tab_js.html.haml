@@ -29,9 +29,7 @@
     // init
     $just_liked = false;
 
-    var $app_data = '#{@giveaway["app_data"] || []}',
-        $referrer = JSON.parse($app_data).referrer_id || "",
-        $request_ids = JSON.parse($app_data).request_ids || [],
+    var $referrer_id = "#{@giveaway["referrer_id"]}" || "",
         $modal = $("#giveaway_modal"),
         $loader = $modal.find(".loader");
 
@@ -86,7 +84,7 @@
             type: 'POST',
             url: '#{giveaway_entries_path(@giveaway["giveaway"])}',
             dataType: "json",
-            data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer,
+            data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer_id,
             statusCode: {
               201: function(response) {
                 Giveaway.entry.success();
@@ -118,9 +116,7 @@
         statusCheck : function() {
           FB.getLoginStatus(function(response) {
             if (response.authResponse) {
-              console.log(response);
               Giveaway.entry.submit(response.authResponse.accessToken);
-              Giveaway.entry.delete_app_request($request_ids);
             } else {
               FB.login({
                 scope: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
@@ -129,23 +125,12 @@
                 if (response.authResponse) {
                   $new_session = response.authResponse.accessToken;
                   Giveaway.entry.submit(response.authResponse.accessToken, true);
-                  Giveaway.entry.delete_app_request($request_ids);
                 } else {
                   Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
                 }
               });
             }
           });
-        },
-
-        delete_app_request : function(request_ids) {
-          if (request_ids.length > 0) {
-            for (var i = 0; i < request_ids.length; i++) {
-              FB.api(request_ids[i], 'delete', function(response) {
-                console.log(response);
-              });
-            }
-          }  
         },
 
         eligible : function() {

@@ -14,14 +14,13 @@ class CanvasController < ApplicationController
       graph = Koala::Facebook::API.new(FB_APP_TOKEN)
       request = graph.get_object(request_ids.last)
 
-      logger.ap request
-
       @giveaway_url = Giveaway.select("id, giveaway_url")
                               .find_by_id(JSON.parse(request["data"])["giveaway_id"])
                               .giveaway_url
 
-      @app_data = { :request_ids => [request_ids.last] || [],
-                    :referrer_id => JSON.parse(request["data"])["referrer_id"] }
+      @app_data = "ref_#{JSON.parse(request['data'])['referrer_id']}"
+
+      Giveaway.delete_app_request(request_ids.last, params[:signed_request])
 
       render "giveaways/apprequest", :layout => false
     else
