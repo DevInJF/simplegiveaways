@@ -1,39 +1,50 @@
 source 'http://rubygems.org'
 
-gem "rails", "3.0.9"
-gem "rake", ">= 0.9.2"
-gem "mysql2", "0.2.6"
-gem "devise"
-gem "jammit", "~> 0.6.3"
-gem "haml"
-gem "sass"
-gem "jquery-rails", ">= 1.0.12"
-gem "omniauth", "~> 1.0.0"
+gem 'rails', '3.2.1'
+gem 'mysql2', '~> 0.3.10'
+
+gem "activeadmin"
+gem "meta_search", '>= 1.1.0.pre'
+
+gem "heroku"
+gem "delayed_job"
+
+gem "omniauth"
 gem "omniauth-facebook"
-gem "activeadmin", "~> 0.2.2"
-gem "koala", "~> 1.3.0rc2"
-gem "delayed_job", "~> 2.1.4"
-gem "paperclip", "~> 2.3.15"
-gem "aws-s3"
-gem "simple_form", "~> 1.5.2"
-gem "impressionist"
+gem "koala"
+
+gem "aws-sdk"
+gem "paperclip"
+
 gem "json"
 gem "braintree"
-gem "heroku"
+gem "impressionist"
+gem "simple_form"
+
+group :assets do
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+end
+
+gem 'haml-rails'
+gem 'sass-rails', '~> 3.2.3'
+gem 'bootstrap-sass', '~> 2.0.0'
+gem 'jquery-rails'
+
+group :development do
+  gem 'erb2haml'
+  gem 'seed_dump'
+  gem 'magic_encoding'
+  gem "nifty-generators"
+end
 
 group :development, :test do
-  gem "rspec-rails"
-  gem "capybara"
-  gem "awesome_print", :require => "awesome_print"
+  gem 'itslog'
+  gem 'thin'
+  gem "ruby_parser"
+  gem "hpricot"
+  gem "faker"
   gem "timecop"
   gem "factory_girl_rails"
-  gem "fixture_builder", "~> 0.3.1"
-  gem "mocha"
-  gem "nifty-generators"
-  gem "shoulda-matchers"
-  gem "faker"
-  gem "hpricot"
-  gem "ruby_parser"
-  gem 'thin'
-  gem 'itslog'
+  gem "awesome_print", :require => "ap"
 end

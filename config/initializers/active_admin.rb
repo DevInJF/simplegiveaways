@@ -5,15 +5,26 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "SGA"
+  config.site_title = "Simplegiveaways"
 
+  # Set the link url for the title. For example, to take
+  # users to your main site. Defaults to no link.
+  #
+  # config.site_title_link = "/"
+
+  # Set an optional image to be displayed for the header
+  # instead of a string (overrides :site_title)
+  #
+  # Note: Recommended image height is 21px to properly fit in the header
+  #
+  # config.site_title_image = "/images/logo.png"
 
   # == Default Namespace
   #
   # Set the default namespace each administration resource
-  # will be added to. 
+  # will be added to.
   #
-  # eg: 
+  # eg:
   #   config.default_namespace = :hello_world
   #
   # This will create resources in the HelloWorld module and
@@ -21,13 +32,25 @@ ActiveAdmin.setup do |config|
   #
   # To set no namespace by default, use:
   #   config.default_namespace = false
-  config.default_namespace = :admin
-
+  #
+  # Default:
+  # config.default_namespace = :admin
+  #
+  # You can customize the settings for each namespace by using
+  # a namespace block. For example, to change the site title
+  # within a namespace:
+  #
+  #   config.namespace :admin do |admin|
+  #     admin.site_title = "Custom Admin Title"
+  #   end
+  #
+  # This will ONLY change the title for the admin section. Other
+  # namespaces will continue to use the main "site_title" configuration.
 
   # == User Authentication
   #
-  # Active Admin will automatically call an authentication 
-  # method in a before filter of all controller actions to 
+  # Active Admin will automatically call an authentication
+  # method in a before filter of all controller actions to
   # ensure that there is a currently logged in admin user.
   #
   # This setting changes the method which Active Admin calls
@@ -45,33 +68,61 @@ ActiveAdmin.setup do |config|
   config.current_user_method = :current_admin_user
 
 
+  # == Logging Out
+  #
+  # Active Admin displays a logout link on each screen. These
+  # settings configure the location and method used for the link.
+  #
+  # This setting changes the path where the link points to. If it's
+  # a string, the strings is used as the path. If it's a Symbol, we
+  # will call the method to return the path.
+  #
+  # Default:
+  # config.logout_link_path = :destroy_admin_user_session_path
+
+  # This setting changes the http method used when rendering the
+  # link. For example :get, :delete, :put, etc..
+  #
+  # Default:
+  # config.logout_link_method = :get
+
+
   # == Admin Comments
   #
-  # Admin notes allow you to add notes to any model
+  # Admin comments allow you to add comments to any model for admin use.
+  # Admin comments are enabled by default.
   #
-  # Admin notes are enabled by default in the default
-  # namespace only. You can turn them on in a namesapce
-  # by adding them to the comments array.
+  # Default:
+  # config.allow_comments = true
   #
-  # config.allow_comments_in = [:admin]
+  # You can turn them on and off for any given namespace by using a
+  # namespace config block.
+  #
+  # Eg:
+  #   config.namespace :without_comments do |without_comments|
+  #     without_comments.allow_comments = false
+  #   end
 
 
   # == Controller Filters
   #
   # You can add before, after and around filters to all of your
-  # Active Admin resources from here. 
+  # Active Admin resources from here.
   #
   # config.before_filter :do_something_awesome
 
 
   # == Register Stylesheets & Javascripts
   #
-  # We recomend using the built in Active Admin layout and loading
+  # We recommend using the built in Active Admin layout and loading
   # up your own stylesheets / javascripts to customize the look
   # and feel.
   #
   # To load a stylesheet:
   #   config.register_stylesheet 'my_stylesheet.css'
+  #
+  # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
+  #   config.register_stylesheet 'my_print_stylesheet.css', :media => :print
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'

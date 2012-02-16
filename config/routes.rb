@@ -1,4 +1,8 @@
-SGA::Application.routes.draw do
+Simplegiveaways::Application.routes.draw do
+
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   # Transaction
   resources :transactions
@@ -32,12 +36,6 @@ SGA::Application.routes.draw do
   # 3rd Party User Authentication
   resources :authentications
   match "/auth/:provider/callback" => "authentications#create"
-
-  # AdminUser
-  ActiveAdmin.routes(self)
-
-  # AdminUser Authentication
-  devise_for :admin_users, ActiveAdmin::Devise.config
 
   # Root
   root :to => "welcome#index"

@@ -2,6 +2,4 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-SGA::Application.initialize! do |config|
-  config.gem "jammit"
-end
+Simplegiveaways::Application.initialize!

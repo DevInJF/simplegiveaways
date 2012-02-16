@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120214025610) do
+ActiveRecord::Schema.define(:version => 20120216052308) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -18,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.integer  "author_id"
     t.string   "author_type"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "namespace"
   end
 
@@ -28,18 +29,18 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "admin_users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -49,8 +50,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "token"
   end
 
@@ -63,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -79,8 +80,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.integer  "request_count",    :default => 0
     t.integer  "convert_count",    :default => 0
     t.integer  "giveaway_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "status"
     t.string   "uid"
   end
@@ -92,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.string   "category"
     t.string   "pid"
     t.string   "token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "avatar"
     t.text     "description"
     t.integer  "likes"
@@ -110,8 +111,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.string   "prize"
     t.text     "terms"
     t.string   "giveaway_url"
@@ -138,8 +139,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.string   "ip_address"
     t.string   "message"
     t.string   "referrer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   add_index "impressions", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"
@@ -161,8 +162,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.string   "authorization"
     t.string   "message"
     t.text     "params"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.time     "purchased_at"
   end
 
@@ -177,8 +178,8 @@ ActiveRecord::Schema.define(:version => 20120214025610) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "name"
   end
 

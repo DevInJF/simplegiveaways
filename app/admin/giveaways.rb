@@ -1,29 +1,3 @@
 ActiveAdmin.register Giveaway do
-
-  # Create sections on the index screen
-  scope :all, :default => true
-
-  # Filterable attributes on the index screen
-  filter :title
-  filter :description
-  filter :image_file_name
-  filter :is_live?
-  filter :facebook_page_id
-  filter :start_date
-  filter :end_date
-  filter :created_at
-
-  # Customize columns displayed on the index screen in the table
-  index do
-    column :title
-    column :description
-    column :image_file_name
-    column :is_live?
-    column :facebook_page_id
-    column :start_date
-    column :end_date
-    column :created_at
-    default_actions
-  end
-
+  
 end
