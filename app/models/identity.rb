@@ -9,31 +9,50 @@ class Identity < ActiveRecord::Base
   attr_accessor :auth
 
 
-  def self.find_with_omniauth(auth)
-    identity = find_by_provider_and_uid(auth['provider'], auth['uid'])
-    IdentityRefreshWorker.perform_async(identity.id, auth) rescue nil
-    identity
-  end
+  class << self
 
-  def self.create_with_omniauth(auth)
-    logger.ap auth
-    identity = Identity.new(auth: auth, uid: auth['uid'], provider: auth['provider'])
-    if identity.set_provider_data!
-      identity.save
+    def find_or_create_with_omniauth(auth)
+      if identity = Identity.find_with_omniauth(auth)
+        identity.refresh_provider_data(auth)
+      else
+        identity = Identity.create_with_omniauth(auth)
+      end
+
       identity
-    else
-      identity.destroy
-      false
+    end
+
+    def find_with_omniauth(auth)
+      find_by_provider_and_uid(auth['provider'], auth['uid'])
+    end
+
+    def create_with_omniauth(auth)
+      identity = Identity.new(auth: auth, uid: auth['uid'], provider: auth['provider'])
+      if identity.set_provider_data!
+        identity.save
+        identity
+      else
+        identity.destroy
+        false
+      end
     end
   end
 
-  def self.refresh_provider_data(id, auth)
-    identity = Identity.find(id)
-    identity.auth = auth
-    if identity.set_provider_data!
-      identity.save
+  def process_login(datetime)
+    self.login_count = self.login_count += 1
+    self.logged_in_at = datetime
+    save
+
+    user.retrieve_pages
+  end
+  handle_asynchronously :process_login
+
+  def refresh_provider_data(auth)
+    self.auth = auth
+    if set_provider_data!
+      save
     end
   end
+  handle_asynchronously :refresh_provider_data
 
   def set_provider_data!
     if auth['provider'] == "facebook"

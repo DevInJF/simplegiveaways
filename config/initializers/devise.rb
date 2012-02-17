@@ -1,8 +1,11 @@
 # -*- encoding : utf-8 -*-
-Devise.router_name = :main_app
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+
+  Devise.router_name = :main_app
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.

@@ -1,17 +1,35 @@
 !!!
-%html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
+%html
   %head
-    %title Easily Create and Launch Giveaways for Your Facebook Pages | Simple Giveaway App
-    = stylesheet_link_tag "application", :media => "all"
+    %meta{:charset => "utf-8"}
+    %title Bootstrap, from Twitter
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+
+    / HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body.welcome
-    = render "layouts/nav"
-    = render "layouts/header"
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          = link_to "Project name", "#", :class => "brand"
+          %ul.nav
+            %li.active
+              %a{:href => "#"} Home
+            %li
+              %a{:href => "#about"} About
+            %li
+              %a{:href => "#contact"} Contact
     .container
-      - unless flash.blank? or flash.nil?
-        = render "shared/flash_messages", :flash => flash
-
+      - flash.each do |name, msg|
+        = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
+          %a.close{:href => "#", :"data-dismiss" => "alert"} ×
+          = msg
       = yield
-
-      = render "layouts/footer"
+      %hr
+      %footer
+        %p &copy; Company 2012

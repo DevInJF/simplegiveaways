@@ -71,12 +71,16 @@ class Giveaway < ActiveRecord::Base
     0
   end
 
-  def self.delete_app_request(request_id, signed_request)
-    oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-    graph = Koala::Facebook::API.new(FB_APP_TOKEN)
-    signed_request = oauth.parse_signed_request(signed_request)
+  class << self
 
-    graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
+    def delete_app_request(request_id, signed_request)
+      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
+      signed_request = oauth.parse_signed_request(signed_request)
+
+      graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
+    end
+    handle_asynchronously :delete_app_request
   end
 
   private

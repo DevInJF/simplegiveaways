@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class FacebookPage < ActiveRecord::Base
+
   has_and_belongs_to_many :users
   has_many :giveaways
 
@@ -8,7 +9,7 @@ class FacebookPage < ActiveRecord::Base
   # validates :pid, :uniqueness => {:scope => [:kind, :user]}
   
   def retrieve_fb_meta
-    graph = Koala::Facebook::GraphAPI.new(token)
+    graph = Koala::Facebook::API.new(token)
 
     fb_page = graph.get_object("me")
     fb_page_url = fb_page["link"]

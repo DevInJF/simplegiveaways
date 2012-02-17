@@ -1,52 +1,60 @@
 # -*- encoding : utf-8 -*-
 class Entry < ActiveRecord::Base
+
   belongs_to :giveaway
 
-  validates :email, :uniqueness => {:scope => :giveaway_id}
+  validates :email, :uniqueness => { :scope => :giveaway_id }
 
-  def self.like_status(pid, uid, access_token)
-    @rest = Koala::Facebook::API.new(access_token)
-    status = @rest.fql_query("SELECT uid FROM page_fan WHERE uid=#{uid} AND page_id=#{pid}")
-    status[0].nil? ? false : true
-  end
 
-  def build_from_session(giveaway, access_token, has_liked, ref)
-    @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+  def process(*args)
+    options = args.extract_options!
 
-    graph = Koala::Facebook::API.new(access_token)
-    @profile = graph.get_object("me")
+    graph = Koala::Facebook::API.new(options[:access_token])
+    profile = graph.get_object("me")
 
-    uid = @profile["id"]
-
-    if @entry = Entry.find_by_uid(uid)
-      @entry
-    else
-      @entry = giveaway.entries.build(
-        :uid => uid,
-        :name => @profile["name"],
-        :email => @profile["email"],
-        :fb_url => @profile["link"],
+    unless @entry = Entry.find_by_uid(profile["id"])
+      @entry = self.update_attributes(
+        :uid => profile["id"],
+        :name => profile["name"],
+        :email => profile["email"],
+        :fb_url => profile["link"],
         :datetime_entered => DateTime.now
       )
 
-      if has_liked == "true"
-        @entry.has_liked = true
-        @entry.status = "complete"
+      @entry.determine_status(options[:has_liked], options[:access_token])
+      @entry.count_conversions(options[:referrer_id])
+    end
+
+    @entry
+  end
+
+  def determine_status(has_liked, access_token)
+    if has_liked == "true"
+      self.has_liked = true
+      self.status = "complete"
+    else
+      if like_status(access_token) == false
+        self.has_liked = false
+        self.status = "incomplete"
       else
-        if Entry.like_status(giveaway.facebook_page.pid, uid, access_token) == false
-          @entry.has_liked = false
-          @entry.status = "incomplete"
-        else
-          @entry.has_liked = true
-          @entry.status = "complete"
-        end
+        self.has_liked = true
+        self.status = "complete"
       end
+    end
 
-      if @entry.has_liked && ref != "none"
-        giveaway.count_conversion(ref)
-      end
+    self
+  end
 
-      @entry
+  def like_status(access_token)
+    rest = Koala::Facebook::API.new(access_token)
+    status = rest.fql_query("SELECT uid FROM page_fan WHERE uid=#{uid} AND page_id=#{giveaway.facebook_page.pid}")
+    status[0].nil? ? false : true
+  end
+
+  def count_conversions(referrer_id)
+    if has_liked && referrer_id != "none"
+      giveaway.count_conversion(referrer_id)
     end
   end
+  handle_asynchronously :count_conversions
 end

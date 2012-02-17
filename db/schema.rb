@@ -128,10 +128,10 @@ ActiveRecord::Schema.define(:version => 20120217075343) do
     t.string   "profile_url"
     t.string   "location"
     t.integer  "user_id"
-    t.integer  "login_count"
+    t.integer  "login_count",  :default => 0
     t.datetime "logged_in_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "identities", ["uid", "provider"], :name => "index_identities_on_uid_and_provider", :unique => true

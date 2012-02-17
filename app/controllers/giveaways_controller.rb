@@ -3,9 +3,6 @@ require 'json'
 
 class GiveawaysController < ApplicationController
 
-  before_filter :authenticate_user!, :except => :tab
-
-
   def index
     @giveaways = Giveaway.all
   end

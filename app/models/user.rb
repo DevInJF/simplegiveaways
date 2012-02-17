@@ -5,16 +5,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :facebook_pages
 
 
-  def generate_account
-    retrieve_pages
-  end
-  handle_asynchronously :generate_account
-
-  protected
-
   def retrieve_pages
-    logger.ap identities.where("provider = facebook")
-    graph = Koala::Facebook::API.new(identities.where("provider = ?", "facebook").first)
+    graph = Koala::Facebook::API.new(identities.where("provider = ?", "facebook").first.token)
     pages = graph.get_connections("me", "accounts")
     pages.each do |page|
       page_category = page["category"]
@@ -34,4 +26,5 @@ class User < ActiveRecord::Base
       end
     end
   end
+  handle_asynchronously :retrieve_pages
 end

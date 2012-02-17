@@ -28,17 +28,14 @@ $(function() {
   // init
   $just_liked = false;
 
-  $app_data = '#{@giveaway["app_data"] || "ref_none"}';
-  $referrer = $app_data.split("ref_")[1];
-
-  var $modal = $("#giveaway_modal");
-  var $loader = $modal.find(".loader");
+  var $referrer_id = "#{@giveaway["referrer_id"]}" || "",
+          $modal = $("#giveaway_modal"),
+          $loader = $modal.find(".loader");
 
   $("#giveaway_image").click(function() {
     Giveaway.modal.hide();
   });
 
-  // Giveaway object
   Giveaway = {
 
     modal : $modal,
@@ -78,13 +75,15 @@ $(function() {
       submit : function(access_token, json) {
         Giveaway.entry.loader();
         if (json) {
+          console.log(json);
           access_token = eval('(' + access_token + ')'); //decode json
+          console.log(access_token);
         }
         $.ajax({
           type: 'POST',
           url: '#{giveaway_entries_path(@giveaway["giveaway"])}',
           dataType: "json",
-          data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer,
+          data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer_id,
           statusCode: {
             201: function(response) {
               Giveaway.entry.success();

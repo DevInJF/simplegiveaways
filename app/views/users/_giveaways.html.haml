@@ -1,9 +1,0 @@
-%h3 Giveaways
-- @user.facebook_pages.giveaways.each do |giveaway|
-  %ul
-    %li.clearfix
-      = image_tag giveaway.image.url(:thumb), :class => "thumb" rescue nil
-      %span.title
-        %strong= link_to giveaway.title, giveaway rescue nil
-      %br/
-      %span.description= giveaway.description rescue nil

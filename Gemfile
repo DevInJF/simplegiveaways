@@ -19,12 +19,14 @@ gem 'paperclip'
 gem 'json'
 gem 'braintree'
 gem 'impressionist'
-gem 'simple_form'
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
-gem 'bootstrap-sass', '~> 2.0.0'
+gem 'bootstrap-generators', '~> 2.0'
 gem 'jquery-rails'
+
+gem 'gon'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'

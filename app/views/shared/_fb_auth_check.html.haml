@@ -9,12 +9,12 @@
   FB.getLoginStatus(function(o) {
     if (!o && o.status) return;
     if (o.status == 'connected') {
-      // USER IS LOGGED IN AND HAS AUTHORIZED APP
+      // user is logged in and has authorized app
     } else if (o.status == 'notConnected') {
-      // USER IS LOGGED IN TO FACEBOOK (BUT HASN'T AUTHORIZED YOUR APP YET)
+      // user is logged in to facebook (but hasn't authorized your app yet)
       window.location = "#{logout_path}";
     } else {
-      // USER NOT CURRENTLY LOGGED IN TO FACEBOOK
+      // user not currently logged in to facebook
       window.location = "#{logout_path}";
     }
   });

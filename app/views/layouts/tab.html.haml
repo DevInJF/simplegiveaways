@@ -1,15 +1,16 @@
 !!!
-%html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
+%html
   %head
     %meta{:charset => "utf-8"}/
     %title= @giveaway["giveaway"]["title"]
     %meta{:content => @giveaway["giveaway"]["description"], :name => "description"}/
-    %meta{:content => "", :name => "keywords"}/
-    %meta{:content => "", :name => "author"}/
-    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"
-    = stylesheet_link_tag "/stylesheets/tab.css"
+
+    / HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
-      <haml:loud> javascript_include_tag &amp;quot;http://html5shim.googlecode.com/svn/trunk/html5.js&amp;quot; </haml:loud>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = stylesheet_link_tag "/stylesheets/tab.css"
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"
+    = csrf_meta_tags
   %body
     #tab_container
       = yield
