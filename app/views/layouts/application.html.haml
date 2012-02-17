@@ -2,8 +2,8 @@
 %html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
   %head
     %title= content_for?(:title) ? content_for(:title) : DEFAULT_TITLE
-    = include_stylesheets :bootstrap, :common, :vendor, :app
-    = include_javascripts :common, :vendor, :app
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     = csrf_meta_tag
   %body{:class => "#{controller.controller_name} #{controller.action_name}"}

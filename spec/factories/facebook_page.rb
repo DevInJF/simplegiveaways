@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Factory.sequence :pid do |i|
   "1#{i}3#{i}5#{i}7#{i}9"
 end

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Giveaway < ActiveRecord::Base
   is_impressionable
 

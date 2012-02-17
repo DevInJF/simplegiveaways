@@ -1,8 +1,10 @@
+# -*- encoding : utf-8 -*-
 class CreateIdentities < ActiveRecord::Migration
   def change
     create_table :identities do |t|
       t.string    :uid
       t.string    :provider
+      t.string    :token
       t.string    :email
       t.string    :avatar
       t.string    :profile_url

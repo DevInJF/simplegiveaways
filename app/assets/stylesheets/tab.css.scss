@@ -11,6 +11,7 @@ body {
   width: 520px;
   padding: 13px 0 10px;
   background: #5e6469;
+
   a {
     display: block;
     width: 101px;
@@ -20,6 +21,7 @@ body {
     text-align: left;
     text-indent: -9999em;
     background: transparent url("../images/giveaway/enter_giveaway_button.png") no-repeat 0 0;
+
     &:active, &:focus {
       background: transparent url("../images/giveaway/enter_giveaway_button.png") no-repeat 0 -28px; } } }
 

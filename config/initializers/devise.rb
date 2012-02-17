@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Devise.router_name = :main_app
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
@@ -61,7 +62,7 @@ Devise.setup do |config|
   # If http headers should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
 
-  # The realm used in Http Basic Authentication. "Application" by default.
+  # The realm used in Http Basic Identity. "Application" by default.
   # config.http_authentication_realm = "Application"
 
   # It will change confirmation, password recovery and other workflows

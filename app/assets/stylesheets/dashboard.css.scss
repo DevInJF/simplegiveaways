@@ -1,10 +1,8 @@
-@import "bootstrap/preboot.scss";
-
 h1 {
   a.action {
     padding-top: 2px;
     margin-left: 10px;
-    @include inline-block;
+    /*@include inline-block;*/
     line-height: 18px;
     width: 24px;
     height: 20px;
@@ -16,7 +14,7 @@ h1 {
 }
 
 .sections {
-  @include clearfix;
+  /*@include clearfix;*/
 
   section {
     display: none;

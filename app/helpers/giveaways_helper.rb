@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module GiveawaysHelper
 
   def stats(count, text)

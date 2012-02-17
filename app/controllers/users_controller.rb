@@ -1,9 +1,8 @@
+# -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
   
   respond_to :html, :xml, :json
-  
-  before_filter :authenticate_user!
-  
+
   def edit
     @user = User.find(params[:id])
     @credit_card = @user.credit_cards.build

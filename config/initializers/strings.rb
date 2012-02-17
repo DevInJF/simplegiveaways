@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Common Application Strings
 
 APPLICATION_NAME = "Simple Giveaway App"

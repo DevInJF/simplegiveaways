@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateFacebookPagesUsers < ActiveRecord::Migration
   def change
     create_table :facebook_pages_users, :id => false do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Factory.sequence :uid do |i|
   "2#{i}4#{i}6#{i}"  
 end

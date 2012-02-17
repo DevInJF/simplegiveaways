@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FacebookPage < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :giveaways

@@ -12,9 +12,9 @@
       // USER IS LOGGED IN AND HAS AUTHORIZED APP
     } else if (o.status == 'notConnected') {
       // USER IS LOGGED IN TO FACEBOOK (BUT HASN'T AUTHORIZED YOUR APP YET)
-      window.location = "#{destroy_user_session_path}";
+      window.location = "#{logout_path}";
     } else {
       // USER NOT CURRENTLY LOGGED IN TO FACEBOOK
-      window.location = "#{destroy_user_session_path}";
+      window.location = "#{logout_path}";
     }
   });

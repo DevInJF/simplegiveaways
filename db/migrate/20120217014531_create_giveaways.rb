@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateGiveaways < ActiveRecord::Migration
   def change
     create_table :giveaways, :force => true do |t|
