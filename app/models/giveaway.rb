@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Giveaway < ActiveRecord::Base
+
   is_impressionable
 
   belongs_to :facebook_page
@@ -10,9 +11,10 @@ class Giveaway < ActiveRecord::Base
   validates :start_date, :presence => true
   validates :end_date, :presence => true
   validates :prize, :presence => true
+  validates :terms, :presence => true
+
   validates_attachment_presence :image
   validates_attachment_presence :feed_image
-  validates :terms, :presence => true
 
   validate :end_in_future
  

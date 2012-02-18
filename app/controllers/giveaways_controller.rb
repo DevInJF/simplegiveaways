@@ -3,10 +3,6 @@ require 'json'
 
 class GiveawaysController < ApplicationController
 
-  def index
-    @giveaways = Giveaway.all
-  end
-
   def show
     @giveaway = Giveaway.find(params[:id], :include => [:entries])
   end

@@ -8,7 +8,6 @@ class Identity < ActiveRecord::Base
 
   attr_accessor :auth
 
-
   class << self
 
     def find_or_create_with_omniauth(auth)

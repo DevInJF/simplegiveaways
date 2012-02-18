@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     else
       unless @identity.user.present?
         @identity.create_user(:name => auth["info"]["name"])
+        @identity.save
       end
       self.current_user = @identity.user
       redirect_to root_url, notice: "Logged in!"

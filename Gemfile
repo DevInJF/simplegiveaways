@@ -23,7 +23,7 @@ gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
-gem 'bootstrap-generators', '~> 2.0'
+gem 'bootstrap-generators', '~> 2.0', :git => 'git://github.com/decioferreira/bootstrap-generators.git'
 gem 'jquery-rails'
 
 gem 'gon'
