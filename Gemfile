@@ -41,6 +41,8 @@ group :development do
 end
 
 group :development, :test do
+  gem 'wirble'
+  gem 'hirb'
   gem 'itslog'
   gem 'thin'
   gem 'ruby_parser'
@@ -48,5 +50,6 @@ group :development, :test do
   gem 'faker'
   gem 'timecop'
   gem 'factory_girl_rails'
-  gem 'awesome_print', :require => 'ap'
+  gem 'awesome_print'
+  gem 'colored'
 end

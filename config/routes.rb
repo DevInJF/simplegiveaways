@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 Simplegiveaways::Application.routes.draw do
 
-  match "/canvas" => "canvas#index"
+  match '/canvas', to: 'canvas#index'
 
   resources :giveaways do
     resources :entries
-    match :tab, :on => :collection
+    match :tab, to: :collection
     get :manual_start, :on => :member
     get :manual_end, :on => :member
   end
@@ -23,5 +23,5 @@ Simplegiveaways::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  root :to => "welcome#index"
+  root to: 'welcome#index'
 end

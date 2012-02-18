@@ -12,5 +12,6 @@ class CreateFacebookPages < ActiveRecord::Migration
       t.string   :url
       t.timestamps
     end
+    add_index :facebook_pages, :pid, :unique => true
   end
 end

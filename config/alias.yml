@@ -1,0 +1,4 @@
+  :aliases:
+    :class_method:
+      ActiveRecord::Relation:
+        destroy_all: wipe

@@ -4,6 +4,8 @@ class FacebookPage < ActiveRecord::Base
   has_many :giveaways
   has_and_belongs_to_many :users
 
+  validates :pid, :uniqueness => true
+
   # Ensure that only one giveaway can run on a FacebookPage at a time
   # Deal with case where FacebookPage already exists and new user is adding it again
   # validates :pid, :uniqueness => {:scope => [:kind, :user]}

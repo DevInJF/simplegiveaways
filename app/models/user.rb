@@ -8,18 +8,16 @@ class User < ActiveRecord::Base
     graph = Koala::Facebook::API.new(identities.where("provider = ?", "facebook").first.token)
     pages = graph.get_connections("me", "accounts")
     pages.each do |page|
-      page_category = page["category"]
-      unless page_category == "Application"
-        @page = FacebookPage.new(
+      unless page["category"] == "Application"
+        @page = FacebookPage.find_or_create_by_pid(page["id"])
+        @page.update_attributes(
           :name => page["name"],
-          :category => page_category,
+          :category => page["category"],
           :pid => page["id"],
           :token => page["access_token"]
         ).retrieve_fb_meta
 
-        unless @page.url.include? "facebook.com"
-          @page.destroy
-        else
+        unless @page.url.include?("facebook.com") || facebook_pages.include?(@page)
           self.facebook_pages.create(@page.attributes)
         end
       end

@@ -76,6 +76,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    colored (1.2)
     daemons (1.1.8)
     delayed_job (3.0.1)
       activesupport (~> 3.0)
@@ -126,6 +127,7 @@ GEM
       rubyzip
       term-ansicolor (~> 1.0.5)
     hike (1.2.1)
+    hirb (0.6.0)
     hpricot (0.8.6)
     httparty (0.8.1)
       multi_json
@@ -247,6 +249,7 @@ GEM
     uuidtools (2.1.2)
     warden (1.1.0)
       rack (>= 1.0)
+    wirble (0.1.3)
 
 PLATFORMS
   ruby
@@ -258,6 +261,7 @@ DEPENDENCIES
   bootstrap-generators (~> 2.0)!
   braintree
   coffee-rails (~> 3.2.1)
+  colored
   delayed_job_active_record
   erb2haml
   factory_girl_rails
@@ -265,6 +269,7 @@ DEPENDENCIES
   gon
   haml-rails
   heroku
+  hirb
   hpricot
   impressionist
   itslog
@@ -286,3 +291,4 @@ DEPENDENCIES
   thin
   timecop
   uglifier (>= 1.0.3)
+  wirble

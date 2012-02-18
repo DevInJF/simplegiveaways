@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# -*- encoding : utf-8 -*-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20120217220703) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "facebook_pages", ["pid"], :name => "index_facebook_pages_on_pid", :unique => true
 
   create_table "facebook_pages_users", :id => false, :force => true do |t|
     t.integer "facebook_page_id", :null => false
