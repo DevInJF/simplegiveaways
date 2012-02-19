@@ -12,3 +12,7 @@
 //= require bootstrap-collapse
 //= require bootstrap-carousel
 //= require bootstrap-typeahead
+
+  $(function(){
+    $("a[rel=tooltip]").tooltip();
+  });

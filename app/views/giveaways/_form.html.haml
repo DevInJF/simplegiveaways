@@ -1,4 +1,4 @@
-= render "shared/error_messages", :target => @giveaway
+
 = simple_form_for [@page, @giveaway], :html => { :multipart => true, :class => "form-stacked" } do |f|
   = f.input :title, :input_html => {:class => "xlarge"}
   = f.input :prize, :input_html => {:class => "xlarge"}

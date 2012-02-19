@@ -23,7 +23,7 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.save
       flash[:success] = 'Giveaway was successfully created.'
-      redirect_to @giveaway
+      redirect_to @page
     else
       render :action => "new"
     end

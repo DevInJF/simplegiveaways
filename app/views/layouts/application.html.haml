@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title Bootstrap, from Twitter
+    %title Simple Giveaways
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
 
@@ -12,22 +12,9 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          = link_to "Project name", "#", :class => "brand"
-          %ul.nav
-            %li.active
-              %a{:href => "#"} Home
-            %li
-              %a{:href => "#about"} About
-            %li
-              %a{:href => "#contact"} Contact
+    = render "layouts/app_nav"
     .container
-      - flash.each do |name, msg|
-        = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
-          %a.close{:href => "#", :"data-dismiss" => "alert"} ×
-          = msg
+      = render "layouts/alerts"
       = yield
       %hr
       %footer

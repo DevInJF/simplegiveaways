@@ -1,16 +1,38 @@
 @import "bootstrap-variables";
 
-body {
-  padding-top: $navbarHeight + 20px;
+.clearfix {
+  clear:both;
 }
 
-.page-header {
+html {
+  
+  body {
+    background: $grayLight;
 
-  a.btn {
-    float: right;
-  }
+    a {
+      color: black;
 
-  a.btn + a.btn {
-    margin-right: 8px;
+      &:hover {
+        text-decoration:none;
+      }
+    }
+
+    .container {
+
+      header.page {
+        height:100px;
+        padding:10px 14px 0px 14px;
+
+        h1 {
+          margin-left:20px;
+          margin-top:16px;
+        }
+
+        a.btn {
+          margin-top:14px;
+        }
+      }
+    }
   }
 }
+

@@ -14,23 +14,6 @@
 
 .row
   .span3-5.columns.sidebar
-    .group.engagement
-      %h3.key Engagement
-      .field
-        = stats(@giveaway.entries.count, "Like")
-      .field
-        = stats(@giveaway.entries.count, "Entry")
-    .group.virality
-      %h3.key Virality
-      .field
-        = stats(@giveaway.total_shares, "Share")
-      .field
-        = stats(@giveaway.total_requests, "Request")
-      .field
-        = stats(@giveaway.total_conversions, "Conversion")
-      .field
-        .value.highlight= @giveaway.conversion_rate
-        %h5.key.wide Conversion Rate
     .group.views
       %h3.key Views
       .field
@@ -90,14 +73,6 @@
       .field
         %h4 Terms &amp; Conditions
         = link_to @giveaway.terms
-      .field
-        %h4 Page Administrators
-        - @giveaway.facebook_page.users.each do |user|
-          %ul.unstyled
-            %li
-              %span.email
-                %strong= link_to user.email, user
-
     %section#entries
 
     %section#analytics

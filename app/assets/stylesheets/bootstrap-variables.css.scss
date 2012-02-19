@@ -16,8 +16,9 @@ $black:                 #000 !default;
 $grayDarker:            #222 !default;
 $grayDark:              #333 !default;
 $gray:                  #555 !default;
-$grayLight:             #999 !default;
-$grayLighter:           #eee !default;
+$grayLight:             #e2e2e2 !default;
+$grayLighter:           #ebebeb !default;
+$grayLightest:          #f4f4f4 !default;
 $white:                 #fff !default;
 
 // Accent colors
@@ -49,7 +50,7 @@ $primaryButtonBackground:    $linkColor !default;
 // Try to avoid customizing these :)
 $zindexDropdown:        1000;
 $zindexPopover:         1010;
-$zindexTooltip:         1020;
+$zindexTooltip:         2020;
 $zindexFixedNavbar:     1030;
 $zindexModalBackdrop:   1040;
 $zindexModal:           1050;
