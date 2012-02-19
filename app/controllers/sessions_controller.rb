@@ -12,10 +12,10 @@ class SessionsController < ApplicationController
 
     if signed_in?
       if @identity.user == current_user
-        redirect_to root_url, notice: "Already linked that account!"
+        @notice = "Already linked that account!"
       else
         @identity.user = current_user
-        redirect_to root_url, notice: "Successfully linked that account!"
+        @notice = "Successfully linked that account!"
       end
     else
       unless @identity.user.present?
@@ -23,8 +23,9 @@ class SessionsController < ApplicationController
         @identity.save
       end
       self.current_user = @identity.user
-      redirect_to root_url, notice: "Logged in!"
+      @notice = "Logged in!"
     end
+    render 'sessions/create', notice: @notice
     @identity.process_login(DateTime.now)
   end
 
