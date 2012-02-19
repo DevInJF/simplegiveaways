@@ -1,10 +1,10 @@
 window.fbAsyncInit = function() {
   FB.init({
-    appId  : '#{FB_APP_ID}',
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-    xfbml  : true, // parse XFBML
-    channelUrl  : 'http://simplegiveawayapp.com/channel.html'
+    appId: '#{FB_APP_ID}',
+    status: true, // check login status
+    cookie: true, // enable cookies to allow the server to access the session
+    xfbml: true, // parse XFBML
+    channelUrl: 'http://simplegiveawayapp.com/channel.html'
   });
 
   FB.Canvas.setSize();
@@ -25,12 +25,11 @@ window.fbAsyncInit = function() {
 
 $(function() {
 
-  // init
   $just_liked = false;
 
   var $referrer_id = "#{@giveaway["referrer_id"]}" || "",
-          $modal = $("#giveaway_modal"),
-          $loader = $modal.find(".loader");
+            $modal = $("#giveaway_modal"),
+           $loader = $modal.find(".loader");
 
   $("#giveaway_image").click(function() {
     Giveaway.modal.hide();
@@ -118,16 +117,16 @@ $(function() {
             Giveaway.entry.submit(response.authResponse.accessToken);
           } else {
             FB.login({
-                      scope: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
-                    },
-                    function(response) {
-                      if (response.authResponse) {
-                        $new_session = response.authResponse.accessToken;
-                        Giveaway.entry.submit(response.authResponse.accessToken, true);
-                      } else {
-                        Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
-                      }
-                    });
+              scope: 'email, user_location, user_birthday, user_likes, publish_stream, offline_access'
+            },
+            function(response) {
+              if (response.authResponse) {
+                $new_session = response.authResponse.accessToken;
+                Giveaway.entry.submit(response.authResponse.accessToken, true);
+              } else {
+                Giveaway.entry.error("You must grant permissions in order to enter the giveaway.");
+              }
+            });
           }
         });
       },
@@ -173,30 +172,30 @@ $(function() {
 
       dialog : function(data) {
         FB.ui(
-                data,
-                function(response) {
-                  if (response && response.post_id) {
-                    json = {
-                      entry : {
-                        share_count : $share_count + 1
-                      }
-                    };
-                    Giveaway.share.callback(json);
-                    console.log('Post was published.' + $entry_id);
-                  }
-                  else if (response && response.to) {
-                    json = {
-                      entry : {
-                        request_count : $request_count + response.to.length
-                      }
-                    };
-                    Giveaway.share.callback(json);
-                    console.log('Request was sent.' + $entry_id);
-                  }
-                  else {
-                    console.log('Nothing was shared.' + $entry_id);
-                  }
+          data,
+          function(response) {
+            if (response && response.post_id) {
+              json = {
+                entry : {
+                  share_count : $share_count + 1
                 }
+              };
+              Giveaway.share.callback(json);
+              console.log('Post was published.' + $entry_id);
+            }
+            else if (response && response.to) {
+              json = {
+                entry : {
+                  request_count : $request_count + response.to.length
+                }
+              };
+              Giveaway.share.callback(json);
+              console.log('Request was sent.' + $entry_id);
+            }
+            else {
+              console.log('Nothing was shared.' + $entry_id);
+            }
+          }
         );
       },
 
@@ -222,7 +221,6 @@ $(function() {
     }
   };
 
-  // Event Listeners
   $("#enter_giveaway a").click(function(e) {
     if (Giveaway.eligible || $just_liked) {
       Giveaway.entry.eligible();

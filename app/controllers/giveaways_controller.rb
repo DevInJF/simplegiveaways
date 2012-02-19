@@ -48,21 +48,42 @@ class GiveawaysController < ApplicationController
     redirect_to(giveaways_url)
   end
 
+  def start
+    @giveaway = Giveaway.find(params[:id])
+    if @giveaway.is_installed?
+      if @giveaway.update_attributes(:start_date => DateTime.now)
+        flash.now[:success] = "Giveaway has been successfully started."
+      else
+        flash.now[:error] = "Giveaway could not be started."
+      end
+      render :show
+    else
+      if @giveaway.update_attributes(:start_date => DateTime.now)
+        redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway.facebook_page.pid}"
+      else
+        flash.now[:error] = "Giveaway could not be started."
+        render :show
+      end
+    end
+  end
+
+  def end
+    @giveaway = Giveaway.find(params[:id])
+    if @giveaway.update_attributes(:end_date => DateTime.now)
+      flash[:success] = "Giveaway has been successfully ended."
+      redirect_to @giveaway
+    else
+      flash.now[:error] = "Giveaway could not be ended."
+      render :show
+    end
+  end
+
   def tab
     if params[:signed_request]
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       signed_request = oauth.parse_signed_request(params[:signed_request])
 
-      app_data = signed_request["app_data"]
-      referrer_id = app_data.split("ref_")[1] rescue []
-      current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
-
-      @giveaway = {
-        "referrer_id" => referrer_id,
-        "has_liked" => signed_request["page"]["liked"],
-        "current_page" => current_page,
-        "giveaway" => current_page.giveaways.detect(&:is_live?)
-      }
+      @giveaway = Giveaway.tab(signed_request)
 
       if @giveaway["giveaway"].nil?
         redirect_to "/404.html"
@@ -72,38 +93,6 @@ class GiveawaysController < ApplicationController
       end
     else
       redirect_to "/500.html"
-    end
-  end
-
-  def manual_start
-    @giveaway = Giveaway.find(params[:id])
-    if @giveaway.is_installed?
-      if @giveaway.update_attributes(:start_date => DateTime.now)
-        flash.now[:success] = "Giveaway has been successfully started."
-        render :show
-      else
-        flash.now[:error] = "Giveaway could not be started."
-        render :show
-      end
-    else
-      if @giveaway.update_attributes(:start_date => DateTime.now)
-        redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway
-      .facebook_page.pid}"
-      else
-        flash.now[:error] = "Giveaway could not be started."
-        render :show
-      end
-    end
-  end
-
-  def manual_end
-    @giveaway = Giveaway.find(params[:id])
-    if @giveaway.update_attributes(:end_date => DateTime.now)
-      flash[:success] = "Giveaway has been successfully ended."
-      redirect_to @giveaway
-    else
-      flash.now[:error] = "Giveaway could not be ended."
-      render :show
     end
   end
 end

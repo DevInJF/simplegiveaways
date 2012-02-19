@@ -16,6 +16,7 @@ class CreateGiveaways < ActiveRecord::Migration
       t.string   :feed_image_content_type
       t.integer  :feed_image_file_size
       t.integer  :facebook_page_id
+      t.text     :preferences
       t.timestamps
     end
 

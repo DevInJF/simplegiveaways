@@ -16,9 +16,18 @@ class Giveaway < ActiveRecord::Base
   validates_attachment_presence :image
   validates_attachment_presence :feed_image
 
+  store :preferences, accessors: [ :autoshow_share_dialog,
+                                   :allow_multi_entries,
+                                   :bonus_value,
+                                   :preview ]
+
+  validates :autoshow_share_dialog, :inclusion => { :in => [ true, false ] }
+  validates :allow_multi_entries, :inclusion => { :in => [ true, false ] }
+  validates :bonus_value, :numericality => { :only_integer => true }
+  validates :preview, :inclusion => { :in => [ true, false ] }
+
   validate :end_in_future
- 
-  # Paperclip 
+
   has_attached_file :image,
     :styles => {
       :thumb  => "150x150>",
@@ -74,6 +83,19 @@ class Giveaway < ActiveRecord::Base
   end
 
   class << self
+
+    def tab(signed_request)
+      app_data = signed_request["app_data"]
+      referrer_id = app_data.split("ref_")[1] rescue []
+      current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
+
+      OpenStruct.new({
+        "referrer_id" => referrer_id,
+        "has_liked" => signed_request["page"]["liked"],
+        "current_page" => current_page,
+        "giveaway" => current_page.giveaways.detect(&:is_live?)
+      })
+    end
 
     def delete_app_request(request_id, signed_request)
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)

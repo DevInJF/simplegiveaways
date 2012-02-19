@@ -6,8 +6,8 @@ Simplegiveaways::Application.routes.draw do
   resources :giveaways do
     resources :entries
     match :tab, to: :collection
-    get :manual_start, :on => :member
-    get :manual_end, :on => :member
+    get :start, :on => :member
+    get :end, :on => :member
   end
 
   resources :facebook_pages do
