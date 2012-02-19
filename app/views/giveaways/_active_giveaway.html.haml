@@ -1,0 +1,13 @@
+.alert.alert-info
+  %p 
+    Install the Simple Giveaway Tab on your Facebook Page to publish giveaways
+  %a{:href => "#", :class => "btn btn-primary" }
+    Install Tab Now
+.alert.alert-success
+  %p 
+    Giveaway is Live!
+    %p.ends Ends in 9:93:34:43
+.giveaway
+  = render "giveaways/header"
+  = render "giveaways/stats"
+  = render "giveaways/entries"
