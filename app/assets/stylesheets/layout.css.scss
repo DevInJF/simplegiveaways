@@ -1,13 +1,8 @@
 @import "bootstrap-variables";
 
-.clearfix {
-  clear:both;
-}
-
 html {
-  
   body {
-    background: $grayLight;
+    background: #FFF image_url('/assets/blizzard.png') repeat;
 
     a {
       color: black;
@@ -15,6 +10,19 @@ html {
       &:hover {
         text-decoration:none;
       }
+    }
+
+    .navbar {
+
+      .navbar-inner {
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+      }
+    }
+
+    .page-header {
+      overflow: hidden;
     }
 
     .container {

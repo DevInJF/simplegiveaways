@@ -1,0 +1,20 @@
+.thumbnails.facebook_pages {
+
+  li.facebook_page {
+    clear: both;
+    width: 48%;
+
+    .caption {
+      overflow: hidden;
+
+      h3 {
+        float: left;
+      }
+
+      p {
+        float: right;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

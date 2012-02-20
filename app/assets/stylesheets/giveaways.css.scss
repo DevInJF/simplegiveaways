@@ -1,0 +1,175 @@
+@import "bootstrap-variables";
+
+.giveaway {
+  padding: 28px;
+  border-bottom: 1px solid #ddd;
+
+  section.giveaway-header {
+    height: 90px;
+
+    img {
+      float: left;
+    }
+
+    .giveaway-title {
+      float: left;
+      height: 38px;
+      padding: 26px 0px 26px 26px;
+      width: 752px;
+
+      h1 {
+        font-size: 34px;
+        line-height: 38px;
+        float: left;
+      }
+
+      p {
+        font-size: 21px;
+        margin-top: 6px;
+      }
+
+      .info {
+        float: left;
+        padding: 12px 24px 0px 24px;
+
+        ul.edit-end {
+          margin: 6px 0 0 12px;
+        }
+
+        .btn {
+          margin-top: 10px;
+        }
+      }
+
+      .buttons {
+        float: right;
+
+
+        .btn-group, .btn-publish {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  section.stats {
+    clear: both;
+    margin: 20px 0 0 -12px;
+    overflow: auto;
+
+    .stat-box {
+      border: solid 1px $grayLighter;
+      text-align: center;
+      padding: 12px;
+      width: 138px;
+      float: left;
+      margin: 0 0 12px 12px;
+        
+      p {
+        margin-bottom: 4px;
+        font-size: 13px
+      }
+    }
+  }
+
+  section.entries {
+    padding-top: 30px;
+    
+    table {
+      margin-top: 10px;
+    }
+  }
+
+  .modal {
+    width: 940px;
+    margin: -250px 0 0 -471px;
+  }
+}
+
+.tabbable {
+
+  .nav-tabs {
+    margin: 0;
+    border-bottom: 1px solid #CCC;
+
+    .active {
+
+      a {
+        border-bottom-color: transparent;
+        cursor: default;
+        background-color: $grayLightest;
+
+        &:hover {
+          border-bottom-color: transparent;
+          background-color: $grayLightest;
+        }
+      }
+    }
+
+    a {
+      background-color: $grayLighter;
+      border: 1px solid #CCC;
+
+      &:hover {
+        background-color: $grayLightest;
+        border: 1px solid #CCC;
+      }
+    }
+
+    .giveaway-tab {
+
+      a {
+        padding: 10px;
+        width: 300px;
+        font-size: 16px;
+        text-align: center;
+        margin: 0 288px 0 6px;
+      }
+    }
+
+    .pending-giveaways, .ended-giveaways {
+
+      a {
+        position: relative;
+        top: 4px;
+      }
+    }
+
+  }
+
+  .tab-content {
+    background-color: $grayLightest;
+    border: 1px solid #CCC;
+    border-top: none;
+    padding: 6px;
+    min-height: 600px;
+
+    .tab-pane {
+      background-color: white;
+      border: 1px solid #DDD;
+      margin-bottom: 6px;
+    }
+
+      .alert, .alert-info {
+        padding: 10px 10px 10px 16px;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        height: 30px;
+        clear: both;
+
+        p {
+          font-size: 18px;
+          margin: 0;
+          line-height: 30px;
+          float: left;
+        }
+
+        a.btn, p.ends {
+          float: right;
+        }
+      }
+  }
+}
