@@ -12,10 +12,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    = render "layouts/app_nav"
+    = render "layouts/header"
     .container
-      = render "layouts/alerts"
+      = render "layouts/flash"
       = yield
-      %hr
-      %footer
-        %p &copy; Company 2012
+      = render "layouts/footer"

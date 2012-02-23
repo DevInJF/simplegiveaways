@@ -2,24 +2,7 @@
 
 html {
   body {
-    background: #FFF image_url('/assets/blizzard.png') repeat;
-
-    a {
-      color: black;
-
-      &:hover {
-        text-decoration:none;
-      }
-    }
-
-    .navbar {
-
-      .navbar-inner {
-        border-radius: 0;
-        -moz-border-radius: 0;
-        -webkit-border-radius: 0;
-      }
-    }
+    background: #EEE image_url('/assets/bg.png') repeat;
 
     .page-header {
       overflow: hidden;
@@ -28,16 +11,15 @@ html {
     .container {
 
       header.page {
-        height:100px;
-        padding:10px 14px 0px 14px;
+        height: 100px;
+        padding: 10px 14px 0px 14px;
 
-        h1 {
-          margin-left:20px;
-          margin-top:16px;
+        h2 {
+          margin: 16px 0 0 20px;
         }
 
         a.btn {
-          margin-top:14px;
+          margin-top: 14px;
         }
       }
     }
