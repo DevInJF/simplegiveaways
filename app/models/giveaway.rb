@@ -50,8 +50,12 @@ class Giveaway < ActiveRecord::Base
   end
   
   def is_installed?
-    @graph = Koala::Facebook::API.new(facebook_page.token)
-    @graph.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
+    if facebook_page.has_added_app.nil?
+      @graph = Koala::Facebook::API.new(facebook_page.token)
+      @graph.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
+    else
+      facebook_page.has_added_app
+    end
   end
 
   def count_conversion(ref)

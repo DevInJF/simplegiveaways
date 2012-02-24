@@ -89,8 +89,9 @@ ActiveRecord::Schema.define(:version => 20120217220703) do
     t.text     "description"
     t.integer  "likes"
     t.string   "url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "has_added_app"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "facebook_pages", ["pid"], :name => "index_facebook_pages_on_pid", :unique => true

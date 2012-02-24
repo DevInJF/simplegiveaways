@@ -10,6 +10,7 @@ class CreateFacebookPages < ActiveRecord::Migration
       t.text     :description
       t.integer  :likes
       t.string   :url
+      t.boolean  :has_added_app
       t.timestamps
     end
     add_index :facebook_pages, :pid, :unique => true
