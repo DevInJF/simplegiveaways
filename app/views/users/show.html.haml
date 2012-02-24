@@ -1,5 +1,5 @@
 .page-header
   %h1= current_user.name
 
-%ul.facebook_pages.thumbnails
-  = render current_user.facebook_pages
+%ul.thumbnails.facebook_pages
+  = render :collection => current_user.facebook_pages, :partial => "facebook_pages/preview", :as => :facebook_page

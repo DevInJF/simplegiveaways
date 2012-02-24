@@ -1,5 +1,5 @@
-%li.preview.facebook_page
-  = image_tag facebook_page.avatar
+%li.thumbnail.facebook_page
+  .avatar= image_tag facebook_page.square_avatar
   %h3= link_to facebook_page.name, facebook_page_path(facebook_page)
   %p
     %a.btn.btn-primary{:href => "#"} Action

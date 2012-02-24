@@ -1,20 +1,26 @@
-.thumbnails.facebook_pages {
+h3.section-header {
+  margin-bottom: 9px;
+}
 
-  li.facebook_page {
-    clear: both;
-    width: 48%;
+ul.thumbnails.facebook_pages {
+  
+  li {
+    float: none;
+    width: 335px;
+    overflow: hidden;
+    margin: 0 0 5px 20px;
 
-    .caption {
-      overflow: hidden;
+    .avatar {
+      float: left;
+      margin: 7px 14px 5px 8px
+    }
 
-      h3 {
-        float: left;
-      }
+    h3 {
+      line-height: 30px;
+    }
 
-      p {
-        float: right;
-        margin-bottom: 0;
-      }
+    p {
+      margin: 0;
     }
   }
 }

@@ -5,6 +5,10 @@ class FacebookPage < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   validates :pid, :uniqueness => true
+
+  def square_avatar
+    "http://graph.facebook.com/#{pid}/picture?type=square"
+  end
   
   def self.retrieve_fb_meta(user, pages)
     [pages].compact.flatten.each do |page|
