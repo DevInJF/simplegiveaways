@@ -5,10 +5,12 @@ h3.section-header {
 ul.thumbnails.facebook_pages {
   
   li.facebook_page {
+    display: table;
     float: none;
     width: 335px;
     overflow: hidden;
     margin: 0 0 8px 20px;
+    padding: 7px 4px;
     cursor: pointer;
     position: relative;
 
@@ -20,44 +22,37 @@ ul.thumbnails.facebook_pages {
     }
 
     .avatar {
+      display: table-cell;
+      vertical-align: middle;
       width: 50px;
       height: 50px;
-      float: left;
-      margin: 5px 14px 5px 6px;
+      float: none;
+      margin: 0;
+      padding: 0 14px 0 4px;
+      line-height: 10px;
     }
 
     h3 {
-      display: block;
-      width: 336px;
-      height: 61px;
-      position: absolute;
-      line-height: 30px;
-
-      a {
-        display: block;
-        height: 100%;
-        padding-left: 70px;
-        line-height: 59px;
-
-        &:hover {
-          color: #333;
-        }
-      }
-    }
-
-    ul.meta {
-      padding: 33px 0 0;
+      width: 250px;
+      line-height: 20px;
+      display: table-cell;
+      vertical-align: middle;
     }
 
     i.icon-chevron-right {
       position: absolute;
-      right: 16px;
-      top: 23px;
+      right: 12px;
+      top: 26px;
     }
 
-    p {
-      margin: 0;
-      display: none;
+    a.page-link {
+      display: block;
+      height: 100%;
+      line-height: 59px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
 }

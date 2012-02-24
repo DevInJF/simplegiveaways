@@ -1,4 +1,6 @@
 %li.thumbnail.facebook_page
   .avatar= image_tag facebook_page.avatar
-  %h3= link_to "#{facebook_page.name}<i class='icon-chevron-right'></i>".html_safe, facebook_page_path(facebook_page)
+  %h3= facebook_page.name
+  %i.icon-chevron-right
+  = link_to "", facebook_page_path(facebook_page), :class => "page-link"
 
