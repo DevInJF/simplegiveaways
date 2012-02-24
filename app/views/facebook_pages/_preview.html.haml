@@ -1,8 +1,4 @@
 %li.thumbnail.facebook_page
   .avatar= image_tag facebook_page.avatar
-  %h3= link_to facebook_page.name, facebook_page_path(facebook_page)
-  .meta
-    %span.label.label-info= pluralize(facebook_page.likes.to_i, "Like")
-  %p
-    %a.btn.btn-primary{:href => "#"} Action
-    %a.btn{:href => "#"} Action
+  %h3= link_to "#{facebook_page.name}<i class='icon-chevron-right'></i>".html_safe, facebook_page_path(facebook_page)
+

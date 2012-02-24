@@ -1,0 +1,4 @@
+%h3 Facebook Pages
+%p You currently administer <strong>#{current_user.facebook_pages.count}</strong> pages.
+%ul.thumbnails.facebook_pages
+  = render :collection => current_user.facebook_pages, :partial => "facebook_pages/preview", :as => :facebook_page
