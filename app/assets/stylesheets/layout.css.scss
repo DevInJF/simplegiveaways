@@ -2,24 +2,38 @@
 
 html {
   body {
-    background: #EEE image_url('/assets/bg.png') repeat;
+    background: #FCFCFC image_url('/assets/bg.png') repeat;
 
-    .page-header {
-      overflow: hidden;
+    header.primary {
+      height: 126px;
+      line-height: 126px;
+
+      h1 {
+        line-height: inherit;
+      }
     }
 
     .container {
+      width: 986px;
+      margin-bottom: 60px;
 
-      header.page {
-        height: 100px;
-        padding: 10px 14px 0px 14px;
+      &.primary {
+        padding-top: 12px;
+        background: transparent image_url('/assets/page-slice-top.png') no-repeat 0 0;
 
-        h2 {
-          margin: 16px 0 0 20px;
+        .inner {
+          padding: 0 40px;
+          overflow: hidden;
+          background: transparent image_url('/assets/page-slice.png') repeat-y 0 0;
+
+          .container {
+            width: 906px;
+          }
         }
 
-        a.btn {
-          margin-top: 14px;
+        .bottom {
+          height: 12px;
+          background: transparent image_url('/assets/page-slice-bottom.png') no-repeat 0 0;
         }
       }
     }

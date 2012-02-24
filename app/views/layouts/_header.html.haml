@@ -2,28 +2,5 @@
   .container
     - if signed_in?
       %h1= link_to APPLICATION_NAME, user_path(current_user), :class => "brand"
-      %ul.nav.pull-right
-        %li.dropdown
-          %a{ :href => "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown" }
-            %i.icon-user.icon-white
-            = current_user.name
-            %b.caret
-          %ul.dropdown-menu
-            %li= link_to "Dashboard", user_path(current_user)
-            %li= link_to "Settings", "#"
-            %li.divider
-            %li= link_to "Log Out", logout_path
-      %ul.nav.pull-right
-        %li.dropdown
-          %a{ :href => "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown" }
-            %i.icon-flag.icon-white
-            Facebook Pages
-            %b.caret
-          %ul.dropdown-menu
-            = render :partial => "facebook_pages/current_user_facebook_pages", :collection => current_user.facebook_pages, :as => :page
     - else
       %h1= link_to APPLICATION_NAME, root_path, :class => "brand"
-      %ul.nav.pull-right
-        %li.dropdown
-          = link_to "Log In", "/auth/facebook"
-    %hr
