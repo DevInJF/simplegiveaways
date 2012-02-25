@@ -1,28 +1,4 @@
-= render "facebook_pages/header"
-.tabbable
-  %ul.nav.nav-tabs
-    %li.active.giveaway-tab
-      %a{:href => "#1", :"data-toggle" => "tab"}
-        %i.icon-star
-        Giveaway Tab
-        /
-          %span.label.label-success
-            GIVEAWAY LIVE
-          %span.label.label-warning
-            NOT INSTALLED
-    %li.pending-giveaways
-      %a{:href => "#2", :"data-toggle" => "tab"}
-        %i.icon-inbox
-        Pending Giveaways
-    %li.ended-giveaways
-      %a{:href => "#3", :"data-toggle" => "tab"}
-        %i.icon-ban-circle
-        Ended Giveaways
-  .tab-content
-    .tab-pane.giveaway-tab.active#1
-      = render "giveaways/active_giveaway"
-    .tab-pane.pending-giveaways#2
-      = render "giveaways/pending_giveaways"
-    .tab-pane.ended-giveaways#3
-      = render "giveaways/ended_giveaways"
+- content_for(:page_heading) do
+  = @page.name
 
+= render "navigation"
