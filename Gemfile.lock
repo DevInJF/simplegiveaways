@@ -6,6 +6,13 @@ GIT
       railties (~> 3.1)
 
 GIT
+  remote: git://github.com/onedesign/timeline_fu.git
+  revision: 727eb7e1bcf4435d080ea215176b04a9368f5f8a
+  specs:
+    timeline_fu (0.4.4)
+      activerecord
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 48ea550009cc6eb45241b4955e980442b3d20656
   specs:
@@ -110,9 +117,6 @@ GEM
     fastercsv (1.5.4)
     formtastic (2.0.2)
       rails (~> 3.0)
-    gon (2.1.0)
-      actionpack (>= 2.3.0)
-      json
     haml (3.1.4)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -266,7 +270,6 @@ DEPENDENCIES
   erb2haml
   factory_girl_rails
   faker
-  gon
   haml-rails
   heroku
   hirb
@@ -290,5 +293,6 @@ DEPENDENCIES
   simple_form!
   thin
   timecop
+  timeline_fu!
   uglifier (>= 1.0.3)
   wirble

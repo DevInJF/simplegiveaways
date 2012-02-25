@@ -26,7 +26,7 @@ gem 'sass-rails', '~> 3.2.3'
 gem 'bootstrap-generators', '~> 2.0', :git => 'git://github.com/decioferreira/bootstrap-generators.git'
 gem 'jquery-rails'
 
-gem 'gon'
+gem 'timeline_fu', :git => 'git://github.com/onedesign/timeline_fu.git'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
