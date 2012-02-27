@@ -2,3 +2,16 @@
   = @page.name
 
 = render "navigation"
+
+.tab-content
+  #page_overview.tab-pane.active
+    = link_to "New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-large btn-primary"
+  #page_giveaways_active.tab-pane
+    giveaways_active
+  #page_giveaways_pending.tab-pane
+    giveaways_pending
+  #page_giveaways_completed.tab-pane
+    giveaways_completed
+  #page_activity_feed.tab-pane
+    activity_feed
+

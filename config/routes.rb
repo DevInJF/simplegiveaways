@@ -5,7 +5,7 @@ Simplegiveaways::Application.routes.draw do
 
   resources :giveaways do
     resources :entries
-    match :tab, to: :collection
+    match :tab, :on => :collection
     get :start, :on => :member
     get :end, :on => :member
   end

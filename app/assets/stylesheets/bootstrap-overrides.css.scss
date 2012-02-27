@@ -5,3 +5,44 @@
   background-color: #999;
   border-color: #999;
 }
+
+form {
+
+  p.fieldset-help {
+    padding: 18px 0 9px;
+  }
+
+  p.help-block {
+    color: #999;
+  }
+
+  input, textarea, select, .uneditable-input {
+    width: 360px;
+  }
+
+  textarea {
+    height: 150px;
+  }
+
+  .control-group.error .help-block,
+  .control-group.error .help-inline {
+    clear: both;
+    padding: 8px 0 0;
+  }
+
+  .control-group.error input,
+  .control-group.error select,
+  .control-group.error textarea {
+    color: inherit;
+  }
+
+  .control-group {
+
+    &.double {
+
+      label {
+        margin-top: -8px;
+      }
+    }
+  }
+}

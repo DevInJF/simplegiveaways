@@ -19,7 +19,7 @@ gem 'paperclip'
 gem 'json'
 gem 'braintree'
 gem 'impressionist'
-gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+gem 'simple_form', '~> 2.0'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'

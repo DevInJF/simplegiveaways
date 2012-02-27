@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217220703) do
+ActiveRecord::Schema.define(:version => 20120226231100) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -108,15 +108,17 @@ ActiveRecord::Schema.define(:version => 20120217220703) do
     t.datetime "end_date"
     t.string   "prize"
     t.text     "terms"
+    t.text     "preferences"
+    t.text     "tab_options"
+    t.boolean  "preview_mode"
     t.string   "giveaway_url"
+    t.integer  "facebook_page_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.string   "feed_image_file_name"
     t.string   "feed_image_content_type"
     t.integer  "feed_image_file_size"
-    t.integer  "facebook_page_id"
-    t.text     "preferences"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -164,6 +166,18 @@ ActiveRecord::Schema.define(:version => 20120217220703) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "timeline_events", :force => true do |t|
+    t.string   "event_type"
+    t.string   "subject_type"
+    t.string   "actor_type"
+    t.string   "secondary_subject_type"
+    t.integer  "subject_id"
+    t.integer  "actor_id"
+    t.integer  "secondary_subject_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

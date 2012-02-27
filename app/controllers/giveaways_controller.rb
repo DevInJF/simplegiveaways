@@ -3,6 +3,11 @@ require 'json'
 
 class GiveawaysController < ApplicationController
 
+  def index
+    @facebook_page = FacebookPage.find(params[:facebook_page_id])
+    @giveaways = @facebook_page.giveaways
+  end
+
   def show
     @giveaway = Giveaway.find(params[:id], :include => [:entries])
   end
@@ -25,7 +30,7 @@ class GiveawaysController < ApplicationController
       flash[:success] = 'Giveaway was successfully created.'
       redirect_to @page
     else
-      render :action => "new"
+      render :action => :new
     end
   end
 
@@ -50,7 +55,7 @@ class GiveawaysController < ApplicationController
 
   def start
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.is_installed?
+    if @giveaway.startable?
       if @giveaway.update_attributes(:start_date => DateTime.now)
         flash.now[:success] = "Giveaway has been successfully started."
       else

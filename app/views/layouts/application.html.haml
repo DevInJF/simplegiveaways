@@ -11,7 +11,7 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body.application
+  %body.application{ :class => body_class }
     = render "layouts/header"
     .container.primary
       .inner

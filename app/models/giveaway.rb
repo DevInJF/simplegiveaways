@@ -6,25 +6,34 @@ class Giveaway < ActiveRecord::Base
   belongs_to :facebook_page
   has_many :entries
 
-  validates :title, :presence => true, :uniqueness => { :scope => :facebook_page_id }
+  validates :title, :presence => true, :length => { :maximum => 100 }, :uniqueness => { :scope => :facebook_page_id }
   validates :description, :presence => true
-  validates :start_date, :presence => true
-  validates :end_date, :presence => true
   validates :prize, :presence => true
-  validates :terms, :presence => true
 
   validates_attachment_presence :image
   validates_attachment_presence :feed_image
 
+  store :terms, accessors: [ :terms_url, :terms_text ]
+
+  validate :terms_present
+
   store :preferences, accessors: [ :autoshow_share_dialog,
                                    :allow_multi_entries,
-                                   :bonus_value,
-                                   :preview ]
+                                   :email_required,
+                                   :bonus_value ]
 
-  validates :autoshow_share_dialog, :inclusion => { :in => [ true, false ] }
-  validates :allow_multi_entries, :inclusion => { :in => [ true, false ] }
-  validates :bonus_value, :numericality => { :only_integer => true }
-  validates :preview, :inclusion => { :in => [ true, false ] }
+  validates :autoshow_share_dialog, :presence => true, :inclusion => { :in => [ "true", "false" ] }
+  validates :allow_multi_entries, :presence => true, :inclusion => { :in => [ "true", "false" ] }
+  validates :email_required, :presence => true, :inclusion => { :in => [ "true", "false" ] }
+  validates :bonus_value, :presence => true, :numericality => { :only_integer => true }
+
+  store :tab_options, accessors: [ :tab_name,
+                                   :tab_position,
+                                   :is_landing_tab ]
+
+  validates :tab_name, :presence => true, :length => { :maximum => 100 }
+  validates :tab_position, :presence => true, :numericality => { :only_integer => true }
+  validates :is_landing_tab, :presence => true, :inclusion => { :in => [ "true", "false" ] }
 
   validate :end_in_future
 
@@ -43,6 +52,12 @@ class Giveaway < ActiveRecord::Base
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
+
+
+  def startable?
+    # Can the giveaway be started safely?
+    true
+  end
 
   def is_live?
     now = Time.now
@@ -113,9 +128,18 @@ class Giveaway < ActiveRecord::Base
 
   private
 
+  def terms_present
+    if terms_url.blank? && terms_text.blank?
+      errors.add(:terms_url, "Must provide either Terms URL or Terms Text.")
+      errors.add(:terms_text, "Must provide either Terms URL or Terms Text.")
+    end
+  end
+
   def end_in_future
-    if end_date < start_date
-      errors[:base] << "End date must be in the future"
+    if end_date.present? && start_date.present?
+      if end_date < start_date || end_date == start_date
+        errors.add(:end_date, "cannot be earlier than start date.")
+      end
     end
   end
 end

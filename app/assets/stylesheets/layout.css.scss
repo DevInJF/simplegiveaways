@@ -20,6 +20,15 @@ html {
 
     footer.primary {
       padding: 5px 0;
+      clear: both;
+
+      hr {
+        margin: 18px 0 23px;
+      }
+    }
+
+    .sidebar.primary {
+      float: left;
     }
 
     .container {
@@ -31,7 +40,7 @@ html {
         background: transparent image_url('/assets/page-slice-top.png') no-repeat 0 0;
 
         .inner {
-          padding: 0 40px;
+          padding: 0 37px;
           overflow: hidden;
           background: transparent image_url('/assets/page-slice.png') repeat-y 0 0;
 
