@@ -6,6 +6,16 @@ class Giveaway < ActiveRecord::Base
   belongs_to :facebook_page
   has_many :entries
 
+  scope :active, lambda {
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date > ?", Time.now, Time.now)
+  }
+  scope :pending, lambda {
+    where("start_date > ? && end_date > ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
+  }
+  scope :completed, lambda {
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date < ?", Time.now, Time.now)
+  }
+
   validates :title, :presence => true, :length => { :maximum => 100 }, :uniqueness => { :scope => :facebook_page_id }
   validates :description, :presence => true
   validates :prize, :presence => true
@@ -57,6 +67,19 @@ class Giveaway < ActiveRecord::Base
   def startable?
     # Can the giveaway be started safely?
     true
+  end
+
+  def status
+    case
+    when start_date.nil? || end_date.nil? || (start_date > Time.now && end_date > Time.now)
+      "Pending"
+    when start_date < Time.now && end_date < Time.now
+      "Completed"
+    when start_date < Time.now && end_date > Time.now
+      "Active"
+    else
+      nil
+    end
   end
 
   def is_live?

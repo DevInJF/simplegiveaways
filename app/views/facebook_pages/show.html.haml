@@ -5,13 +5,13 @@
 
 .tab-content
   #page_overview.tab-pane.active
-    = link_to "New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-large btn-primary"
+    = render "overview"
   #page_giveaways_active.tab-pane
-    giveaways_active
+    = render :collection => Giveaway.active, :partial => "giveaways/giveaway"
   #page_giveaways_pending.tab-pane
-    giveaways_pending
+    = render :collection => Giveaway.pending, :partial => "giveaways/giveaway"
   #page_giveaways_completed.tab-pane
-    giveaways_completed
+    = render :collection => Giveaway.completed, :partial => "giveaways/giveaway"
   #page_activity_feed.tab-pane
     activity_feed
 
