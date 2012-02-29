@@ -4,3 +4,48 @@
   $(function() {
     $(".btn.btn-large.btn-success").popover({"title": "Warning", "content": "Pushing this button will start the giveaway and publish it to your Facebook Page."});
   });
+
+%table.table.table-striped.table-bordered
+  %tbody
+    %tr
+      %td.key Description
+      %td= giveaway.description
+    %tr
+      %td.key Prize
+      %td= giveaway.prize
+    %tr
+      %td.key Start Date
+      %td= giveaway.start_date
+    %tr
+      %td.key End Date
+      %td= giveaway.end_date
+    %tr
+      %td.key Terms
+      %td= giveaway_terms(giveaway.terms)
+    %tr
+      %td.key Image
+      %td= image_tag giveaway.image, :alt => giveaway.image
+    %tr
+      %td.key Feed Image
+      %td= image_tag giveaway.feed_image(:feed), :alt => giveaway.feed_image(:feed)
+    %tr
+      %td.key Tab Name
+      %td= giveaway.tab_name
+    %tr
+      %td.key Tab Position
+      %td= giveaway.tab_position
+    %tr
+      %td.key Is Landing Tab?
+      %td= giveaway.is_landing_tab
+    %tr
+      %td.key Autoshow Share Dialog
+      %td= giveaway.autoshow_share_dialog
+    %tr
+      %td.key Allow Multiple Entries?
+      %td= giveaway.allow_multi_entries
+    %tr
+      %td.key Email Required?
+      %td= giveaway.email_required
+    %tr
+      %td.key Bonus Entry Value
+      %td= giveaway.bonus_value

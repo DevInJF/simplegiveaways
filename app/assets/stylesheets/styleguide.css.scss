@@ -8,3 +8,23 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
+
+.alert-message {
+
+  strong {
+    padding-right: 3px;
+  }
+}
+
+table {
+
+  tr {
+
+    td {
+
+      &.key {
+        font-weight: bold;
+      }
+    }
+  }
+}
