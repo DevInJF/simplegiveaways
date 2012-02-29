@@ -1,0 +1,6 @@
+= link_to "End Giveaway Early", end_giveaway_path(giveaway), :class => "btn btn-large btn-danger"
+
+:javascript
+  $(function() {
+    $(".btn.btn-large.btn-danger").popover({"title": "Warning", "content": "Pushing this button will end the giveaway immediately. Please ensure that doing so will not violate the giveaway's terms."});
+  });

@@ -6,6 +6,8 @@ gem 'mysql2', '~> 0.3.10'
 gem 'heroku'
 gem 'delayed_job_active_record'
 
+gem 'logging', '~> 1.7.0'
+
 gem 'activeadmin'
 gem 'meta_search', '>= 1.1.0.pre'
 

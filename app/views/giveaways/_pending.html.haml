@@ -1,0 +1,6 @@
+= link_to "Start Giveaway", start_giveaway_path(giveaway), :class => "btn btn-large btn-success"
+
+:javascript
+  $(function() {
+    $(".btn.btn-large.btn-success").popover({"title": "Warning", "content": "Pushing this button will start the giveaway and publish it to your Facebook Page."});
+  });

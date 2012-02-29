@@ -1,1 +1,5 @@
+- content_for(:page_heading) do
+  = @giveaway.title
+  = giveaway_label(@giveaway)
+
 = render @giveaway
