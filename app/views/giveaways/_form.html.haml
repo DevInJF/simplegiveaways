@@ -1,63 +1,22 @@
 = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
   %fieldset.basic-info
     %legend Basic Info
-    = f.input :title, :input_html => { :maxlength => 100 }
-    = f.input :description
-    = f.input :prize
+    = render "giveaways/form/basic_info", :f => f
   %fieldset.schedule
     %legend Schedule
-    %p.fieldset-help
-      %i.icon-info-sign
-      You may leave this blank for now if you don't yet know your schedule.
-    = f.input :start_date, :as => :datetime, :input_html => { :class => "input-mini" },
-                                             :label => "Start Date/Time",
-                                             :start_year => Date.today.year,
-                                             :end_year => Date.today.year + 5,
-                                             :order => [:month, :day, :year],
-                                             :use_short_month => true,
-                                             :include_blank => true,
-                                             :ampm => true
-    = f.input :end_date, :as => :datetime, :input_html => { :class => "input-mini" },
-                                           :label => "End Date/Time",
-                                           :start_year => Date.today.year,
-                                           :end_year => Date.today.year + 5,
-                                           :order => [:month, :day, :year],
-                                           :use_short_month => true,
-                                           :include_blank => true,
-                                           :ampm => true
+    = render "giveaways/form/schedule", :f => f
   %fieldset.images
     %legend Images
-    = f.input :image, :as => :file, :hint => "This is the main giveaway image. It can be as tall as you like but Facebook limits the width to 520 pixels."
-    = f.input :feed_image, :as => :file, :label => "Feed Image", :hint => "This is the thumbnail that will show up in Facebook News Feed and Wall posts when the giveaway is shared."
+    = render "giveaways/form/images", :f => f
   %fieldset.terms
     %legend Terms &amp; Conditions
-    %p.fieldset-help
-      %i.icon-info-sign
-      Please provide either a URL or the full text of the Terms &amp; Conditions.
-    = f.input :terms_url, :as => :url, :label => "Terms URL"
-    = f.input :terms_text, :as => :text, :label => "Terms Text"
+    = render "giveaways/form/terms", :f => f
   %fieldset.tab-options
     %legend Tab Options
-    = f.input :tab_name, :label => "Tab Name", :input_html => { :value => "Giveaway", :maxlength => 100 }, :hint => "The name that will be displayed on your page sidebar.<br />Defaults to 'Giveaway'.".html_safe
-    = f.input :tab_position, :collection => 1..10, :selected => "1", :label => "Tab Position", :input_html => { :class => "input-mini" }, :hint => "The position of this tab on your page sidebar.<br />Defaults to First.".html_safe
-    = f.input :is_landing_tab, :as => :select, :selected => "true", :label => "Giveaway is Default Landing Tab?", :input_html => { :class => "input-mini" }, :wrapper_html => { :class => "double" }, :hint => "When the giveaway is launched, should it be the default landing tab for your page?<br />Defaults to Yes.".html_safe
+    = render "giveaways/form/tab_options", :f => f
   %fieldset.preferences
     %legend Preferences
-    = f.input :autoshow_share_dialog, :as => :select, :selected => "false", :label => "Autoshow<br />Share Dialog".html_safe, :input_html => { :class => "input-mini" }, :wrapper_html => { :class => "double" }, :hint => "Autoshow the share dialog upon successful entry?<br />Defaults to No.".html_safe
-    = f.input :allow_multi_entries, :as => :select, :selected => "false", :label => "Allow Multiple Entries Per User", :input_html => { :class => "input-mini" }, :wrapper_html => { :class => "double" }, :hint => "Allow a single Facebook user to enter multiple times?<br />Defaults to No.".html_safe
-    = f.input :email_required, :as => :select, :selected => "false", :label => "Email Address Required for Entry", :input_html => { :class => "input-mini" }, :wrapper_html => { :class => "double" }, :hint => "Require entrants to provide an email address?<br />If Yes, entrants will be asked to authenticate the app.<br />Defaults to No".html_safe
-    = f.input :bonus_value, :collection => 1..100, :selected => "5", :label => "Bonus Entry Value", :input_html => { :class => "input-mini" }, :hint => "How many bonus entries to award a user for a successful conversion via Share, Invite, or Referral URL.<br />Defaults to 5.".html_safe
+    = render "giveaways/form/preferences", :f => f
 
   .form-actions
     = f.button :submit, :class => "btn-primary"
-
-:javascript
-  $(function() {
-    $("fieldset.terms").find("input, textarea").keyup(function() {
-      if ($(this).val().length > 0) {
-        $(this).parents("fieldset").find("input, textarea").not($(this)).attr("disabled", "");
-      } else {
-        $(this).parents("fieldset").find("input, textarea").removeAttr("disabled");
-      }
-    });
-  });

@@ -1,11 +1,5 @@
 %ul.nav.nav-tabs
   %li.active= link_to "Overview", "#page_overview", :"data-toggle" => "tab"
-  %li.dropdown
-    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-      Giveaways
-      %b.caret
-    %ul.dropdown-menu
-      %li= link_to "Active", "#page_giveaways_active", :"data-toggle" => "tab"
-      %li= link_to "Pending", "#page_giveaways_pending", :"data-toggle" => "tab"
-      %li= link_to "Completed", "#page_giveaways_completed", :"data-toggle" => "tab"
-  %li= link_to "Activity Feed", "#page_activity_feed", :"data-toggle" => "tab"
+  %li= link_to "Active Giveaway", "#page_giveaways_active", :"data-toggle" => "tab"
+  %li= link_to "Pending Giveaways", "#page_giveaways_pending", :"data-toggle" => "tab"
+  %li= link_to "Completed Giveaways", "#page_giveaways_completed", :"data-toggle" => "tab"

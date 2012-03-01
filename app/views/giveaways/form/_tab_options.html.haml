@@ -1,0 +1,3 @@
+= f.input :tab_name, :label => "Tab Name", :input_html => { :value => "Giveaway", :maxlength => 100 }, :hint => "The name that will be displayed on your page sidebar.<br />Defaults to 'Giveaway'.".html_safe
+= f.input :tab_position, :collection => 1..10, :selected => "1", :label => "Tab Position", :input_html => { :class => "input-mini" }, :hint => "The position of this tab on your page sidebar.<br />Defaults to First.".html_safe
+= f.input :is_landing_tab, :as => :select, :selected => "true", :label => "Giveaway is Default Landing Tab?", :input_html => { :class => "input-mini" }, :wrapper_html => { :class => "double" }, :hint => "When the giveaway is launched, should it be the default landing tab for your page?<br />Defaults to Yes.".html_safe
