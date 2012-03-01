@@ -6,7 +6,8 @@ class CreateFacebookPages < ActiveRecord::Migration
       t.string   :category
       t.string   :pid
       t.string   :token
-      t.string   :avatar
+      t.string   :avatar_square
+      t.string   :avatar_large
       t.text     :description
       t.integer  :likes
       t.string   :url

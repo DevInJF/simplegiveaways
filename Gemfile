@@ -25,7 +25,7 @@ gem 'simple_form', '~> 2.0'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
-gem 'bootstrap-generators', '~> 2.0', :git => 'git://github.com/decioferreira/bootstrap-generators.git'
+gem 'bootstrap-sass', '~> 2.0.1'
 gem 'jquery-rails'
 
 gem 'timeline_fu', :git => 'git://github.com/onedesign/timeline_fu.git'

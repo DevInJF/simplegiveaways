@@ -9,7 +9,7 @@ ul.thumbnails.facebook_pages {
     float: none;
     width: 335px;
     overflow: hidden;
-    margin: 0 0 8px 20px;
+    margin: 0 0 8px 0;
     padding: 7px 4px;
     cursor: pointer;
     position: relative;
@@ -54,5 +54,12 @@ ul.thumbnails.facebook_pages {
       top: 0;
       left: 0;
     }
+  }
+}
+
+body.facebook_pages {
+
+  &.show {
+
   }
 }

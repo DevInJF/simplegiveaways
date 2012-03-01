@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/decioferreira/bootstrap-generators.git
-  revision: abaa1484065764f0d18a34c9d8d6ad4002cf1eda
-  specs:
-    bootstrap-generators (2.0.1)
-      railties (~> 3.1)
-
-GIT
   remote: git://github.com/onedesign/timeline_fu.git
   revision: 727eb7e1bcf4435d080ea215176b04a9368f5f8a
   specs:
@@ -62,6 +55,7 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
+    bootstrap-sass (2.0.1)
     bourbon (1.3.6)
       sass (>= 3.1)
     braintree (2.13.4)
@@ -260,7 +254,7 @@ DEPENDENCIES
   activeadmin
   awesome_print
   aws-sdk
-  bootstrap-generators (~> 2.0)!
+  bootstrap-sass (~> 2.0.1)
   braintree
   coffee-rails (~> 3.2.1)
   colored

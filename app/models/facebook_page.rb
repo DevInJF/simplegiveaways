@@ -14,10 +14,12 @@ class FacebookPage < ActiveRecord::Base
         batch_data = @graph.batch do |batch_api|
           batch_api.get_object("me")
           batch_api.get_picture("me", :type => "square")
+          batch_api.get_picture("me", :type => "large")
         end
 
         fb_meta = batch_data[0]
-        fb_avatar = batch_data[1]
+        fb_avatar_square = batch_data[1]
+        fb_avatar_large = batch_data[2]
 
         if fb_meta["link"].include? "facebook.com"
 
@@ -27,7 +29,8 @@ class FacebookPage < ActiveRecord::Base
             :category => page["category"],
             :pid => page["id"],
             :token => page["access_token"],
-            :avatar => fb_avatar,
+            :avatar_square => fb_avatar_square,
+            :avatar_large => fb_avatar_large,
             :description => fb_meta["description"],
             :url => fb_meta["link"],
             :likes => fb_meta["likes"],
