@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(:version => 20120226231100) do
     t.string   "prize"
     t.text     "terms"
     t.text     "preferences"
-    t.text     "tab_options"
+    t.text     "sticky_post"
     t.boolean  "preview_mode"
     t.string   "giveaway_url"
     t.integer  "facebook_page_id"

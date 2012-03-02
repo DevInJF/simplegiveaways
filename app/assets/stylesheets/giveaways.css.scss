@@ -1,3 +1,13 @@
 body.giveaways {
 
+  form {
+
+    fieldset {
+      padding-bottom: 9px;
+
+      &.preferences {
+        padding-bottom: 0;
+      }
+    }
+  }
 }

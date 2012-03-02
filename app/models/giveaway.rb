@@ -37,13 +37,12 @@ class Giveaway < ActiveRecord::Base
   validates :email_required, :presence => true, :inclusion => { :in => [ "true", "false" ] }
   validates :bonus_value, :presence => true, :numericality => { :only_integer => true }
 
-  store :tab_options, accessors: [ :tab_name,
-                                   :tab_position,
-                                   :is_landing_tab ]
+  store :sticky_post, accessors: [ :sticky_post_enabled?,
+                                   :sticky_post_title,
+                                   :sticky_post_body ]
 
-  validates :tab_name, :presence => true, :length => { :maximum => 100 }
-  validates :tab_position, :presence => true, :numericality => { :only_integer => true }
-  validates :is_landing_tab, :presence => true, :inclusion => { :in => [ "true", "false" ] }
+  validates :sticky_post_title, :presence => true, :length => { :maximum => 200 }, :if => lambda { sticky_post_enabled? }
+  validates :sticky_post_body, :presence => true, :if => lambda { sticky_post_enabled? }
 
   validate :end_in_future
 
