@@ -4,7 +4,7 @@
   - else
     %h1= link_to APPLICATION_NAME, root_path, :class => "brand"
   .btn-group
-    = link_to "Account", new_facebook_page_giveaway_path(@page), :class => "btn btn-large mypages" 
+    = link_to "Account", "#", :class => "btn btn-large mypages"
     %a{:href => "#", :class => "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
       %span.caret
     %ul.dropdown-menu
@@ -12,7 +12,7 @@
       %li Hello 2
       %li Hello 3
   .btn-group
-    = link_to "My Pages", new_facebook_page_giveaway_path(@page), :class => "btn btn-large mypages" 
+    = link_to "My Pages", "#", :class => "btn btn-large mypages"
     %a{:href => "#", :class => "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
       %span.caret
     %ul.dropdown-menu

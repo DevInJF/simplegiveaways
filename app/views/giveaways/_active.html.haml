@@ -1,4 +1,119 @@
-= link_to "End Giveaway Early", end_giveaway_path(giveaway), :class => "btn btn-large btn-danger"
+%section.giveaway-header
+  = image_tag(giveaway.feed_image(:gallery), :width => "90", :height => "90")
+  .giveaway-title
+    %h1.giveaway-title
+      = link_to  giveaway.title, giveaway_path(giveaway)
+    .buttons
+      %a{:href => edit_facebook_page_giveaway_path(giveaway), :class => "btn pull-left" }
+        %i.icon-edit
+        Edit
+      .btn-group.pull-left
+        %a{ :href => "#", :class => "btn btn-danger dropdown-toggle", :"data-toggle" => "dropdown" }
+          %i.icon-remove.icon-white
+          End
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "#",}
+              %i.icon-time
+              Edit End Time
+          %li.divider
+          %li
+            %a{:href => end_giveaway_path(giveaway) }
+              %i.icon-remove
+              End Now
+.row.clearfix
+  %section.stats
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+    .stat-box.span3
+      %h2
+        1,000
+      %p
+        Total Likes (?)
+%section.entries
+  %h2.pull-left Entries
+  %a{:class => "btn pull-right"}
+    %i.icon-download-alt
+    Download .CSV
+  .clearfix
+  %table#entries.table.table-bordered
+    %thead
+      %tr
+        %th.header
+          ID
+        %th.header
+          E-mail
+        %th.header
+          Post?
+        %th.header
+          Requests
+        %th.header
+          Conversions
+        %th.header
+          Bonus Entries
+        %th.header
+          Entry Time
+    %tbody
+      %tr
+        %td
+          Brian Dillon
+        %td
+          bdillon3@gmail.com
+        %td
+          Yes
+        %td
+          4
+        %td
+          1
+        %td
+          5
+        %td
+          11.28.11 @ 12:34:50 EST
+
 
 :javascript
   $(function() {
