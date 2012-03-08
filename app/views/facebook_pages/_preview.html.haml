@@ -1,5 +1,5 @@
 %li.span5
-  %a{:href => facebook_page.url, :class => "avatar" }
+  %a{:href => facebook_page_path(facebook_page), :class => "avatar" }
     = image_tag(facebook_page.avatar_square, :width => "270", :height => "270")
   %h3= facebook_page.name
   = link_to "", facebook_page_path(facebook_page), :class => "page-link"

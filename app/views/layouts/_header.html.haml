@@ -16,6 +16,5 @@
     %a{:href => "#", :class => "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
       %span.caret
     %ul.dropdown-menu
-      %li Hello
-      %li Hello 2
-      %li Hello 3
+      - current_user.facebook_pages.each do |page|
+        %li= page.name
