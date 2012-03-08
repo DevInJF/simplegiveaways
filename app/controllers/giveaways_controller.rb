@@ -27,7 +27,7 @@ class GiveawaysController < ApplicationController
     @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}"
 
     if @giveaway.save
-      flash[:success] = 'Giveaway was successfully created.'
+      flash[:success] = "The #{@giveaway.title} giveaway has been created."
       redirect_to @page
     else
       render :action => :new
@@ -38,7 +38,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
 
     if @giveaway.update_attributes(params[:giveaway])
-      flash[:success] = 'Giveaway was successfully updated.'
+      flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to(@giveaway)
     else
       render :action => "edit"
@@ -49,7 +49,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
     @giveaway.destroy
 
-    flash[:success] = 'Giveaway was successfully destroyed.'
+    flash[:success] = "The #{@giveaway.title} giveaway has been permanently deleted."
     redirect_to(giveaways_url)
   end
 
@@ -57,7 +57,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.startable?
       if @giveaway.update_attributes(:start_date => DateTime.now)
-        flash.now[:success] = "Giveaway has been successfully started."
+        flash.now[:success] = "The #{@giveaway.title} giveaway is now on your Facebook Page."
       else
         flash.now[:error] = "Giveaway could not be started."
       end
@@ -75,7 +75,7 @@ class GiveawaysController < ApplicationController
   def end
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.update_attributes(:end_date => DateTime.now)
-      flash[:success] = "Giveaway has been successfully ended."
+      flash[:success] = "The #{@giveaway.title} giveaway has been ended and will no longer accept entries."
       redirect_to @giveaway
     else
       flash.now[:error] = "Giveaway could not be ended."

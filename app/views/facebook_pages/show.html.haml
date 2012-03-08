@@ -1,15 +1,58 @@
-- content_for(:page_heading) do
-  = @page.name
+- content_for :page_heading do
+  %h1= @page.name
+  %p
+    = @page.likes
+    Likes
+  %a{ :href => new_facebook_page_giveaway_path(@page), :class =>"btn btn-large btn-success create-giveaway" }
+    %i.icon-plus.icon-white
+    Create Giveaway
 
-= render "navigation"
 
-.tab-content.span14
-  #page_overview.tab-pane.active
-    = render "overview"
-  #page_giveaways_active.tab-pane
-    = render :collection => Giveaway.active, :partial => "giveaway"
+
+- content_for :avatar do
+  %a{:href => @page.url, :class => "avatar" }
+    = image_tag(@page.avatar_square, :alt => @page.name, :width => "125", :height => "125")
+
+- content_for :links do
+  %li.active
+    %a{ :href => "#page_giveaways_active", :"data-toggle" => "tab"}
+      %i.icon-star
+      Active
+  %li
+    %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
+      %i.icon-inbox
+      Pending
+  %li
+    %a{ :href => "#page_giveaways_completed", :"data-toggle" => "tab"}
+      %i.icon-ban-circle
+      Completed
+  %li
+    %a{ :href => "#page_stats", :"data-toggle" => "tab"}
+      %i.icon-signal
+      Page Stats
+
+.tab-content
+  #page_giveaways_active.tab-pane.active
+    = render :collection => @page.giveaways.pending.limit(1), :partial => "giveaways/active", :as => :giveaway
   #page_giveaways_pending.tab-pane
-    = render :collection => Giveaway.pending, :partial => "giveaway"
+    .row
+      = render :collection => @page.giveaways.pending, :partial => "giveaways/pending", :as => :giveaway
   #page_giveaways_completed.tab-pane
-    = render :collection => Giveaway.completed, :partial => "giveaway"
+    %table.table
+      %thead
+        %tr
+          %th.header
 
+          %th.header
+            Name
+          %th.header
+            Ended
+          %th.header
+            Entries
+          %th.header
+            Views
+          %th.header
+      %tbody
+        = render :collection => @page.giveaways.pending, :partial => "giveaways/completed"  , :as => :giveaway
+  #page_stats.tab-pane
+    = render "overview"

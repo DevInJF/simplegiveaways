@@ -1,5 +1,5 @@
 = link_to "Start Giveaway", start_giveaway_path(giveaway), :class => "btn btn-large btn-success"
-
+= link_to "Edit Giveaway", edit_giveaway_path(giveaway), :class => "btn btn-large"
 :javascript
   $(function() {
     $(".btn.btn-large.btn-success").popover({"title": "Warning", "content": "Pushing this button will start the giveaway and publish it to your Facebook Page."});
@@ -28,15 +28,15 @@
     %tr
       %td.key Feed Image
       %td= image_tag giveaway.feed_image(:feed), :alt => giveaway.feed_image(:feed)
-    %tr
-      %td.key Tab Name
-      %td= giveaway.tab_name
-    %tr
-      %td.key Tab Position
-      %td= giveaway.tab_position
-    %tr
-      %td.key Is Landing Tab?
-      %td= giveaway.is_landing_tab
+    /%tr
+    /  %td.key Tab Name
+    /  %td= giveaway.tab_name
+    /%tr
+    /  %td.key Tab Position
+    /  %td= giveaway.tab_position
+    /%tr
+    /  %td.key Is Landing Tab?
+    /  %td= giveaway.is_landing_tab
     %tr
       %td.key Autoshow Share Dialog
       %td= giveaway.autoshow_share_dialog

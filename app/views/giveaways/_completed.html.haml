@@ -1,0 +1,32 @@
+%tr
+  %td
+    = image_tag(giveaway.feed_image(:thumb))
+  %td
+    = giveaway.title
+  %td
+    Aug 23rd, 2011
+  %td
+    = giveaway.entries.count
+  %td
+    = giveaway.impressionist_count
+  %td
+    .modal.hide.fade{ :id => "stats"+"#{giveaway.id}"+"modal" }
+      .modal-header
+        %a.close{ :"data-dismiss" => "modal"}
+          x
+        %h3 Stats for #{giveaway.title}
+      .modal-body
+        /= render "giveaways/stats"
+    %a{ :"data-toggle" => "modal", :class => "btn pull-right", :href => "#stats"+"#{giveaway.id}"+"modal" }
+      %i.icon-signal
+      More Stats
+    .modal.hide.fade{ :id => "entries"+"#{giveaway.id}"+"modal" }
+      .modal-header
+        %a.close{ :"data-dismiss" => "modal"}
+          x
+        %h3 Entries for #{giveaway.title}
+      .modal-body
+      /= render "giveaways/entries"
+    %a{ :"data-toggle" => "modal", :class => "btn btn-primary pull-right", :href => "#entries"+"#{giveaway.id}"+"modal" }
+      %i.icon-list.icon-white
+      All Entries
