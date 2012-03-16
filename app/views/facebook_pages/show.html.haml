@@ -3,56 +3,70 @@
   %p
     = @page.likes
     Likes
-  %a{ :href => new_facebook_page_giveaway_path(@page), :class =>"btn btn-large btn-success create-giveaway" }
-    %i.icon-plus.icon-white
-    Create Giveaway
-
-
+/  %a{ :href => new_facebook_page_giveaway_path(@page), :class =>"btn btn-large btn-success create-giveaway" }
+/    %i.icon-plus.icon-white
+/   Create Giveaway
 
 - content_for :avatar do
   %a{:href => @page.url, :class => "avatar" }
-    = image_tag(@page.avatar_square, :alt => @page.name, :width => "125", :height => "125")
+    = image_tag(@page.avatar_square, :alt => @page.name, :width => "180", :height => "180")
 
 - content_for :links do
-  %li.active
-    %a{ :href => "#page_giveaways_active", :"data-toggle" => "tab"}
-      %i.icon-star
-      Active
-  %li
-    %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
-      %i.icon-inbox
-      Pending
-  %li
-    %a{ :href => "#page_giveaways_completed", :"data-toggle" => "tab"}
-      %i.icon-ban-circle
-      Completed
-  %li
-    %a{ :href => "#page_stats", :"data-toggle" => "tab"}
-      %i.icon-signal
-      Page Stats
+  %ul.nav.nav-list
+    %li.active
+      %a{ :href => "#page_giveaways_active", :"data-toggle" => "tab"}
+        %i.icon-star
+        Active
+    %li
+      %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
+        %i.icon-inbox
+        Pending
+    %li
+      %a{ :href => "#page_giveaways_completed", :"data-toggle" => "tab"}
+        %i.icon-ok
+        Completed
+    %li
+      %a{ :href => "#page_stats", :"data-toggle" => "tab"}
+        %i.icon-signal
+        Page Stats
 
 .tab-content
   #page_giveaways_active.tab-pane.active
-    = render :collection => @page.giveaways.pending.limit(1), :partial => "giveaways/active", :as => :giveaway
+    .content
+      .pane_heading
+        %h2 Active Giveaway
+      .container
+        = render :collection => @page.giveaways.pending.limit(1), :partial => "giveaways/active", :as => :giveaway
   #page_giveaways_pending.tab-pane
-    .row
-      = render :collection => @page.giveaways.pending, :partial => "giveaways/pending", :as => :giveaway
+    .content
+      .pane_heading
+        %h2 Pending Giveaways
+      .container
+        = render :collection => @page.giveaways.pending, :partial => "giveaways/pending", :as => :giveaway
+        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-xlarge create-giveaway"
   #page_giveaways_completed.tab-pane
-    %table.table
-      %thead
-        %tr
-          %th.header
+    .content
+      .pane_heading
+        %h2 Completed Giveaways
+      .container
+        %table.table
+          %thead
+            %tr
+              %th.header
 
-          %th.header
-            Name
-          %th.header
-            Ended
-          %th.header
-            Entries
-          %th.header
-            Views
-          %th.header
-      %tbody
-        = render :collection => @page.giveaways.pending, :partial => "giveaways/completed"  , :as => :giveaway
+              %th.header
+                Name
+              %th.header
+                Ended
+              %th.header
+                Entries
+              %th.header
+                Views
+              %th.header
+          %tbody
+            = render :collection => @page.giveaways.completed, :partial => "giveaways/completed"  , :as => :giveaway
   #page_stats.tab-pane
-    = render "overview"
+    .content
+      .pane_heading
+        %h2 Page Stats
+      = render "overview"

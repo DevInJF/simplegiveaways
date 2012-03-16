@@ -1,5 +1,5 @@
 %section.giveaway-header
-  = image_tag(giveaway.feed_image(:gallery), :width => "90", :height => "90")
+  = image_tag(giveaway.image(:gallery))
   .giveaway-title
     %h1.giveaway-title
       = link_to  giveaway.title, giveaway_path(giveaway)

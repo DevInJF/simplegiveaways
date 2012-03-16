@@ -1,7 +1,6 @@
-.page_header.container
+.page_header
   = yield :avatar
   .page_heading
     = yield :page_heading 
     .subnav
-      %ul.nav.nav-pills 
-        = yield :links
+      = yield :links

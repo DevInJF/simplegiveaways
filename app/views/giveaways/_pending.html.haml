@@ -1,11 +1,19 @@
-.span5.pull-left
-  .pending-giveaway
-    = image_tag(giveaway.image(:gallery))
-    .tip.bottom
-      %h1= giveaway.title
-      %a{:href => edit_giveaway_path(giveaway), :class => "btn btn btn-edit" }
-        %i.icon-star.icon-edit
-        Edit
-      %a{:href => start_giveaway_path(giveaway), :class => "btn btn btn-primary btn-publish" }
-        %i.icon-star.icon-white
-        Publish
+- content_for :pane_heading do
+  .pane_heading
+    %h2 Pending Giveaways
+
+.pending-giveaway
+  .image
+    = image_tag(giveaway.feed_image(:feed))
+  .title
+    %h1= link_to  giveaway.title, giveaway_path(giveaway)
+    %h2
+      %span.gray Prize
+      #{giveaway.prize}
+  .buttons
+    %a{:href => edit_giveaway_path(giveaway), :class => "btn btn-large btn-edit" }
+      %i.icon-edit
+      Edit
+    %a{:href => start_giveaway_path(giveaway), :class => "btn btn-large btn-primary btn-publish" }
+      %i.icon-star.icon-white
+      Publish

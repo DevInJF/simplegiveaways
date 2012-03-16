@@ -49,7 +49,8 @@ class Giveaway < ActiveRecord::Base
   has_attached_file :image,
     :styles => {
       :thumb  => "150x150>",
-      :medium => "300x300>" },
+      :medium => "300x300>", 
+      :gallery => "256x320#"},
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
@@ -57,7 +58,7 @@ class Giveaway < ActiveRecord::Base
   has_attached_file :feed_image,
     :styles => {
       :thumb  => "45x45>",
-      :feed => "90x90>" },
+      :feed => "90x90>"},
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
