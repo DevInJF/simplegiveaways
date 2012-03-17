@@ -8,23 +8,45 @@
     = image_tag( current_user.avatar , :alt => current_user.name, :width => "125", :height => "125")
 
 - content_for :links do
-  %li.active
-    %a{ :href => "#page_giveaways_active", :"data-toggle" => "tab"}
-      %i.icon-flag
-      Pages
-  %li
-    %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
-      %i.icon-user
-      Account
-  %li
-    %a{ :href => "#page_giveaways_completed", :"data-toggle" => "tab"}
-      %i.icon-calendar
-      Billing
-  %li
-    %a{ :href => "#page_stats", :"data-toggle" => "tab"}
-      %i.icon-book
-      Resources
+  %ul.nav.nav-list
+    %li.active
+      %a{ :href => "#page_giveaways_active", :"data-toggle" => "tab"}
+        %i.icon-flag
+        Pages
+    %li
+      %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
+        %i.icon-user
+        Account
+    %li
+      %a{ :href => "#page_giveaways_completed", :"data-toggle" => "tab"}
+        %i.icon-calendar
+        Billing
+    %li
+      %a{ :href => "#page_stats", :"data-toggle" => "tab"}
+        %i.icon-book
+        Resources
 
-= render "users/facebook_pages"
-
-= render "shared/activity_feed"
+.tab-content
+  #user_pages.tab-pane.active
+    .content
+      .pane_heading
+        %h2 Facebook Pages <strong>(#{current_user.facebook_pages.count})</strong>
+      .container
+        = render "users/facebook_pages"
+  #user_account.tab-pane
+    .content
+      .pane_heading
+        %h2 Account
+      .container
+        Account Content
+  #user_billing.tab-pane
+    .content
+      .pane_heading
+        %h2 Billing
+      .container
+        Billing Content
+  #resources.tab-pane
+    .content
+      .pane_heading
+        %h2 Resources 
+      

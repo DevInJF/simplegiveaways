@@ -1,5 +1,16 @@
-%li.span5
-  %a{:href => facebook_page_path(facebook_page), :class => "avatar" }
-    = image_tag(facebook_page.avatar_square, :width => "270", :height => "270")
-  %h3= facebook_page.name
-  = link_to "", facebook_page_path(facebook_page), :class => "page-link"
+.list_item
+  .image
+    %a{:href => facebook_page_path(facebook_page), :class => "avatar" }
+      = image_tag(facebook_page.avatar_square, :width => "100", :height => "100")
+  .title
+    %h1= link_to  facebook_page.name, facebook_page_path(facebook_page)
+    %h2
+      = facebook_page.likes
+      %span.gray Likes
+  .buttons
+    %a{:href => "#", :class => "btn btn-large btn-edit" }
+      %i.icon-edit
+      Edit
+    %a{:href => "#", :class => "btn btn-large btn-primary btn-publish" }
+      %i.icon-star.icon-white
+      Publish
