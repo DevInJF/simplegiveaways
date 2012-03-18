@@ -66,12 +66,7 @@ header.giveaway_preview {
 
 #page_giveaways_pending {
 
-  .create-giveaway  {
-    text-align:center;
-    margin-top:20px;
-    background-color:$grayLightest;
-    padding:40px;
-  }
+  
 }
 
 section.stats {
@@ -101,6 +96,10 @@ section.stats {
         margin-top:10px;
       }
       
+      span.pop {
+        color: #005580;
+        font-size:18px;
+      } 
     }
 
     li.secondary {
@@ -119,11 +118,38 @@ section.stats {
         font-weight:normal;
       }
 
-    }
-    
+      span.pop {
+        color: #005580;
+        font-size:14px;
+      } 
+    } 
   }
 }
 
+.create-giveaway  {
+  text-align:center;
+  margin:20px 0px;
+  background-color:$grayLightest;
+  padding:40px;
+
+  h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin-bottom:30px;
+
+    a {
+      color:#0000ff;
+
+      &:hover {
+        color:#005580;
+      }
+    }
+  }
+
+  h4 {
+    margin:40px;
+  }
+}
 
 
 .modal {

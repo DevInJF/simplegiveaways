@@ -18,11 +18,11 @@
     %li
       %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
         %i.icon-inbox
-        Pending
+        Pending (#)
     %li
       %a{ :href => "#page_giveaways_completed", :"data-toggle" => "tab"}
         %i.icon-ok
-        Completed
+        Completed (#)
     %li
       %a{ :href => "#page_stats", :"data-toggle" => "tab"}
         %i.icon-signal
@@ -42,7 +42,7 @@
       .container
         = render :collection => @page.giveaways.pending, :partial => "giveaways/pending", :as => :giveaway
         .create-giveaway
-          = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-large"
+          = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-large btn-success"
   #page_giveaways_completed.tab-pane
     .content
       .pane_heading

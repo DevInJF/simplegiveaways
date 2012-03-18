@@ -8,9 +8,6 @@
       = facebook_page.likes
       %span.gray Likes
   .buttons
-    %a{:href => "#", :class => "btn btn-large btn-edit" }
-      %i.icon-edit
-      Edit
-    %a{:href => "#", :class => "btn btn-large btn-primary btn-publish" }
-      %i.icon-star.icon-white
-      Publish
+    %a{:href => facebook_page_path(facebook_page), :class => "btn btn-large btn-edit" }
+      %i.icon-flag
+      Manage Page
