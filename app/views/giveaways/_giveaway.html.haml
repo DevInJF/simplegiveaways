@@ -42,9 +42,21 @@
             %section.detail.basic_info
               %header.detail
                 %h2 Basic Info 
-                %a{:href => edit_giveaway_path(giveaway), :class => "btn btn-mini btn-edit" }
+                %a{ :class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#basic_info" }
                   %i.icon-edit
                   Edit
+                .modal.hide.fade{ :id => "basic_info" }
+                  .modal-header
+                    %a.close{ :"data-dismiss" => "modal"}
+                      x
+                    %h3 Update the schdule for #{giveaway.title}
+                  .modal-body
+                    = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+                      %fieldset.basic-info
+                        %legend Basic Info
+                        = render "giveaways/form/basic_info", :f => f
+                      .form-actions
+                        = f.button :submit, :class => "btn-primary"
               %table.basic_info
                 %tr
                   %td Title

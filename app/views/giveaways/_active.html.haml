@@ -1,16 +1,5 @@
-%section.giveaway-header
-  .image
-    = image_tag(giveaway.feed_image(:feed))
-  .title
-    %h1= link_to  giveaway.title, giveaway_path(giveaway)
-    %h2
-      %span.gray Prize
-      #{giveaway.prize}
-  .buttons
-    %a{:href => edit_giveaway_path(giveaway), :class => "btn btn-large btn-edit" }
-      %i.icon-edit
-      Edit
-  .btn-group.pull-left
+.countdown.pull-right
+  .btn-group.btn-end.pull-right
     %a{ :href => "#", :class => "btn btn-danger dropdown-toggle", :"data-toggle" => "dropdown" }
       %i.icon-remove.icon-white
       End
@@ -25,58 +14,75 @@
         %a{:href => end_giveaway_path(giveaway) }
           %i.icon-remove
           End Now
-.row.clearfix
-  %section.stats
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
-    .stat-box.span3
-      %h2
-        1,000
-      %p
-        Total Likes (?)
+  %h3.pull-right Giveaway Ends in 23:34:34:34
+%header.giveaway_preview
+  .image
+    = image_tag(giveaway.feed_image(:feed))
+  .title
+    %h1= link_to  giveaway.title, giveaway_path(giveaway)
+    %h2
+      %span.gray Prize
+      #{giveaway.prize}
+  .buttons
+    %a{:href => giveaway_path(giveaway), :class => "btn btn-large btn-edit" }
+      %i.icon-edit
+      Edit
+/%section.giveaway-header
+/  .image
+/    = image_tag(giveaway.feed_image(:feed))
+/  .title
+/    %h1= link_to  giveaway.title, giveaway_path(giveaway)
+/    %h2
+/      %span.gray Prize
+/      #{giveaway.prize}
+/  .buttons
+/    %a{:href => edit_giveaway_path(giveaway), :class => "btn btn-large btn-edit" }
+/      %i.icon-edit
+/      Edit
+  
+
+%section.stats
+  .row
+    %ul.stat-box.span3
+      %li.primary
+        %h2.stat-label Views
+        %h3.stat-value 34,234
+      %li.secondary
+        %h2.stat-label Unique Views
+        %h3.stat-value 31,912
+      %li.secondary 
+        %h2.stat-label Viral Views
+        %h3.stat-value 6,118
+    %ul.stat-box.span3
+      %li.primary
+        %h2.stat-label Likes
+        %h3.stat-value 16,340
+      %li.secondary
+        %h2.stat-label Likes From Entries
+        %h3.stat-value 14,120
+      %li.secondary 
+        %h2.stat-label Viral Likes
+        %h3.stat-value 4,345
+    %ul.stat-box.span3
+      %li.primary
+        %h2.stat-label Entries
+        %h3.stat-value 15,340
+      %li.secondary
+        %h2.stat-label Entry Rate
+        %h3.stat-value 48%
+      %li.secondary 
+        %h2.stat-label Viral Entries
+        %h3.stat-value 5,340
+    %ul.stat-box.span3
+      %li.primary
+        %h2.stat-label Shares
+        %h3.stat-value 3,981
+      %li.secondary
+        %h2.stat-label Wall Posts
+        %h3.stat-value 1,841
+      %li.secondary 
+        %h2.stat-label Requests
+        %h3.stat-value 2,140
 %section.entries
   %h2.pull-left Entries
   %a{:class => "btn pull-right"}

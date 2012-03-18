@@ -33,7 +33,6 @@
     .content
       .pane_heading
         %h2 Active Giveaway
-      
       .container
         = render :collection => @page.giveaways.pending.limit(1), :partial => "giveaways/active", :as => :giveaway
   #page_giveaways_pending.tab-pane
@@ -42,7 +41,8 @@
         %h2 Pending Giveaways
       .container
         = render :collection => @page.giveaways.pending, :partial => "giveaways/pending", :as => :giveaway
-        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-xlarge create-giveaway"
+        .create-giveaway
+          = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-large"
   #page_giveaways_completed.tab-pane
     .content
       .pane_heading
