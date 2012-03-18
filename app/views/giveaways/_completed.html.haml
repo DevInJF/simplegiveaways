@@ -24,7 +24,7 @@
         /= render "giveaways/stats"
     %a{ :"data-toggle" => "modal", :class => "btn pull-right", :href => "#stats"+"#{giveaway.id}"+"modal" }
       %i.icon-signal
-      More Stats
+      View Stats
     .modal.hide.fade{ :id => "entries"+"#{giveaway.id}"+"modal" }
       .modal-header
         %a.close{ :"data-dismiss" => "modal"}
@@ -34,4 +34,4 @@
       /= render "giveaways/entries"
     %a{ :"data-toggle" => "modal", :class => "btn btn-primary pull-right", :href => "#entries"+"#{giveaway.id}"+"modal" }
       %i.icon-list.icon-white
-      All Entries
+      View Entries

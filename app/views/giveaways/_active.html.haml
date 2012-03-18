@@ -1,27 +1,30 @@
 %section.giveaway-header
-  = image_tag(giveaway.image(:gallery))
-  .giveaway-title
-    %h1.giveaway-title
-      = link_to  giveaway.title, giveaway_path(giveaway)
-    .buttons
-      %a{:href => edit_facebook_page_giveaway_path(giveaway), :class => "btn pull-left" }
-        %i.icon-edit
-        Edit
-      .btn-group.pull-left
-        %a{ :href => "#", :class => "btn btn-danger dropdown-toggle", :"data-toggle" => "dropdown" }
-          %i.icon-remove.icon-white
-          End
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{:href => "#",}
-              %i.icon-time
-              Edit End Time
-          %li.divider
-          %li
-            %a{:href => end_giveaway_path(giveaway) }
-              %i.icon-remove
-              End Now
+  .image
+    = image_tag(giveaway.feed_image(:feed))
+  .title
+    %h1= link_to  giveaway.title, giveaway_path(giveaway)
+    %h2
+      %span.gray Prize
+      #{giveaway.prize}
+  .buttons
+    %a{:href => edit_giveaway_path(giveaway), :class => "btn btn-large btn-edit" }
+      %i.icon-edit
+      Edit
+  .btn-group.pull-left
+    %a{ :href => "#", :class => "btn btn-danger dropdown-toggle", :"data-toggle" => "dropdown" }
+      %i.icon-remove.icon-white
+      End
+      %b.caret
+    %ul.dropdown-menu
+      %li
+        %a{:href => "#",}
+          %i.icon-time
+          Edit End Time
+      %li.divider
+      %li
+        %a{:href => end_giveaway_path(giveaway) }
+          %i.icon-remove
+          End Now
 .row.clearfix
   %section.stats
     .stat-box.span3

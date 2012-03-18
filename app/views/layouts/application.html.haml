@@ -12,10 +12,9 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body.application{ :class => body_class }
-    .wrapper
+    .site_wrapper
       = render "layouts/header"
       = render "shared/flash", :flash => flash
-      .container_wrapper
-        = render "layouts/page_header"
-        = render "layouts/content"
+      = render "layouts/page_header"
+      = render "layouts/content"
       = render "layouts/footer"

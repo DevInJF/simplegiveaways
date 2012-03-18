@@ -1,6 +1,5 @@
-.page_header
+%header.page
   = yield :avatar
-  .page_heading
-    = yield :page_heading 
-    .subnav
-      = yield :links
+  = yield :page_title
+  %nav
+    = yield :links

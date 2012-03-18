@@ -1,9 +1,9 @@
-%header.primary
+%header.site
   - if signed_in?
     %h1= link_to APPLICATION_NAME, user_path(current_user), :class => "brand"
   - else
     %h1= link_to APPLICATION_NAME, root_path, :class => "brand"
-  .btn-group
+  .btn-group.account
     = link_to "Account", "#", :class => "btn btn-large mypages"
     %a{:href => "#", :class => "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
       %span.caret
@@ -11,7 +11,7 @@
       %li Hello
       %li Hello 2
       %li Hello 3
-  .btn-group
+  .btn-group.my_pages
     = link_to "My Pages", "#", :class => "btn btn-large mypages"
     %a{:href => "#", :class => "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
       %span.caret

@@ -1,8 +1,6 @@
-- content_for :page_heading do
-  %h1= @page.name
-  %p
-    = @page.likes
-    Likes
+- content_for :page_title do
+  %h1.page_title= @page.name
+  %p.page_subtitle #{@page.likes} Likes
 /  %a{ :href => new_facebook_page_giveaway_path(@page), :class =>"btn btn-large btn-success create-giveaway" }
 /    %i.icon-plus.icon-white
 /   Create Giveaway
@@ -35,6 +33,7 @@
     .content
       .pane_heading
         %h2 Active Giveaway
+      
       .container
         = render :collection => @page.giveaways.pending.limit(1), :partial => "giveaways/active", :as => :giveaway
   #page_giveaways_pending.tab-pane
@@ -59,9 +58,11 @@
               %th.header
                 Ended
               %th.header
-                Entries
-              %th.header
                 Views
+              %th.header
+                Likes
+              %th.header
+                Entries
               %th.header
           %tbody
             = render :collection => @page.giveaways.completed, :partial => "giveaways/completed"  , :as => :giveaway

@@ -1,11 +1,8 @@
 @import "bootstrap-variables";
 
-.wrapper {
+.site_wrapper {
   width:1052px;
   margin:0px auto;
-}
-.clearfix {
-  clear:both;
 }
 
 .container {
@@ -14,10 +11,9 @@
 
 html {
   body {
-    background: #E7EBF2 url('http://www.thebdmethod.com/monkeymace/monkeymacebg.png') repeat;
-    background-color: #000;
+    background-image: $bg;
 
-    header.primary {
+    header.site {
       height: 120px;
       line-height: 120px;
 
@@ -36,147 +32,112 @@ html {
       }
     }
 
-    .container_wrapper {
+    header.page {
 
-      width:1200px;
+      float:left;
+      width:180px;
+      margin-right:20px;
+      text-align:center;
 
+      a.avatar {
+        width:160px;
+        height:160px;
+        display:block;
+        padding:8px;
+        @include frame-background-color;
+        @include frame-border;
+        @include inner-shadow;
+        @include border-radius;
+      }
 
-      .page_header {
+      h1.page_title {
+        font-size:18px;
+        line-height:24px;
+        margin-top:10px;
+      }
 
+      p.page_subtitle {
+        font-size:14px;
+        color:#777;
+        margin-bottom:21px;
+      }
 
-        float:left;
-        width:180px;
-        margin-right:20px;
+      nav {
+        ul.nav-list {
+          padding:0px;
+          margin-bottom:10px;
+          @include border-radius;
+          @include frame-border;
 
+          li {
+            border-bottom: 1px solid $gray;
+            text-align:left;
 
-        a.avatar {
-          width:160px;
-          height:160px;
-          display:block;
-          padding:8px;
-          border: 1px solid #ddd;
-          background-color:white;
-          -webkit-box-shadow: inset 0px 0px 2px 3px #eee;
-          -moz-box-shadow: inset 0px 0px 2px 3px #eee;
-          box-shadow: inset 0px 0px 2px 3px #eee;
-          -webkit-border-radius: 4px;
-          -moz-border-radius: 4px;
-          border-radius: 4px;
+            &:last-child {
+              border-bottom:0px;
+            }
 
-          img {
-            padding:1px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
+            a {
+              margin: 0;
+              color: #333;
+              padding-top:    11px;
+              padding-bottom: 11px;
+              background-color: $grayLightest;
+
+              &:hover {
+                background-color: $grayLight;
+              }
+            }
           }
-        }
-        .page_heading {
-          text-align:center;
 
-
-          h1 {
-            font-size:18px;
-            line-height:24px;
-            margin-top:10px;
-          }
-
-          p {
-            font-size:14px;
-            color:#777;
-            margin-bottom:21px;
-          }
-
-          a.create-giveaway {
-
-          }
-
-          .btn-group {
-            margin-top:20px;
-          }
-
-          .page-nav {
-            width: 100%;
-            height: 36px;
-            background-color: #eeeeee; /* Old browsers */
-            background-repeat: repeat-x; /* Repeat the gradient */
-            background-image: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* FF3.6+ */
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
-            background-image: -webkit-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* Chrome 10+,Safari 5.1+ */
-            background-image: -ms-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* IE10+ */
-            background-image: -o-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* Opera 11.10+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
-            background-image: linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* W3C */
-            border: 1px solid #e5e5e5;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
+          li.active a, li.active a:hover  {
+            padding-left: 15px;
+            color: #333;
+            background-color: #fdfdfd;
+            border-right-color: #ddd;
+            border-left: 0;
+            @include inner-shadow;
           }
         }
       }
-      .content {
-        float:left;
-        border: 1px solid #ddd;
-        min-height:800px;
-        width:850px;
-        background-color:white;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        border-radius: 4px;
 
-        .container {
-          padding:0px 20px;
-        }
+      a.create-giveaway {
 
-        .tab-content {
-          .tab-pane {
-            .row
-              .testspan {
-                background-color:gray;
-                height:20px;
-                display:block;
-              }
-          }
-        }
       }
     }
 
 
+    .tab-content {
+      float:left;
+      border: 1px solid #ddd;
+      min-height:800px;
+      width:850px;
+      background-color:white;
+      @include border-radius;
+      @include inner-shadow;
 
+      .pane_heading {
+        background-image: $bgtint;
+        padding:20px;
 
+        h2 {
+          font-size:18px;
+          line-height:18px;
+          color:#333;
+        }
+      }
 
+      .container {
+        padding:0px 20px;
+      }
+    }
 
-
-
-    footer.primary {
+    footer.site {
       padding: 5px 0;
       clear: both;
 
       hr {
         margin: 18px 0 23px;
-      }
-    }
-
-    .sidebar.primary {
-      float: left;
-    }
-
-    .container {
-
-
-      &.primary {
-
-
-
-        .inner {
-          padding: 0 37px;
-          overflow: hidden;
-          background: transparent image_url('/assets/page-slice.png') repeat-y 0 0;
-        }
-
-        .bottom {
-          height: 12px;
-          background: transparent image_url('/assets/page-slice-bottom.png') no-repeat 0 0;
-        }
       }
     }
   }

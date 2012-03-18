@@ -1,22 +1,13 @@
-body.giveaways {
-
-  form {
-
-    fieldset {
-      padding-bottom: 9px;
-
-      &.preferences {
-        padding-bottom: 0;
-      }
-    }
-  }
-}
-
-.list_item {
-      width:100%;
-      height:94px;
-      padding:20px 0px;
-      border-bottom: 1px solid #ddd;
+.pending_preview {
+  width:100%;
+  height:94px;
+  padding:20px 0px;
+  border-bottom: 1px solid #ddd;
+      
+  .title {
+  float:left;
+  margin-top:16px;
+  margin-left:10px;
 
 
     h1 {
@@ -33,196 +24,54 @@ body.giveaways {
         color:#a1a1a1;
       }
     }
-
-    .image {
-        float:left;
-        width:94px;
-        height:94px;
-        margin: 0px 20px;
-        background-color:#ddd;
-
-      img {
-        float:left;
-        border: solid 2px #ddd;
-        margin:auto 0px;
-        vertical-align:middle;
-      }
-    }
-
-    .buttons {
-      float:right;
-      width:200px;
-      margin-top:28px;
-
-    }
-
-    .title {
-      float:left;
-      margin-top:16px;
-      margin-left:10px;
-    }
   }
 
-.tab-pane#page_giveaways_active {
-    
-  section.giveaway-header {
-    height:90px;
-    margin-bottom:18px;
+  .image {
+      float:left;
+      width:94px;
+      height:94px;
+      margin: 0px 20px;
+      background-color:#ddd;
 
     img {
       float:left;
-      margin-right:24px;
-      border: 2px solid #ccc;
-    }
-
-    h1.giveaway-title {
-      font-size:34px;
-      line-height:34px;
-      float:left;
-      padding:28px 0px;
-      height:34px;
-    }
-
-    p {
-      font-size:21px;
-      margin-top:6px;
-    }
-
-    .info {
-      float:left;
-      padding:12px 24px 0px 24px;
-
-      ul.edit-end {
-        margin-top:6px;
-        margin-left:12px;
-      }
-
-      .btn {
-        margin-top:10px;
-      }
-    }
-
-    .buttons {
-      float:right;
-      position:relative;
-      bottom:64px;
-
-
-      .btn-group, .btn-publish {
-        margin-left:10px;
-      }
+      border: solid 2px #ddd;
+      margin:auto 0px;
+      vertical-align:middle;
     }
   }
 
+  .buttons {
+    float:right;
+    width:200px;
+    margin-top:28px;
 
-  section.stats {
-
-
-    .stat-box {
-      background:$grayLighter;
-      text-align:center;
-      margin-bottom:12px;
-      padding:12px 0px;
-      color: $gray;
-
-      h2 {
-        color: $grayDark;
-      }
-        
-      p {
-        margin-bottom:4px;
-        font-size:13px;
-        color: $gray;
-      }
-    }
-  }
-
-  section.entries {
-    padding-top:30px;
-    
-    table {
-      margin-top:10px;
-    }
   }
 }
+
+
 
 .modal {
   width:940px;
   margin:-250px 0 0 -471px;
 }
 
-.tab-pane#page_giveaways_pending {
-
-
-  
-  
-}
-
-.tab-pane#page_giveaways_completed {
-  table.table {
 
 
 
-    thead {
-      
-      tr {
-        
-        th {
-
-        }
-      }
-    }
-    
-    tbody {
-
-      tr {
-
-        td {
-
-          .btn {
-            margin-left:10px;
-          } 
-        }
-      }
-    }
-  }
-  .row {
-    .span5 {
-      background-color:green;
-      height:200px;
-    }
-  }
-}
-
-.tab-pane#page_completed-giveaways {
-
-    background:$grayLighter;
-    padding:18px 36px;
-  
-  table.table {
 
 
 
-    thead {
-      
-      tr {
-        
-        th {
 
-        }
-      }
-    }
-    
-    tbody {
+body.giveaways {
 
-      tr {
+  form {
 
-        td {
+    fieldset {
+      padding-bottom: 9px;
 
-          .btn {
-            margin-left:10px;
-          } 
-        }
+      &.preferences {
+        padding-bottom: 0;
       }
     }
   }
