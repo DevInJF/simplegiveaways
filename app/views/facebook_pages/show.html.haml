@@ -1,9 +1,6 @@
 - content_for :page_title do
   %h1.page_title= @page.name
   %p.page_subtitle #{@page.likes} Likes
-/  %a{ :href => new_facebook_page_giveaway_path(@page), :class =>"btn btn-large btn-success create-giveaway" }
-/    %i.icon-plus.icon-white
-/   Create Giveaway
 
 - content_for :avatar do
   %a{:href => @page.url, :class => "avatar" }
@@ -11,11 +8,11 @@
 
 - content_for :links do
   %ul.nav.nav-list
-    %li.active
+    %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "hide" : "active"}
       %a{ :href => "#page_giveaways_active", :"data-toggle" => "tab"}
         %i.icon-star
         Active
-    %li
+    %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "active" : ""}
       %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
         %i.icon-inbox
         Pending (#)
@@ -28,14 +25,18 @@
         %i.icon-signal
         Page Stats
 
+  %a{ :href => new_facebook_page_giveaway_path(@page), :class =>"btn btn-large btn-success create-giveaway" }
+    %i.icon-plus.icon-white
+    Create Giveaway
+
 .tab-content
-  #page_giveaways_active.tab-pane.active
+  #page_giveaways_active.tab-pane{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "hide" : "active"}
     .content
       .pane_heading
         %h2 Active Giveaway
       .container
-        = render :collection => @page.giveaways.pending.limit(1), :partial => "giveaways/active", :as => :giveaway
-  #page_giveaways_pending.tab-pane
+        = render :object => @page.giveaways.active.first, :partial => "giveaways/active", :as => :giveaway
+  #page_giveaways_pending.tab-pane{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "active" : ""}
     .content
       .pane_heading
         %h2 Pending Giveaways
@@ -65,7 +66,7 @@
                 Entries
               %th.header
           %tbody
-            = render :collection => @page.giveaways.completed, :partial => "giveaways/completed"  , :as => :giveaway
+            = render :collection => @page.giveaways.completed, :partial => "giveaways/completed", :as => :giveaway
   #page_stats.tab-pane
     .content
       .pane_heading

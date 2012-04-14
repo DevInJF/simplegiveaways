@@ -29,7 +29,7 @@
     // init
     $just_liked = false;
 
-    var $referrer_id = "#{@giveaway["referrer_id"]}" || "",
+    var $referrer_id = "#{@giveaway.referrer_id}" || "",
         $modal = $("#giveaway_modal"),
         $loader = $modal.find(".loader");
 
@@ -49,7 +49,7 @@
 
       loader : $loader,
 
-      eligible : #{@giveaway["has_liked"]},
+      eligible : #{@giveaway.has_liked},
 
       entry : {
 
@@ -76,13 +76,13 @@
         submit : function(access_token, json) {
           Giveaway.entry.loader();
           if (json) {
-          console.log(json);
+            console.log(json);
             access_token = eval('(' + access_token + ')'); //decode json
-          console.log(access_token);
+            console.log(access_token);
           }
           $.ajax({
             type: 'POST',
-            url: '#{giveaway_entries_path(@giveaway["giveaway"])}',
+            url: '#{giveaway_entries_path(@giveaway.giveaway)}',
             dataType: "json",
             data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer_id,
             statusCode: {
@@ -159,7 +159,7 @@
         callback : function(json) {
           $.ajax({
             type: 'PUT',
-            url: '#{giveaway_entries_path(@giveaway["giveaway"])}' + '/' + $entry_id,
+            url: '#{giveaway_entries_path(@giveaway.giveaway)}' + '/' + $entry_id,
             dataType: "text",
             data: json,
             statusCode: {
@@ -204,11 +204,11 @@
         as_wall_post : function() {
           Giveaway.share.dialog({
             method: "feed",
-            name: '#{@giveaway["current_page"]["name"]}',
-            link: '#{@giveaway["giveaway"]["giveaway_url"]}' + '&app_data=ref_' + $entry_id,
-            picture: '#{@giveaway["giveaway"].feed_image.url}',
-            caption: '#{@giveaway["giveaway"].title}',
-            description: '#{@giveaway["giveaway"].description}'
+            name: '#{@giveaway.current_page.name}',
+            link: '#{@giveaway.giveaway.giveaway_url}' + '&app_data=ref_' + $entry_id,
+            picture: '#{@giveaway.giveaway.feed_image.url}',
+            caption: '#{@giveaway.giveaway.title}',
+            description: '#{@giveaway.giveaway.description}'
           });
         },
 
@@ -216,8 +216,8 @@
           Giveaway.share.dialog({
             title: 'Share this giveaway to receive a bonus entry.',
             method: 'apprequests',
-            message: '#{@giveaway["giveaway"].description}',
-            data: { referrer_id : $entry_id.toString(), giveaway_id : '#{@giveaway["giveaway"]["id"]}' }
+            message: '#{@giveaway.giveaway.description}',
+            data: { referrer_id : $entry_id.toString(), giveaway_id : '#{@giveaway.giveaway.id}' }
           });
         }
       }

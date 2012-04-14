@@ -9,11 +9,12 @@
     %h1= link_to  giveaway.title, giveaway_path(giveaway)
     %h2
       %span.gray Prize
-      #{giveaway.prize}
+      = giveaway.prize
   .buttons
-    %a{:href => edit_giveaway_path(giveaway), :class => "btn btn-large btn-edit" }
-      %i.icon-edit
-      Edit
-    %a{:href => start_giveaway_path(giveaway), :class => "btn btn-large btn-primary btn-publish" }
-      %i.icon-star.icon-white
-      Publish
+    = link_to "<i class='icon-edit'></i> Edit".html_safe, edit_giveaway_path(giveaway), :class => "btn btn-large btn-edit"
+    - if @page.giveaways.active.empty?
+      = link_to "<i class='icon-star icon-white'></i> Publish".html_safe, start_giveaway_path(giveaway), :class => "btn btn-large btn-primary btn-publish"
+    - else
+      %span.btn.btn-large.btn-primary.btn-publish.disabled
+        %i.icon-star.icon-white
+        Publish

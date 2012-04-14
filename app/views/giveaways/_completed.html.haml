@@ -2,18 +2,12 @@
   .pane_heading
     %h2 Completed Giveaway
 
-
 %tr
-  %td
-    = image_tag(giveaway.feed_image(:thumb))
-  %td
-    = giveaway.title
-  %td
-    Aug 23rd, 2011
-  %td
-    = giveaway.entries.count
-  %td
-    = giveaway.impressionist_count
+  %td= image_tag(giveaway.feed_image(:thumb))
+  %td= giveaway.title
+  %td= giveaway.end_date
+  %td= giveaway.entries.count
+  %td= giveaway.impressionist_count
   %td
     .modal.hide.fade{ :id => "stats"+"#{giveaway.id}"+"modal" }
       .modal-header
@@ -21,7 +15,6 @@
           x
         %h3 Stats for #{giveaway.title}
       .modal-body
-        /= render "giveaways/stats"
     %a{ :"data-toggle" => "modal", :class => "btn pull-right", :href => "#stats"+"#{giveaway.id}"+"modal" }
       %i.icon-signal
       View Stats
@@ -31,7 +24,17 @@
           x
         %h3 Entries for #{giveaway.title}
       .modal-body
-      /= render "giveaways/entries"
+        %table
+          %thead
+            %tr
+              %th.header Name
+              %th.header Email
+              %th.header Shares
+              %th.header Requests
+              %th.header Conversions
+              %th.header Entry Time
+          %tbody
+            = render :collection => giveaway.entries, :partial => "giveaways/entry", :as => :entry
     %a{ :"data-toggle" => "modal", :class => "btn btn-primary pull-right", :href => "#entries"+"#{giveaway.id}"+"modal" }
       %i.icon-list.icon-white
       View Entries

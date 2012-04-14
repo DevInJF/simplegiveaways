@@ -59,15 +59,15 @@ class GiveawaysController < ApplicationController
       if @giveaway.update_attributes(:start_date => DateTime.now)
         flash.now[:success] = "The #{@giveaway.title} giveaway is now on your Facebook Page."
       else
-        flash.now[:error] = "Giveaway could not be started."
+        flash.now[:error] = @giveaway.errors.messages.to_s
       end
       render :show
     else
-      if @giveaway.update_attributes(:start_date => DateTime.now)
-        redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway.facebook_page.pid}"
-      else
-        flash.now[:error] = "Giveaway could not be started."
+      if @giveaway.is_installed?
+        flash.now[:error] = "Only one giveaway can be active for each Facebook page."
         render :show
+      else
+        redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway.facebook_page.pid}"
       end
     end
   end
@@ -90,10 +90,10 @@ class GiveawaysController < ApplicationController
 
       @giveaway = Giveaway.tab(signed_request)
 
-      if @giveaway["giveaway"].nil?
+      if @giveaway.giveaway.nil?
         redirect_to "/404.html"
       else
-        impressionist(@giveaway["giveaway"])
+        impressionist(@giveaway.giveaway)
         render :layout => "tab"
       end
     else

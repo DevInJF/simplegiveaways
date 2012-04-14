@@ -12,20 +12,21 @@ class Entry < ActiveRecord::Base
     graph = Koala::Facebook::API.new(options[:access_token])
     profile = graph.get_object("me")
 
-    unless @entry = Entry.find_by_uid(profile["id"])
-      @entry = self.update_attributes(
-        :uid => profile["id"],
-        :name => profile["name"],
-        :email => profile["email"],
-        :fb_url => profile["link"],
-        :datetime_entered => DateTime.now
-      )
+    unless entry = Entry.find_by_uid(profile["id"])
 
-      @entry.determine_status(options[:has_liked], options[:access_token])
-      @entry.count_conversions(options[:referrer_id])
+      self.uid = profile["id"]
+      self.name = profile["name"]
+      self.email = profile["email"]
+      self.fb_url = profile["link"]
+      self.datetime_entered = DateTime.now
+
+      self.determine_status(options[:has_liked], options[:access_token])
+      self.count_conversions(options[:referrer_id])
+
+      entry = self
     end
 
-    @entry
+    entry
   end
 
   def determine_status(has_liked, access_token)
@@ -41,8 +42,6 @@ class Entry < ActiveRecord::Base
         self.status = "complete"
       end
     end
-
-    self
   end
 
   def like_status(access_token)

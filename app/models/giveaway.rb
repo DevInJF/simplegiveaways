@@ -7,7 +7,7 @@ class Giveaway < ActiveRecord::Base
   has_many :entries
 
   scope :active, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date > ?", Time.now, Time.now)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date > ?", Time.now, Time.now).limit(1)
   }
   scope :pending, lambda {
     where("start_date > ? && end_date > ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
@@ -65,8 +65,7 @@ class Giveaway < ActiveRecord::Base
 
 
   def startable?
-    # Can the giveaway be started safely?
-    true
+    is_installed? && facebook_page.giveaways.active.empty? ? true : false
   end
 
   def status
@@ -99,7 +98,6 @@ class Giveaway < ActiveRecord::Base
   def count_conversion(ref)
     ref = entries.find(ref)
     ref.convert_count += 1
-    ref.save
   end
   handle_asynchronously :count_conversion
 
