@@ -12,10 +12,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body.welcome
-    = render "layouts/header"
-    .container.primary
-      .inner
-        = render "shared/flash"
-        = yield
-        = render "layouts/footer"
-      .bottom
+    .site_wrapper
+      = render "layouts/header"
+      = render "shared/flash"
+      = yield
+      = render "layouts/footer"

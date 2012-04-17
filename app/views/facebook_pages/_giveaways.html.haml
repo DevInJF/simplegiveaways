@@ -1,0 +1,38 @@
+.tab-content
+  #page_giveaways_active.tab-pane{:class => page.giveaways.active.empty? && page.giveaways.pending.any? ? "hide" : "active"}
+    .content
+      .pane_heading
+        %h2 Active Giveaway
+      .container
+        = render :object => page.giveaways.active.first, :partial => "giveaways/active", :as => :giveaway
+  #page_giveaways_pending.tab-pane{:class => page.giveaways.active.empty? && page.giveaways.pending.any? ? "active" : ""}
+    .content
+      .pane_heading
+        %h2 Pending Giveaways
+      .container
+        = render :collection => page.giveaways.pending, :partial => "giveaways/pending", :as => :giveaway
+        .create-giveaway
+          = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(page), :class => "btn btn-large btn-success"
+  #page_giveaways_completed.tab-pane
+    .content
+      .pane_heading
+        %h2 Completed Giveaways
+      .container
+        %table.table
+          %thead
+            %tr
+              %th.header
+
+              %th.header
+                Name
+              %th.header
+                Ended
+              %th.header
+                Views
+              %th.header
+                Likes
+              %th.header
+                Entries
+              %th.header
+          %tbody
+            = render :collection => page.giveaways.completed, :partial => "giveaways/completed", :as => :giveaway

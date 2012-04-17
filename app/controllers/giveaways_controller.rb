@@ -1,14 +1,13 @@
 # -*- encoding : utf-8 -*-
 class GiveawaysController < ApplicationController
 
-  after_filter :set_page_var
-
   def index
     @giveaways = @page.giveaways
   end
 
   def show
     @giveaway = Giveaway.find(params[:id], :include => [:entries])
+    @page = FacebookPage.find(@giveaway.facebook_page)
   end
 
   def new
@@ -99,17 +98,6 @@ class GiveawaysController < ApplicationController
       end
     else
       redirect_to "/500.html"
-    end
-  end
-
-  protected
-
-  def set_page_var
-    return @page if @page.present?
-    if params[:facebook_page_id].present?
-      @page = FacebookPage.find(params[:facebook_page_id])
-    elsif @giveaway.present?
-      @page = @giveaway.facebook_page
     end
   end
 end
