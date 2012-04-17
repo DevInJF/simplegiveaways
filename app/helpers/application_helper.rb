@@ -25,6 +25,6 @@ module ApplicationHelper
   end
 
   def sidebar_content
-    content_for(:sidebar) || ""
+    render(:partial => "users/facebook_pages")
   end
 end

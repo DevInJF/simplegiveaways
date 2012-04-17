@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+system("bundle")
+
+system("rake db:migrate")
+
+system("script/delayed_job stop")
+
+system("script/delayed_job start &")
+
+system("rvmsudo thin start -p 80 -a 127.0.0.1")
