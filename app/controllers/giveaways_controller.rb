@@ -1,11 +1,10 @@
 # -*- encoding : utf-8 -*-
-require 'json'
-
 class GiveawaysController < ApplicationController
 
+  after_filter :set_page_var
+
   def index
-    @facebook_page = FacebookPage.find(params[:facebook_page_id])
-    @giveaways = @facebook_page.giveaways
+    @giveaways = @page.giveaways
   end
 
   def show
@@ -13,7 +12,6 @@ class GiveawaysController < ApplicationController
   end
 
   def new
-    @page = FacebookPage.find(params[:facebook_page_id])
     @giveaway = Giveaway.new
   end
 
@@ -22,7 +20,6 @@ class GiveawaysController < ApplicationController
   end
 
   def create
-    @page = FacebookPage.find(params[:facebook_page_id])
     @giveaway = @page.giveaways.build(params[:giveaway])
     @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}"
 
@@ -39,7 +36,7 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.update_attributes(params[:giveaway])
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
-      redirect_to(@giveaway)
+      redirect_to @giveaway
     else
       render :action => "edit"
     end
@@ -47,10 +44,14 @@ class GiveawaysController < ApplicationController
 
   def destroy
     @giveaway = Giveaway.find(params[:id])
-    @giveaway.destroy
 
-    flash[:success] = "The #{@giveaway.title} giveaway has been permanently deleted."
-    redirect_to(giveaways_url)
+    if @giveaway.destroy
+      flash[:success] = "The #{@giveaway.title} giveaway has been permanently deleted."
+      redirect_to(giveaways_url)
+    else
+      flash.now[:error] = @giveaway.errors.messages.to_s
+      render :action => "edit"
+    end
   end
 
   def start
@@ -98,6 +99,17 @@ class GiveawaysController < ApplicationController
       end
     else
       redirect_to "/500.html"
+    end
+  end
+
+  protected
+
+  def set_page_var
+    return @page if @page.present?
+    if params[:facebook_page_id].present?
+      @page = FacebookPage.find(params[:facebook_page_id])
+    elsif @giveaway.present?
+      @page = @giveaway.facebook_page
     end
   end
 end

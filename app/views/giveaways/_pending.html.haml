@@ -6,7 +6,7 @@
   .image
     = image_tag(giveaway.feed_image(:feed))
   .title
-    %h1= link_to  giveaway.title, giveaway_path(giveaway)
+    %h1= link_to giveaway.title, giveaway_path(giveaway)
     %h2
       %span.gray Prize
       = giveaway.prize
