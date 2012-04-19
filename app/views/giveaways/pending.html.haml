@@ -1,0 +1,4 @@
+- content_for :content_header do
+  %h2 Pending Giveaways
+
+= render :collection => @giveaways, :partial => "pending_giveaway", :page => @page, :as => :giveaway

@@ -1,7 +1,3 @@
-- content_for :pane_heading do
-  .pane_heading
-    %h2 Pending Giveaways
-
 %header.giveaway_preview 
   .image
     = image_tag(giveaway.feed_image(:feed))
@@ -12,7 +8,7 @@
       = giveaway.prize
   .buttons
     = link_to "<i class='icon-edit'></i> Edit".html_safe, edit_giveaway_path(giveaway), :class => "btn btn-large btn-edit"
-    - if @page.giveaways.active.empty?
+    - if page.giveaways.active.empty?
       = link_to "<i class='icon-star icon-white'></i> Publish".html_safe, start_giveaway_path(giveaway), :class => "btn btn-large btn-primary btn-publish"
     - else
       %span.btn.btn-large.btn-primary.btn-publish.disabled

@@ -25,27 +25,25 @@
         %i.icon-book
         Resources
 
-.tab-content
-  #user_pages.tab-pane.active
-    .content
-      .pane_heading
-        %h2 Facebook Pages <strong>(#{current_user.facebook_pages.count})</strong>
-      .container
-        = render "users/facebook_pages"
-  #user_account.tab-pane
-    .content
-      .pane_heading
-        %h2 Account
-      .container
-        Account Content
-  #user_billing.tab-pane
-    .content
-      .pane_heading
-        %h2 Billing
-      .container
-        Billing Content
-  #resources.tab-pane
-    .content
-      .pane_heading
-        %h2 Resources 
+- content_for :content_header do
+  %h2 Facebook Pages <strong>(#{current_user.facebook_pages.count})</strong>
+  
+= render "users/facebook_pages"
+
+/ #user_account.tab-pane
+/   .content
+/     .pane_heading
+/       %h2 Account
+/     .container
+/       Account Content
+/ #user_billing.tab-pane
+/   .content
+/     .pane_heading
+/       %h2 Billing
+/     .container
+/       Billing Content
+/ #resources.tab-pane
+/   .content
+/     .pane_heading
+/       %h2 Resources 
       

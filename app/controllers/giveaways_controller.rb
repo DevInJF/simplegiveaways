@@ -2,16 +2,32 @@
 class GiveawaysController < ApplicationController
 
   def index
-    @giveaways = @page.giveaways
+    @giveaways = @giveaway.all
+  end
+
+  def active
+    @page = FacebookPage.find(params[:facebook_page_id])
+    @giveaway = @page.giveaways.active.first
+  end
+
+  def pending
+    @page = FacebookPage.find(params[:facebook_page_id])
+    @giveaways = @page.giveaways.pending
+  end
+
+  def completed
+    @page = FacebookPage.find(params[:facebook_page_id])
+    @giveaways = @page.giveaways.completed
   end
 
   def show
-    @giveaway = Giveaway.find(params[:id], :include => [:entries])
-    @page = FacebookPage.find(@giveaway.facebook_page)
+    @giveaway = Giveaway.find(params[:id])
+    @page = @giveaway.facebook_page
   end
 
   def new
-    @giveaway = Giveaway.new
+    @page = FacebookPage.find(params[:facebook_page_id])
+    @giveaway = @page.giveaways.build
   end
 
   def edit
@@ -19,7 +35,9 @@ class GiveawaysController < ApplicationController
   end
 
   def create
+    @page = FacebookPage.find(params[:facebook_page_id])
     @giveaway = @page.giveaways.build(params[:giveaway])
+
     @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}"
 
     if @giveaway.save

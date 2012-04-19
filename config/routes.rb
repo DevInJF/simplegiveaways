@@ -11,7 +11,11 @@ Simplegiveaways::Application.routes.draw do
   end
 
   resources :facebook_pages do
-    resources :giveaways
+    resources :giveaways do
+      get :active, :on => :collection
+      get :pending, :on => :collection
+      get :completed, :on => :collection
+    end
   end
 
   resources :users
