@@ -25,8 +25,9 @@ class SessionsController < ApplicationController
       self.current_user = @identity.user
       @notice = "Logged in!"
     end
-    render 'sessions/create', notice: @notice
+    
     @identity.process_login(DateTime.now)
+    render 'sessions/create', notice: @notice
   end
 
   def destroy

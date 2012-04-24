@@ -5,7 +5,6 @@ class Entry < ActiveRecord::Base
 
   validates :email, :uniqueness => { :scope => :giveaway_id }
 
-
   def process(*args)
     options = args.extract_options!
 

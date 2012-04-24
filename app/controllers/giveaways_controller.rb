@@ -2,12 +2,12 @@
 class GiveawaysController < ApplicationController
 
   def index
-    @giveaways = @giveaway.all
+    @giveaways = Giveaway.all
   end
 
   def active
     @page = FacebookPage.find(params[:facebook_page_id])
-    @giveaway = @page.giveaways.active.first
+    @giveaways = @page.giveaways.active.first
   end
 
   def pending

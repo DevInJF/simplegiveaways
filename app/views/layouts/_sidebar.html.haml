@@ -1,21 +1,31 @@
-%header.page
-  %a{:href => @page.url, :class => "avatar" }
-    = image_tag(@page.avatar_square, :alt => @page.name, :width => "180", :height => "180")
-  %h1.page_title= @page.name
-  %p.page_subtitle #{@page.likes} Likes
-  %nav
-    %ul.nav.nav-list
-      %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "hide" : "active"}
-        = link_to "<i class='icon-star'></i> Active".html_safe, active_facebook_page_giveaways_path(@page)
-      %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "active" : ""}
-        = link_to "<i class='icon-inbox'></i> Pending".html_safe, pending_facebook_page_giveaways_path(@page)
-      %li
-        = link_to "<i class='icon-ok'></i> Completed".html_safe, completed_facebook_page_giveaways_path(@page)
-      / %li
-      /   %a{ :href => "#page_stats", :"data-toggle" => "tab"}
-      /     %i.icon-signal
-      /     Page Stats
+- if @page.nil? && @giveaway
+  - @page = @giveaway.facebook_page
 
-    %a{ :href => new_facebook_page_giveaway_path(@page), :class => "btn btn-large btn-success create-giveaway" }
-      %i.icon-plus.icon-white
-      Create Giveaway
+- if @page
+
+  %header.page
+    %a{:href => @page.url, :class => "avatar" }
+      = image_tag(@page.avatar_square, :alt => @page.name, :width => "180", :height => "180")
+    %h1.page_title= @page.name
+    %p.page_subtitle #{@page.likes} Likes
+    %nav
+      %ul.nav.nav-list
+        %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "hide" : "active"}
+          = link_to "<i class='icon-star'></i> Active".html_safe, active_facebook_page_giveaways_path(@page)
+        %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "active" : ""}
+          = link_to "<i class='icon-inbox'></i> Pending".html_safe, pending_facebook_page_giveaways_path(@page)
+        %li
+          = link_to "<i class='icon-ok'></i> Completed".html_safe, completed_facebook_page_giveaways_path(@page)
+        / %li
+        /   %a{ :href => "#page_stats", :"data-toggle" => "tab"}
+        /     %i.icon-signal
+        /     Page Stats
+
+      %a{ :href => new_facebook_page_giveaway_path(@page), :class => "btn btn-large btn-success create-giveaway" }
+        %i.icon-plus.icon-white
+        Create Giveaway
+
+- elsif @user
+
+  %header.page
+    %h3= @user.name

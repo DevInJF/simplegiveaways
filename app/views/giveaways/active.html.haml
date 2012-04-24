@@ -3,7 +3,7 @@
   - content_for :content_header do
     %h2 Active Giveaway
 
-  = render :collection => @giveaways, :partial => "active_giveaway", :as => :giveaway
+  = render :object => @giveaways, :partial => "active_giveaway", :as => :giveaway
 
 - else
 
