@@ -8,7 +8,6 @@ class GiveawaysController < ApplicationController
   def active
     @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.active.first
-    @giveaways.reload
   end
 
   def pending
