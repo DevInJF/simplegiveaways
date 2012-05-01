@@ -7,13 +7,13 @@ class Giveaway < ActiveRecord::Base
   has_many :entries
 
   scope :active, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date > ?", Time.now, Time.now).limit(1)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.now, Time.now).limit(1)
   }
   scope :pending, lambda {
-    where("start_date > ? && end_date > ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
+    where("start_date >= ? && end_date >= ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
   }
   scope :completed, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date < ?", Time.now, Time.now)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date <= ?", Time.now, Time.now)
   }
 
   validates :title, :presence => true, :length => { :maximum => 100 }, :uniqueness => { :scope => :facebook_page_id }
@@ -95,15 +95,13 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
-  def count_conversion(ref)
-    ref = entries.find(ref)
-    ref.convert_count += 1
-  end
-  handle_asynchronously :count_conversion
-
   def total_shares
-    all_shares = entries.collect(&:share_count)
-    all_shares.inject(:+) || 0
+    total_wall_posts + total_requests
+  end
+
+  def total_wall_posts
+    all_wall_posts = entries.collect(&:wall_post_count)
+    all_wall_posts.inject(:+) || 0
   end
 
   def total_requests
@@ -116,8 +114,26 @@ class Giveaway < ActiveRecord::Base
     all_conversions.inject(:+) || 0
   end
 
+  def views
+    impressionist_count
+  end
+
+  def uniques
+    impressionist_count(:filter => :session_hash)
+  end
+
+  def entry_count
+    entries.size
+  end
+
+  def entry_rate
+    "#{((uniques.to_f / entry_count.to_f) * 100).round(2)}%"
+  rescue StandardError
+    0
+  end
+
   def conversion_rate
-    "#{((total_conversions.to_f / (total_shares.to_f + total_requests.to_f)) * 100).round(2)}%"
+    "#{((total_conversions.to_f / (total_shares.to_f)) * 100).round(2)}%"
   rescue StandardError
     0
   end
@@ -139,9 +155,9 @@ class Giveaway < ActiveRecord::Base
 
     def delete_app_request(request_id, signed_request)
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
       signed_request = oauth.parse_signed_request(signed_request)
 
+      graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
     end
     handle_asynchronously :delete_app_request

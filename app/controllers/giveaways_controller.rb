@@ -8,6 +8,7 @@ class GiveawaysController < ApplicationController
   def active
     @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.active.first
+    @giveaways.reload
   end
 
   def pending
@@ -64,7 +65,7 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.destroy
       flash[:success] = "The #{@giveaway.title} giveaway has been permanently deleted."
-      redirect_to(giveaways_url)
+      redirect_to facebook_page_giveaways_url(@giveaway.facebook_page)
     else
       flash.now[:error] = @giveaway.errors.messages.to_s
       render :action => "edit"
@@ -74,12 +75,13 @@ class GiveawaysController < ApplicationController
   def start
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.startable?
-      if @giveaway.update_attributes(:start_date => DateTime.now)
-        flash.now[:success] = "The #{@giveaway.title} giveaway is now on your Facebook Page."
+      if @giveaway.update_attribute(:start_date, DateTime.now)
+        flash[:success] = "The #{@giveaway.title} giveaway is now on your Facebook Page."
+        redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
       else
-        flash.now[:error] = @giveaway.errors.messages.to_s
+        flash[:error] = @giveaway.errors.messages.to_s
+        redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
       end
-      render :show
     else
       if @giveaway.is_installed?
         flash.now[:error] = "Only one giveaway can be active for each Facebook page."
@@ -111,9 +113,11 @@ class GiveawaysController < ApplicationController
       if @giveaway.giveaway.nil?
         redirect_to "/404.html"
       else
-        impressionist(@giveaway.giveaway)
+        @message = @giveaway.referrer_id.present? ? "ref_id: #{@giveaway.referrer_id}" : nil
+        impressionist(@giveaway.giveaway, message: "#{@message}")
         render :layout => "tab"
       end
+
     else
       redirect_to "/500.html"
     end

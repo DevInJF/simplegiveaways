@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 module ApplicationHelper
 
+  def active_nav_item(item)
+    controller.action_name == "#{item}" ? "active" : ""
+  end
+
   def body_class
     "#{controller.controller_name} #{controller.action_name}"
   end

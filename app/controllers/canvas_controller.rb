@@ -11,7 +11,10 @@ class CanvasController < ApplicationController
 
       request_ids = [params["request_ids"].split(",")].compact.flatten
 
-      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
+      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      signed_request = oauth.parse_signed_request(params[:signed_request])
+
+      graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       request = graph.get_object(request_ids.last)
 
       @giveaway_url = Giveaway.select("id, giveaway_url")

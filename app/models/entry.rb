@@ -11,7 +11,9 @@ class Entry < ActiveRecord::Base
     graph = Koala::Facebook::API.new(options[:access_token])
     profile = graph.get_object("me")
 
-    unless entry = Entry.find_by_uid(profile["id"])
+    @existing_entry = Entry.find_by_uid(profile["id"])
+
+    unless @existing_entry
 
       self.uid = profile["id"]
       self.name = profile["name"]
@@ -20,26 +22,24 @@ class Entry < ActiveRecord::Base
       self.datetime_entered = DateTime.now
 
       self.determine_status(options[:has_liked], options[:access_token])
-      self.count_conversions(options[:referrer_id])
+      self.count_conversion(options[:referrer_id])
 
-      entry = self
+      @entry = self
     end
 
-    entry
+    @entry ||= @existing_entry
   end
 
   def determine_status(has_liked, access_token)
     if has_liked == "true"
       self.has_liked = true
       self.status = "complete"
+    elsif like_status(access_token) == false
+      self.has_liked = false
+      self.status = "incomplete"
     else
-      if like_status(access_token) == false
-        self.has_liked = false
-        self.status = "incomplete"
-      else
-        self.has_liked = true
-        self.status = "complete"
-      end
+      self.has_liked = true
+      self.status = "complete"
     end
   end
 
@@ -49,10 +49,12 @@ class Entry < ActiveRecord::Base
     status[0].nil? ? false : true
   end
 
-  def count_conversions(referrer_id)
+  def count_conversion(referrer_id)
+    Rails.logger.debug(referrer_id.inspect)
     if has_liked && referrer_id != "none"
-      giveaway.count_conversion(referrer_id)
+      self.convert_count += 1
+      self.save
     end
   end
-  handle_asynchronously :count_conversions
+  handle_asynchronously :count_conversion
 end

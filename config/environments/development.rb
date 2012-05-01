@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 Simplegiveaways::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -36,4 +35,13 @@ Simplegiveaways::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+end
+
+silence_warnings do
+  begin
+    require 'pry'
+    require 'ap'
+    IRB = Pry
+  rescue LoadError
+  end
 end

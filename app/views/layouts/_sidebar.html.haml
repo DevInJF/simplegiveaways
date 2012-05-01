@@ -10,11 +10,11 @@
     %p.page_subtitle #{@page.likes} Likes
     %nav
       %ul.nav.nav-list
-        %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "hide" : "active"}
+        %li{:class => active_nav_item("active")}
           = link_to "<i class='icon-star'></i> Active".html_safe, active_facebook_page_giveaways_path(@page)
-        %li{:class => @page.giveaways.active.empty? && @page.giveaways.pending.any? ? "active" : ""}
+        %li{:class => active_nav_item("pending")}
           = link_to "<i class='icon-inbox'></i> Pending".html_safe, pending_facebook_page_giveaways_path(@page)
-        %li
+        %li{:class => active_nav_item("completed")}
           = link_to "<i class='icon-ok'></i> Completed".html_safe, completed_facebook_page_giveaways_path(@page)
         / %li
         /   %a{ :href => "#page_stats", :"data-toggle" => "tab"}

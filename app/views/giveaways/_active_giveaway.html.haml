@@ -23,12 +23,12 @@
         %h2.stat-label
           Views
           %span.pop.views ?
-        %h3.stat-value= giveaway.impressionist_count
+        %h3.stat-value= giveaway.views
       %li.secondary.unique_views
         %h2.stat-label
           Unique Views
           %span.pop.unique_views ?
-        %h3.stat-value= giveaway.impressionist_count(:filter => :session_hash)
+        %h3.stat-value= giveaway.uniques
       %li.secondary.viral_views
         %h2.stat-label
           Viral Views
@@ -55,12 +55,12 @@
         %h2.stat-label
           Entries
           %span.pop.entries ?
-        %h3.stat-value= giveaway.entries.count
+        %h3.stat-value= giveaway.entry_count
       %li.secondary.entry_rate
         %h2.stat-label
           Entry Rate
           %span.pop.entry_rate ?
-        %h3.stat-value 48%
+        %h3.stat-value= giveaway.entry_rate
       %li.secondary.viral_entries
         %h2.stat-label
           Viral Entries
@@ -76,7 +76,7 @@
         %h2.stat-label
           Wall Posts
           %span.pop.wall_posts ?
-        %h3.stat-value 1,841
+        %h3.stat-value= giveaway.total_wall_posts
       %li.secondary.requests
         %h2.stat-label
           Requests
