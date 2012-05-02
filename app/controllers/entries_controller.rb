@@ -12,8 +12,10 @@ class EntriesController < ApplicationController
         :access_token => params[:access_token]
       )
 
+      Rails.logger.debug(@entry.inspect.cyan)
+
       if @entry.persisted?
-        render :json => @entry.as_json(:only => [:id, :share_count, :request_count]), :status => :not_acceptable
+        render :json => @entry.as_json(:only => [:id, :wall_post_count, :request_count]), :status => :not_acceptable
       elsif @entry.status == "incomplete"
         render :json => @entry.id, :status => :precondition_failed
       elsif @entry.save

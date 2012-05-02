@@ -146,10 +146,10 @@ class Giveaway < ActiveRecord::Base
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
 
       OpenStruct.new({
-        "referrer_id" => referrer_id,
-        "has_liked" => signed_request["page"]["liked"],
-        "current_page" => current_page,
-        "giveaway" => current_page.giveaways.detect(&:is_live?)
+        :referrer_id => referrer_id,
+        :has_liked => signed_request["page"]["liked"],
+        :current_page => current_page,
+        :giveaway => current_page.giveaways.detect(&:is_live?)
       })
     end
 

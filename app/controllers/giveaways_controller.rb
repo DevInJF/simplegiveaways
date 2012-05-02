@@ -113,7 +113,7 @@ class GiveawaysController < ApplicationController
         redirect_to "/404.html"
       else
         @message = @giveaway.referrer_id.present? ? "ref_id: #{@giveaway.referrer_id}" : nil
-        impressionist(@giveaway.giveaway, message: "#{@message}")
+        impressionist(@giveaway.giveaway, message: "#{@message}", :filter=>:session_hash)
         render :layout => "tab"
       end
 

@@ -89,14 +89,14 @@
               201: function(response) {
                 Giveaway.entry.success();
                 $entry_id = response;
-                $share_count = 0;
+                $wall_post_count = 0;
                 $request_count = 0;
               },
               406: function(response) {
                 Giveaway.entry.error("You have already entered the giveaway.<br />Entry is limited to one per person.");
                 var $entry = jQuery.parseJSON(response.responseText);
                 $entry_id = $entry.entry.id;
-                $share_count = parseInt($entry.entry.share_count);
+                $wall_post_count = parseInt($entry.entry.wall_post_count);
                 $request_count = parseInt($entry.entry.request_count);
               },
               412: function() {
@@ -179,7 +179,7 @@
               if (response && response.post_id) {
                 json = {
                   entry : {
-                    share_count : $share_count + 1
+                    wall_post_count : $wall_post_count + 1
                   }
                 };
                 Giveaway.share.callback(json);

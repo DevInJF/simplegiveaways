@@ -5,8 +5,12 @@ class Entry < ActiveRecord::Base
 
   validates :email, :uniqueness => { :scope => :giveaway_id }
 
+  attr_accessor :referer_id
+
   def process(*args)
     options = args.extract_options!
+
+    @referer_id = options[:referrer_id]
 
     graph = Koala::Facebook::API.new(options[:access_token])
     profile = graph.get_object("me")
@@ -22,7 +26,7 @@ class Entry < ActiveRecord::Base
       self.datetime_entered = DateTime.now
 
       self.determine_status(options[:has_liked], options[:access_token])
-      self.count_conversion(options[:referrer_id])
+      self.count_conversion
 
       @entry = self
     end
@@ -34,13 +38,17 @@ class Entry < ActiveRecord::Base
     if has_liked == "true"
       self.has_liked = true
       self.status = "complete"
-    elsif like_status(access_token) == false
-      self.has_liked = false
-      self.status = "incomplete"
     else
-      self.has_liked = true
-      self.status = "complete"
+      if like_status(access_token) == false
+        self.has_liked = false
+        self.status = "incomplete"
+      else
+        self.has_liked = true
+        self.status = "complete"
+      end
     end
+
+    self
   end
 
   def like_status(access_token)
@@ -49,9 +57,11 @@ class Entry < ActiveRecord::Base
     status[0].nil? ? false : true
   end
 
-  def count_conversion(referrer_id)
-    Rails.logger.debug(referrer_id.inspect)
-    if has_liked && referrer_id != "none"
+  def count_conversion
+    Rails.logger.debug("POOPIEPANTS".yellow)
+    Rails.logger.debug(self.inspect.yellow)
+    Rails.logger.debug(referrer_id.inspect.magenta)
+    if has_liked && referrer_id != "[]"
       self.convert_count += 1
       self.save
     end
