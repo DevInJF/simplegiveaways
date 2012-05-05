@@ -2,12 +2,12 @@
   .image
     = image_tag(giveaway.feed_image(:feed))
   .title
-    %h1= link_to giveaway.title, facebook_page_giveaway_path(@page, giveaway)
+    %h1= link_to truncate(giveaway.title, :length => 26), facebook_page_giveaway_path(@page, giveaway)
     %h2
       %span.gray Prize
       = giveaway.prize
   .buttons
-    = link_to "<i class='icon-edit'></i> Edit".html_safe, edit_facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-edit"
+    = link_to "<i class='icon-edit'></i> Edit".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-edit"
     - if giveaway.status != "Active"
       = link_to "<i class='icon-star icon-white'></i> Publish".html_safe, start_facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-primary btn-publish"
     - else

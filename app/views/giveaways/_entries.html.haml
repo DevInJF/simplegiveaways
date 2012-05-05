@@ -1,0 +1,16 @@
+%section.entries
+  %h2.pull-left Entries
+  %a{:class => "btn pull-right"}
+    %i.icon-download-alt
+    Download .CSV
+  .clearfix
+  %table#entries.table.table-bordered
+    %thead
+      %tr
+        %th.header Name
+        %th.header Email
+        %th.header Shares
+        %th.header Requests
+        %th.header Conversions
+        %th.header Entry Time
+    %tbody= render :collection => giveaway.entries, :partial => "giveaways/entry", :as => :entry

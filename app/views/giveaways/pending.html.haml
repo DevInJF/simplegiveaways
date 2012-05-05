@@ -1,4 +1,28 @@
-- content_for :content_header do
-  %h2 Pending Giveaways
+- if @giveaways.present?
 
-= render :collection => @giveaways, :partial => "pending_giveaway", :as => :giveaway
+  - content_for :content_header do
+    %h2 Pending Giveaways
+
+  = render :collection => @giveaways, :partial => "pending_giveaway", :as => :giveaway
+
+- elsif @giveaways.blank? && @page.giveaways.active.present?
+
+  - content_for :content_header do
+    %h2 Create a New Giveaway
+
+  %section.no_active
+    .create-giveaway
+      %h1 THERE IS AN ACTIVE There are no pending giveaways. Create a new giveaway to publish later. 
+      = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
+
+- else
+
+  - content_for :content_header do
+    %h2 Create a New Giveaway
+
+  %section.no_active
+    .create-giveaway
+      %h1 THERE IS NO ACTIVE There are no pending giveaways. Create a new giveaway to publish later. 
+      = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
+
+

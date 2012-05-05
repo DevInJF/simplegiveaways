@@ -11,6 +11,7 @@
           x
         %h3 Stats for #{giveaway.title}
       .modal-body
+        = render 'stats', :giveaway => giveaway
     %a{ :"data-toggle" => "modal", :class => "btn pull-right", :href => "#stats"+"#{giveaway.id}"+"modal" }
       %i.icon-signal
       View Stats
@@ -20,17 +21,9 @@
           x
         %h3 Entries for #{giveaway.title}
       .modal-body
-        %table
-          %thead
-            %tr
-              %th.header Name
-              %th.header Email
-              %th.header Shares
-              %th.header Requests
-              %th.header Conversions
-              %th.header Entry Time
-          %tbody
-            = render :collection => giveaway.entries, :partial => "giveaways/entry", :as => :entry
+        = render 'entries', :giveaway => giveaway
     %a{ :"data-toggle" => "modal", :class => "btn btn-primary pull-right", :href => "#entries"+"#{giveaway.id}"+"modal" }
       %i.icon-list.icon-white
       View Entries
+
+

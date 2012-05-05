@@ -14,90 +14,10 @@
     %h2
       %span.gray Prize
       = giveaway.prize
-  .buttons= link_to "<i class='icon-edit'></i> Edit".html_safe, end_facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-edit"
+  .buttons= link_to "<i class='icon-edit'></i> Edit".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-edit"
 
-%section.stats
-  .row
-    %ul.stat-box.span3
-      %li.primary.views
-        %h2.stat-label
-          Views
-          %span.pop.views ?
-        %h3.stat-value= giveaway.views
-      %li.secondary.unique_views
-        %h2.stat-label
-          Unique Views
-          %span.pop.unique_views ?
-        %h3.stat-value= giveaway.uniques
-      %li.secondary.viral_views
-        %h2.stat-label
-          Viral Views
-          %span.pop.viral_views ?
-        %h3.stat-value 6,118
-    %ul.stat-box.span3
-      %li.primary.likes
-        %h2.stat-label
-          Likes
-          %span.pop.likes ?
-        %h3.stat-value 0
-      %li.secondary.likes_from_entries
-        %h2.stat-label
-          Likes From Entries
-          %span.pop.likes_from_entries ?
-        %h3.stat-value 14,120
-      %li.secondary.viral_likes
-        %h2.stat-label
-          Viral Likes
-          %span.pop.viral_likes ?
-        %h3.stat-value 4,345
-    %ul.stat-box.span3
-      %li.primary.entries
-        %h2.stat-label
-          Entries
-          %span.pop.entries ?
-        %h3.stat-value= giveaway.entry_count
-      %li.secondary.entry_rate
-        %h2.stat-label
-          Entry Rate
-          %span.pop.entry_rate ?
-        %h3.stat-value= giveaway.entry_rate
-      %li.secondary.viral_entries
-        %h2.stat-label
-          Viral Entries
-          %span.pop.viral_entries ?
-        %h3.stat-value= giveaway.total_conversions
-    %ul.stat-box.span3
-      %li.primary.shares
-        %h2.stat-label
-          Shares
-          %span.pop.shares ?
-        %h3.stat-value= giveaway.total_shares
-      %li.secondary.wall_posts
-        %h2.stat-label
-          Wall Posts
-          %span.pop.wall_posts ?
-        %h3.stat-value= giveaway.total_wall_posts
-      %li.secondary.requests
-        %h2.stat-label
-          Requests
-          %span.pop.requests ?
-        %h3.stat-value= giveaway.total_requests
-%section.entries
-  %h2.pull-left Entries
-  %a{:class => "btn pull-right"}
-    %i.icon-download-alt
-    Download .CSV
-  .clearfix
-  %table#entries.table.table-bordered
-    %thead
-      %tr
-        %th.header Name
-        %th.header Email
-        %th.header Shares
-        %th.header Requests
-        %th.header Conversions
-        %th.header Entry Time
-    %tbody= render :collection => giveaway.entries, :partial => "giveaways/entry", :as => :entry
+= render 'stats', :giveaway => giveaway
+= render 'entries', :giveaway => giveaway
 
 
 :javascript

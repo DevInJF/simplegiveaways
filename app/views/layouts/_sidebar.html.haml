@@ -27,4 +27,7 @@
 - elsif @user
 
   %header.page
-    %h3= @user.name
+    = link_to image_tag( current_user.avatar , :alt => current_user.name, :width => "125", :height => "125"), "#", :class => "avatar"
+    %h1.page_title= current_user.name
+    %p.page_subtitle #{current_user.facebook_pages.count} Pages
+    
