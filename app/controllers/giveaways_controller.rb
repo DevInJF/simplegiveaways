@@ -53,7 +53,7 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.update_attributes(params[:giveaway])
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
-      redirect_to @giveaway
+      redirect_to :back
     else
       render :action => "edit"
     end

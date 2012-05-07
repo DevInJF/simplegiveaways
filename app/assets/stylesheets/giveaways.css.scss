@@ -156,7 +156,63 @@ section.stats {
   margin:-250px 0 0 -471px;
 }
 
+header.giveaway {
+  margin:0px -20px;
+  padding:30px 20px 20px 20px;
+  height:220px;
 
+  &.active {
+    background-color:#ddffdc;
+
+    p {
+      color:#018b04;
+    }
+  }
+
+  &.pending {
+    background-color:#fffbdc;
+
+    p {
+      color:#bb9e00;
+    }
+  }
+
+  &.completed {
+    background-color:#ffdcdc;
+
+    p {
+      color:#a80000;
+    }
+  }
+
+  .image {
+    height:200px;
+    overflow: hidden;
+    float:left;
+
+    img {
+    float:left;
+    margin-right:36px;
+  }
+  }
+
+  
+
+  p {
+    font-size:24px;
+    margin-top:20px;
+  }
+
+  h1 {
+    font-weight:normal;
+    font-size:38px;
+    margin-top:10px;
+  }
+
+  .btn {
+    margin-top:20px;
+  }
+}
 
 
 body.giveaways {

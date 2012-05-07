@@ -1,21 +1,29 @@
 - if giveaway.status == "Active"
 
-  %header.active
-    .image= image_tag(giveaway.feed_image(:feed))
+  %header.giveaway.active
+    .image= image_tag(giveaway.image(:medium))
     %h1= truncate(giveaway.title, :length => 26)
     %p is #{giveaway.status}
+    = link_to "<i class='icon-arrow-left'></i> Back to Stats & Entries".html_safe, active_facebook_page_giveaways_path(@page), :class => "btn btn-large"
 
 
 - elsif giveaway.status == "Pending" 
 
-  %header.pending
-    .image= image_tag(giveaway.feed_image(:feed))
+  %header.giveaway.pending
+    .image= image_tag(giveaway.image(:medium))
     %h1= truncate(giveaway.title, :length => 26)
     %p is #{giveaway.status}
+    - if @page.giveaways.active.empty?
+      = link_to "<i class='icon-star icon-white'></i> Publish".html_safe, start_facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-primary btn-publish"
+    - else
+      %span.btn.btn-large.btn-primary.btn-publish.disabled
+        %i.icon-star.icon-white
+        Publish
+
 
 - else giveaway.status == "Completed"
 
-  %header.completed
-    .image= image_tag(giveaway.feed_image(:feed))
+  %header.giveaway.completed
+    .image= image_tag(giveaway.image(:medium))
     %h1= truncate(giveaway.title, :length => 26)
     %p is #{giveaway.status}

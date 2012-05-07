@@ -1,18 +1,28 @@
 .countdown.pull-right
   .btn-group.btn-end.pull-right
-    = link_to "<i class='icon-remove icon-white'></i> End <b class='caret'></b>".html_safe, "#", :class => "btn btn-danger dropdown-toggle", :"data-toggle" => "dropdown"
-    %ul.dropdown-menu
-      %li= link_to "<i class='icon-time'></i> Edit End Time".html_safe, "#"
-      %li.divider
-      %li= link_to "<i class='icon-remove'></i> End Now".html_safe, end_facebook_page_giveaway_path(@page, giveaway)
+    = link_to "<i class='icon-remove icon-white'></i> End".html_safe, "#", :class => "btn btn-danger dropdown-toggle", :"data-toggle" => "modal", :href => "#end_confirm"
+    .modal.hide.fade{ :id => "end_confirm" }
+      .modal-header
+        %a.close{ :"data-dismiss" => "modal"}
+          x
+        %h3 End Giveaway #{giveaway.title}
+      .modal-body
+        = link_to "<i class='icon-remove icon-white'></i> Yes End The Giveaway Now".html_safe, end_facebook_page_giveaway_path(@page, giveaway), :class =>"btn btn-xlarge"
+        %p If you want to only modify the end time of the giveaway click here to view and edit the giveaway details.
+              
+
+
   %h3.countdown-timer.pull-right Ends in 23:34:34:34
-%header.active
-  .image= image_tag(giveaway.feed_image(:feed))
+%header.giveaway.active
+  .image= image_tag(giveaway.image(:medium))
   %h1= truncate(giveaway.title, :length => 26)
   %p is #{giveaway.status}
-  = link_to "<i class='icon-eye-open'></i> View Details".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn"
+  = link_to "<i class='icon-eye-open'></i> View Details".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large"
 = render 'stats', :giveaway => giveaway
 = render 'entries', :giveaway => giveaway
+
+
+
 
 
 
