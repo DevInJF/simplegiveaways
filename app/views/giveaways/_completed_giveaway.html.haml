@@ -1,6 +1,6 @@
 %tr
   %td= image_tag(giveaway.feed_image(:thumb))
-  %td= giveaway.title
+  %td= link_to truncate(giveaway.title, :length => 26), facebook_page_giveaway_path(@page, giveaway)
   %td= giveaway.end_date
   %td= giveaway.entries.count
   %td= giveaway.impressionist_count

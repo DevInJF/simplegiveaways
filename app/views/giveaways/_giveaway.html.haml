@@ -1,4 +1,11 @@
-= render 'header', :giveaway => giveaway
-= render 'details', :giveaway => giveaway
-= render 'stats', :giveaway => giveaway
-= render 'entries', :giveaway => giveaway
+- if giveaway.status == "Active" or giveaway.status == "Pending" 
+
+  = render 'header', :giveaway => giveaway
+  = render 'details', :giveaway => giveaway
+
+- else giveaway.status == "Completed"
+
+  = render 'header', :giveaway => giveaway
+  = render 'stats', :giveaway => giveaway
+  = render 'entries', :giveaway => giveaway
+  = render 'details', :giveaway => giveaway

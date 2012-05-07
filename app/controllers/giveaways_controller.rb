@@ -42,7 +42,7 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.save
       flash[:success] = "The #{@giveaway.title} giveaway has been created."
-      redirect_to @page
+      redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
     else
       render :action => :new
     end
@@ -95,7 +95,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.update_attributes(:end_date => DateTime.now)
       flash[:success] = "The #{@giveaway.title} giveaway has been ended and will no longer accept entries."
-      redirect_to @giveaway
+      redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
     else
       flash.now[:error] = "Giveaway could not be ended."
       render :show

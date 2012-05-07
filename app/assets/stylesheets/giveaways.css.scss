@@ -49,12 +49,11 @@ header.giveaway_preview {
   }
 }
 
-#page_giveaways_active {
+.tab-pane.active {
 
   .countdown {
-    position: absolute;
-    right:160px;
-    top:134px;
+    position: relative;
+    bottom: 42px;
 
 
     .btn-end {

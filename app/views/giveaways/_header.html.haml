@@ -1,3 +1,21 @@
-%header
-  %h3 Giveaway Details for
-  %h1= giveaway.title
+- if giveaway.status == "Active"
+
+  %header.active
+    .image= image_tag(giveaway.feed_image(:feed))
+    %h1= truncate(giveaway.title, :length => 26)
+    %p is #{giveaway.status}
+
+
+- elsif giveaway.status == "Pending" 
+
+  %header.pending
+    .image= image_tag(giveaway.feed_image(:feed))
+    %h1= truncate(giveaway.title, :length => 26)
+    %p is #{giveaway.status}
+
+- else giveaway.status == "Completed"
+
+  %header.completed
+    .image= image_tag(giveaway.feed_image(:feed))
+    %h1= truncate(giveaway.title, :length => 26)
+    %p is #{giveaway.status}

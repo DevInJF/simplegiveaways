@@ -3,21 +3,25 @@
     %section.detail.basic_info
       %header.detail
         %h2 Basic Info
-        %a{ :class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#basic_info" }
-          %i.icon-edit
-          Edit
-        .modal.hide.fade{ :id => "basic_info" }
-          .modal-header
-            %a.close{ :"data-dismiss" => "modal"}
-              x
-            %h3 Update the schedule for #{giveaway.title}
-          .modal-body
-            = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
-              %fieldset.basic-info
-                %legend Basic Info
-                = render "giveaways/form/basic_info", :f => f
-              .form-actions
-                = f.button :submit, :class => "btn-primary"
+
+        - if giveaway.status != "Completed"
+        
+          %a{ :class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#basic_info" }
+            %i.icon-edit
+            Edit
+          .modal.hide.fade{ :id => "basic_info" }
+            .modal-header
+              %a.close{ :"data-dismiss" => "modal"}
+                x
+              %h3 Update the schedule for #{giveaway.title}
+            .modal-body
+              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+                %fieldset.basic-info
+                  %legend Basic Info
+                  = render "giveaways/form/basic_info", :f => f
+                .form-actions
+                  = f.button :submit, :class => "btn-primary"
+
       %table.basic_info
         %tr
           %td Title
@@ -32,21 +36,23 @@
     %section.detail.schedule
       %header.detail
         %h2 Schedule
-        %a{ :class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#schedule" }
-          %i.icon-edit
-          Edit
-        .modal.hide.fade{ :id => "schedule" }
-          .modal-header
-            %a.close{ :"data-dismiss" => "modal"}
-              x
-            %h3 Update the schdule for #{giveaway.title}
-          .modal-body
-            = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
-              %fieldset.schedule
-                %legend Schedule
-                = render "giveaways/form/schedule", :f => f
-              .form-actions
-                = f.button :submit, :class => "btn-primary"
+
+        - if giveaway.status != "Completed"
+          %a{ :class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#schedule" }
+            %i.icon-edit
+            Edit
+          .modal.hide.fade{ :id => "schedule" }
+            .modal-header
+              %a.close{ :"data-dismiss" => "modal"}
+                x
+              %h3 Update the schdule for #{giveaway.title}
+            .modal-body
+              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+                %fieldset.schedule
+                  %legend Schedule
+                  = render "giveaways/form/schedule", :f => f
+                .form-actions
+                  = f.button :submit, :class => "btn-primary"
       %table.schedule
         %tr
           %td Start Time
@@ -59,21 +65,22 @@
     %section.detail.terms
       %header.detail
         %h2 Terms
-        %a{:class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#terms" }
-          %i.icon-edit
-          Edit
-        .modal.hide.fade{ :id => "terms" }
-          .modal-header
-            %a.close{ :"data-dismiss" => "modal"}
-              x
-            %h3 Update the terms for #{giveaway.title}
-          .modal-body
-            = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
-              %fieldset.terms
-                %legend Terms &amp; Conditions
-                = render "giveaways/form/terms", :f => f
-              .form-actions
-                = f.button :submit, :class => "btn-primary"
+        - if giveaway.status != "Completed"
+          %a{:class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#terms" }
+            %i.icon-edit
+            Edit
+          .modal.hide.fade{ :id => "terms" }
+            .modal-header
+              %a.close{ :"data-dismiss" => "modal"}
+                x
+              %h3 Update the terms for #{giveaway.title}
+            .modal-body
+              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+                %fieldset.terms
+                  %legend Terms &amp; Conditions
+                  = render "giveaways/form/terms", :f => f
+                .form-actions
+                  = f.button :submit, :class => "btn-primary"
       %table.terms
         %tr
           %td URL or Text
@@ -85,21 +92,24 @@
     %section.detail.preferences
       %header.detail
         %h2 Preferences
-        %a{:class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#preferences" }
-          %i.icon-edit
-          Edit
-        .modal.hide.fade{ :id => "preferences" }
-          .modal-header
-            %a.close{ :"data-dismiss" => "modal"}
-              x
-            %h3 Update the preferences for #{giveaway.title}
-          .modal-body
-            = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
-              %fieldset.preferences
-                %legend Preferences
-                = render "giveaways/form/preferences", :f => f
-              .form-actions
-                = f.button :submit, :class => "btn-primary"
+        - if giveaway.status != "Completed"
+
+          %a{:class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#preferences" }
+            %i.icon-edit
+            Edit
+          .modal.hide.fade{ :id => "preferences" }
+            .modal-header
+              %a.close{ :"data-dismiss" => "modal"}
+                x
+              %h3 Update the preferences for #{giveaway.title}
+            .modal-body
+              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+                %fieldset.preferences
+                  %legend Preferences
+                  = render "giveaways/form/preferences", :f => f
+                .form-actions
+                  = f.button :submit, :class => "btn-primary"
+
       %table.preferences
         %tr
           %td Autoshow Share Dialog?
@@ -118,21 +128,22 @@
     %section.detail.images
       %header.detail
         %h2 Terms
-        %a{:class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#images" }
-          %i.icon-edit
-          Edit
-        .modal.hide.fade{ :id => "images" }
-          .modal-header
-            %a.close{ :"data-dismiss" => "modal"}
-              x
-            %h3 Update the terms for #{giveaway.title}
-          .modal-body
-            = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
-              %fieldset.images
-                %legend Images
-                = render "giveaways/form/images", :f => f
-              .form-actions
-                = f.button :submit, :class => "btn-primary"
+        - if giveaway.status != "Completed"
+          %a{:class => "btn btn-mini btn-edit", :"data-toggle" => "modal", :href => "#images" }
+            %i.icon-edit
+            Edit
+          .modal.hide.fade{ :id => "images" }
+            .modal-header
+              %a.close{ :"data-dismiss" => "modal"}
+                x
+              %h3 Update the terms for #{giveaway.title}
+            .modal-body
+              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+                %fieldset.images
+                  %legend Images
+                  = render "giveaways/form/images", :f => f
+                .form-actions
+                  = f.button :submit, :class => "btn-primary"
       %table.images
         %tr
           %td Tab Image

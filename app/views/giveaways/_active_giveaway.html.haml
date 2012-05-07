@@ -5,19 +5,16 @@
       %li= link_to "<i class='icon-time'></i> Edit End Time".html_safe, "#"
       %li.divider
       %li= link_to "<i class='icon-remove'></i> End Now".html_safe, end_facebook_page_giveaway_path(@page, giveaway)
-  %h3.countdown-timer.pull-right Giveaway Ends in 23:34:34:34
-
-%header.giveaway_preview
+  %h3.countdown-timer.pull-right Ends in 23:34:34:34
+%header.active
   .image= image_tag(giveaway.feed_image(:feed))
-  .title
-    %h1= link_to giveaway.title, facebook_page_giveaway_path(@page, giveaway)
-    %h2
-      %span.gray Prize
-      = giveaway.prize
-  .buttons= link_to "<i class='icon-edit'></i> Edit".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-edit"
-
+  %h1= truncate(giveaway.title, :length => 26)
+  %p is #{giveaway.status}
+  = link_to "<i class='icon-eye-open'></i> View Details".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn"
 = render 'stats', :giveaway => giveaway
 = render 'entries', :giveaway => giveaway
+
+
 
 
 :javascript

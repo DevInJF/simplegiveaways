@@ -1,28 +1,41 @@
-- if @giveaways.present?
+- content_for :content_header do
+  %h2 Pending Giveaways
 
-  - content_for :content_header do
-    %h2 Pending Giveaways
+- if @giveaways.empty? 
 
-  = render :collection => @giveaways, :partial => "pending_giveaway", :as => :giveaway
+  -if @page.giveaways.active.present?
 
-- elsif @giveaways.blank? && @page.giveaways.active.present?
+    %section.no_active
+      .create-giveaway
+        %h1 THERE IS AN ACTIVE There are no pending giveaways. Create a new giveaway to publish later. 
+        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
 
-  - content_for :content_header do
-    %h2 Create a New Giveaway
+  - else
 
-  %section.no_active
-    .create-giveaway
-      %h1 THERE IS AN ACTIVE There are no pending giveaways. Create a new giveaway to publish later. 
-      = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
+    %section.no_active
+      .create-giveaway
+        %h1 THERE IS NO ACTIVE There are no pending giveaways. Create a new giveaway to publish later. 
+        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
 
 - else
 
-  - content_for :content_header do
-    %h2 Create a New Giveaway
+  -if @page.giveaways.active.empty?
 
-  %section.no_active
-    .create-giveaway
-      %h1 THERE IS NO ACTIVE There are no pending giveaways. Create a new giveaway to publish later. 
-      = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
+    %section.no_active
+      .create-giveaway
+        %h1 There is no active giveaway on your page right now. 
+        %h3 So go ahead an publish one
+
+  - else
+
+    %section.no_active
+      .create-giveaway
+        %h1 There is an active giveaway on your page right now. You can publish a pending giveaway only once your the active giveaway has ended.
+    
+  = render :collection => @giveaways, :partial => "list_item", :as => :giveaway
+
+ 
+  
+  
 
 

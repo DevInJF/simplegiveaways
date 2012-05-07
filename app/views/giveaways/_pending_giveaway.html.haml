@@ -1,4 +1,5 @@
 %header.giveaway_preview 
+  = render 'header', :giveaway => giveaway
   .image
     = image_tag(giveaway.feed_image(:feed))
   .title
@@ -8,7 +9,7 @@
       = giveaway.prize
   .buttons
     = link_to "<i class='icon-edit'></i> Edit".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-edit"
-    - if giveaway.status != "Active"
+    - if @page.giveaways.active.empty?
       = link_to "<i class='icon-star icon-white'></i> Publish".html_safe, start_facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large btn-primary btn-publish"
     - else
       %span.btn.btn-large.btn-primary.btn-publish.disabled
