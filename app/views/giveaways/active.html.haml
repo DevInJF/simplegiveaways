@@ -8,10 +8,14 @@
 - else
 
   - content_for :content_header do
-    %h2 Create a New Giveaway
+    %h2 Active Giveaway
 
   %section.no_active
     .create-giveaway
       %h1 There is no active giveaway on your page right now.
       = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
-
+      - if @page.giveaways.pending.present?
+        %h4 or
+        %h1 
+          Publish one of your 
+          = link_to "pending giveaways", pending_facebook_page_giveaways_path(@page)

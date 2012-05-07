@@ -11,6 +11,7 @@
       %ul.nav.nav-list
         %li{:class => active_nav_item("active")}
           = link_to "<i class='icon-star'></i> Active".html_safe, active_facebook_page_giveaways_path(@page)
+      %ul.nav.nav-list
         %li{:class => active_nav_item("pending")}
           = link_to "<i class='icon-inbox'></i> Pending".html_safe, pending_facebook_page_giveaways_path(@page)
         %li{:class => active_nav_item("completed")}
