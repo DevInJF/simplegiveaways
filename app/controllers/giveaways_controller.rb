@@ -36,8 +36,12 @@ class GiveawaysController < ApplicationController
 
   def create
     @page = FacebookPage.find(params[:facebook_page_id])
-    @giveaway = @page.giveaways.build(params[:giveaway])
 
+    giveaway_params = params[:giveaway].collect do |key, value|
+      value.squish!
+    end
+
+    @giveaway = @page.giveaways.build(giveaway_params)
     @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}"
 
     if @giveaway.save
@@ -51,7 +55,11 @@ class GiveawaysController < ApplicationController
   def update
     @giveaway = Giveaway.find(params[:id])
 
-    if @giveaway.update_attributes(params[:giveaway])
+    giveaway_params = params[:giveaway].each do |key, value|
+      value.squish!
+    end
+
+    if @giveaway.update_attributes(giveaway_params)
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to :back
     else

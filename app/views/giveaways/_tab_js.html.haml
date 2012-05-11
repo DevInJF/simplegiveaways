@@ -204,11 +204,11 @@
         as_wall_post : function() {
           Giveaway.share.dialog({
             method: "feed",
-            name: '#{@giveaway.current_page.name}',
-            link: '#{@giveaway.giveaway.giveaway_url}' + '&app_data=ref_' + $entry_id,
-            picture: '#{@giveaway.giveaway.feed_image.url}',
-            caption: '#{@giveaway.giveaway.title}',
-            description: '#{@giveaway.giveaway.description}'
+            name: "#{@giveaway.current_page.name}",
+            link: "#{@giveaway.giveaway.giveaway_url}" + "&app_data=ref_" + $entry_id,
+            picture: "#{@giveaway.giveaway.feed_image.url}",
+            caption: "#{@giveaway.giveaway.title}",
+            description: "#{@giveaway.giveaway.description}"
           });
         },
 
@@ -216,8 +216,8 @@
           Giveaway.share.dialog({
             title: 'Share this giveaway to receive a bonus entry.',
             method: 'apprequests',
-            message: '#{@giveaway.giveaway.description}',
-            data: { referrer_id : $entry_id.toString(), giveaway_id : '#{@giveaway.giveaway.id}' }
+            message: "#{@giveaway.giveaway.description}",
+            data: { referrer_id : $entry_id.toString(), giveaway_id : "#{@giveaway.giveaway.id}" }
           });
         }
       }
