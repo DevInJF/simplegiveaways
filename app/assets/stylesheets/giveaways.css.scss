@@ -160,9 +160,9 @@ header.giveaway {
   margin:0px -20px;
   padding:30px 20px 20px 20px;
   height:220px;
-
+  
   &.active {
-    background-color:#ddffdc;
+    
 
     p {
       color:#018b04;
@@ -170,7 +170,8 @@ header.giveaway {
   }
 
   &.pending {
-    background-color:#fffbdc;
+    background-color:#f4f4f4;
+   
 
     p {
       color:#bb9e00;
@@ -178,8 +179,8 @@ header.giveaway {
   }
 
   &.completed {
-    background-color:#ffdcdc;
-
+    background-color:#f4f4f4;
+   
     p {
       color:#a80000;
     }
