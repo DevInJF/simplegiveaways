@@ -35,13 +35,18 @@ Simplegiveaways::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-end
 
-silence_warnings do
-  begin
-    require 'pry'
-    require 'ap'
-    IRB = Pry
-  rescue LoadError
-  end
+  # Set the logging destination(s)
+  config.log_to = %w[stdout file]
+
+  # Show the logging configuration on STDOUT
+  config.show_log_configuration = true
+
+  # logging-rails
+
+  # Set the logging destination(s)
+  config.log_to = %w[stdout file]
+
+  # Show the logging configuration on STDOUT
+  config.show_log_configuration = true
 end

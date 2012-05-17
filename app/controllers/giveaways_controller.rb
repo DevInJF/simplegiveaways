@@ -37,8 +37,8 @@ class GiveawaysController < ApplicationController
   def create
     @page = FacebookPage.find(params[:facebook_page_id])
 
-    giveaway_params = params[:giveaway].collect do |key, value|
-      value.squish!
+    giveaway_params = params[:giveaway].each do |key, value|
+      value.squish! if value.class.name == "String"
     end
 
     @giveaway = @page.giveaways.build(giveaway_params)
@@ -56,7 +56,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
 
     giveaway_params = params[:giveaway].each do |key, value|
-      value.squish!
+      value.squish! if value.class.name == "String"
     end
 
     if @giveaway.update_attributes(giveaway_params)
@@ -83,7 +83,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.startable?
       if @giveaway.update_attribute(:start_date, DateTime.now)
-        flash[:success] = "The #{@giveaway.title} giveaway is now on your Facebook Page."
+        flash[:success] = "The #{@giveaway.title} giveaway is now active on your Facebook Page."
         redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
       else
         flash[:error] = @giveaway.errors.messages.to_s
@@ -91,6 +91,7 @@ class GiveawaysController < ApplicationController
       end
     else
       if @giveaway.is_installed?
+        @page = @giveaway.facebook_page
         flash.now[:error] = "Only one giveaway can be active for each Facebook page."
         render :show
       else

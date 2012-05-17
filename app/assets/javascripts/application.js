@@ -12,3 +12,5 @@
 //= require bootstrap-collapse
 //= require bootstrap-carousel
 //= require bootstrap-typeahead
+
+//= require vendor/jquery.countdown

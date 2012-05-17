@@ -27,11 +27,11 @@
     }
 
     .image {
-        float:left;
-        width:94px;
-        height:94px;
-        margin: 0px 20px;
-        background-color:#ddd;
+      float: left;
+      width: 94px;
+      height: 94px;
+      margin: 0px 20px 0 0;
+      background-color: #ddd;
 
       img {
         float:left;
@@ -42,9 +42,8 @@
     }
 
     .buttons {
-      float:right;
-      margin-top:28px;
-
+      float: right;
+      margin-top: 28px;
     }
   }
 
