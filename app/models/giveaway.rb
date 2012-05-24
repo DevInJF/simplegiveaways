@@ -17,6 +17,7 @@ class Giveaway < ActiveRecord::Base
   }
 
   validates :title, :presence => true, :length => { :maximum => 100 }, :uniqueness => { :scope => :facebook_page_id }
+  validates :title, :presence => true, :length => { :maximum => 100 }
   validates :description, :presence => true
   validates :prize, :presence => true
 
