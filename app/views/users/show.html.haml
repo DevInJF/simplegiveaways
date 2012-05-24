@@ -1,6 +1,6 @@
 - content_for :page_title do
   %h1.page_title= current_user.name
-  %p.page_subtitle 6 Pages
+  %p.page_subtitle current_user.facebook_pages.count
 
 - content_for :avatar do
   %a{:href => "#", :class => "avatar" }
