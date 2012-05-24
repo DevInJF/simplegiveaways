@@ -122,6 +122,10 @@ class Giveaway < ActiveRecord::Base
     impressionist_count(:filter => :session_hash)
   end
 
+  def viral_views
+    Impression.find(:all, :conditions => ["message LIKE ?", "%ref_id: %"]).size
+  end
+
   def entry_count
     entries.size
   end
