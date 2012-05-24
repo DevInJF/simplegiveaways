@@ -96,6 +96,33 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
+  def create_tab
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+    @graph.put_connections("me", "tabs", :app_id => FB_APP_ID)
+  end
+
+  def update_tab
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+
+    tabs = @graph.get_connections("me", "tabs")
+    tab = tabs.select do |tab|
+            tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
+          end.compact.flatten.first
+
+    @graph.put_object(@giveaway.facebook_page.pid, "tabs", :tab => "app_#{FB_APP_ID}", :custom_name => custom_fb_tab_name)
+  end
+
+  def delete_tab   
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+
+    tabs = @graph.get_connections("me", "tabs")
+    tab = tabs.select do |tab|
+            tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
+          end.compact.flatten.first
+
+    @graph.delete_object(tab["id"])
+  end
+
   def total_shares
     total_wall_posts + total_requests
   end
