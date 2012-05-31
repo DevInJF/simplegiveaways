@@ -65,8 +65,18 @@ class Giveaway < ActiveRecord::Base
     :path => "/:style/:id/:filename"
 
 
+  def publish!
+    if startable?
+      create_tab unless is_installed?
+      self.start_date = DateTime.now if is_installed?
+      save
+    else
+      false
+    end
+  end
+
   def startable?
-    is_installed? && facebook_page.giveaways.active.empty? ? true : false
+    facebook_page.giveaways.active.empty? ? true : false
   end
 
   def status
@@ -88,12 +98,8 @@ class Giveaway < ActiveRecord::Base
   end
   
   def is_installed?
-    if facebook_page.has_added_app.nil?
-      @graph = Koala::Facebook::API.new(facebook_page.token)
-      @graph.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
-    else
-      facebook_page.has_added_app
-    end
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+    @graph.get_connections("me", "tabs", :tab => FB_APP_ID).any? ? true : false
   end
 
   def create_tab

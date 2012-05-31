@@ -81,22 +81,12 @@ class GiveawaysController < ApplicationController
 
   def start
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.startable?
-      if @giveaway.update_attribute(:start_date, DateTime.now)
-        flash[:success] = "The #{@giveaway.title} giveaway is now active on your Facebook Page."
-        redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
-      else
-        flash[:error] = @giveaway.errors.messages.to_s
-        redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
-      end
+    if @giveaway.publish!
+      flash[:success] = "The #{@giveaway.title} giveaway is now active on your Facebook Page."
+      redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
-      if @giveaway.is_installed?
-        @page = @giveaway.facebook_page
-        flash.now[:error] = "Only one giveaway can be active for each Facebook page."
-        render :show
-      else
-        redirect_to "http://www.facebook.com/add.php?api_key=5c6a416e3977373387e4767dc24cea0f&pages=1&page=#{@giveaway.facebook_page.pid}"
-      end
+      flash[:error] = @giveaway.errors.messages.to_s
+      redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
     end
   end
 
