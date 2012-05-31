@@ -95,9 +95,10 @@
               406: function(response) {
                 Giveaway.entry.error("You have already entered the giveaway.<br />Entry is limited to one per person.");
                 var $entry = jQuery.parseJSON(response.responseText);
-                $entry_id = $entry.entry.id;
-                $wall_post_count = parseInt($entry.entry.wall_post_count);
-                $request_count = parseInt($entry.entry.request_count);
+                console.log($entry);
+                $entry_id = $entry.id;
+                $wall_post_count = parseInt($entry.wall_post_count);
+                $request_count = parseInt($entry.request_count);
               },
               412: function() {
                 $loader.hide();
