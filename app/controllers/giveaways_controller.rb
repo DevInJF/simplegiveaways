@@ -95,6 +95,7 @@ class GiveawaysController < ApplicationController
     if @giveaway.update_attributes(:end_date => DateTime.now)
       flash[:success] = "The #{@giveaway.title} giveaway has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
+      @giveaway.delete_tab
     else
       flash.now[:error] = "Giveaway could not be ended."
       render :show

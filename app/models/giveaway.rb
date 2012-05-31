@@ -69,10 +69,9 @@ class Giveaway < ActiveRecord::Base
     if startable?
       create_tab unless is_installed?
       self.start_date = DateTime.now if is_installed?
-      save
-    else
-      false
+      return save
     end
+    false
   end
 
   def startable?
