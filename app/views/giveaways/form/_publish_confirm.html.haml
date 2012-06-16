@@ -1,0 +1,14 @@
+%p.fieldset-help
+  %i.icon-info-sign
+  Modify the ending time for this giveaway.
+  = f.input :end_date, :as => :datetime, :input_html => { :class => "input-mini" },
+                                         :label => "End Date/Time",
+                                         :start_year => Date.today.year,
+                                         :end_year => Date.today.year + 5,
+                                         :order => [:month, :day, :year],
+                                         :use_short_month => true,
+                                         :include_blank => true,
+                                         :ampm => true
+  %i.icon-info-sign
+  Add a custom tb name to your giveaway.
+  = f.input :custom_fb_tab_name
