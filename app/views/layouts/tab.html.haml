@@ -2,13 +2,14 @@
 %html
   %head
     %meta{:charset => "utf-8"}/
-    %title= @giveaway["giveaway"]["title"]
-    %meta{:content => @giveaway["giveaway"]["description"], :name => "description"}/
+    %title= @giveaway.giveaway.title
+    %meta{:content => @giveaway.giveaway.description, :name => "description"}/
+
+    = stylesheet_link_tag :tab
 
     /[if lt IE 9]
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    = stylesheet_link_tag "/stylesheets/tab.css"
-    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"
+    = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
     = csrf_meta_tags
   %body
     #tab_container

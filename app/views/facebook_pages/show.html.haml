@@ -1,15 +1,4 @@
-- content_for(:page_heading) do
-  = @page.name
+- content_for :content_header do
+  %h2= @page.name
 
-= render "navigation"
-
-.tab-content.span14
-  #page_overview.tab-pane.active
-    = render "overview"
-  #page_giveaways_active.tab-pane
-    = render :collection => Giveaway.active, :partial => "giveaway"
-  #page_giveaways_pending.tab-pane
-    = render :collection => Giveaway.pending, :partial => "giveaway"
-  #page_giveaways_completed.tab-pane
-    = render :collection => Giveaway.completed, :partial => "giveaway"
-
+= render :collection => @giveaways, :partial => "giveaways/#{@giveaways.first.status.downcase}_giveaway", :as => :giveaway

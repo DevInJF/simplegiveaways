@@ -6,3 +6,5 @@ config/initializers/facebook.rb
 config/initializers/01_facebook.rb
 .idea/
 .idea/*
+/tmp/*
+/tmp/**/

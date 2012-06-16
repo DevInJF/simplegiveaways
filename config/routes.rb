@@ -1,17 +1,20 @@
 # -*- encoding : utf-8 -*-
 Simplegiveaways::Application.routes.draw do
 
-  match '/canvas', to: 'canvas#index'
-
-  resources :giveaways do
-    resources :entries
-    match :tab, :on => :collection
-    get :start, :on => :member
-    get :end, :on => :member
-  end
+  match '/canvas', to: 'canvas#index'   
+  match '/giveaways/tab', to: 'giveaways#tab'
 
   resources :facebook_pages do
-    resources :giveaways
+    resources :giveaways do
+      resources :entries
+
+      get :active, :on => :collection
+      get :pending, :on => :collection
+      get :completed, :on => :collection
+
+      get :start, :on => :member
+      get :end, :on => :member
+    end
   end
 
   resources :users

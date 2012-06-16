@@ -1,58 +1,144 @@
 @import "bootstrap-variables";
 
+.site_wrapper {
+  width:1052px;
+  margin:0px auto;
+}
+
+.container {
+  padding:20px;
+}
+
 html {
   body {
-    background: #FCFCFC image_url('/assets/bg.png') repeat;
+    background-image: $bg;
 
-    header.primary {
-      height: 126px;
-      line-height: 126px;
+    header.site {
+      height: 120px;
+      line-height: 120px;
 
       h1 {
-        padding: 0 10px;
-        line-height: inherit;
+        line-height: 120px;
+        float:left;
       }
 
-      .container {
-        margin-bottom: 0;
+      .btn-group {
+        margin-left:24px;
+        margin-top:14px;
+        float:right;
+        position:relative;
+        top:28px;
+
       }
     }
 
-    footer.primary {
+    header.page {
+
+      float:left;
+      width:180px;
+      margin-right:20px;
+      text-align:center;
+
+      a.avatar {
+        width:160px;
+        height:160px;
+        display:block;
+        padding:8px;
+        @include frame-background-color;
+        @include frame-border;
+        @include inner-shadow;
+        @include border-radius;
+      }
+
+      h1.page_title {
+        font-size:18px;
+        line-height:24px;
+        margin-top:10px;
+      }
+
+      p.page_subtitle {
+        font-size:14px;
+        color:#777;
+        margin-bottom:21px;
+      }
+
+      nav {
+        ul.nav-list {
+          padding:0px;
+          margin-bottom:10px;
+          @include border-radius;
+          @include frame-border;
+
+          li {
+            border-bottom: 1px solid $gray;
+            text-align:left;
+
+            &:last-child {
+              border-bottom:0px;
+            }
+
+            a {
+              margin: 0;
+              color: #333;
+              padding-top:    11px;
+              padding-bottom: 11px;
+              background-color: $grayLightest;
+
+              &:hover {
+                background-color: $grayLight;
+              }
+            }
+          }
+
+          li.active a, li.active a:hover  {
+            padding-left: 15px;
+            color: #333;
+            background-color: #fdfdfd;
+            border-right-color: #ddd;
+            border-left: 0;
+            @include inner-shadow;
+          }
+        }
+      }
+
+      a.create-giveaway {
+
+      }
+    }
+
+
+    .tab-content {
+      float:left;
+      border: 1px solid #ddd;
+      min-height:800px;
+      width:850px;
+      background-color:white;
+      @include border-radius;
+      @include inner-shadow;
+
+      .pane_heading {
+        background-image: $bgtint;
+        padding:20px;
+
+        h2 {
+          font-size:18px;
+          line-height:18px;
+          color:#333;
+        }
+      }
+
+      .container {
+        padding: 20px 30px;
+        width: auto;
+      }
+    }
+
+    footer.site {
       padding: 5px 0;
       clear: both;
 
       hr {
         margin: 18px 0 23px;
-      }
-    }
-
-    .sidebar.primary {
-      float: left;
-    }
-
-    .container {
-      width: 986px;
-      margin-bottom: 60px;
-
-      &.primary {
-        padding-top: 12px;
-        background: transparent image_url('/assets/page-slice-top.png') no-repeat 0 0;
-
-        .inner {
-          padding: 0 37px;
-          overflow: hidden;
-          background: transparent image_url('/assets/page-slice.png') repeat-y 0 0;
-
-          .container {
-            width: 906px;
-          }
-        }
-
-        .bottom {
-          height: 12px;
-          background: transparent image_url('/assets/page-slice-bottom.png') no-repeat 0 0;
-        }
       }
     }
   }

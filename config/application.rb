@@ -9,6 +9,8 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+require "json"
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -21,6 +23,9 @@ module Simplegiveaways
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    config.assets.enabled = true
+    config.assets.precompile += ['tab.js', 'application.js', 'tab.css', 'application.css']
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)

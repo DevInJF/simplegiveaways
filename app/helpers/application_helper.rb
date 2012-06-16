@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 module ApplicationHelper
 
+  def active_nav_item(item)
+    controller.action_name == "#{item}" ? "active" : ""
+  end
+
   def body_class
     "#{controller.controller_name} #{controller.action_name}"
   end
@@ -26,5 +30,9 @@ module ApplicationHelper
 
   def sidebar_content
     render(:partial => "users/facebook_pages")
+  end
+
+  def datetime_mdy(datetime)
+    datetime.strftime('%m/%d/%Y') rescue ""
   end
 end

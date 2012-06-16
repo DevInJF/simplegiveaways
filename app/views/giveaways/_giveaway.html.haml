@@ -1,1 +1,27 @@
-= render "#{giveaway.status.downcase}", :giveaway => giveaway
+- if giveaway.status == "Active" 
+
+  - content_for :content_header do
+    %h2 Active Giveaway > Giveaway Details
+
+  = render 'header', :giveaway => giveaway
+  = render 'details', :giveaway => giveaway
+
+- elsif giveaway.status == "Pending" 
+
+  - content_for :content_header do
+    %h2 Pending Giveaways > #{giveaway.title}
+
+  = render 'header', :giveaway => giveaway
+  = render 'details', :giveaway => giveaway
+
+
+
+- else giveaway.status == "Completed"
+
+  - content_for :content_header do
+    %h2 Completed Giveaways > #{giveaway.title}
+
+  = render 'header', :giveaway => giveaway
+  = render 'stats', :giveaway => giveaway
+  = render 'entries', :giveaway => giveaway
+  = render 'details', :giveaway => giveaway

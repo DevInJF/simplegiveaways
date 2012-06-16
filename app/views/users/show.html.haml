@@ -1,7 +1,48 @@
-- content_for :page_heading do
-  = current_user.name
+- content_for :page_title do
+  %h1.page_title= current_user.name
+  %p.page_subtitle current_user.facebook_pages.count
 
--#- content_for :sidebar do
--#  = render "users/facebook_pages"
+- content_for :avatar do
+  %a{:href => "#", :class => "avatar" }
+    = image_tag( current_user.avatar , :alt => current_user.name, :width => "125", :height => "125")
 
-= render "shared/activity_feed"
+- content_for :links do
+  %ul.nav.nav-list
+    %li.active
+      %a{ :href => "#page_giveaways_active", :"data-toggle" => "tab"}
+        %i.icon-flag
+        Pages
+    %li
+      %a{ :href => "#page_giveaways_pending", :"data-toggle" => "tab"}
+        %i.icon-user
+        Account
+    %li
+      %a{ :href => "#page_giveaways_completed", :"data-toggle" => "tab"}
+        %i.icon-calendar
+        Billing
+    %li
+      %a{ :href => "#page_stats", :"data-toggle" => "tab"}
+        %i.icon-book
+        Resources
+
+- content_for :content_header do
+  %h2 Facebook Pages <strong>(#{current_user.facebook_pages.count})</strong>
+  
+= render "users/facebook_pages"
+
+/ #user_account.tab-pane
+/   .content
+/     .pane_heading
+/       %h2 Account
+/     .container
+/       Account Content
+/ #user_billing.tab-pane
+/   .content
+/     .pane_heading
+/       %h2 Billing
+/     .container
+/       Billing Content
+/ #resources.tab-pane
+/   .content
+/     .pane_heading
+/       %h2 Resources 

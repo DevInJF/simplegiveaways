@@ -7,16 +7,17 @@ class Giveaway < ActiveRecord::Base
   has_many :entries
 
   scope :active, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date > ?", Time.now, Time.now)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.now, Time.now).limit(1)
   }
   scope :pending, lambda {
-    where("start_date > ? && end_date > ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
+    where("start_date >= ? && end_date >= ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
   }
   scope :completed, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date < ? && end_date < ?", Time.now, Time.now)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date <= ?", Time.now, Time.now)
   }
 
   validates :title, :presence => true, :length => { :maximum => 100 }, :uniqueness => { :scope => :facebook_page_id }
+  validates :title, :presence => true, :length => { :maximum => 100 }
   validates :description, :presence => true
   validates :prize, :presence => true
 
@@ -49,7 +50,8 @@ class Giveaway < ActiveRecord::Base
   has_attached_file :image,
     :styles => {
       :thumb  => "150x150>",
-      :medium => "300x300>" },
+      :medium => "300x300>", 
+      :gallery => "256x320#"},
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
@@ -57,15 +59,23 @@ class Giveaway < ActiveRecord::Base
   has_attached_file :feed_image,
     :styles => {
       :thumb  => "45x45>",
-      :feed => "90x90>" },
+      :feed => "90x90>"},
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
 
 
+  def publish!
+    if startable?
+      create_tab unless is_installed?
+      self.start_date = DateTime.now if is_installed?
+      return save
+    end
+    false
+  end
+
   def startable?
-    # Can the giveaway be started safely?
-    true
+    facebook_page.giveaways.active.empty? ? true : false
   end
 
   def status
@@ -87,24 +97,44 @@ class Giveaway < ActiveRecord::Base
   end
   
   def is_installed?
-    if facebook_page.has_added_app.nil?
-      @graph = Koala::Facebook::API.new(facebook_page.token)
-      @graph.fql_query("SELECT has_added_app FROM page WHERE page_id=#{facebook_page.pid}")[0]["has_added_app"]
-    else
-      facebook_page.has_added_app
-    end
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+    @graph.get_connections("me", "tabs", :tab => FB_APP_ID).any? ? true : false
   end
 
-  def count_conversion(ref)
-    ref = entries.find(ref)
-    ref.convert_count += 1
-    ref.save
+  def create_tab
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+    @graph.put_connections("me", "tabs", :app_id => FB_APP_ID)
   end
-  handle_asynchronously :count_conversion
+
+  def update_tab
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+
+    tabs = @graph.get_connections("me", "tabs")
+    tab = tabs.select do |tab|
+            tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
+          end.compact.flatten.first
+
+    @graph.put_object(facebook_page.pid, "tabs", :tab => "app_#{FB_APP_ID}", :custom_name => custom_fb_tab_name)
+  end
+
+  def delete_tab   
+    @graph = Koala::Facebook::API.new(facebook_page.token)
+
+    tabs = @graph.get_connections("me", "tabs")
+    tab = tabs.select do |tab|
+            tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
+          end.compact.flatten.first
+
+    @graph.delete_object(tab["id"])
+  end
 
   def total_shares
-    all_shares = entries.collect(&:share_count)
-    all_shares.inject(:+) || 0
+    total_wall_posts + total_requests
+  end
+
+  def total_wall_posts
+    all_wall_posts = entries.collect(&:wall_post_count)
+    all_wall_posts.inject(:+) || 0
   end
 
   def total_requests
@@ -117,8 +147,30 @@ class Giveaway < ActiveRecord::Base
     all_conversions.inject(:+) || 0
   end
 
+  def views
+    impressionist_count
+  end
+
+  def uniques
+    impressionist_count(:filter => :session_hash)
+  end
+
+  def viral_views
+    Impression.find(:all, :conditions => ["message LIKE ?", "%ref_id: %"]).size
+  end
+
+  def entry_count
+    entries.size
+  end
+
+  def entry_rate
+    "#{((uniques.to_f / entry_count.to_f) * 100).round(2)}%"
+  rescue StandardError
+    0
+  end
+
   def conversion_rate
-    "#{((total_conversions.to_f / (total_shares.to_f + total_requests.to_f)) * 100).round(2)}%"
+    "#{((total_conversions.to_f / (total_shares.to_f)) * 100).round(2)}%"
   rescue StandardError
     0
   end
@@ -131,18 +183,18 @@ class Giveaway < ActiveRecord::Base
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
 
       OpenStruct.new({
-        "referrer_id" => referrer_id,
-        "has_liked" => signed_request["page"]["liked"],
-        "current_page" => current_page,
-        "giveaway" => current_page.giveaways.detect(&:is_live?)
+        :referrer_id => referrer_id,
+        :has_liked => signed_request["page"]["liked"],
+        :current_page => current_page,
+        :giveaway => current_page.giveaways.detect(&:is_live?)
       })
     end
 
     def delete_app_request(request_id, signed_request)
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      graph = Koala::Facebook::API.new(FB_APP_TOKEN)
       signed_request = oauth.parse_signed_request(signed_request)
 
+      graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
     end
     handle_asynchronously :delete_app_request

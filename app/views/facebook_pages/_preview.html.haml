@@ -1,6 +1,13 @@
-%li.thumbnail.facebook_page
-  .avatar= image_tag facebook_page.avatar_square
-  %h3= facebook_page.name
-  %i.icon-chevron-right
-  = link_to "", facebook_page_path(facebook_page), :class => "page-link"
-
+.facebook_page_preview
+  .image
+    %a{:href => facebook_page_path(facebook_page), :class => "avatar" }
+      = image_tag(facebook_page.avatar_square, :width => "100", :height => "100")
+  .title
+    %h1= link_to facebook_page.name, facebook_page_path(facebook_page)
+    %h2
+      = facebook_page.likes
+      %span.gray Likes
+  .buttons
+    %a{:href => facebook_page_path(facebook_page), :class => "btn btn-large btn-edit" }
+      %i.icon-flag
+      Manage Page
