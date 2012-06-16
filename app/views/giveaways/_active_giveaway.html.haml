@@ -1,9 +1,9 @@
 - content_for :content_header do
 
   .end-giveaway-button
-    = link_to "<i class='icon-remove icon-white'></i> End Now".html_safe, "#", :class => "btn btn-end btn-danger btn-small", :"data-toggle" => "modal", :href => "#end_confirm"
+    = link_to "<i class='icon-remove icon-white'></i> End Now".html_safe, "#end_confirm_#{giveaway.id}", :class => "btn btn-end btn-danger btn-small", :"data-toggle" => "modal"
 
-    .modal.hide.fade{ :id => "end_confirm" }
+    .modal.hide.fade{ :id => "end_confirm_#{giveaway.id}" }
       .modal-header
         %a.close{ :"data-dismiss" => "modal"}
           x
