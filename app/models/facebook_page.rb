@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
+require 'mustache'
+
 class FacebookPage < ActiveRecord::Base
 
   has_many :giveaways
@@ -36,6 +38,8 @@ class FacebookPage < ActiveRecord::Base
             :likes => fb_meta["likes"],
             :has_added_app => fb_meta["has_added_app"]
           )
+
+          Juggernaut.publish("users#show", Views::FacebookPages::Show.new(@page).render)
 
           unless user.facebook_pages.include? @page
             user.facebook_pages << @page

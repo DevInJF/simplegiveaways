@@ -134,6 +134,8 @@ GEM
       railties (>= 3.2.0.beta, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
+    juggernaut (2.1.1)
+      redis
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -163,6 +165,7 @@ GEM
     multi_json (1.1.0)
     multi_xml (0.4.1)
     multipart-post (1.1.5)
+    mustache (0.99.4)
     mysql2 (0.3.11)
     nifty-generators (0.4.6)
     nokogiri (1.5.0)
@@ -215,6 +218,7 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
+    redis (3.0.1)
     responders (0.6.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -279,10 +283,12 @@ DEPENDENCIES
   itslog
   jquery-rails
   json
+  juggernaut
   koala
   logging-rails
   magic_encoding
   meta_search (>= 1.1.0.pre)
+  mustache
   mysql2 (~> 0.3.10)
   nifty-generators
   omniauth

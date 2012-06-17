@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 module ApplicationHelper
 
+  def current_host_url
+    request.env['HTTP_HOST']
+  end
+
   def active_nav_item(item)
     controller.action_name == "#{item}" ? "active" : ""
   end
