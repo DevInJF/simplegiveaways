@@ -34,7 +34,6 @@ gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
 gem 'bootstrap-sass', '~> 2.0.1'
 gem 'jquery-rails'
-gem 'mustache'
 
 group :development do
   gem 'erb2haml'

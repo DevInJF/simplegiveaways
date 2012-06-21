@@ -28,19 +28,5 @@
 - content_for :content_header do
   %h2 Facebook Pages <strong>(#{current_user.facebook_pages.count})</strong>
 
-/ #user_account.tab-pane
-/   .content
-/     .pane_heading
-/       %h2 Account
-/     .container
-/       Account Content
-/ #user_billing.tab-pane
-/   .content
-/     .pane_heading
-/       %h2 Billing
-/     .container
-/       Billing Content
-/ #resources.tab-pane
-/   .content
-/     .pane_heading
-/       %h2 Resources 
+- if current_user.facebook_pages.any?
+  = render "users/facebook_pages"

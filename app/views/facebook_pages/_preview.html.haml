@@ -1,4 +1,4 @@
-.facebook_page_preview
+.facebook_page_preview{ :'data-fb-pid' => facebook_page.pid }
   .image
     %a{:href => facebook_page_path(facebook_page), :class => "avatar" }
       = image_tag(facebook_page.avatar_square, :width => "100", :height => "100")

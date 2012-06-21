@@ -165,7 +165,6 @@ GEM
     multi_json (1.1.0)
     multi_xml (0.4.1)
     multipart-post (1.1.5)
-    mustache (0.99.4)
     mysql2 (0.3.11)
     nifty-generators (0.4.6)
     nokogiri (1.5.0)
@@ -288,7 +287,6 @@ DEPENDENCIES
   logging-rails
   magic_encoding
   meta_search (>= 1.1.0.pre)
-  mustache
   mysql2 (~> 0.3.10)
   nifty-generators
   omniauth

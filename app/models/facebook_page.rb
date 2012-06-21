@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-require 'mustache'
-
 class FacebookPage < ActiveRecord::Base
+
+  include ActionView::Helpers::UrlHelper
 
   has_many :giveaways
   has_and_belongs_to_many :users
@@ -38,8 +38,8 @@ class FacebookPage < ActiveRecord::Base
             :likes => fb_meta["likes"],
             :has_added_app => fb_meta["has_added_app"]
           )
-
-          Juggernaut.publish("users#show", Views::FacebookPages::Show.new(@page).render)
+          Rails.logger.debug(@page.preview_template.inspect)
+          Juggernaut.publish("users#show", @page.preview_template)
 
           unless user.facebook_pages.include? @page
             user.facebook_pages << @page
@@ -47,5 +47,38 @@ class FacebookPage < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def preview_template
+    <<-eos
+      <div class="facebook_page_preview" data-fb-pid="#{pid}">
+        <div class="image">
+          <a class="avatar" href="#{path}">
+            <img alt="#{name}" src="#{avatar_square}" height="100" width="100">
+          </a>
+        </div>
+        <div class="title">
+          <h1><a href="#{path}">#{name}</a></h1>
+          <h2>
+            #{likes}
+            <span class="gray">Likes</span>
+          </h2>
+        </div>
+        <div class="buttons">
+          <a class="btn btn-large btn-edit" href="#{path}">
+            <i class="icon-flag"></i>
+            Manage Page
+          </a>
+        </div>
+      </div>
+    eos
+  end
+
+  # def preview_template
+  #   @preview_template = ActionController::Base.new.send("render_to_string", { :partial => 'facebook_pages/preview.html.haml', :locals => { :facebook_page => self }})
+  # end
+
+  def path
+    Rails.application.routes.url_helpers.facebook_page_path(self)
   end
 end
