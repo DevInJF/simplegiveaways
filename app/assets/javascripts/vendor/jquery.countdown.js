@@ -105,9 +105,9 @@
         callback.call($this, event);
       }
       
-      $this.bind('remove', function() {
+      $this.bind('purge', function() {
         stop(); // If the selector is removed clear the interval for memory sake!
-        dispatchEvent('removed');
+        dispatchEvent('purged');
       });
       
       function stop() {
@@ -124,10 +124,10 @@
     });
   }
   // Wrap the remove method to trigger an event when called
-  var removeEvent = new $.Event('remove'),
-      removeFunction = $.fn.remove;
-  $.fn.remove = function() {
-    $(this).trigger(removeEvent);
-    removeFunction.apply(this, arguments);
+  var purgeEvent = new $.Event('purge'),
+      purgeFunction = $.fn.purge;
+  $.fn.purge = function() {
+    $(this).trigger(purgeEvent);
+    purgeFunction.apply(this, arguments);
   }
 })(jQuery);
