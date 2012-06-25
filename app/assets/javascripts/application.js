@@ -14,6 +14,7 @@
 //= require bootstrap-typeahead
 
 //= require vendor/jquery.countdown
+//= require vendor/dynamo
 
 //= require juggernaut
 
