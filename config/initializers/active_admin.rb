@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 ActiveAdmin.setup do |config|
 
   # == Site Title
@@ -48,7 +47,7 @@ ActiveAdmin.setup do |config|
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
 
-  # == User Identity
+  # == User Authentication
   #
   # Active Admin will automatically call an authentication
   # method in a before filter of all controller actions to

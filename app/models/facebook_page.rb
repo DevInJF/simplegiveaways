@@ -38,7 +38,7 @@ class FacebookPage < ActiveRecord::Base
             :likes => fb_meta["likes"],
             :has_added_app => fb_meta["has_added_app"]
           )
-          Rails.logger.debug(@page.preview_template.inspect)
+
           Juggernaut.publish("users#show", @page.preview_template)
 
           unless user.facebook_pages.include? @page
@@ -60,7 +60,7 @@ class FacebookPage < ActiveRecord::Base
         <div class="title">
           <h1><a href="#{path}">#{name}</a></h1>
           <h2>
-            #{likes}
+            12323834
             <span class="gray">Likes</span>
           </h2>
         </div>

@@ -4,17 +4,17 @@ common: &common
   reconnect: false
   pool: 5
   username: root
-  password: sonymac
+  password: password
   socket: /tmp/mysql.sock
 
 development:
   <<: *common
-  database: SGA_development
+  database: sga_development
 
 test:
   <<: *common
-  database: SGA_test
+  database: sga_test
 
 production:
   <<: *common
-  database: SGA_production
+  database: sga_production

@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class AdminUser < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
