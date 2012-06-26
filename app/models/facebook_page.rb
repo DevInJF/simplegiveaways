@@ -11,6 +11,7 @@ class FacebookPage < ActiveRecord::Base
   def self.retrieve_fb_meta(user, pages)
     [pages].compact.flatten.each do |page|
       unless page["category"] == "Application"
+
         @graph = Koala::Facebook::API.new(page["access_token"])
 
         batch_data = @graph.batch do |batch_api|
@@ -26,6 +27,9 @@ class FacebookPage < ActiveRecord::Base
         if fb_meta["link"].include? "facebook.com"
 
           @page = FacebookPage.find_or_create_by_pid(page["id"])
+
+          previous_likes = @page.likes
+
           @page.update_attributes(
             :name => page["name"],
             :category => page["category"],
@@ -39,7 +43,7 @@ class FacebookPage < ActiveRecord::Base
             :has_added_app => fb_meta["has_added_app"]
           )
 
-          Juggernaut.publish("users#show", @page.preview_template)
+          Juggernaut.publish("users#show", @page.preview_template(previous_likes))
 
           unless user.facebook_pages.include? @page
             user.facebook_pages << @page
@@ -49,7 +53,7 @@ class FacebookPage < ActiveRecord::Base
     end
   end
 
-  def preview_template
+  def preview_template(previous_likes)
     <<-eos
       <div class="facebook_page_preview" data-fb-pid="#{pid}">
         <div class="image">
@@ -60,7 +64,7 @@ class FacebookPage < ActiveRecord::Base
         <div class="title">
           <h1><a href="#{path}">#{name}</a></h1>
           <h2>
-            12323834
+            <span class="dynamo" data-lines="#{likes}">#{previous_likes}</span>
             <span class="gray">Likes</span>
           </h2>
         </div>
