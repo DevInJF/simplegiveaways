@@ -274,6 +274,7 @@ DEPENDENCIES
   erb2haml
   factory_girl_rails
   faker
+  fastercsv
   haml-rails
   heroku
   hirb

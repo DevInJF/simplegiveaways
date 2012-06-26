@@ -18,6 +18,9 @@ gem 'koala'
 gem 'aws-sdk'
 gem 'paperclip'
 
+gem 'fastercsv'
+
+
 gem 'json'
 gem 'braintree'
 gem 'impressionist'

@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class EntriesController < ApplicationController
 
+
   def create
     @giveaway = Giveaway.find(params[:giveaway_id])
     @entry = @giveaway.entries.new

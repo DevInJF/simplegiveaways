@@ -3,7 +3,11 @@ Simplegiveaways::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  
+
   devise_for :admin_users, ActiveAdmin::Devise.config
+
+
 
   match '/canvas', to: 'canvas#index'
   match '/giveaways/tab', to: 'giveaways#tab'
@@ -12,6 +16,7 @@ Simplegiveaways::Application.routes.draw do
     resources :giveaways do
       resources :entries
 
+      get :export_entries, :on => :member
       get :active, :on => :collection
       get :pending, :on => :collection
       get :completed, :on => :collection
@@ -28,3 +33,8 @@ Simplegiveaways::Application.routes.draw do
 
   root to: 'welcome#index'
 end
+
+
+
+  
+

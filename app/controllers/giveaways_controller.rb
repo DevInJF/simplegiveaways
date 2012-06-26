@@ -121,4 +121,22 @@ class GiveawaysController < ApplicationController
       redirect_to "/500.html"
     end
   end
+
+  def export_entries
+    @giveaway = Giveaway.find(params[:id])
+    @entries = @giveaway.entries
+  
+    entries_csv = CSV.generate do |csv|
+      # header row
+      csv << ["ID", "email", "Name", "Entry Time", "Wall Posts", "Requests", "Conversions"]
+
+      # data rows
+      @entries.each do |entry|
+        csv << [entry.id, entry.email, entry.name, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count]
+      end
+    end
+     
+    send_data(entries_csv, :type => 'text/csv', :filename => 'entries_export.csv')
+  end
 end
+
