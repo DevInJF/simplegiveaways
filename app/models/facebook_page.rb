@@ -9,48 +9,75 @@ class FacebookPage < ActiveRecord::Base
   validates :pid, :uniqueness => true
 
   def self.retrieve_fb_meta(user, pages)
-    [pages].compact.flatten.each do |page|
-      unless page["category"] == "Application"
+    pages = FacebookPage.select_pages(pages).compact.flatten
+    page_count = (pages.size - 1)
 
-        @graph = Koala::Facebook::API.new(page["access_token"])
+    pages.each_with_index do |page_hash, index|
 
-        batch_data = @graph.batch do |batch_api|
-          batch_api.get_object("me")
-          batch_api.get_picture("me", :type => "square")
-          batch_api.get_picture("me", :type => "large")
-        end
+                  page = page_hash[:page]
+               fb_meta = page_hash[:fb_meta][:data]
+      fb_avatar_square = page_hash[:fb_meta][:avatar_square]
+       fb_avatar_large = page_hash[:fb_meta][:avatar_large]
 
-        fb_meta = batch_data[0]
-        fb_avatar_square = batch_data[1]
-        fb_avatar_large = batch_data[2]
+      @page = FacebookPage.find_or_create_by_pid(page["id"])
 
-        if fb_meta["link"].include? "facebook.com"
+      previous_likes = @page.likes || fb_meta["likes"]
 
-          @page = FacebookPage.find_or_create_by_pid(page["id"])
+      @page.update_attributes(
+        :name => page["name"],
+        :category => page["category"],
+        :pid => page["id"],
+        :token => page["access_token"],
+        :avatar_square => fb_avatar_square,
+        :avatar_large => fb_avatar_large,
+        :description => fb_meta["description"],
+        :url => fb_meta["link"],
+        :likes => fb_meta["likes"],
+        :has_added_app => fb_meta["has_added_app"]
+      )
 
-          previous_likes = @page.likes
+      jug_data = { :markup => @page.preview_template(previous_likes),
+                   :is_last => "#{index == page_count}" }
 
-          @page.update_attributes(
-            :name => page["name"],
-            :category => page["category"],
-            :pid => page["id"],
-            :token => page["access_token"],
-            :avatar_square => fb_avatar_square,
-            :avatar_large => fb_avatar_large,
-            :description => fb_meta["description"],
-            :url => fb_meta["link"],
-            :likes => fb_meta["likes"],
-            :has_added_app => fb_meta["has_added_app"]
-          )
+      Juggernaut.publish("users#show", jug_data.to_json)
 
-          Juggernaut.publish("users#show", @page.preview_template(previous_likes))
-
-          unless user.facebook_pages.include? @page
-            user.facebook_pages << @page
-          end
-        end
+      unless user.facebook_pages.include? @page
+        user.facebook_pages << @page
       end
     end
+  end
+
+  def self.select_pages(pages)
+    pages = pages.reject do |page|
+      page["category"] == "Application"
+    end
+
+    pages.collect do |page|
+      page_hash = FacebookPage.eligible_page?(page)
+      if page_hash[:eligible]
+        { :page => page, :fb_meta => page_hash[:fb_meta] }
+      end
+    end
+  end
+
+  def self.eligible_page?(page)
+    @graph = Koala::Facebook::API.new(page["access_token"])
+
+    batch_data = @graph.batch do |batch_api|
+      batch_api.get_object("me")
+      batch_api.get_picture("me", :type => "square")
+      batch_api.get_picture("me", :type => "large")
+    end
+
+    fb_meta          = batch_data[0]
+    fb_avatar_square = batch_data[1]
+    fb_avatar_large  = batch_data[2]
+
+    { :eligible => (fb_meta["link"].include? "facebook.com"),
+      :fb_meta => { :data => fb_meta,
+                    :avatar_square => fb_avatar_square,
+                    :avatar_large => fb_avatar_large }
+    }
   end
 
   def preview_template(previous_likes)

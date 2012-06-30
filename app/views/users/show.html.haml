@@ -26,7 +26,7 @@
         Resources
 
 - content_for :content_header do
-  %h2 Facebook Pages <strong>(#{current_user.facebook_pages.count})</strong>
+  %h2 Facebook Pages <strong>(<span class="dynamo">#{current_user.facebook_pages.count}</span>)</strong>
 
 - if current_user.facebook_pages.any?
   = render "users/facebook_pages"

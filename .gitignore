@@ -8,3 +8,6 @@ config/initializers/01_facebook.rb
 .idea/*
 /tmp/*
 /tmp/**/
+.sass-cache/*
+/.sass-cache/
+.sass-cache/**/
