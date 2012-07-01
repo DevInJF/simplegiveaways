@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class GiveawaysController < ApplicationController
 
+  require 'csv' 
+
   def index
     @giveaways = Giveaway.all
   end
