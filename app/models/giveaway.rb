@@ -68,7 +68,7 @@ class Giveaway < ActiveRecord::Base
 
   def publish!
     if startable?
-      create_tab unless is_installed?
+      is_installed? ? update_tab : create_tab
       self.start_date = DateTime.now if is_installed?
       return save
     end
@@ -105,6 +105,7 @@ class Giveaway < ActiveRecord::Base
   def create_tab
     @graph = Koala::Facebook::API.new(facebook_page.token)
     @graph.put_connections("me", "tabs", :app_id => FB_APP_ID)
+    update_tab
   end
 
   def update_tab
