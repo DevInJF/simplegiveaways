@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 class EntriesController < ApplicationController
 
-
   def create
     @giveaway = Giveaway.find(params[:giveaway_id])
     @entry = @giveaway.entries.new
@@ -12,8 +11,6 @@ class EntriesController < ApplicationController
         :referrer_id => params[:ref_id],
         :access_token => params[:access_token]
       )
-
-      Rails.logger.debug(@entry.inspect.cyan)
 
       if @entry.persisted?
         render :json => @entry.as_json(:only => [:id, :wall_post_count, :request_count]), :status => :not_acceptable

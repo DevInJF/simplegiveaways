@@ -5,6 +5,7 @@ class Giveaway < ActiveRecord::Base
 
   belongs_to :facebook_page
   has_many :entries
+  has_many :viral_likes
 
   scope :active, lambda {
     where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.now, Time.now).limit(1)
@@ -157,6 +158,10 @@ class Giveaway < ActiveRecord::Base
 
   def viral_views
     Impression.find(:all, :conditions => ["message LIKE ?", "%ref_id: %"]).size
+  end
+
+  def viral_like_count
+    viral_likes.size
   end
 
   def entry_count

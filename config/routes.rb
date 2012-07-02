@@ -3,14 +3,12 @@ Simplegiveaways::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  
-
   devise_for :admin_users, ActiveAdmin::Devise.config
-
-
 
   match '/canvas', to: 'canvas#index'
   match '/giveaways/tab', to: 'giveaways#tab'
+
+  resources :viral_likes
 
   resources :facebook_pages do
     resources :giveaways do

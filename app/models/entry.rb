@@ -2,6 +2,7 @@
 class Entry < ActiveRecord::Base
 
   belongs_to :giveaway
+  has_many :viral_likes
 
   validates :email, :uniqueness => { :scope => :giveaway_id }
 
