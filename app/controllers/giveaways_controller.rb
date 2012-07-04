@@ -8,6 +8,7 @@ class GiveawaysController < ApplicationController
   end
 
   def active
+    @auto_open_tab = session.delete(:auto_open_tab)
     @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.active.first
   end
@@ -84,10 +85,11 @@ class GiveawaysController < ApplicationController
   def start
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.update_attributes(params[:giveaway]) && @giveaway.publish!
-      flash[:success] = "The #{@giveaway.title} giveaway is now active on your Facebook Page."
+      session[:auto_open_tab] = true
+      flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
-      flash[:error] = @giveaway.errors.messages.to_s
+      flash[:error] = "There was a problem activating #{@giveaway.title}."
       redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
     end
   end
@@ -95,11 +97,11 @@ class GiveawaysController < ApplicationController
   def end
     @giveaway = Giveaway.find(params[:id])
     if @giveaway.update_attributes(:end_date => DateTime.now)
-      flash[:success] = "The #{@giveaway.title} giveaway has been ended and will no longer accept entries."
+      flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
       @giveaway.delete_tab
     else
-      flash.now[:error] = "Giveaway could not be ended."
+      flash.now[:error] = "There was a problem ending #{@giveaway.title}."
       render :show
     end
   end

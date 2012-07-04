@@ -1,3 +1,10 @@
+- if @auto_open_tab
+  :javascript
+    $(function() {
+      window.open("#{@giveaways.giveaway_url}", "#{@giveaways.title}");
+      return false;
+    });
+
 - if @giveaways.present?
 
   - content_for :content_header do
@@ -16,6 +23,6 @@
       = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
       - if @page.giveaways.pending.present?
         %h4 or
-        %h1 
-          Publish one of your 
+        %h1
+          Publish one of your
           = link_to "pending giveaways", pending_facebook_page_giveaways_path(@page)

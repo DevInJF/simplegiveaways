@@ -37,8 +37,15 @@ $bgtint: image_url('/assets/bgtint.png');
   background-color:white;
 }
 
-        
+.alert {
+  width: 740px;
+  margin: 20px auto 0;
 
+  .btn-mini {
+    position: relative;
+    top: -1px;
+  }
+}
 
 .alert-message {
 
