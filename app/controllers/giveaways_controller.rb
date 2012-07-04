@@ -8,7 +8,6 @@ class GiveawaysController < ApplicationController
   end
 
   def active
-    @auto_open_tab = session.delete(:auto_open_tab)
     @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.active.first
   end
@@ -84,11 +83,11 @@ class GiveawaysController < ApplicationController
 
   def start
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.update_attributes(params[:giveaway]) && @giveaway.publish!
-      session[:auto_open_tab] = true
+    if @giveaway.publish(params[:giveaway])
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
+      Rails.logger.debug(@giveaway.errors.inspect.red)
       flash[:error] = "There was a problem activating #{@giveaway.title}."
       redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
     end

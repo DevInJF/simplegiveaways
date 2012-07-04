@@ -82,13 +82,13 @@ class Giveaway < ActiveRecord::Base
     :path => "/:style/:id/:filename"
 
 
-  def publish!
-    if startable?
+  def publish(giveaway_params)
+    return false unless startable?
+    if self.update_attributes(giveaway_params.merge(:start_date => Time.now))
       is_installed? ? update_tab : create_tab
-      self.start_date = DateTime.now if is_installed?
-      return save
+    else
+      false
     end
-    false
   end
 
   def startable?
