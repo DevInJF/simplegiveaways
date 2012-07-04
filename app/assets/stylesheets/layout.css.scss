@@ -125,11 +125,32 @@ html {
           line-height:18px;
           color:#333;
         }
+
+        img.page_loader {
+          position:relative;
+          top:18px;
+          left:6px;
+        }
       }
 
       .container {
         padding: 20px 30px;
         width: auto;
+
+        .loader {
+          text-align:center;
+          margin:40px auto;
+          width:500px;
+
+          h1 {
+            font-weight:normal;
+            color:#a5adb6;
+          }
+
+          img {
+            margin:20px;
+          }
+        }
       }
     }
 

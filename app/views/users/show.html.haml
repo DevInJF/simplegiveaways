@@ -30,3 +30,8 @@
 
 - if current_user.facebook_pages.any?
   = render "users/facebook_pages"
+
+- else 
+  .loader
+    = image_tag "loader.gif", :alt => "Loading Your Facebook Pages"
+    %h1 Loading Facebook Pages
