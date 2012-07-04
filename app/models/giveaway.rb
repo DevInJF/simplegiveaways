@@ -52,7 +52,8 @@ class Giveaway < ActiveRecord::Base
     :styles => {
       :thumb  => "150x150>",
       :medium => "300x300>", 
-      :gallery => "256x320#"},
+      :gallery => "256x320#",
+      :tab => "810"},
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"

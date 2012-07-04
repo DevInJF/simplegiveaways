@@ -2,7 +2,7 @@
 #enter_giveaway
   %a{:href => "#"} Enter Giveaway
 #giveaway_image
-  = image_tag @giveaway.giveaway.image.url
+  = image_tag @giveaway.giveaway.image.url(:tab)
 #giveaway_modal{:style => "display:none"}
   .step.one
     %span To be eligible for the giveaway, please like this page first.
