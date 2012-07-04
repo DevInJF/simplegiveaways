@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Giveaway < ActiveRecord::Base
 
+  audited
+
   is_impressionable
 
   belongs_to :facebook_page
@@ -47,6 +49,18 @@ class Giveaway < ActiveRecord::Base
   validates :sticky_post_body, :presence => true, :if => lambda { sticky_post_enabled? }
 
   validate :end_in_future
+
+  store :analytics, accessors: [ :_total_shares,
+                                 :_total_wall_posts,
+                                 :_total_requests,
+                                 :_total_conversions,
+                                 :_views,
+                                 :_uniques,
+                                 :_viral_views,
+                                 :_viral_like_count,
+                                 :_entry_count,
+                                 :_entry_rate,
+                                 :_conversion_rate ]
 
   has_attached_file :image,
     :styles => {
@@ -180,6 +194,21 @@ class Giveaway < ActiveRecord::Base
     "#{((total_conversions.to_f / (total_shares.to_f)) * 100).round(2)}%"
   rescue StandardError
     0
+  end
+
+  def refresh_analytics
+    self._total_shares = total_shares
+    self._total_wall_posts = total_wall_posts
+    self._total_requests = total_requests
+    self._total_conversions = total_conversions
+    self._views = views
+    self._uniques = uniques
+    self._viral_views = viral_views
+    self._viral_like_count = viral_like_count
+    self._entry_count = entry_count
+    self._entry_rate = entry_rate
+    self._conversion_rate = conversion_rate
+    save
   end
 
   class << self

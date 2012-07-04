@@ -17,15 +17,15 @@ gem 'koala'
 
 gem 'aws-sdk'
 gem 'paperclip'
-
 gem 'fastercsv'
-
 
 gem 'json'
 gem 'braintree'
 gem 'impressionist'
 gem 'simple_form', '~> 2.0'
 gem 'juggernaut'
+gem 'whenever', :require => false
+gem 'audited-activerecord'
 gem 'timeline_fu', :git => 'git://github.com/onedesign/timeline_fu.git'
 
 group :assets do

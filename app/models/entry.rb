@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Entry < ActiveRecord::Base
 
+  audited
+
   belongs_to :giveaway
   has_many :viral_likes
 

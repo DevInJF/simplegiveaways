@@ -67,7 +67,7 @@ class Identity < ActiveRecord::Base
 
   def facebook
     self.email = auth['info']['email'] rescue nil
-    self.avatar = auth['info']['image'] rescue nil
+    self.avatar = "http://graph.facebook.com/#{uid}/picture?type=large" rescue nil
     self.profile_url = auth['extra']['raw_info']['link'] rescue nil
     self.location = auth['info']['location'] rescue nil
     self.token = auth['credentials']['token'] rescue nil

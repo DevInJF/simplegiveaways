@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class FacebookPage < ActiveRecord::Base
 
+  audited
+
   include ActionView::Helpers::UrlHelper
 
   has_many :giveaways
@@ -47,37 +49,51 @@ class FacebookPage < ActiveRecord::Base
     end
   end
 
+  def refresh_likes
+    batch = FacebookPage.graph_data(self)
+
+    self.update_attributes(
+      :likes => batch[:data]["likes"]
+    )
+  end
+
   def self.select_pages(pages)
     pages = pages.reject do |page|
       page["category"] == "Application"
     end
 
     pages.collect do |page|
-      page_hash = FacebookPage.eligible_page?(page)
-      if page_hash[:eligible]
-        { :page => page, :fb_meta => page_hash[:fb_meta] }
+      if FacebookPage.page_eligible?(batch = FacebookPage.graph_data(page))
+        { :page => page, :fb_meta => batch }
       end
     end
   end
 
-  def self.eligible_page?(page)
-    @graph = Koala::Facebook::API.new(page["access_token"])
+  def self.graph_data(page)
+    batch = FacebookPage.batch_data(page)
 
-    batch_data = @graph.batch do |batch_api|
+    fb_meta          = batch[0]
+    fb_avatar_square = batch[1]
+    fb_avatar_large  = batch[2]
+
+    { :data => fb_meta,
+      :avatar_square => fb_avatar_square,
+      :avatar_large => fb_avatar_large }
+  end
+
+  def self.batch_data(page)
+    @token = page["access_token"] || page.token
+    @graph = Koala::Facebook::API.new(@token)
+
+    @graph.batch do |batch_api|
       batch_api.get_object("me")
       batch_api.get_picture("me", :type => "square")
       batch_api.get_picture("me", :type => "large")
     end
+  end
 
-    fb_meta          = batch_data[0]
-    fb_avatar_square = batch_data[1]
-    fb_avatar_large  = batch_data[2]
-
-    { :eligible => (fb_meta["link"].include? "facebook.com"),
-      :fb_meta => { :data => fb_meta,
-                    :avatar_square => fb_avatar_square,
-                    :avatar_large => fb_avatar_large }
-    }
+  def self.page_eligible?(batch)
+    batch[:data]["link"].include? "facebook.com"
   end
 
   def preview_template(previous_likes)
@@ -104,10 +120,6 @@ class FacebookPage < ActiveRecord::Base
       </div>
     eos
   end
-
-  # def preview_template
-  #   @preview_template = ActionController::Base.new.send("render_to_string", { :partial => 'facebook_pages/preview.html.haml', :locals => { :facebook_page => self }})
-  # end
 
   def path
     Rails.application.routes.url_helpers.facebook_page_path(self)
