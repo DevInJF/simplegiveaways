@@ -211,18 +211,29 @@ class Giveaway < ActiveRecord::Base
     save
   end
 
+  def tab_height
+    Giveaway.image_dimensions(image(:tab))[:height].to_i + 50
+  end
+
+  def self.image_dimensions(img_url)
+    dimensions = Paperclip::Geometry.from_file(img_url).to_s.split("x") rescue []
+    { :width => dimensions[0], :height => dimensions[1] }
+  end
+
   class << self
 
     def tab(signed_request)
       app_data = signed_request["app_data"]
       referrer_id = app_data.split("ref_")[1] rescue []
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
+      giveaway = current_page.giveaways.detect(&:is_live?)
 
       OpenStruct.new({
         :referrer_id => referrer_id,
         :has_liked => signed_request["page"]["liked"],
         :current_page => current_page,
-        :giveaway => current_page.giveaways.detect(&:is_live?)
+        :giveaway => giveaway,
+        :tab_height => giveaway.tab_height
       })
     end
 

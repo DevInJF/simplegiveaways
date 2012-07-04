@@ -5,16 +5,18 @@
       status : true, // check login status
       cookie : true, // enable cookies to allow the server to access the session
       xfbml  : true, // parse XFBML
-      channelUrl  : 'http://simplegiveawayapp.com/channel.html'
+      channelUrl  : 'http://simplegiveaways.com/channel.html'
     });
 
-    FB.Canvas.setSize();
+    FB.getLoginStatus(function(response) {
+      FB.Canvas.setSize({ height: "#{@giveaway.tab_height}" });
 
-    FB.Event.subscribe('edge.create', function() {
-      $just_liked = true;
-      Giveaway.step.one.hide();
-      Giveaway.step.two.show();
-      Giveaway.onLike();
+      FB.Event.subscribe('edge.create', function() {
+        $just_liked = true;
+        Giveaway.step.one.hide();
+        Giveaway.step.two.show();
+        Giveaway.onLike();
+      });
     });
   };
 
@@ -54,7 +56,6 @@
 
       onLike: function() {
 
-        console.log($referrer_id);
         if ($referrer_id.length) {
           $.ajax({
             type: 'POST',
