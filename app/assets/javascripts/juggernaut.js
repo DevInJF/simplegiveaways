@@ -7,6 +7,8 @@ jug.subscribe("users#show", function(jug_data){
            pid = $markup.data("fb-pid"),
        $pid_el = $("[data-fb-pid=" + pid + "]");
 
+  $(".loader").slideUp().hide();
+
   if ( $pid_el.length ) {
     $pid_el.replaceWith($markup);
   } else {
@@ -24,6 +26,7 @@ jug.subscribe("users#show", function(jug_data){
     $(".pane_heading h2 .dynamo").replaceWith(new_markup);
     $(".page_subtitle .dynamo").replaceWith(new_markup);
     $(".dynamo.count").dynamo();
+
     jug.unsubscribe("users#show");
   }
 });
