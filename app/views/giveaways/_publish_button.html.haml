@@ -8,14 +8,12 @@
         x
       %h3 Publish #{giveaway.title}
     .modal-body
-      = simple_form_for [@page, giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+      = simple_form_for [@page, giveaway], :url => start_facebook_page_giveaway_path(@page, giveaway), :html => { :class => 'form-horizontal', :multipart => true } do |f|
         %fieldset.schedule
           %legend Publish Settings
           = render "giveaways/form/publish_confirm", :f => f
         .form-actions
-          = f.button :submit, :class => "btn-primary"
-      = link_to "<i class='icon-remove icon-white'></i> Yes Publish the Giveaway".html_safe, start_facebook_page_giveaway_path(@page, giveaway), :class =>"btn btn-xlarge"
-      %p If you want to only modify the end time of the giveaway click here to view and edit the giveaway details.
+          = f.submit "Publish the Giveaway", :class => "btn-primary btn btn-xlarge"
 
 - else
   %span.btn.btn-large.btn-primary.btn-publish.disabled

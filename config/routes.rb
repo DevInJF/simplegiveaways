@@ -19,7 +19,7 @@ Simplegiveaways::Application.routes.draw do
       get :pending, :on => :collection
       get :completed, :on => :collection
 
-      get :start, :on => :member
+      match :start, :on => :member
       get :end, :on => :member
     end
   end

@@ -83,7 +83,7 @@ class GiveawaysController < ApplicationController
 
   def start
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.publish!
+    if @giveaway.update_attributes(params[:giveaway]) && @giveaway.publish!
       flash[:success] = "The #{@giveaway.title} giveaway is now active on your Facebook Page."
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
