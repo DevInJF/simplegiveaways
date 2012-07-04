@@ -54,19 +54,20 @@
 
       eligible : #{@giveaway.has_liked},
 
-      onLike: function() {
-
+      onLike : function() {
+        var postData = 'like[giveaway_id]=#{@giveaway.giveaway.id}';
         if ($referrer_id.length) {
-          $.ajax({
-            type: 'POST',
-            url: '#{viral_likes_path}',
-            dataType: "json",
-            data: 'viral_like[giveaway_id]=#{@giveaway.giveaway.id}&viral_like[entry_id]=' + $referrer_id + '',
-            success: function(data, textStatus, jqXHR) {
-              console.log("This viral like brought to you by Filter Mania 2.0!!!");
-            }
-          });
+          postData += '&like[entry_id]=' + $referrer_id + ''
         }
+        $.ajax({
+          type: 'POST',
+          url: '#{likes_path}',
+          dataType: "json",
+          data: postData,
+          success: function(data, textStatus, jqXHR) {
+            console.log("This like brought to you by Filter Mania 2.0!!!");
+          }
+        });
       },
 
       entry : {

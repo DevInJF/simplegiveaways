@@ -7,7 +7,7 @@ class Giveaway < ActiveRecord::Base
 
   belongs_to :facebook_page
   has_many :entries
-  has_many :viral_likes
+  has_many :likes
 
   scope :active, lambda {
     where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.now, Time.now).limit(1)
@@ -58,6 +58,7 @@ class Giveaway < ActiveRecord::Base
                                  :_uniques,
                                  :_viral_views,
                                  :_viral_like_count,
+                                 :_likes_from_entries_count,
                                  :_entry_count,
                                  :_entry_rate,
                                  :_conversion_rate ]
@@ -180,6 +181,14 @@ class Giveaway < ActiveRecord::Base
     viral_likes.size
   end
 
+  def viral_likes
+    likes.where("entry_id != 0")
+  end
+
+  def likes_from_entries_count
+    likes.size
+  end
+
   def entry_count
     entries.size
   end
@@ -205,6 +214,7 @@ class Giveaway < ActiveRecord::Base
     self._uniques = uniques
     self._viral_views = viral_views
     self._viral_like_count = viral_like_count
+    self._likes_from_entries_count = likes_from_entries_count
     self._entry_count = entry_count
     self._entry_rate = entry_rate
     self._conversion_rate = conversion_rate

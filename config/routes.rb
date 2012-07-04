@@ -8,7 +8,7 @@ Simplegiveaways::Application.routes.draw do
   match '/canvas', to: 'canvas#index'
   match '/giveaways/tab', to: 'giveaways#tab'
 
-  resources :viral_likes
+  resources :likes
 
   resources :facebook_pages do
     resources :giveaways do

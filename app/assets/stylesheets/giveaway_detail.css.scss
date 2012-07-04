@@ -20,18 +20,18 @@
       }
 
       .row {
-        height:400px;
-        clear:both;
+        height: auto;
+        clear: both;
 
         .column_left {
-          float:left;
-          width:370px;
+          float: left;
+          width: 370px;
         }
 
         .column_right {
-          float:left;
-          width:370px;
-          margin-left:50px;
+          float: left;
+          width: 370px;
+          margin-left: 50px;
         }
         section.detail {
           padding-left:20px;

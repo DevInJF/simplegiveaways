@@ -1,4 +1,4 @@
-class ViralLike < ActiveRecord::Base
+class Like < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :giveaway

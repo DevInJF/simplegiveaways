@@ -21,12 +21,13 @@
         %h2.stat-label
           Likes
           %span.pop.likes ?
-        %h3.stat-value 0
+        %h3.stat-value n
+        /# likes accrued during giveaway live, regardless of source
       %li.secondary.likes_from_entries
         %h2.stat-label
           Likes From Entries
           %span.pop.likes_from_entries ?
-        %h3.stat-value 14,120
+        %h3.stat-value= giveaway.likes_from_entries_count
       %li.secondary.viral_likes
         %h2.stat-label
           Viral Likes

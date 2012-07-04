@@ -4,7 +4,7 @@ class Entry < ActiveRecord::Base
   audited
 
   belongs_to :giveaway
-  has_many :viral_likes
+  has_many :likes
 
   validates :email, :uniqueness => { :scope => :giveaway_id }
 
