@@ -49,6 +49,7 @@ class Giveaway < ActiveRecord::Base
   validates :sticky_post_body, :presence => true, :if => lambda { sticky_post_enabled? }
 
   validate :end_in_future
+  validate :unchanged_active_start_date
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
@@ -110,7 +111,7 @@ class Giveaway < ActiveRecord::Base
 
   def is_live?
     now = Time.now
-    start_date < now && end_date > now ? true : false
+    start_date < now && end_date > now ? true : false 
   end
   
   def is_installed?
@@ -271,6 +272,12 @@ class Giveaway < ActiveRecord::Base
       if end_date < start_date || end_date == start_date
         errors.add(:end_date, "cannot be earlier than start date.")
       end
+    end
+  end
+
+  def unchanged_active_start_date
+    if is_live? && is_installed? && start_date.changed?
+      errors.add(:start_date, "cannot be changed on an active giveaway.")
     end
   end
 end
