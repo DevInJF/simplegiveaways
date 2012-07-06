@@ -3,7 +3,7 @@
   You may leave this blank for now if you don't yet know your schedule.
 = f.input :start_date, :as => :datetime, :input_html => { :class => "input-mini" },
                                          :label => "Start Date/Time",
-                                         :start_year => Date.today.year,
+                                         :start_year => Date.today.year - 1,
                                          :end_year => Date.today.year + 5,
                                          :order => [:month, :day, :year],
                                          :use_short_month => true,
@@ -11,7 +11,7 @@
                                          :ampm => true
 = f.input :end_date, :as => :datetime, :input_html => { :class => "input-mini" },
                                        :label => "End Date/Time",
-                                       :start_year => Date.today.year,
+                                       :start_year => Date.today.year - 1,
                                        :end_year => Date.today.year + 5,
                                        :order => [:month, :day, :year],
                                        :use_short_month => true,

@@ -15,7 +15,7 @@
                 x
               %h3 Update the schedule for #{giveaway.title}
             .modal-body
-              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+              = simple_form_for [page, giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
                 %fieldset.basic-info
                   %legend Basic Info
                   = render "giveaways/form/basic_info", :f => f
@@ -50,7 +50,7 @@
                 x
               %h3 Update the schdule for #{giveaway.title}
             .modal-body
-              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+              = simple_form_for [page, giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
                 %fieldset.schedule
                   %legend Schedule
                   = render "giveaways/form/schedule", :f => f
@@ -78,7 +78,7 @@
                 x
               %h3 Update the terms for #{giveaway.title}
             .modal-body
-              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+              = simple_form_for [page, giveaway], :method => :put, :html => { :class => 'form-horizontal', :multipart => true } do |f|
                 %fieldset.terms
                   %legend Terms &amp; Conditions
                   = render "giveaways/form/terms", :f => f
@@ -106,7 +106,7 @@
                 x
               %h3 Update the preferences for #{giveaway.title}
             .modal-body
-              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+              = simple_form_for [page, giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
                 %fieldset.preferences
                   %legend Preferences
                   = render "giveaways/form/preferences", :f => f
@@ -141,7 +141,7 @@
                 x
               %h3 Update the terms for #{giveaway.title}
             .modal-body
-              = simple_form_for [@page, @giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
+              = simple_form_for [page, giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
                 %fieldset.images
                   %legend Images
                   = render "giveaways/form/images", :f => f

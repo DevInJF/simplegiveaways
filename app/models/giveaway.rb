@@ -276,8 +276,15 @@ class Giveaway < ActiveRecord::Base
   end
 
   def unchanged_active_start_date
-    if is_live? && is_installed? && changed_attributes["start_date"]
+    if is_live? && is_installed? && start_date_changed?
       errors.add(:start_date, "cannot be changed on an active giveaway.")
+      false
+    else
+      true
     end
+  end
+
+  def start_date_changed?
+    start_date_was.to_formatted_s(:long) != start_date.to_formatted_s(:long)
   end
 end
