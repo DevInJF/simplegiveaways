@@ -1,7 +1,10 @@
 # -*- encoding : utf-8 -*-
+require 'csv'
+
 class GiveawaysController < ApplicationController
 
-  require 'csv' 
+  load_and_authorize_resource :facebook_page, :except => [:tab]
+  load_and_authorize_resource :giveaway, :through => :facebook_page, :except => [:tab]
 
   def index
     @giveaways = Giveaway.all

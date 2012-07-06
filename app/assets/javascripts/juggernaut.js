@@ -1,32 +1,45 @@
-var jug = new Juggernaut;
+var getURLParameter = function(name) {
+  return decodeURI(
+    (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, false])[1]
+  );
+};
 
-jug.subscribe("users#show", function(jug_data){
+if (getURLParameter("login") === "true") {
 
-  var jug_data = JSON.parse(jug_data),
-       $markup = $(jug_data.markup),
-           pid = $markup.data("fb-pid"),
-       $pid_el = $("[data-fb-pid=" + pid + "]");
+  var jug = new Juggernaut;
 
-  $(".loader").slideUp().hide();
+  jug.subscribe("users#show", function (jug_data) {
 
-  if ( $pid_el.length ) {
-    $pid_el.replaceWith($markup);
-  } else {
-    $(".tab-content .container").append($markup);
-  }
+    var jug_data = JSON.parse(jug_data),
+        $markup = $(jug_data.markup),
+        pid = $markup.data("fb-pid"),
+        $pid_el = $("[data-fb-pid=" + pid + "]");
 
-  $markup.find(".dynamo").dynamo();
+    $(".loader").slideUp().hide();
 
-  if (jug_data.is_last == "true") {
+    if ($pid_el.length) {
+      $pid_el.replaceWith($markup);
+    } else {
+      $(".tab-content .container").append($markup);
+    }
 
-    var previous_dynamo = $(".pane_heading h2 .dynamo").text();
-    var new_dynamo = $(".facebook_page_preview").length;
-    var new_markup = "<span class='dynamo count' data-lines='" + new_dynamo + "'>" + previous_dynamo + "</span>";
+    $markup.find(".dynamo").dynamo();
 
-    $(".pane_heading h2 .dynamo").replaceWith(new_markup);
-    $(".page_subtitle .dynamo").replaceWith(new_markup);
-    $(".dynamo.count").dynamo();
+    if (jug_data.is_last == "true") {
 
-    jug.unsubscribe("users#show");
-  }
-});
+      var previous_dynamo = $(".pane_heading h2 .dynamo").text();
+      var new_dynamo = $(".facebook_page_preview").length;
+      var new_markup = "<span class='dynamo count' data-lines='" + new_dynamo + "'>" + previous_dynamo + "</span>";
+
+      $(".pane_heading h2 .dynamo").replaceWith(new_markup);
+      $(".page_subtitle .dynamo").replaceWith(new_markup);
+      $(".dynamo.count").dynamo();
+
+      jug.unsubscribe("users#show");
+    }
+
+    jug.on("disconnect", function () {
+      jug.unsubscribe("users#show");
+    });
+  });
+}
