@@ -24,7 +24,9 @@ Simplegiveaways::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users, :only => [:create, :update, :destroy]
+
+  get '/dashboard', to: 'users#show', :as => 'dashboard'
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/logout', to: 'sessions#destroy'

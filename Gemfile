@@ -14,6 +14,7 @@ gem 'activeadmin'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'cancan'
 
 gem 'aws-sdk'
 gem 'paperclip'

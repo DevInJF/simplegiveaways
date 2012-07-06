@@ -20,6 +20,8 @@ class SessionsController < ApplicationController
     else
       unless @identity.user.present?
         @identity.create_user(:name => auth["info"]["name"])
+        @identity.user.roles = ['superadmin']
+        @identity.user.save
         @identity.save
       end
       self.current_user = @identity.user
