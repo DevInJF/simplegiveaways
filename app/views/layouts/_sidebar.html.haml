@@ -4,7 +4,7 @@
 - if @page
 
   %header.page
-    = link_to image_tag(@page.avatar_square, :alt => @page.name, :width => "180", :height => "180"), facebook_page_path(@page), :class => "avatar"
+    = link_to image_tag(@page.avatar_large, :alt => @page.name, :width => "180", :height => "180"), facebook_page_path(@page), :class => "avatar"
     %h1.page_title= @page.name
     %p.page_subtitle #{@page.likes} Likes
     %nav
