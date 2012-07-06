@@ -1,5 +1,10 @@
 class RenameViralLikesToLikes < ActiveRecord::Migration
-  def change
-    rename_table :likes, :likes
+
+  def up
+    rename_table :viral_likes, :likes
+  end
+
+  def down
+    rename_table :likes, :viral_likes
   end
 end
