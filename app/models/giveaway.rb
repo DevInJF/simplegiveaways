@@ -48,8 +48,9 @@ class Giveaway < ActiveRecord::Base
   validates :sticky_post_title, :presence => true, :length => { :maximum => 200 }, :if => lambda { sticky_post_enabled? }
   validates :sticky_post_body, :presence => true, :if => lambda { sticky_post_enabled? }
 
-  validate :unchanged_active_start_date, :if => :active?, :unless => :create
+  validate :unchanged_active_start_date, :on => :update
   validate :end_in_future
+  validate :start_in_future
 
 
   store :analytics, accessors: [ :_total_shares,
@@ -86,8 +87,7 @@ class Giveaway < ActiveRecord::Base
 
   def publish(giveaway_params)
     return false unless startable?
-    if self.update_attributes( giveaway_params.merge( :start_date => Time.now,
-                                                      :active => true ) )
+    if self.update_attributes(giveaway_params.merge({ :start_date => Time.now, :active => true }))
       is_installed? ? update_tab : create_tab
     else
       false
@@ -112,7 +112,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def active?
-    active.to_s
+    active
   end
 
   def pending?
@@ -246,7 +246,7 @@ class Giveaway < ActiveRecord::Base
       app_data = signed_request["app_data"]
       referrer_id = app_data.split("ref_")[1] rescue []
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
-      giveaway = current_page.giveaways.detect(&:is_live?)
+      giveaway = current_page.giveaways.detect(&:active?)
 
       OpenStruct.new({
         :referrer_id => referrer_id,
@@ -284,8 +284,14 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
+  def start_in_future
+    if start_date.present? && (start_date < (Time.now - 5.minutes))
+      errors.add(:start_date, "must be in the future.")
+    end
+  end
+
   def unchanged_active_start_date
-    if active? && start_date_changed?
+    if start_date_changed? && active_was
       errors.add(:start_date, "cannot be changed on an active giveaway.")
       false
     else
@@ -294,7 +300,6 @@ class Giveaway < ActiveRecord::Base
   end
 
   def start_date_changed?
-    logger.debug(self.inspect.red_on_white)
     start_date_was.to_formatted_s(:long) != start_date.to_formatted_s(:long)
   end
 end

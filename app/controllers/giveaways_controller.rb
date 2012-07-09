@@ -51,7 +51,7 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.save
       flash[:success] = "The #{@giveaway.title} giveaway has been created."
-      redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
+      redirect_to pending_facebook_page_giveaways_path(@page)
     else
       render :action => :new
     end
@@ -66,10 +66,10 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.update_attributes(giveaway_params)
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
-      redirect_to :back
+      redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     else
       flash[:error] = "There was a problem updating #{@giveaway.title}."
-      render :edit
+      redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
 
@@ -91,9 +91,9 @@ class GiveawaysController < ApplicationController
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
-      logger.debug(@giveaway.errors.inspect.red_on_white)
       flash.now[:error] = "There was a problem activating #{@giveaway.title}."
-      render :pending, @page => @giveaway.facebook_page
+      logger.debug(@giveaway.errors.inspect.red_on_white)
+      redirect_to facebook_page_giveaways_url(@giveaway.facebook_page)
     end
   end
 
