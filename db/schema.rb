@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706041016) do
+ActiveRecord::Schema.define(:version => 20120709041439) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -141,10 +141,11 @@ ActiveRecord::Schema.define(:version => 20120706041016) do
     t.string   "feed_image_file_name"
     t.string   "feed_image_content_type"
     t.integer  "feed_image_file_size"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "custom_fb_tab_name"
     t.text     "analytics"
+    t.boolean  "active",                  :default => false
   end
 
   add_index "giveaways", ["title", "facebook_page_id"], :name => "index_giveaways_on_title_and_facebook_page_id", :unique => true

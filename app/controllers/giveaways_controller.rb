@@ -69,7 +69,7 @@ class GiveawaysController < ApplicationController
       redirect_to :back
     else
       flash[:error] = "There was a problem updating #{@giveaway.title}."
-      redirect_to facebook_page_giveaway_path(@giveaway.facebook_page, @giveaway)
+      render :edit
     end
   end
 
@@ -99,7 +99,7 @@ class GiveawaysController < ApplicationController
 
   def end
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.update_attributes(:end_date => DateTime.now)
+    if @giveaway.update_attributes(:end_date => DateTime.now, :active => false)
       flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
       @giveaway.delete_tab

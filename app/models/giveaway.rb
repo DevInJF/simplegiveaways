@@ -48,8 +48,9 @@ class Giveaway < ActiveRecord::Base
   validates :sticky_post_title, :presence => true, :length => { :maximum => 200 }, :if => lambda { sticky_post_enabled? }
   validates :sticky_post_body, :presence => true, :if => lambda { sticky_post_enabled? }
 
+  validate :unchanged_active_start_date, :if => :active?, :unless => :create
   validate :end_in_future
-  validate :unchanged_active_start_date
+
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
@@ -85,7 +86,8 @@ class Giveaway < ActiveRecord::Base
 
   def publish(giveaway_params)
     return false unless startable?
-    if self.update_attributes(giveaway_params.merge(:start_date => Time.now))
+    if self.update_attributes( giveaway_params.merge( :start_date => Time.now,
+                                                      :active => true ) )
       is_installed? ? update_tab : create_tab
     else
       false
@@ -97,15 +99,12 @@ class Giveaway < ActiveRecord::Base
   end
 
   def status
-    start_date = start_date_was if start_date_changed?
-    end_date = end_date_was if end_date_changed?
-
     case
-    when start_date.nil? || end_date.nil? || (start_date > Time.now && end_date > Time.now)
+    when pending?
       "Pending"
-    when start_date < Time.now && end_date < Time.now
+    when completed?
       "Completed"
-    when start_date < Time.now && end_date > Time.now
+    when active?
       "Active"
     else
       nil
@@ -113,12 +112,15 @@ class Giveaway < ActiveRecord::Base
   end
 
   def active?
-    is_live? && is_installed? && status == "Active"
+    active.to_s
   end
 
-  def is_live?
-    now = Time.now
-    start_date < now && end_date > now ? true : false
+  def pending?
+    start_date.nil? || end_date.nil? || (start_date > Time.now && end_date > Time.now)
+  end
+
+  def completed?
+    start_date < Time.now && end_date < Time.now
   end
   
   def is_installed?
@@ -283,7 +285,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def unchanged_active_start_date
-    if active?
+    if active? && start_date_changed?
       errors.add(:start_date, "cannot be changed on an active giveaway.")
       false
     else
@@ -292,6 +294,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def start_date_changed?
+    logger.debug(self.inspect.red_on_white)
     start_date_was.to_formatted_s(:long) != start_date.to_formatted_s(:long)
   end
 end
