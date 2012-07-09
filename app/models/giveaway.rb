@@ -97,6 +97,9 @@ class Giveaway < ActiveRecord::Base
   end
 
   def status
+    start_date = start_date_was if start_date_changed?
+    end_date = end_date_was if end_date_changed?
+
     case
     when start_date.nil? || end_date.nil? || (start_date > Time.now && end_date > Time.now)
       "Pending"
@@ -109,9 +112,13 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
+  def active?
+    is_live? && is_installed? && status == "Active"
+  end
+
   def is_live?
     now = Time.now
-    start_date < now && end_date > now ? true : false 
+    start_date < now && end_date > now ? true : false
   end
   
   def is_installed?
@@ -276,7 +283,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def unchanged_active_start_date
-    if is_live? && is_installed? && start_date_changed?
+    if active?
       errors.add(:start_date, "cannot be changed on an active giveaway.")
       false
     else

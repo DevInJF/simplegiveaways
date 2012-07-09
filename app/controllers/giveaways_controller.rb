@@ -91,8 +91,9 @@ class GiveawaysController < ApplicationController
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
-      flash[:error] = "There was a problem activating #{@giveaway.title}."
-      redirect_to pending_facebook_page_giveaways_path(@giveaway.facebook_page)
+      logger.debug(@giveaway.errors.inspect.red_on_white)
+      flash.now[:error] = "There was a problem activating #{@giveaway.title}."
+      render :pending, @page => @giveaway.facebook_page
     end
   end
 
