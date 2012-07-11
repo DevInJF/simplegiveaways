@@ -34,6 +34,11 @@ class SessionsController < ApplicationController
 
   def destroy
     self.current_user = nil
-    redirect_to root_url, notice: "Logged out!"
+    if params[:fb] == "true"
+      flash[:error] = "You have been signed out due to a change in your facebook session."
+    else
+      flash[:success] = "Logged out!"
+    end
+    redirect_to root_url
   end
 end

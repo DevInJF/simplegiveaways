@@ -285,7 +285,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def start_in_future
-    if start_date_changed? && (start_date < (Time.now - 5.minutes))
+    if pending? && start_date.present? && (start_date < (Time.now - 5.minutes))
       errors.add(:start_date, "must be in the future.")
     end
   end

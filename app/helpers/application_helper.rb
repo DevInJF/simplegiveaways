@@ -13,6 +13,14 @@ module ApplicationHelper
     "#{controller.controller_name} #{controller.action_name}"
   end
 
+  def uid_class
+    current_user.present? ? current_user.identities.where("provider = 'facebook'").first.uid : ""
+  end
+
+  def auth_class
+    current_user.present? ? "logged-in" : "logged-out"
+  end
+
   def flash_class(level)
     case level
     when :notice

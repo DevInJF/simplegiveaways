@@ -13,9 +13,11 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body.application{ :class => body_class }
+    #fb-root.logged-in{ :'data-uid' => uid_class }
     .site_wrapper
       = render "layouts/header"
       = render "layouts/page_header"
       = render "layouts/sidebar"
       = render "layouts/content"
       = render "layouts/footer"
+    = javascript_include_tag "auth"
