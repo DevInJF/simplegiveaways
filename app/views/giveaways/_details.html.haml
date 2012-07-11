@@ -53,7 +53,14 @@
               = simple_form_for [page, giveaway], :html => { :class => 'form-horizontal', :multipart => true } do |f|
                 %fieldset.schedule
                   %legend Schedule
-                  = render "giveaways/form/schedule", :f => f
+
+                  - if giveaway.active
+
+                    = render "giveaways/form/schedule_end_only", :f => f
+
+                  - else
+
+                    = render "giveaways/form/schedule", :f => f
                 .form-actions
                   = f.button :submit, :class => "btn-primary"
       %table.schedule
