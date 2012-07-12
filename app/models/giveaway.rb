@@ -23,6 +23,7 @@ class Giveaway < ActiveRecord::Base
   validates :title, :presence => true, :length => { :maximum => 100 }
   validates :description, :presence => true
   validates :prize, :presence => true
+  validates :custom_fb_tab_name, :presence => true
 
   validates_attachment_presence :image
   validates_attachment_presence :feed_image
@@ -51,6 +52,7 @@ class Giveaway < ActiveRecord::Base
   validate :unchanged_active_start_date, :on => :update
   validate :end_in_future
   validate :start_in_future
+  validate :pending_start_in_future
 
 
   store :analytics, accessors: [ :_total_shares,
@@ -284,8 +286,14 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
-  def start_in_future
+  def pending_start_in_future
     if pending? && start_date.present? && (start_date < (Time.now - 5.minutes))
+      errors.add(:start_date, "must be in the future.")
+    end
+  end
+
+  def start_in_future
+    if start_date < Time.now
       errors.add(:start_date, "must be in the future.")
     end
   end
