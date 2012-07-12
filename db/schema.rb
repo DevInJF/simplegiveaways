@@ -141,9 +141,9 @@ ActiveRecord::Schema.define(:version => 20120709041439) do
     t.string   "feed_image_file_name"
     t.string   "feed_image_content_type"
     t.integer  "feed_image_file_size"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.string   "custom_fb_tab_name",      :default => "Giveaway"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "custom_fb_tab_name"
     t.text     "analytics"
     t.boolean  "active",                  :default => false
   end

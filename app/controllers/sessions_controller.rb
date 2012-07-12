@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
         @notice = "Successfully linked that account!"
       end
     else
+      @jug = cookies['jug'] = Juggernaut.create_key("users#show")
       unless @identity.user.present?
         @identity.create_user(:name => auth["info"]["name"])
         @identity.user.roles = ['superadmin']
@@ -27,8 +28,8 @@ class SessionsController < ApplicationController
       self.current_user = @identity.user
       @notice = "Logged in!"
     end
-    
-    @identity.process_login(DateTime.now)
+
+    @identity.process_login(DateTime.now, @jug)
     render 'sessions/create', notice: @notice
   end
 

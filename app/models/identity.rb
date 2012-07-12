@@ -36,12 +36,12 @@ class Identity < ActiveRecord::Base
     end
   end
 
-  def process_login(datetime)
+  def process_login(datetime, jug_key)
     self.login_count = self.login_count += 1
     self.logged_in_at = datetime
     save
 
-    user.retrieve_pages
+    user.retrieve_pages(jug_key)
   end
   handle_asynchronously :process_login
 

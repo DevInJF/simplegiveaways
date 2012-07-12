@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/FewKinG/juggernaut.git
+  revision: 21a4f38c90942ef44033091bfff811730964b769
+  specs:
+    juggernaut (2.1.1)
+      redis
+
+GIT
   remote: git://github.com/onedesign/timeline_fu.git
   revision: 727eb7e1bcf4435d080ea215176b04a9368f5f8a
   specs:
@@ -140,8 +147,6 @@ GEM
       railties (>= 3.2.0.beta, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
-    juggernaut (2.1.1)
-      redis
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -240,6 +245,7 @@ GEM
     simple_form (2.0.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    simple_uuid (0.2.0)
     slop (2.4.4)
     sprockets (2.1.2)
       hike (~> 1.2)
@@ -294,7 +300,7 @@ DEPENDENCIES
   itslog
   jquery-rails
   json
-  juggernaut
+  juggernaut!
   koala
   logging-rails
   magic_encoding
@@ -310,6 +316,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   seed_dump
   simple_form (~> 2.0)
+  simple_uuid
   thin
   timecop
   timeline_fu!

@@ -2,7 +2,9 @@
 class UsersController < ApplicationController
 
   def show
-    unless @user = current_user
+    if @user = current_user
+      @key = cookies['jug']
+    else
       redirect_to root_path
     end
   end
