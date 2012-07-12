@@ -51,7 +51,7 @@ class Giveaway < ActiveRecord::Base
 
   validate :unchanged_active_start_date, :on => :update
   validate :end_in_future
-  validate :start_in_future
+  validate :start_in_future, :on => :create
   validate :pending_start_in_future
 
 
