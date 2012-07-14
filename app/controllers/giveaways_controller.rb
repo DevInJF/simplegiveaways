@@ -66,6 +66,7 @@ class GiveawaysController < ApplicationController
     end
 
     if @giveaway.update_attributes(giveaway_params)
+      @giveaway.update_tab
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     else
