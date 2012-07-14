@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class FacebookPage < ActiveRecord::Base
 
-  audited
+  audited :only => [:likes]
 
   include ActionView::Helpers::UrlHelper
 

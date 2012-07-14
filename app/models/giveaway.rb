@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Giveaway < ActiveRecord::Base
 
-  audited
+  audited :only => [:analytics]
 
   is_impressionable
 
@@ -201,18 +201,44 @@ class Giveaway < ActiveRecord::Base
     likes.size
   end
 
+  def page_likes_while_active
+    active? ? page_likes_so_far : (page_likes_at_end - page_likes_at_start)
+  end
+
+  def page_likes_so_far
+    facebook_page.likes - page_likes_at_start
+  end
+
+  def page_likes_at_start
+    facebook_page.audits.
+        where('created_at < ?', start_date).
+        sort.last.
+        audited_changes["likes"].last.to_i
+  end
+
+  def page_likes_at_end
+    facebook_page.audits.
+        where('created_at > ?', end_date).
+        sort.first.
+        audited_changes["likes"].last.to_i
+  end
+
+  def total_page_likes
+    facebook_page.like_count
+  end
+
   def entry_count
     entries.size
   end
 
   def entry_rate
-    "#{((uniques.to_f / entry_count.to_f) * 100).round(2)}%"
+    entry_count > 0 ? "#{((uniques.to_f / entry_count.to_f) * 100).round(2)}%" : "N/A"
   rescue StandardError
     0
   end
 
   def conversion_rate
-    "#{((total_conversions.to_f / (total_shares.to_f)) * 100).round(2)}%"
+    entry_count > 0 ? "#{((total_conversions.to_f / (total_shares.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     0
   end

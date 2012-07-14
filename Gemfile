@@ -45,6 +45,7 @@ group :development do
   gem 'seed_dump'
   gem 'magic_encoding'
   gem 'nifty-generators'
+  gem 'rack-mini-profiler'
 end
 
 group :development, :test do

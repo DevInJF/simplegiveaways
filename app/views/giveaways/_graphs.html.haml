@@ -1,0 +1,40 @@
+- if @page_likes_flot
+
+  = javascript_include_tag "vendor/jquery.flot"
+  = javascript_include_tag "vendor/jquery.flot.navigate.min"
+
+  %section.graphs.thumbnail
+    .graph-placeholder
+
+    :javascript
+      $(function() {
+
+        var stack = 0, bars = false, lines = true, steps = false;
+
+        function plotWithOptions() {
+          $.plot($(".graph-placeholder"), [ #{@page_likes_flot} ], {
+            series:{
+              stack:stack,
+              lines:{ show:lines, fill:true, steps:steps },
+              bars:{ show:bars, barWidth:0.6 }
+            },
+            xaxis: {
+              mode: "time",
+              minTickSize: [1, "day"]
+            },
+            yaxis: {
+              tickDecimals: 0
+            },
+            points: {
+              show: true
+            },
+            pan: {
+              interactive: true,
+              cursor: "move",
+              frameRate: 20
+            }
+          });
+        }
+
+        plotWithOptions();
+      });

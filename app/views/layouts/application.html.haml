@@ -8,7 +8,9 @@
 
     = javascript_include_tag "http://#{current_host_url}:8080/application.js"
     /[if lt IE 9]
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    /[if lte IE 8]
+      <script src="http://#{current_host_url}/assets/vendor/excanvas.js"></script>
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags

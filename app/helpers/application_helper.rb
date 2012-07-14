@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def uid_class
-    current_user.present? ? current_user.identities.where("provider = 'facebook'").first.uid : ""
+    session['uid']
   end
 
   def auth_class

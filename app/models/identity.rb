@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Identity < ActiveRecord::Base
 
+  audited
+
   belongs_to :user
 
   validates :provider, :presence => true
