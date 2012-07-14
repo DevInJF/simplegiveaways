@@ -13,9 +13,6 @@ class Entry < ActiveRecord::Base
   class << self
 
     def count_conversion(has_liked, referer_id)
-      Rails.logger.debug("POOPIEPANTS".yellow)
-      Rails.logger.debug(self.inspect.yellow)
-      Rails.logger.debug(referer_id.inspect.magenta)
       if has_liked && referer_id != "[]"
         @ref = Entry.find_by_id(referer_id)
         @ref.convert_count += 1
@@ -33,11 +30,7 @@ class Entry < ActiveRecord::Base
     graph = Koala::Facebook::API.new(options[:access_token])
     profile = graph.get_object("me")
 
-    Rails.logger.debug(profile.inspect.red_on_white)
-
     @existing_entry = Entry.find_by_uid(profile["id"])
-
-    Rails.logger.debug(@existing_entry.inspect.green_on_white)
 
     unless @existing_entry
 
@@ -47,22 +40,12 @@ class Entry < ActiveRecord::Base
       self.fb_url = profile["link"]
       self.datetime_entered = DateTime.now
 
-      Rails.logger.debug(self.inspect.blue_on_white)
-
       status = self.determine_status(options[:has_liked], options[:access_token]).has_liked
-
-      Rails.logger.debug(self.inspect.green_on_white)
 
       Entry.count_conversion(status, referer_id) if status
 
-      Rails.logger.debug(self.inspect.red_on_white)
-
       @entry = self
-
-      Rails.logger.debug(@entry.inspect.red_on_white)
     end
-
-    Rails.logger.debug((@entry ||= @existing_entry).inspect.cyan)
 
     @entry ||= @existing_entry
   end

@@ -70,22 +70,34 @@ class Giveaway < ActiveRecord::Base
 
   has_attached_file :image,
     :styles => {
-      :thumb  => "150x150>",
       :medium => "300x300>", 
       :gallery => "256x320#",
-      :tab => "810"},
+      :tab => "810"
+    },
+    :convert_options => {
+      :medium => "-quality 75 -strip",
+      :gallery => "-quality 70 -strip"
+    },
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
     
   has_attached_file :feed_image,
     :styles => {
-      :thumb  => "45x45>",
-      :feed => "90x90>"},
+      :thumb  => "111x74#",
+      :feed => "90x90>"
+    },
+    :convert_options => {
+      :thumb => "-quality 75 -strip",
+      :feed => "-quality 70 -strip"
+    },
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
 
+  def graph_client
+    @graph ||= Koala::Facebook::API.new(facebook_page.token)
+  end
 
   def publish(giveaway_params)
     return false unless startable?
@@ -126,36 +138,32 @@ class Giveaway < ActiveRecord::Base
   end
   
   def is_installed?
-    @graph = Koala::Facebook::API.new(facebook_page.token)
-    @graph.get_connections("me", "tabs", :tab => FB_APP_ID).any? ? true : false
+    graph_client.get_connections("me", "tabs", :tab => FB_APP_ID).any? ? true : false
   end
 
   def create_tab
-    @graph = Koala::Facebook::API.new(facebook_page.token)
-    @graph.put_connections("me", "tabs", :app_id => FB_APP_ID)
+    graph_client.put_connections("me", "tabs", :app_id => FB_APP_ID)
     update_tab
   end
 
   def update_tab
-    @graph = Koala::Facebook::API.new(facebook_page.token)
-
-    tabs = @graph.get_connections("me", "tabs")
+    tabs = graph_client.get_connections("me", "tabs")
     tab = tabs.select do |tab|
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
           end.compact.flatten.first
 
-    @graph.put_object(facebook_page.pid, "tabs", :tab => "app_#{FB_APP_ID}", :custom_name => custom_fb_tab_name, :custom_image_url => feed_image(:feed))
+    graph_client.put_object( facebook_page.pid, "tabs", :tab => "app_#{FB_APP_ID}", 
+                                                        :custom_name => custom_fb_tab_name, 
+                                                        :custom_image_url => feed_image(:thumb) )
   end
 
   def delete_tab   
-    @graph = Koala::Facebook::API.new(facebook_page.token)
-
-    tabs = @graph.get_connections("me", "tabs")
+    tabs = graph_client.get_connections("me", "tabs")
     tab = tabs.select do |tab|
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
           end.compact.flatten.first
 
-    @graph.delete_object(tab["id"])
+    graph_client.delete_object(tab["id"])
   end
 
   def total_shares

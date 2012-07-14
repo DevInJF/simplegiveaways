@@ -6,6 +6,8 @@ class GiveawaysController < ApplicationController
   load_and_authorize_resource :facebook_page, :except => [:tab]
   load_and_authorize_resource :giveaway, :through => :facebook_page, :except => [:tab]
 
+  after_filter :sync_meta_to_fb, :only => [:update]
+
   def index
     @giveaways = Giveaway.all
   end
@@ -61,12 +63,11 @@ class GiveawaysController < ApplicationController
   def update
     @giveaway = Giveaway.find(params[:id])
 
-    giveaway_params = params[:giveaway].each do |key, value|
+    @giveaway_params = params[:giveaway].each do |key, value|
       value.squish! if value.class.name == "String"
     end
 
-    if @giveaway.update_attributes(giveaway_params)
-      @giveaway.update_tab
+    if @giveaway.update_attributes(@giveaway_params)
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     else
@@ -105,7 +106,6 @@ class GiveawaysController < ApplicationController
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
       @giveaway.delete_tab
     else
-      logger.debug(@giveaway.errors.inspect.red_on_white)
       flash.now[:error] = "There was a problem ending #{@giveaway.title}."
       render :show
     end
@@ -146,6 +146,12 @@ class GiveawaysController < ApplicationController
     end
      
     send_data(entries_csv, :type => 'text/csv', :filename => 'entries_export.csv')
+  end
+
+  def sync_meta_to_fb
+    if @giveaway_params["custom_fb_tab_name"] || @giveaway_params["feed_image"]
+      @giveaway.update_tab
+    end
   end
 end
 
