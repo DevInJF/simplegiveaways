@@ -144,7 +144,7 @@ class Giveaway < ActiveRecord::Base
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
           end.compact.flatten.first
 
-    @graph.put_object(facebook_page.pid, "tabs", :tab => "app_#{FB_APP_ID}", :custom_name => custom_fb_tab_name)
+    @graph.put_object(facebook_page.pid, "tabs", :tab => "app_#{FB_APP_ID}", :custom_name => custom_fb_tab_name, :custom_image_url => feed_image(:feed))
   end
 
   def delete_tab   
