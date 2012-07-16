@@ -1,9 +1,11 @@
 # -*- encoding : utf-8 -*-
 Simplegiveaways::Application.routes.draw do
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  
 
   match '/canvas', to: 'canvas#index'
   match '/giveaways/tab', to: 'giveaways#tab'
