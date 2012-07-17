@@ -23,7 +23,7 @@ class CanvasController < ApplicationController
 
       @app_data = "ref_#{JSON.parse(request['data'])['referrer_id']}"
 
-      Giveaway.delete_app_request(request_ids.last, params[:signed_request])
+      FbAppRequestWorker.perform_async(request_ids.last, params[:signed_request])
 
       render "giveaways/apprequest", :layout => false
     else

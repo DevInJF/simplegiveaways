@@ -4,6 +4,7 @@ class FacebookPage < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
 
   has_many :audits, :as => :auditable
+
   has_many :giveaways
   has_and_belongs_to_many :users
 

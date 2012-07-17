@@ -8,12 +8,9 @@ class User < ActiveRecord::Base
     identities.find(:all, :order => "logged_in_at desc", :limit => 1).first.avatar
   end
 
-  def retrieve_pages(jug_key)
-    graph = Koala::Facebook::API.new(identities.where("provider = ?", "facebook").first.token)
-    pages = graph.get_connections("me", "accounts")
-    FacebookPage.retrieve_fb_meta(self, pages, jug_key)
+  def fb_token
+    identities.where("provider = ?", "facebook").first.token
   end
-  handle_asynchronously :retrieve_pages
 
   ROLES = %w[superadmin admin team restricted banned]
 

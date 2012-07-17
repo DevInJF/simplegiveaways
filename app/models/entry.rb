@@ -10,18 +10,6 @@ class Entry < ActiveRecord::Base
 
   attr_accessor :referer_id
 
-  class << self
-
-    def count_conversion(has_liked, referer_id)
-      if has_liked && referer_id != "[]"
-        @ref = Entry.find_by_id(referer_id)
-        @ref.convert_count += 1
-        @ref.save
-      end
-    end
-    handle_asynchronously :count_conversion
-  end
-
   def process(*args)
     options = args.extract_options!
 
@@ -42,7 +30,7 @@ class Entry < ActiveRecord::Base
 
       status = self.determine_status(options[:has_liked], options[:access_token]).has_liked
 
-      Entry.count_conversion(status, referer_id) if status
+      EntryConversionWorker.perform_async(status, referer_id) if status
 
       @entry = self
     end

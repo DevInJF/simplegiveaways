@@ -14,7 +14,7 @@ class Identity < ActiveRecord::Base
 
     def find_or_create_with_omniauth(auth)
       if identity = Identity.find_with_omniauth(auth)
-        identity.refresh_provider_data(auth)
+        IdentityProviderWorker.perform_async(identity, auth)
       else
         identity = Identity.create_with_omniauth(auth)
       end
@@ -39,21 +39,12 @@ class Identity < ActiveRecord::Base
   end
 
   def process_login(datetime, jug_key)
+    UserPagesWorker.perform_async(user, jug_key)
+
     self.login_count = self.login_count += 1
     self.logged_in_at = datetime
     save
-
-    user.retrieve_pages(jug_key)
   end
-  handle_asynchronously :process_login
-
-  def refresh_provider_data(auth)
-    self.auth = auth
-    if set_provider_data!
-      save
-    end
-  end
-  handle_asynchronously :refresh_provider_data
 
   def set_provider_data!
     if auth['provider'] == "facebook"
