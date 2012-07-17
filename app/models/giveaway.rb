@@ -225,19 +225,13 @@ class Giveaway < ActiveRecord::Base
   def page_likes_at_start
     facebook_page.audits.
         where('created_at < ?', start_date).
-        sort.last.
-        audited_changes["likes"].last.to_i
+        sort.last.is[:likes].to_i
   end
 
   def page_likes_at_end
     facebook_page.audits.
         where('created_at > ?', end_date).
-        sort.first.
-        audited_changes["likes"].last.to_i
-  end
-
-  def total_page_likes
-    facebook_page.like_count
+        sort.first.is[:likes].to_i
   end
 
   def entry_count
