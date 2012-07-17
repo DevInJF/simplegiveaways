@@ -5,16 +5,16 @@
       = link_to "Account", dashboard_path, :class => "btn btn-large mypages"
       %a{:href => "#", :class => "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
         %span.caret
-      %ul.dropdown-menu.pull-right
+      %ul.dropdown-menu.pull-right.account
         %li= link_to "Dashboard", dashboard_path
         %li= link_to "Log Out", logout_path
     .btn-group.my_pages
       = link_to "My Pages", dashboard_path, :class => "btn btn-large mypages"
       %a{:href => "#", :class => "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
         %span.caret
-      %ul.dropdown-menu
+      %ul.dropdown-menu.pages
         - current_user.facebook_pages.each do |page|
-          %li= link_to page.name, facebook_page_path(page)
+          %li{:'data-fb-pid' => page.pid }= link_to page.name, facebook_page_path(page)
   - else
     %h1= link_to APPLICATION_NAME, root_path, :class => "brand"
 

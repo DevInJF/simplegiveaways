@@ -15,8 +15,10 @@
 
         var jug_data = JSON.parse(jug_data),
             $markup = $(jug_data.markup),
+            $menu_item = $(jug_data.menu_item),
             pid = $markup.data("fb-pid"),
-            $pid_el = $("[data-fb-pid=" + pid + "]");
+            $pid_el = $("[data-fb-pid=" + pid + "]"),
+            $menu_el = $("header.site .dropdown-menu.pages");
 
         $(".loader").slideUp().hide();
 
@@ -24,6 +26,12 @@
           $pid_el.replaceWith($markup);
         } else {
           $(".tab-content .container").append($markup);
+        }
+
+        if ($menu_el.find("li[data-fb-pid='" + pid + "']").length)
+          $menu_el.find("li[data-fb-pid='" + pid + "']").replaceWith($menu_item);
+        else {
+          $menu_el.append($menu_item);
         }
 
         $markup.find(".dynamo").dynamo();

@@ -38,6 +38,7 @@ class FacebookPage < ActiveRecord::Base
       )
 
       jug_data = { :markup => @page.preview_template(previous_likes),
+                   :menu_item => @page.menu_item_template,
                    :is_last => "#{index == page_count}" }
 
       Juggernaut.publish("users#show_#{jug_key}", jug_data.to_json)
@@ -100,6 +101,12 @@ class FacebookPage < ActiveRecord::Base
 
   def self.page_eligible?(batch)
     batch[:data]["link"].include? "facebook.com"
+  end
+
+  def menu_item_template
+    <<-eos
+      <li><a href=#{path} data-fb-pid=#{pid}>#{name}</a></li>
+    eos
   end
 
   def preview_template(previous_likes)
