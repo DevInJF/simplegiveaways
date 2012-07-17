@@ -7,20 +7,39 @@ class Graph
   end
 
   def page_likes
-    return unless @resource.is_a? FacebookPage
+    return [] unless @resource.is_a? FacebookPage
     @resource.audits.map do |audit|
-      format_audit(audit, audit.audited_changes["likes"])
+      if audit.is.has_key?(:likes)
+        format_audit(audit, audit.is[:likes])
+      end
+    end.compact
+  end
+
+  def entries
+    return [] unless @resource.is_a? Giveaway
+    @resource.audits.map do |audit|
+      if audit.is.has_key?(:analytics)
+        format_audit(audit, audit.is[:analytics], :_entry_count)
+      end
+    end.compact
+  end
+
+  def views
+    return [] unless @resource.is_a? Giveaway
+    @resource.audits.map do |audit|
+      if audit.is.has_key?(:analytics)
+        format_audit(audit, audit.is[:analytics], :_views)
+      end
     end.compact
   end
 
   private
 
-  def format_audit(audit, audit_ary)
-    if audit_ary.is_a? Array
-      [ js_timestamp(audit.created_at), audit_ary.last ]
-    else
-      nil
-    end
+  def format_audit(audit, attr, key=nil)
+    val = key ? attr[key] : attr
+    val = 0 if val.nil?
+
+    [js_timestamp(audit.created_at), val]
   end
 
   def js_timestamp(time)

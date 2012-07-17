@@ -16,6 +16,8 @@ class GiveawaysController < ApplicationController
     @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.active.first
     @page_likes_flot = Graph.new(@page).page_likes
+    @entries_flot = Graph.new(@giveaways).entries
+    @views_flot = Graph.new(@giveaways).views
   end
 
   def pending

@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Giveaway < ActiveRecord::Base
 
-  audited :only => [:analytics]
-
   is_impressionable
+
+  has_many :audits, :as => :auditable
 
   belongs_to :facebook_page
   has_many :entries
@@ -94,6 +94,7 @@ class Giveaway < ActiveRecord::Base
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
     :path => "/:style/:id/:filename"
+
 
   def graph_client
     @graph ||= Koala::Facebook::API.new(facebook_page.token)
@@ -211,10 +212,14 @@ class Giveaway < ActiveRecord::Base
 
   def page_likes_while_active
     active? ? page_likes_so_far : (page_likes_at_end - page_likes_at_start)
+  rescue StandardError
+    "N/A"
   end
 
   def page_likes_so_far
     facebook_page.likes - page_likes_at_start
+  rescue StandardError
+    "N/A"
   end
 
   def page_likes_at_start
@@ -264,6 +269,7 @@ class Giveaway < ActiveRecord::Base
     self._entry_count = entry_count
     self._entry_rate = entry_rate
     self._conversion_rate = conversion_rate
+    self.audits << analytics_audit
     save
   end
 
@@ -271,12 +277,12 @@ class Giveaway < ActiveRecord::Base
     Giveaway.image_dimensions(image(:tab))[:height].to_i + 50
   end
 
-  def self.image_dimensions(img_url)
-    dimensions = Paperclip::Geometry.from_file(img_url).to_s.split("x") rescue []
-    { :width => dimensions[0], :height => dimensions[1] }
-  end
-
   class << self
+
+    def image_dimensions(img_url)
+      dimensions = Paperclip::Geometry.from_file(img_url).to_s.split("x") rescue []
+      { :width => dimensions[0], :height => dimensions[1] }
+    end
 
     def tab(signed_request)
       app_data = signed_request["app_data"]
@@ -343,5 +349,12 @@ class Giveaway < ActiveRecord::Base
 
   def start_date_changed?
     start_date_was.to_formatted_s(:long) != start_date.to_formatted_s(:long)
+  end
+
+  def analytics_audit
+    Audit.new(
+      :was => { :analytics => analytics_was },
+      :is => { :analytics => analytics }
+    )
   end
 end

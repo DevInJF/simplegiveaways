@@ -1,7 +1,8 @@
-- if @page_likes_flot
+- if @page.audits.any? && (@page_likes_flot or @entries_flot or @views_flot)
 
   = javascript_include_tag "vendor/jquery.flot"
   = javascript_include_tag "vendor/jquery.flot.navigate.min"
+  = stylesheet_link_tag "graph"
 
   %section.graphs.thumbnail
     .graph-placeholder
@@ -9,32 +10,90 @@
     :javascript
       $(function() {
 
-        var stack = 0, bars = false, lines = true, steps = false;
+        var plot,
+            data = [],
+            datasets = {
+              "page_likes" : {
+                label: "Likes",
+                data: #{@page_likes_flot}
+              },
+              "entry_count" : {
+                label: "Entries",
+                data: #{@entries_flot}
+              },
+              "view_count" : {
+                label: "Views",
+                data: #{@views_flot}
+              }
+            }
+
+        $.each(datasets, function(key, val) {
+          data.push(datasets[key]);
+        });
 
         function plotWithOptions() {
-          $.plot($(".graph-placeholder"), [ #{@page_likes_flot} ], {
+          return $.plot($(".graph-placeholder"), data, {
             series:{
-              stack:stack,
-              lines:{ show:lines, fill:true, steps:steps },
-              bars:{ show:bars, barWidth:0.6 }
+              stack:1,
+              lines:{
+                show:true,
+                fill:true,
+                steps:false
+              }
             },
             xaxis: {
               mode: "time",
+              tickSize: [1, "day"],
               minTickSize: [1, "day"]
             },
             yaxis: {
-              tickDecimals: 0
+              tickDecimals: 0,
+              min: 0
+            },
+            grid: {
+              clickable: true,
+              hoverable: true
             },
             points: {
               show: true
             },
-            pan: {
-              interactive: true,
-              cursor: "move",
-              frameRate: 20
-            }
+            colors: [ "#FAA732", "#5BB75B", "#49AFCD", "#111111" ]
           });
         }
 
-        plotWithOptions();
+        function showTooltip(x, y, contents) {
+          $('<div class="graph-tooltip">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y + 12,
+            left: x + 12
+          }).appendTo("body").fadeIn(150);
+        }
+
+        var previousPoint = null;
+        $(".graph-placeholder").bind("plothover", function (event, pos, item) {
+
+          if (item) {
+            if (previousPoint != item.dataIndex) {
+              previousPoint = item.dataIndex;
+
+              plot.unhighlight();
+              $(".graph-tooltip").remove();
+
+              plot.highlight(item.series, item.datapoint);
+
+              var x = new Date(item.datapoint[0]),
+                  y = item.datapoint[1];
+
+              showTooltip(item.pageX, item.pageY,
+                "<span class='graph-tip-y'>" + y + " <span class='graph-tip-y-label' style='color:" + item.series.color + "'>" + item.series.label + "</span></span><br /><span class='graph-tip-x'><span class='graph-tip-x-val'>" + x.getMonth() + "/" + x.getDay() + "/" + x.getFullYear() + "</span></span>");
+            }
+          } else {
+            plot.unhighlight();
+            $(".graph-tooltip").remove();
+            previousPoint = null;
+          }
+        });
+
+        plot = plotWithOptions();
       });

@@ -1,10 +1,9 @@
 # -*- encoding : utf-8 -*-
 class FacebookPage < ActiveRecord::Base
 
-  audited :only => [:likes]
-
   include ActionView::Helpers::UrlHelper
 
+  has_many :audits, :as => :auditable
   has_many :giveaways
   has_and_belongs_to_many :users
 
@@ -52,8 +51,15 @@ class FacebookPage < ActiveRecord::Base
   def refresh_likes
     batch = FacebookPage.graph_data(self)
 
-    self.update_attributes(
-      :likes => batch[:data]["likes"]
+    self.likes = batch[:data]["likes"]
+    self.audits << likes_audit
+    save
+  end
+
+  def likes_audit
+    Audit.new(
+      :was => { :likes => likes_was },
+      :is => { :likes => likes }
     )
   end
 

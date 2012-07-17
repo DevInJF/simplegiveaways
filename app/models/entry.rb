@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Entry < ActiveRecord::Base
 
-  audited
+  has_many :audits, :as => :auditable
 
   belongs_to :giveaway
   has_many :likes
