@@ -19,109 +19,111 @@
 
       }
 
-      .row {
-        height: auto;
-        clear: both;
+      section.details {
+        padding: 17px 0 0;
 
-        .column_left {
-          float: left;
-          width: 370px;
+        .row {
+          height: auto;
+          clear: both;
+          margin-left: 0;
+
+          .column_left {
+            float: left;
+            width: 360px;
+          }
+
+          .column_right {
+            float: left;
+            width: 360px;
+            margin-left: 50px;
+          }
+          section.detail {
+            padding-left: 20px;
+            margin-bottom: 60px;
+
+            header.detail {
+              border-bottom: 1px solid #ddd;
+              height: 38px;
+
+              h2 {
+                font-size: 16px;
+                font-weight: normal;
+                float: left;
+              }
+
+              a.btn {
+                float: right;
+                margin-top: 7px;
+                margin-right: 4px;
+                i {
+                  position: relative;
+                  bottom: 1px;
+                }
+              }
+            }
+
+            table {
+              margin-top: 10px;
+              tbody {
+                tr {
+                  min-height: 40px;
+                  margin-top: 10px;
+                  td {
+                    vertical-align: top;
+                    padding: 10px 0px;
+
+                  }
+                }
+              }
+            }
+
+            table {
+              tbody {
+                tr {
+                  td:first-child {
+                    width: 100px;
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: #959595;
+
+                  }
+                  td:last-child {
+
+                    font-size: 14px;
+
+                  }
+                }
+              }
+            }
+
+            table.preferences {
+              tbody {
+                tr {
+                  td:first-child {
+                    width: 240px;
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: #959595;
+
+                  }
+                  td:last-child {
+
+                    font-size: 14px;
+
+                  }
+                }
+              }
+            }
+          }
         }
 
-        .column_right {
-          float: left;
-          width: 370px;
-          margin-left: 50px;
+        .row1 {
+          height: 180px;
         }
-        section.detail {
-          padding-left:20px;
-          margin-bottom:60px;
-        
-          header.detail {
-            border-bottom: 1px solid #ddd;
-            height:38px;
 
-
-            h2 {
-              font-size:16px;
-              font-weight:normal;
-              float:left;
-            }
-
-            a.btn {
-              float:right;
-              margin-top:7px;
-              margin-right:4px;
-              i {
-                position:relative;
-                bottom:1px;
-              }
-            }
-          }
-
-          table {
-            margin-top:10px;
-            tbody {
-              tr {
-                  min-height:40px;
-                  margin-top:10px;
-                td{
-                  vertical-align:top;
-                  padding:10px 0px;
-                  
-                }
-              }
-            }
-          }
-
-          table {
-            tbody{
-              tr {
-                td:first-child {
-                  width:100px;
-                  font-size:13px;
-                  font-weight:bold;
-                  color:#959595;
-
-                }
-                td:last-child {
-
-                  font-size:14px;
-
-
-                }
-              }
-            }
-          }
-
-          table.preferences {
-            tbody{
-              tr {
-                td:first-child {
-                  width:240px;
-                  font-size:13px;
-                  font-weight:bold;
-                  color:#959595;
-
-                }
-                td:last-child {
-
-                  font-size:14px;
-
-
-                }
-              }
-            }
-          }
+        .row2 {
+          height: 180px;
         }
-      }
-
-      .row1 {
-        height:180px;
-      }
-
-      .row2 {
-        height:180px;
       }
     }
   }

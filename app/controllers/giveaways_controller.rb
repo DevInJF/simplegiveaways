@@ -33,6 +33,9 @@ class GiveawaysController < ApplicationController
   def show
     @giveaway ||= Giveaway.find(params[:id])
     @page = @giveaway.facebook_page
+    @page_likes_flot = Graph.new(@page).page_likes
+    @entries_flot = Graph.new(@giveaway).entries
+    @views_flot   = Graph.new(@giveaway).views
   end
 
   def new

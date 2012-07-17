@@ -1,12 +1,11 @@
 - content_for :content_header do
   %h2 Completed Giveaways
 
-%table
+%table.table.table-bordered
   %tr
-    %td
+    %td Image
     %td Title
     %td Ended
     %td Entries
     %td Views
-    %td More
   = render :collection => @giveaways, :partial => "list_item", :page => @page, :as => :giveaway

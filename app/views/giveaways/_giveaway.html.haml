@@ -1,4 +1,4 @@
-- if giveaway.status == "Active" 
+- if giveaway.status == "Active"
 
   - content_for :content_header do
     %h2 Active Giveaway > Giveaway Details
@@ -6,7 +6,7 @@
   = render 'header', :giveaway => giveaway
   = render 'details', :giveaway => giveaway, :page => giveaway.facebook_page
 
-- elsif giveaway.status == "Pending" 
+- elsif giveaway.status == "Pending"
 
   - content_for :content_header do
     %h2 Pending Giveaways > #{giveaway.title}
