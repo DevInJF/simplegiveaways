@@ -1,6 +1,6 @@
 - if giveaway.status == "Active"
 
-  %header.giveaway.active
+  %header.giveaway.active.thumbnail
     .image= image_tag(giveaway.image(:medium))
     %h1= truncate(giveaway.title, :length => 26)
     %p is #{giveaway.status}
@@ -9,7 +9,7 @@
 
 - elsif giveaway.status == "Pending" 
 
-  %header.giveaway.pending
+  %header.giveaway.pending.thumbnail
     .image= image_tag(giveaway.image(:medium))
     %h1= truncate(giveaway.title, :length => 26)
     %p is #{giveaway.status}
@@ -18,7 +18,7 @@
 
 - else giveaway.status == "Completed"
 
-  %header.giveaway.completed
+  %header.giveaway.completed.thumbnail
     .image= image_tag(giveaway.image(:medium))
     %h1= truncate(giveaway.title, :length => 26)
     %p is #{giveaway.status}
