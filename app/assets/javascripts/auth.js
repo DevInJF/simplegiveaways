@@ -22,7 +22,7 @@ $(function() {
     });
 
     FB.getLoginStatus(function(response) {
-      if ( $("#fb-root.logged-in").length ) {
+      if ( $("#fb-root.logged-in").length) {
         if ( response.status === "unknown" ||
              response.status === "not_authorized" ||
              (response.status === "connected" &&

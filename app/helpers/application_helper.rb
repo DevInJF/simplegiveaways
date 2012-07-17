@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def uid_class
-    session['uid']
+    session['uid'] || cookies[:fb_uid]
   end
 
   def auth_class

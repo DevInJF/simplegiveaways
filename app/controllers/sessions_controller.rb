@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
     end
 
     @identity.process_login(DateTime.now, @jug)
+    cookies[:fb_uid] = { :value => @identity.uid, :expires => Time.now + 1800 }
     render 'sessions/create', notice: @notice
   end
 
@@ -41,6 +42,7 @@ class SessionsController < ApplicationController
     else
       flash[:success] = "Logged out!"
     end
+    cookies.delete :fb_uid
     redirect_to root_url
   end
 end

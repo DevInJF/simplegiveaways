@@ -1,5 +1,5 @@
 %header.page
-  = link_to image_tag(@page.avatar_square, :alt => @page.name, :class => "avatar pull-left", :width => "68", :height => "68")
+  = link_to image_tag(@page.avatar_square, :alt => @page.name, :class => "avatar pull-left", :width => "68", :height => "68"), facebook_page_path(@page)
   %h1.pull-left= link_to @page.name, @page.url, :target => "_blank"
   %a{:href => new_facebook_page_giveaway_path(@page), :class => "btn btn-large btn-success pull-right" }
     %i.icon-plus.icon-white
