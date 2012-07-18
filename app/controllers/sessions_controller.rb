@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
+  before_filter :set_juggernaut_token, only: [:create]
+  after_filter  :set_session_vars, only: [:create]
+
   def create
     auth = request.env['omniauth.auth']
 
@@ -11,28 +14,12 @@ class SessionsController < ApplicationController
     end
 
     if signed_in?
-      if @identity.user == current_user
-        @notice = "Already linked that account!"
-      else
-        @identity.user = current_user
-        @notice = "Successfully linked that account!"
-      end
+      flash[:notice] = @identity.add_to_existing_user(current_user)
     else
-      @jug = session['jug'] = Juggernaut.create_key("users#show")
-      unless @identity.user.present?
-        @identity.create_user(name: auth["info"]["name"])
-        @identity.user.roles = ['superadmin']
-        @identity.user.save
-        @identity.save
-      end
-      self.current_user = @identity.user
-      session['uid'] = @identity.uid
-      @notice = "Logged in!"
+      flash[:notice] = @identity.create_or_login_user(auth)
     end
 
-    @identity.process_login(DateTime.now, @jug)
-    cookies[:fb_uid] = { value: @identity.uid, expires: Time.now + 1800 }
-    render 'sessions/create', notice: @notice
+    render 'sessions/create'
   end
 
   def destroy
@@ -44,5 +31,20 @@ class SessionsController < ApplicationController
     end
     cookies.delete :fb_uid
     redirect_to root_url
+  end
+
+  private
+
+  def set_juggernaut_token
+    @jug = session['jug'] = Juggernaut.create_key("users#show")
+  end
+
+  def set_session_vars
+    if @identity.process_login(DateTime.now, @jug)
+      self.current_user = @identity.user
+    end
+
+    session['uid'] = @identity.uid
+    cookies[:fb_uid] = { value: @identity.uid, expires: Time.now + 1800 }
   end
 end

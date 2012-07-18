@@ -57,7 +57,7 @@
       to see more useful Rails Best Practices.
     </p>
     <p>
-        Found 240 warnings.
+        Found 228 warnings.
     </p>
     <ul>
         <li>
@@ -85,8 +85,8 @@
             <label for="RemoveUnusedMethodsInControllersReview">RemoveUnusedMethodsInControllersReview</label>
         </li>
         <li>
-            <input type="checkbox" id="UseScopeAccessReview" value="UseScopeAccessReview" />
-            <label for="UseScopeAccessReview">UseScopeAccessReview</label>
+            <input type="checkbox" id="RemoveUnusedMethodsInModelsReview" value="RemoveUnusedMethodsInModelsReview" />
+            <label for="RemoveUnusedMethodsInModelsReview">RemoveUnusedMethodsInModelsReview</label>
         </li>
         <li>
             <input type="checkbox" id="LongLineCheck" value="LongLineCheck" />
@@ -103,51 +103,6 @@
         <th>Line Number</th>
         <th>Warning Message</th>
       </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>20</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>36</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
-              config/routes.rb
-          </td>
-          <td class='line'>11</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
-              config/routes.rb
-          </td>
-          <td class='line'>13</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
-              config/routes.rb
-          </td>
-          <td class='line'>15</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
         <tr class="HashSyntaxReview">
           <td class='filename'>
               db/schema.rb
@@ -771,24 +726,6 @@
         </tr>
         <tr class="HashSyntaxReview">
           <td class='filename'>
-              app/views/giveaways/show.html.haml
-          </td>
-          <td class='line'>1</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
-              app/views/giveaways/tab.html.haml
-          </td>
-          <td class='line'>24</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
               app/views/layouts/application.html.haml
           </td>
           <td class='line'>18</td>
@@ -812,69 +749,6 @@
           <td class='line'>4</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@entry use_count > 4)</a>
-          </td>
-        </tr>
-        <tr class="MoveModelLogicIntoModelReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>49</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
-          </td>
-        </tr>
-        <tr class="MoveModelLogicIntoModelReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>66</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
-          </td>
-        </tr>
-        <tr class="MoveModelLogicIntoModelReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>94</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
-          </td>
-        </tr>
-        <tr class="MoveModelLogicIntoModelReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>104</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
-          </td>
-        </tr>
-        <tr class="MoveModelLogicIntoModelReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>115</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway_hash use_count > 4)</a>
-          </td>
-        </tr>
-        <tr class="MoveModelLogicIntoModelReview">
-          <td class='filename'>
-              app/controllers/giveaways_controller.rb
-          </td>
-          <td class='line'>135</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (entry use_count > 4)</a>
-          </td>
-        </tr>
-        <tr class="MoveModelLogicIntoModelReview">
-          <td class='filename'>
-              app/controllers/sessions_controller.rb
-          </td>
-          <td class='line'>6</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@identity use_count > 4)</a>
           </td>
         </tr>
         <tr class="NeedlessDeepNestingReview">
@@ -913,13 +787,31 @@
             <a href='#' target='_blank'>remove unused methods (ApplicationController#current_user=)</a>
           </td>
         </tr>
-        <tr class="UseScopeAccessReview">
+        <tr class="RemoveUnusedMethodsInModelsReview">
           <td class='filename'>
-              app/controllers/sessions_controller.rb
+              app/models/giveaway.rb
           </td>
-          <td class='line'>14</td>
+          <td class='line'>27</td>
           <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/3-use-scope-access' target='_blank'>use scope access</a>
+            <a href='#' target='_blank'>remove unused methods (Giveaway#completed)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInModelsReview">
+          <td class='filename'>
+              app/models/giveaway.rb
+          </td>
+          <td class='line'>170</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (Giveaway#delete_tab)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInModelsReview">
+          <td class='filename'>
+              app/models/graph.rb
+          </td>
+          <td class='line'>9</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (Graph#page_likes)</a>
           </td>
         </tr>
         <tr class="LongLineCheck">
@@ -1178,7 +1070,7 @@
           <td class='filename'>
               app/models/identity.rb
           </td>
-          <td class='line'>66</td>
+          <td class='line'>83</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (82 characters)</a>
           </td>
@@ -1187,7 +1079,7 @@
           <td class='filename'>
               app/models/identity.rb
           </td>
-          <td class='line'>76</td>
+          <td class='line'>93</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (110 characters)</a>
           </td>
@@ -1196,7 +1088,7 @@
           <td class='filename'>
               app/models/identity.rb
           </td>
-          <td class='line'>89</td>
+          <td class='line'>106</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (125 characters)</a>
           </td>
@@ -1394,7 +1286,7 @@
           <td class='filename'>
               app/controllers/sessions_controller.rb
           </td>
-          <td class='line'>41</td>
+          <td class='line'>28</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (90 characters)</a>
           </td>

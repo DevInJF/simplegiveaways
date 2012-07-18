@@ -22,7 +22,7 @@ class Entry < ActiveRecord::Base
     graph = Koala::Facebook::API.new(options[:access_token])
     profile = graph.get_object("me")
 
-    @existing_entry = Entry.find_by_uid(profile["id"])
+    @existing_entry = Entry.find_by_uid_and_giveaway_id(profile["id"], options[:giveaway_id])
 
     unless @existing_entry
 

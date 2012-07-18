@@ -17,9 +17,9 @@ class GiveawaysController < ApplicationController
 
   def active
     @giveaways = @page.giveaways.active.first
-    @flot = { :page_likes => Graph.new(@page).page_likes,
-              :entries => Graph.new(@giveaways).entries,
-              :views   => Graph.new(@giveaways).views }
+    @flot = { page_likes: Graph.new(@page).page_likes,
+              entries: Graph.new(@giveaways).entries,
+              views: Graph.new(@giveaways).views }
   end
 
   def pending
@@ -33,9 +33,9 @@ class GiveawaysController < ApplicationController
   def show
     @giveaway ||= Giveaway.find(params[:id])
     @page = @giveaway.facebook_page
-    @flot = { :page_likes => Graph.new(@page).page_likes,
-              :entries => Graph.new(@giveaway).entries,
-              :views => Graph.new(@giveaway).views }
+    @flot = { page_likes: Graph.new(@page).page_likes,
+              entries: Graph.new(@giveaway).entries,
+              views: Graph.new(@giveaway).views }
   end
 
   def new

@@ -8,11 +8,11 @@ Simplegiveaways::Application.routes.draw do
   match '/canvas', to: 'canvas#index'
   match '/giveaways/tab', to: 'giveaways#tab'
 
-  resources :likes, :only => [:create]
+  resources :likes, only: [:create]
 
-  resources :facebook_pages, :only => [:show] do
+  resources :facebook_pages, only: [:show] do
     resources :giveaways do
-      resources :entries, :only => [:create, :update]
+      resources :entries, only: [:create, :update]
 
       get :export_entries, on: :member
       get :active, on: :collection

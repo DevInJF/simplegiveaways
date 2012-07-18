@@ -41,6 +41,23 @@ class Identity < ActiveRecord::Base
     end
   end
 
+  def create_or_login_user(auth)
+    return "Logged in!" if user.present?
+
+    self.create_user(name: auth["info"]["name"])
+    self.user.roles = ['superadmin']
+    user.save ? "Logged in!" : "Something went wrong."
+  end
+
+  def add_to_existing_user(current_user)
+    if user == current_user
+      "Already linked that account!"
+    else
+      user = current_user
+      "Successfully linked that account!"
+    end
+  end
+
   def process_login(datetime, jug_key)
     UserPagesWorker.perform_async(user, jug_key)
 
