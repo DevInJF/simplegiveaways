@@ -3,7 +3,13 @@ class Giveaway < ActiveRecord::Base
 
   is_impressionable
 
-  has_many :audits, :as => :auditable
+  attr_accessible :title, :description, :start_date, :end_date, :prize, :terms,
+                  :preferences, :sticky_post, :preview_mode, :giveaway_url,
+                  :facebook_page_id, :image_file_name, :image_content_type,
+                  :image_file_size, :feed_image_file_name, :feed_image_content_type,
+                  :feed_image_file_size, :custom_fb_tab_name, :analytics, :active
+
+  has_many :audits, as: :auditable
 
   belongs_to :facebook_page
   has_many :entries
@@ -19,11 +25,11 @@ class Giveaway < ActiveRecord::Base
     where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date <= ?", Time.now, Time.now)
   }
 
-  validates :title, :presence => true, :length => { :maximum => 100 }, :uniqueness => { :scope => :facebook_page_id }
-  validates :title, :presence => true, :length => { :maximum => 100 }
-  validates :description, :presence => true
-  validates :prize, :presence => true
-  validates :custom_fb_tab_name, :presence => true
+  validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
+  validates :title, presence: true, length: { maximum: 100 }
+  validates :description, presence: true
+  validates :prize, presence: true
+  validates :custom_fb_tab_name, presence: true
 
   validates_attachment_presence :image
   validates_attachment_presence :feed_image
@@ -37,21 +43,21 @@ class Giveaway < ActiveRecord::Base
                                    :email_required,
                                    :bonus_value ]
 
-  validates :autoshow_share_dialog, :presence => true, :inclusion => { :in => [ "true", "false" ] }
-  validates :allow_multi_entries, :presence => true, :inclusion => { :in => [ "true", "false" ] }
-  validates :email_required, :presence => true, :inclusion => { :in => [ "true", "false" ] }
-  validates :bonus_value, :presence => true, :numericality => { :only_integer => true }
+  validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "true", "false" ] }
+  validates :allow_multi_entries, presence: true, inclusion: { in: [ "true", "false" ] }
+  validates :email_required, presence: true, inclusion: { in: [ "true", "false" ] }
+  validates :bonus_value, presence: true, numericality: { only_integer: true }
 
   store :sticky_post, accessors: [ :sticky_post_enabled?,
                                    :sticky_post_title,
                                    :sticky_post_body ]
 
-  validates :sticky_post_title, :presence => true, :length => { :maximum => 200 }, :if => lambda { sticky_post_enabled? }
-  validates :sticky_post_body, :presence => true, :if => lambda { sticky_post_enabled? }
+  validates :sticky_post_title, presence: true, length: { maximum: 200 }, if: lambda { sticky_post_enabled? }
+  validates :sticky_post_body, presence: true, if: lambda { sticky_post_enabled? }
 
-  validate :unchanged_active_start_date, :on => :update
+  validate :unchanged_active_start_date, on: :update
   validate :end_in_future
-  validate :start_in_future, :on => :create
+  validate :start_in_future, on: :create
   validate :pending_start_in_future
 
 
@@ -69,31 +75,31 @@ class Giveaway < ActiveRecord::Base
                                  :_conversion_rate ]
 
   has_attached_file :image,
-    :styles => {
-      :medium => "300x300>", 
-      :gallery => "256x320#",
-      :tab => "810"
+    styles: {
+      medium: "300x300>",
+      gallery: "256x320#",
+      tab: "810"
     },
-    :convert_options => {
-      :medium => "-quality 75 -strip",
-      :gallery => "-quality 70 -strip"
+    convert_options: {
+      medium: "-quality 75 -strip",
+      gallery: "-quality 70 -strip"
     },
-    :storage => :s3,
-    :s3_credentials => S3_CREDENTIALS,
-    :path => "/:style/:id/:filename"
+    storage: :s3,
+    s3_credentials: S3_CREDENTIALS,
+    path: "/:style/:id/:filename"
     
   has_attached_file :feed_image,
-    :styles => {
-      :thumb  => "111x74#",
-      :feed => "90x90>"
+    styles: {
+      thumb: "111x74#",
+      feed: "90x90>"
     },
-    :convert_options => {
-      :thumb => "-quality 75 -strip",
-      :feed => "-quality 70 -strip"
+    convert_options: {
+      thumb: "-quality 75 -strip",
+      feed: "-quality 70 -strip"
     },
-    :storage => :s3,
-    :s3_credentials => S3_CREDENTIALS,
-    :path => "/:style/:id/:filename"
+    storage: :s3,
+    s3_credentials: S3_CREDENTIALS,
+    path: "/:style/:id/:filename"
 
 
   def graph_client
@@ -102,7 +108,7 @@ class Giveaway < ActiveRecord::Base
 
   def publish(giveaway_params)
     return false unless startable?
-    if self.update_attributes(giveaway_params.merge({ :start_date => Time.now, :active => true }))
+    if self.update_attributes(giveaway_params.merge({ start_date: Time.now, active: true }))
       is_installed? ? update_tab : create_tab
     else
       false
@@ -139,11 +145,11 @@ class Giveaway < ActiveRecord::Base
   end
   
   def is_installed?
-    graph_client.get_connections("me", "tabs", :tab => FB_APP_ID).any? ? true : false
+    graph_client.get_connections("me", "tabs", tab: FB_APP_ID).any? ? true : false
   end
 
   def create_tab
-    graph_client.put_connections("me", "tabs", :app_id => FB_APP_ID)
+    graph_client.put_connections("me", "tabs", app_id: FB_APP_ID)
     update_tab
   end
 
@@ -153,9 +159,9 @@ class Giveaway < ActiveRecord::Base
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
           end.compact.flatten.first
 
-    graph_client.put_object( facebook_page.pid, "tabs", :tab => "app_#{FB_APP_ID}", 
-                                                        :custom_name => custom_fb_tab_name, 
-                                                        :custom_image_url => feed_image(:thumb) )
+    graph_client.put_object( facebook_page.pid, "tabs", tab: "app_#{FB_APP_ID}", 
+                                                        custom_name: custom_fb_tab_name, 
+                                                        custom_image_url: feed_image(:thumb) )
   end
 
   def delete_tab   
@@ -165,6 +171,10 @@ class Giveaway < ActiveRecord::Base
           end.compact.flatten.first
 
     graph_client.delete_object(tab["id"])
+  end
+
+  def page_pid
+    facebook_page.pid
   end
 
   def total_shares
@@ -191,11 +201,11 @@ class Giveaway < ActiveRecord::Base
   end
 
   def uniques
-    impressionist_count(:filter => :session_hash)
+    impressionist_count(filter: :session_hash)
   end
 
   def viral_views
-    Impression.find(:all, :conditions => ["message LIKE ?", "%ref_id: %"]).size
+    Impression.find(:all, conditions: ["message LIKE ?", "%ref_id: %"]).size
   end
 
   def viral_like_count
@@ -275,7 +285,7 @@ class Giveaway < ActiveRecord::Base
 
     def image_dimensions(img_url)
       dimensions = Paperclip::Geometry.from_file(img_url).to_s.split("x") rescue []
-      { :width => dimensions[0], :height => dimensions[1] }
+      { width: dimensions[0], height: dimensions[1] }
     end
 
     def tab(signed_request)
@@ -285,11 +295,11 @@ class Giveaway < ActiveRecord::Base
       giveaway = current_page.giveaways.detect(&:active?)
 
       OpenStruct.new({
-        :referrer_id => referrer_id,
-        :has_liked => signed_request["page"]["liked"],
-        :current_page => current_page,
-        :giveaway => giveaway,
-        :tab_height => giveaway.tab_height
+        referrer_id: referrer_id,
+        has_liked: signed_request["page"]["liked"],
+        current_page: current_page,
+        giveaway: giveaway,
+        tab_height: giveaway.tab_height
       })
     end
   end
@@ -338,8 +348,8 @@ class Giveaway < ActiveRecord::Base
 
   def analytics_audit
     Audit.new(
-      :was => { :analytics => analytics_was },
-      :is => { :analytics => analytics }
+      was: { analytics: analytics_was },
+      is: { analytics: analytics }
     )
   end
 end

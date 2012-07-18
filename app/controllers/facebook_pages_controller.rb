@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class FacebookPagesController < ApplicationController
 
-  load_and_authorize_resource :through => :current_user
+  load_and_authorize_resource through: :current_user
 
   def show
     @page = FacebookPage.find(params[:id])

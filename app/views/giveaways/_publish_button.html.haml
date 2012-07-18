@@ -1,19 +1,19 @@
 
 - if @page.giveaways.active.empty?
-  = link_to "<i class='icon-star icon-white'></i> Publish".html_safe, "#publish_confirm_#{giveaway.id}", :class => "btn btn-large btn-primary btn-publish", :"data-toggle" => "modal"
+  = link_to "<i class='icon-star icon-white'></i> Publish".html_safe, "#publish_confirm_#{giveaway.id}", class: "btn btn-large btn-primary btn-publish", :"data-toggle" => "modal"
 
-  .modal.hide.fade{ :id => "publish_confirm_#{giveaway.id}" }
+  .modal.hide.fade{ id: "publish_confirm_#{giveaway.id}" }
     .modal-header
       %a.close{ :"data-dismiss" => "modal"}
         x
       %h3 Publish #{giveaway.title}
     .modal-body
-      = simple_form_for [@page, giveaway], :url => start_facebook_page_giveaway_path(@page, giveaway), :html => { :class => 'form-horizontal', :multipart => true } do |f|
+      = simple_form_for [@page, giveaway], url: start_facebook_page_giveaway_path(@page, giveaway), html: { class: 'form-horizontal', multipart: true } do |f|
         %fieldset.schedule
           %legend Publish Settings
-          = render "giveaways/form/publish_confirm", :f => f
+          = render "giveaways/form/publish_confirm", f: f
         .form-actions
-          = f.submit "Publish the Giveaway", :class => "btn-primary btn btn-xlarge"
+          = f.submit "Publish the Giveaway", class: "btn-primary btn btn-xlarge"
 
 - else
   %span.btn.btn-large.btn-primary.btn-publish.disabled

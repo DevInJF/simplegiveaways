@@ -1,12 +1,15 @@
 # -*- encoding : utf-8 -*-
 class Identity < ActiveRecord::Base
 
-  has_many :audits, :as => :auditable
+  attr_accessible :uid, :provider, :token, :email, :avatar, :profile_url,
+                  :user_id, :location, :login_count, :logged_in_at, :auth
+
+  has_many :audits, as: :auditable
 
   belongs_to :user
 
-  validates :provider, :presence => true
-  validates :uid, :uniqueness => { :scope => :provider }, :presence => true
+  validates :provider, presence: true
+  validates :uid, uniqueness: { scope: :provider }, presence: true
 
   attr_accessor :auth
 

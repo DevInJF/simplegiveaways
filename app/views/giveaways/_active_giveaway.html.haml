@@ -1,15 +1,15 @@
 - content_for :content_header do
 
   .end-giveaway-button
-    = link_to "<i class='icon-remove icon-white'></i> End Now".html_safe, "#end_confirm_#{giveaway.id}", :class => "btn btn-end btn-danger btn-small", :"data-toggle" => "modal"
+    = link_to "<i class='icon-remove icon-white'></i> End Now".html_safe, "#end_confirm_#{giveaway.id}", class: "btn btn-end btn-danger btn-small", :"data-toggle" => "modal"
 
-    .modal.hide.fade{ :id => "end_confirm_#{giveaway.id}" }
+    .modal.hide.fade{ id: "end_confirm_#{giveaway.id}" }
       .modal-header
-        %a.close{ :"data-dismiss" => "modal"}
+        %a.close{ :"data-dismiss" => "modal" }
           x
         %h3 End Giveaway #{giveaway.title}
       .modal-body
-        = link_to "<i class='icon-remove icon-white'></i> Yes End The Giveaway Now".html_safe, end_facebook_page_giveaway_path(@page, giveaway), :class =>"btn btn-xlarge"
+        = link_to "<i class='icon-remove icon-white'></i> Yes End The Giveaway Now".html_safe, end_facebook_page_giveaway_path(@page, giveaway), class: "btn btn-xlarge"
         %p If you want to only modify the end time of the giveaway click here to view and edit the giveaway details.
 
   .countdown-timer
@@ -26,17 +26,17 @@
 
 %header.giveaway.active.thumbnail
   .meta
-    %h1= truncate(giveaway.title, :length => 26)
+    %h1= truncate(giveaway.title, length: 26)
     %p is #{giveaway.status}
     .dates
       %p Started on #{datetime_mdy(giveaway.start_date)}
       %p Ends on #{datetime_mdy(giveaway.end_date)}
-    = link_to "<i class='icon-eye-open'></i> View Details".html_safe, facebook_page_giveaway_path(@page, giveaway), :class => "btn btn-large"
+    = link_to "<i class='icon-eye-open'></i> View Details".html_safe, facebook_page_giveaway_path(@page, giveaway), class: "btn btn-large"
   .image= image_tag(giveaway.image(:medium))
 
-= render 'stats', :giveaway => giveaway
-= render 'graphs', :giveaway => giveaway
-= render 'entries', :giveaway => giveaway
+= render 'stats', giveaway: giveaway
+= render 'graphs', giveaway: giveaway
+= render 'entries', giveaway: giveaway
 
 :javascript
   $(function() {

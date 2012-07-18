@@ -1,11 +1,13 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
 
-  has_many :identities, :dependent => :destroy
+  attr_accessible :name, :roles_mask
+
+  has_many :identities, dependent: :destroy
   has_and_belongs_to_many :facebook_pages
 
   def avatar
-    identities.find(:all, :order => "logged_in_at desc", :limit => 1).first.avatar
+    identities.find(:all, order: "logged_in_at desc", limit: 1).first.avatar
   end
 
   def fb_token

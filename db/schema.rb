@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717042725) do
+ActiveRecord::Schema.define(:version => 20120718163521) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20120717042725) do
     t.datetime "updated_at",     :null => false
   end
 
+  add_index "audits", ["auditable_id", "auditable_type"], :name => "index_audits_on_auditable_id_and_auditable_type"
+
   create_table "entries", :force => true do |t|
     t.string   "email"
     t.boolean  "has_liked",        :default => false
@@ -95,6 +97,9 @@ ActiveRecord::Schema.define(:version => 20120717042725) do
     t.integer "facebook_page_id", :null => false
     t.integer "user_id",          :null => false
   end
+
+  add_index "facebook_pages_users", ["facebook_page_id"], :name => "index_facebook_pages_users_on_facebook_page_id"
+  add_index "facebook_pages_users", ["user_id"], :name => "index_facebook_pages_users_on_user_id"
 
   create_table "giveaways", :force => true do |t|
     t.string   "title"
@@ -172,17 +177,8 @@ ActiveRecord::Schema.define(:version => 20120717042725) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "timeline_events", :force => true do |t|
-    t.string   "event_type"
-    t.string   "subject_type"
-    t.string   "actor_type"
-    t.string   "secondary_subject_type"
-    t.integer  "subject_id"
-    t.integer  "actor_id"
-    t.integer  "secondary_subject_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
-  end
+  add_index "likes", ["entry_id"], :name => "index_likes_on_entry_id"
+  add_index "likes", ["giveaway_id"], :name => "index_likes_on_giveaway_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

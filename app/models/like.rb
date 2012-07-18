@@ -1,5 +1,7 @@
 class Like < ActiveRecord::Base
 
-  belongs_to :user
+  attr_accessible :entry_id, :giveaway_id
+
   belongs_to :giveaway
+  belongs_to :entry
 end

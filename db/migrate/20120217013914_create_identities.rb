@@ -10,11 +10,11 @@ class CreateIdentities < ActiveRecord::Migration
       t.string    :profile_url
       t.string    :location
       t.integer   :user_id
-      t.integer   :login_count, :default => 0
+      t.integer   :login_count, default: 0
       t.datetime  :logged_in_at
       t.timestamps
     end
-    add_index :identities, [:uid, :provider], :unique => true
+    add_index :identities, [:uid, :provider], unique: true
     add_index :identities, :user_id
   end
 end

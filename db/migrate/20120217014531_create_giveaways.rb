@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class CreateGiveaways < ActiveRecord::Migration
   def change
-    create_table :giveaways, :force => true do |t|
+    create_table :giveaways, force: true do |t|
       t.string   :title
       t.text     :description
       t.datetime :start_date
@@ -22,6 +22,6 @@ class CreateGiveaways < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :giveaways, [:title, :facebook_page_id], :unique => true
+    add_index :giveaways, [:title, :facebook_page_id], unique: true
   end
 end

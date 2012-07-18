@@ -7,7 +7,7 @@
     %section.no_active
       .create-giveaway
         %h1 THERE IS AN ACTIVE There are no pending giveaways. Create a new giveaway to publish later.
-        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
+        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), class: "btn btn-success btn-xlarge"
     
 
   - else
@@ -19,7 +19,7 @@
 
     
 
-  = render :collection => @giveaways, :partial => "list_item", :as => :giveaway
+  = render collection: @giveaways, partial: "list_item", as: :giveaway
 
 - else
 
@@ -34,7 +34,7 @@
     %section.no_active
       .create-giveaway
         %h1 THERE IS NO ACTIVE There are no pending giveaways. Create a new giveaway to publish later.
-        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
+        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), class: "btn btn-success btn-xlarge"
 
 
 

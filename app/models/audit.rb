@@ -1,6 +1,8 @@
 class Audit < ActiveRecord::Base
 
-  belongs_to :auditable, :polymorphic => true
+  attr_accessible :was, :is, :comment
+
+  belongs_to :auditable, polymorphic: true
 
   serialize :was
   serialize :is

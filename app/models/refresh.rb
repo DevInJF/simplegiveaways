@@ -1,7 +1,7 @@
 class Refresh
 
   def self.facebook_page_like_count
-    FacebookPage.find_each(:batch_size => 5) do |pages|
+    FacebookPage.find_each(batch_size: 5) do |pages|
       [pages].flatten.each do |page|
         page.refresh_likes
       end
@@ -10,7 +10,7 @@ class Refresh
   end
 
   def self.giveaway_analytics
-    Giveaway.find_each(:batch_size => 5) do |giveaways|
+    Giveaway.find_each(batch_size: 5) do |giveaways|
       [giveaways].flatten.each do |giveaway|
         giveaway.refresh_analytics
       end

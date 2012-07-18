@@ -30,15 +30,15 @@ ActiveAdmin::Dashboards.build do
   # bottom right. The default priority is 10. By giving a section numerically lower
   # priority it will be sorted higher. For example:
   #
-  #   section "Recent Posts", :priority => 10
-  #   section "Recent User", :priority => 1
+  #   section "Recent Posts", priority: 10
+  #   section "Recent User", priority: 1
   #
   # Will render the "Recent Users" then the "Recent Posts" sections on the dashboard.
   
   # == Conditionally Display
   # Provide a method name or Proc object to conditionally render a section at run time.
   #
-  # section "Membership Summary", :if => :memberships_enabled?
-  # section "Membership Summary", :if => Proc.new { current_admin_user.account.memberships.any? }
+  # section "Membership Summary", if: :memberships_enabled?
+  # section "Membership Summary", if: Proc.new { current_admin_user.account.memberships.any? }
 
 end

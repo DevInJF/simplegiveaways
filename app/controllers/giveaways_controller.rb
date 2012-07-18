@@ -3,11 +3,11 @@ require 'csv'
 
 class GiveawaysController < ApplicationController
 
-  load_and_authorize_resource :facebook_page, :except => [:tab]
-  load_and_authorize_resource :giveaway, :through => :facebook_page, :except => [:tab]
+  load_and_authorize_resource :facebook_page, except: [:tab]
+  load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab]
 
-  before_filter :explicit_fb_auth_check, :only => [:start, :end, :update]
-  after_filter  :sync_meta_to_fb, :only => [:update]
+  before_filter :explicit_fb_auth_check, only: [:start, :end, :update]
+  after_filter  :sync_meta_to_fb, only: [:update]
 
   def index
     @giveaways = Giveaway.all
@@ -62,7 +62,7 @@ class GiveawaysController < ApplicationController
       flash[:success] = "The #{@giveaway.title} giveaway has been created."
       redirect_to pending_facebook_page_giveaways_path(@page)
     else
-      render :action => :new
+      render action: :new
     end
   end
 
@@ -110,7 +110,7 @@ class GiveawaysController < ApplicationController
 
   def end
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.update_attributes(:end_date => DateTime.now, :active => false)
+    if @giveaway.update_attributes(end_date: DateTime.now, active: false)
       flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
       @giveaway.delete_tab
@@ -131,8 +131,8 @@ class GiveawaysController < ApplicationController
         redirect_to "/404.html"
       else
         @message = @giveaway.referrer_id.present? ? "ref_id: #{@giveaway.referrer_id}" : nil
-        impressionist(@giveaway.giveaway, message: "#{@message}", :filter => :session_hash)
-        render :layout => "tab"
+        impressionist(@giveaway.giveaway, message: "#{@message}", filter: :session_hash)
+        render layout: "tab"
       end
 
     else
@@ -154,7 +154,7 @@ class GiveawaysController < ApplicationController
       end
     end
      
-    send_data(entries_csv, :type => 'text/csv', :filename => 'entries_export.csv')
+    send_data(entries_csv, type: 'text/csv', filename: 'entries_export.csv')
   end
 
   def sync_meta_to_fb
@@ -172,9 +172,9 @@ class GiveawaysController < ApplicationController
       @giveaway = Giveaway.find(params[:id])
 
       @url = if params[:action] == "update"
-               reauth_url(:callback => "facebook", :id => params[:id])
+               reauth_url(callback: "facebook", id: params[:id])
              else
-               url_for :controller => params[:controller], :action => params[:action], :callback => "facebook", :id => params[:id]
+               url_for controller: params[:controller], action: params[:action], callback: "facebook", id: params[:id]
              end
 
       if (params[:action] == "update" && @giveaway.active?) ||

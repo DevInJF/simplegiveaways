@@ -1,12 +1,16 @@
 # -*- encoding : utf-8 -*-
 class Entry < ActiveRecord::Base
 
-  has_many :audits, :as => :auditable
+  attr_accessible :email, :has_liked, :name, :fb_url, :datetime_entered,
+                  :wall_post_count, :request_count, :convert_count,
+                  :status, :uid
+
+  has_many :audits, as: :auditable
 
   belongs_to :giveaway
   has_many :likes
 
-  validates :email, :uniqueness => { :scope => :giveaway_id }
+  validates :email, uniqueness: { scope: :giveaway_id }
 
   attr_accessor :referer_id
 
@@ -57,7 +61,7 @@ class Entry < ActiveRecord::Base
 
   def like_status(access_token)
     rest = Koala::Facebook::API.new(access_token)
-    status = rest.fql_query("SELECT uid FROM page_fan WHERE uid=#{uid} AND page_id=#{giveaway.facebook_page.pid}")
+    status = rest.fql_query("SELECT uid FROM page_fan WHERE uid=#{uid} AND page_id=#{giveaway.page_pid}")
     status[0].nil? ? false : true
   end
 end

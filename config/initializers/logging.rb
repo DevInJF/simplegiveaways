@@ -1,30 +1,30 @@
 require 'logging'
 
 Logging.color_scheme('bright',
-  :levels => {
-    :info => :green,
-    :warn => :yellow,
-    :error => :red,
-    :fatal => [:white, :on_red]
+  levels: {
+    info: :green,
+    warn: :yellow,
+    error: :red,
+    fatal: [:white, :on_red]
   },
-  :date => :blue,
-  :logger => :cyan,
-  :message => :magenta
+  date: :blue,
+  logger: :cyan,
+  message: :magenta
 )
 
 Logging.appenders.stdout(
   'stdout',
-  :layout => Logging.layouts.pattern(
-    :pattern => '[%d] %-5l %c: %m\n',
-    :color_scheme => 'bright'
+  layout: Logging.layouts.pattern(
+    pattern: '[%d] %-5l %c: %m\n',
+    color_scheme: 'bright'
   )
 )
 
 Logging.appenders.file(
   'log/development/debug.log',
-  :layout => Logging.layouts.pattern(
-    :pattern => '[%d] %-5l %c: %m\n',
-    :color_scheme => 'bright'
+  layout: Logging.layouts.pattern(
+    pattern: '[%d] %-5l %c: %m\n',
+    color_scheme: 'bright'
   )
 )
 

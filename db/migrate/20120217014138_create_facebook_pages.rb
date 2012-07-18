@@ -14,6 +14,6 @@ class CreateFacebookPages < ActiveRecord::Migration
       t.boolean  :has_added_app
       t.timestamps
     end
-    add_index :facebook_pages, :pid, :unique => true
+    add_index :facebook_pages, :pid, unique: true
   end
 end

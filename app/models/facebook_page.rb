@@ -3,12 +3,15 @@ class FacebookPage < ActiveRecord::Base
 
   include ActionView::Helpers::UrlHelper
 
-  has_many :audits, :as => :auditable
+  attr_accessible :name, :category, :pid, :token, :avatar_square, :avatar_large,
+                  :description, :likes, :url, :has_added_app
+
+  has_many :audits, as: :auditable
 
   has_many :giveaways
   has_and_belongs_to_many :users
 
-  validates :pid, :uniqueness => true
+  validates :pid, uniqueness: true
 
   def self.retrieve_fb_meta(user, pages, jug_key)
     pages = FacebookPage.select_pages(pages).compact.flatten
@@ -26,21 +29,21 @@ class FacebookPage < ActiveRecord::Base
       previous_likes = @page.likes || fb_meta["likes"]
 
       @page.update_attributes(
-        :name => page["name"],
-        :category => page["category"],
-        :pid => page["id"],
-        :token => page["access_token"],
-        :avatar_square => fb_avatar_square,
-        :avatar_large => fb_avatar_large,
-        :description => fb_meta["description"],
-        :url => fb_meta["link"],
-        :likes => fb_meta["likes"],
-        :has_added_app => fb_meta["has_added_app"]
+        name: page["name"],
+        category: page["category"],
+        pid: page["id"],
+        token: page["access_token"],
+        avatar_square: fb_avatar_square,
+        avatar_large: fb_avatar_large,
+        description: fb_meta["description"],
+        url: fb_meta["link"],
+        likes: fb_meta["likes"],
+        has_added_app: fb_meta["has_added_app"]
       )
 
-      jug_data = { :markup => @page.preview_template(previous_likes),
-                   :menu_item => @page.menu_item_template,
-                   :is_last => "#{index == page_count}" }
+      jug_data = { markup: @page.preview_template(previous_likes),
+                   menu_item: @page.menu_item_template,
+                   is_last: "#{index == page_count}" }
 
       Juggernaut.publish("users#show_#{jug_key}", jug_data.to_json)
 
@@ -60,8 +63,8 @@ class FacebookPage < ActiveRecord::Base
 
   def likes_audit
     Audit.new(
-      :was => { :likes => likes_was },
-      :is => { :likes => likes }
+      was: { likes: likes_was },
+      is: { likes: likes }
     )
   end
 
@@ -72,7 +75,7 @@ class FacebookPage < ActiveRecord::Base
 
     pages.collect do |page|
       if FacebookPage.page_eligible?(batch = FacebookPage.graph_data(page))
-        { :page => page, :fb_meta => batch }
+        { page: page, fb_meta: batch }
       end
     end
   end
@@ -84,9 +87,9 @@ class FacebookPage < ActiveRecord::Base
     fb_avatar_square = batch[1]
     fb_avatar_large  = batch[2]
 
-    { :data => fb_meta,
-      :avatar_square => fb_avatar_square,
-      :avatar_large => fb_avatar_large }
+    { data: fb_meta,
+      avatar_square: fb_avatar_square,
+      avatar_large: fb_avatar_large }
   end
 
   def self.batch_data(page)
@@ -95,8 +98,8 @@ class FacebookPage < ActiveRecord::Base
 
     @graph.batch do |batch_api|
       batch_api.get_object("me")
-      batch_api.get_picture("me", :type => "square")
-      batch_api.get_picture("me", :type => "large")
+      batch_api.get_picture("me", type: "square")
+      batch_api.get_picture("me", type: "large")
     end
   end
 

@@ -12,13 +12,13 @@ Factory.define :entry do |entry|
   entry.giveaway { (Giveaway.count > 0 ? Giveaway.all.sort_by{ rand }.first : Factory.create(:giveaway)) }
 end
 
-Factory.define :incomplete_entry, :parent => :entry do |entry|
+Factory.define :incomplete_entry, parent: :entry do |entry|
   entry.has_liked_mandatory false
   entry.has_liked_primary false
   entry.status "incomplete"
 end
 
-Factory.define :complete_entry, :parent => :entry do |entry|
+Factory.define :complete_entry, parent: :entry do |entry|
   entry.has_liked_mandatory true
   entry.has_liked_primary true
   entry.status "complete"

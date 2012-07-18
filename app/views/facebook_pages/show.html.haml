@@ -1,4 +1,4 @@
 - content_for :content_header do
   %h2= @page.name
 
-= render :collection => @giveaways, :partial => "giveaways/#{@giveaways.first.status.downcase}_giveaway", :as => :giveaway
+= render collection: @giveaways, partial: "giveaways/#{@giveaways.first.status.downcase}_giveaway", as: :giveaway

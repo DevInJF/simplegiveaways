@@ -31,7 +31,7 @@ class Ability
       can :read, Giveaway do |giveaway|
         user.facebook_page_ids.include? giveaway.facebook_page.id
       end
-      cannot :read, Giveaway, :completed => true
+      cannot :read, Giveaway, completed: true
     elsif user.is?('banned')
       cannot :read, :all
     else

@@ -25,7 +25,7 @@ class CanvasController < ApplicationController
 
       FbAppRequestWorker.perform_async(request_ids.last, params[:signed_request])
 
-      render "giveaways/apprequest", :layout => false
+      render "giveaways/apprequest", layout: false
     else
       redirect_to "http://simplegiveawayapp.com"
     end

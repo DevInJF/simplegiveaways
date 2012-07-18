@@ -1,10 +1,10 @@
 !!!
 %html
   %head
-    %meta{:charset => "utf-8"}
+    %meta{charset: "utf-8"}
     %title Simple Giveaways
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "author"}
+    %meta{content: "", name: "description"}
+    %meta{content: "", name: "author"}
 
     = javascript_include_tag "http://#{current_host_url}:8080/application.js"
     /[if lt IE 9]
@@ -14,7 +14,7 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body.application{ :class => body_class }
+  %body.application{ class: body_class }
     #fb-root.logged-in{ :'data-uid' => uid_class }
     .site_wrapper
       = render "layouts/header"

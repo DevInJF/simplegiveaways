@@ -12,7 +12,7 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'activeadmin'
 
 gem 'omniauth'
-gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
+gem 'omniauth-facebook', git: 'git://github.com/mkdynamic/omniauth-facebook.git'
 gem 'koala'
 gem 'cancan'
 gem 'gibbon'
@@ -25,9 +25,9 @@ gem 'json'
 gem 'braintree'
 gem 'impressionist'
 gem 'simple_form', '~> 2.0'
-gem 'juggernaut', :git => 'git://github.com/FewKinG/juggernaut.git'
+gem 'juggernaut', git: 'git://github.com/FewKinG/juggernaut.git'
 gem 'simple_uuid'
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
@@ -45,6 +45,7 @@ group :development do
   gem 'magic_encoding'
   gem 'nifty-generators'
   gem 'rack-mini-profiler'
+  gem 'rails_best_practices'
 end
 
 group :development, :test do

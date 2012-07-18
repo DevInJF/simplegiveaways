@@ -41,7 +41,7 @@ module ApplicationHelper
   end
 
   def sidebar_content
-    render(:partial => "users/facebook_pages")
+    render(partial: "users/facebook_pages")
   end
 
   def datetime_mdy(datetime)

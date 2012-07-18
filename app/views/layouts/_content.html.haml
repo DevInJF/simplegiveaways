@@ -4,7 +4,7 @@
       .pane_heading
         = yield :content_header
 
-      = render "shared/flash", :flash => flash
+      = render "shared/flash", flash: flash
 
       .container
         = yield

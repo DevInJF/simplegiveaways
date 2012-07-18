@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     else
       @jug = session['jug'] = Juggernaut.create_key("users#show")
       unless @identity.user.present?
-        @identity.create_user(:name => auth["info"]["name"])
+        @identity.create_user(name: auth["info"]["name"])
         @identity.user.roles = ['superadmin']
         @identity.user.save
         @identity.save
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     end
 
     @identity.process_login(DateTime.now, @jug)
-    cookies[:fb_uid] = { :value => @identity.uid, :expires => Time.now + 1800 }
+    cookies[:fb_uid] = { value: @identity.uid, expires: Time.now + 1800 }
     render 'sessions/create', notice: @notice
   end
 
