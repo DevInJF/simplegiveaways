@@ -93,12 +93,14 @@
                   .form-actions
                     = f.button :submit, class: "btn-primary"
         %table.terms
-          %tr
-            %td URL or Text
-            %td Text
-          %tr
-            %td Text
-            %td= giveaway.terms_text
+          - if giveaway.terms_url
+            %tr
+              %td URL
+              %td= giveaway.terms_url
+          - if giveaway.terms_text
+            %tr
+              %td Text
+              %td= giveaway.terms_text
     .column_right
       %section.detail.preferences
         %header.detail

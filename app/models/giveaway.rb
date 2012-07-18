@@ -5,9 +5,12 @@ class Giveaway < ActiveRecord::Base
 
   attr_accessible :title, :description, :start_date, :end_date, :prize, :terms,
                   :preferences, :sticky_post, :preview_mode, :giveaway_url,
-                  :facebook_page_id, :image_file_name, :image_content_type,
-                  :image_file_size, :feed_image_file_name, :feed_image_content_type,
-                  :feed_image_file_size, :custom_fb_tab_name, :analytics, :active
+                  :facebook_page_id, :image, :feed_image, :custom_fb_tab_name,
+                  :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog,
+                  :allow_multi_entries, :email_required, :bonus_value, :_total_shares,
+                  :_total_wall_posts, :_total_requests, :_total_conversions, :_views,
+                  :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count,
+                  :_entry_count, :_entry_rate, :_conversion_rate
 
   has_many :audits, as: :auditable
 
