@@ -12,7 +12,7 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'activeadmin'
 
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
 gem 'koala'
 gem 'cancan'
 gem 'gibbon'

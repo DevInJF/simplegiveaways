@@ -6,7 +6,8 @@ class GiveawaysController < ApplicationController
   load_and_authorize_resource :facebook_page, :except => [:tab]
   load_and_authorize_resource :giveaway, :through => :facebook_page, :except => [:tab]
 
-  after_filter :sync_meta_to_fb, :only => [:update]
+  before_filter :explicit_fb_auth_check, :only => [:start, :end, :update]
+  after_filter  :sync_meta_to_fb, :only => [:update]
 
   def index
     @giveaways = Giveaway.all
@@ -67,10 +68,13 @@ class GiveawaysController < ApplicationController
 
   def update
     @giveaway = Giveaway.find(params[:id])
+    giveaway_data = flash[:giveaway]
 
-    @giveaway_params = params[:giveaway].each do |key, value|
+    @giveaway_params = giveaway_data.each do |key, value|
       value.squish! if value.class.name == "String"
     end
+
+    logger.debug(@giveaway_params.inspect.green_on_white)
 
     if @giveaway.update_attributes(@giveaway_params)
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
@@ -95,7 +99,7 @@ class GiveawaysController < ApplicationController
 
   def start
     @giveaway = Giveaway.find(params[:id])
-    if @giveaway.publish(params[:giveaway])
+    if @giveaway.publish(flash[:giveaway])
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
@@ -156,6 +160,28 @@ class GiveawaysController < ApplicationController
   def sync_meta_to_fb
     if @giveaway_params["custom_fb_tab_name"] || @giveaway_params["feed_image"]
       @giveaway.update_tab
+    end
+  end
+
+  private
+
+  def explicit_fb_auth_check
+    unless request.url.include? "callback"
+
+      flash[:giveaway] = params[:giveaway]
+      @giveaway = Giveaway.find(params[:id])
+
+      @url = if params[:action] == "update"
+               reauth_url(:callback => "facebook", :id => params[:id])
+             else
+               url_for :controller => params[:controller], :action => params[:action], :callback => "facebook", :id => params[:id]
+             end
+
+      if (params[:action] == "update" && @giveaway.active?) ||
+          %w(start end).include?(params[:action])
+
+        redirect_to "https://graph.facebook.com/oauth/authorize?client_id=#{FB_APP_ID}&auth_type=reauthenticate&redirect_uri=#{@url}&auth_nonce=#{rand(999999999999)}"
+      end
     end
   end
 end

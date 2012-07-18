@@ -5,6 +5,13 @@ GIT
     juggernaut (2.1.1)
       redis
 
+GIT
+  remote: git://github.com/mkdynamic/omniauth-facebook.git
+  revision: 6f4300b3f8bb6ac1618a33a8fc770f17eb79907d
+  specs:
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -190,8 +197,6 @@ GEM
     omniauth (1.1.0)
       hashie (~> 1.2)
       rack
-    omniauth-facebook (1.4.1)
-      omniauth-oauth2 (~> 1.1.0)
     omniauth-oauth2 (1.1.0)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
@@ -324,7 +329,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.10)
   nifty-generators
   omniauth
-  omniauth-facebook
+  omniauth-facebook!
   paperclip
   pry
   rack-mini-profiler
