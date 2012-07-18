@@ -11,3 +11,4 @@ config/initializers/01_facebook.rb
 .sass-cache/*
 /.sass-cache/
 .sass-cache/**/
+dump.rdb
