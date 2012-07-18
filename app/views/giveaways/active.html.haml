@@ -3,7 +3,8 @@
   - content_for :content_header do
     %h2 Active Giveaway
 
-  = render object: @giveaways, partial: "active_giveaway", as: :giveaway
+  = render object: @giveaways, partial: "active_giveaway", as: :giveaway,
+           locals: { page: @page, flot: @flot }
 
 - else
 

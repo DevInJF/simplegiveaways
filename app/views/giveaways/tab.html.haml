@@ -2,11 +2,11 @@
 #enter_giveaway
   %a{href: "#"} Enter Giveaway
 #giveaway_image
-  = image_tag @giveaway.giveaway.image.url(:tab)
+  = image_tag @giveaway_hash.giveaway.image.url(:tab)
 #giveaway_modal{style: "display:none"}
   .step.one
     %span To be eligible for the giveaway, please like this page first.
-    %fb:like-box{border_color: "", header: "false", href: @giveaway.current_page.url, show_faces: "true",
+    %fb:like-box{border_color: "", header: "false", href: @giveaway_hash.current_page.url, show_faces: "true",
     stream: "false", width: "402"}
   .step.two{style: "display:none"}
     %a{href: "#"} Click Here to Enter the Giveaway
@@ -21,4 +21,4 @@
   .loader{style: "display:none"}
     = image_tag "tab_loader.gif", alt: "Loading..."
 
-= render "tab_js"
+= render "tab_js", :giveaway_hash => @giveaway_hash

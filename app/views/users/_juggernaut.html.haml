@@ -11,7 +11,7 @@
       var jug = new Juggernaut,
           stale_count = $(".facebook_page_preview").length;
 
-      jug.subscribe("users#show_#{@key}", function(jug_data) {
+      jug.subscribe("users#show_#{key}", function(jug_data) {
 
         var jug_data = JSON.parse(jug_data),
             $markup = $(jug_data.markup),
@@ -46,14 +46,14 @@
           $(".page_subtitle .dynamo").replaceWith(new_markup);
           $(".dynamo.count").dynamo();
 
-          jug.unsubscribe("users#show_#{@key}");
+          jug.unsubscribe("users#show_#{key}");
         }
 
         jug.on("disconnect", function () {
-          jug.unsubscribe("users#show_#{@key}");
+          jug.unsubscribe("users#show_#{key}");
         });
       }, {
-        key: "#{@key}"
+        key: "#{key}"
       });
     }
   });

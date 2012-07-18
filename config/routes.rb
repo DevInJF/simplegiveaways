@@ -8,11 +8,11 @@ Simplegiveaways::Application.routes.draw do
   match '/canvas', to: 'canvas#index'
   match '/giveaways/tab', to: 'giveaways#tab'
 
-  resources :likes
+  resources :likes, :only => [:create]
 
-  resources :facebook_pages do
+  resources :facebook_pages, :only => [:show] do
     resources :giveaways do
-      resources :entries
+      resources :entries, :only => [:create, :update]
 
       get :export_entries, on: :member
       get :active, on: :collection
@@ -27,7 +27,7 @@ Simplegiveaways::Application.routes.draw do
   get '/facebook_pages/:facebook_page_id/giveaways/:id/reauth', to: 'giveaways#update',
                                                                 as: 'reauth'
 
-  resources :users, only: [:create, :update, :destroy]
+  resources :users, only: []
 
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
@@ -36,8 +36,3 @@ Simplegiveaways::Application.routes.draw do
 
   root to: 'welcome#index'
 end
-
-
-
-  
-

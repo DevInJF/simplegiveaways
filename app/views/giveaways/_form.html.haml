@@ -1,4 +1,4 @@
-= simple_form_for [@page, @giveaway], html: { class: 'form-horizontal', multipart: true } do |f|
+= simple_form_for [page, giveaway], html: { class: 'form-horizontal', multipart: true } do |f|
   %fieldset.basic-info
     %legend Basic Info
     = render "giveaways/form/basic_info", f: f

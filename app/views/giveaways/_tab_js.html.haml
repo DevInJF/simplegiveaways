@@ -9,7 +9,7 @@
     });
 
     FB.getLoginStatus(function(response) {
-      FB.Canvas.setSize({ height: "#{@giveaway.tab_height}" });
+      FB.Canvas.setSize({ height: "#{giveaway_hash.tab_height}" });
 
       FB.Event.subscribe('edge.create', function() {
         $just_liked = true;
@@ -32,7 +32,7 @@
     // init
     $just_liked = false;
 
-    var $referrer_id = "#{@giveaway.referrer_id}" || "",
+    var $referrer_id = "#{giveaway_hash.referrer_id}" || "",
         $modal = $("#giveaway_modal"),
         $loader = $modal.find(".loader");
 
@@ -52,10 +52,10 @@
 
       loader : $loader,
 
-      eligible : #{@giveaway.has_liked},
+      eligible : #{giveaway_hash.has_liked},
 
       onLike : function() {
-        var postData = 'like[giveaway_id]=#{@giveaway.giveaway.id}';
+        var postData = 'like[giveaway_id]=#{giveaway_hash.giveaway.id}';
         if ($referrer_id.length) {
           postData += '&like[entry_id]=' + $referrer_id + ''
         }
@@ -101,7 +101,7 @@
           }
           $.ajax({
             type: 'POST',
-            url: '#{facebook_page_giveaway_entries_path(@giveaway.current_page, @giveaway.giveaway)}',
+            url: '#{facebook_page_giveaway_entries_path(giveaway_hash.current_page, giveaway_hash.giveaway)}',
             dataType: "json",
             data: 'access_token=' + access_token + '&has_liked=' + Giveaway.eligible + '&ref_id=' + $referrer_id,
             statusCode: {
@@ -179,7 +179,7 @@
         callback : function(json) {
           $.ajax({
             type: 'PUT',
-            url: '#{facebook_page_giveaway_entries_path(@giveaway.current_page, @giveaway.giveaway)}' + '/' + $entry_id,
+            url: '#{facebook_page_giveaway_entries_path(giveaway_hash.current_page, giveaway_hash.giveaway)}' + '/' + $entry_id,
             dataType: "text",
             data: json,
             statusCode: {
@@ -224,11 +224,11 @@
         as_wall_post : function() {
           Giveaway.share.dialog({
             method: "feed",
-            name: "#{@giveaway.current_page.name}",
-            link: "#{@giveaway.giveaway.giveaway_url}" + "&app_data=ref_" + $entry_id,
-            picture: "#{@giveaway.giveaway.feed_image.url}",
-            caption: "#{@giveaway.giveaway.title}",
-            description: "#{@giveaway.giveaway.description}"
+            name: "#{giveaway_hash.current_page.name}",
+            link: "#{giveaway_hash.giveaway.giveaway_url}" + "&app_data=ref_" + $entry_id,
+            picture: "#{giveaway_hash.giveaway.feed_image.url}",
+            caption: "#{giveaway_hash.giveaway.title}",
+            description: "#{giveaway_hash.giveaway.description}"
           });
         },
 
@@ -236,8 +236,8 @@
           Giveaway.share.dialog({
             title: 'Share this giveaway to receive a bonus entry.',
             method: 'apprequests',
-            message: "#{@giveaway.giveaway.description}",
-            data: { referrer_id : $entry_id.toString(), giveaway_id : "#{@giveaway.giveaway.id}" }
+            message: "#{giveaway_hash.giveaway.description}",
+            data: { referrer_id : $entry_id.toString(), giveaway_id : "#{giveaway_hash.giveaway.id}" }
           });
         }
       }

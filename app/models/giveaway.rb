@@ -146,7 +146,7 @@ class Giveaway < ActiveRecord::Base
   def completed?
     start_date < Time.now && end_date < Time.now
   end
-  
+
   def is_installed?
     graph_client.get_connections("me", "tabs", tab: FB_APP_ID).any? ? true : false
   end
@@ -162,8 +162,8 @@ class Giveaway < ActiveRecord::Base
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
           end.compact.flatten.first
 
-    graph_client.put_object( facebook_page.pid, "tabs", tab: "app_#{FB_APP_ID}", 
-                                                        custom_name: custom_fb_tab_name, 
+    graph_client.put_object( facebook_page.pid, "tabs", tab: "app_#{FB_APP_ID}",
+                                                        custom_name: custom_fb_tab_name,
                                                         custom_image_url: feed_image(:thumb) )
   end
 
@@ -281,7 +281,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def tab_height
-    Giveaway.image_dimensions(image(:tab))[:height].to_i + 50
+    Giveaway.image_dimensions(image(:tab))[:height].to_i + 65
   end
 
   class << self

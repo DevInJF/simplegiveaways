@@ -9,7 +9,7 @@
           x
         %h3 End Giveaway #{giveaway.title}
       .modal-body
-        = link_to "<i class='icon-remove icon-white'></i> Yes End The Giveaway Now".html_safe, end_facebook_page_giveaway_path(@page, giveaway), class: "btn btn-xlarge"
+        = link_to "<i class='icon-remove icon-white'></i> Yes End The Giveaway Now".html_safe, end_facebook_page_giveaway_path(page, giveaway), class: "btn btn-xlarge"
         %p If you want to only modify the end time of the giveaway click here to view and edit the giveaway details.
 
   .countdown-timer
@@ -31,12 +31,12 @@
     .dates
       %p Started on #{datetime_mdy(giveaway.start_date)}
       %p Ends on #{datetime_mdy(giveaway.end_date)}
-    = link_to "<i class='icon-eye-open'></i> View Details".html_safe, facebook_page_giveaway_path(@page, giveaway), class: "btn btn-large"
+    = link_to "<i class='icon-eye-open'></i> View Details".html_safe, facebook_page_giveaway_path(page, giveaway), class: "btn btn-large"
   .image= image_tag(giveaway.image(:medium))
 
 = render 'stats', giveaway: giveaway
-= render 'graphs', giveaway: giveaway
-= render 'entries', giveaway: giveaway
+= render 'graphs', giveaway: giveaway, page: page, flot: flot
+= render 'entries', giveaway: giveaway, page: page
 
 :javascript
   $(function() {

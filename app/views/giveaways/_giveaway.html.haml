@@ -3,7 +3,7 @@
   - content_for :content_header do
     %h2 Active Giveaway > Giveaway Details
 
-  = render 'header', giveaway: giveaway
+  = render 'header', giveaway: giveaway, page: giveaway.facebook_page
   = render 'details', giveaway: giveaway, page: giveaway.facebook_page
 
 - elsif giveaway.status == "Pending"
@@ -11,7 +11,7 @@
   - content_for :content_header do
     %h2 Pending Giveaways > #{giveaway.title}
 
-  = render 'header', giveaway: giveaway
+  = render 'header', giveaway: giveaway, page: giveaway.facebook_page
   = render 'details', giveaway: giveaway, page: giveaway.facebook_page
 
 - else giveaway.status == "Completed"
@@ -19,8 +19,8 @@
   - content_for :content_header do
     %h2 Completed Giveaways > #{giveaway.title}
 
-  = render 'header', giveaway: giveaway
+  = render 'header', giveaway: giveaway, page: giveaway.facebook_page
   = render 'stats', giveaway: giveaway
-  = render 'graphs', giveaway: giveaway
-  = render 'entries', giveaway: giveaway
+  = render 'graphs', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
+  = render 'entries', giveaway: giveaway, page: giveaway.facebook_page
   = render 'details', giveaway: giveaway, page: giveaway.facebook_page

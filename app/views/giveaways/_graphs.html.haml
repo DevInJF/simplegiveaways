@@ -1,4 +1,4 @@
-- if @page.audits.any? && (@page_likes_flot || @entries_flot || @views_flot)
+- if page.audits.any? && flot[:page_likes]
 
   = javascript_include_tag "vendor/jquery.flot"
   = javascript_include_tag "vendor/jquery.flot.navigate.min"
@@ -15,15 +15,15 @@
             datasets = {
               "page_likes" : {
                 label: "Likes",
-                data: #{@page_likes_flot}
+                data: #{flot[:page_likes]}
               },
               "entry_count" : {
                 label: "Entries",
-                data: #{@entries_flot}
+                data: #{flot[:entries]}
               },
               "view_count" : {
                 label: "Views",
-                data: #{@views_flot}
+                data: #{flot[:views]}
               }
             }
 

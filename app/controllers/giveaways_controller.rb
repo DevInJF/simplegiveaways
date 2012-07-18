@@ -6,6 +6,8 @@ class GiveawaysController < ApplicationController
   load_and_authorize_resource :facebook_page, except: [:tab]
   load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab]
 
+  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create]
+  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries]
   before_filter :explicit_fb_auth_check, only: [:start, :end, :update]
   after_filter  :sync_meta_to_fb, only: [:update]
 
@@ -14,43 +16,37 @@ class GiveawaysController < ApplicationController
   end
 
   def active
-    @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.active.first
-    @page_likes_flot = Graph.new(@page).page_likes
-    @entries_flot = Graph.new(@giveaways).entries
-    @views_flot = Graph.new(@giveaways).views
+    @flot = { :page_likes => Graph.new(@page).page_likes,
+              :entries => Graph.new(@giveaways).entries,
+              :views   => Graph.new(@giveaways).views }
   end
 
   def pending
-    @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.pending
   end
 
   def completed
-    @page = FacebookPage.find(params[:facebook_page_id])
     @giveaways = @page.giveaways.completed
   end
 
   def show
     @giveaway ||= Giveaway.find(params[:id])
     @page = @giveaway.facebook_page
-    @page_likes_flot = Graph.new(@page).page_likes
-    @entries_flot = Graph.new(@giveaway).entries
-    @views_flot   = Graph.new(@giveaway).views
+    @flot = { :page_likes => Graph.new(@page).page_likes,
+              :entries => Graph.new(@giveaway).entries,
+              :views => Graph.new(@giveaway).views }
   end
 
   def new
-    @page = FacebookPage.find(params[:facebook_page_id])
     @giveaway = @page.giveaways.build
   end
 
   def edit
-    @giveaway = Giveaway.find(params[:id])
+    @page = @giveaway.facebook_page
   end
 
   def create
-    @page = FacebookPage.find(params[:facebook_page_id])
-
     giveaway_params = params[:giveaway].each do |key, value|
       value.squish! if value.class.name == "String"
     end
@@ -62,12 +58,12 @@ class GiveawaysController < ApplicationController
       flash[:success] = "The #{@giveaway.title} giveaway has been created."
       redirect_to pending_facebook_page_giveaways_path(@page)
     else
-      render action: :new
+      flash.now[:error] = "There was a problem creating #{@giveaway.title}."
+      render :new
     end
   end
 
   def update
-    @giveaway = Giveaway.find(params[:id])
     giveaway_data = flash[:giveaway]
 
     @giveaway_params = giveaway_data.each do |key, value|
@@ -86,8 +82,6 @@ class GiveawaysController < ApplicationController
   end
 
   def destroy
-    @giveaway = Giveaway.find(params[:id])
-
     if @giveaway.destroy
       flash[:success] = "The #{@giveaway.title} giveaway has been permanently deleted."
       redirect_to facebook_page_giveaways_url(@giveaway.facebook_page)
@@ -98,7 +92,6 @@ class GiveawaysController < ApplicationController
   end
 
   def start
-    @giveaway = Giveaway.find(params[:id])
     if @giveaway.publish(flash[:giveaway])
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
@@ -109,7 +102,6 @@ class GiveawaysController < ApplicationController
   end
 
   def end
-    @giveaway = Giveaway.find(params[:id])
     if @giveaway.update_attributes(end_date: DateTime.now, active: false)
       flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
@@ -125,13 +117,13 @@ class GiveawaysController < ApplicationController
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       signed_request = oauth.parse_signed_request(params[:signed_request])
 
-      @giveaway = Giveaway.tab(signed_request)
+      @giveaway_hash = Giveaway.tab(signed_request)
 
-      if @giveaway.giveaway.nil?
+      if @giveaway_hash.giveaway.nil?
         redirect_to "/404.html"
       else
-        @message = @giveaway.referrer_id.present? ? "ref_id: #{@giveaway.referrer_id}" : nil
-        impressionist(@giveaway.giveaway, message: "#{@message}", filter: :session_hash)
+        @message = @giveaway_hash.referrer_id.present? ? "ref_id: #{@giveaway_hash.referrer_id}" : nil
+        impressionist(@giveaway_hash.giveaway, message: "#{@message}", filter: :session_hash)
         render layout: "tab"
       end
 
@@ -141,7 +133,6 @@ class GiveawaysController < ApplicationController
   end
 
   def export_entries
-    @giveaway = Giveaway.find(params[:id])
     @entries = @giveaway.entries
 
     entries_csv = CSV.generate do |csv|
@@ -153,7 +144,7 @@ class GiveawaysController < ApplicationController
         csv << [entry.id, entry.email, entry.name, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count]
       end
     end
-     
+
     send_data(entries_csv, type: 'text/csv', filename: 'entries_export.csv')
   end
 
@@ -164,6 +155,14 @@ class GiveawaysController < ApplicationController
   end
 
   private
+
+  def assign_page
+    @page = FacebookPage.find(params[:facebook_page_id])
+  end
+
+  def assign_giveaway
+    @giveaway = Giveaway.find(params[:id])
+  end
 
   def explicit_fb_auth_check
     unless request.url.include? "callback"
