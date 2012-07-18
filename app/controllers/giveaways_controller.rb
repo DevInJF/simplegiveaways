@@ -143,7 +143,7 @@ class GiveawaysController < ApplicationController
   def export_entries
     @giveaway = Giveaway.find(params[:id])
     @entries = @giveaway.entries
-  
+
     entries_csv = CSV.generate do |csv|
       # header row
       csv << ["ID", "email", "Name", "Entry Time", "Wall Posts", "Requests", "Conversions"]

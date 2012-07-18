@@ -7,7 +7,7 @@
     = link_to "<i class='icon-arrow-left'></i> Back to Stats & Entries".html_safe, active_facebook_page_giveaways_path(@page), class: "btn btn-large"
 
 
-- elsif giveaway.status == "Pending" 
+- elsif giveaway.status == "Pending"
 
   %header.giveaway.pending.thumbnail
     .image= image_tag(giveaway.image(:medium))

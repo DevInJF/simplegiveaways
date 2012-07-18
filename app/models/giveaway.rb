@@ -90,7 +90,7 @@ class Giveaway < ActiveRecord::Base
     storage: :s3,
     s3_credentials: S3_CREDENTIALS,
     path: "/:style/:id/:filename"
-    
+
   has_attached_file :feed_image,
     styles: {
       thumb: "111x74#",

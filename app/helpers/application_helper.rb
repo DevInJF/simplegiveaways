@@ -17,10 +17,6 @@ module ApplicationHelper
     session['uid'] || cookies[:fb_uid]
   end
 
-  def auth_class
-    current_user.present? ? "logged-in" : "logged-out"
-  end
-
   def flash_class(level)
     case level
     when :notice
@@ -34,14 +30,6 @@ module ApplicationHelper
     else
       "alert alert-info"
     end
-  end
-
-  def page_heading
-    content_for(:page_heading) || controller.controller_name
-  end
-
-  def sidebar_content
-    render(partial: "users/facebook_pages")
   end
 
   def datetime_mdy(datetime)
