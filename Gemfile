@@ -15,6 +15,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'cancan'
+gem 'gibbon'
 
 gem 'aws-sdk'
 gem 'paperclip'
