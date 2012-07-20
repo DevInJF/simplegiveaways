@@ -1,4 +1,6 @@
 //= require jquery
+//= require jquery-ui
+//= require vendor/jquery-ui-timepicker-addon
 //= require jquery_ujs
 //= require bootstrap-transition
 //= require bootstrap-alert

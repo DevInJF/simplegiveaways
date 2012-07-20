@@ -4,6 +4,8 @@ tmp/pids/*
 config/database.yml
 config/initializers/facebook.rb
 config/initializers/01_facebook.rb
+config/initializers/mandrill.rb
+config/initializers/02_mandrill.rb
 .idea/
 .idea/*
 /tmp/*

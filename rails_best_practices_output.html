@@ -57,7 +57,7 @@
       to see more useful Rails Best Practices.
     </p>
     <p>
-        Found 228 warnings.
+        Found 238 warnings.
     </p>
     <ul>
         <li>
@@ -85,10 +85,6 @@
             <label for="RemoveUnusedMethodsInControllersReview">RemoveUnusedMethodsInControllersReview</label>
         </li>
         <li>
-            <input type="checkbox" id="RemoveUnusedMethodsInModelsReview" value="RemoveUnusedMethodsInModelsReview" />
-            <label for="RemoveUnusedMethodsInModelsReview">RemoveUnusedMethodsInModelsReview</label>
-        </li>
-        <li>
             <input type="checkbox" id="LongLineCheck" value="LongLineCheck" />
             <label for="LongLineCheck">LongLineCheck</label>
         </li>
@@ -103,6 +99,51 @@
         <th>Line Number</th>
         <th>Warning Message</th>
       </tr>
+        <tr class="HashSyntaxReview">
+          <td class='filename'>
+              app/mailers/giveaway_notice_mailer.rb
+          </td>
+          <td class='line'>4</td>
+          <td class='message'>
+            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
+          </td>
+        </tr>
+        <tr class="HashSyntaxReview">
+          <td class='filename'>
+              app/mailers/giveaway_notice_mailer.rb
+          </td>
+          <td class='line'>10</td>
+          <td class='message'>
+            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
+          </td>
+        </tr>
+        <tr class="HashSyntaxReview">
+          <td class='filename'>
+              app/mailers/welcome_new_user_mailer.rb
+          </td>
+          <td class='line'>4</td>
+          <td class='message'>
+            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
+          </td>
+        </tr>
+        <tr class="HashSyntaxReview">
+          <td class='filename'>
+              config/environments/development.rb
+          </td>
+          <td class='line'>49</td>
+          <td class='message'>
+            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
+          </td>
+        </tr>
+        <tr class="HashSyntaxReview">
+          <td class='filename'>
+              config/environments/production.rb
+          </td>
+          <td class='line'>77</td>
+          <td class='message'>
+            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
+          </td>
+        </tr>
         <tr class="HashSyntaxReview">
           <td class='filename'>
               db/schema.rb
@@ -728,7 +769,7 @@
           <td class='filename'>
               app/views/layouts/application.html.haml
           </td>
-          <td class='line'>18</td>
+          <td class='line'>19</td>
           <td class='message'>
             <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
           </td>
@@ -749,6 +790,60 @@
           <td class='line'>4</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@entry use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/giveaways_controller.rb
+          </td>
+          <td class='line'>49</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/giveaways_controller.rb
+          </td>
+          <td class='line'>66</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/giveaways_controller.rb
+          </td>
+          <td class='line'>94</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/giveaways_controller.rb
+          </td>
+          <td class='line'>105</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/giveaways_controller.rb
+          </td>
+          <td class='line'>117</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@giveaway_hash use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/giveaways_controller.rb
+          </td>
+          <td class='line'>137</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (entry use_count > 4)</a>
           </td>
         </tr>
         <tr class="NeedlessDeepNestingReview">
@@ -787,33 +882,6 @@
             <a href='#' target='_blank'>remove unused methods (ApplicationController#current_user=)</a>
           </td>
         </tr>
-        <tr class="RemoveUnusedMethodsInModelsReview">
-          <td class='filename'>
-              app/models/giveaway.rb
-          </td>
-          <td class='line'>27</td>
-          <td class='message'>
-            <a href='#' target='_blank'>remove unused methods (Giveaway#completed)</a>
-          </td>
-        </tr>
-        <tr class="RemoveUnusedMethodsInModelsReview">
-          <td class='filename'>
-              app/models/giveaway.rb
-          </td>
-          <td class='line'>170</td>
-          <td class='message'>
-            <a href='#' target='_blank'>remove unused methods (Giveaway#delete_tab)</a>
-          </td>
-        </tr>
-        <tr class="RemoveUnusedMethodsInModelsReview">
-          <td class='filename'>
-              app/models/graph.rb
-          </td>
-          <td class='line'>9</td>
-          <td class='message'>
-            <a href='#' target='_blank'>remove unused methods (Graph#page_likes)</a>
-          </td>
-        </tr>
         <tr class="LongLineCheck">
           <td class='filename'>
               app/models/admin_user.rb
@@ -821,6 +889,15 @@
           <td class='line'>3</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (97 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              app/models/entry.rb
+          </td>
+          <td class='line'>25</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (93 characters)</a>
           </td>
         </tr>
         <tr class="LongLineCheck">
@@ -1070,7 +1147,7 @@
           <td class='filename'>
               app/models/identity.rb
           </td>
-          <td class='line'>83</td>
+          <td class='line'>88</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (82 characters)</a>
           </td>
@@ -1079,7 +1156,7 @@
           <td class='filename'>
               app/models/identity.rb
           </td>
-          <td class='line'>93</td>
+          <td class='line'>98</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (110 characters)</a>
           </td>
@@ -1088,7 +1165,7 @@
           <td class='filename'>
               app/models/identity.rb
           </td>
-          <td class='line'>106</td>
+          <td class='line'>111</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (125 characters)</a>
           </td>
@@ -1214,7 +1291,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>106</td>
+          <td class='line'>107</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (94 characters)</a>
           </td>
@@ -1223,7 +1300,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>107</td>
+          <td class='line'>108</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (81 characters)</a>
           </td>
@@ -1232,7 +1309,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>125</td>
+          <td class='line'>127</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (102 characters)</a>
           </td>
@@ -1241,7 +1318,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>126</td>
+          <td class='line'>128</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (93 characters)</a>
           </td>
@@ -1250,7 +1327,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>140</td>
+          <td class='line'>142</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (91 characters)</a>
           </td>
@@ -1259,7 +1336,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>144</td>
+          <td class='line'>146</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (139 characters)</a>
           </td>
@@ -1268,7 +1345,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>176</td>
+          <td class='line'>178</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (118 characters)</a>
           </td>
@@ -1277,7 +1354,7 @@
           <td class='filename'>
               app/controllers/giveaways_controller.rb
           </td>
-          <td class='line'>182</td>
+          <td class='line'>184</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (166 characters)</a>
           </td>
@@ -1442,6 +1519,51 @@
           <td class='line'>3</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (84 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              config/initializers/03_simple_form.rb
+          </td>
+          <td class='line'>48</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (93 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              config/initializers/03_simple_form.rb
+          </td>
+          <td class='line'>58</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (91 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              config/initializers/03_simple_form.rb
+          </td>
+          <td class='line'>70</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (90 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              config/initializers/03_simple_form.rb
+          </td>
+          <td class='line'>115</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (92 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              config/initializers/03_simple_form.rb
+          </td>
+          <td class='line'>118</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (83 characters)</a>
           </td>
         </tr>
         <tr class="LongLineCheck">
@@ -1757,51 +1879,6 @@
           <td class='line'>4</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (96 characters)</a>
-          </td>
-        </tr>
-        <tr class="LongLineCheck">
-          <td class='filename'>
-              config/initializers/simple_form.rb
-          </td>
-          <td class='line'>48</td>
-          <td class='message'>
-            <a href='' target='_blank'>line is longer than 80 characters (93 characters)</a>
-          </td>
-        </tr>
-        <tr class="LongLineCheck">
-          <td class='filename'>
-              config/initializers/simple_form.rb
-          </td>
-          <td class='line'>58</td>
-          <td class='message'>
-            <a href='' target='_blank'>line is longer than 80 characters (91 characters)</a>
-          </td>
-        </tr>
-        <tr class="LongLineCheck">
-          <td class='filename'>
-              config/initializers/simple_form.rb
-          </td>
-          <td class='line'>70</td>
-          <td class='message'>
-            <a href='' target='_blank'>line is longer than 80 characters (90 characters)</a>
-          </td>
-        </tr>
-        <tr class="LongLineCheck">
-          <td class='filename'>
-              config/initializers/simple_form.rb
-          </td>
-          <td class='line'>115</td>
-          <td class='message'>
-            <a href='' target='_blank'>line is longer than 80 characters (92 characters)</a>
-          </td>
-        </tr>
-        <tr class="LongLineCheck">
-          <td class='filename'>
-              config/initializers/simple_form.rb
-          </td>
-          <td class='line'>118</td>
-          <td class='message'>
-            <a href='' target='_blank'>line is longer than 80 characters (83 characters)</a>
           </td>
         </tr>
         <tr class="LongLineCheck">
@@ -2133,6 +2210,15 @@
               app/admin/dashboards.rb
           </td>
           <td class='line'>37</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/giveaways/_form.html.haml
+          </td>
+          <td class='line'>29</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
           </td>

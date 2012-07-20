@@ -44,16 +44,21 @@ class Identity < ActiveRecord::Base
   def create_or_login_user(auth)
     return "Logged in!" if user.present?
 
-    self.create_user(name: auth["info"]["name"])
-    self.user.roles = ['superadmin']
-    user.save ? "Logged in!" : "Something went wrong."
+    self.build_user(name: auth["info"]["name"], roles: ['superadmin'])
+
+    if user.save
+      WelcomeNewUserMailer.welcome(self.email).deliver
+      "Logged in!"
+    else
+      "Something went wrong."
+    end
   end
 
   def add_to_existing_user(current_user)
     if user == current_user
       "Already linked that account!"
     else
-      user = current_user
+      self.user = current_user
       "Successfully linked that account!"
     end
   end

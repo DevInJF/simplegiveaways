@@ -208,7 +208,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def viral_views
-    Impression.find(:all, conditions: ["message LIKE ?", "%ref_id: %"]).size
+    impressions.where("message LIKE ?", "%ref_id: %").size
   end
 
   def viral_like_count

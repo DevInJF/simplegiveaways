@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
 
-  attr_accessible :name, :roles_mask
+  attr_accessible :name, :roles, :roles_mask
 
   has_many :identities, dependent: :destroy
   has_and_belongs_to_many :facebook_pages

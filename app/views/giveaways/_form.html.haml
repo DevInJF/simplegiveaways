@@ -20,3 +20,11 @@
 
   .form-actions
     = f.button :submit, class: "btn-primary"
+
+:javascript
+  $(function() {
+    $('input.ui-datetime-picker').datetimepicker({
+      ampm: true,
+      dateFormat: 'D, dd M yy'
+    });
+  });

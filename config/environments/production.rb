@@ -71,4 +71,12 @@ Simplegiveaways::Application.configure do
 
   # Show the logging configuration on STDOUT
   config.show_log_configuration = false
+
+  # Mandrill Transactional Email
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25,
+    :user_name => ENV["MANDRILL_SENDER"],
+    :password  => ENV["MANDRILL_KEY"]
+  }
 end
