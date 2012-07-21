@@ -9,3 +9,12 @@
                                        use_short_month: true,
                                        include_blank: true,
                                        ampm: true
+
+:javascript
+  $(function() {
+    $('input.ui-datetime-picker').datetimepicker({
+      ampm: true,
+      dateFormat: 'D, dd M yy',
+      timeFormat: 'hh:mm TT'
+    });
+  });

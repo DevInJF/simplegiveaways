@@ -67,10 +67,10 @@
         %table.schedule
           %tr
             %td Start Time
-            %td= giveaway.start_date
+            %td= giveaway.start_date.to_formatted_s(:default)
           %tr
             %td End Time
-            %td= giveaway.end_date
+            %td= giveaway.end_date.to_formatted_s(:default)
   .row.row2
     .column_left
       %section.detail.terms
