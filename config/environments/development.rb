@@ -13,10 +13,6 @@ Simplegiveaways::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -36,19 +32,24 @@ Simplegiveaways::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # logging-rails
-
   # Set the logging destination(s)
   config.log_to = %w[stdout file]
 
   # Show the logging configuration on STDOUT
   config.show_log_configuration = true
 
-  # Mandrill Transactional Email
-  config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 25,
-    :user_name => ENV["MANDRILL_SENDER"],
-    :password  => ENV["MANDRILL_KEY"]
-  }
+  config.action_mailer.default_url_options = { :host => 'simplegiveaways.com' }
+  config.action_mailer.delivery_method     = :smtp
+  config.action_mailer.perform_deliveries  = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+
+  Simplegiveaways::Application.configure do
+    config.action_mailer.smtp_settings = {
+      :address   => 'smtp.mandrillapp.com',
+      :port      => 587,
+      :user_name => ENV['MANDRILL_USERNAME'],
+      :password  => ENV['MANDRILL_KEY']
+    }
+  end
 end
