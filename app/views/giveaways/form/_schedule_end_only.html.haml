@@ -1,9 +1,9 @@
 %p.fieldset-help
   %i.icon-info-sign
   Modify the ending time for this giveaway.
-= f.input :end_date, as: :datetime, input_html: { class: "input-mini" },
+= f.input :end_date, as: :ui_date_time_picker, input_html: { class: "input-mini" },
                                        label: "End Date/Time",
-                                       start_year: Date.today.year,
+                                       start_year: Date.today.year - 1,
                                        end_year: Date.today.year + 5,
                                        order: [:month, :day, :year],
                                        use_short_month: true,
