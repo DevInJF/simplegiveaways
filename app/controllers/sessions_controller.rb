@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
-  before_filter :set_juggernaut_token, only: [:create]
   after_filter  :set_session_vars, only: [:create]
 
   def create
@@ -29,18 +28,15 @@ class SessionsController < ApplicationController
     else
       flash[:success] = "Logged out!"
     end
+    cookies.delete :'_sg-just_logged_in'
     cookies.delete :fb_uid
     redirect_to root_url
   end
 
   private
 
-  def set_juggernaut_token
-    @jug = session['jug'] = Juggernaut.create_key("users#show")
-  end
-
   def set_session_vars
-    if @identity.process_login(DateTime.now, @jug)
+    if @identity.process_login(DateTime.now, session['_csrf_token'])
       self.current_user = @identity.user
     end
 

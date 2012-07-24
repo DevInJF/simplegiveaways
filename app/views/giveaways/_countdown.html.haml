@@ -1,0 +1,14 @@
+.countdown-timer
+  %p
+    %span Ends in
+    %span#weeks.time
+    %span.text Weeks,
+    %span#daysLeft.time
+    %span.text Days,
+    %span#hours.time
+    %span.text Hours, and
+    %span#minutes.time
+    %span.text Minutes
+
+:javascript
+  simpleGiveaways["active_giveaway"]["countdown_target"] = '#{@giveaways.countdown_target}'

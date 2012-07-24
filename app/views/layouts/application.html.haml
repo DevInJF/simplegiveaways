@@ -4,23 +4,30 @@
     %meta{charset: "utf-8"}
     %title Simple Giveaways
     %meta{content: "", name: "description"}
-    %meta{content: "", name: "author"}
 
     = javascript_include_tag "http://#{current_host_url}:8080/application.js"
+
     /[if lt IE 9]
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+
     /[if lte IE 8]
-      <script src="http://#{current_host_url}/assets/vendor/excanvas.js"></script>
+      = javascript_include_tag "vendor/excanvas.js"
       = stylesheet_link_tag  "jquery-ui-bootstrap/jquery.ui.1.8.16.ie.css"
+
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
+
     = csrf_meta_tags
+
   %body.application{ class: body_class }
+
+    = render "shared/init_globals"
+
     #fb-root.logged-in{ :'data-uid' => uid_class }
+
     .site_wrapper
       = render "layouts/header"
       = render "layouts/page_header"
       = render "layouts/sidebar", page: @page, giveaway: @giveaway, user: @user
       = render "layouts/content"
       = render "layouts/footer"
-    = javascript_include_tag "auth"

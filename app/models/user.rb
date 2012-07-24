@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
     identities.find(:all, order: "logged_in_at desc", limit: 1).first.avatar
   end
 
+  def fb_uid
+    identities.where("provider = ?", "facebook").first.uid
+  end
+
   def fb_token
     identities.where("provider = ?", "facebook").first.token
   end

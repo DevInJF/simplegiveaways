@@ -284,6 +284,10 @@ class Giveaway < ActiveRecord::Base
     Giveaway.image_dimensions(image(:tab))[:height].to_i + 65
   end
 
+  def countdown_target
+    end_date.strftime("%m/%d/%Y %H:%M:%S")
+  end
+
   class << self
 
     def image_dimensions(img_url)

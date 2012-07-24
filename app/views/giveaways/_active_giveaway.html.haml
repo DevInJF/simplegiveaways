@@ -12,17 +12,7 @@
         = link_to "<i class='icon-remove icon-white'></i> Yes End The Giveaway Now".html_safe, end_facebook_page_giveaway_path(page, giveaway), class: "btn btn-xlarge"
         %p If you want to only modify the end time of the giveaway click here to view and edit the giveaway details.
 
-  .countdown-timer
-    %p
-      %span Ends in
-      %span#weeks.time
-      %span.text Weeks,
-      %span#daysLeft.time
-      %span.text Days,
-      %span#hours.time
-      %span.text Hours, and
-      %span#minutes.time
-      %span.text Minutes
+  = render 'giveaways/countdown', giveaway: giveaway
 
 %header.giveaway.active.thumbnail
   .meta
@@ -37,25 +27,3 @@
 = render 'stats', giveaway: giveaway
 = render 'graphs', giveaway: giveaway, page: page, flot: flot
 = render 'entries', giveaway: giveaway, page: page
-
-:javascript
-  $(function() {
-
-    var currentDate = new Date();
-    $('div.countdown-timer').countdown("#{giveaway.end_date.strftime("%m/%d/%Y %H:%M:%S")}", function(event) {
-      var $this = $(this);
-      switch(event.type) {
-        case "seconds":
-        case "minutes":
-        case "hours":
-        case "days":
-        case "weeks":
-        case "daysLeft":
-          $this.find('span#'+event.type).html(event.value);
-          break;
-        case "finished":
-          $this.fadeTo('slow', .5);
-          break;
-      }
-    });
-  });

@@ -2,10 +2,6 @@
 class UsersController < ApplicationController
 
   def show
-    if @user = current_user
-      @key = session['jug']
-    else
-      redirect_to root_path
-    end
+    redirect_to root_path unless @user = current_user
   end
 end
