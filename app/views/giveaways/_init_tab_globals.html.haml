@@ -1,0 +1,14 @@
+:javascript
+  simpleGiveaways = {
+
+    config: {
+      fb_app_id: '#{FB_APP_ID}'
+    },
+
+    giveaway_hash: #{giveaway_hash.to_json},
+
+    paths: {
+      likes: '#{likes_path}',
+      giveaway_entry: '#{facebook_page_giveaway_entries_path(giveaway_hash.current_page, giveaway_hash.giveaway.id)}'
+    }
+  }

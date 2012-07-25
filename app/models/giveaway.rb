@@ -8,7 +8,7 @@ class Giveaway < ActiveRecord::Base
                   :facebook_page_id, :image, :feed_image, :custom_fb_tab_name,
                   :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog,
                   :allow_multi_entries, :email_required, :bonus_value, :_total_shares,
-                  :_total_wall_posts, :_total_requests, :_total_conversions, :_views,
+                  :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views,
                   :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count,
                   :_entry_count, :_entry_rate, :_conversion_rate
 
@@ -67,7 +67,7 @@ class Giveaway < ActiveRecord::Base
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
                                  :_total_requests,
-                                 :_total_conversions,
+                                 :_viral_entry_count,
                                  :_views,
                                  :_uniques,
                                  :_viral_views,
@@ -194,9 +194,8 @@ class Giveaway < ActiveRecord::Base
     all_requests.inject(:+) || 0
   end
 
-  def total_conversions
-    all_conversions = entries.collect(&:convert_count)
-    all_conversions.inject(:+) || 0
+  def viral_entry_count
+    entries.where("ref_ids IS NOT ?", nil).size
   end
 
   def views
@@ -216,7 +215,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def viral_likes
-    likes.where("entry_id != 0")
+    likes.where("ref_ids != '[]'")
   end
 
   def likes_from_entries_count
@@ -252,13 +251,13 @@ class Giveaway < ActiveRecord::Base
   end
 
   def entry_rate
-    entry_count > 0 ? "#{((uniques.to_f / entry_count.to_f) * 100).round(2)}%" : "N/A"
+    entry_count > 0 ? "#{((entry_count.to_f / uniques.to_f) * 100).round(2)}%" : "N/A"
   rescue StandardError
     0
   end
 
   def conversion_rate
-    entry_count > 0 ? "#{((total_conversions.to_f / (total_shares.to_f)) * 100).round(2)}%" : "N/A"
+    entry_count > 0 ? "#{((viral_entry_count.to_f / (total_shares.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     0
   end
@@ -267,7 +266,7 @@ class Giveaway < ActiveRecord::Base
     self._total_shares = total_shares
     self._total_wall_posts = total_wall_posts
     self._total_requests = total_requests
-    self._total_conversions = total_conversions
+    self._viral_entry_count = viral_entry_count
     self._views = views
     self._uniques = uniques
     self._viral_views = viral_views
@@ -290,6 +289,10 @@ class Giveaway < ActiveRecord::Base
 
   class << self
 
+    def cookie_key(id)
+      "_sg_gid_#{id}".to_sym
+    end
+
     def image_dimensions(img_url)
       dimensions = Paperclip::Geometry.from_file(img_url).to_s.split("x") rescue []
       { width: dimensions[0], height: dimensions[1] }
@@ -305,10 +308,21 @@ class Giveaway < ActiveRecord::Base
         referrer_id: referrer_id,
         has_liked: signed_request["page"]["liked"],
         current_page: current_page,
-        giveaway: giveaway,
+        giveaway: giveaway.tab_attrs,
         tab_height: giveaway.tab_height
       })
     end
+  end
+
+  def tab_attrs
+    OpenStruct.new({
+      id: id,
+      title: title,
+      description: description,
+      giveaway_url: giveaway_url,
+      image_url: self.image.url(:tab),
+      feed_image_url: self.feed_image.url
+    })
   end
 
   private

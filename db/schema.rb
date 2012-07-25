@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718163521) do
+ActiveRecord::Schema.define(:version => 20120725035112) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120718163521) do
     t.string   "uid"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
+    t.text     "ref_ids"
   end
 
   add_index "entries", ["email", "giveaway_id"], :name => "index_entries_on_email_and_giveaway_id", :unique => true
@@ -175,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20120718163521) do
     t.integer  "giveaway_id", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "ref_ids"
   end
 
   add_index "likes", ["entry_id"], :name => "index_likes_on_entry_id"

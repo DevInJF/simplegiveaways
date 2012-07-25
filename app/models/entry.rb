@@ -12,17 +12,22 @@ class Entry < ActiveRecord::Base
 
   validates :email, uniqueness: { scope: :giveaway_id }
 
-  attr_accessor :referer_id
+  attr_accessor :referrer_id
 
   def process(*args)
     options = args.extract_options!
 
-    @referer_id = options[:referrer_id]
+    @cookie = options[:cookie]
+    @referrer_id = options[:referrer_id]
 
     graph = Koala::Facebook::API.new(options[:access_token])
     profile = graph.get_object("me")
 
     @existing_entry = Entry.find_by_uid_and_giveaway_id(profile["id"], options[:giveaway_id])
+
+    logger.debug(@cookie.inspect.cyan)
+    logger.debug(@referrer_id.inspect.red)
+    logger.debug(@existing_entry.inspect.white)
 
     unless @existing_entry
 
@@ -32,9 +37,11 @@ class Entry < ActiveRecord::Base
       self.fb_url = profile["link"]
       self.datetime_entered = DateTime.now
 
+      self.ref_ids = @cookie.ref_ids.push(referrer_id).uniq if referrer_id != "[]"
+
       status = self.determine_status(options[:has_liked], options[:access_token]).has_liked
 
-      EntryConversionWorker.perform_async(status, referer_id) if status
+      EntryConversionWorker.perform_async(status, @referrer_id, @cookie) if status
 
       @entry = self
     end

@@ -9,7 +9,7 @@ Logging.color_scheme('bright',
   },
   date: :blue,
   logger: :cyan,
-  message: :magenta
+  message: :white
 )
 
 Logging.appenders.stdout(
@@ -28,8 +28,17 @@ Logging.appenders.file(
   )
 )
 
+Logging.appenders.file(
+  'log/development.log',
+  layout: Logging.layouts.pattern(
+      pattern: '[%d] %-5l %c: %m\n',
+      color_scheme: 'bright'
+  )
+)
+
 $log = Logging.logger['SGA']
 $log.add_appenders(
     Logging.appenders.stdout,
-    Logging.appenders.file("#{Rails.root}/log/development/debug.log")
+    Logging.appenders.file("#{Rails.root}/log/development/debug.log"),
+    Logging.appenders.file("#{Rails.root}/log/development.log")
 )

@@ -9,7 +9,11 @@ class GiveawaysController < ApplicationController
   before_filter :assign_page, only: [:active, :pending, :completed, :new, :create]
   before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries]
   before_filter :explicit_fb_auth_check, only: [:start, :end, :update]
+
   after_filter  :sync_meta_to_fb, only: [:update]
+  after_filter  :register_impression, only: [:tab]
+  after_filter  :set_giveaway_cookie, only: [:tab]
+  after_filter  :register_viral_like, only: [:tab]
 
   def index
     @giveaways = Giveaway.all
@@ -92,6 +96,7 @@ class GiveawaysController < ApplicationController
   end
 
   def start
+    logger.debug(params.inspect.red_on_white)
     if @giveaway.publish(flash[:giveaway])
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
@@ -103,6 +108,7 @@ class GiveawaysController < ApplicationController
   end
 
   def end
+    logger.debug(params.inspect.green_on_white)
     if @giveaway.update_attributes(end_date: DateTime.now, active: false)
       flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
@@ -124,8 +130,9 @@ class GiveawaysController < ApplicationController
       if @giveaway_hash.giveaway.nil?
         redirect_to "/404.html"
       else
-        @message = @giveaway_hash.referrer_id.present? ? "ref_id: #{@giveaway_hash.referrer_id}" : nil
-        impressionist(@giveaway_hash.giveaway, message: "#{@message}", filter: :session_hash)
+        @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
+        @giveaway_cookie = GiveawayCookie.new( cookies[Giveaway.cookie_key(@giveaway.id)] )
+
         render layout: "tab"
       end
 
@@ -166,23 +173,49 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find(params[:id])
   end
 
+  def register_impression
+    @message = @giveaway_hash.referrer_id.present? ? "ref_id: #{@giveaway_hash.referrer_id}" : nil
+    impressionist(@giveaway, message: "#{@message}", filter: :session_hash)
+  end
+
+  def register_viral_like
+    if @giveaway_cookie.is_fan && @giveaway_cookie.wasnt_fan
+      Like.create_from_cookie(@giveaway_cookie)
+    end
+  end
+
+  def set_giveaway_cookie
+    logger.debug(@giveaway_cookie.inspect.white_on_red)
+    key = Giveaway.cookie_key(@giveaway_hash.giveaway.id)
+    @giveaway_cookie.update_cookie(@giveaway_hash)
+    logger.debug(@giveaway_cookie.inspect.white_on_red)
+    logger.debug(@giveaway_cookie.as_json.inspect.cyan)
+    cookies[key] = @giveaway_cookie.to_json
+  end
+
   def explicit_fb_auth_check
     unless request.url.include? "callback"
 
       flash[:giveaway] = params[:giveaway]
       @giveaway = Giveaway.find(params[:id])
 
-      @url = if params[:action] == "update"
-               reauth_url(callback: "facebook", id: params[:id])
-             else
-               url_for controller: params[:controller], action: params[:action], callback: "facebook", id: params[:id]
-             end
+      @url = redirect_url_from_action
 
-      if (params[:action] == "update" && @giveaway.active?) ||
-          %w(start end).include?(params[:action])
-
-        redirect_to "https://graph.facebook.com/oauth/authorize?client_id=#{FB_APP_ID}&auth_type=reauthenticate&redirect_uri=#{@url}&auth_nonce=#{rand(999999999999)}"
+      if (params[:action] == "update" && @giveaway.active?) || %w(start end).include?(params[:action])
+        redirect_to composed_reauth_url
       end
+    end
+  end
+
+  def composed_reauth_url
+    "https://graph.facebook.com/oauth/authorize?client_id=#{FB_APP_ID}&auth_type=reauthenticate&redirect_uri=#{@url}&auth_nonce=#{rand(999999999999)}"
+  end
+
+  def redirect_url_from_action
+    if params[:action] == "update"
+      reauth_url(callback: "facebook", id: params[:id])
+    else
+      url_for controller: params[:controller], action: params[:action], callback: "facebook", id: params[:id]
     end
   end
 end
