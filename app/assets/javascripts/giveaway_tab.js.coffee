@@ -6,6 +6,7 @@ jQuery ->
   giveaway_object = giveaway_hash.giveaway.table
   paths = _sg.paths
 
+  $new_session = null
   $entry_id = null
   $request_count = null
   $wall_post_count = null
@@ -41,15 +42,19 @@ jQuery ->
 
         Giveaway.onLike()
 
-    $("#enter_giveaway a").click (e) ->
-      if Giveaway.eligible or $just_liked
-        Giveaway.entry.eligible()
-      else
-        Giveaway.modal.show()
-        Giveaway.step.two.find("a").click (e) ->
-          e.preventDefault()
-          Giveaway.entry.statusCheck()
-      e.preventDefault()
+      $("#enter_giveaway a").click (e) ->
+        console.log(Giveaway.eligible)
+        if Giveaway.eligible or $just_liked
+          console.log(Giveaway.eligible)
+          console.log($just_liked)
+          Giveaway.entry.eligible()
+        else
+          Giveaway.modal.show()
+        e.preventDefault()
+
+      Giveaway.step.two.find("a").live "click", (e) ->
+        e.preventDefault()
+        Giveaway.entry.statusCheck()
 
     console.log(Giveaway.eligible)
 
@@ -146,11 +151,12 @@ jQuery ->
                 Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
 
       eligible: ->
+        console.log("entry.eligible #{$new_session}")
         Giveaway.entry.loader()
-        if typeof ($new_session) is "undefined"
-          Giveaway.entry.statusCheck()
-        else
+        if $new_session?
           Giveaway.entry.submit $new_session, true
+        else
+          Giveaway.entry.statusCheck()
 
     share:
       listener: ->

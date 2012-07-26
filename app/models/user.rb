@@ -11,11 +11,11 @@ class User < ActiveRecord::Base
   end
 
   def fb_uid
-    identities.where("provider = ?", "facebook").first.uid
+    identities.where("provider = 'facebook'").first.uid
   end
 
   def fb_token
-    identities.where("provider = ?", "facebook").first.token
+    identities.where("provider = 'facebook'").first.token
   end
 
   ROLES = %w[superadmin admin team restricted banned]
