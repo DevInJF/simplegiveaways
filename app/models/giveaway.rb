@@ -195,7 +195,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def viral_entry_count
-    entries.where("ref_ids IS NOT ?", nil).size
+    entries.where("ref_ids != '--- []\n'").size
   end
 
   def views
@@ -215,11 +215,15 @@ class Giveaway < ActiveRecord::Base
   end
 
   def viral_likes
-    likes.where("ref_ids != '[]'")
+    likes.where("ref_ids != '--- []\n'")
   end
 
   def likes_from_entries_count
-    likes.size
+    likes_from_entries.size
+  end
+
+  def likes_from_entries
+    likes.where("entry_id IS NOT ?", nil)
   end
 
   def page_likes_while_active

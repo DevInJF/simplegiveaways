@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = @giveaway.entries.new
-
+    Rails.logger.debug(params[:ref_id].inspect.white)
     if params[:access_token]
       @entry = @entry.process(
         has_liked: params[:has_liked],

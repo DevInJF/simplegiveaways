@@ -13,7 +13,6 @@ class GiveawaysController < ApplicationController
   after_filter  :sync_meta_to_fb, only: [:update]
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
-  after_filter  :register_viral_like, only: [:tab]
 
   def index
     @giveaways = Giveaway.all
@@ -131,7 +130,20 @@ class GiveawaysController < ApplicationController
         redirect_to "/404.html"
       else
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
-        @giveaway_cookie = GiveawayCookie.new( cookies[Giveaway.cookie_key(@giveaway.id)] )
+
+        logger.debug(last_giveaway_cookie.inspect.white_on_magenta)
+
+        @giveaway_cookie = GiveawayCookie.new( last_giveaway_cookie )
+        @giveaway_cookie.giveaway_id = @giveaway.id
+        @giveaway_cookie.update_cookie(@giveaway_hash)
+
+        logger.debug(@giveaway_cookie.inspect.magenta_on_white)
+
+        if @giveaway_cookie.uncounted_viral_like
+          if Like.create_from_cookie(@giveaway_cookie)
+            @giveaway_cookie.like_counted = true
+          end
+        end
 
         render layout: "tab"
       end
@@ -174,22 +186,17 @@ class GiveawaysController < ApplicationController
   end
 
   def register_impression
-    @message = @giveaway_hash.referrer_id.present? ? "ref_id: #{@giveaway_hash.referrer_id}" : nil
+    @message = @giveaway_hash.referrer_id.is_a?(String) ? "ref_id: #{@giveaway_hash.referrer_id}" : nil
     impressionist(@giveaway, message: "#{@message}", filter: :session_hash)
   end
 
-  def register_viral_like
-    if @giveaway_cookie.is_fan && @giveaway_cookie.wasnt_fan
-      Like.create_from_cookie(@giveaway_cookie)
-    end
+  def last_giveaway_cookie
+    cookies[Giveaway.cookie_key(@giveaway.id)] rescue nil
   end
 
   def set_giveaway_cookie
-    logger.debug(@giveaway_cookie.inspect.white_on_red)
     key = Giveaway.cookie_key(@giveaway_hash.giveaway.id)
-    @giveaway_cookie.update_cookie(@giveaway_hash)
-    logger.debug(@giveaway_cookie.inspect.white_on_red)
-    logger.debug(@giveaway_cookie.as_json.inspect.cyan)
+    logger.debug(@giveaway_cookie.to_json.inspect.white_on_green)
     cookies[key] = @giveaway_cookie.to_json
   end
 

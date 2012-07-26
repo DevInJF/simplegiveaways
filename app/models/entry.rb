@@ -3,7 +3,7 @@ class Entry < ActiveRecord::Base
 
   attr_accessible :email, :has_liked, :name, :fb_url, :datetime_entered,
                   :wall_post_count, :request_count, :convert_count,
-                  :status, :uid
+                  :status, :uid, :ref_ids, :referrer_id
 
   has_many :audits, as: :auditable
 
@@ -14,11 +14,13 @@ class Entry < ActiveRecord::Base
 
   attr_accessor :referrer_id
 
+  serialize :ref_ids, Array
+
   def process(*args)
     options = args.extract_options!
 
     @cookie = options[:cookie]
-    @referrer_id = options[:referrer_id]
+    @referrer_id = options[:referrer_id].blank? ? nil : options[:referrer_id].to_i
 
     graph = Koala::Facebook::API.new(options[:access_token])
     profile = graph.get_object("me")
@@ -37,11 +39,11 @@ class Entry < ActiveRecord::Base
       self.fb_url = profile["link"]
       self.datetime_entered = DateTime.now
 
-      self.ref_ids = @cookie.ref_ids.push(referrer_id).uniq if referrer_id != "[]"
+      self.ref_ids = @referrer_id ? @cookie.ref_ids.push(@referrer_id).uniq : []
 
       status = self.determine_status(options[:has_liked], options[:access_token]).has_liked
 
-      EntryConversionWorker.perform_async(status, @referrer_id, @cookie) if status
+      EntryConversionWorker.perform_async(status, ref_ids, @cookie) if status && ref_ids.any?
 
       @entry = self
     end

@@ -3,6 +3,7 @@ class LikesController < ApplicationController
   before_filter :assign_giveaway_cookie, only: [:create]
 
   def create
+    Rails.logger.debug("LIKESCONTROLLER\n\n\n\n\AAAAH".inspect.white)
     if Like.create_from_cookie(@giveaway_cookie)
       head :ok
     else
