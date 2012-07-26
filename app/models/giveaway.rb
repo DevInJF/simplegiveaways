@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
+require 'csv'
+
 class Giveaway < ActiveRecord::Base
 
   is_impressionable
@@ -107,6 +109,18 @@ class Giveaway < ActiveRecord::Base
 
   def graph_client
     @graph ||= Koala::Facebook::API.new(facebook_page.token)
+  end
+
+  def csv
+    CSV.generate do |csv|
+      # header row
+      csv << ["ID", "email", "Name", "Entry Time", "Wall Posts", "Requests", "Conversions"]
+
+      # data rows
+      entries.each do |entry|
+        csv << [entry.id, entry.email, entry.name, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count]
+      end
+    end
   end
 
   def publish(giveaway_params)

@@ -41,6 +41,18 @@ jQuery ->
 
         Giveaway.onLike()
 
+    $("#enter_giveaway a").click (e) ->
+      if Giveaway.eligible or $just_liked
+        Giveaway.entry.eligible()
+      else
+        Giveaway.modal.show()
+        Giveaway.step.two.find("a").click (e) ->
+          e.preventDefault()
+          Giveaway.entry.statusCheck()
+      e.preventDefault()
+
+    console.log(Giveaway.eligible)
+
   Giveaway =
 
     modal: $modal
@@ -198,15 +210,3 @@ jQuery ->
           data:
             referrer_id: $entry_id.toString()
             giveaway_id: "#{giveaway_object.id}"
-
-  $("#enter_giveaway a").click (e) ->
-    if Giveaway.eligible or $just_liked
-      Giveaway.entry.eligible()
-    else
-      Giveaway.modal.show()
-      Giveaway.step.two.find("a").click (e) ->
-        e.preventDefault()
-        Giveaway.entry.statusCheck()
-    e.preventDefault()
-
-  console.log(Giveaway.eligible)

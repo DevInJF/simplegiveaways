@@ -1,6 +1,4 @@
 # -*- encoding : utf-8 -*-
-require 'csv'
-
 class GiveawaysController < ApplicationController
 
   load_and_authorize_resource :facebook_page, except: [:tab]
@@ -133,7 +131,7 @@ class GiveawaysController < ApplicationController
 
         logger.debug(last_giveaway_cookie.inspect.white_on_magenta)
 
-        @giveaway_cookie = GiveawayCookie.new( last_giveaway_cookie )
+        @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)
         @giveaway_cookie.giveaway_id = @giveaway.id
         @giveaway_cookie.update_cookie(@giveaway_hash)
 
@@ -154,19 +152,7 @@ class GiveawaysController < ApplicationController
   end
 
   def export_entries
-    @entries = @giveaway.entries
-
-    entries_csv = CSV.generate do |csv|
-      # header row
-      csv << ["ID", "email", "Name", "Entry Time", "Wall Posts", "Requests", "Conversions"]
-
-      # data rows
-      @entries.each do |entry|
-        csv << [entry.id, entry.email, entry.name, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count]
-      end
-    end
-
-    send_data(entries_csv, type: 'text/csv', filename: 'entries_export.csv')
+    send_data(@giveaway.csv, type: 'text/csv', filename: 'entries_export.csv')
   end
 
   def sync_meta_to_fb
