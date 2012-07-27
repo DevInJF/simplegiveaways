@@ -41,6 +41,6 @@ class SessionsController < ApplicationController
     end
 
     session['uid'] = @identity.uid
-    cookies[:fb_uid] = { value: @identity.uid, expires: Time.now + 1800 }
+    cookies.encrypted[:fb_uid] = { value: @identity.uid, expires: Time.now + 1800 }
   end
 end

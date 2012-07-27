@@ -1,10 +1,13 @@
 class GiveawayCookie
 
-  attr_accessor :giveaway_id, :ref_ids, :wasnt_fan, :is_fan, :like_counted
+  attr_accessor :uid, :giveaway_id, :ref_ids, :entry_id,
+                :wasnt_fan, :is_fan, :like_counted
 
   def initialize(cookie=nil)
     @last_cookie = deserialize_cookie(cookie)
     logger.debug(@last_cookie.inspect.white_on_magenta)
+    @uid = @last_cookie["uid"]
+    @entry_id = @last_cookie["entry_id"]
     @giveaway_id = @last_cookie["giveaway_id"]
     @ref_ids = @last_cookie["ref_ids"] ? @last_cookie["ref_ids"] : []
     @wasnt_fan ||= @last_cookie["wasnt_fan"]
@@ -12,8 +15,12 @@ class GiveawayCookie
     @like_counted ||= @last_cookie["like_counted"] || false
   end
 
-  def uncounted_viral_like
-    !!is_fan && !!wasnt_fan && !like_counted
+  def uncounted_like
+    !!is_fan && !!wasnt_fan && !like_counted && belongs_to_user
+  end
+
+  def belongs_to_user
+    uid == @last_cookie["uid"]
   end
 
   def update_cookie(giveaway_hash)
@@ -31,14 +38,18 @@ class GiveawayCookie
       self.wasnt_fan = true
       self.is_fan = false
     end
+
+    self.uid = giveaway_hash.fb_uid
   end
 
-  def as_json(options={ })
-    { :giveaway_id => giveaway_id,
-      :ref_ids => ref_ids,
-      :wasnt_fan => wasnt_fan,
-      :is_fan => is_fan,
-      :like_counted => like_counted }
+  def as_json(options={})
+    { uid: uid,
+      entry_id: entry_id,
+      giveaway_id: giveaway_id,
+      ref_ids: ref_ids,
+      wasnt_fan: wasnt_fan,
+      is_fan: is_fan,
+      like_counted: like_counted }
   end
 
   private

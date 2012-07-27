@@ -137,7 +137,7 @@ class GiveawaysController < ApplicationController
 
         logger.debug(@giveaway_cookie.inspect.magenta_on_white)
 
-        if @giveaway_cookie.uncounted_viral_like
+        if @giveaway_cookie.uncounted_like
           if Like.create_from_cookie(@giveaway_cookie)
             @giveaway_cookie.like_counted = true
           end
@@ -177,13 +177,13 @@ class GiveawaysController < ApplicationController
   end
 
   def last_giveaway_cookie
-    cookies[Giveaway.cookie_key(@giveaway.id)] rescue nil
+    cookies.encrypted[Giveaway.cookie_key(@giveaway.id)] rescue nil
   end
 
   def set_giveaway_cookie
     key = Giveaway.cookie_key(@giveaway_hash.giveaway.id)
     logger.debug(@giveaway_cookie.to_json.inspect.white_on_green)
-    cookies[key] = @giveaway_cookie.to_json
+    cookies.encrypted[key] = @giveaway_cookie.to_json
   end
 
   def explicit_fb_auth_check
@@ -193,6 +193,8 @@ class GiveawaysController < ApplicationController
       @giveaway = Giveaway.find(params[:id])
 
       @url = redirect_url_from_action
+
+      logger.debug(params.inspect.yellow)
 
       if (params[:action] == "update" && @giveaway.active?) || %w(start end).include?(params[:action])
         redirect_to composed_reauth_url

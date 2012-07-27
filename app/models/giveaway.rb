@@ -237,7 +237,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def likes_from_entries
-    likes.where("entry_id IS NOT ?", nil)
+    likes.where("from_entry IS TRUE")
   end
 
   def page_likes_while_active
@@ -322,7 +322,9 @@ class Giveaway < ActiveRecord::Base
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
       giveaway = current_page.giveaways.detect(&:active?)
 
+      logger.debug(signed_request.inspect.magenta_on_white)
       OpenStruct.new({
+        fb_uid: signed_request["user_id"],
         referrer_id: referrer_id,
         has_liked: signed_request["page"]["liked"],
         current_page: current_page,

@@ -89,6 +89,9 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    encrypted-cookies (1.0)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
     erb2haml (0.1.2)
       haml
       hpricot
@@ -318,6 +321,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.1)
   colored
+  encrypted-cookies
   erb2haml
   factory_girl_rails
   faker

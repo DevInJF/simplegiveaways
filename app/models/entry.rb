@@ -39,7 +39,11 @@ class Entry < ActiveRecord::Base
       self.fb_url = profile["link"]
       self.datetime_entered = DateTime.now
 
-      self.ref_ids = @referrer_id ? @cookie.ref_ids.push(@referrer_id).uniq : []
+      if @cookie.belongs_to_user && @referrer_id
+        self.ref_ids = @cookie.ref_ids.push(@referrer_id).uniq
+      else
+        self.ref_ids = [@referrer_id].compact
+      end
 
       status = self.determine_status(options[:has_liked], options[:access_token]).has_liked
 
