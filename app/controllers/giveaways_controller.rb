@@ -100,7 +100,8 @@ class GiveawaysController < ApplicationController
       GiveawayNoticeMailer.start(current_user.identities.first.email).deliver
     else
       flash[:error] = "There was a problem activating #{@giveaway.title}."
-      redirect_to facebook_page_giveaways_url(@giveaway.facebook_page)
+      logger.debug(@giveaway.errors.inspect.red_on_white)
+      redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
 

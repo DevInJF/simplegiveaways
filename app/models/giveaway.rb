@@ -63,7 +63,6 @@ class Giveaway < ActiveRecord::Base
   validate :unchanged_active_start_date, on: :update
   validate :end_in_future
   validate :start_in_future
-  validate :pending_start_in_future
 
 
   store :analytics, accessors: [ :_total_shares,
@@ -362,15 +361,9 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
-  def pending_start_in_future
-    if pending? && start_date.present? && (start_date < (Time.now - 5.minutes))
-      errors.add(:start_date, "must be in the future.")
-    end
-  end
-
   def start_in_future
-    if start_date < Time.now
-      errors.add(:start_date, "must be in the future.")
+    if start_date.present? && (start_date < (Time.now - 5.minutes))
+      errors.add(:start_date, "must be in the future.SIF")
     end
   end
 
