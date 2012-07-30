@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_user
-    @current_user ||= (User.find_by_id(session[:user_id]) || Identity.find_by_uid(cookies[:fb_uid]).user if cookies[:fb_uid])
+    @current_user ||= (User.find_by_id(session[:user_id]) || Identity.find_by_uid(cookies.encrypted[:fb_uid]).user if cookies[:fb_uid])
   end
 
   def signed_in?
