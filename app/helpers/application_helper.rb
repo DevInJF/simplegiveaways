@@ -5,8 +5,12 @@ module ApplicationHelper
     request.env['HTTP_HOST']
   end
 
-  def active_nav_item(item)
-    controller.action_name == "#{item}" ? "active" : ""
+  def active_nav_item(item, giveaway=nil)
+    if giveaway.present?
+      giveaway.status.downcase == item.downcase ? "active" : ""
+    else
+      controller.action_name == "#{item}" ? "active" : ""
+    end
   end
 
   def body_class

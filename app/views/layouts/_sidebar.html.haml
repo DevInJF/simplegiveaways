@@ -9,17 +9,13 @@
     %p.page_subtitle #{page.likes} Likes
     %nav
       %ul.nav.nav-list
-        %li{class: active_nav_item("active")}
+        %li{class: active_nav_item("active", giveaway)}
           = link_to "<i class='icon-star'></i> Active".html_safe, active_facebook_page_giveaways_path(page)
       %ul.nav.nav-list
-        %li{class: active_nav_item("pending")}
+        %li{class: active_nav_item("pending", giveaway)}
           = link_to "<i class='icon-inbox'></i> Pending".html_safe, pending_facebook_page_giveaways_path(page)
-        %li{class: active_nav_item("completed")}
+        %li{class: active_nav_item("completed", giveaway)}
           = link_to "<i class='icon-ok'></i> Completed".html_safe, completed_facebook_page_giveaways_path(page)
-        / %li
-        /   %a{ href: "#page_stats", :"data-toggle" => "tab"}
-        /     %i.icon-signal
-        /     Page Stats
 
       %a{ href: new_facebook_page_giveaway_path(page), class: "btn btn-large btn-success create-giveaway" }
         %i.icon-plus.icon-white
@@ -28,7 +24,7 @@
 - elsif user
 
   %header.page
-    = link_to image_tag( current_user.avatar, alt: current_user.name), "#", class: "avatar"
+    = link_to image_tag(current_user.avatar, alt: current_user.name), "#", class: "avatar"
     %h1.page_title= current_user.name
     %p.page_subtitle <span class="dynamo">#{current_user.facebook_pages.count}</span> Pages
     

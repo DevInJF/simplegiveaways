@@ -31,7 +31,7 @@ jQuery ->
 
     graphOptions = {
       series: {
-        stack: true,
+        stack: false,
         lines: {
           show: true,
           fill: true,
