@@ -12,9 +12,9 @@ class Giveaway < ActiveRecord::Base
                   :allow_multi_entries, :email_required, :bonus_value, :_total_shares,
                   :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views,
                   :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count,
-                  :_entry_count, :_entry_rate, :_conversion_rate
+                  :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes_while_active
 
-  has_many :audits, as: :auditable
+                  has_many :audits, as: :auditable
 
   belongs_to :facebook_page
   has_many :entries
@@ -74,6 +74,7 @@ class Giveaway < ActiveRecord::Base
                                  :_viral_views,
                                  :_viral_like_count,
                                  :_likes_from_entries_count,
+                                 :_page_likes_while_active,
                                  :_entry_count,
                                  :_entry_rate,
                                  :_conversion_rate ]
@@ -288,6 +289,7 @@ class Giveaway < ActiveRecord::Base
     self._uniques = uniques
     self._viral_views = viral_views
     self._viral_like_count = viral_like_count
+    self._page_likes_while_active = page_likes_while_active
     self._likes_from_entries_count = likes_from_entries_count
     self._entry_count = entry_count
     self._entry_rate = entry_rate

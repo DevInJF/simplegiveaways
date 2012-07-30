@@ -8,6 +8,7 @@ jQuery ->
     datasets = {}
 
     flot_page_likes = _sg.flot.page_likes
+    flot_net_likes = _sg.flot.net_likes
     flot_entries = _sg.flot.entries
     flot_views = _sg.flot.views
 
@@ -15,6 +16,11 @@ jQuery ->
       datasets["page_likes"] =
         label: "Likes"
         data: flot_page_likes
+
+    if flot_net_likes
+      datasets["net_likes"] =
+        label: "Net Likes"
+        data: flot_net_likes
 
     if flot_entries
       datasets["entry_count"] =
@@ -54,7 +60,7 @@ jQuery ->
       points: {
         show: true
       },
-      colors: [ "#FAA732", "#5BB75B", "#49AFCD", "#111111" ]
+      colors: [ "#FAA732", "#5BB75B", "#49AFCD", "#0055cc" ]
     }
 
     plotWithOptions = ->
