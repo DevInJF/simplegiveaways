@@ -19,7 +19,7 @@
 //= require vendor/dynamo
 //= require vendor/jquery.flot
 
-//= require application/juggernaut
-//= require application/facebook
-//= require application/countdown
-//= require application/graphs
+//= require juggernaut
+//= require facebook
+//= require countdown
+//= require graphs

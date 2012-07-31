@@ -17,7 +17,6 @@ gem 'encrypted-cookies'
 gem 'koala'
 gem 'cancan'
 gem 'gibbon'
-gem 'validates_timeliness', '~> 3.0.2'
 
 gem 'aws-sdk'
 gem 'paperclip'
