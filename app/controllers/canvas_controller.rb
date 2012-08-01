@@ -17,15 +17,13 @@ class CanvasController < ApplicationController
       graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       request = graph.get_object(request_ids.last)
 
-      @giveaway_url = Giveaway.select("id, giveaway_url")
-                              .find_by_id(JSON.parse(request["data"])["giveaway_id"])
-                              .giveaway_url
-
+      @giveaway = Giveaway.select("id, title, giveaway_url").find_by_id(JSON.parse(request["data"])["giveaway_id"])
       @app_data = "ref_#{JSON.parse(request['data'])['referrer_id']}"
 
       FbAppRequestWorker.perform_async(request_ids.last, params[:signed_request])
 
       render "giveaways/apprequest", layout: false
+      ga_event("Canvas", "#index", @giveaway.title, @app_data.to_json)
     else
       redirect_to "http://simplegiveawayapp.com"
     end
