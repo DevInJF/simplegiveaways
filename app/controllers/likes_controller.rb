@@ -7,10 +7,11 @@ class LikesController < ApplicationController
   def create
     Rails.logger.debug("LIKESCONTROLLER\n\n\n\n\AAAAH".inspect.white)
     Rails.logger.debug(@giveaway_cookie.inspect.white)
-    if Like.create_from_cookie(@giveaway_cookie)
+    if @like = Like.create_from_cookie(@giveaway_cookie)
       @giveaway_cookie.is_fan = true
       @giveaway_cookie.like_counted = true
       head :ok
+      ga_event("Likes", "#create", @like.giveaway.title, @like.ga_hash)
     else
       head :not_acceptable
     end

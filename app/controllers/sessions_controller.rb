@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       flash[:notice] = @identity.add_to_existing_user(current_user)
     else
       logger.debug @identity.inspect.red_on_white
-      flash[:notice] = @identity.create_or_login_user(auth)
+      ga_event("Users", "#create", @identity.user.name) if flash[:notice] = @identity.create_or_login_user(auth)
     end
 
     render 'sessions/create'

@@ -3,6 +3,7 @@
   %head
     %meta{charset: "utf-8"}/
     %title= @giveaway_hash.giveaway.title
+    = google_analytics_tracking_javascript
     %meta{content: @giveaway_hash.giveaway.description, name: "description"}/
     = stylesheet_link_tag :tab
     /[if lt IE 9]
@@ -13,3 +14,5 @@
     = render "giveaways/init_tab_globals", giveaway_hash: @giveaway_hash
     #tab_container
       = yield
+
+    %noscript= utm_tag

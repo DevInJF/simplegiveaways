@@ -56,6 +56,7 @@ class GiveawaysController < ApplicationController
     @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}"
 
     if @giveaway.save
+      ga_event("Giveaways", "#create", @giveaway.title, @giveaway.ga_hash(current_user.id))
       flash[:success] = "The #{@giveaway.title} giveaway has been created."
       redirect_to pending_facebook_page_giveaways_path(@page)
     else
@@ -94,6 +95,7 @@ class GiveawaysController < ApplicationController
   def start
     logger.debug(params.inspect.red_on_white)
     if @giveaway.publish(params[:giveaway])
+      ga_event("Giveaways", "#start", @giveaway.title, @giveaway.ga_hash(current_user.id))
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
       GiveawayNoticeMailer.start(current_user.identities.first.email).deliver
@@ -108,8 +110,10 @@ class GiveawaysController < ApplicationController
     if @giveaway.update_attributes(end_date: DateTime.now, active: false)
       flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
-      @giveaway.delete_tab
-      GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
+      if @giveaway.delete_tab
+        ga_event("Giveaways", "#end", @giveaway.title, @giveaway.ga_hash(current_user.id))
+        GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
+      end
     else
       flash.now[:error] = "There was a problem ending #{@giveaway.title}."
       render :show
@@ -142,6 +146,8 @@ class GiveawaysController < ApplicationController
           end
         end
 
+        ga_event("Giveaways", "#tab", @giveaway.title, @giveaway_hash.to_json)
+
         render layout: "tab"
       end
 
@@ -151,7 +157,8 @@ class GiveawaysController < ApplicationController
   end
 
   def export_entries
-    send_data(@giveaway.csv, type: 'text/csv', filename: 'entries_export.csv')
+    return false unless send_data(@giveaway.csv, type: 'text/csv', filename: 'entries_export.csv')
+    ga_event("Giveaways", "#export_entries", @giveaway.title, @giveaway.ga_hash(current_user.id))
   end
 
   private

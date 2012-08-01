@@ -16,7 +16,7 @@ gem 'omniauth-facebook', git: 'git://github.com/mkdynamic/omniauth-facebook.git'
 gem 'encrypted-cookies'
 gem 'koala'
 gem 'cancan'
-gem 'gibbon'
+gem 'garails'
 
 gem 'aws-sdk'
 gem 'paperclip'

@@ -3,6 +3,7 @@
   %head
     %meta{charset: "utf-8"}
     %title Simple Giveaways
+    = google_analytics_tracking_javascript
     %meta{content: "", name: "description"}
     %meta{content: "", name: "author"}
 
@@ -18,3 +19,5 @@
       = render "shared/flash", flash: flash
       = yield
       = render "layouts/footer"
+
+    %noscript= utm_tag
