@@ -66,8 +66,9 @@ class GiveawaysController < ApplicationController
   end
 
   def update
-    @giveaway_params = params[:giveaway].each do |key, value|
+    @giveaway_params = params[:giveaway].reject do |key, value|
       value.squish! if value.is_a?(String)
+      key == "start_date"
     end
 
     if @giveaway.update_attributes(@giveaway_params)
