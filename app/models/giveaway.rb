@@ -41,8 +41,7 @@ class Giveaway < ActiveRecord::Base
 
   store :terms, accessors: [ :terms_url, :terms_text ]
 
-  validates_format_of :terms_url, :with => URI::regexp(%w(http https)), :message => "must be a proper URL and start with 'http://'"
-
+  
   validate :terms_present
 
   store :preferences, accessors: [ :autoshow_share_dialog,
@@ -301,7 +300,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def tab_height
-    Giveaway.image_dimensions(image(:tab))[:height].to_i + 65
+    Giveaway.image_dimensions(image(:tab))[:height].to_i + 85
   end
 
   def countdown_target
@@ -361,6 +360,9 @@ class Giveaway < ActiveRecord::Base
     if terms_url.blank? && terms_text.blank?
       errors.add(:terms_url, "Must provide either Terms URL or Terms Text.")
       errors.add(:terms_text, "Must provide either Terms URL or Terms Text.")
+      if terms_url.present?
+        validates_format_of :terms_url, :with => URI::regexp(%w(http https)), :message => "must be a proper URL and start with 'http://'"
+      end
     end
   end
 
