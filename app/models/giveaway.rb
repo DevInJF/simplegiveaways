@@ -179,7 +179,9 @@ class Giveaway < ActiveRecord::Base
 
     graph_client.put_object( facebook_page.pid, "tabs", tab: "app_#{FB_APP_ID}",
                                                         custom_name: custom_fb_tab_name,
-                                                        custom_image_url: feed_image(:thumb) )
+                                                        custom_image_url: feed_image(:thumb),
+                                                        bonus_value: bonus_value 
+                                                        )
   end
 
   def delete_tab   
@@ -350,7 +352,8 @@ class Giveaway < ActiveRecord::Base
       description: description,
       giveaway_url: giveaway_url,
       image_url: self.image.url(:tab),
-      feed_image_url: self.feed_image.url
+      feed_image_url: self.feed_image.url,
+      bonus_value: bonus_value
     })
   end
 

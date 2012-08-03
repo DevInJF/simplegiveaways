@@ -16,7 +16,12 @@
       %span Congratulations!
       %span You have successfully entered the giveaway.
     .share-page
-      %span Share this page to receive a bonus entry.
+      - if @giveaway_hash.giveaway.bonus_value == "0"
+        %span Share this giveaway with your friends.
+      - elsif @giveaway_hash.giveaway.bonus_value == "1"
+        %span Share this giveaway to receive <strong>1</strong> bonus entry for each friend who enters.
+      - else
+        %span Share this giveaway to receive <strong>#{@giveaway_hash.giveaway.bonus_value}</strong> bonus entries for each friend who enters.
       %a.wall-post{href: "#"} Post to Wall
       %a.app-request{href: "#"} Post to Friends
   .loader{style: "display:none"}
