@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def active_nav_item(item, giveaway=nil)
-    if giveaway.present?
+    if giveaway.present? && giveaway.status
       giveaway.status.downcase == item.downcase ? "active" : ""
     else
       controller.action_name == "#{item}" ? "active" : ""
