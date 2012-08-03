@@ -41,6 +41,8 @@ class Giveaway < ActiveRecord::Base
 
   store :terms, accessors: [ :terms_url, :terms_text ]
 
+  validates_format_of :terms_url, :with => URI::regexp(%w(http https)), :message => "must be a proper URL and start with 'http://'"
+
   validate :terms_present
 
   store :preferences, accessors: [ :autoshow_share_dialog,
