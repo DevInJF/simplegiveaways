@@ -17,6 +17,7 @@ gem 'encrypted-cookies'
 gem 'koala'
 gem 'cancan'
 gem 'garails'
+gem 'newrelic_rpm'
 
 gem 'aws-sdk'
 gem 'paperclip'
