@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
 
   def destroy
     self.current_user = nil
+    session[:user_id] = nil
     if params[:fb] == "true"
       flash[:error] = "You have been signed out due to a change in your facebook session."
     else
