@@ -25,7 +25,14 @@ module Simplegiveaways
     # -- all .rb files in that directory are automatically loaded.
 
     config.assets.enabled = true
-    config.assets.precompile += ['vendor/excanvas.js' 'tab.js', 'application.js', 'tab.css', 'application.css']
+    config.assets.precompile += [
+        'vendor/excanvas.js', 
+        'jquery-ui-bootstrap/jquery.ui.1.8.16.ie.css', 
+        'tab.js', 
+        'application.js', 
+        'tab.css', 
+        'application.css'
+    ]
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W()
