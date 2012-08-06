@@ -1,4 +1,4 @@
-web: bundle exec thin start -p $PORT -e $RACK_ENV
-worker: bundle exec juggernaut
-worker: bundle exec sidekiq -e $RACK_ENV
 redis: redis-server
+web: bundle exec thin start -p $PORT -e $RACK_ENV
+sidekiq: bundle exec sidekiq -e $RACK_ENV
+juggernaut: bundle exec juggernaut
