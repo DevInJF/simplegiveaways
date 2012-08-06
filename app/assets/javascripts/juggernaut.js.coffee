@@ -22,7 +22,7 @@ jQuery ->
     jug = new Juggernaut(
       secure: false,
       host: 'simplegiveaways.com',
-      port: 80,
+      port: 8080,
       transports: ['xhr-polling', 'jsonp-polling']
     )
     stale_count = $(".facebook_page_preview").length

@@ -5,10 +5,7 @@ Simplegiveaways::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-  
-  puts ENV["MANDRILL_USERNAME"].inspect
 
-  puts ENV["MANDRILL_KEY"].inspect
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
