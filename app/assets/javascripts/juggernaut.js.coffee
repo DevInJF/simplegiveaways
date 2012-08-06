@@ -19,7 +19,12 @@ jQuery ->
     $pid_el = null
     $menu_el = null
 
-    jug = new Juggernaut
+    jug = new Juggernaut(
+      secure: false,
+      host: 'simplegiveaways.herokuapp.com',
+      port: 80,
+      transports: ['xhr-polling', 'jsonp-polling']
+    )
     stale_count = $(".facebook_page_preview").length
     fresh_count = null
 
