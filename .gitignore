@@ -14,3 +14,5 @@ config/initializers/02_mandrill.rb
 /.sass-cache/
 .sass-cache/**/
 dump.rdb
+.env
+/.env

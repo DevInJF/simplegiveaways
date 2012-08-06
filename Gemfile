@@ -5,7 +5,7 @@ gem 'mysql2', '~> 0.3.10'
 
 gem 'pg'
 gem 'thin'
-
+gem 'foreman'
 gem 'heroku'
 gem 'sidekiq'
 
