@@ -21,8 +21,8 @@ jQuery ->
 
     jug = new Juggernaut(
       secure: false,
-      host: 'simplegiveaways.herokuapp.com',
-      port: 8080,
+      host: 'simplegiveaways.com',
+      port: 80,
       transports: ['xhr-polling', 'jsonp-polling']
     )
     stale_count = $(".facebook_page_preview").length
