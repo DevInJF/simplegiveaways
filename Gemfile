@@ -8,6 +8,7 @@ gem 'thin'
 gem 'foreman'
 gem 'heroku'
 gem 'sidekiq'
+gem 'colored'
 
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'activeadmin'
@@ -63,6 +64,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'logging-rails'
   gem 'awesome_print'
-  gem 'colored'
   gem 'pry'
 end
