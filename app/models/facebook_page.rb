@@ -45,6 +45,7 @@ class FacebookPage < ActiveRecord::Base
                    menu_item: @page.menu_item_template,
                    is_last: "#{index == page_count}" }
 
+      Juggernaut.url = ENV["REDISTOGO_URL"]
       Juggernaut.publish("users#show_#{csrf_token}", jug_data.to_json)
 
       unless user.facebook_pages.include? @page
