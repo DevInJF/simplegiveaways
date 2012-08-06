@@ -9,8 +9,6 @@ gem 'foreman'
 gem 'heroku'
 gem 'sidekiq'
 
-gem 'logging-rails'
-
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'activeadmin'
 
@@ -63,6 +61,7 @@ group :development, :test do
   gem 'faker'
   gem 'timecop'
   gem 'factory_girl_rails'
+  gem 'logging-rails'
   gem 'awesome_print'
   gem 'colored'
   gem 'pry'
