@@ -3,6 +3,9 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.1'
 gem 'mysql2', '~> 0.3.10'
 
+gem 'pg'
+gem 'thin'
+
 gem 'heroku'
 gem 'sidekiq'
 
@@ -55,7 +58,6 @@ group :development, :test do
   gem 'wirble'
   gem 'hirb'
   gem 'itslog'
-  gem 'thin'
   gem 'ruby_parser'
   gem 'hpricot'
   gem 'faker'
