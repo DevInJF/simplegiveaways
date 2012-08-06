@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
 
+  before_filter :user_pages, :if => :signed_in?
+
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -9,8 +11,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def user_pages
+    @user_pages ||= current_user.facebook_pages.select([:id, :pid, :name])
+  end
+
   def current_user
-    @current_user ||= (User.find_by_id(session[:user_id]) || Identity.find_by_uid(cookies.encrypted[:fb_uid]).user if cookies[:fb_uid])
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def signed_in?

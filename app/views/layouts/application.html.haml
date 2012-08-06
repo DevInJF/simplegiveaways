@@ -29,7 +29,7 @@
     #fb-root.logged-in{ :'data-uid' => uid_class }
 
     .site_wrapper
-      = render "layouts/header"
+      = render "layouts/header", user_pages: @user_pages
       = render "layouts/page_header"
       = render "layouts/sidebar", page: @page, giveaway: @giveaway, user: @user
       = render "layouts/content"

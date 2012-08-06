@@ -13,7 +13,7 @@
       %a{href: "#", class: "btn btn-large dropdown-toggle", :"data-toggle" => "dropdown"}
         %span.caret
       %ul.dropdown-menu.pages
-        - current_user.facebook_pages.each do |page|
+        - user_pages.each do |page|
           %li{:'data-fb-pid' => page.pid }= link_to page.name, facebook_page_path(page)
   - else
     %h1= link_to APPLICATION_NAME, root_path, class: "brand"
