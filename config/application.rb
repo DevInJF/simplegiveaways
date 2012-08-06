@@ -26,6 +26,7 @@ module Simplegiveaways
 
     config.assets.enabled = true
     config.assets.precompile += [
+        'jug_client.js',
         'vendor/excanvas.js', 
         'jquery-ui-bootstrap/jquery.ui.1.8.16.ie.css', 
         'tab.js', 
