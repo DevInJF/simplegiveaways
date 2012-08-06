@@ -1,10 +1,14 @@
 {
   "name": "simplegiveaways",
   "version": "0.0.1",
+  "private": true,
   "description": "Simple Giveaways",
   "author": "switchrails",
   "dependencies": {
     "juggernaut": "2.1.x"
   },
-  "engine": "node 0.4.1"
+  "engines": {
+    "node": "0.8.x",
+    "npm":  "1.1.x"
+  }
 }
