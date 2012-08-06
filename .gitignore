@@ -12,5 +12,3 @@ config/database.yml
 dump.rdb
 .env
 /.env
-/node_modules
-node_modules/*
