@@ -29,7 +29,7 @@ gem 'json'
 gem 'braintree'
 gem 'impressionist'
 gem 'simple_form', '~> 2.0'
-gem 'juggernaut', git: 'git://github.com/FewKinG/juggernaut.git'
+gem 'juggernaut'
 gem 'simple_uuid'
 gem 'whenever', require: false
 
