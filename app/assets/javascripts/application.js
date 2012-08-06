@@ -19,7 +19,6 @@
 //= require vendor/dynamo
 //= require vendor/jquery.flot
 
-//= require jug_client
 //= require juggernaut
 //= require facebook
 //= require countdown
