@@ -8,7 +8,7 @@ jQuery ->
   hasntRefreshed = () ->
     document.cookie.indexOf("_sg-just_logged_in") is -1
 
-  if hasLoginParam() and hasntRefreshed()
+  if true
 
     document.cookie = "_sg-just_logged_in=1"
 
@@ -21,8 +21,8 @@ jQuery ->
 
     jug = new Juggernaut(
       secure: false,
-      host: 'simplegiveaways.com',
-      port: 8080,
+      host: '0.0.0.0',
+      port: 5100,
       transports: ['xhr-polling', 'jsonp-polling']
     )
     stale_count = $(".facebook_page_preview").length

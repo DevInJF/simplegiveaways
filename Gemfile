@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.7'
 gem 'mysql2', '~> 0.3.10'
 
 gem 'pg'
@@ -45,24 +45,18 @@ gem 'jquery-rails'
 gem 'ui_datepicker-rails3'
 
 group :development do
+  gem 'logging-rails'
+  gem 'awesome_print'
+  gem 'pry'
   gem 'erb2haml'
   gem 'seed_dump'
   gem 'magic_encoding'
   gem 'nifty-generators'
   gem 'rack-mini-profiler'
   gem 'rails_best_practices'
-end
-
-group :development, :test do
   gem 'wirble'
   gem 'hirb'
   gem 'itslog'
   gem 'ruby_parser'
   gem 'hpricot'
-  gem 'faker'
-  gem 'timecop'
-  gem 'factory_girl_rails'
-  gem 'logging-rails'
-  gem 'awesome_print'
-  gem 'pry'
 end
