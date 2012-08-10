@@ -1,4 +1,4 @@
 redis: redis-server
-web: bundle exec thin start -p $PORT -e $RACK_ENV
-juggernaut: bundle exec node node_modules/juggernaut/server.js -p 5100 -e $RACK_ENV
+web: bundle exec thin -p $PORT -e $RACK_ENV -R config.ru start
+juggernaut: bundle exec node node_modules/.bin/juggernaut -p 5100 -e $RACK_ENV
 sidekiq: bundle exec sidekiq -e $RACK_ENV
