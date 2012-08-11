@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/FewKinG/juggernaut.git
+  revision: 21a4f38c90942ef44033091bfff811730964b769
+  specs:
+    juggernaut (2.1.1)
+      redis
+
+GIT
   remote: git://github.com/mkdynamic/omniauth-facebook.git
   revision: 6f4300b3f8bb6ac1618a33a8fc770f17eb79907d
   specs:
@@ -142,8 +149,6 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.7.4)
-    juggernaut (2.1.1)
-      redis
     jwt (0.1.5)
       multi_json (>= 1.0)
     kaminari (0.13.0)
@@ -323,7 +328,7 @@ DEPENDENCIES
   itslog
   jquery-rails
   json
-  juggernaut
+  juggernaut!
   koala
   logging-rails
   magic_encoding
