@@ -8,8 +8,6 @@
 
     %meta{content: "", name: "description"}
 
-    = javascript_include_tag "jug_client.js"
-
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
 
@@ -19,6 +17,8 @@
 
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
+
+    = javascript_include_tag "/jug_client.js"
 
     = csrf_meta_tags
   %body.welcome

@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Logged out!"
     end
     cookies.delete :'_sg-just_logged_in'
-    cookies.delete :fb_uid
+    cookies.delete :_sg_uid
     redirect_to root_url
   end
 
@@ -43,6 +43,6 @@ class SessionsController < ApplicationController
     end
 
     session['uid'] = @identity.uid
-    cookies.encrypted[:fb_uid] = { value: @identity.uid, expires: Time.now + 1800 }
+    cookies[:_sg_uid] = { value: @identity.uid, expires: Time.now + 1800 }
   end
 end

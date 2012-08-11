@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= (User.find_by_id(session[:user_id]) || Identity.find_by_uid(cookies[:_sg_uid]).user if cookies[:_sg_uid]) rescue nil
   end
 
   def signed_in?
