@@ -18,11 +18,10 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
 
-    = javascript_include_tag "/jug_client.js"
-
     = csrf_meta_tags
   %body.welcome
     = render "shared/init_globals"
+    = javascript_include_tag "/jug_client.js"
     #fb-root.logged-out
     .site_wrapper
       = render "layouts/header"
