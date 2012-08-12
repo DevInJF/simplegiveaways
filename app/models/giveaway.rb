@@ -21,13 +21,13 @@ class Giveaway < ActiveRecord::Base
   has_many :likes
 
   scope :active, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.zone.now, Time.zone.now).limit(1)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.now, Time.now).limit(1)
   }
   scope :pending, lambda {
-    where("start_date >= ? && end_date >= ? OR start_date IS NULL OR end_date IS NULL", Time.zone.now, Time.zone.now)
+    where("start_date >= ? && end_date >= ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
   }
   scope :completed, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date <= ?", Time.zone.now, Time.zone.now)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date <= ?", Time.now, Time.now)
   }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
