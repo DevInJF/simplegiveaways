@@ -1,1 +1,1 @@
-S3_CREDENTIALS = YAML.load(File.open(Rails.root.join("config/s3.yml")))
+S3_CREDENTIALS = {:access_key_id => ENV['S3_ACCESS_KEY'], :secret_access_key => ENV['S3_SECRET'], :bucket => "_sg_#{ENV['RACK_ENV']}"}
