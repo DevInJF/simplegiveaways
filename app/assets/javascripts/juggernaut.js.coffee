@@ -27,7 +27,7 @@ jQuery ->
     )
     stale_count = $(".facebook_page_preview").length
     fresh_count = null
-    console.log("beforeonReceipt")
+
     onReceipt = (jug_data)->
       $markup = $(jug_data.markup)
       $menu_item = $(jug_data.menu_item)
