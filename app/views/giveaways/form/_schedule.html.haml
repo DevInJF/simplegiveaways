@@ -9,7 +9,7 @@
                          use_short_month: true,
                          include_blank: true,
                          ampm: true,
-                         hint: "All times are in <strong> #{Time.now.zone}</strong> where it is currently <strong>#{Time.zone.now.to_formatted_s(:time)}</strong>."
+                         hint: "All times are in <strong> #{Time.zone.now}</strong> where it is currently <strong>#{Time.zone.now.to_formatted_s(:time)}</strong>."
   = f.input :end_date, as: :ui_date_time_picker, input_html: { class: "input-mini" },
                        label: "End Date/Time".html_safe,
                        start_year: Date.today.year - 1,
@@ -18,7 +18,7 @@
                        use_short_month: true,
                        include_blank: true,
                        ampm: true,
-                       hint: "All times are in <strong> #{Time.now.zone}</strong> where it is currently <strong>#{Time.zone.now.to_formatted_s(:time)}</strong>."
+                       hint: "All times are in <strong> #{Time.zone.now}</strong> where it is currently <strong>#{Time.zone.now.to_formatted_s(:time)}</strong>."
 
 :javascript
   $(function() {

@@ -21,13 +21,13 @@ class Giveaway < ActiveRecord::Base
   has_many :likes
 
   scope :active, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.now, Time.now).limit(1)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date >= ?", Time.zone.now, Time.zone.now).limit(1)
   }
   scope :pending, lambda {
-    where("start_date >= ? && end_date >= ? OR start_date IS NULL OR end_date IS NULL", Time.now, Time.now)
+    where("start_date >= ? && end_date >= ? OR start_date IS NULL OR end_date IS NULL", Time.zone.now, Time.zone.now)
   }
   scope :completed, lambda {
-    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date <= ?", Time.now, Time.now)
+    where("start_date IS NOT NULL && end_date IS NOT NULL && start_date <= ? && end_date <= ?", Time.zone.now, Time.zone.now)
   }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
@@ -126,7 +126,7 @@ class Giveaway < ActiveRecord::Base
 
   def publish(giveaway_params)
     return false unless startable?
-    if self.update_attributes(giveaway_params.merge({ start_date: Time.now, active: true }))
+    if self.update_attributes(giveaway_params.merge({ start_date: Time.zone.now, active: true }))
       is_installed? ? update_tab : create_tab
     else
       false
@@ -155,11 +155,11 @@ class Giveaway < ActiveRecord::Base
   end
 
   def pending?
-    start_date.nil? || end_date.nil? || (start_date > Time.now && end_date > Time.now)
+    start_date.nil? || end_date.nil? || (start_date > Time.zone.now && end_date > Time.zone.now)
   end
 
   def completed?
-    start_date < Time.now && end_date < Time.now
+    start_date < Time.zone.now && end_date < Time.zone.now
   end
 
   def is_installed?
@@ -378,7 +378,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def start_in_future
-    if start_date.present? && (start_date < (Time.now - 5.minutes)) && !active_was
+    if start_date.present? && (start_date < (Time.zone.now - 5.minutes)) && !active_was
       errors.add(:start_date, "must be in the future.SIF")
     end
   end
