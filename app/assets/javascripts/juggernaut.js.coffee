@@ -21,13 +21,13 @@ jQuery ->
 
     jug = new Juggernaut(
       secure: false,
-      host: "http://node.simplegiveaways.com",
+      host: "node.simplegiveaways.com",
       port: 80,
       transports: ['xhr-polling', 'jsonp-polling']
     )
     stale_count = $(".facebook_page_preview").length
     fresh_count = null
-
+    console.log("beforeonReceipt")
     onReceipt = (jug_data)->
       $markup = $(jug_data.markup)
       $menu_item = $(jug_data.menu_item)
