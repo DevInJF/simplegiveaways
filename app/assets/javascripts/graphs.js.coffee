@@ -40,7 +40,7 @@ jQuery ->
         stack: false,
         lines: {
           show: true,
-          fill: true,
+          fill: false,
           steps: false
         }
       },
