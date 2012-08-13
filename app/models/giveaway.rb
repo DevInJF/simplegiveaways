@@ -212,7 +212,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def viral_entry_count
-    entries.where("ref_ids != '--- []\n'").size
+    entries.where("ref_ids != '[]'").size
   end
 
   def views
