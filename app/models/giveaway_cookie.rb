@@ -5,7 +5,6 @@ class GiveawayCookie
 
   def initialize(cookie=nil)
     @last_cookie = deserialize_cookie(cookie)
-    logger.debug(@last_cookie.inspect.white_on_magenta)
     @uid = @last_cookie["uid"]
     @entry_id = @last_cookie["entry_id"]
     @giveaway_id = @last_cookie["giveaway_id"]
