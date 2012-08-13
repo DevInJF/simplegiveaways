@@ -31,7 +31,8 @@ module Simplegiveaways
         'tab.js', 
         'application.js', 
         'tab.css', 
-        'application.css'
+        'application.css',
+        'graph.css'
     ]
 
     # Custom directories with classes and modules you want to be autoloadable.
