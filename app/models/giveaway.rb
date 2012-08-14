@@ -309,13 +309,6 @@ class Giveaway < ActiveRecord::Base
     end_date.strftime("%m/%d/%Y %H:%M:%S")
   end
 
-  def ga_hash(user_id)
-    { giveaway_id: id,
-      page_id: facebook_page.id,
-      user_id: user_id
-    }.to_json
-  end
-
   class << self
 
     def cookie_key(id)

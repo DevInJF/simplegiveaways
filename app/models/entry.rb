@@ -79,11 +79,4 @@ class Entry < ActiveRecord::Base
     status = rest.fql_query("SELECT uid FROM page_fan WHERE uid=#{uid} AND page_id=#{giveaway.page_pid}")
     status[0].nil? ? false : true
   end
-
-  def ga_hash
-    { giveaway_id: giveaway.id,
-      page_id: giveaway.facebook_page.id,
-      entry_id: id
-    }.to_json
-  end
 end

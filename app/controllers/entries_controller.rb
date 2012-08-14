@@ -26,7 +26,7 @@ class EntriesController < ApplicationController
       elsif @entry.save
         @giveaway_cookie.entry_id = @entry.id
         render json: @entry.id, status: :created
-        ga_event("Entries", "#create", @entry.giveaway.title, @entry.ga_hash)
+        ga_event("Entries", "#create", @entry.giveaway.title, @entry.id)
       else
         head :not_acceptable
       end
@@ -39,7 +39,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     if @entry.update_attributes(params[:entry])
       render text: @entry.id, status: :accepted
-      ga_event("Entries", "#update", @entry.id, params[:entry].to_json)
+      ga_event("Entries", "#update", @entry.id, nil)
     else
       head :not_acceptable
     end

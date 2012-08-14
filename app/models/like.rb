@@ -18,11 +18,4 @@ class Like < ActiveRecord::Base
       giveaway_id: giveaway_cookie.giveaway_id
     )
   end
-
-  def ga_hash
-    { giveaway_id: giveaway_id,
-      page_id: giveaway.facebook_page.id,
-      entry_id: entry_id
-    }.to_json
-  end
 end
