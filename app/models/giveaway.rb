@@ -371,7 +371,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def start_in_future
-    if start_date.present? && (start_date < (Time.zone.now - 5.minutes)) && !active_was
+    if start_date.present? && (start_date < 5.minutes.ago) && !active_was
       errors.add(:start_date, "must be in the future.SIF")
     end
   end
