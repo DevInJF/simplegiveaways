@@ -252,7 +252,7 @@ class Giveaway < ActiveRecord::Base
   def page_likes_so_far
     facebook_page.likes - page_likes_at_start
   rescue StandardError
-    nil
+    0
   end
 
   def page_likes_at_start
