@@ -78,7 +78,6 @@ class GiveawaysController < ApplicationController
     else
       logger.debug(@giveaway.errors.inspect.green_on_red)
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
-      @giveaway.reload
       render :show
     end
   end
