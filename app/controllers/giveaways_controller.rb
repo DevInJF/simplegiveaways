@@ -72,11 +72,11 @@ class GiveawaysController < ApplicationController
     end
 
     if @giveaway.update_attributes(@giveaway_params)
+      @giveaway.update_tab if @giveaway.active?
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
-      @giveaway.update_tab if @giveaway.active?
     else
-      logger.debug(@giveaway.errors.inspect.green_on_red)
+      Rails.logger.debug(@giveaway.errors.inspect.green_on_red)
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
       render :show
     end
