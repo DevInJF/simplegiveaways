@@ -66,11 +66,6 @@ class GiveawaysController < ApplicationController
   end
 
   def update
-    @giveaway_params = params[:giveaway].reject do |key, value|
-      value.squish! if value.is_a?(String)
-      key == "start_date"
-    end
-
     if @giveaway.update_attributes(@giveaway_params)
       @giveaway.update_tab if @giveaway.active?
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
