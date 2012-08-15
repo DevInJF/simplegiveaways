@@ -257,13 +257,13 @@ class Giveaway < ActiveRecord::Base
 
   def page_likes_at_start
     facebook_page.audits.
-        where('created_at < ?', start_date).
+        where('created_at < ?', start_date.to_time_in_current_zone).
         sort.last.is[:likes].to_i
   end
 
   def page_likes_at_end
     facebook_page.audits.
-        where('created_at > ?', end_date).
+        where('created_at > ?', end_date.to_time_in_current_zone).
         sort.first.is[:likes].to_i
   end
 
