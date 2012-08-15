@@ -246,13 +246,13 @@ class Giveaway < ActiveRecord::Base
   def page_likes_while_active
     active? ? page_likes_so_far : (page_likes_at_end - page_likes_at_start)
   rescue StandardError
-    "N/A"
+    nil
   end
 
   def page_likes_so_far
     facebook_page.likes - page_likes_at_start
   rescue StandardError
-    "N/A"
+    nil
   end
 
   def page_likes_at_start
