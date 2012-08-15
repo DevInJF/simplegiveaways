@@ -16,10 +16,10 @@ class Graph
   end
 
   def net_likes
-    return [] unless @resource.is_a? FacebookPage
+    return [] unless @resource.is_a? Giveaway
     @resource.audits.map do |audit|
-      if audit.is.has_key?(:page_likes_while_active)
-        format_audit(audit, audit.is[:page_likes_while_active], :_page_likes_while_active)
+      if audit.is.has_key?(:analytics)
+        format_audit(audit, audit.is[:analytics], :_page_likes_while_active)
       end
     end.compact
   end
