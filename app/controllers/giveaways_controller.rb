@@ -34,7 +34,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find_by_id(params[:id])
     @page = @giveaway.facebook_page
     @flot = { page_likes: Graph.new(@page).page_likes,
-              net_likes: Graph.new(@page).net_likes,
+              net_likes: Graph.new(@giveaway).net_likes,
               entries: Graph.new(@giveaway).entries,
               views: Graph.new(@giveaway).views }
   end
