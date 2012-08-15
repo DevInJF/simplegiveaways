@@ -17,7 +17,7 @@ class GiveawaysController < ApplicationController
   def active
     @giveaways = @page.giveaways.active.first rescue nil
     @flot = { page_likes: Graph.new(@page).page_likes,
-              net_likes: Graph.new(@page).net_likes,
+              net_likes: Graph.new(@giveaways).net_likes,
               entries: Graph.new(@giveaways).entries,
               views: Graph.new(@giveaways).views }
   end
