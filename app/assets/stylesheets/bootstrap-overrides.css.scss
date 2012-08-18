@@ -40,6 +40,10 @@ form {
     height: 150px;
   }
 
+  .control-group.hidden {
+    display: none;
+  }
+
   .control-group.error .help-block,
   .control-group.error .help-inline {
     clear: both;
