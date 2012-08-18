@@ -14,7 +14,7 @@ class Giveaway < ActiveRecord::Base
                   :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count,
                   :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes_while_active
 
-                  has_many :audits, as: :auditable
+  has_many :audits, as: :auditable
 
   belongs_to :facebook_page
   has_many :entries
@@ -41,7 +41,6 @@ class Giveaway < ActiveRecord::Base
 
   store :terms, accessors: [ :terms_url, :terms_text ]
 
-  
   validate :terms_present
 
   store :preferences, accessors: [ :autoshow_share_dialog,
@@ -62,9 +61,9 @@ class Giveaway < ActiveRecord::Base
   validates :sticky_post_body, presence: true, if: lambda { sticky_post_enabled? }
 
   validate :unchanged_active_start_date, on: :update
-  validate :end_in_future
-  validate :start_in_future
 
+  validates_datetime :start_date, on_or_after: -> { 5.minutes.ago }, ignore_usec: true
+  validates_datetime :end_date, after: :start_date, ignore_usec: true
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
@@ -180,11 +179,11 @@ class Giveaway < ActiveRecord::Base
     graph_client.put_object( facebook_page.pid, "tabs", tab: "app_#{FB_APP_ID}",
                                                         custom_name: custom_fb_tab_name,
                                                         custom_image_url: feed_image(:thumb),
-                                                        bonus_value: bonus_value 
+                                                        bonus_value: bonus_value
                                                         )
   end
 
-  def delete_tab   
+  def delete_tab
     tabs = graph_client.get_connections("me", "tabs")
     tab = tabs.select do |tab|
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
@@ -362,19 +361,19 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
-  def end_in_future
-    if end_date.present? && start_date.present?
-      if end_date < start_date || end_date == start_date
-        errors.add(:end_date, "cannot be earlier than start date.")
-      end
-    end
-  end
+  # def end_in_future
+  #   if end_date.present? && start_date.present?
+  #     if end_date < start_date || end_date == start_date
+  #       errors.add(:end_date, "cannot be earlier than start date.")
+  #     end
+  #   end
+  # end
 
-  def start_in_future
-    if start_date.present? && (start_date < 5.minutes.ago) && !active_was
-      errors.add(:start_date, "must be in the future.SIF")
-    end
-  end
+  # def start_in_future
+  #   if start_date.present? && (start_date < 5.minutes.ago) && !active_was
+  #     errors.add(:start_date, "must be in the future.SIF")
+  #   end
+  # end
 
   def unchanged_active_start_date
     if start_date_changed? && active_was

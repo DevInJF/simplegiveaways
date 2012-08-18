@@ -32,6 +32,7 @@ gem 'simple_form', '~> 2.0'
 gem 'juggernaut', git: 'git://github.com/FewKinG/juggernaut.git'
 gem 'simple_uuid'
 gem 'whenever', require: false
+gem 'validates_timeliness', '~> 3.0'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'

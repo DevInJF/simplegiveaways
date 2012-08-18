@@ -66,12 +66,10 @@ class GiveawaysController < ApplicationController
   end
 
   def update
-    @giveaway_params = params[:giveaway].reject do |key, value|
-      value.squish! if value.is_a?(String)
-      key == "start_date"
-    end
 
-    if @giveaway.update_attributes(@giveaway_params)
+    Rails.logger.debug(params[:giveaway].inspect.red_on_white)
+
+    if @giveaway.update_attributes(params[:giveaway])
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
       @giveaway.update_tab if @giveaway.active?
