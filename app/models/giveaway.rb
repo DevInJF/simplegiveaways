@@ -63,7 +63,7 @@ class Giveaway < ActiveRecord::Base
   validates_datetime :start_date, is_at: :start_date_was,
                                   is_at_message: "cannot be changed on an active giveaway.",
                                   on: :update,
-                                  if: -> { active_was? }
+                                  if: -> { active_was }
 
   validates_datetime :start_date, before: :end_date,
                                   before_message: "must be before end date/time.",
