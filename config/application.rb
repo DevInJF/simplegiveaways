@@ -26,11 +26,11 @@ module Simplegiveaways
 
     config.assets.enabled = true
     config.assets.precompile += [
-        'vendor/excanvas.js', 
-        'jquery-ui-bootstrap/jquery.ui.1.8.16.ie.css', 
-        'tab.js', 
-        'application.js', 
-        'tab.css', 
+        'vendor/excanvas.js',
+        'jquery-ui-bootstrap/jquery.ui.1.8.16.ie.css',
+        'tab.js',
+        'application.js',
+        'tab.css',
         'application.css',
         'graph.css'
     ]

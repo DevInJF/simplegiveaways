@@ -1,9 +1,9 @@
 ValidatesTimeliness.setup do |config|
   # Extend ORM/ODMs for full support (:active_record, :mongoid).
-  # config.extend_orms = [ :active_record ]
-  #
+  config.extend_orms = [ :active_record ]
+
   # Default timezone
-  # config.default_timezone = :utc
+  config.default_timezone = :utc
   #
   # Set the dummy date part for a time type values.
   # config.dummy_date_for_time_type = [ 2000, 1, 1 ]
