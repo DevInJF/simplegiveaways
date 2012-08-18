@@ -63,12 +63,12 @@ class Giveaway < ActiveRecord::Base
   validate :unchanged_active_start_date, on: :update
 
   validates_datetime :start_date, before: :end_date,
-                                  before_message: "must be before end date.",
+                                  before_message: "must be before end date/time.",
                                   on_or_after: -> { 5.minutes.ago },
                                   on_or_after_message: "must be in the future.",
                                   ignore_usec: true
   validates_datetime :end_date, after: :start_date,
-                                after_message: "must be after start date.",
+                                after_message: "must be after start date/time.",
                                 ignore_usec: true
 
   store :analytics, accessors: [ :_total_shares,
