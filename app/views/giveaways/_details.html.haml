@@ -138,7 +138,7 @@
       .column_left
         %section.detail.images
           %header.detail
-            %h2 Terms
+            %h2 Images
             - if giveaway.status != "Completed"
               %a{class: "btn btn-mini btn-edit", :"data-toggle" => "modal", href: "#images" }
                 %i.icon-edit
@@ -147,7 +147,7 @@
                 .modal-header
                   %a.close{ :"data-dismiss" => "modal"}
                     x
-                  %h3 Update the terms for #{giveaway.title}
+                  %h3 Update the images for #{giveaway.title}
                 .modal-body
                   %fieldset.images
                     %legend Images
