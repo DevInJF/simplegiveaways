@@ -62,7 +62,7 @@ class Giveaway < ActiveRecord::Base
 
   validate :unchanged_active_start_date, on: :update
 
-  validates_datetime :start_date, on_or_after: -> { 5.minutes.ago }, ignore_usec: true
+  validates_datetime :start_date, before: :end_date, on_or_after: -> { 5.minutes.ago }, ignore_usec: true
   validates_datetime :end_date, after: :start_date, ignore_usec: true
 
   store :analytics, accessors: [ :_total_shares,
