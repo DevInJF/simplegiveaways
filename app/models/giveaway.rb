@@ -57,16 +57,20 @@ class Giveaway < ActiveRecord::Base
                                    :sticky_post_title,
                                    :sticky_post_body ]
 
-  validates :sticky_post_title, presence: true, length: { maximum: 200 }, if: lambda { sticky_post_enabled? }
-  validates :sticky_post_body, presence: true, if: lambda { sticky_post_enabled? }
+  validates :sticky_post_title, presence: true, length: { maximum: 200 }, if: -> { sticky_post_enabled? }
+  validates :sticky_post_body, presence: true, if: -> { sticky_post_enabled? }
 
-  validate :unchanged_active_start_date, on: :update
+  validates_datetime :start_date, is_at: -> { start_date_was },
+                                  is_at_message: "cannot be changed on an active giveaway.",
+                                  on: :update,
+                                  if: -> { active? }
 
   validates_datetime :start_date, before: :end_date,
                                   before_message: "must be before end date/time.",
                                   on_or_after: -> { 5.minutes.ago },
                                   on_or_after_message: "must be in the future.",
                                   ignore_usec: true
+
   validates_datetime :end_date, after: :start_date,
                                 after_message: "must be after start date/time.",
                                 ignore_usec: true
