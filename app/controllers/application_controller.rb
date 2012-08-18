@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def user_pages
-    @user_pages ||= current_user.facebook_pages.select([:id, :pid, :name])
+    @user_pages ||= current_user.facebook_pages.select([:id, :pid, :name]) rescue nil
   end
 
   def current_user
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :user_pages
 
   def current_user=(user)
     @current_user = user
