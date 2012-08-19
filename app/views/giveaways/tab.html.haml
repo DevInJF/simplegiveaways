@@ -3,7 +3,7 @@
 #giveaway_image
   = image_tag @giveaway_hash.giveaway.image_url
 #giveaway_terms
-  %p This promotion is in no way sponsored, endorsed or administered by, or associated with, Facebook. You understand that you are providing your information to "#{@giveaway_hash.current_page.name}" and not to Facebook. Your information will only be used to administer this promotion. Entry in this promotion is subject to the #{terms_link}.
+  %p This promotion is in no way sponsored, endorsed or administered by, or associated with, Facebook. You understand that you are providing your information to "#{@giveaway_hash.current_page.name}" and not to Facebook. Your information will only be used to administer this promotion. Entry in this promotion is subject to the #{@giveaway_hash.giveaway.terms_link}.
   .terms-text.hidden= @giveaway_hash.giveaway.terms_text
 
 #giveaway_modal{style: "display:none"}

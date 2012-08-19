@@ -366,7 +366,9 @@ class Giveaway < ActiveRecord::Base
       giveaway_url: giveaway_url,
       image_url: self.image.url(:tab),
       feed_image_url: self.feed_image.url,
-      bonus_value: bonus_value
+      bonus_value: bonus_value,
+      terms_text: terms_text,
+      terms_link: terms_link
     })
   end
 
