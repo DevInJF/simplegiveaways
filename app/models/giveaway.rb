@@ -83,7 +83,7 @@ class Giveaway < ActiveRecord::Base
                                 after_message: "must be after start date/time.",
                                 ignore_usec: true
 
-  after_update :delete_ended, if: -> { active_was && completed? }
+  after_update :delete_ended, if: Proc.new { |g| g.active_was && g.completed? }
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
@@ -378,33 +378,6 @@ class Giveaway < ActiveRecord::Base
         validates_format_of :terms_url, :with => URI::regexp(%w(http https)), :message => "must be a proper URL and start with 'http://'"
       end
     end
-  end
-
-  # def end_in_future
-  #   if end_date.present? && start_date.present?
-  #     if end_date < start_date || end_date == start_date
-  #       errors.add(:end_date, "cannot be earlier than start date.")
-  #     end
-  #   end
-  # end
-
-  # def start_in_future
-  #   if start_date.present? && (start_date < 5.minutes.ago) && !active_was
-  #     errors.add(:start_date, "must be in the future.SIF")
-  #   end
-  # end
-
-  def unchanged_active_start_date
-    if start_date_changed? && active_was
-      errors.add(:start_date, "cannot be changed on an active giveaway.")
-      false
-    else
-      true
-    end
-  end
-
-  def start_date_changed?
-    start_date_was.to_formatted_s(:long) != start_date.to_formatted_s(:long)
   end
 
   def analytics_audit
