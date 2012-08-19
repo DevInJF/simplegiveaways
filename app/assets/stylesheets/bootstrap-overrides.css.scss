@@ -41,7 +41,7 @@ form {
   }
 
   .control-group.hidden {
-    display: none;
+    visibility: hidden;
   }
 
   .control-group.error .help-block,
