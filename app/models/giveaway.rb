@@ -83,7 +83,7 @@ class Giveaway < ActiveRecord::Base
                                 after_message: "must be after start date/time.",
                                 ignore_usec: true
 
-  after_update :delete_ended, if: -> { active_was && !active }
+  after_update :delete_ended, if: -> { active_was && completed? }
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
