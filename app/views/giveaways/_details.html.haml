@@ -99,7 +99,7 @@
             - if giveaway.terms_text
               %tr
                 %td Text
-                %td= giveaway.terms_text
+                %td= truncate(giveaway.terms_text, length: 150)
       .column_right
         %section.detail.preferences
           %header.detail
