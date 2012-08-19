@@ -67,12 +67,14 @@ class GiveawaysController < ApplicationController
 
   def update
 
-    Rails.logger.debug(params[:giveaway].inspect.red_on_white)
+    puts params[:giveaway].inspect.red_on_white
+    puts @giveaway.inspect.white_on_green
 
     if @giveaway.update_attributes(params[:giveaway])
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
       @giveaway.update_tab if @giveaway.active?
+      puts @giveaway.inspect.white_on_red
     else
       logger.debug(@giveaway.errors.inspect.green_on_red)
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
