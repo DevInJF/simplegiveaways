@@ -74,6 +74,7 @@ jQuery ->
     termsLink: ->
       $("a.terms-link.terms-text").click (e) ->
         $(".terms-text.hidden").show()
+        FB.Canvas.setSize()
         e.preventDefault()
 
     eligible: "#{giveaway_hash.has_liked}"
