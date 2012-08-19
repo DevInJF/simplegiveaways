@@ -389,7 +389,7 @@ class Giveaway < ActiveRecord::Base
 
   def delete_ended
     self.active = false
-    if save && self.delete_tab
+    if save(validate: false) && self.delete_tab
       ga_event("Giveaways", "#end", title, id)
       # GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
     end
