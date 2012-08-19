@@ -60,7 +60,7 @@ class Giveaway < ActiveRecord::Base
   validates :sticky_post_title, presence: true, length: { maximum: 200 }, if: -> { sticky_post_enabled? }
   validates :sticky_post_body, presence: true, if: -> { sticky_post_enabled? }
 
-  validates_datetime :start_date, is_at: :start_date_was,
+  validates_datetime :start_date, is_at: -> { start_date_was },
                                   is_at_message: "cannot be changed on an active giveaway.",
                                   on: :update,
                                   if: -> { active_was },
