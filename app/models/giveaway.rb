@@ -75,15 +75,13 @@ class Giveaway < ActiveRecord::Base
                                   before_message: "must be before end date/time.",
                                   ignore_usec: true
 
-  validates_datetime :end_date, after: -> { 5.minutes.ago },
-                                after_message: "must be in the future.",
+  validates_datetime :end_date, on_or_after: -> { Time.zone.now },
+                                on_or_after_message: "must be in the future.",
                                 ignore_usec: true
 
   validates_datetime :end_date, after: :start_date,
                                 after_message: "must be after start date/time.",
                                 ignore_usec: true
-
-  after_update :delete_ended, if: Proc.new { |g| g.active_was && g.completed? }
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
@@ -385,13 +383,5 @@ class Giveaway < ActiveRecord::Base
       was: { analytics: analytics_was },
       is: { analytics: analytics }
     )
-  end
-
-  def delete_ended
-    self.active = false
-    if save(validate: false) && self.delete_tab
-      ga_event("Giveaways", "#end", title, id)
-      # GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
-    end
   end
 end
