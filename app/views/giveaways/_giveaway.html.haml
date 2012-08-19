@@ -16,11 +16,9 @@
 
 - elsif giveaway.status == "Completed"
 
-  - content_for :content_header do
-    %h2 Completed Giveaways > #{giveaway.title}
-
-  = render 'header', giveaway: giveaway, page: giveaway.facebook_page
-  = render 'stats', giveaway: giveaway
-  = render 'graphs', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
-  = render 'entries', giveaway: giveaway, page: giveaway.facebook_page
-  = render 'details', giveaway: giveaway, page: giveaway.facebook_page
+  %tr
+    %td= image_tag(giveaway.feed_image(:thumb))
+    %td= link_to truncate(giveaway.title, length: 26), facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
+    %td= giveaway.end_date
+    %td= giveaway.entries.count
+    %td= giveaway.impressionist_count
