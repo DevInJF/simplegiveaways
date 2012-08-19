@@ -373,7 +373,7 @@ class Giveaway < ActiveRecord::Base
   private
 
   def terms_url_link
-    "<a href='#{terms_url}' class='terms-link terms-url'>official terms</a>".html_safe
+    "<a href='#{terms_url}' class='terms-link terms-url' target='_blank'>official terms</a>".html_safe
   end
 
   def terms_text_link
