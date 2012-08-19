@@ -63,13 +63,18 @@ class Giveaway < ActiveRecord::Base
   validates_datetime :start_date, is_at: :start_date_was,
                                   is_at_message: "cannot be changed on an active giveaway.",
                                   on: :update,
-                                  if: -> { active_was }
+                                  if: -> { active_was },
+                                  ignore_usec: true
+
+  validates_datetime :start_date, on_or_after: -> { 5.minutes.ago },
+                                  on_or_after_message: "must be in the future.",
+                                  unless: -> { active },
+                                  ignore_usec: true
 
   validates_datetime :start_date, before: :end_date,
                                   before_message: "must be before end date/time.",
-                                  on_or_after: -> { 5.minutes.ago },
-                                  on_or_after_message: "must be in the future.",
                                   ignore_usec: true
+
   validates_datetime :end_date, after: :start_date,
                                 after_message: "must be after start date/time.",
                                 ignore_usec: true
