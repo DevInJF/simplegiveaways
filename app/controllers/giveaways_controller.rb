@@ -76,7 +76,7 @@ class GiveawaysController < ApplicationController
       @giveaway.update_tab if @giveaway.active?
       puts @giveaway.inspect.white_on_red
     else
-      logger.debug(@giveaway.errors.inspect.green_on_red)
+      puts @giveaway.errors.inspect.red
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
       @giveaway.reload
       render :show
