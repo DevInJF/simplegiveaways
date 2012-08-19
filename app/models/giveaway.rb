@@ -83,6 +83,8 @@ class Giveaway < ActiveRecord::Base
                                 after_message: "must be after start date/time.",
                                 ignore_usec: true
 
+  after_update :delete_ended, if: -> { active_was && !active }
+
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
                                  :_total_requests,
@@ -410,5 +412,12 @@ class Giveaway < ActiveRecord::Base
       was: { analytics: analytics_was },
       is: { analytics: analytics }
     )
+  end
+
+  def delete_ended
+    if self.update_attributes(active: false) && self.delete_tab
+      ga_event("Giveaways", "#end", title, id)
+      # GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
+    end
   end
 end
