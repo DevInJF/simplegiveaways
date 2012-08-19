@@ -116,8 +116,10 @@ class GiveawaysController < ApplicationController
         GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
       end
     else
+      @giveaway
       flash.now[:error] = "There was a problem ending #{@giveaway.title}."
-      render :show
+      redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
+      puts @giveaway.errors.inspect.red
     end
   end
 

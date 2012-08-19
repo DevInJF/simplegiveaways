@@ -43,6 +43,6 @@ class SessionsController < ApplicationController
     end
 
     session['uid'] = @identity.uid
-    cookies[:_sg_uid] = { value: @identity.uid, expires: Time.zone.now + 1800 }
+    cookies[:_sg_uid] = { value: @identity.uid, expires: Time.zone.now + 7200 }
   end
 end
