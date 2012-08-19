@@ -8,8 +8,8 @@
                                        order: [:month, :day, :year],
                                        use_short_month: true,
                                        include_blank: true,
-                                       ampm: true
-= f.input :start_date, as: :hidden
+                                       ampm: true,
+                                       hint: "All times are in <strong> #{Time.now.zone}</strong> where it is currently <strong>#{Time.zone.now.to_formatted_s(:time)}</strong>."
 
 :javascript
   $(function() {
