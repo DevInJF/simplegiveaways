@@ -325,6 +325,10 @@ class Giveaway < ActiveRecord::Base
     end_date.strftime("%m/%d/%Y %H:%M:%S")
   end
 
+  def terms_link
+    terms_url.present? ? terms_url_link : terms_text_link
+  end
+
   class << self
 
     def cookie_key(id)
@@ -367,6 +371,14 @@ class Giveaway < ActiveRecord::Base
   end
 
   private
+
+  def terms_url_link
+    "<a href='#{terms_url}' class='terms-link terms-url'>official terms</a>".html_safe
+  end
+
+  def terms_text_link
+    "<a href='#' class='terms-link terms-text'>official terms</a>".html_safe
+  end
 
   def terms_present
     if terms_url.blank? && terms_text.blank?

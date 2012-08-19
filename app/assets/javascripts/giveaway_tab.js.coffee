@@ -56,6 +56,8 @@ jQuery ->
         e.preventDefault()
         Giveaway.entry.statusCheck()
 
+      Giveaway.termsLink();
+
     console.log(Giveaway.eligible)
 
   Giveaway =
@@ -68,6 +70,11 @@ jQuery ->
       three: $modal.find(".step.three")
 
     loader: $loader
+
+    termsLink: ->
+      $("a.terms-link.terms-text").click (e) ->
+        $(".terms-text.hidden").show()
+        e.preventDefault()
 
     eligible: "#{giveaway_hash.has_liked}"
 
