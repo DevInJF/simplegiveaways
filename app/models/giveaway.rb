@@ -244,7 +244,9 @@ class Giveaway < ActiveRecord::Base
     impressions.where("message LIKE ?", "%fb_uid: %").map do |impression|
       YAML.load(impression.message)[:message].match(/fb_uid: ([A-Za-z0-9]*)/)
       $1
-    end.uniq
+    end.uniq.count
+  rescue StandardError
+    0
   end
 
   def viral_views
