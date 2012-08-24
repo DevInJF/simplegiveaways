@@ -232,7 +232,7 @@ class Giveaway < ActiveRecord::Base
     impressionist_count
   end
 
-  def uniques(fb = false)
+  def uniques(fb = true)
     fb ? fb_user_uniques : session_uniques
   end
 
