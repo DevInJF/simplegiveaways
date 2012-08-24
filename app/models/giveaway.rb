@@ -241,7 +241,10 @@ class Giveaway < ActiveRecord::Base
   end
 
   def fb_user_uniques
-    impressions.where("message LIKE ?", "%fb_uid: %").size
+    impressions.where("message LIKE ?", "%fb_uid: %").map do |impression|
+      YAML.load(impression.message).match(/fb_uid: ([A-Za-z0-9]*)/)
+      $1
+    end.uniq
   end
 
   def viral_views
