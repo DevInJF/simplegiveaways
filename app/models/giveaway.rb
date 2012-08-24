@@ -131,10 +131,7 @@ class Giveaway < ActiveRecord::Base
 
   def csv
     CSV.generate do |csv|
-      # header row
       csv << ["ID", "email", "Name", "Entry Time", "Wall Posts", "Requests", "Conversions"]
-
-      # data rows
       entries.each do |entry|
         csv << [entry.id, entry.email, entry.name, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count]
       end
@@ -235,8 +232,16 @@ class Giveaway < ActiveRecord::Base
     impressionist_count
   end
 
-  def uniques
+  def uniques(fb = false)
+    fb ? fb_user_uniques : session_uniques
+  end
+
+  def session_uniques
     impressionist_count(filter: :session_hash)
+  end
+
+  def fb_user_uniques
+    impressions.where("message LIKE ?", "%fb_uid: %").size
   end
 
   def viral_views
@@ -346,7 +351,6 @@ class Giveaway < ActiveRecord::Base
       current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
       giveaway = current_page.giveaways.detect(&:active?)
 
-      logger.debug(signed_request.inspect.magenta_on_white)
       OpenStruct.new({
         fb_uid: signed_request["user_id"],
         referrer_id: referrer_id,

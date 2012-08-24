@@ -66,17 +66,11 @@ class GiveawaysController < ApplicationController
   end
 
   def update
-
-    puts params[:giveaway].inspect.red_on_white
-    puts @giveaway.inspect.white_on_green
-
     if @giveaway.update_attributes(params[:giveaway])
       flash[:success] = "The #{@giveaway.title} giveaway has been updated."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
       @giveaway.update_tab if @giveaway.active?
-      puts @giveaway.inspect.white_on_red
     else
-      puts @giveaway.errors.inspect.red
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
       @giveaway.reload
       render :show
@@ -94,7 +88,6 @@ class GiveawaysController < ApplicationController
   end
 
   def start
-    logger.debug(params.inspect.red_on_white)
     if @giveaway.publish(params[:giveaway])
       ga_event("Giveaways", "#start", @giveaway.title, @giveaway.id)
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
@@ -119,29 +112,24 @@ class GiveawaysController < ApplicationController
       @giveaway
       flash.now[:error] = "There was a problem ending #{@giveaway.title}."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
-      puts @giveaway.errors.inspect.red
     end
   end
 
   def tab
     if params[:signed_request]
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      signed_request = oauth.parse_signed_request(params[:signed_request])
+      @signed_request = oauth.parse_signed_request(params[:signed_request])
 
-      @giveaway_hash = Giveaway.tab(signed_request)
+      @giveaway_hash = Giveaway.tab(@signed_request)
 
       if @giveaway_hash.giveaway.nil?
         redirect_to "/404.html"
       else
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
 
-        logger.debug(last_giveaway_cookie.inspect.white_on_magenta)
-
         @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)
         @giveaway_cookie.giveaway_id = @giveaway.id
         @giveaway_cookie.update_cookie(@giveaway_hash)
-
-        logger.debug(@giveaway_cookie.inspect.magenta_on_white)
 
         if @giveaway_cookie.uncounted_like
           if Like.create_from_cookie(@giveaway_cookie)
@@ -175,7 +163,8 @@ class GiveawaysController < ApplicationController
   end
 
   def register_impression
-    @message = @giveaway_hash.referrer_id.is_a?(String) ? "ref_id: #{@giveaway_hash.referrer_id}" : nil
+    @message = @signed_request["user_id"] ? "fb_uid: #{@signed_request['user_id']} " : ""
+    @message += "ref_id: #{@giveaway_hash.referrer_id}" if @giveaway_hash.referrer_id.is_a?(String)
     impressionist(@giveaway, message: "#{@message}", filter: :session_hash)
   end
 
@@ -185,7 +174,6 @@ class GiveawaysController < ApplicationController
 
   def set_giveaway_cookie
     key = Giveaway.cookie_key(@giveaway_hash.giveaway.id)
-    logger.debug(@giveaway_cookie.to_json.inspect.white_on_green)
     cookies.encrypted[key] = @giveaway_cookie.to_json
   end
 end
