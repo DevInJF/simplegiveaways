@@ -79,4 +79,8 @@ class Entry < ActiveRecord::Base
     status = rest.fql_query("SELECT uid FROM page_fan WHERE uid=#{uid} AND page_id=#{giveaway.page_pid}")
     status[0].nil? ? false : true
   end
+
+  def new_fan?
+
+  end
 end
