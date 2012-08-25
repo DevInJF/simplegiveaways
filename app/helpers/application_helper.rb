@@ -13,6 +13,10 @@ module ApplicationHelper
     end
   end
 
+  def boolean_table_item(bool)
+    bool ? '&#10004;'.html_safe : '&#10008;'.html_safe
+  end
+
   def body_class
     "#{controller.controller_name} #{controller.action_name}"
   end
