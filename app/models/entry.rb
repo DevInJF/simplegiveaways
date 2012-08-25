@@ -81,6 +81,6 @@ class Entry < ActiveRecord::Base
   end
 
   def new_fan?
-
+    likes.any?
   end
 end
