@@ -23,7 +23,7 @@ class CanvasController < ApplicationController
       FbAppRequestWorker.perform_async(request_ids.last, params[:signed_request])
 
       render "giveaways/apprequest", layout: false
-      ga_event("Canvas", "#index", @giveaway.title, JSON.parse(request['data'])['referrer_id'].to_i)
+      ga_event("Canvas", "Canvas#index", @giveaway.title, JSON.parse(request['data'])['referrer_id'].to_i)
     else
       redirect_to "http://simplegiveawayapp.com"
     end

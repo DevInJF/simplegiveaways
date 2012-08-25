@@ -11,7 +11,7 @@ class LikesController < ApplicationController
       @giveaway_cookie.is_fan = true
       @giveaway_cookie.like_counted = true
       head :ok
-      ga_event("Likes", "#create", @like.giveaway.title, @like.id)
+      ga_event("Likes", "Like#create", @like.giveaway.title, @like.id)
     else
       head :not_acceptable
     end

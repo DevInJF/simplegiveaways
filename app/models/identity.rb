@@ -47,7 +47,7 @@ class Identity < ActiveRecord::Base
     self.build_user(name: auth["info"]["name"], roles: ['superadmin'])
 
     if user.save
-      ga_event("Users", "#create", @identity.user.name)
+      ga_event("Users", "User#create", @identity.user.name)
       WelcomeNewUserMailer.welcome(self.email).deliver
       "Logged in!"
     else
