@@ -108,6 +108,7 @@ GEM
       thor (>= 0.13.6)
     formtastic (2.1.1)
       actionpack (~> 3.0)
+    gabba (0.3.0)
     gabbara (0.0.6)
       activesupport
     garails (0.2.0)
@@ -322,6 +323,7 @@ DEPENDENCIES
   erb2haml
   fastercsv
   foreman
+  gabba
   garails
   haml-rails
   heroku

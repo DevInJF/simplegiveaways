@@ -148,7 +148,7 @@ class Giveaway < ActiveRecord::Base
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: Time.zone.now, active: true }))
       is_installed? ? update_tab : create_tab
-      ga_event("Giveaways", "Giveaway#start", title, nil)
+      Gabba.new(category: "Giveaways", action: "Giveaway#start", label: title)
       !!GiveawayNoticeMailer.start(facebook_page.page_admin_emails).deliver
     else
       false
@@ -218,7 +218,7 @@ class Giveaway < ActiveRecord::Base
           end.compact.flatten.first
 
     if graph_client.delete_object(tab["id"])
-      ga_event("Giveaways", "Giveaway#end", title, nil)
+      Gabba.new(category: "Giveaways", action: "Giveaway#end", label: title)
       !!GiveawayNoticeMailer.end(facebook_page.page_admin_emails).deliver
     else
       false

@@ -19,6 +19,7 @@ gem 'encrypted-cookies'
 gem 'koala'
 gem 'cancan'
 gem 'garails'
+gem 'gabba'
 gem 'newrelic_rpm'
 
 gem 'aws-sdk'
