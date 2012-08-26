@@ -43,6 +43,7 @@
       onSelect: function (selectedDateTime){
           var start = $(this).datetimepicker('getDate');
           $('#example16_end').datetimepicker('option', 'minDate', new Date(start.getTime()));
+      }
     });
 
     $('input.ui-datetime-picker.end-date').datetimepicker({
@@ -65,5 +66,6 @@
       onSelect: function (selectedDateTime){
           var end = $(this).datetimepicker('getDate');
           $('#example16_start').datetimepicker('option', 'maxDate', new Date(end.getTime()) );
+      }
     });
   });
