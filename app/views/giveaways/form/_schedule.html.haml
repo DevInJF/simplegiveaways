@@ -34,7 +34,7 @@
       stepMinute: 10,
       minuteGrid: 10,
       beforeShow: function(input, inst){
-        $(this).datetimepicker('option', 'defaultDate', null);
+        $(this).datetimepicker('setDate', Date.today());
       },
       onSelect: function (selectedDateTime){
         var start = $(this).datetimepicker('getDate');
@@ -50,7 +50,7 @@
       stepMinute: 10,
       minuteGrid: 10,
       beforeShow: function(input, inst){
-        $(this).datetimepicker('option', 'defaultDate', null);
+        $(this).datetimepicker('setDate', Date.today());
       },
       onSelect: function (selectedDateTime){
         var end = $(this).datetimepicker('getDate');
