@@ -55,7 +55,7 @@ class Identity < ActiveRecord::Base
     self.build_user(name: auth["info"]["name"], roles: ['superadmin'])
 
     if user.save
-      GabbaClient.new.event(category: "Users", action: "User#create", label: @identity.user.name)
+      GabbaClient.new.event(category: "Users", action: "User#create", label: user.name)
       WelcomeNewUserMailer.welcome(self.email).deliver
       "Logged in!"
     else
