@@ -28,39 +28,25 @@
 
     $startDateEl.datetimepicker({
       ampm: true,
-      defaultDate: +0,
       dateFormat: 'D, dd M yy',
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
-      beforeShow: function(input, inst) {
-        if ( $(input).val == '' ) {
-          $startDateEl.datetimepicker( "setDate", "+0" );
-          $startDateEl.datetimepicker( 'option', 'defaultDate', +0);
-        }
-      },
       onSelect: function (selectedDateTime){
         var start = $(this).datetimepicker('getDate');
         $endDateEl.datetimepicker('option', 'minDate', new Date(start.getTime()));
       }
-    });
+    }).datetimepicker("setDate", new Date());
 
     $endDateEl.datetimepicker({
       ampm: true,
-      defaultDate: +7,
       dateFormat: 'D, dd M yy',
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
-      beforeShow: function(input, inst) {
-        if ( $(input).val == '' ) {
-          $endDateEl.datetimepicker( "setDate", "+7" );
-          $endDateEl.datetimepicker( 'option', 'defaultDate', +7);
-        }
-      },
       onSelect: function (selectedDateTime){
         var end = $(this).datetimepicker('getDate');
-        $startDateEl.datetimepicker('option', 'maxDate', new Date(end.getTime()) );
+        $startDateEl.datetimepicker('option', 'maxDate', new Date(end.getTime()));
       }
-    });
+    }).datetimepicker("setDate", new Date());
   });
