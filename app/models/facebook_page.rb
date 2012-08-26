@@ -69,6 +69,12 @@ class FacebookPage < ActiveRecord::Base
     )
   end
 
+  def page_admin_emails
+    users.map do |user|
+      user.identities.first.email
+    end
+  end
+
   def self.select_pages(pages)
     pages = pages.reject do |page|
       page["category"] == "Application"
