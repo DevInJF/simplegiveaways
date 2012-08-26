@@ -1,4 +1,4 @@
-= content_for(:page_heading) do
-  Edit Giveaway
+- content_for :content_header do
+  %h2 Edit Giveaway
 
 = render 'form', page: @page, giveaway: @giveaway
