@@ -131,7 +131,7 @@ class Giveaway < ActiveRecord::Base
 
   def csv
     CSV.generate do |csv|
-      csv << ["ID", "Email", "Name", "Viral?", "New Fan?" "Entry Time", "Wall Posts", "Requests", "Conversions"]
+      csv << ["ID", "Email", "Name", "Viral?", "New Fan?", "Entry Time", "Wall Posts", "Requests", "Conversions"]
       entries.each do |entry|
         csv << [entry.id, entry.email, entry.name, entry.is_viral, entry.new_fan?, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count]
       end
