@@ -35,7 +35,8 @@
       minuteGrid: 10,
       beforeShow: function(input, inst) {
         if ( $(input).val == '' ) {
-          $(input).datetimepicker( "setDate", "+0" );
+          $startDateEl.datetimepicker( "setDate", "+0" );
+          $startDateEl.datetimepicker( 'option', 'defaultDate', '+0');
         }
       },
       onSelect: function (selectedDateTime){
@@ -53,7 +54,8 @@
       minuteGrid: 10,
       beforeShow: function(input, inst) {
         if ( $(input).val == '' ) {
-          $(input).datetimepicker( "setDate", "+7" );
+          $endDateEl.datetimepicker( "setDate", "+7" );
+          $endDateEl.datetimepicker( 'option', 'defaultDate', '+7');
         }
       },
       onSelect: function (selectedDateTime){
