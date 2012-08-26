@@ -23,29 +23,42 @@
 :javascript
   $(function() {
 
-    $('#giveaway_start_date').datetimepicker({
+    var $startDateEl = $('#giveaway_start_date'),
+          $endDateEl = $('#giveaway_end_date');
+
+    $startDateEl.datetimepicker({
       ampm: true,
       defaultDate: +0,
       dateFormat: 'D, dd M yy',
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
+      beforeShow: function(input, inst) {
+        if ( $(input).val == '' ) {
+          $(input).datetimepicker( "setDate", "+0" );
+        }
+      },
       onSelect: function (selectedDateTime){
         var start = $(this).datetimepicker('getDate');
-        $('#giveaway_end_date').datetimepicker('option', 'minDate', new Date(start.getTime()));
+        $endDateEl.datetimepicker('option', 'minDate', new Date(start.getTime()));
       }
-    }).datetimepicker( "option", "setDate", +0 );
+    });
 
-    $('#giveaway_end_date').datetimepicker({
+    $endDateEl.datetimepicker({
       ampm: true,
       defaultDate: +7,
       dateFormat: 'D, dd M yy',
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
+      beforeShow: function(input, inst) {
+        if ( $(input).val == '' ) {
+          $(input).datetimepicker( "setDate", "+7" );
+        }
+      },
       onSelect: function (selectedDateTime){
         var end = $(this).datetimepicker('getDate');
-        $('#giveaway_start_date').datetimepicker('option', 'maxDate', new Date(end.getTime()) );
+        $startDateEl.datetimepicker('option', 'maxDate', new Date(end.getTime()) );
       }
-    }).datetimepicker( "option", "setDate", +7 );
+    });
   });
