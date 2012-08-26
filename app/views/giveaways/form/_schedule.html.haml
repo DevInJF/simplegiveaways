@@ -30,6 +30,9 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
+      beforeShow: function(input, inst) {
+        $(input).datepicker( "option", "defaultDate", +0 );
+      },
       onClose: function(dateText, inst) {
         var endDateTextBox = $('#giveaway_end_date');
         if (endDateTextBox.val() != '') {
@@ -55,6 +58,9 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
+      beforeShow: function(input, inst) {
+        $(input).datepicker( "option", "defaultDate", +7 );
+      },
       onClose: function(dateText, inst) {
         var startDateTextBox = $('##giveaway_start_date');
         if (startDateTextBox.val() != '') {
