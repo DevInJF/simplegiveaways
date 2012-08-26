@@ -33,18 +33,6 @@
       beforeShow: function(input, inst) {
         $(input).datepicker( "option", "defaultDate", +0 );
       },
-      onClose: function(dateText, inst) {
-        var endDateTextBox = $('#giveaway_end_date');
-        if (endDateTextBox.val() != '') {
-          var testStartDate = new Date(dateText);
-          var testEndDate = new Date(endDateTextBox.val());
-          if (testStartDate > testEndDate) {
-            endDateTextBox.val(dateText);
-          }
-        } else {
-          endDateTextBox.val(dateText);
-        }
-      },
       onSelect: function (selectedDateTime){
         var start = $(this).datetimepicker('getDate');
         $('#giveaway_end_date').datetimepicker('option', 'minDate', new Date(start.getTime()));
@@ -60,18 +48,6 @@
       minuteGrid: 10,
       beforeShow: function(input, inst) {
         $(input).datepicker( "option", "defaultDate", +7 );
-      },
-      onClose: function(dateText, inst) {
-        var startDateTextBox = $('##giveaway_start_date');
-        if (startDateTextBox.val() != '') {
-          var testStartDate = new Date(startDateTextBox.val());
-          var testEndDate = new Date(dateText);
-          if (testStartDate > testEndDate) {
-            startDateTextBox.val(dateText);
-          } else {
-            startDateTextBox.val(dateText);
-          }
-        }
       },
       onSelect: function (selectedDateTime){
         var end = $(this).datetimepicker('getDate');
