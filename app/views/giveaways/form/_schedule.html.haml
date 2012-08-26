@@ -28,7 +28,7 @@
 
     $startDateEl.datetimepicker({
       ampm: true,
-      defaultDate: "+0",
+      defaultDate: +0,
       dateFormat: 'D, dd M yy',
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
@@ -36,7 +36,7 @@
       beforeShow: function(input, inst) {
         if ( $(input).val == '' ) {
           $startDateEl.datetimepicker( "setDate", "+0" );
-          $startDateEl.datetimepicker( 'option', 'defaultDate', '+0');
+          $startDateEl.datetimepicker( 'option', 'defaultDate', +0);
         }
       },
       onSelect: function (selectedDateTime){
@@ -47,7 +47,7 @@
 
     $endDateEl.datetimepicker({
       ampm: true,
-      defaultDate: "+7",
+      defaultDate: +7,
       dateFormat: 'D, dd M yy',
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
@@ -55,7 +55,7 @@
       beforeShow: function(input, inst) {
         if ( $(input).val == '' ) {
           $endDateEl.datetimepicker( "setDate", "+7" );
-          $endDateEl.datetimepicker( 'option', 'defaultDate', '+7');
+          $endDateEl.datetimepicker( 'option', 'defaultDate', +7);
         }
       },
       onSelect: function (selectedDateTime){
