@@ -89,28 +89,23 @@ class GiveawaysController < ApplicationController
 
   def start
     if @giveaway.publish(params[:giveaway])
-      ga_event("Giveaways", "Giveaway#start", @giveaway.title, @giveaway.id)
       flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
       GiveawayNoticeMailer.start(current_user.identities.first.email).deliver
     else
       flash[:error] = "There was a problem activating #{@giveaway.title}."
-      logger.debug(@giveaway.errors.inspect.red_on_white)
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
 
   def end
-    if @giveaway.update_attributes(end_date: Time.zone.now, active: false)
+    if @giveaway.unpublish(:manual => true)
       flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
-      if @giveaway.delete_tab
-        ga_event("Giveaways", "Giveaway#end", @giveaway.title, @giveaway.id)
-        GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
-      end
+      GiveawayNoticeMailer.end(current_user.identities.first.email).deliver
     else
       @giveaway
-      flash.now[:error] = "There was a problem ending #{@giveaway.title}."
+      flash[:error] = "There was a problem ending #{@giveaway.title}."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end

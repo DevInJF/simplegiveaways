@@ -39,6 +39,14 @@ class Identity < ActiveRecord::Base
         false
       end
     end
+
+    def provider_worker(identity, auth)
+      @identity = Identity.find_by_id(identity["id"])
+      @identity.auth = auth
+      if @identity.set_provider_data!
+        @identity.save
+      end
+    end
   end
 
   def create_or_login_user(auth)

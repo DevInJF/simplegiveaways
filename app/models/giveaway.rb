@@ -29,6 +29,12 @@ class Giveaway < ActiveRecord::Base
   scope :completed, lambda {
     where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date <= ? AND end_date <= ?", Time.zone.now, Time.zone.now)
   }
+  scope :to_start, lambda {
+    where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date <= ? AND end_date >= ? AND active IS ?", Time.zone.now, Time.zone.now, false)
+  }
+  scope :to_end, lambda {
+    where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date <= ? AND end_date <= ? AND active IS ?", Time.zone.now, Time.zone.now, true)
+  }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
   validates :title, presence: true, length: { maximum: 100 }
@@ -142,9 +148,16 @@ class Giveaway < ActiveRecord::Base
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: Time.zone.now, active: true }))
       is_installed? ? update_tab : create_tab
+      !!ga_event("Giveaways", "Giveaway#start", title, nil)
     else
       false
     end
+  end
+
+  def unpublish(*args)
+    self.end_date = Time.zone.now if args.extract_options![:manual]
+    self.active = false
+    save ? delete_tab : false
   end
 
   def startable?
@@ -203,7 +216,7 @@ class Giveaway < ActiveRecord::Base
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
           end.compact.flatten.first
 
-    graph_client.delete_object(tab["id"])
+    graph_client.delete_object(tab["id"]) ? !!ga_event("Giveaways", "Giveaway#end", title, nil) : false
   end
 
   def page_pid
@@ -364,6 +377,19 @@ class Giveaway < ActiveRecord::Base
         giveaway: giveaway.tab_attrs,
         tab_height: giveaway.tab_height
       })
+    end
+
+    def app_request_worker(request_id, signed_request)
+      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      signed_request = oauth.parse_signed_request(signed_request)
+
+      graph = Koala::Facebook::API.new(signed_request["oauth_token"])
+      graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
+    end
+
+    def schedule_worker
+      Giveaway.to_start.each(&:publish)
+      Giveaway.to_end.each(&:unpublish)
     end
   end
 
