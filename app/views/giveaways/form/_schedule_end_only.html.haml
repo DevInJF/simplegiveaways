@@ -15,13 +15,9 @@
   $(function() {
     $('input.ui-datetime-picker').datetimepicker({
       ampm: true,
-      defaultDate: +7,
       dateFormat: 'D, dd M yy',
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
-      minuteGrid: 10,
-      beforeShow: function(input, inst) {
-        $(input).datepicker( "option", "defaultDate", +7 );
-      }
+      minuteGrid: 10
     });
   });
