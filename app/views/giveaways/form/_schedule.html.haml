@@ -30,14 +30,11 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
-      beforeShow: function(input, inst) {
-        $(input).datepicker( "option", "defaultDate", +0 );
-      },
       onSelect: function (selectedDateTime){
         var start = $(this).datetimepicker('getDate');
         $('#giveaway_end_date').datetimepicker('option', 'minDate', new Date(start.getTime()));
       }
-    });
+    }).datetimepicker( "option", "setDate", +0 );
 
     $('#giveaway_end_date').datetimepicker({
       ampm: true,
@@ -46,12 +43,9 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
-      beforeShow: function(input, inst) {
-        $(input).datepicker( "option", "defaultDate", +7 );
-      },
       onSelect: function (selectedDateTime){
         var end = $(this).datetimepicker('getDate');
         $('#giveaway_start_date').datetimepicker('option', 'maxDate', new Date(end.getTime()) );
       }
-    });
+    }).datetimepicker( "option", "setDate", +7 );
   });
