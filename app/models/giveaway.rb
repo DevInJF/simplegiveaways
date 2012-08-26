@@ -144,7 +144,7 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
-  def publish(giveaway_params)
+  def publish(giveaway_params = {})
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: Time.zone.now, active: true }))
       is_installed? ? update_tab : create_tab
