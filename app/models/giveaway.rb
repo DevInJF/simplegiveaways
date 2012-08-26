@@ -30,10 +30,10 @@ class Giveaway < ActiveRecord::Base
     where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date <= ? AND end_date <= ?", Time.zone.now, Time.zone.now)
   }
   scope :to_start, lambda {
-    where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date <= ? AND end_date >= ? AND active IS ?", Time.zone.now, Time.zone.now, false)
+    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND end_date >= ?", Time.zone.now, Time.zone.now)
   }
   scope :to_end, lambda {
-    where("start_date IS NOT NULL AND end_date IS NOT NULL AND start_date <= ? AND end_date <= ? AND active IS ?", Time.zone.now, Time.zone.now, true)
+    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS TRUE AND start_date <= ? AND end_date <= ?", Time.zone.now, Time.zone.now)
   }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
