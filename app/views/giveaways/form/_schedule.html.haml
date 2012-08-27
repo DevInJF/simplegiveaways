@@ -33,6 +33,7 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
+      minDate: new Date(),
       onSelect: function (selectedDateTime){
         var start = $(this).datetimepicker('getDate');
         $endDateEl.datetimepicker('option', 'minDate', new Date(start.getTime()));
@@ -46,6 +47,7 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
+      minDate: new Date(),
       onSelect: function (selectedDateTime){
         var end = $(this).datetimepicker('getDate');
         $startDateEl.datetimepicker('option', 'maxDate', new Date(end.getTime()));
