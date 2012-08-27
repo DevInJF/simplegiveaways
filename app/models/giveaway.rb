@@ -156,7 +156,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def unpublish(*args)
-    self.end_date = Time.zone.now if args.extract_options![:manual]
+    self.end_date = Time.zone.now + 30.seconds
     self.active = false
     save ? delete_tab : false
   end
