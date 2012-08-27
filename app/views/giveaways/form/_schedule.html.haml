@@ -24,17 +24,7 @@
   $(function() {
 
     var $startDateEl = $('#giveaway_start_date'),
-          $endDateEl = $('#giveaway_end_date'),
-         start_empty,
-           end_empty;
-
-    if ($startDateEl.val() === '') {
-      start_empty = true;
-    } else { start_empty = false; }
-
-    if ($endDateEl.val() === '') {
-      end_empty = true;
-    } else { end_empty = false; }
+          $endDateEl = $('#giveaway_end_date');
 
     $startDateEl.datetimepicker({
       ampm: true,
@@ -43,12 +33,6 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
-      beforeShow: function (input, inst){
-        console.log(inst);
-        if (start_empty) {
-          $(inst.dpDiv).find(".ui-datepicker-today a").addClass("ui-state-active");
-        }
-      },
       onSelect: function (selectedDateTime){
         var start = $(this).datetimepicker('getDate');
         $endDateEl.datetimepicker('option', 'minDate', new Date(start.getTime()));
@@ -62,12 +46,6 @@
       timeFormat: 'hh:mm TT',
       stepMinute: 10,
       minuteGrid: 10,
-      beforeShow: function (input, inst){
-        console.log(inst);
-        if (end_empty) {
-          $(inst.dpDiv).find(".ui-datepicker-today a").addClass("ui-state-active");
-        }
-      },
       onSelect: function (selectedDateTime){
         var end = $(this).datetimepicker('getDate');
         $startDateEl.datetimepicker('option', 'maxDate', new Date(end.getTime()));
