@@ -10,23 +10,19 @@ body {
   }
 
   #enter_giveaway {
-  width: 810px;
-  padding: 13px 0 10px;
-  background: #5e6469;
+    width: 810px;
+    padding: 13px 0 10px;
+    background: #5e6469;
 
     a {
-      display: block;
-      width: 101px;
-      height: 3px;
-      margin: 0 auto;
-      padding: 10px 0;
-      text-align: left;
-      text-indent: -9999em;
-      background: transparent image_url('/assets/tab/enter_giveaway_button.png') no-repeat 0 0;
-
-      &:active, &:focus {
-        background: transparent image_url('/assets/tab/enter_giveaway_button.png') no-repeat 0 -28px;
-      }
+      font-size: 20px;
+      font-weight: normal;
+      padding: 14px 0;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      line-height: normal;
+      width: 100%;
     }
   }
 
