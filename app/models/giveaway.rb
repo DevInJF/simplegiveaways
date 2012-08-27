@@ -393,7 +393,9 @@ class Giveaway < ActiveRecord::Base
     end
 
     def schedule_worker
+      Rails.logger.debug(Giveaway.to_start.map(&:title).inspect.red_on_white)
       Giveaway.to_start.each(&:publish)
+      Rails.logger.debug(Giveaway.to_end.map(&:title).inspect.red_on_white)
       Giveaway.to_end.each(&:unpublish)
     end
   end
