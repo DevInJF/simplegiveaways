@@ -350,7 +350,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def tab_height
-    Giveaway.image_dimensions(image(:tab))[:height].to_i + 133
+    Giveaway.image_dimensions(image(:tab))[:height].to_i + 163
   end
 
   def countdown_target
