@@ -195,30 +195,24 @@ class Giveaway < ActiveRecord::Base
   end
 
   def create_tab
-    Rails.logger.debug("Giveaways#create_tab".inspect.white_on_green)
     graph_client.put_connections("me", "tabs", app_id: FB_APP_ID)
     update_tab
   end
 
   def update_tab
-    Rails.logger.debug("Giveaways#update_tab".inspect.white_on_green)
     tabs = graph_client.get_connections("me", "tabs")
     tab = tabs.select do |tab|
             tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
           end.compact.flatten.first
-    Rails.logger.debug(tab.inspect.white_on_green)
-    Rails.logger.debug(facebook_page.pid.inspect.white_on_green)
-    graph_client.put_object( facebook_page.pid, "tabs", tab: "app_#{FB_APP_ID}",
-                                                        custom_name: custom_fb_tab_name,
-                                                        custom_image_url: feed_image(:thumb),
-                                                        position: 3)
+
+    put_tab
+  rescue Koala::Facebook::APIError
+    put_tab(false)
   end
 
   def delete_tab
     tabs = graph_client.get_connections("me", "tabs")
-    tab = tabs.select do |tab|
-            tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
-          end.compact.flatten.first
+    tab = select_giveaway_tab(tabs)
 
     if graph_client.delete_object(tab["id"])
       GabbaClient.new.event(category: "Giveaways", action: "Giveaway#end", label: title)
@@ -226,6 +220,20 @@ class Giveaway < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def put_tab(position = 0)
+    options = { tab: "app_#{FB_APP_ID}",
+                custom_name: custom_fb_tab_name,
+                custom_image_url: feed_image(:thumb) }
+    options.merge!(position: 0) if position
+    graph_client.put_object(options)
+  end
+
+  def select_giveaway_tab(tabs)
+    tabs.select do |tab|
+      tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
+    end.compact.flatten.first
   end
 
   def page_pid
