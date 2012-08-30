@@ -226,8 +226,8 @@ class Giveaway < ActiveRecord::Base
     options = { tab: "app_#{FB_APP_ID}",
                 custom_name: custom_fb_tab_name,
                 custom_image_url: feed_image(:thumb) }
-    options.merge!(position: 0) if position
-    graph_client.put_object(options)
+    options.merge(position: 0) if position
+    graph_client.put_object( facebook_page.pid, "tabs", options )
   end
 
   def select_giveaway_tab(tabs)
