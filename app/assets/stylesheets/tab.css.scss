@@ -15,7 +15,8 @@ body {
   #enter_giveaway {
     width: 810px;
     padding: 13px 0 10px;
-    background: #5e6469;
+    background: transparent;
+    text-align: center;
 
     a {
       font-size: 20px;
@@ -25,7 +26,8 @@ body {
       -moz-border-radius: 6px;
       border-radius: 6px;
       line-height: normal;
-      width: 100%;
+      width: 98%;
+      margin: 0 auto;
     }
   }
 

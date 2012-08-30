@@ -84,6 +84,10 @@ class Entry < ActiveRecord::Base
     likes.any?
   end
 
+  def bonus_entries
+    giveaway.bonus_value.to_i * convert_count rescue 0
+  end
+
   def self.conversion_worker(has_liked, ref_ids, giveaway_cookie)
     if has_liked
       puts giveaway_cookie.inspect.red
