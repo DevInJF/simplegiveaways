@@ -5,7 +5,7 @@ header.giveaway_preview {
   height:94px;
   padding:20px 0px;
   border-bottom: 1px solid #ddd;
-      
+
   .title {
   float:left;
   margin-top:10px;
@@ -22,7 +22,7 @@ header.giveaway_preview {
       font-size:18px;
       margin-top:4px;
       font-weight:normal;
-        
+
       span {
         color:#a1a1a1;
       }
@@ -59,15 +59,9 @@ header.giveaway_preview {
 
 
     .btn-end {
-      margin-left:20px; 
+      margin-left:20px;
     }
   }
-}
-
-
-#page_giveaways_pending {
-
-  
 }
 
 section.stats {
@@ -97,11 +91,11 @@ section.stats {
         font-size:32px;
         margin-top:10px;
       }
-      
+
       span.pop {
         color: #005580;
         font-size:18px;
-      } 
+      }
     }
 
     li.secondary {
@@ -123,8 +117,8 @@ section.stats {
       span.pop {
         color: #005580;
         font-size:14px;
-      } 
-    } 
+      }
+    }
   }
 }
 
@@ -176,7 +170,7 @@ header.giveaway {
   padding: 20px;
   margin-bottom: 15px;
   overflow: hidden;
-  
+
   &.active {
 
     p {
@@ -186,7 +180,7 @@ header.giveaway {
 
   &.pending {
     background-color:#f4f4f4;
-   
+
     p {
       color:#bb9e00;
     }
@@ -194,7 +188,7 @@ header.giveaway {
 
   &.completed {
     background-color:#f4f4f4;
-   
+
     p {
       color:#a80000;
     }
@@ -208,7 +202,7 @@ header.giveaway {
     height: 200px;
     overflow: hidden;
     float: right;
-  } 
+  }
 
   p {
     font-size:24px;
@@ -248,16 +242,16 @@ body.giveaways {
 }
 
 html {
-  
+
   body {
-  
+
     .tab-content {
-      
+
       .pane_heading {
         height: 50px;
         padding: 0 30px;
         overflow: hidden;
-        
+
         h2 {
           float: left;
           line-height: 50px;
@@ -283,7 +277,7 @@ html {
 
           .modal-body {
             padding: 60px 90px;
-            
+
 
             h1 {
               font-size:36px;
@@ -301,7 +295,7 @@ html {
             }
           }
         }
-      } 
+      }
     }
 
     div.countdown-timer {
@@ -322,7 +316,7 @@ html {
           &.time {
             font-weight: bold;
           }
-        } 
+        }
       }
 
       div.space {
@@ -333,4 +327,8 @@ html {
       }
     }
   }
+}
+
+table#entries {
+  margin-top: 10px;
 }

@@ -93,6 +93,7 @@ class GiveawaysController < ApplicationController
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
       flash[:error] = "There was a problem activating #{@giveaway.title}."
+      Rails.logger.debug(@giveaway.errors.inspect.red)
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end

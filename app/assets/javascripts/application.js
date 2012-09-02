@@ -18,6 +18,7 @@
 //= require vendor/jquery.countdown
 //= require vendor/dynamo
 //= require vendor/jquery.flot
+//= require vendor/jquery.tablesorter
 
 //= require juggernaut
 //= require facebook

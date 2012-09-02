@@ -137,14 +137,18 @@ class Giveaway < ActiveRecord::Base
 
   def csv
     CSV.generate do |csv|
-      csv << ["ID", "Email", "Name", "Viral?", "New Fan?", "Entry Time", "Wall Posts", "Requests", "Conversions"]
+      csv << ["ID", "Email", "Name", "Viral?", "New Fan?", "Entry Time",
+              "Wall Posts", "Requests", "Conversions", "Bonus Entries"]
       entries.each do |entry|
-        csv << [entry.id, entry.email, entry.name, entry.is_viral, entry.new_fan?, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count]
+        csv << [entry.id, entry.email, entry.name, entry.is_viral,
+                entry.new_fan?, entry.datetime_entered, entry.wall_post_count,
+                entry.request_count, entry.convert_count, entry.bonus_entries]
       end
     end
   end
 
   def publish(giveaway_params = {})
+    Rails.logger.debug(facebook_page.giveaways.inspect.yellow)
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: Time.zone.now, active: true }))
       is_installed? ? update_tab : create_tab
