@@ -104,12 +104,11 @@ jQuery ->
 
       success: ->
         $loader.hide()
-        if $autoshow
-          Giveaway.share.as_app_request()
-        else
-          Giveaway.step.two.hide()
-          Giveaway.step.three.show()
+        Giveaway.step.two.hide()
+        Giveaway.step.three.show()
         Giveaway.share.listener()
+        $("a.wall-post").click if $autoshow
+
 
       submit: (access_token, json) ->
         Giveaway.entry.loader()
