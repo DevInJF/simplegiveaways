@@ -124,8 +124,8 @@ jQuery ->
           statusCode:
             201: (response) ->
               console.log(response)
-              Giveaway.entry.success()
               $entry_id = response
+              Giveaway.entry.success()
               $wall_post_count = 0
               $request_count = 0
 
