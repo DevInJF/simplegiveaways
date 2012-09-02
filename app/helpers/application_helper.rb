@@ -43,4 +43,8 @@ module ApplicationHelper
   def datetime_mdy(datetime)
     datetime.strftime('%m/%d/%Y') rescue ""
   end
+
+  def bonus_entries_select
+    (1..100).collect{ |i| i if i % 5 == 0 }.compact
+  end
 end
