@@ -3,7 +3,7 @@
   %p.page_subtitle current_user.facebook_pages.count
 
 - content_for :avatar do
-  %a{href: "#", class: "avatar" }
+  %a{href: dashboard_path, class: "avatar" }
     = image_tag( current_user.avatar , alt: current_user.name)
 
 - content_for :links do
