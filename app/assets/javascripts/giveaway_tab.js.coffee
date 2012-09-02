@@ -107,7 +107,7 @@ jQuery ->
         Giveaway.step.two.hide()
         Giveaway.step.three.show()
         Giveaway.share.listener()
-        $("a.wall-post").click if $autoshow
+        $("a.wall-post").click() if $autoshow
 
 
       submit: (access_token, json) ->
