@@ -21,6 +21,8 @@
 
   = render 'header', giveaway: giveaway, page: giveaway.facebook_page
   = render 'stats', giveaway: giveaway
-  = render 'graphs', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
-  = render 'entries', giveaway: giveaway, page: giveaway.facebook_page
+  - if flot
+    = render 'graphs', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
+  - if giveaway.entry_count > 0
+    = render 'entries', giveaway: giveaway, page: giveaway.facebook_page
   = render 'details', giveaway: giveaway, page: giveaway.facebook_page

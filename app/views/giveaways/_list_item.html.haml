@@ -5,8 +5,8 @@
     %h1= truncate(giveaway.title, length: 26)
     %p is #{giveaway.status}
 
-
 - elsif giveaway.status == "Pending"
+
   %header.giveaway_preview
     .image
       = image_tag(giveaway.feed_image(:feed))
@@ -18,12 +18,7 @@
     .buttons
       = link_to "<i class='icon-edit'></i> Edit".html_safe, facebook_page_giveaway_path(page, giveaway), class: "btn btn-large btn-edit"
 
-      
       = render 'publish_button', giveaway: giveaway, page: page
-
-      
-
-
 
 - else giveaway.status == "Completed"
 
@@ -33,4 +28,4 @@
     %td= giveaway.end_date
     %td= giveaway.entries.count
     %td= giveaway.impressionist_count
-  
+
