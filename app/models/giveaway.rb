@@ -428,7 +428,8 @@ class Giveaway < ActiveRecord::Base
       feed_image_url: self.feed_image.url,
       bonus_value: bonus_value,
       terms_text: terms_text,
-      terms_link: terms_link
+      terms_link: terms_link,
+      autoshow_share: autoshow_share_dialog
     })
   end
 
