@@ -48,6 +48,8 @@ class Giveaway < ActiveRecord::Base
   store :terms, accessors: [ :terms_url, :terms_text ]
 
   validate :terms_present
+  validates :terms_url, :with => URI::regexp(%w(http https)),
+                        :message => "must be a proper URL and start with 'http://'"
 
   store :preferences, accessors: [ :autoshow_share_dialog,
                                    :allow_multi_entries,
@@ -444,9 +446,6 @@ class Giveaway < ActiveRecord::Base
     if terms_url.blank? && terms_text.blank?
       errors.add(:terms_url, "Must provide either Terms URL or Terms Text.")
       errors.add(:terms_text, "Must provide either Terms URL or Terms Text.")
-      if terms_url.present?
-        validates_format_of :terms_url, :with => URI::regexp(%w(http https)), :message => "must be a proper URL and start with 'http://'"
-      end
     end
   end
 
