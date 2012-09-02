@@ -7,7 +7,7 @@
     .modal-header
       %a.close{ :"data-dismiss" => "modal" }
         x
-    
+
     .modal-body
       %h1 Warning
       %p If you continue, the <strong>#{giveaway.title}</strong> giveaway will be permanently removed from your Facebook page. This cannot be undone.
@@ -27,5 +27,6 @@
   .image= image_tag(giveaway.image(:medium))
 
 = render 'stats', giveaway: giveaway
-= render 'graphs', giveaway: giveaway, page: page, flot: flot
+- if giveaway.entry_count > 0
+  = render 'graphs', giveaway: giveaway, page: page, flot: flot
 = render 'entries', giveaway: giveaway, page: page
