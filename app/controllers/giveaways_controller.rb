@@ -16,10 +16,7 @@ class GiveawaysController < ApplicationController
 
   def active
     @giveaways = @page.giveaways.active.first rescue nil
-    @flot = { page_likes: Graph.new(@page).page_likes,
-              net_likes: Graph.new(@giveaways).net_likes,
-              entries: Graph.new(@giveaways).entries,
-              views: Graph.new(@giveaways).views }
+    @flot = flot_hash
   end
 
   def pending
@@ -33,10 +30,7 @@ class GiveawaysController < ApplicationController
   def show
     @giveaway = Giveaway.find_by_id(params[:id])
     @page = @giveaway.facebook_page
-    @flot = { page_likes: Graph.new(@page).page_likes,
-              net_likes: Graph.new(@giveaway).net_likes,
-              entries: Graph.new(@giveaway).entries,
-              views: Graph.new(@giveaway).views }
+    @flot = flot_hash
   end
 
   def new
@@ -153,6 +147,15 @@ class GiveawaysController < ApplicationController
 
   def assign_giveaway
     @giveaway = Giveaway.find_by_id(params[:id])
+  end
+
+  def flot_hash
+    { page_likes: Graph.new(@page).page_likes,
+      net_likes: Graph.new(@giveaways).net_likes,
+      entries:   Graph.new(@giveaways).entries,
+      views:     Graph.new(@giveaways).views }
+  rescue StandardError
+    {}
   end
 
   def register_impression
