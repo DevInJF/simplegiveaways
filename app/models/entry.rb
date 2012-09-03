@@ -22,9 +22,9 @@ class Entry < ActiveRecord::Base
     @cookie = options[:cookie]
     @referrer_id = options[:referrer_id].blank? ? nil : options[:referrer_id].to_i
 
-    auth_required? = Giveaway.find_by_id(options[:giveaway_id]).email_required
+    auth_required = Giveaway.find_by_id(options[:giveaway_id]).email_required
 
-    if auth_required?
+    if auth_required
       graph = Koala::Facebook::API.new(options[:access_token])
       profile = graph.get_object("me")
       @existing_entry = Entry.find_by_uid_and_giveaway_id(profile["id"], options[:giveaway_id])
