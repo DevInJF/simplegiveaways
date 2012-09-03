@@ -28,6 +28,7 @@
   .form{style: "display:none"}
     = simple_form_for Entry.new do |f|
       = f.input :email, placeholder: "user@domain.com"
+      = link_to "Enter Giveaway", "#", class: "btn btn-primary submit"
   .loader{style: "display:none"}
     = image_tag "tab_loader.gif", alt: "Loading..."
 

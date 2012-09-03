@@ -15,6 +15,7 @@ class EntriesController < ApplicationController
         has_liked: params[:has_liked],
         referrer_id: params[:ref_id],
         access_token: params[:access_token],
+        email: params[:email],
         giveaway_id: @giveaway.id,
         cookie: @giveaway_cookie
       )

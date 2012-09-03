@@ -34,10 +34,16 @@ class Entry < ActiveRecord::Base
     unless @existing_entry
 
       self.entry_count = 1
-      self.uid = profile["id"]
-      self.name = profile["name"]
-      self.email = profile["email"]
-      self.fb_url = profile["link"]
+
+      if Giveaway.find_by_id(options[:giveaway_id]).email_required
+        self.email = options[:email]
+      else
+        self.uid = profile["id"]
+        self.name = profile["name"]
+        self.email = profile["email"]
+        self.fb_url = profile["link"]
+      end
+
       self.datetime_entered = DateTime.now
 
       if @cookie.belongs_to_user && @referrer_id
@@ -58,8 +64,11 @@ class Entry < ActiveRecord::Base
     @entry ||= @existing_entry
   end
 
-  def determine_status(has_liked, access_token)
+  def determine_status(has_liked, access_token=nil)
     if has_liked == "true"
+      self.has_liked = true
+      self.status = "complete"
+    elsif access_token == "auth_disabled"
       self.has_liked = true
       self.status = "complete"
     else

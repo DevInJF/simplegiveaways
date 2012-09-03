@@ -6,6 +6,7 @@ jQuery ->
   giveaway_object = giveaway_hash.giveaway.table
   paths = _sg.paths
 
+  $email = null
   $new_session = null
   $entry_id = null
   $request_count = null
@@ -14,6 +15,7 @@ jQuery ->
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
   $form = $modal.find(".form")
+  $form_submit = $form.find("a.btn.btn-primary.submit")
   $loader = $modal.find(".loader")
 
   $auth_required = () ->
@@ -108,6 +110,9 @@ jQuery ->
 
       form: ->
         $form.show()
+        $form_submit.click (e) ->
+          Giveaway.entry.submit("auth_disabled")
+          e.preventDefault()
 
       error: (error) ->
         $loader.hide()
@@ -134,7 +139,7 @@ jQuery ->
           type: "POST"
           url: "#{paths.giveaway_entry}"
           dataType: "json"
-          data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible + "&ref_id=" + $referrer_id
+          data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible + "&ref_id=" + $referrer_id + "&email=" + $email
           statusCode:
             201: (response) ->
               console.log(response)
