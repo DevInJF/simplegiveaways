@@ -14,8 +14,11 @@ jQuery ->
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
   $loader = $modal.find(".loader")
+
+  $auth_required = () ->
+    giveaway_object.auth_required == "true"
   $autoshow = () ->
-                giveaway_object.autoshow_share == "true"
+    giveaway_object.autoshow_share == "true"
 
   $("#giveaway_image").click ->
     Giveaway.modal.hide()
@@ -30,8 +33,17 @@ jQuery ->
 
   $(document).on 'fb:initialized', ->
 
-    FB.getLoginStatus (response) ->
+    if $auth_required()
+      FB.getLoginStatus (response) ->
+        Giveaway.init()
+    else
+      Giveaway.init()
 
+    console.log(Giveaway.eligible)
+
+  Giveaway =
+
+    init: ->
       FB.Canvas.setSize height: "#{giveaway_hash.tab_height}"
 
       FB.Event.subscribe 'edge.create', (href, widget) ->
@@ -58,11 +70,7 @@ jQuery ->
         e.preventDefault()
         Giveaway.entry.statusCheck()
 
-      Giveaway.termsLink();
-
-    console.log(Giveaway.eligible)
-
-  Giveaway =
+      Giveaway.termsLink()
 
     modal: $modal
 

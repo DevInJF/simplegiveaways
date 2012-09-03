@@ -429,7 +429,8 @@ class Giveaway < ActiveRecord::Base
       bonus_value: bonus_value,
       terms_text: terms_text,
       terms_link: terms_link,
-      autoshow_share: autoshow_share_dialog
+      autoshow_share: autoshow_share_dialog,
+      auth_requried: email_required
     })
   end
 
