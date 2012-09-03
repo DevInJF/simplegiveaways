@@ -187,7 +187,7 @@ jQuery ->
           data: json
           statusCode:
             202: ->
-              Giveaway.share.listener()
+
             406: ->
 
             404: ->
