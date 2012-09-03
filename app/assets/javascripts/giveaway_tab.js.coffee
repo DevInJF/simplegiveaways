@@ -17,11 +17,6 @@ jQuery ->
   $autoshow = () ->
                 giveaway_object.autoshow_share == "true"
 
-  console.log("autoshow")
-  console.log($autoshow)
-  console.log("giveaway_object")
-  console.log(giveaway_object)
-
   $("#giveaway_image").click ->
     Giveaway.modal.hide()
 
