@@ -33,7 +33,7 @@ class Entry < ActiveRecord::Base
 
     unless @existing_entry
 
-      self.entry_count = entry_count += 1
+      self.entry_count = 1
       self.uid = profile["id"]
       self.name = profile["name"]
       self.email = profile["email"]
