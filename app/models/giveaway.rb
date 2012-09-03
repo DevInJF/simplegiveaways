@@ -151,7 +151,7 @@ class Giveaway < ActiveRecord::Base
 
   def publish(giveaway_params = {})
     return false unless startable?
-    if self.update_attributes(giveaway_params.merge({ start_date: Time.zone.now, active: true }))
+    if self.update_attributes(giveaway_params.merge({ start_date: (Time.zone.now - 30.seconds), active: true }))
       is_installed? ? update_tab : create_tab
       GabbaClient.new.event(category: "Giveaways", action: "Giveaway#start", label: title)
       !!GiveawayNoticeMailer.start(facebook_page.page_admin_emails).deliver
@@ -167,7 +167,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def startable?
-    facebook_page.giveaways.where(active: true).empty? ? true : false
+    facebook_page.giveaways.active.empty? ? true : false
   end
 
   def status
@@ -410,8 +410,8 @@ class Giveaway < ActiveRecord::Base
     end
 
     def schedule_worker
-      Giveaway.to_start.each(&:publish)
       Giveaway.to_end.each(&:unpublish)
+      Giveaway.to_start.each(&:publish)
     end
   end
 
