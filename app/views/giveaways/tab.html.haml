@@ -26,10 +26,9 @@
       %a.wall-post{href: "#"} Post to Wall
       %a.app-request{href: "#"} Post to Friends
   .form{style: "display:none"}
-    %form
-      = label_tag "email"
-      = text_field_tag "email", nil, placeholder: "user@domain.com"
-      = link_to "Enter Giveaway", "#", class: "btn btn-primary submit"
+    %span Please provide your email so we can notify you in case you win!
+    = text_field_tag "email", nil, placeholder: "user@domain.com"
+    = link_to "Enter Giveaway", "#", class: "btn btn-primary submit"
   .auth{style: "display:none"}
     %span Please authenticate the app so we can notify you in case you win!
     = link_to "Authenticate", "#", class: "btn btn-primary auth"

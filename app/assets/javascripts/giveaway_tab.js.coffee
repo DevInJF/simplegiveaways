@@ -109,6 +109,9 @@ jQuery ->
           $email = $form.find("input").val()
           Giveaway.entry.submit("auth_disabled")
           e.preventDefault()
+        $(document).keypress (e) ->
+          if (e.which == 13) && $form.is(':visible')
+            $form_submit.click()
 
       error: (error) ->
         $loader.hide()
