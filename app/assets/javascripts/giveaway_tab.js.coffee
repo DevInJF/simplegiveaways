@@ -26,7 +26,8 @@ jQuery ->
     giveaway_object.autoshow_share == "true"
 
   console.log("$auth_required")
-  console.log($auth_required)
+  console.log($auth_required())
+  console.log(giveaway_object)
 
   $("#giveaway_image").click ->
     Giveaway.modal.hide()
