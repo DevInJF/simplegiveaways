@@ -18,7 +18,6 @@ class FacebookPage < ActiveRecord::Base
     page_count = (pages.size - 1)
 
     pages.each_with_index do |page_hash, index|
-                  puts(page_hash.inspect.white_on_red)
                   page = page_hash[:page]
                fb_meta = page_hash[:fb_meta][:data]
       fb_avatar_square = page_hash[:fb_meta][:avatar_square]

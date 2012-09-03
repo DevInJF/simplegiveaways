@@ -23,8 +23,6 @@ class GiveawayCookie
   end
 
   def update_cookie(giveaway_hash)
-    Rails.logger.debug("giveawaycookie is #{self.inspect}".inspect.cyan)
-    Rails.logger.debug("giveaway_hash is #{giveaway_hash.inspect}".inspect.red)
     self.giveaway_id = giveaway_hash.giveaway.id
 
     if giveaway_hash.referrer_id.present?

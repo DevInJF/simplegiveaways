@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = @giveaway.entries.new
-    Rails.logger.debug(params[:ref_id].inspect.white)
+
     if params[:access_token]
       @entry = @entry.process(
         has_liked: params[:has_liked],
@@ -64,7 +64,6 @@ class EntriesController < ApplicationController
 
   def register_like_from_entry
     if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
-      logger.debug(@like.inspect.yellow)
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true

@@ -133,7 +133,6 @@ class Identity < ActiveRecord::Base
     end.first["value"] rescue nil
 
   rescue StandardError => ex
-    logger.error ex.message
     nil
   end
 end

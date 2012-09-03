@@ -5,8 +5,6 @@ class LikesController < ApplicationController
    after_filter :set_giveaway_cookie, only: [:create]
 
   def create
-    Rails.logger.debug("LIKESCONTROLLER\n\n\n\n\AAAAH".inspect.white)
-    Rails.logger.debug(@giveaway_cookie.inspect.white)
     if @like = Like.create_from_cookie(@giveaway_cookie)
       @giveaway_cookie.is_fan = true
       @giveaway_cookie.like_counted = true

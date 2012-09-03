@@ -150,7 +150,6 @@ class Giveaway < ActiveRecord::Base
   end
 
   def publish(giveaway_params = {})
-    Rails.logger.debug(facebook_page.giveaways.inspect.yellow)
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: Time.zone.now, active: true }))
       is_installed? ? update_tab : create_tab
@@ -411,9 +410,7 @@ class Giveaway < ActiveRecord::Base
     end
 
     def schedule_worker
-      Rails.logger.debug(Giveaway.to_start.map(&:title).inspect.red_on_white)
       Giveaway.to_start.each(&:publish)
-      Rails.logger.debug(Giveaway.to_end.map(&:title).inspect.red_on_white)
       Giveaway.to_end.each(&:unpublish)
     end
   end

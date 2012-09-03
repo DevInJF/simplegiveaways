@@ -25,10 +25,6 @@ jQuery ->
   $autoshow = () ->
     giveaway_object.autoshow_share == "true"
 
-  console.log("$auth_required")
-  console.log($auth_required())
-  console.log(giveaway_object)
-
   $("#giveaway_image").click ->
     Giveaway.modal.hide()
 
@@ -48,8 +44,6 @@ jQuery ->
     else
       Giveaway.init()
 
-    console.log(Giveaway.eligible)
-
   Giveaway =
 
     init: ->
@@ -57,19 +51,13 @@ jQuery ->
 
       FB.Event.subscribe 'edge.create', (href, widget) ->
         $just_liked = true
-        console.log($just_liked)
-        console.log(href)
-        console.log(widget)
         Giveaway.step.one.hide()
         Giveaway.step.two.show()
 
         Giveaway.onLike()
 
       $("#enter_giveaway a").click (e) ->
-        console.log(Giveaway.eligible)
         if Giveaway.eligible or $just_liked
-          console.log(Giveaway.eligible)
-          console.log($just_liked)
           Giveaway.entry.eligible()
         else
           Giveaway.modal.show()
@@ -105,7 +93,7 @@ jQuery ->
         dataType: "json"
         data: "like[giveaway_id]=#{giveaway_object.id}"
         success: (data, textStatus, jqXHR) ->
-          console.log "This like brought to you by Filter Mania 2.0!!!"
+          return true
 
     entry:
 
@@ -143,9 +131,7 @@ jQuery ->
       submit: (access_token, json) ->
         Giveaway.entry.loader()
         if json
-          console.log json
           access_token = eval("(" + access_token + ")")
-          console.log access_token
         $.ajax
           type: "POST"
           url: "#{paths.giveaway_entry}"
@@ -153,7 +139,6 @@ jQuery ->
           data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible + "&ref_id=" + $referrer_id + "&email=" + $email,
           statusCode:
             201: (response) ->
-              console.log(response)
               $entry_id = response
               $wall_post_count = 0
               $request_count = 0
@@ -162,7 +147,6 @@ jQuery ->
             406: (response) ->
               Giveaway.entry.error "You have already entered the giveaway.<br />Entry is limited to one per person."
               $entry = jQuery.parseJSON(response.responseText)
-              console.log $entry
               $entry_id = $entry.id
               $wall_post_count = parseInt($entry.wall_post_count)
               $request_count = parseInt($entry.request_count)
@@ -179,22 +163,14 @@ jQuery ->
 
       statusCheck: ->
         FB.getLoginStatus (response) ->
-          console.log("statusCheck")
-          console.log(response)
           if response.authResponse
-            console.log("response.authResponse")
-            console.log(response.authResponse)
             Giveaway.entry.submit response.authResponse.accessToken
           else if $auth_required()
-            console.log("$auth_required()")
-            console.log($auth_required())
             Giveaway.entry.auth(response)
           else
-            console.log("else")
             Giveaway.entry.form()
 
       eligible: ->
-        console.log("entry.eligible #{$new_session}")
         Giveaway.entry.loader()
         if $new_session?
           Giveaway.entry.submit $new_session, true
@@ -206,7 +182,6 @@ jQuery ->
         $auth.show()
         $auth_button.click (e) ->
           FB.login (response) ->
-            console.log(response)
             if response.authResponse
               $new_session = response.authResponse.accessToken
               Giveaway.entry.submit response.authResponse.accessToken
@@ -244,17 +219,13 @@ jQuery ->
           if response and response.post_id
             json = entry:
               wall_post_count: $wall_post_count + 1
-
             Giveaway.share.callback json
-            console.log "Post was published." + $entry_id
           else if response and response.to
             json = entry:
               request_count: $request_count + response.to.length
-
             Giveaway.share.callback json
-            console.log "Request was sent." + $entry_id
           else
-            console.log "Nothing was shared." + $entry_id
+            return true
 
       as_wall_post: ->
         Giveaway.share.dialog

@@ -9,7 +9,6 @@ class Like < ActiveRecord::Base
   serialize :ref_ids, Array
 
   def self.create_from_cookie(giveaway_cookie)
-    Rails.logger.debug(giveaway_cookie.inspect.magenta)
     Like.create(
       from_entry: giveaway_cookie.entry_id.present?,
       fb_uid: giveaway_cookie.uid,
