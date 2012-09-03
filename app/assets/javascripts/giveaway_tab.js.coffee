@@ -13,6 +13,7 @@ jQuery ->
   $just_liked = false
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
+  $form = $modal.find(".form")
   $loader = $modal.find(".loader")
 
   $auth_required = () ->
@@ -105,6 +106,9 @@ jQuery ->
         $loader.show()
         $modal.show()
 
+      form: ->
+        $form.show()
+
       error: (error) ->
         $loader.hide()
         Giveaway.step.two.hide()
@@ -161,7 +165,7 @@ jQuery ->
         FB.getLoginStatus (response) ->
           if response.authResponse
             Giveaway.entry.submit response.authResponse.accessToken
-          else
+          else if $auth_required
             FB.login
               scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
             , (response) ->
@@ -170,6 +174,9 @@ jQuery ->
                 Giveaway.entry.submit response.authResponse.accessToken, true
               else
                 Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
+          else
+            Giveaway.entry.form()
+
 
       eligible: ->
         console.log("entry.eligible #{$new_session}")
