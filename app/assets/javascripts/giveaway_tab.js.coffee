@@ -14,7 +14,8 @@ jQuery ->
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
   $loader = $modal.find(".loader")
-  $autoshow = jQuery.parseJSON(giveaway_object.autoshow_share)
+  $autoshow = () ->
+                giveaway_object.autoshow_share === "false"
 
   $("#giveaway_image").click ->
     Giveaway.modal.hide()
@@ -107,7 +108,7 @@ jQuery ->
         Giveaway.step.two.hide()
         Giveaway.step.three.show()
         Giveaway.share.listener()
-        if $autoshow?
+        if $autoshow
           $("a.app-request").click()
 
 
