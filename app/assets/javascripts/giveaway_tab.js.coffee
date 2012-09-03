@@ -107,8 +107,8 @@ jQuery ->
         Giveaway.step.two.hide()
         Giveaway.step.three.show()
         Giveaway.share.listener()
-        console.log($autoshow)
-        $("a.app-request").click() if $autoshow
+        if $autoshow
+          $("a.app-request").click()
 
 
       submit: (access_token, json) ->
