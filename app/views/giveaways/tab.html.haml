@@ -26,7 +26,7 @@
       %a.wall-post{href: "#"} Post to Wall
       %a.app-request{href: "#"} Post to Friends
   .form{style: "display:none"}
-    = simple_form_for @entry do |f|
+    = simple_form_for Entry.new do |f|
       = f.input :email, placeholder: "user@domain.com"
   .loader{style: "display:none"}
     = image_tag "tab_loader.gif", alt: "Loading..."
