@@ -20,7 +20,7 @@
 
 - else
 
-  -if @page && @page.giveaways.active.present?
+  -if @page && @page.giveaways.active.any?
 
     %section.no_active
       .create-giveaway
