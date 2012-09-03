@@ -86,7 +86,7 @@ class Entry < ActiveRecord::Base
   end
 
   def bonus_entries
-    giveaway.bonus_value.to_i * convert_count rescue 0
+    ( (giveaway.bonus_value.to_i * convert_count) + entry_count ) rescue 0
   end
 
   def self.conversion_worker(has_liked, ref_ids, giveaway_cookie)
