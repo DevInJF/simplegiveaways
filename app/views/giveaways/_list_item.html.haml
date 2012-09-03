@@ -25,7 +25,7 @@
   %tr
     %td= image_tag(giveaway.feed_image(:thumb))
     %td= link_to truncate(giveaway.title, length: 26), facebook_page_giveaway_path(page, giveaway)
-    %td= giveaway.end_date.strftime('%m/%e/%Y %l:%M %p')
+    %td= giveaway.end_date.strftime('%m/%d/%Y %l:%M %p')
     %td= giveaway.entries.count
     %td= giveaway.impressionist_count
     %td= giveaway.page_likes_while_active
