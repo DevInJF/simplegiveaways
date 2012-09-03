@@ -207,13 +207,13 @@ jQuery ->
         $auth_button.click (e) ->
           FB.login
             (response) ->
-            console.log(response)
-            if response.authResponse
-              $new_session = response.authResponse.accessToken
-              Giveaway.entry.submit response.authResponse.accessToken, true
-            else
-              Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
-          , scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
+              console.log(response)
+              if response.authResponse
+                $new_session = response.authResponse.accessToken
+                Giveaway.entry.submit response.authResponse.accessToken, true
+              else
+                Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
+            , scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
           e.preventDefault()
 
     share:
