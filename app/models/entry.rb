@@ -22,20 +22,21 @@ class Entry < ActiveRecord::Base
     @cookie = options[:cookie]
     @referrer_id = options[:referrer_id].blank? ? nil : options[:referrer_id].to_i
 
-    graph = Koala::Facebook::API.new(options[:access_token])
-    profile = graph.get_object("me")
+    auth_required? = Giveaway.find_by_id(options[:giveaway_id]).email_required
 
-    @existing_entry = Entry.find_by_uid_and_giveaway_id(profile["id"], options[:giveaway_id])
-
-    logger.debug(@cookie.inspect.cyan)
-    logger.debug(@referrer_id.inspect.red)
-    logger.debug(@existing_entry.inspect.white)
+    if auth_required?
+      graph = Koala::Facebook::API.new(options[:access_token])
+      profile = graph.get_object("me")
+      @existing_entry = Entry.find_by_uid_and_giveaway_id(profile["id"], options[:giveaway_id])
+    else
+      @existing_entry = Entry.find_by_email_and_giveaway_id(options[:email], options[:giveaway_id])
+    end
 
     unless @existing_entry
 
       self.entry_count = 1
 
-      if Giveaway.find_by_id(options[:giveaway_id]).email_required
+      if
         self.email = options[:email]
       else
         self.uid = profile["id"]
