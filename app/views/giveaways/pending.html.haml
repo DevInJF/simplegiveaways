@@ -1,9 +1,9 @@
 - content_for :content_header do
   %h2 Pending Giveaways
 
-- if @page.giveaways.pending.present?
+- if @page.giveaways.pending.any?
 
-  -if @page && @page.giveaways.active.present?
+  -if @page && @page.giveaways.active.any?
     
     %section.no_active
       .create-giveaway
@@ -15,8 +15,6 @@
       .create-giveaway
         %h1 There is no active giveaway on your page right now.
         %h3 So go ahead and publish one
-
-
 
   = render collection: @giveaways, partial: "list_item", as: :giveaway, locals: { page: @page }
 
