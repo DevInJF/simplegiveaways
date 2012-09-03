@@ -203,6 +203,7 @@ jQuery ->
           FB.login
             scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
           , (response) ->
+            console.log(response.authResponse)
             if response.authResponse
               $new_session = response.authResponse.accessToken
               Giveaway.entry.submit response.authResponse.accessToken, true
