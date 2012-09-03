@@ -107,7 +107,7 @@ jQuery ->
         Giveaway.step.two.hide()
         Giveaway.step.three.show()
         Giveaway.share.listener()
-        if $autoshow
+        if $autoshow?
           $("a.app-request").click()
 
 
