@@ -1,14 +1,21 @@
 .countdown-timer
   %p
     %span Ends in
-    %span#weeks.time
-    %span.text Weeks,
-    %span#daysLeft.time
-    %span.text Days,
-    %span#hours.time
-    %span.text Hours, and
-    %span#minutes.time
-    %span.text Minutes
+    %span.weeks.time-wrapper
+      %span#weeks.time
+      %span.text Weeks,
+    %span.days.time-wrapper
+      %span#daysLeft.time
+      %span.text Days,
+    %span.hours.time-wrapper
+      %span#hours.time
+      %span.text Hours, and
+    %span.minutes.time-wrapper
+      %span#minutes.time
+      %span.text Minutes
+    %span.seconds.time-wrapper
+      %span#seconds.time
+      %span.text Seconds
 
 :javascript
   simpleGiveaways["active_giveaway"]["countdown_target"] = '#{giveaway.countdown_target}'
