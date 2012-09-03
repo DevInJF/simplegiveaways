@@ -36,13 +36,13 @@ class Entry < ActiveRecord::Base
 
       self.entry_count = 1
 
-      if
-        self.email = options[:email]
-      else
+      if auth_required
         self.uid = profile["id"]
         self.name = profile["name"]
         self.email = profile["email"]
         self.fb_url = profile["link"]
+      else
+        self.email = options[:email]
       end
 
       self.datetime_entered = DateTime.now
