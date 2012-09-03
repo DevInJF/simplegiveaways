@@ -107,6 +107,7 @@ jQuery ->
         Giveaway.step.two.hide()
         Giveaway.step.three.show()
         Giveaway.share.listener()
+        console.log($autoshow)
         $("a.app-request").click() if $autoshow
 
 
@@ -125,9 +126,9 @@ jQuery ->
             201: (response) ->
               console.log(response)
               $entry_id = response
-              Giveaway.entry.success()
               $wall_post_count = 0
               $request_count = 0
+              Giveaway.entry.success()
 
             406: (response) ->
               Giveaway.entry.error "You have already entered the giveaway.<br />Entry is limited to one per person."
