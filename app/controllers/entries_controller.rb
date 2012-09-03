@@ -20,8 +20,12 @@ class EntriesController < ApplicationController
       )
 
       if @entry.persisted?
-        if @giveaway.
-        render json: @entry.as_json(only: [:id, :wall_post_count, :request_count]), status: :not_acceptable
+        if @giveaway.allow_multi_entries
+          @entry.update_attributes(entry_count: entry_count += 1)
+          render json: @entry.id, status: :created
+          ga_event("Entries", "Entry#multi", @entry.giveaway.title, @entry.id)
+        else
+          render json: @entry.as_json(only: [:id, :wall_post_count, :request_count]), status: :not_acceptable
       elsif @entry.status == "incomplete"
         render json: @entry.id, status: :precondition_failed
       elsif @entry.save
