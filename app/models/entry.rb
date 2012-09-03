@@ -10,7 +10,7 @@ class Entry < ActiveRecord::Base
   belongs_to :giveaway
   has_many :likes
 
-  validates :email, uniqueness: { scope: :giveaway_id }
+  validates :email, presence: true, uniqueness: { scope: :giveaway_id }
 
   attr_accessor :referrer_id
 
