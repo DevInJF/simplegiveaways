@@ -16,6 +16,8 @@ jQuery ->
   $modal = $("#giveaway_modal")
   $form = $modal.find(".form")
   $form_submit = $form.find("a.btn.btn-primary.submit")
+  $auth = $modal.find(".auth")
+  $auth_button = $auth.find("a.btn-btn-primary.auth")
   $loader = $modal.find(".loader")
 
   $auth_required = () ->
@@ -171,15 +173,8 @@ jQuery ->
         FB.getLoginStatus (response) ->
           if response.authResponse
             Giveaway.entry.submit response.authResponse.accessToken
-          else if $auth_required
-            FB.login
-              scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
-            , (response) ->
-              if response.authResponse
-                $new_session = response.authResponse.accessToken
-                Giveaway.entry.submit response.authResponse.accessToken, true
-              else
-                Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
+          else if $auth_required()
+            Giveaway.entry.auth()
           else
             Giveaway.entry.form()
 
@@ -191,6 +186,19 @@ jQuery ->
           Giveaway.entry.submit $new_session, true
         else
           Giveaway.entry.statusCheck()
+
+      auth: ->
+        $auth.show()
+        $auth_button.click (e) ->
+          e.preventDefault()
+          FB.login
+            scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
+          , (response) ->
+            if response.authResponse
+              $new_session = response.authResponse.accessToken
+              Giveaway.entry.submit response.authResponse.accessToken, true
+            else
+              Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
 
     share:
       listener: ->
