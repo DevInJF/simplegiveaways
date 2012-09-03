@@ -32,6 +32,7 @@ module Simplegiveaways
         'application.js',
         'tab.css',
         'application.css',
+        'welcome.css',
         'graph.css'
     ]
 
