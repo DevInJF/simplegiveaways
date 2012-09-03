@@ -315,6 +315,7 @@ DEPENDENCIES
   awesome_print
   aws-sdk
   bootstrap-sass (~> 2.0.1)
+  bourbon
   braintree
   cancan
   coffee-rails (~> 3.2.1)
