@@ -14,7 +14,7 @@ jQuery ->
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
   $loader = $modal.find(".loader")
-  $autoshow = giveaway_object.autoshow_share
+  $autoshow = jQuery.parseJSON(giveaway_object.autoshow_share)
 
   $("#giveaway_image").click ->
     Giveaway.modal.hide()

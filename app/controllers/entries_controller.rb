@@ -20,7 +20,7 @@ class EntriesController < ApplicationController
       )
 
       if @entry.persisted?
-        if @giveaway.allow_multi_entries
+        if @giveaway.allow_multi_entries.truthy?
           @entry.update_attributes(entry_count: @entry.entry_count += 1)
           render json: @entry.id, status: :created
           ga_event("Entries", "Entry#multi", @entry.giveaway.title, @entry.id)
