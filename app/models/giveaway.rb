@@ -49,7 +49,7 @@ class Giveaway < ActiveRecord::Base
 
   validate :terms_present
   validates :terms_url, format: { with: /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,
-                                  message: "must be a proper URL and start with 'http://'" }
+                                  message: "must be a proper URL and start with 'http://'" }, allow_blank: true
 
   store :preferences, accessors: [ :autoshow_share_dialog,
                                    :allow_multi_entries,
