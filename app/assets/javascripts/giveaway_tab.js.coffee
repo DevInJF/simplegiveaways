@@ -25,6 +25,9 @@ jQuery ->
   $autoshow = () ->
     giveaway_object.autoshow_share == "true"
 
+  console.log("$auth_required")
+  console.log($auth_required)
+
   $("#giveaway_image").click ->
     Giveaway.modal.hide()
 
@@ -111,6 +114,7 @@ jQuery ->
         $modal.show()
 
       form: ->
+        $loader.hide()
         $form.show()
         $form_submit.click (e) ->
           $email = $form.find("input").val()
@@ -191,6 +195,7 @@ jQuery ->
           Giveaway.entry.statusCheck()
 
       auth: ->
+        $loader.hide()
         $auth.show()
         $auth_button.click (e) ->
           e.preventDefault()
