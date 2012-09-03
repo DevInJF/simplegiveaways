@@ -125,12 +125,13 @@ jQuery ->
 
       success: ->
         $loader.hide()
+        $form.hide()
+        $auth.hide()
         Giveaway.step.two.hide()
         Giveaway.step.three.show()
         Giveaway.share.listener()
         if $autoshow()
           $("a.app-request").click()
-
 
       submit: (access_token, json) ->
         Giveaway.entry.loader()
