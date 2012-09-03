@@ -27,7 +27,8 @@
       %a.app-request{href: "#"} Post to Friends
   .form{style: "display:none"}
     %form
-      = f.input :email, placeholder: "user@domain.com"
+      = label_tag "email"
+      = text_field_tag "email", nil, placeholder: "user@domain.com"
       = link_to "Enter Giveaway", "#", class: "btn btn-primary submit"
   .loader{style: "display:none"}
     = image_tag "tab_loader.gif", alt: "Loading..."
