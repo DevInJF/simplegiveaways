@@ -17,7 +17,7 @@ jQuery ->
   $form = $modal.find(".form")
   $form_submit = $form.find("a.btn.btn-primary.submit")
   $auth = $modal.find(".auth")
-  $auth_button = $auth.find("a.btn-btn-primary.auth")
+  $auth_button = $auth.find("a.btn.btn-primary.auth")
   $loader = $modal.find(".loader")
 
   $auth_required = () ->
