@@ -119,6 +119,8 @@ jQuery ->
 
       error: (error) ->
         $loader.hide()
+        $form.hide()
+        $auth.hide()
         Giveaway.step.two.hide()
         Giveaway.step.three.show().find(".entry-status").html "<p>" + error + "</p>"
         Giveaway.share.listener()
