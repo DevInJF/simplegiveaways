@@ -182,10 +182,15 @@ jQuery ->
           console.log("statusCheck")
           console.log(response)
           if response.authResponse
+            console.log("response.authResponse")
+            console.log(response.authResponse)
             Giveaway.entry.submit response.authResponse.accessToken
           else if $auth_required()
-            Giveaway.entry.auth()
+            console.log("$auth_required()")
+            console.log($auth_required())
+            Giveaway.entry.auth(response)
           else
+            console.log("else")
             Giveaway.entry.form()
 
 
@@ -197,7 +202,7 @@ jQuery ->
         else
           Giveaway.entry.statusCheck()
 
-      auth: ->
+      auth: (response) ->
         $loader.hide()
         $auth.show()
         $auth_button.click (e) ->
