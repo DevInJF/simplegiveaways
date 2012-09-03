@@ -5,6 +5,9 @@ jQuery ->
     countdownTarget = simpleGiveaways["active_giveaway"]["countdown_target"]
 
     countdownOptions = (event) ->
-      $(@).find("span##{event.type}").html(event.value)
+      if _.include([0, "0", 00, "00"], event.value)
+        $(@).find("span.#{event.type}.time-wrapper").remove()
+      else
+        $(@).find("span##{event.type}").html(event.value)
 
     $('div.countdown-timer').countdown(countdownTarget, countdownOptions)
