@@ -179,6 +179,8 @@ jQuery ->
 
       statusCheck: ->
         FB.getLoginStatus (response) ->
+          console.log("statusCheck")
+          console.log(response)
           if response.authResponse
             Giveaway.entry.submit response.authResponse.accessToken
           else if $auth_required()
