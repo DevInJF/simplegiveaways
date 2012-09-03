@@ -25,7 +25,7 @@
         %span Share this giveaway to receive <strong>#{@giveaway_hash.giveaway.bonus_value}</strong> bonus entries for each friend who enters.
       %a.wall-post{href: "#"} Post to Wall
       %a.app-request{href: "#"} Post to Friends
-  .form
+  .form{style: "display:none"}
     = simple_form_for @entry do |f|
       = f.input :email, placeholder: "user@domain.com"
   .loader{style: "display:none"}
