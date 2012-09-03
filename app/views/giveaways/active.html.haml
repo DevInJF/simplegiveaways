@@ -1,7 +1,7 @@
 - content_for :content_header do
   %h2 Active Giveaway
 
-- if @giveaways.present?
+- if @giveaways.present? && @giveaways.status == "Active"
 
   = render object: @giveaways, partial: "active_giveaway", as: :giveaway,
            locals: { page: @page, flot: @flot }

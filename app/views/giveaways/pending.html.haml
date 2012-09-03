@@ -3,7 +3,7 @@
 
 - if @page.giveaways.pending.any?
 
-  -if @page && @page.giveaways.active.any?
+  - if @page.giveaways.active.any?
     
     %section.no_active
       .create-giveaway
@@ -20,7 +20,7 @@
 
 - else
 
-  -if @page && @page.giveaways.active.any?
+  - if @page && @page.giveaways.active.any?
 
     %section.no_active
       .create-giveaway
