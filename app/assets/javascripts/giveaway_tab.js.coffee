@@ -111,6 +111,7 @@ jQuery ->
       form: ->
         $form.show()
         $form_submit.click (e) ->
+          $email = $form.find("input").val()
           Giveaway.entry.submit("auth_disabled")
           e.preventDefault()
 
