@@ -161,7 +161,11 @@ class GiveawaysController < ApplicationController
   def register_impression
     @message = @signed_request["user_id"] ? "fb_uid: #{@signed_request['user_id']} " : ""
     @message += "ref_id: #{@giveaway_hash.referrer_id}" if @giveaway_hash.referrer_id.is_a?(String)
-    impressionist(@giveaway, message: "#{@message}", filter: :session_hash)
+    if @signed_request["user_id"]
+      impressionist(@giveaway, message: "#{@message}")
+    else
+      impressionist(@giveaway, message: "#{@message}", filter: :session_hash)
+    end
   end
 
   def last_giveaway_cookie
