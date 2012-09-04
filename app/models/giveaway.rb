@@ -83,7 +83,7 @@ class Giveaway < ActiveRecord::Base
                                   before_message: "must be before end date/time.",
                                   ignore_usec: true
 
-  validates_datetime :end_date, on_or_after: -> { Time.zone.now },
+  validates_datetime :end_date, on_or_after: -> { (Time.zone.now - 30.seconds) },
                                 on_or_after_message: "must be in the future.",
                                 ignore_usec: true
 
@@ -160,8 +160,8 @@ class Giveaway < ActiveRecord::Base
     end
   end
 
-  def unpublish(*args)
-    self.end_date = Time.zone.now + 30.seconds
+  def unpublish
+    self.end_date = Time.zone.now
     self.active = false
     save ? delete_tab : false
   end

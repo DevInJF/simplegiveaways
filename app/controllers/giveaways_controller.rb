@@ -92,7 +92,7 @@ class GiveawaysController < ApplicationController
   end
 
   def end
-    if @giveaway.unpublish(:manual => true)
+    if @giveaway.unpublish
       flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
     else
