@@ -58,6 +58,7 @@ jQuery ->
         Giveaway.onLike()
 
       $("#enter_giveaway a").click (e) ->
+        $auth.hide()
         if Giveaway.eligible or $just_liked
           Giveaway.entry.eligible()
         else
@@ -187,7 +188,6 @@ jQuery ->
         $auth_button.click (e) ->
           FB.login (response) ->
             if response.authResponse
-              $authed = true
               $new_session = response.authResponse.accessToken
               Giveaway.entry.submit response.authResponse.accessToken
             else
