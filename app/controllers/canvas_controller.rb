@@ -17,8 +17,14 @@ class CanvasController < ApplicationController
       graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       request = graph.get_object(request_ids.last)
 
+      Rails.logger.debug("graph: #{graph.inspect}".inspect.yellow)
+      Rails.logger.debug("request: #{request.inspect}".inspect.magenta)
+
       @giveaway = Giveaway.select("id, title, giveaway_url").find_by_id(JSON.parse(request["data"])["giveaway_id"])
       @app_data = "ref_#{JSON.parse(request['data'])['referrer_id']}"
+
+      Rails.logger.debug("@giveaway: #{@giveaway.inspect}".inspect.green)
+      Rails.logger.debug("@app_data: #{@app_data.inspect}".inspect.red)
 
       FbAppRequestWorker.perform_async(request_ids.last, params[:signed_request])
 
