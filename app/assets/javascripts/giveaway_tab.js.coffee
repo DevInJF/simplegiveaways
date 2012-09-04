@@ -6,6 +6,7 @@ jQuery ->
   giveaway_object = giveaway_hash.giveaway.table
   paths = _sg.paths
 
+  $authed = null
   $email = null
   $new_session = null
   $entry_id = null
@@ -186,6 +187,7 @@ jQuery ->
         $auth_button.click (e) ->
           FB.login (response) ->
             if response.authResponse
+              $authed = true
               $new_session = response.authResponse.accessToken
               Giveaway.entry.submit response.authResponse.accessToken
             else
