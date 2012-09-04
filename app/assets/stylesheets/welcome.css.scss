@@ -8,3 +8,34 @@ html {
   box-shadow: inset 0 0 100px hsla(0, 0%, 0%, .3);
   min-height: 100%;
 }
+
+body.welcome {
+  background: transparent;
+
+  .site_wrapper {
+    width: 1052px;
+    margin: 0px auto;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  header.site {
+    height: 120px;
+    line-height: 120px;
+
+    h1 {
+      line-height: 120px;
+      float: left;
+    }
+
+    .btn-group {
+      margin-left: 24px;
+      margin-top: 14px;
+      float: right;
+      position: relative;
+      top: 28px;
+    }
+  }
+}
