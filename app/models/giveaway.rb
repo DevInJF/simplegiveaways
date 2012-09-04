@@ -30,10 +30,10 @@ class Giveaway < ActiveRecord::Base
     where("active IS FALSE AND end_date <= ?", Time.zone.now)
   }
   scope :to_start, lambda {
-    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND end_date >= ?", (Time.zone.now + 3.minutes), Time.zone.now)
+    where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ?", (Time.zone.now + 3.minutes))
   }
   scope :to_end, lambda {
-    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS TRUE AND start_date <= ? AND end_date <= ?", Time.zone.now, (Time.zone.now + 3.minutes))
+    where("end_date IS NOT NULL AND active IS TRUE AND end_date <= ?", (Time.zone.now + 3.minutes))
   }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
@@ -188,11 +188,11 @@ class Giveaway < ActiveRecord::Base
   end
 
   def pending?
-    start_date.nil? || end_date.nil? || (start_date > Time.zone.now && end_date > Time.zone.now)
+    !active && ((end_date >= Time.zone.now) || end_date.nil?)
   end
 
   def completed?
-    start_date < Time.zone.now && end_date < Time.zone.now
+    !active && end_date <= Time.zone.now
   end
 
   def is_installed?
