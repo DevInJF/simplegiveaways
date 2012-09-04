@@ -30,10 +30,10 @@ class Giveaway < ActiveRecord::Base
     where("active IS FALSE AND end_date <= ?", Time.zone.now)
   }
   scope :to_start, lambda {
-    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND end_date >= ?", Time.zone.now, Time.zone.now)
+    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND end_date >= ?", (Time.zone.now + 3.minutes), Time.zone.now)
   }
   scope :to_end, lambda {
-    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS TRUE AND start_date <= ? AND end_date <= ?", Time.zone.now, Time.zone.now)
+    where("start_date IS NOT NULL AND end_date IS NOT NULL AND active IS TRUE AND start_date <= ? AND end_date <= ?", Time.zone.now, (Time.zone.now + 3.minutes))
   }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
@@ -409,9 +409,9 @@ class Giveaway < ActiveRecord::Base
       graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
     end
 
-    def schedule_worker
-      Giveaway.to_start.each(&:publish)
-      Giveaway.to_end.each(&:unpublish)
+    def schedule_worker(method)
+      Giveaway.to_start.each(&:publish) if method == "publish"
+      Giveaway.to_end.each(&:unpublish) if method == "unpublish"
     end
   end
 

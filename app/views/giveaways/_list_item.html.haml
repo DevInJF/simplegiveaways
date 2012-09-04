@@ -20,7 +20,7 @@
 
       = render 'publish_button', giveaway: giveaway, page: page
 
-- else giveaway.status == "Completed"
+- elsif giveaway.status == "Completed"
 
   %tr
     %td= image_tag(giveaway.feed_image(:thumb))
