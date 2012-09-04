@@ -29,7 +29,7 @@
     }
   }());
 
-- if current_user
+- if current_user && current_user.fb_uid
   :javascript
     simpleGiveaways["current_user"]["name"] = '#{current_user.name}';
     simpleGiveaways["current_user"]["fb_uid"] = '#{current_user.fb_uid}';

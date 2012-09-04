@@ -410,8 +410,8 @@ class Giveaway < ActiveRecord::Base
     end
 
     def schedule_worker
-      Giveaway.to_end.each(&:unpublish)
       Giveaway.to_start.each(&:publish)
+      Giveaway.to_end.each(&:unpublish)
     end
   end
 
