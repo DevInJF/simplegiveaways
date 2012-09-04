@@ -21,7 +21,7 @@
 
   = render 'header', giveaway: giveaway, page: giveaway.facebook_page
   = render 'stats', giveaway: giveaway
-  - if flot
+  - if flot[:page_likes]
     = render 'graphs', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
   - if giveaway.entry_count > 0
     = render 'entries', giveaway: giveaway, page: giveaway.facebook_page

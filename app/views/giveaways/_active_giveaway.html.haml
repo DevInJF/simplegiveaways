@@ -27,7 +27,7 @@
   .image= image_tag(giveaway.image(:medium))
 
 = render 'stats', giveaway: giveaway
-- if flot
+- if flot[:page_likes]
   = render 'graphs', giveaway: giveaway, page: page, flot: flot
 - if giveaway.entry_count > 0
   = render 'entries', giveaway: giveaway, page: page
