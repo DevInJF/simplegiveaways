@@ -52,14 +52,12 @@ jQuery ->
 
       FB.Event.subscribe 'edge.create', (href, widget) ->
         $just_liked = true
-        $auth.hide()
         Giveaway.step.one.hide()
         Giveaway.step.two.show()
 
         Giveaway.onLike()
 
       $("#enter_giveaway a").click (e) ->
-        $auth.hide()
         if Giveaway.eligible or $just_liked
           Giveaway.entry.eligible()
         else
@@ -171,6 +169,8 @@ jQuery ->
         FB.getLoginStatus (response) ->
           if response.authResponse
             Giveaway.entry.submit response.authResponse.accessToken
+          else if $new_session?
+            Giveaway.entry.submit $new_session
           else if $auth_required()
             Giveaway.entry.auth(response)
           else
@@ -193,6 +193,7 @@ jQuery ->
               Giveaway.entry.submit response.authResponse.accessToken
             else
               Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
+            $auth.hide()
           , scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
           e.preventDefault()
 
