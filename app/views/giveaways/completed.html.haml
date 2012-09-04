@@ -1,19 +1,26 @@
 - content_for :content_header do
   %h2 Completed Giveaways
 
-%table.completed.table.zebra-striped
-  %thead
-    %tr
-      %th Image
-      %th Title
-      %th Ended
-      %th Entries
-      %th Views
-      %th Likes
-  %tbody
-    = render collection: @giveaways, partial: "list_item", as: :giveaway, locals: { page: @page }
+- if @giveaways.any?
 
-:javascript
-  $(function() {
-    $("table.completed").tablesorter({ sortList: [[5,1]] });
-  });
+  %table.completed.table.zebra-striped
+    %thead
+      %tr
+        %th Image
+        %th Title
+        %th Ended
+        %th Entries
+        %th Views
+        %th Likes
+    %tbody
+      = render collection: @giveaways, partial: "list_item", as: :giveaway, locals: { page: @page }
+
+  :javascript
+    $(function() {
+      $("table.completed").tablesorter({ sortList: [[5,1]] });
+    });
+
+- else
+
+  .create-giveaway
+    %h1 You have no completed giveaways yet.
