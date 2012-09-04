@@ -52,6 +52,7 @@ jQuery ->
 
       FB.Event.subscribe 'edge.create', (href, widget) ->
         $just_liked = true
+        $auth.hide()
         Giveaway.step.one.hide()
         Giveaway.step.two.show()
 
