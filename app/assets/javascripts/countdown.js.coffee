@@ -6,6 +6,8 @@ jQuery ->
 
     iteration = 0
     countdownOptions = (event) ->
+      if event.type == "daysLeft" && _.include([0, "0", "00"], event.value)
+        $(@).find(".seconds.time-wrapper").show()
       if iteration == 0 && _.include([0, "0", "00"], event.value)
         $(@).find("span.#{event.type}.time-wrapper").remove()
       else
