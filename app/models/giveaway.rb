@@ -402,6 +402,7 @@ class Giveaway < ActiveRecord::Base
     end
 
     def app_request_worker(request_id, signed_request)
+      return unless signed_request.present?
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       signed_request = oauth.parse_signed_request(signed_request)
 
