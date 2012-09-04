@@ -402,12 +402,9 @@ class Giveaway < ActiveRecord::Base
     end
 
     def app_request_worker(request_id, signed_request)
-      Rails.logger.debug("app_request_worker".inspect.yellow)
-      Rails.logger.debug(request_id.inspect.red)
-      Rails.logger.debug(signed_request.inspect.green)
+      return unless signed_request["oauth_token"]
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       signed_request = oauth.parse_signed_request(signed_request)
-      Rails.logger.debug(signed_request.inspect.cyan)
 
       graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
