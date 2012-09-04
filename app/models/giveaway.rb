@@ -188,7 +188,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def pending?
-    !active && ((end_date >= Time.zone.now) || end_date.nil?)
+    !active && (end_date.nil? || (end_date >= Time.zone.now))
   end
 
   def completed?
