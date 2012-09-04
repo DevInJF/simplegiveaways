@@ -179,7 +179,7 @@ jQuery ->
       eligible: ->
         Giveaway.entry.loader()
         if $new_session?
-          Giveaway.entry.submit $new_session, true
+          Giveaway.entry.submit $new_session
         else
           Giveaway.entry.statusCheck()
 
