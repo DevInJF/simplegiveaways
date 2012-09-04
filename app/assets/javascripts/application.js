@@ -3,6 +3,7 @@
 //= require vendor/jquerypp
 //= require vendor/jquery-ui-timepicker-addon
 //= require jquery_ujs
+//= require vendor/underscore
 
 //= require bootstrap-transition
 //= require bootstrap-alert
