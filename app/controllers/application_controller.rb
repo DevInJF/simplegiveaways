@@ -16,7 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= (User.find_by_id(session[:user_id]) || Identity.find_by_uid(cookies[:_sg_uid]).user if cookies[:_sg_uid]) rescue nil
+    @current_user ||= (User.find_by_id(session[:user_id]) ||
+      Identity.find_by_uid(cookies.encrypted[:_sg_uid]).user if cookies.encrypted[:_sg_uid])
+  rescue StandardError
+    nil
   end
 
   def signed_in?

@@ -22,7 +22,7 @@ module ApplicationHelper
   end
 
   def uid_class
-    session['uid'] || cookies[:_sg_uid]
+    session['uid'] || cookies.encrypted[:_sg_uid]
   end
 
   def flash_class(level)

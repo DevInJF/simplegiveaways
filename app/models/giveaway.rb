@@ -293,7 +293,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def viral_likes
-    likes.where("ref_ids != '--- []\n'")
+    likes.where("ref_ids != ?", [])
   end
 
   def likes_from_entries_count
