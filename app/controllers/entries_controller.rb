@@ -65,10 +65,15 @@ class EntriesController < ApplicationController
   end
 
   def parse_signed_request
-    oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-    @signed_request = oauth.parse_signed_request(params[:signed_request])
+    if params[:signed_request]
+      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+      @signed_request = oauth.parse_signed_request(params[:signed_request])
 
-    Rails.logger.debug("@signed_request".inspect.yellow)
+      Rails.logger.debug("@signed_request".inspect.yellow)
+      Rails.logger.debug(@signed_request.inspect.green)
+    else
+      @signed_request = {}
+    end
   end
 
   def register_like_from_entry
