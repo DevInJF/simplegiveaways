@@ -1,0 +1,21 @@
+# First-Time Tab Visitor, Not a Fan, Not Authenticated
+
+2012-09-05T23:03:16+00:00 app[web.1]: Started POST "/giveaways/tab/" for 69.203.126.239 at 2012-09-05 19:03:16 -0400
+2012-09-05T23:03:16+00:00 app[web.1]: "GiveawaysController#tab: params"
+2012-09-05T23:03:16+00:00 app[web.1]: {"signed_request"=>"SQrdPgfiGcoZgFcR8lA70CLWqfasjNLVtJ7wkZQzEpI.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTM0Njg4NjE5NSwicGFnZSI6eyJpZCI6IjE1MjIwNjY3MTU1ODU1MSIsImxpa2VkIjpmYWxzZSwiYWRtaW4iOmZhbHNlfSwidXNlciI6eyJjb3VudHJ5IjoidXMiLCJsb2NhbGUiOiJlbl9VUyIsImFnZSI6eyJtaW4iOjIxfX19", "controller"=>"giveaways", "action"=>"tab"}
+
+2012-09-05T23:03:16+00:00 app[web.1]: "params[:signed_request]"
+2012-09-05T23:03:16+00:00 app[web.1]: "SQrdPgfiGcoZgFcR8lA70CLWqfasjNLVtJ7wkZQzEpI.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTM0Njg4NjE5NSwicGFnZSI6eyJpZCI6IjE1MjIwNjY3MTU1ODU1MSIsImxpa2VkIjpmYWxzZSwiYWRtaW4iOmZhbHNlfSwidXNlciI6eyJjb3VudHJ5IjoidXMiLCJsb2NhbGUiOiJlbl9VUyIsImFnZSI6eyJtaW4iOjIxfX19"
+2012-09-05T23:03:16+00:00 app[web.1]: "@signed_request"
+2012-09-05T23:03:16+00:00 app[web.1]: {"algorithm"=>"HMAC-SHA256", "issued_at"=>1346886195, "page"=>{"id"=>"152206671558551", "liked"=>false, "admin"=>false}, "user"=>{"country"=>"us", "locale"=>"en_US", "age"=>{"min"=>21}}}
+
+2012-09-05T23:03:16+00:00 app[web.1]: "GiveawaysController#tab: @giveaway_hash"
+2012-09-05T23:03:16+00:00 app[web.1]: #<OpenStruct fb_uid=nil, referrer_id=[], has_liked=false, current_page=#<FacebookPage id: 1, name: "Lightyrs", url: "http://www.facebook.com/pages/Lightyrs/152206671558...">, giveaway=#<OpenStruct id=28, title="Filling a Thing", description="Filling a Thing", giveaway_url="http://www.facebook.com/pages/Lightyrs/152206671558551?sk=app_224405887571151", image_url="http://s3.amazonaws.com/_sg_production/tab/28/ipad2_600x600.jpeg", feed_image_url="http://s3.amazonaws.com/_sg_production/original/28/ipad2_200x200.jpeg", bonus_value="100", terms_text="Filling a Thing", terms_link="<a href='#' class='terms-link terms-text'>Official Terms and Conditions</a>", autoshow_share="false", auth_required="true">, tab_height=973>
+
+2012-09-05T23:03:16+00:00 app[web.1]: "GiveawaysController#tab: @giveaway_cookie"
+2012-09-05T23:03:16+00:00 app[web.1]: #<GiveawayCookie:0x0000000732c1a0 @last_cookie={}, @uid=nil, @entry_id=nil, @giveaway_id=28, @ref_ids=[], @wasnt_fan=true, @is_fan=false, @like_counted=false>
+
+2012-09-05T23:03:16+00:00 app[web.1]: "GiveawaysController#tab: @giveaway_cookie.uncounted_like"
+2012-09-05T23:03:16+00:00 app[web.1]: false
+
+2012-09-05T23:03:16+00:00 app[web.1]: GA: {:utmwv=>"4.4sh", :utmn=>9645683854, :utmhn=>"simplegiveaways.com", :utmcs=>"UTF-8", :utmul=>"en-us", :utmhid=>5477434992, :utmac=>"UA-29319340-1", :utmcc=>"__utma=1.8466969000145214523.1563232694.1346886196.1346886196.15;+__utmz=1.1346886196.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none);", :utmr=>"http://static.ak.facebook.com/platform/page_proxy.php?v=5", :utmp=>"/giveaways/tab/", :utmip=>"10.104.99.0", :utmt=>"event", :utme=>"5(Giveaways*Giveaway#tab*Filling a Thing)(28)"}

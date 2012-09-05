@@ -10,9 +10,13 @@ class EntriesController < ApplicationController
   after_filter  :register_like_from_entry, only: [:create]
 
   def create
+    Rails.logger.debug("EntriesController#create: params".inspect.magenta)
+    Rails.logger.debug(params.inspect.yellow)
     @entry = @giveaway.entries.new
 
     if params[:access_token]
+      Rails.logger.debug("EntriesController#create: @entry before .process".inspect.magenta)
+      Rails.logger.debug(@entry.inspect.green)
       @entry = @entry.process(
         has_liked: params[:has_liked],
         referrer_id: params[:ref_id],
@@ -21,6 +25,9 @@ class EntriesController < ApplicationController
         giveaway_id: @giveaway.id,
         cookie: @giveaway_cookie
       )
+
+      Rails.logger.debug("EntriesController#create: @entry after .process".inspect.magenta)
+      Rails.logger.debug(@entry.inspect.red)
 
       if @entry.persisted?
         if @giveaway.allow_multi_entries.truthy?
