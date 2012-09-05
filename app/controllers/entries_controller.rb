@@ -64,21 +64,18 @@ class EntriesController < ApplicationController
     @giveaway_cookie = GiveawayCookie.new( cookies.encrypted[Giveaway.cookie_key(@giveaway.id)] )
   end
 
-  def parse_signed_request
-    if params[:signed_request]
-      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      @signed_request = oauth.parse_signed_request(params[:signed_request])
-
-      Rails.logger.debug("@signed_request".inspect.yellow)
-      Rails.logger.debug(@signed_request.inspect.green)
-    else
-      @signed_request = {}
+  def assign_uid
+    if params[:access_token]
+      graph = Koala::Facebook::API.new(params[:access_token])
+      profile = graph.get_object("me")
+      @uid = profile["id"]
     end
   end
 
+  # TODO: use access token to get user_id ?
   def register_like_from_entry
-    uid = @entry.uid.present? ? @entry.uid : @signed_request["user_id"]
-    if @like = Like.find_by_fb_uid_and_giveaway_id(uid, @entry.giveaway_id)
+    (@uid = @entry.uid) if @entry.uid.present?
+    if @like = Like.find_by_fb_uid_and_giveaway_id(@uid, @entry.giveaway_id)
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true
