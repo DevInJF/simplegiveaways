@@ -54,7 +54,6 @@ jQuery ->
         $just_liked = true
         Giveaway.step.one.hide()
         Giveaway.step.two.show()
-
         Giveaway.onLike()
 
       $("#enter_giveaway a").click (e) ->
@@ -134,7 +133,7 @@ jQuery ->
 
       submit: (access_token, json) ->
         Giveaway.entry.loader()
-        if json
+        if json?
           access_token = eval("(" + access_token + ")")
         $.ajax
           type: "POST"
@@ -179,7 +178,7 @@ jQuery ->
       eligible: ->
         Giveaway.entry.loader()
         if $new_session?
-          Giveaway.entry.submit $new_session
+          Giveaway.entry.submit $new_session, true
         else
           Giveaway.entry.statusCheck()
 
@@ -190,7 +189,7 @@ jQuery ->
           FB.login (response) ->
             if response.authResponse
               $new_session = response.authResponse.accessToken
-              Giveaway.entry.submit response.authResponse.accessToken
+              Giveaway.entry.submit response.authResponse.accessToken, true
             else
               Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
             $auth.hide()
