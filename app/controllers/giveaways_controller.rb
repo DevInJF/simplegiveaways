@@ -104,8 +104,15 @@ class GiveawaysController < ApplicationController
 
   def tab
     if params[:signed_request]
+
+      Rails.logger.debug("params[:signed_request]".inspect.magenta)
+      Rails.logger.debug(params[:signed_request].inspect.magenta)
+
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       @signed_request = oauth.parse_signed_request(params[:signed_request])
+
+      Rails.logger.debug("@signed_request".inspect.yellow)
+      Rails.logger.debug(@signed_request.inspect.yellow)
 
       @giveaway_hash = Giveaway.tab(@signed_request)
 
