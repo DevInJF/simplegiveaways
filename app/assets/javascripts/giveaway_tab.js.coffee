@@ -86,7 +86,7 @@ jQuery ->
         e.preventDefault()
 
     eligible: ->
-      "#{giveaway_hash.has_liked}" == "true"
+      ("#{giveaway_hash.has_liked}" == "true") || $just_liked
 
     onLike: ->
       $.ajax
@@ -177,13 +177,10 @@ jQuery ->
           else
             Giveaway.entry.form()
 
-      eligible: (json) ->
+      eligible: ->
         Giveaway.entry.loader()
         if $new_session?
-          if json?
-            Giveaway.entry.submit $new_session, true
-          else
-            Giveaway.entry.submit $new_session
+          Giveaway.entry.submit $new_session
         else
           Giveaway.entry.statusCheck()
 
@@ -196,7 +193,7 @@ jQuery ->
               $new_session = response.authResponse.accessToken
               console.log("$new_session json?")
               console.log($new_session)
-              Giveaway.entry.eligible(true)
+              Giveaway.entry.eligible()
             else
               Giveaway.modal.show()
               Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
