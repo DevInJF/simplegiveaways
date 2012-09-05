@@ -66,6 +66,7 @@ class Entry < ActiveRecord::Base
     @entry ||= @existing_entry
   end
 
+  # like_status(access_token)... we need to get UID from access_token
   def determine_status(has_liked, access_token=nil)
     if has_liked == "true"
       self.has_liked = true

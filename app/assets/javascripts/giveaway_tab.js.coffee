@@ -57,7 +57,7 @@ jQuery ->
         Giveaway.onLike()
 
       $("#enter_giveaway a").live "click", (e) ->
-        if Giveaway.eligible() or $just_liked
+        if Giveaway.eligible()
           Giveaway.entry.eligible()
         else
           Giveaway.modal.show()
@@ -86,7 +86,8 @@ jQuery ->
         e.preventDefault()
 
     eligible: ->
-      ("#{giveaway_hash.has_liked}" == "true") || $just_liked
+      (("#{giveaway_hash.has_liked}" == "true") || $just_liked) ? true : false
+
 
     onLike: ->
       $.ajax
