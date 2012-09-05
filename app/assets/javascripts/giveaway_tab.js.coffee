@@ -170,6 +170,7 @@ jQuery ->
         FB.getLoginStatus (response) ->
           if response.authResponse && response.authResponse.accessToken
             $new_session = response.authResponse.accessToken
+            Giveaway.entry.eligible()
           else if $auth_required()
             Giveaway.entry.auth(response)
           else
@@ -178,10 +179,7 @@ jQuery ->
       eligible: ->
         Giveaway.entry.loader()
         if $new_session?
-          if $new_session == "auth_disabled"
-            Giveaway.entry.submit $new_session
-          else
-            Giveaway.entry.submit $new_session, true
+          Giveaway.entry.submit $new_session
         else
           Giveaway.entry.statusCheck()
 
