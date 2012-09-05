@@ -56,11 +56,12 @@ jQuery ->
         Giveaway.step.two.show()
         Giveaway.onLike()
 
-      $("#enter_giveaway a").click (e) ->
+      $("#enter_giveaway a").live "click", (e) ->
         if Giveaway.eligible or $just_liked
           Giveaway.entry.eligible()
         else
           Giveaway.modal.show()
+          Giveaway.step.one.click()
         e.preventDefault()
 
       Giveaway.step.two.find("a").live "click", (e) ->
@@ -107,7 +108,8 @@ jQuery ->
         $form.show()
         $form_submit.click (e) ->
           $email = $form.find("input").val()
-          Giveaway.entry.submit("auth_disabled")
+          $new_session = "auth_disabled"
+          Giveaway.entry.eligible()
           e.preventDefault()
         $(document).keypress (e) ->
           if (e.which == 13) && $form.is(':visible')
@@ -166,10 +168,8 @@ jQuery ->
 
       statusCheck: ->
         FB.getLoginStatus (response) ->
-          if response.authResponse
-            Giveaway.entry.submit response.authResponse.accessToken
-          else if $new_session?
-            Giveaway.entry.submit $new_session
+          if response.authResponse && response.authResponse.accessToken
+            $new_session = response.authResponse.accessToken
           else if $auth_required()
             Giveaway.entry.auth(response)
           else
@@ -178,7 +178,10 @@ jQuery ->
       eligible: ->
         Giveaway.entry.loader()
         if $new_session?
-          Giveaway.entry.submit $new_session, true
+          if $new_session == "auth_disabled"
+            Giveaway.entry.submit $new_session
+          else
+            Giveaway.entry.submit $new_session, true
         else
           Giveaway.entry.statusCheck()
 
@@ -187,10 +190,11 @@ jQuery ->
         $auth.show()
         $auth_button.click (e) ->
           FB.login (response) ->
-            if response.authResponse
+            if response.authResponse && response.authResponse.accessToken
               $new_session = response.authResponse.accessToken
-              Giveaway.entry.submit response.authResponse.accessToken, true
+              Giveaway.entry.eligible()
             else
+              Giveaway.modal.show()
               Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
             $auth.hide()
           , scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
