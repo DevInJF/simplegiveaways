@@ -57,7 +57,7 @@ jQuery ->
         Giveaway.onLike()
 
       $("#enter_giveaway a").live "click", (e) ->
-        if Giveaway.eligible or $just_liked
+        if Giveaway.eligible() or $just_liked
           Giveaway.entry.eligible()
         else
           Giveaway.modal.show()
@@ -85,7 +85,8 @@ jQuery ->
         FB.Canvas.setSize(height: ($("#tab_container").height() + 40))
         e.preventDefault()
 
-    eligible: "#{giveaway_hash.has_liked}"
+    eligible: ->
+      "#{giveaway_hash.has_liked}" == "true"
 
     onLike: ->
       $.ajax
@@ -141,7 +142,7 @@ jQuery ->
           type: "POST"
           url: "#{paths.giveaway_entry}"
           dataType: "json"
-          data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible + "&ref_id=" + $referrer_id + "&email=" + $email,
+          data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible() + "&ref_id=" + $referrer_id + "&email=" + $email,
           statusCode:
             201: (response) ->
               $entry_id = response
