@@ -77,12 +77,12 @@ class EntriesController < ApplicationController
   end
 
   def register_like_from_entry
-    @entry.uid ||= @signed_request["user_id"]
-    if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
+    uid = @entry.uid.present? ? @entry.uid : @signed_request["user_id"]
+    if @like = Like.find_by_fb_uid_and_giveaway_id(uid, @entry.giveaway_id)
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true
-      ) unless @like.entry_id.present?
+      )
     end
   end
 
