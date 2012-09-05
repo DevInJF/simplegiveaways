@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class EntriesController < ApplicationController
 
-  before_filter :parse_signed_request, only: [:create]
+  before_filter :assign_uid, only: [:create]
 
   before_filter :assign_giveaway, only: [:create]
   before_filter :assign_giveaway_cookie, only: [:create]
