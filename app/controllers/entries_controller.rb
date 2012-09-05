@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class EntriesController < ApplicationController
 
+  before_filter :parse_signed_request, only: [:create]
   before_filter :assign_giveaway, only: [:create]
   before_filter :assign_giveaway_cookie, only: [:create]
 
@@ -60,6 +61,10 @@ class EntriesController < ApplicationController
 
   def assign_giveaway_cookie
     @giveaway_cookie = GiveawayCookie.new( cookies.encrypted[Giveaway.cookie_key(@giveaway.id)] )
+  end
+
+  def parse_signed_request
+
   end
 
   def register_like_from_entry
