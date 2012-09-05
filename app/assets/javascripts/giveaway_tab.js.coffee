@@ -177,10 +177,13 @@ jQuery ->
           else
             Giveaway.entry.form()
 
-      eligible: ->
+      eligible: (json) ->
         Giveaway.entry.loader()
         if $new_session?
-          Giveaway.entry.submit $new_session
+          if json?
+            Giveaway.entry.submit $new_session, true
+          else
+            Giveaway.entry.submit $new_session
         else
           Giveaway.entry.statusCheck()
 
@@ -191,7 +194,9 @@ jQuery ->
           FB.login (response) ->
             if response.authResponse && response.authResponse.accessToken
               $new_session = response.authResponse.accessToken
-              Giveaway.entry.eligible()
+              console.log("$new_session json?")
+              console.log($new_session)
+              Giveaway.entry.eligible(true)
             else
               Giveaway.modal.show()
               Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
