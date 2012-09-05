@@ -103,6 +103,8 @@ class GiveawaysController < ApplicationController
   end
 
   def tab
+    Rails.logger.debug("GiveawaysController#tab: params".inspect.magenta)
+    Rails.logger.debug(params.inspect.yellow)
     if params[:signed_request]
 
       Rails.logger.debug("params[:signed_request]".inspect.magenta)
@@ -116,6 +118,9 @@ class GiveawaysController < ApplicationController
 
       @giveaway_hash = Giveaway.tab(@signed_request)
 
+      Rails.logger.debug("GiveawaysController#tab: @giveaway_hash".inspect.magenta)
+      Rails.logger.debug(@giveaway_hash.inspect.green)
+
       if @giveaway_hash.giveaway.nil?
         redirect_to "/404.html"
       else
@@ -124,6 +129,11 @@ class GiveawaysController < ApplicationController
         @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)
         @giveaway_cookie.giveaway_id = @giveaway.id
         @giveaway_cookie.update_cookie(@giveaway_hash)
+
+        Rails.logger.debug("GiveawaysController#tab: @giveaway_cookie".inspect.magenta)
+        Rails.logger.debug(@giveaway_cookie.inspect.red)
+        Rails.logger.debug("GiveawaysController#tab: @giveaway_cookie.uncounted_like".inspect.magenta)
+        Rails.logger.debug(@giveaway_cookie.uncounted_like.inspect.cyan)
 
         if @giveaway_cookie.uncounted_like
           if Like.create_from_cookie(@giveaway_cookie)
