@@ -65,10 +65,14 @@ class EntriesController < ApplicationController
   end
 
   def parse_signed_request
+    oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+    @signed_request = oauth.parse_signed_request(params[:signed_request])
 
+    Rails.logger.debug("@signed_request".inspect.yellow)
   end
 
   def register_like_from_entry
+    @entry.uid ||= @signed_request["user_id"]
     if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
       @like.update_attributes(
         entry_id: @entry.id,
