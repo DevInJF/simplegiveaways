@@ -61,7 +61,7 @@ jQuery ->
           Giveaway.entry.eligible()
         else
           Giveaway.modal.show()
-          Giveaway.step.one.click()
+          Giveaway.step.one.show()
         e.preventDefault()
 
       Giveaway.step.two.find("a").live "click", (e) ->
