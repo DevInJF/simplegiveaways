@@ -14,7 +14,8 @@ class Like < ActiveRecord::Base
       fb_uid: giveaway_cookie.uid,
       entry_id: giveaway_cookie.entry_id,
       ref_ids: giveaway_cookie.ref_ids,
-      giveaway_id: giveaway_cookie.giveaway_id
+      giveaway_id: giveaway_cookie.giveaway_id,
+      is_viral: giveaway_cookie.ref_ids.any?
     )
   end
 end

@@ -189,21 +189,18 @@ jQuery ->
           Giveaway.entry.statusCheck()
 
       auth: (response) ->
-        $loader.hide()
-        $auth.show()
-        $auth_button.click (e) ->
-          FB.login (response) ->
-            if response.authResponse && response.authResponse.accessToken
-              $new_session = response.authResponse.accessToken
-              console.log("$new_session json?")
-              console.log($new_session)
-              Giveaway.entry.eligible()
-            else
-              Giveaway.modal.show()
-              Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
-            $auth.hide()
-          , scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
-          e.preventDefault()
+        FB.login (response) ->
+          if response.authResponse && response.authResponse.accessToken
+            $new_session = response.authResponse.accessToken
+            console.log("$new_session json?")
+            console.log($new_session)
+            Giveaway.entry.eligible()
+          else
+            Giveaway.modal.show()
+            Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
+          $auth.hide()
+        , scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
+        e.preventDefault()
 
     share:
       listener: ->
