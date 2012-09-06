@@ -78,7 +78,7 @@ class EntriesController < ApplicationController
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true,
-        is_viral: @giveaway_cookie.ref_ids.any?
+        is_viral: @like.ref_ids.any?
       ) unless @like.entry_id
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
@@ -90,13 +90,13 @@ class EntriesController < ApplicationController
         entry_id: @entry.id,
         from_entry: true,
         fb_uid: @entry.uid,
-        is_viral: @giveaway_cookie.ref_ids.any?
+        is_viral: @like.ref_ids.any?
       ) unless @like.entry_id
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
     end
     Rails.logger.debug("Cookie Key: #{Giveaway.cookie_key(@giveaway.id).inspect}".inspect.cyan)
-    cookies.delete Giveaway.cookie_key(@giveaway.id)
+    cookies.delete(Giveaway.cookie_key(@giveaway.id))
   end
 
   def set_giveaway_cookie
