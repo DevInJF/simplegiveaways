@@ -6,6 +6,7 @@ jQuery ->
   giveaway_object = giveaway_hash.giveaway.table
   paths = _sg.paths
 
+  $like_id = null
   $authed = null
   $email = null
   $new_session = null

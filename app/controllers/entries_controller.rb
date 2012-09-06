@@ -71,14 +71,6 @@ class EntriesController < ApplicationController
     @giveaway_cookie = GiveawayCookie.new( cookies.encrypted[Giveaway.cookie_key(@giveaway.id)] )
   end
 
-  def assign_uid
-    if params[:access_token]
-      graph = Koala::Facebook::API.new(params[:access_token])
-      profile = graph.get_object("me")
-      @uid = profile["id"]
-    end
-  end
-
   # TODO: use access token to get user_id ?
   def register_like_from_entry
     if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
