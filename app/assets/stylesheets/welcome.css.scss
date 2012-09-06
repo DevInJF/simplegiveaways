@@ -1,4 +1,7 @@
 @import 'bourbon';
+@import 'bootstrap-variables';
+@import 'bootstrap';
+@import 'bootstrap-overrides';
 
 html {
   @include linear-gradient(#8b9da9, #fff6e4);

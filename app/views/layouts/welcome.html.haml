@@ -23,9 +23,7 @@
     = render "shared/init_globals"
     #fb-root.logged-out
     .site_wrapper
-      = render "layouts/header"
       = render "shared/flash", flash: flash
       = yield
-      = render "layouts/footer"
 
     %noscript= utm_tag
