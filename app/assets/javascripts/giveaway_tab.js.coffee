@@ -199,7 +199,7 @@ jQuery ->
             Giveaway.modal.show()
             Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
           $auth.hide()
-        , scope: "email, user_location, user_birthday, user_likes, publish_stream, offline_access"
+        , scope: "email, user_location, user_birthday, user_likes, offline_access"
         e.preventDefault()
 
     share:
