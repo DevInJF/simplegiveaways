@@ -77,8 +77,7 @@ class EntriesController < ApplicationController
       Rails.logger.debug(@entry.inspect.red)
       @like.update_attributes(
         entry_id: @entry.id,
-        from_entry: true,
-        is_viral: @like.ref_ids.any?
+        from_entry: true
       ) unless @like.entry_id
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
@@ -89,8 +88,7 @@ class EntriesController < ApplicationController
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true,
-        fb_uid: @entry.uid,
-        is_viral: @like.ref_ids.any?
+        fb_uid: @entry.uid
       ) unless @like.entry_id
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
