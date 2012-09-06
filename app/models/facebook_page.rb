@@ -48,6 +48,7 @@ class FacebookPage < ActiveRecord::Base
       Juggernaut.publish("users#show_#{csrf_token}", jug_data.to_json)
 
       unless user.facebook_pages.include? @page
+        @page.refresh_likes
         user.facebook_pages << @page
       end
     end
