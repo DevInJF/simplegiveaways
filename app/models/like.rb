@@ -8,7 +8,7 @@ class Like < ActiveRecord::Base
 
   serialize :ref_ids, Array
 
-  after_save :assess_virality
+  before_save :assess_virality
 
   def self.create_from_cookie(giveaway_cookie)
     Like.create(
@@ -23,7 +23,6 @@ class Like < ActiveRecord::Base
   private
 
   def assess_virality
-    self.is_viral = true if ref_ids.any?
-    save if is_viral_changed?
+    self.is_viral = true if self.ref_ids.any?
   end
 end
