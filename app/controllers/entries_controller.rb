@@ -81,11 +81,16 @@ class EntriesController < ApplicationController
 
   # TODO: use access token to get user_id ?
   def register_like_from_entry
-    (@uid = @entry.uid) if @entry.uid.present?
-    if @like = Like.find_by_fb_uid_and_giveaway_id(@uid, @entry.giveaway_id)
+    if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true
+      )
+    elsif @like = Like.find_by_id(params[:like_id])
+      @like.update_attributes(
+        entry_id: @entry.id,
+        from_entry: true,
+        fb_uid: @entry.uid
       )
     end
   end

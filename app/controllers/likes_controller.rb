@@ -13,7 +13,7 @@ class LikesController < ApplicationController
       Rails.logger.debug("Like.create_from_cookie".inspect.cyan)
       @giveaway_cookie.is_fan = true
       @giveaway_cookie.like_counted = true
-      head :ok
+      render json: @like.id, status: :ok
       ga_event("Likes", "Like#create", @like.giveaway.title, @like.id)
     else
       head :not_acceptable

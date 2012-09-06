@@ -96,6 +96,8 @@ jQuery ->
         dataType: "json"
         data: "like[giveaway_id]=#{giveaway_object.id}"
         success: (data, textStatus, jqXHR) ->
+          console.log($like_id)
+          $like_id = data
           return true
 
     entry:
@@ -143,7 +145,7 @@ jQuery ->
           type: "POST"
           url: "#{paths.giveaway_entry}"
           dataType: "json"
-          data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible() + "&ref_id=" + $referrer_id + "&email=" + $email,
+          data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible() + "&ref_id=" + $referrer_id + "&email=" + $email + "&like_id=" + $like_id
           statusCode:
             201: (response) ->
               $entry_id = response

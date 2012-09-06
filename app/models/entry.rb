@@ -23,8 +23,6 @@ class Entry < ActiveRecord::Base
     @referrer_id = options[:referrer_id].blank? ? nil : options[:referrer_id].to_i
     @auth_user = options[:access_token].present? && options[:access_token] != "auth_disabled"
 
-    auth_required = Giveaway.find_by_id(options[:giveaway_id]).email_required.truthy?
-
     if @auth_user
       graph = Koala::Facebook::API.new(options[:access_token])
       profile = graph.get_object("me")
