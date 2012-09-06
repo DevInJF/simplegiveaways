@@ -167,7 +167,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def startable?
-    facebook_page.giveaways && facebook_page.giveaways.active.empty?
+    facebook_page.giveaways.active.empty? rescue false
   end
 
   def status
@@ -293,7 +293,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def viral_likes
-    likes.where(:is_viral => true).size
+    likes.where(:is_viral => true)
   end
 
   def likes_from_entries_count
