@@ -72,19 +72,30 @@ class EntriesController < ApplicationController
   # TODO: use access token to get user_id ?
   def register_like_from_entry
     if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
+      Rails.logger.debug("@like fb_uid".inspect.green)
+      Rails.logger.debug(@like.inspect.red)
+      Rails.logger.debug(@entry.inspect.red)
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true,
         is_viral: @giveaway_cookie.ref_ids.any?
       ) unless @like.entry_id
+      Rails.logger.debug(@like.inspect.red)
+      Rails.logger.debug(@entry.inspect.red)
     elsif @like = Like.find_by_id(params[:like_id])
+      Rails.logger.debug("@like params[:like_id]".inspect.green)
+      Rails.logger.debug(@like.inspect.red)
+      Rails.logger.debug(@entry.inspect.red)
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true,
         fb_uid: @entry.uid,
         is_viral: @giveaway_cookie.ref_ids.any?
       ) unless @like.entry_id
+      Rails.logger.debug(@like.inspect.red)
+      Rails.logger.debug(@entry.inspect.red)
     end
+    Rails.logger.debug("Cookie Key: #{Giveaway.cookie_key(@giveaway.id).inspect}".inspect.cyan)
     cookies.delete Giveaway.cookie_key(@giveaway.id)
   end
 
