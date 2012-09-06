@@ -75,14 +75,15 @@ class EntriesController < ApplicationController
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true
-      )
+      ) unless @like.entry_id
     elsif @like = Like.find_by_id(params[:like_id])
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true,
         fb_uid: @entry.uid
-      )
+      ) unless @like.entry_id
     end
+    cookies.delete Giveaway.cookie_key(@giveaway.id)
   end
 
   def set_giveaway_cookie
