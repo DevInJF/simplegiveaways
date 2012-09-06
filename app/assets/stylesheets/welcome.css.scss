@@ -15,28 +15,11 @@ body.welcome {
   .site_wrapper {
     width: 1052px;
     margin: 0px auto;
+    padding-top: 100px;
   }
 
   .container {
     padding: 20px;
-  }
-
-  header.site {
-    height: 120px;
-    line-height: 120px;
-
-    h1 {
-      line-height: 120px;
-      float: left;
-    }
-
-    .btn-group {
-      margin-left: 24px;
-      margin-top: 14px;
-      float: right;
-      position: relative;
-      top: 28px;
-    }
   }
 
   .callOut {
