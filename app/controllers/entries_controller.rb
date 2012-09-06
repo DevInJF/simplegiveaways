@@ -74,13 +74,15 @@ class EntriesController < ApplicationController
     if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
       @like.update_attributes(
         entry_id: @entry.id,
-        from_entry: true
+        from_entry: true,
+        is_viral: @giveaway_cookie.ref_ids.any?
       ) unless @like.entry_id
     elsif @like = Like.find_by_id(params[:like_id])
       @like.update_attributes(
         entry_id: @entry.id,
         from_entry: true,
-        fb_uid: @entry.uid
+        fb_uid: @entry.uid,
+        is_viral: @giveaway_cookie.ref_ids.any?
       ) unless @like.entry_id
     end
     cookies.delete Giveaway.cookie_key(@giveaway.id)
