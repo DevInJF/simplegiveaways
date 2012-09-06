@@ -12,3 +12,7 @@
 @import 'auth';
 @import 'tables';
 @import 'bootstrap-overrides';
+
+html {
+  background: transparent;
+}
