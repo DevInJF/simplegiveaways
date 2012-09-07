@@ -22,8 +22,13 @@
   %body.welcome
     = render "shared/init_globals"
     #fb-root.logged-out
-    .site_wrapper
-      = render "shared/flash", flash: flash
-      = yield
+    = render "shared/flash", flash: flash
+    .facebook
+      .paper
+        .left
+          %h1 Simple Giveaways
+          %h2 Easily Create, Deploy, and Manage Giveaways for your Facebook Pages
+        .right
+          = yield
 
     %noscript= utm_tag
