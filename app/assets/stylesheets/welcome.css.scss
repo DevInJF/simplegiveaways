@@ -41,6 +41,7 @@ body.welcome {
   h5 {
     font-size: 12px;
     text-align: center;
+    padding-top: 5px;
   }
 
   form {
@@ -171,12 +172,12 @@ body.welcome {
   }
 
   .btn-facebook {
-    width: 160px;
-    height: 60px;
+    width: 221px
+    height: 53px;
     display: block;
     background: image_url('/assets/buttons/button_auth_fb.png') no-repeat 0 0;
     background-size: 100% 100%;
-    margin: auto;
+    margin: 10px auto;
     border: none;
     text-indent: -9999em;
   }
