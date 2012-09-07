@@ -15,7 +15,7 @@ class CanvasController < ApplicationController
       @graph = Koala::Facebook::API.new(@oauth.get_app_access_token)
 
       if @request = select_request
-
+        Rails.logger.debug(@request.inspect.green)
         @giveaway = Giveaway.select("id, title, giveaway_url").find_by_id(JSON.parse(@request["data"])["giveaway_id"])
         @app_data = "ref_#{JSON.parse(@request['data'])['referrer_id']}"
 
@@ -34,8 +34,10 @@ class CanvasController < ApplicationController
   private
 
   def select_request
+    Rails.logger.debug(@request_ids.inspect.magenta)
     @request_ids.select do |rid|
-      @graph.get_object(@request_ids.pop) rescue false
+      Rails.logger.debug(rid.inspect.yellow)
+      @graph.get_object(@request_ids.pop) rescue nil
     end
   rescue StandardError
     false
