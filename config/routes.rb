@@ -5,6 +5,9 @@ Simplegiveaways::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  match '/terms', to: 'welcome#index'
+  match '/privacy', to: 'welcome#index'
+
   match '/canvas', to: 'canvas#index'
   match '/giveaways/tab', to: 'giveaways#tab'
 
