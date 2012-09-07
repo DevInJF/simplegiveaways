@@ -181,7 +181,7 @@ class GiveawaysController < ApplicationController
     if @signed_request["user_id"]
       impressionist(@giveaway, message: "#{@message}")
     else
-      impressionist(@giveaway, message: "#{@message}", filter: :session_hash)
+      impressionist(@giveaway, message: "#{@message}", unique: [:session_hash])
     end
   end
 
