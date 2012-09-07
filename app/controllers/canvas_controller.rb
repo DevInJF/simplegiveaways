@@ -34,11 +34,11 @@ class CanvasController < ApplicationController
   private
 
   def select_request
-    graph.get_object(request_ids.pop)
+    @graph.get_object(@request_ids.pop)
   rescue Koala::Facebook::APIError
-    graph.get_object(request_ids.pop)
+    @graph.get_object(@request_ids.pop)
   rescue Koala::Facebook::APIError
-    graph.get_object(request_ids.pop)
+    @graph.get_object(@request_ids.pop)
   rescue StandardError
     false
   end
