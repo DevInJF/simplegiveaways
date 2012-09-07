@@ -39,5 +39,7 @@ class CanvasController < ApplicationController
     graph.get_object(request_ids.pop)
   rescue Koala::Facebook::APIError
     graph.get_object(request_ids.pop)
+  rescue StandardError
+    false
   end
 end
