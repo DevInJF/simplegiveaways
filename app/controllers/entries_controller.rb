@@ -1,9 +1,7 @@
 # -*- encoding : utf-8 -*-
 class EntriesController < ApplicationController
 
-  before_filter :assign_giveaway, only: [:create]
-  before_filter :assign_giveaway_cookie, only: [:create]
-
+  before_filter :before_entry_callbacks, only: [:create]
   after_filter  :after_entry_callbacks, only: [:create]
 
   def create
@@ -26,7 +24,10 @@ class EntriesController < ApplicationController
       Rails.logger.debug("EntriesController#create: @entry after .process".inspect.magenta)
       Rails.logger.debug(@entry.inspect.red)
 
+
+
       if @entry.persisted?
+        @giveaway_cookie.entry_id = @entry.id
         if @giveaway.allow_multi_entries.truthy?
           @entry.update_attributes(entry_count: @entry.entry_count += 1)
           render json: @entry.id, status: :created
@@ -45,6 +46,7 @@ class EntriesController < ApplicationController
         head :not_acceptable
       end
     else
+      @delete_cookie = false
       head :failed_dependency
     end
   end
@@ -86,9 +88,9 @@ class EntriesController < ApplicationController
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
       @like.update_attributes(
-        entry_id: @entry.id,
+        entry_id: @giveaway_cookie.entry_id,
         from_entry: true
-      ) unless @like.entry_id
+      )
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
     elsif @like = Like.find_by_id(params[:like_id])
@@ -96,10 +98,10 @@ class EntriesController < ApplicationController
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
       @like.update_attributes(
-        entry_id: @entry.id,
+        entry_id: @giveaway_cookie.entry_id,
         from_entry: true,
         fb_uid: @entry.uid
-      ) unless @like.entry_id
+      )
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
     end
