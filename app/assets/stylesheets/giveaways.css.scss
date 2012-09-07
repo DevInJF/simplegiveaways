@@ -247,6 +247,10 @@ html {
 
     .tab-content {
 
+      > .container {
+        overflow: hidden;
+      }
+
       .pane_heading {
         height: 50px;
         padding: 0 30px;

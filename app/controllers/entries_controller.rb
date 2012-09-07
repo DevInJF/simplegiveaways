@@ -4,8 +4,7 @@ class EntriesController < ApplicationController
   before_filter :assign_giveaway, only: [:create]
   before_filter :assign_giveaway_cookie, only: [:create]
 
-  after_filter  :set_giveaway_cookie, only: [:create]
-  after_filter  :register_like_from_entry, only: [:create]
+  after_filter  :after_entry_callbacks, only: [:create]
 
   def create
     Rails.logger.debug("EntriesController#create: params".inspect.magenta)
@@ -42,6 +41,7 @@ class EntriesController < ApplicationController
         render json: @entry.id, status: :created
         ga_event("Entries", "Entry#create", @entry.giveaway.title, @entry.id)
       else
+        @delete_cookie = false
         head :not_acceptable
       end
     else
@@ -61,6 +61,17 @@ class EntriesController < ApplicationController
 
   private
 
+  def before_entry_callbacks
+    assign_giveaway
+    assign_giveaway_cookie
+  end
+
+  def after_entry_callbacks
+    register_like_from_entry
+    @giveaway_cookie = GiveawayCookie.new if @delete_cookie
+    set_giveaway_cookie
+  end
+
   def assign_giveaway
     @giveaway = Giveaway.find(params[:giveaway_id])
   end
@@ -69,7 +80,6 @@ class EntriesController < ApplicationController
     @giveaway_cookie = GiveawayCookie.new( cookies.encrypted[Giveaway.cookie_key(@giveaway.id)] )
   end
 
-  # TODO: use access token to get user_id ?
   def register_like_from_entry
     if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
       Rails.logger.debug("@like fb_uid".inspect.green)
@@ -93,8 +103,6 @@ class EntriesController < ApplicationController
       Rails.logger.debug(@like.inspect.red)
       Rails.logger.debug(@entry.inspect.red)
     end
-    Rails.logger.debug("Cookie Key: #{Giveaway.cookie_key(@giveaway.id).inspect}".inspect.cyan)
-    cookies.delete(Giveaway.cookie_key(@giveaway.id))
   end
 
   def set_giveaway_cookie
