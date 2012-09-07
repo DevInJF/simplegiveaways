@@ -9,7 +9,7 @@ class CanvasController < ApplicationController
   def index
     if params["request_ids"]
 
-      @request_ids = [params["request_ids"].split("%2C").split(",")].compact.flatten
+      @request_ids = [params["request_ids"].split("%2C").split(",")].compact.flatten.pop.split(",")
 
       @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       @graph = Koala::Facebook::API.new(@oauth.get_app_access_token)
