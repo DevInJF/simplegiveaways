@@ -8,17 +8,26 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
 
-    unless @identity = Identity.find_or_create_with_omniauth(auth)
-      redirect_to root_url, notice: "Something went wrong. Please try again."
-    end
+    if BETA_WHITELIST.include? auth['uid'].to_i
+      unless @identity = Identity.find_or_create_with_omniauth(auth)
+        redirect_to root_url, notice: "Something went wrong. Please try again."
+      end
 
-    if signed_in?
-      flash[:notice] = @identity.add_to_existing_user(current_user)
+      if signed_in?
+        flash[:notice] = @identity.add_to_existing_user(current_user)
+      else
+        flash[:notice] = @identity.create_or_login_user(auth)
+      end
+
+      render 'sessions/create'
     else
-      flash[:notice] = @identity.create_or_login_user(auth)
+      flash[:notice] = <<-eos
+        Simple Giveaways is currently in closed beta.
+        It won't be long until we're open but please leave your
+        email address if you would like to be notified when we launch.
+      eos
+      redirect_to root_url
     end
-
-    render 'sessions/create'
   end
 
   def destroy
@@ -37,11 +46,13 @@ class SessionsController < ApplicationController
   private
 
   def set_session_vars
-    if @identity.process_login(DateTime.now, session['_csrf_token'])
-      self.current_user = @identity.user
-    end
+    if @identity
+      if @identity.process_login(DateTime.now, session['_csrf_token'])
+        self.current_user = @identity.user
+      end
 
-    session['uid'] = @identity.uid
-    cookies.encrypted[:_sg_uid] = { value: @identity.uid, expires: Time.zone.now + 7200 }
+      session['uid'] = @identity.uid
+      cookies.encrypted[:_sg_uid] = { value: @identity.uid, expires: Time.zone.now + 7200 }
+    end
   end
 end
