@@ -34,11 +34,9 @@ class CanvasController < ApplicationController
   private
 
   def select_request
-    @graph.get_object(@request_ids.pop)
-  rescue StandardError
-    @graph.get_object(@request_ids.pop)
-  rescue StandardError
-    @graph.get_object(@request_ids.pop)
+    @request_ids.select do |rid|
+      @graph.get_object(@request_ids.pop) rescue false
+    end
   rescue StandardError
     false
   end
