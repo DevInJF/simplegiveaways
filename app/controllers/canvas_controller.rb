@@ -19,7 +19,7 @@ class CanvasController < ApplicationController
         @giveaway = Giveaway.select("id, title, giveaway_url").find_by_id(JSON.parse(@request["data"])["giveaway_id"])
         @app_data = "ref_#{JSON.parse(@request['data'])['referrer_id']}"
 
-        FbAppRequestWorker.perform_async(@request_ids.last, params[:signed_request])
+        FbAppRequestWorker.perform_async(@request, params[:signed_request])
 
         render "giveaways/apprequest", layout: false
         ga_event("Canvas", "Canvas#index", @giveaway.title, JSON.parse(@request['data'])['referrer_id'].to_i)
@@ -35,9 +35,9 @@ class CanvasController < ApplicationController
 
   def select_request
     @graph.get_object(@request_ids.pop)
-  rescue Koala::Facebook::APIError
+  rescue StandardError
     @graph.get_object(@request_ids.pop)
-  rescue Koala::Facebook::APIError
+  rescue StandardError
     @graph.get_object(@request_ids.pop)
   rescue StandardError
     false
