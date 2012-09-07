@@ -35,10 +35,10 @@ class CanvasController < ApplicationController
 
   def select_request
     Rails.logger.debug(@request_ids.inspect.magenta)
-    @request_ids.select do |rid|
+    @request_ids.map do |rid|
       Rails.logger.debug(rid.inspect.yellow)
-      @graph.get_object(@request_ids.pop) rescue nil
-    end
+      @graph.get_object(@request_ids.pop.to_i) rescue nil
+    end.compact.pop
   rescue StandardError
     false
   end
