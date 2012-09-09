@@ -4,9 +4,22 @@ require 'open-uri'
 
 class CanvasController < ApplicationController
 
+  before_filter :giveaway_from_request, only: [:index]
+
   skip_before_filter :verify_authenticity_token
 
   def index
+    if @giveaway_found
+      render "giveaways/apprequest", layout: false
+      ga_event("Canvas", "Canvas#index", @giveaway.title, JSON.parse(@request['data'])['referrer_id'].to_i)
+    else
+      redirect_to "http://facebook.com"
+    end
+  end
+
+  private
+
+  def giveaway_from_request
     if params["request_ids"]
 
       @request_ids = [params["request_ids"].split("%2C").split(",")].compact.flatten.pop.split(",")
@@ -21,17 +34,11 @@ class CanvasController < ApplicationController
 
         if @giveaway
           FbAppRequestWorker.perform_async(@request, params[:signed_request])
-
-          render "giveaways/apprequest", layout: false
-          ga_event("Canvas", "Canvas#index", @giveaway.title, JSON.parse(@request['data'])['referrer_id'].to_i)
+          @giveaway_found = true
         end
       end
     end
-
-    redirect_to "http://facebook.com"
   end
-
-  private
 
   def select_request
     Rails.logger.debug(@request_ids.inspect.magenta)
