@@ -97,7 +97,6 @@ jQuery ->
         dataType: "json"
         data: "like[giveaway_id]=#{giveaway_object.id}"
         success: (data, textStatus, jqXHR) ->
-          console.log($like_id)
           $like_id = data
           return true
 
@@ -192,8 +191,6 @@ jQuery ->
         FB.login (response) ->
           if response.authResponse && response.authResponse.accessToken
             $new_session = response.authResponse.accessToken
-            console.log("$new_session json?")
-            console.log($new_session)
             Giveaway.entry.eligible()
           else
             Giveaway.modal.show()

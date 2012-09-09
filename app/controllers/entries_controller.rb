@@ -5,13 +5,9 @@ class EntriesController < ApplicationController
   after_filter  :after_entry_callbacks, only: [:create]
 
   def create
-    Rails.logger.debug("EntriesController#create: params".inspect.magenta)
-    Rails.logger.debug(params.inspect.yellow)
     @entry = @giveaway.entries.new
 
     if params[:access_token]
-      Rails.logger.debug("EntriesController#create: @entry before .process".inspect.magenta)
-      Rails.logger.debug(@entry.inspect.green)
       @entry = @entry.process(
         has_liked: params[:has_liked],
         referrer_id: params[:ref_id],
@@ -20,11 +16,6 @@ class EntriesController < ApplicationController
         giveaway_id: @giveaway.id,
         cookie: @giveaway_cookie
       )
-
-      Rails.logger.debug("EntriesController#create: @entry after .process".inspect.magenta)
-      Rails.logger.debug(@entry.inspect.red)
-
-
 
       if @entry.persisted?
         @giveaway_cookie.entry_id = @entry.id
@@ -84,26 +75,16 @@ class EntriesController < ApplicationController
 
   def register_like_from_entry
     if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
-      Rails.logger.debug("@like fb_uid".inspect.green)
-      Rails.logger.debug(@like.inspect.red)
-      Rails.logger.debug(@entry.inspect.red)
       @like.update_attributes(
         entry_id: @giveaway_cookie.entry_id,
         from_entry: true
       )
-      Rails.logger.debug(@like.inspect.red)
-      Rails.logger.debug(@entry.inspect.red)
     elsif @like = Like.find_by_id(params[:like_id])
-      Rails.logger.debug("@like params[:like_id]".inspect.green)
-      Rails.logger.debug(@like.inspect.red)
-      Rails.logger.debug(@entry.inspect.red)
       @like.update_attributes(
         entry_id: @giveaway_cookie.entry_id,
         from_entry: true,
         fb_uid: @entry.uid
       )
-      Rails.logger.debug(@like.inspect.red)
-      Rails.logger.debug(@entry.inspect.red)
     end
   end
 
