@@ -5,7 +5,7 @@ Logging::Rails.configure do |config|
   Logging.format_as :inspect
 
   # The default layout used by the appenders.
-  layout = Logging.layouts.pattern(pattern: '[%d] %-5l %c : %m\n')
+  layout = Logging.layouts.pattern(:pattern => '[%d] %-5l %c : %m\n')
 
   # Setup a color scheme called 'bright' than can be used to add color codes
   # to the pattern layout. Color schemes should only be used with appenders
@@ -13,15 +13,15 @@ Logging::Rails.configure do |config|
   # is generally considered bad form.
   #
   Logging.color_scheme( 'bright',
-    levels: {
-      info:   :green,
-      warn:   :yellow,
-      error: :red,
-      fatal: [:white, :on_red]
+    :levels => {
+      :info  => :green,
+      :warn  => :yellow,
+      :error => :red,
+      :fatal => [:white, :on_red]
     },
-    date: :blue,
-    logger: :cyan,
-    message: :magenta
+    :date => :blue,
+    :logger => :cyan,
+    :message => :magenta
   )
 
   # Configure an appender that will write log events to STDOUT. A colorized
@@ -29,10 +29,10 @@ Logging::Rails.configure do |config|
   # writing.
   #
   Logging.appenders.stdout( 'stdout',
-    auto_flushing: true,
-    layout: Logging.layouts.pattern(
-      pattern: '[%d] %-5l %c : %m\n',
-      color_scheme: 'bright'
+    :auto_flushing => true,
+    :layout => Logging.layouts.pattern(
+      :pattern => '[%d] %-5l %c : %m\n',
+      :color_scheme => 'bright'
     )
   ) if config.log_to.include? 'stdout'
 
@@ -42,12 +42,12 @@ Logging::Rails.configure do |config|
   # formatting log events into strings.
   #
   Logging.appenders.rolling_file( 'file',
-    filename: config.paths['log'].first,
-    keep: 7,
-    age: 'daily',
-    truncate: false,
-    auto_flushing: true,
-    layout: layout
+    :filename => config.paths['log'].first,
+    :keep => 7,
+    :age => 'daily',
+    :truncate => false,
+    :auto_flushing => true,
+    :layout => layout
   ) if config.log_to.include? 'file'
 
   # Configure an appender that will send an email for "error" and "fatal" log
@@ -56,19 +56,19 @@ Logging::Rails.configure do |config|
   # is done to prevent a flood of messages.
   #
   Logging.appenders.email( 'email',
-    from:      "server@#{config.action_mailer.smtp_settings[:domain]}",
-    to:        "developers@#{config.action_mailer.smtp_settings[:domain]}",
-    subject:   "Rails Error [#{%x(uname -n).strip}]",
-    server:    config.action_mailer.smtp_settings[:address],
-    domain:    config.action_mailer.smtp_settings[:domain],
-    acct:      config.action_mailer.smtp_settings[:user_name],
-    passwd:    config.action_mailer.smtp_settings[:password],
-    authtype: config.action_mailer.smtp_settings[:authentication],
+    :from     => "server@#{config.action_mailer.smtp_settings[:domain]}",
+    :to       => "developers@#{config.action_mailer.smtp_settings[:domain]}",
+    :subject  => "Rails Error [#{%x(uname -n).strip}]",
+    :server   => config.action_mailer.smtp_settings[:address],
+    :domain   => config.action_mailer.smtp_settings[:domain],
+    :acct     => config.action_mailer.smtp_settings[:user_name],
+    :passwd   => config.action_mailer.smtp_settings[:password],
+    :authtype => config.action_mailer.smtp_settings[:authentication],
 
-    auto_flushing: 200,     # send an email after 200 messages have been buffered
-    flush_period:   60,      # send an email after one minute
-    level:          :error,  # only process log events that are "error" or "fatal"
-    layout:         layout
+    :auto_flushing => 200,     # send an email after 200 messages have been buffered
+    :flush_period  => 60,      # send an email after one minute
+    :level         => :error,  # only process log events that are "error" or "fatal"
+    :layout        => layout
   ) if config.log_to.include? 'email'
 
   # Setup the root logger with the Rails log level and the desired set of
