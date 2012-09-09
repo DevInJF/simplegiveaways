@@ -19,16 +19,16 @@ class CanvasController < ApplicationController
         @giveaway = Giveaway.select("id, title, giveaway_url").find_by_id(JSON.parse(@request["data"])["giveaway_id"])
         @app_data = "ref_#{JSON.parse(@request['data'])['referrer_id']}"
 
-        FbAppRequestWorker.perform_async(@request, params[:signed_request])
+        if @giveaway
+          FbAppRequestWorker.perform_async(@request, params[:signed_request])
 
-        render "giveaways/apprequest", layout: false
-        ga_event("Canvas", "Canvas#index", @giveaway.title, JSON.parse(@request['data'])['referrer_id'].to_i)
-      else
-        redirect_to "http://facebook.com"
+          render "giveaways/apprequest", layout: false
+          ga_event("Canvas", "Canvas#index", @giveaway.title, JSON.parse(@request['data'])['referrer_id'].to_i)
+        end
       end
-    else
-      redirect_to "http://facebook.com"
     end
+
+    redirect_to "http://facebook.com"
   end
 
   private
