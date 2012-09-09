@@ -27,9 +27,8 @@ Simplegiveaways::Application.routes.draw do
     end
   end
 
-  resources :users, only: [] do
-    match '/deauth/:provider', to: 'users#deauth'
-  end
+  resources :users, only: []
+  match '/deauth/:provider', to: 'users#deauth'
 
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
