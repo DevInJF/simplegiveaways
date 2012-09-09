@@ -8,12 +8,10 @@ class UsersController < ApplicationController
   end
 
   def deauth
-    Rails.logger.debug(params.inspect.yellow)
-    Rails.logger.debug(@signed_request.inspect.magenta)
-    if @user = User.find_by_id(@signed_request["user_id"])
+    if @identity = Identity.find_by_uid(@signed_request["user_id"])
       # TODO: Send email (should we destroy your User account and unsubscribe?)
-      @user.update_attributes(name: 'DEAUTHED_FACEBOOK')
-      @user.identities.where(:provider => params[:provider]).each(&:destroy)
+      @identity.user.update_attributes(name: 'DEAUTHED_FACEBOOK')
+      @identity.destroy
     end
     head :ok
   end
