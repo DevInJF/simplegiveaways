@@ -27,10 +27,9 @@ Simplegiveaways::Application.routes.draw do
     end
   end
 
-  get '/facebook_pages/:facebook_page_id/giveaways/:id/reauth', to: 'giveaways#update',
-                                                                as: 'reauth'
-
-  resources :users, only: []
+  resources :users, only: [] do
+    match '/deauth/:provider', to: 'users#deauth'
+  end
 
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
