@@ -10,7 +10,7 @@ class Refresh
   end
 
   def self.giveaway_analytics
-    Giveaway.find_each(batch_size: 5) do |giveaways|
+    Giveaway.active.find_each(batch_size: 5) do |giveaways|
       [giveaways].flatten.each do |giveaway|
         giveaway.refresh_analytics
       end
