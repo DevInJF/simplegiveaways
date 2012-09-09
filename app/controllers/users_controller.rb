@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def deauth
     if @user = User.find_by_id(@signed_request["user_id"])
       # TODO: Send email (should we destroy your User account and unsubscribe?)
-      @user.update_attributes(name: '')
+      @user.update_attributes(name: 'DEAUTHED_FACEBOOK')
       @user.identities.where(:provider => 'facebook').each(&:destroy)
     end
     head :ok
