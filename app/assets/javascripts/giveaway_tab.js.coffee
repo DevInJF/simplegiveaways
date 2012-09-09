@@ -34,7 +34,7 @@ jQuery ->
     status: true
     cookie: true
     xfbml: true
-    channelUrl: 'http://simplegiveaways.com/channel.html'
+    channelUrl: '//simplegiveaways.com/channel.html'
 
   $(document).fb _sg.config.fb_app_id, fb_init_options
 
