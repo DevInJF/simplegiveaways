@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       @user.update_attributes(name: '')
       @user.identities.where(:provider => 'facebook').each(&:destroy)
     end
+    head :ok
   end
 
   private
