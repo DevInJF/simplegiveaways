@@ -267,6 +267,10 @@ class Giveaway < ActiveRecord::Base
     impressionist_count
   end
 
+  def ip_uniques
+    unique_impression_count_ip
+  end
+
   def fb_user_uniques
     impressions.where("message LIKE ?", "%fb_uid: %").map do |impression|
       YAML.load(impression.message)[:message].match(/fb_uid: ([A-Za-z0-9]*)/)
