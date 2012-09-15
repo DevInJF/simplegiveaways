@@ -267,10 +267,6 @@ class Giveaway < ActiveRecord::Base
     impressionist_count
   end
 
-  def uniques
-    fb_user_uniques + session_uniques
-  end
-
   def session_uniques
     impressionist_count(filter: :session_hash)
   end
@@ -413,6 +409,12 @@ class Giveaway < ActiveRecord::Base
     def schedule_worker(method)
       Giveaway.to_start.each(&:publish) if method == "publish"
       Giveaway.to_end.each(&:unpublish) if method == "unpublish"
+    end
+
+    def uniques_worker(giveaway_id)
+      @giveaway = Giveaway.find_by_id(giveaway_id)
+      @giveaway.uniques += 1
+      @giveaway.save
     end
   end
 

@@ -6,6 +6,7 @@ class GiveawaysController < ApplicationController
 
   before_filter :assign_page, only: [:active, :pending, :completed, :new, :create]
   before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries]
+  before_filter :register_unique, only: [:tab]
 
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
@@ -156,6 +157,12 @@ class GiveawaysController < ApplicationController
       views:     Graph.new(@giveaways).views }
   rescue StandardError
     {}
+  end
+
+  def register_unique
+    if last_giveaway_cookie.nil?
+      GiveawayUniquesWorker.perform_async(@giveaway.id)
+    end
   end
 
   def register_impression
