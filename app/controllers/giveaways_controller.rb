@@ -6,7 +6,6 @@ class GiveawaysController < ApplicationController
 
   before_filter :assign_page, only: [:active, :pending, :completed, :new, :create]
   before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries]
-  before_filter :register_unique, only: [:tab]
 
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
@@ -116,6 +115,8 @@ class GiveawaysController < ApplicationController
       else
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
 
+        GiveawayUniquesWorker.perform_async(@giveaway.id) if last_giveaway_cookie.nil?
+
         @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)
         @giveaway_cookie.giveaway_id = @giveaway.id
         @giveaway_cookie.update_cookie(@giveaway_hash)
@@ -151,18 +152,13 @@ class GiveawaysController < ApplicationController
   end
 
   def flot_hash
+    giveaways_graph = Graph.new(@giveaways)
     { page_likes: Graph.new(@page).page_likes,
-      net_likes: Graph.new(@giveaways).net_likes,
-      entries:   Graph.new(@giveaways).entries,
-      views:     Graph.new(@giveaways).views }
+      net_likes: giveaways_graph.net_likes,
+      entries:   giveaways_graph.entries,
+      views:     giveaways_graph.views }
   rescue StandardError
     {}
-  end
-
-  def register_unique
-    if last_giveaway_cookie.nil?
-      GiveawayUniquesWorker.perform_async(@giveaway.id)
-    end
   end
 
   def register_impression
