@@ -10,7 +10,7 @@ class Giveaway < ActiveRecord::Base
                   :facebook_page_id, :image, :feed_image, :custom_fb_tab_name,
                   :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog,
                   :allow_multi_entries, :email_required, :bonus_value, :_total_shares,
-                  :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views,
+                  :_total_wall_posts, :_total_sends, :_total_requests, :_viral_entry_count, :_views,
                   :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count,
                   :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes_while_active
 
@@ -93,6 +93,7 @@ class Giveaway < ActiveRecord::Base
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
+                                 :_total_sends,
                                  :_total_requests,
                                  :_viral_entry_count,
                                  :_views,
@@ -140,11 +141,11 @@ class Giveaway < ActiveRecord::Base
   def csv
     CSV.generate do |csv|
       csv << ["ID", "Email", "Name", "Viral?", "New Fan?", "Entry Time",
-              "Wall Posts", "Requests", "Conversions", "Bonus Entries"]
+              "Wall Posts", "Sends", "Requests", "Conversions", "Bonus Entries"]
       entries.each do |entry|
         csv << [entry.id, entry.email, entry.name, entry.is_viral,
                 entry.new_fan?, entry.datetime_entered, entry.wall_post_count,
-                entry.request_count, entry.convert_count, entry.bonus_entries]
+                entry.send_count, entry.request_count, entry.convert_count, entry.bonus_entries]
       end
     end
   end
@@ -246,12 +247,17 @@ class Giveaway < ActiveRecord::Base
   end
 
   def total_shares
-    total_wall_posts + total_requests
+    total_wall_posts + total_sends + total_requests
   end
 
   def total_wall_posts
     all_wall_posts = entries.collect(&:wall_post_count)
     all_wall_posts.inject(:+) || 0
+  end
+
+  def total_sends
+    all_sends = entries.collect(&:send_count)
+    all_sends.inject(:+) || 0
   end
 
   def total_requests
@@ -343,6 +349,7 @@ class Giveaway < ActiveRecord::Base
   def refresh_analytics
     self._total_shares = total_shares
     self._total_wall_posts = total_wall_posts
+    self._total_sends = total_sends
     self._total_requests = total_requests
     self._viral_entry_count = viral_entry_count
     self._views = views

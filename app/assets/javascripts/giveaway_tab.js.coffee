@@ -13,6 +13,7 @@ jQuery ->
   $entry_id = null
   $request_count = 0
   $wall_post_count = 0
+  $send_count = 0
   $just_liked = false
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
@@ -157,6 +158,7 @@ jQuery ->
               $entry_id = $entry.id
               $wall_post_count = parseInt($entry.wall_post_count)
               $request_count = parseInt($entry.request_count)
+              $send_count = parseInt($entry.send_count)
 
             412: ->
               $loader.hide()
@@ -235,6 +237,10 @@ jQuery ->
           else if response and response.to
             json = entry:
               request_count: $request_count + response.to.length
+            Giveaway.share.callback json
+          else if response and response.success
+            json = entry:
+              send_count: $send_count + 1
             Giveaway.share.callback json
           else
             return true

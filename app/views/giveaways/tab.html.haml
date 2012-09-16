@@ -24,9 +24,9 @@
       - else
         %span Share this giveaway to receive <strong>#{@giveaway_hash.giveaway.bonus_value}</strong> bonus entries for each friend who enters.
       %a.wall-post{href: "#"} Post
-      %span&nbsp;|&nbsp;
+      %span= "&nbsp;|&nbsp;".html_safe
       %a.send{href: "#"} Share
-      %span&nbsp;|&nbsp;
+      %span= "&nbsp;|&nbsp;".html_safe
       %a.app-request{href: "#"} Invite
   .form{style: "display:none"}
     %span Please provide your email so we can notify you in case you win!
