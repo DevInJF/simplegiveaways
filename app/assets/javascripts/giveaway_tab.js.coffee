@@ -229,7 +229,6 @@ jQuery ->
 
       dialog: (data) ->
         FB.ui data, (response) ->
-          console.log(response)
           if response and response.post_id
             json = entry:
               wall_post_count: $wall_post_count + 1
