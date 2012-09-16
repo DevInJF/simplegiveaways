@@ -11,8 +11,8 @@ jQuery ->
   $email = null
   $new_session = null
   $entry_id = null
-  $request_count = null
-  $wall_post_count = null
+  $request_count = 0
+  $wall_post_count = 0
   $just_liked = false
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
@@ -149,8 +149,6 @@ jQuery ->
           statusCode:
             201: (response) ->
               $entry_id = response
-              $wall_post_count = 0
-              $request_count = 0
               Giveaway.entry.success()
 
             406: (response) ->
@@ -205,6 +203,10 @@ jQuery ->
           Giveaway.share.as_wall_post()
           e.preventDefault()
 
+        $("a.send").click (e) ->
+          Giveaway.share.as_send()
+          e.preventDefault()
+
         $("a.app-request").click (e) ->
           Giveaway.share.as_app_request()
           e.preventDefault()
@@ -243,6 +245,14 @@ jQuery ->
           link: "#{giveaway_object.giveaway_url}" + "&app_data=ref_" + $entry_id
           picture: "#{giveaway_object.feed_image_url}"
           caption: "#{giveaway_object.title}"
+          description: "#{giveaway_object.description}"
+
+      as_send: ->
+        Giveaway.share.dialog
+          method: "send"
+          name: "#{giveaway_hash.current_page.name}"
+          link: "#{giveaway_object.giveaway_url}" + "&app_data=ref_" + $entry_id
+          picture: "#{giveaway_object.feed_image_url}"
           description: "#{giveaway_object.description}"
 
       as_app_request: ->
