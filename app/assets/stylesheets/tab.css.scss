@@ -75,13 +75,17 @@ body {
     -moz-border-radius: 10px;
     border-radius: 10px;
 
+    .loader {
+      padding-top: 5px;
+    }
+
     .modal-header {
       padding: 9px 15px 13px;
     }
 
     .btn-group {
       margin: 0 auto;
-      width: 219px;
+      width: 237px;
       text-align: center;
     }
 
