@@ -227,6 +227,7 @@ jQuery ->
 
       dialog: (data) ->
         FB.ui data, (response) ->
+          console.log(response)
           if response and response.post_id
             json = entry:
               wall_post_count: $wall_post_count + 1
@@ -253,7 +254,7 @@ jQuery ->
           name: "#{giveaway_hash.current_page.name}"
           link: "#{giveaway_object.giveaway_url}" + "&app_data=ref_" + $entry_id
           picture: "#{giveaway_object.feed_image_url}"
-          description: "#{giveaway_object.description}"
+          description: "#{giveaway_object.title}"
 
       as_app_request: ->
         Giveaway.share.dialog
