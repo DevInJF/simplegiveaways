@@ -25,7 +25,7 @@
         - elsif @giveaway_hash.giveaway.bonus_value == "1"
           %span Share this giveaway to receive <strong class="badge badge-warning">1</strong> bonus entry for each friend who enters.
         - else
-          %span Share this giveaway to receive <strong class="badge badge-warning">#{@giveaway_hash.giveaway.bonus_value}</strong> bonus entries for each friend who enters.
+          %span Share this giveaway to receive <strong class="badge badge-warning">#{@giveaway_hash.giveaway.bonus_value}</strong> bonus entries <br />for each friend who enters.
         .btn-group
           %a.wall-post.btn.btn-primary{href: "#"} Post
           %a.send.btn.btn-primary{href: "#"} Message
