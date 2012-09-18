@@ -8,7 +8,7 @@ class Graph
 
   def page_likes
     return [] unless @resource.is_a? FacebookPage
-    @resource.audits.map do |audit|
+    @resource.audits.where("id%4=0").map do |audit|
       if audit.is.has_key?(:likes)
         format_audit(audit, audit.is[:likes])
       end
@@ -17,7 +17,7 @@ class Graph
 
   def net_likes
     return [] unless @resource.is_a? Giveaway
-    @resource.audits.map do |audit|
+    @resource.audits.where("id%4=0").map do |audit|
       if audit.is.has_key?(:analytics)
         format_audit(audit, audit.is[:analytics], :_page_likes_while_active)
       end
@@ -26,7 +26,7 @@ class Graph
 
   def entries
     return [] unless @resource.is_a? Giveaway
-    @resource.audits.map do |audit|
+    @resource.audits.where("id%4=0").map do |audit|
       if audit.is.has_key?(:analytics)
         format_audit(audit, audit.is[:analytics], :_entry_count)
       end
@@ -35,7 +35,7 @@ class Graph
 
   def views
     return [] unless @resource.is_a? Giveaway
-    @resource.audits.map do |audit|
+    @resource.audits.where("id%4=0").map do |audit|
       if audit.is.has_key?(:analytics)
         format_audit(audit, audit.is[:analytics], :_views)
       end

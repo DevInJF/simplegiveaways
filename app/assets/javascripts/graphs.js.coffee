@@ -35,33 +35,26 @@ jQuery ->
     for key, val of datasets
       data.push datasets[key]
 
-    graphOptions = {
-      series: {
-        stack: false,
-        lines: {
-          show: true,
-          fill: false,
+    graphOptions =
+      series:
+        stack: false
+        lines:
+          show: true
+          fill: false
           steps: false
-        }
-      },
-      xaxis: {
-        mode: "time",
-        tickSize: [1, "day"],
+      xaxis:
+        mode: "time"
+        tickSize: [1, "day"]
         minTickSize: [1, "day"]
-      },
-      yaxis: {
-        tickDecimals: 0,
+      yaxis:
+        tickDecimals: 0
         min: 0
-      },
-      grid: {
-        clickable: true,
+      grid:
+        clickable: true
         hoverable: true
-      },
-      points: {
-        show: true
-      },
+      points:
+        show:
       colors: [ "#FAA732", "#5BB75B", "#49AFCD", "#0055cc" ]
-    }
 
     plotWithOptions = ->
       $.plot($('.graph-placeholder'), data, graphOptions)
