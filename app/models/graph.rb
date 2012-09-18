@@ -8,7 +8,7 @@ class Graph
 
   def page_likes
     return [] unless @resource.is_a? FacebookPage
-    @resource.audits.where("id%4=0").map do |audit|
+    @resource.audits.where("id%3=0").map do |audit|
       if audit.is.has_key?(:likes)
         format_audit(audit, audit.is[:likes])
       end
