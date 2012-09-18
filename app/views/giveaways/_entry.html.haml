@@ -1,5 +1,5 @@
 %tr
-  %td= link_to entry.name, entry.fb_url, target: '_blank'
+  %td= entry_name(entry)
   %td= entry.email
   %td= boolean_table_item(entry.is_viral)
   %td= boolean_table_item(entry.new_fan?)
