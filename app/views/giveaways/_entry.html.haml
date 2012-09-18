@@ -1,6 +1,7 @@
 %tr
-  %td= entry_name(entry)
-  %td= entry.email
+  %td
+    .entry-name= entry_name(entry)
+    .entry-email= entry.email
   %td= boolean_table_item(entry.is_viral)
   %td= boolean_table_item(entry.new_fan?)
   %td= entry.wall_post_count
