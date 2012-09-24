@@ -35,7 +35,7 @@ jQuery ->
     status: true
     cookie: true
     xfbml: true
-    channelUrl: '//simplegiveaways.com/channel.html'
+    channelUrl: '//simplegiveaways.herokuapp.com/channel.html'
 
   $(document).fb _sg.config.fb_app_id, fb_init_options
 
