@@ -53,7 +53,7 @@ jQuery ->
         clickable: true
         hoverable: true
       points:
-        show:
+        show: true
       colors: [ "#FAA732", "#5BB75B", "#49AFCD", "#0055cc" ]
 
     plotWithOptions = ->
