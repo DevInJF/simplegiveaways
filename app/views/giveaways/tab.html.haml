@@ -12,7 +12,7 @@
   .modal-body
     .step.one
       %span To be eligible for the giveaway, please like this page first.
-      %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/likebox.php?href=#{URI.encode(@giveaway_hash.current_page.url)}&width=402&height=258&colorscheme=light&show_faces=true&border_color&stream=false&header=false&appId=179608175435029", :style => "border:none; overflow:hidden; width:402px; height:258px;"}
+      %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/likebox.php?href=#{CGI::escape(@giveaway_hash.current_page.url)}&width=402&height=258&colorscheme=light&show_faces=true&border_color&stream=false&header=false&appId=179608175435029", :style => "border:none; overflow:hidden; width:402px; height:258px;"}
     .step.two{style: "display:none"}
       %a{href: "#"} Click Here to Enter the Giveaway
     .step.three{style: "display:none"}
