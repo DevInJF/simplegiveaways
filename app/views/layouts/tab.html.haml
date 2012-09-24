@@ -5,10 +5,10 @@
     %title= @giveaway_hash.giveaway.title
     = google_analytics_tracking_javascript
     %meta{content: @giveaway_hash.giveaway.description, name: "description"}/
-    = stylesheet_link_tag :tab
+    = stylesheet_link_tag "//simplegiveways.herokuapp.com/assets/tab.css"
     /[if lt IE 9]
-      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
-    = javascript_include_tag :tab
+      = javascript_include_tag "//html5shim.googlecode.com/svn/trunk/html5.js"
+    = javascript_include_tag "//simplegiveaways.herokuapp.com/assets/tab.js"
     = csrf_meta_tags
   %body
     = render "giveaways/init_tab_globals", giveaway_hash: @giveaway_hash
