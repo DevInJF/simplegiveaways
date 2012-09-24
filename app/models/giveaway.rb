@@ -118,6 +118,7 @@ class Giveaway < ActiveRecord::Base
     },
     storage: :s3,
     s3_credentials: S3_CREDENTIALS,
+    s3_protocol: "https",
     path: "/:style/:id/:filename"
 
   has_attached_file :feed_image,
@@ -131,6 +132,7 @@ class Giveaway < ActiveRecord::Base
     },
     storage: :s3,
     s3_credentials: S3_CREDENTIALS,
+    s3_protocol: "https",
     path: "/:style/:id/:filename"
 
 
