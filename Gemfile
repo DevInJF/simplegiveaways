@@ -3,8 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.7'
 gem 'mysql2', '~> 0.3.10'
 
-gem 'rack-ssl-enforcer'
-
 gem 'pg'
 gem 'thin'
 gem 'foreman'
