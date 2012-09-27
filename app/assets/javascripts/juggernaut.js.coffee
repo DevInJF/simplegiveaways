@@ -68,6 +68,6 @@ jQuery ->
         jug.unsubscribe("users#show_#{_sg.csrf()}")
 
     jug.subscribe("users#show_#{_sg.csrf()}", (jug_data) ->
-      setTimeout(-> onComplete(jQuery.parseJSON(jug_data)), 1000)
+      setTimeout(-> onComplete(jQuery.parseJSON(jug_data)), 3000)
 
     key: "#{_sg.csrf()}")
