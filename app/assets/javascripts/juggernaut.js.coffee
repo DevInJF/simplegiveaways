@@ -21,7 +21,7 @@ jQuery ->
 
     jug = new Juggernaut(
       secure: false,
-      host: "node.simplegiveaways.com",
+      host: "sg-node.herokuapp.com",
       port: 80,
       transports: ['xhr-polling', 'jsonp-polling']
     )
