@@ -13,6 +13,7 @@ jQuery ->
     doRedirect() if readableStatus and shouldRedirect(response)
 
   shouldRedirect = (response) ->
+    return false unless _sg.current_user.fb_uid?
     return true unless response.authResponse?
     response.authResponse.userID isnt _sg.current_user.fb_uid
 
