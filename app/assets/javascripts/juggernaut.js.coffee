@@ -66,7 +66,7 @@ jQuery ->
 
     jug.subscribe("users#show_#{_sg.csrf()}", (jug_data) ->
       jug_data = jQuery.parseJSON(jug_data)
-      setTimeout((-> onComplete()), 3000)
+      setTimeout((-> onComplete(jug_data)), 3000)
     )
 
     jug.on "disconnect", ->
