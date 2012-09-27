@@ -8,7 +8,7 @@ jQuery ->
   hasntRefreshed = () ->
     document.cookie.indexOf("_sg-just_logged_in") is -1
 
-  if true
+  if hasLoginParam() and hasntRefreshed()
 
     document.cookie = "_sg-just_logged_in=1"
 
