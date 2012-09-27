@@ -60,14 +60,14 @@ jQuery ->
 
       jug.unsubscribe("users#show_#{_sg.csrf()}")
 
-    jug.subscribe("users#show_#{_sg.csrf()}", (jug_data) ->
-
-      jug_data = JSON.parse(jug_data)
-
+    onComplete = (jug_data) ->
       onReceipt(jug_data)
       onLastReceipt() if jug_data.is_last is "true"
 
       jug.on "disconnect", ->
         jug.unsubscribe("users#show_#{_sg.csrf()}")
+
+    jug.subscribe("users#show_#{_sg.csrf()}", (jug_data) ->
+      setTimeout(-> onComplete(jQuery.parseJSON(jug_data)), 1000)
 
     key: "#{_sg.csrf()}")
