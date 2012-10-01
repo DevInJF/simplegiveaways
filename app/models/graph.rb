@@ -47,7 +47,7 @@ class Graph
   def reduce_datapoints(resource, giveaway)
     n = 3
     a = resource.audits.where("created_at >= ? AND created_at <= ?",
-                              giveaway.start_date, giveaway.end_date)
+                              giveaway.start_date - 6.hours, giveaway.end_date + 6.hours)
     (n - 1).step(a.size - 1, n).map { |i| a[i] }
   rescue StandardError
     []
