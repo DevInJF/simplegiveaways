@@ -11,7 +11,8 @@
     %h3= @giveaway_hash.giveaway.title
   .modal-body
     .step.one
-      %span To be eligible for the giveaway, please like this page first. Use the Like button at the top of the page.
+      %span To be eligible for the giveaway, please like this page first.
+      %fb:like-box{border_color: "", header: "false", href: @giveaway_hash.current_page.url, show_faces: "true", stream: "false", width: "402"}
     .step.two{style: "display:none"}
       %a{href: "#"} Click Here to Enter the Giveaway
     .step.three{style: "display:none"}
