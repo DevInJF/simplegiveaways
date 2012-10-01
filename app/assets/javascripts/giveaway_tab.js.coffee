@@ -265,7 +265,7 @@ jQuery ->
         Giveaway.share.dialog
           title: "Share this giveaway to receive a bonus entry."
           method: "apprequests"
-          message: "#{giveaway_object.description.truncate(250)}"
+          message: "#{giveaway_object.description.slice(0, 250) + '...'}"
           data:
             referrer_id: $entry_id.toString()
             giveaway_id: "#{giveaway_object.id}"
