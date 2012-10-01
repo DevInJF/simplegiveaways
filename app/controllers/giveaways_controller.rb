@@ -152,6 +152,7 @@ class GiveawaysController < ApplicationController
   end
 
   def flot_hash
+    @giveaways ||= @giveaway
     giveaways_graph = Graph.new(@giveaways)
     { page_likes: Graph.new(@page).page_likes,
       net_likes: giveaways_graph.net_likes,
