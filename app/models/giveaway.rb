@@ -30,10 +30,11 @@ class Giveaway < ActiveRecord::Base
     where("active IS FALSE AND end_date <= ?", Time.zone.now)
   }
   scope :to_start, lambda {
-    where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ?", (Time.zone.now + 3.minutes))
+    where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND start_date > ?",
+          Time.zone.now + 3.minutes, Time.zone.now - 20.minutes)
   }
   scope :to_end, lambda {
-    where("end_date IS NOT NULL AND active IS TRUE AND end_date <= ?", (Time.zone.now + 3.minutes))
+    where("end_date IS NOT NULL AND active IS TRUE AND end_date <= ?", Time.zone.now + 3.minutes)
   }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
@@ -309,7 +310,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def page_likes_while_active
-    active? ? page_likes_so_far : (page_likes_at_end - page_likes_at_start)
+    active? ? page_likes_so_far : audits.last.is[:analytics][:_page_likes_while_active]
   rescue StandardError
     0
   end

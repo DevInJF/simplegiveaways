@@ -63,4 +63,5 @@ group :development do
   gem 'itslog'
   gem 'ruby_parser'
   gem 'hpricot'
+  gem 'letters'
 end
