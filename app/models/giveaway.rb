@@ -154,7 +154,6 @@ class Giveaway < ActiveRecord::Base
   end
 
   def publish(giveaway_params = {})
-    Rails.logger.debug(self.inspect.cyan)
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: (Time.zone.now - 30.seconds), active: true }))
       is_installed? ? update_tab : create_tab
@@ -221,7 +220,6 @@ class Giveaway < ActiveRecord::Base
   end
 
   def delete_tab
-    Rails.logger.debug(self.inspect.red)
     tabs = graph_client.get_connections("me", "tabs")
     tab = select_giveaway_tab(tabs)
 
@@ -415,7 +413,6 @@ class Giveaway < ActiveRecord::Base
       signed_request = oauth.parse_signed_request(signed_request)
 
       return unless signed_request["oauth_token"]
-      Rails.logger.debug(signed_request["oauth_token"].inspect.green)
       graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
     end

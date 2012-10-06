@@ -33,8 +33,6 @@ class CanvasController < ApplicationController
     begin
       if params['request_ids']
 
-        Rails.logger.debug(params.inspect.red)
-
         @request_ids = [params['request_ids'].split('%2C').split(',')].compact.flatten.pop.split(',')
 
         @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
