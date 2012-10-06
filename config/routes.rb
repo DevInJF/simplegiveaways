@@ -9,6 +9,7 @@ Simplegiveaways::Application.routes.draw do
   match '/privacy', to: 'welcome#index'
 
   match '/canvas', to: 'canvas#index'
+  match '/canvas/edit', to: 'canvas#edit'
   match '/giveaways/tab', to: 'giveaways#tab'
 
   resources :likes, only: [:create]
