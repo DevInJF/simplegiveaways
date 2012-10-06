@@ -36,8 +36,8 @@ class CanvasController < ApplicationController
         @app_data = "ref_#{JSON.parse(@request['data'])['referrer_id']}"
 
         if @giveaway
-          Rails.logger.debug('FbAppRequestWorker should fire here'.inspect.yellow)
-          Rails.logger.debug(@giveaway.inspect.yellow)
+          Rails.logger.debug(params['signed_request'].inspect.yellow)
+          Rails.logger.debug(@request.inspect.yellow)
           FbAppRequestWorker.perform_async(@request, params['signed_request'])
           @giveaway_found = true
         end
