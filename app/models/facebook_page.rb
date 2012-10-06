@@ -71,7 +71,7 @@ class FacebookPage < ActiveRecord::Base
 
   def page_admin_emails
     users.map do |user|
-      user.identities.first.email
+      user.identities.first.email if user
     end
   end
 
