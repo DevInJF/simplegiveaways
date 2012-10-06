@@ -20,7 +20,8 @@ class CanvasController < ApplicationController
   end
 
   def edit
-    if @page = FacebookPage.find_by_pid(params['fb_page_id']) && @page.giveaways.any?
+    Rails.logger.debug(FacebookPage.find_by_pid(params['fb_page_id']).inspect.red)
+    if @page = FacebookPage.find_by_pid(params['fb_page_id'])
       redirect_to active_facebook_page_giveaways_path(@page)
     else
       redirect_to '//simplegiveaways.com/'
