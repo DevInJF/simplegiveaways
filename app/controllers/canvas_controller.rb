@@ -22,26 +22,28 @@ class CanvasController < ApplicationController
   private
 
   def giveaway_from_request
-    if params['request_ids']
+    begin
+      if params['request_ids']
 
-      Rails.logger.debug(params.inspect.red)
+        Rails.logger.debug(params.inspect.red)
 
-      @request_ids = [params['request_ids'].split('%2C').split(',')].compact.flatten.pop.split(',')
+        @request_ids = [params['request_ids'].split('%2C').split(',')].compact.flatten.pop.split(',')
 
-      @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      @graph = Koala::Facebook::API.new(@oauth.get_app_access_token)
+        @oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
+        @graph = Koala::Facebook::API.new(@oauth.get_app_access_token)
 
-      if @request = select_request
-        @giveaway = Giveaway.select('id, title, giveaway_url').find_by_id(JSON.parse(@request['data'])['giveaway_id'])
-        @app_data = "ref_#{JSON.parse(@request['data'])['referrer_id']}"
+        if @request = select_request
+          @giveaway = Giveaway.select('id, title, giveaway_url').find_by_id(JSON.parse(@request['data'])['giveaway_id'])
+          @app_data = "ref_#{JSON.parse(@request['data'])['referrer_id']}"
 
-        if @giveaway
-          Rails.logger.debug(params['signed_request'].inspect.yellow)
-          Rails.logger.debug(@request['id'].inspect.yellow)
-          FbAppRequestWorker.perform_async(@request['id'], params['signed_request'])
-          @giveaway_found = true
+          if @giveaway
+            FbAppRequestWorker.perform_async(@request['id'], params['signed_request'])
+            @giveaway_found = true
+          end
         end
       end
+    rescue StandardError
+      @giveaway_found = false
     end
   end
 
