@@ -154,11 +154,12 @@ class Giveaway < ActiveRecord::Base
   end
 
   def publish(giveaway_params = {})
+    Rails.logger.debug(self.inspect.cyan)
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: (Time.zone.now - 30.seconds), active: true }))
       is_installed? ? update_tab : create_tab
       GabbaClient.new.event(category: "Giveaways", action: "Giveaway#start", label: title)
-      !!GiveawayNoticeMailer.start(facebook_page.page_admin_emails).deliver
+      !!GiveawayNoticeMailer.start(self.facebook_page.page_admin_emails).deliver
     else
       false
     end
@@ -220,12 +221,13 @@ class Giveaway < ActiveRecord::Base
   end
 
   def delete_tab
+    Rails.logger.debug(self.inspect.red)
     tabs = graph_client.get_connections("me", "tabs")
     tab = select_giveaway_tab(tabs)
 
     if graph_client.delete_object(tab["id"])
       GabbaClient.new.event(category: "Giveaways", action: "Giveaway#end", label: title)
-      !!GiveawayNoticeMailer.end(facebook_page.page_admin_emails).deliver
+      !!GiveawayNoticeMailer.end(self.facebook_page.page_admin_emails).deliver
     else
       false
     end
