@@ -73,7 +73,7 @@ class Identity < ActiveRecord::Base
   end
 
   def process_login(datetime, csrf_token)
-    UserPagesWorker.perform_async(user, csrf_token)
+    UserPagesWorker.perform_async(user, token, csrf_token)
 
     self.login_count = self.login_count += 1
     self.logged_in_at = datetime

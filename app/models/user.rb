@@ -34,10 +34,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.pages_worker(user, csrf_token)
-    @user = User.find_by_id(user["id"])
-    graph = Koala::Facebook::API.new(@user.fb_token)
+  def self.pages_worker(user, fb_token, csrf_token)
+    graph = Koala::Facebook::API.new(fb_token)
     pages = graph.get_connections("me", "accounts")
+    @user = User.find_by_id(user["id"])
     FacebookPage.retrieve_fb_meta(@user, pages, csrf_token)
   end
 end
