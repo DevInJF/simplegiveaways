@@ -56,7 +56,7 @@ class Identity < ActiveRecord::Base
 
     if user.save
       GabbaClient.new.event(category: "Users", action: "User#create", label: user.name)
-      WelcomeNewUserMailer.welcome(self.email).deliver
+      WelcomeNewUserMailer.welcome(self).deliver
       "Logged in!"
     else
       "Something went wrong."
