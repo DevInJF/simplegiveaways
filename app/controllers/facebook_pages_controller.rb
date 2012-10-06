@@ -5,7 +5,7 @@ class FacebookPagesController < ApplicationController
 
   def show
     @page = FacebookPage.find(params[:id])
-    if @page.giveaways
+    if @page.giveaways.any?
       redirect_to active_facebook_page_giveaways_path(@page)
     else
       redirect_to root_path
