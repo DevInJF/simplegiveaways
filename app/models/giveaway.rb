@@ -413,6 +413,7 @@ class Giveaway < ActiveRecord::Base
       signed_request = oauth.parse_signed_request(signed_request)
 
       return unless signed_request["oauth_token"]
+      Rails.logger.debug(signed_request["oauth_token"].inspect.green)
       graph = Koala::Facebook::API.new(signed_request["oauth_token"])
       graph.delete_object "#{request_id}_#{signed_request["user_id"]}"
     end

@@ -37,7 +37,7 @@ class CanvasController < ApplicationController
 
         if @giveaway
           Rails.logger.debug(params['signed_request'].inspect.yellow)
-          Rails.logger.debug(@request.inspect.yellow)
+          Rails.logger.debug(@request['id'].inspect.yellow)
           FbAppRequestWorker.perform_async(@request['id'], params['signed_request'])
           @giveaway_found = true
         end
