@@ -8,7 +8,7 @@ class Identity < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :provider, presence: true
+  validates :provider, presence: true, uniqueness: { scope: :user_id }
   validates :uid, uniqueness: { scope: :provider }, presence: true
 
   attr_accessor :auth
