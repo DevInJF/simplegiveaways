@@ -15,7 +15,7 @@ class CanvasController < ApplicationController
     elsif params['request_ids']
       redirect_to 'http://facebook.com'
     else
-      render 'welcome/index'
+      redirect_to '//simplegiveaways.com/'
     end
   end
 
