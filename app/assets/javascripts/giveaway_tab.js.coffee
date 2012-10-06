@@ -90,7 +90,6 @@ jQuery ->
     eligible: ->
       (("#{giveaway_hash.has_liked}" == "true") || $just_liked) ? true : false
 
-
     onLike: ->
       $.ajax
         type: "POST"
@@ -221,9 +220,7 @@ jQuery ->
           data: json
           statusCode:
             202: ->
-
             406: ->
-
             404: ->
               Giveaway.entry.error "There was an unexpected error.<br />Please reload the page and try again."
 
