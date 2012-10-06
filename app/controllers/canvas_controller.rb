@@ -19,6 +19,11 @@ class CanvasController < ApplicationController
     end
   end
 
+  def edit
+    Rails.logger.debug(params.inspect.yellow)
+    head :ok
+  end
+
   private
 
   def giveaway_from_request
