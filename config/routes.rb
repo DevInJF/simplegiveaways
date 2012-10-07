@@ -5,7 +5,7 @@ Simplegiveaways::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.admin? }
+  constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user }
   constraints constraint do
     mount Sidekiq::Web => '/sidekiq'
   end
