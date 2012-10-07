@@ -6,7 +6,7 @@ class WelcomeNewUserMailer < ActionMailer::Base
          to: @identity.email,
          from: 'support@simplegiveaways.com',
          sent_on: Time.zone.now,
-         body: { user_name: @identity.user.name }
+         body: { user_name: @identity.user.name },
          template_path: 'mailers'
   end
 end
