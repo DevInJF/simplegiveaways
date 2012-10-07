@@ -8,6 +8,7 @@ class WelcomeNewUserMailer < ActionMailer::Base
     mail subject: 'Welcome to Simple Giveaways',
          to: recipient_identity.email,
          from: 'support@simplegiveaways.com',
-         template_path: 'mailers'
+         template_path: 'mailers/welcome_new_user_mailer',
+         template_name: 'welcome'
   end
 end
