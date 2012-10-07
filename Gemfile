@@ -12,6 +12,8 @@ gem 'slim', '<= 1.3.0'
 gem 'sinatra', :require => nil
 gem 'colored'
 
+gem 'sourceninja', '~> 0.9.0'
+
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'activeadmin'
 
