@@ -8,6 +8,8 @@ gem 'thin'
 gem 'foreman'
 gem 'heroku'
 gem 'sidekiq'
+gem 'slim', '<= 1.3.0'
+gem 'sinatra', :require => nil
 gem 'colored'
 
 gem 'meta_search', '>= 1.1.0.pre'
