@@ -7,9 +7,9 @@ class GiveawayNoticeMailer < ActionMailer::Base
     @giveaway = giveaway
     recipient_users.each do |recipient_user|
       begin
-        @recipient_user = recipient_user
+        @user_first_name = recipient_user.name.split(" ")[0] rescue recipient_user.name
         mail subject: 'Your Giveaway Has Begun',
-             to: @recipient_user.identities.pop.email,
+             to: recipient_user.identities.pop.email,
              from: 'support@simplegiveaways.com',
              template_path: 'mailers/giveaway_notice_mailer',
              template_name: 'start'
@@ -22,9 +22,9 @@ class GiveawayNoticeMailer < ActionMailer::Base
     @giveaway = giveaway
     recipient_users.each do |recipient_user|
       begin
-        @recipient_user = recipient_user
+        @user_first_name = recipient_user.name.split(" ")[0] rescue recipient_user.name
         mail subject: 'Your Giveaway Has Ended',
-             to: @recipient_user.identities.pop.email,
+             to: recipient_user.identities.pop.email,
              from: 'support@simplegiveaways.com',
              template_path: 'mailers/giveaway_notice_mailer',
              template_name: 'end'
