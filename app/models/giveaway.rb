@@ -166,7 +166,7 @@ class Giveaway < ActiveRecord::Base
   def after_publish
     GabbaClient.new.event(category: "Giveaways", action: "Giveaway#start", label: title)
     facebook_page.users.each do |page_admin|
-      !!GiveawayNoticeMailer.start(page_admin, self).deliver rescue nil
+      GiveawayNoticeMailer.start(page_admin, self).deliver rescue nil
     end
   end
 
@@ -180,8 +180,10 @@ class Giveaway < ActiveRecord::Base
     if delete_tab
       GabbaClient.new.event(category: "Giveaways", action: "Giveaway#end", label: title)
       facebook_page.users.each do |page_admin|
-        !!GiveawayNoticeMailer.end(page_admin, self).deliver rescue nil
+        GiveawayNoticeMailer.end(page_admin, self).deliver rescue nil
       end
+    else
+      false
     end
   end
 
