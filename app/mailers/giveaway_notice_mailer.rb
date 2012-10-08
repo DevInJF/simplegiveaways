@@ -4,9 +4,9 @@ require 'haml/template/plugin'
 class GiveawayNoticeMailer < ActionMailer::Base
 
   def start(recipient_users, giveaway)
-    @giveaway = giveaway
     recipient_users.each do |recipient_user|
       begin
+        @giveaway = giveaway
         @user_first_name = recipient_user.name.split(" ")[0] rescue recipient_user.name
         mail subject: 'Your Giveaway Has Begun',
              to: recipient_user.identities.pop.email,
@@ -19,9 +19,9 @@ class GiveawayNoticeMailer < ActionMailer::Base
   end
 
   def end(recipient_users, giveaway)
-    @giveaway = giveaway
     recipient_users.each do |recipient_user|
       begin
+        @giveaway = giveaway
         @user_first_name = recipient_user.name.split(" ")[0] rescue recipient_user.name
         mail subject: 'Your Giveaway Has Ended',
              to: recipient_user.identities.pop.email,
