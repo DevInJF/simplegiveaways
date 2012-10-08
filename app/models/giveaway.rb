@@ -157,17 +157,32 @@ class Giveaway < ActiveRecord::Base
     return false unless startable?
     if self.update_attributes(giveaway_params.merge({ start_date: (Time.zone.now - 30.seconds), active: true }))
       is_installed? ? update_tab : create_tab
-      GabbaClient.new.event(category: "Giveaways", action: "Giveaway#start", label: title)
-      !!GiveawayNoticeMailer.start(self.facebook_page.users, self).deliver
+      after_publish
     else
       false
+    end
+  end
+
+  def after_publish
+    GabbaClient.new.event(category: "Giveaways", action: "Giveaway#start", label: title)
+    facebook_page.users.each do |page_admin|
+      !!GiveawayNoticeMailer.start(page_admin, self).deliver rescue nil
     end
   end
 
   def unpublish
     self.end_date = Time.zone.now
     self.active = false
-    save ? delete_tab : false
+    save ? after_unpublish : false
+  end
+
+  def after_unpublish
+    if delete_tab
+      GabbaClient.new.event(category: "Giveaways", action: "Giveaway#end", label: title)
+      facebook_page.users.each do |page_admin|
+        !!GiveawayNoticeMailer.end(page_admin, self).deliver rescue nil
+      end
+    end
   end
 
   def startable?
@@ -223,12 +238,7 @@ class Giveaway < ActiveRecord::Base
     tabs = graph_client.get_connections("me", "tabs")
     tab = select_giveaway_tab(tabs)
 
-    if graph_client.delete_object(tab["id"])
-      GabbaClient.new.event(category: "Giveaways", action: "Giveaway#end", label: title)
-      !!GiveawayNoticeMailer.end(self.facebook_page.users, self).deliver
-    else
-      false
-    end
+    graph_client.delete_object(tab["id"]) ? true : false
   end
 
   def put_tab(position = 0)
