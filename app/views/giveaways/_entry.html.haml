@@ -1,7 +1,7 @@
 %tr
   %td
     .entry-name= entry_name(entry)
-    .entry-email= entry.email
+    .entry-email= truncate(entry.email, :length => 36)
   %td= boolean_table_item(entry.is_viral)
   %td= boolean_table_item(entry.new_fan?)
   %td= entry.wall_post_count
