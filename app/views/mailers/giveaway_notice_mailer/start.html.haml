@@ -3,11 +3,11 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %p= "#{@user_first_name},"
-    %p= "#{@giveaway.title} has been successfully published to the #{@giveaway.facebook_page.name}Facebook Page."
+    %p #{@user_first_name},
+    %p #{@giveaway.title} has been successfully published to the #{@giveaway.facebook_page.name} Facebook Page.
     %p Here's a link:
-    %p= "<a href=#{@giveaway.giveaway_url}>#{@giveaway.giveaway_url}</a>".html_safe
-    %p Here are some next steps to consider…
+    %p <a href='#{@giveaway.giveaway_url}'>#{@giveaway.giveaway_url}</a>
+    %p Here are some next steps to consider...
     %p 1. Move the new giveaway tab into view.  In the area right below your page's cover photo, that lists all your page's tabs, You are able to rearrange the display order of all your page's tabs in the are right below your page's cover photo. Just click the pencil icon and choose the tab that you want it to switch positions with.
     %p 2. Be sure to let your current fans know about the giveaway by posting a status update.
     %p 3. Experiment with some Facebook ads to give your giveaway some extra juice.
