@@ -21,7 +21,7 @@ class EntriesController < ApplicationController
         @giveaway_cookie.entry_id = @entry.id
         if @giveaway.allow_multi_entries.truthy?
           @entry.update_attributes(entry_count: @entry.entry_count += 1)
-          render json: @entry.id, status: :created
+          render json: @entry.as_json(only: [:id, :shortlink]), status: :created
           ga_event("Entries", "Entry#multi", @entry.giveaway.title, @entry.id)
         else
           render json: @entry.as_json(only: [:id, :wall_post_count, :request_count, :send_count, :shortlink]), status: :not_acceptable
