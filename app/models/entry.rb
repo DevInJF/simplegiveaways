@@ -99,7 +99,7 @@ class Entry < ActiveRecord::Base
   end
 
   def shortlink
-    bitly_client.shorten(referral_url)
+    bitly_client.shorten(referral_url).short_url rescue referral_url
   end
 
   def referral_url
