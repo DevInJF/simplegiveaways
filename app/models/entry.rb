@@ -12,7 +12,7 @@ class Entry < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { scope: :giveaway_id }
 
-  attr_accessor :referrer_id
+  attr_accessor :referrer_id, :shortlink
 
   serialize :ref_ids, Array
 
@@ -99,7 +99,7 @@ class Entry < ActiveRecord::Base
   end
 
   def shortlink
-    bitly_client.shorten(referral_url).short_url rescue referral_url
+    @shortlink ||= bitly_client.shorten(referral_url).short_url rescue referral_url
   end
 
   def referral_url
