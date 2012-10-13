@@ -83,10 +83,22 @@ body {
       padding: 9px 15px 13px;
     }
 
-    .btn-group {
+    .share-buttons {
       margin: 0 auto;
+      text-align: center;
+      overflow: hidden;
+      width: 308px;
+    }
+
+    .btn-group {
+      float: left;
       width: 237px;
       text-align: center;
+      margin-right: 4px;
+    }
+
+    .btn.raw-shortlink {
+      float: left;
     }
 
     .btn {

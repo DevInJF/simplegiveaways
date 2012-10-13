@@ -64,7 +64,6 @@ class Entry < ActiveRecord::Base
     @entry ||= @existing_entry
   end
 
-  # like_status(access_token)... we need to get UID from access_token
   def determine_status(has_liked, access_token=nil)
     if has_liked == "true"
       self.has_liked = true
@@ -97,6 +96,19 @@ class Entry < ActiveRecord::Base
 
   def bonus_entries
     ( (giveaway.bonus_value.to_i * convert_count) + (entry_count - 1) ) rescue 0
+  end
+
+  def shortlink
+    bitly_client.shorten(referral_url)
+  end
+
+  def referral_url
+    "#{giveaway.giveaway_url}?app_data=ref_#{id}"
+  end
+
+  def bitly_client
+    Bitly.use_api_version_3
+    Bitly.new(BITLY_USERNAME, BITLY_KEY)
   end
 
   def self.conversion_worker(has_liked, ref_ids, giveaway_cookie)

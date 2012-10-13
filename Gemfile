@@ -11,6 +11,7 @@ gem 'sidekiq'
 gem 'slim', '<= 1.3.0'
 gem 'sinatra', :require => nil
 gem 'colored'
+gem 'bitly'
 
 gem 'sourceninja', '~> 0.9.0'
 

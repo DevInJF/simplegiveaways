@@ -24,13 +24,13 @@ class EntriesController < ApplicationController
           render json: @entry.id, status: :created
           ga_event("Entries", "Entry#multi", @entry.giveaway.title, @entry.id)
         else
-          render json: @entry.as_json(only: [:id, :wall_post_count, :request_count, :send_count]), status: :not_acceptable
+          render json: @entry.as_json(only: [:id, :wall_post_count, :request_count, :send_count, :shortlink]), status: :not_acceptable
         end
       elsif @entry.status == "incomplete"
         render json: @entry.id, status: :precondition_failed
       elsif @entry.save
         @giveaway_cookie.entry_id = @entry.id
-        render json: @entry.id, status: :created
+        render json: @entry.as_json(only: [:id, :shortlink]), status: :created
         ga_event("Entries", "Entry#create", @entry.giveaway.title, @entry.id)
       else
         @delete_cookie = false

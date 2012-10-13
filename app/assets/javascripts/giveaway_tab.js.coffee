@@ -14,6 +14,7 @@ jQuery ->
   $request_count = 0
   $wall_post_count = 0
   $send_count = 0
+  $shortlink = null
   $just_liked = false
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
   $modal = $("#giveaway_modal")
@@ -158,6 +159,7 @@ jQuery ->
               $wall_post_count = parseInt($entry.wall_post_count)
               $request_count = parseInt($entry.request_count)
               $send_count = parseInt($entry.send_count)
+              $shortlink = $entry.shortlink
 
             412: ->
               $loader.hide()
@@ -211,6 +213,11 @@ jQuery ->
         $("a.app-request").click (e) ->
           Giveaway.share.as_app_request()
           e.preventDefault()
+
+        $("a.raw-shortlink").zclip(
+          path: '//simplegiveaways.herokuapp.com/ZeroClipboard.swf',
+          copy: $shortlink
+        )
 
       callback: (json) ->
         $.ajax
