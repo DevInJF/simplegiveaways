@@ -149,7 +149,7 @@ jQuery ->
           data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible() + "&ref_id=" + $referrer_id + "&email=" + $email + "&like_id=" + $like_id
           statusCode:
             201: (response) ->
-              $entry = jQuery.parseJSON(response)
+              $entry = response
               $entry_id = $entry.id
               $shortlink = $entry.shortlink
               Giveaway.entry.success()
