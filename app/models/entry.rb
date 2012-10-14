@@ -103,7 +103,7 @@ class Entry < ActiveRecord::Base
   end
 
   def referral_url
-    "#{giveaway.giveaway_url}?app_data=ref_#{id}"
+    "#{giveaway.giveaway_url}&app_data=ref_#{id}"
   end
 
   def bitly_client

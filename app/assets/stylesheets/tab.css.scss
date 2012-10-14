@@ -87,7 +87,7 @@ body {
       margin: 0 auto;
       text-align: center;
       overflow: hidden;
-      width: 308px;
+      width: 320px;
     }
 
     .btn-group {
@@ -99,6 +99,10 @@ body {
 
     .btn.raw-shortlink {
       float: left;
+
+      i {
+        padding-left: 2px;
+      }
     }
 
     .btn {
