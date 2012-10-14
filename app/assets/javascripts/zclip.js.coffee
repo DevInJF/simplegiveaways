@@ -1,6 +1,6 @@
 jQuery ->
 
-  if $('btn.zclip').length
+  if $('a.btn.zclip').length
 
     _sg = simpleGiveaways
 
