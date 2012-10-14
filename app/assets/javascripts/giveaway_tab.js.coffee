@@ -216,11 +216,12 @@ jQuery ->
           Giveaway.share.as_app_request()
           e.preventDefault()
 
-        $("a.raw-shortlink").zclip(
+        $("a.raw-shortlink.btn-info").zclip(
           path: '//simplegiveaways.herokuapp.com/ZeroClipboard.swf'
           copy: -> $shortlink
           afterCopy: ->
-            $(this).addClass("hide").end().siblings(".hide").show()
+            $(this).addClass('hide').end()
+              .siblings('.btn-success').removeClass('hide')
             $(body).trigger('click')
         )
 
