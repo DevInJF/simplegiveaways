@@ -3,6 +3,7 @@
 //= require vendor/jquerypp
 //= require vendor/jquery-ui-timepicker-addon
 //= require jquery_ujs
+//= require vendor/jquery.zclip
 //= require vendor/underscore
 
 //= require bootstrap-transition
@@ -25,3 +26,4 @@
 //= require facebook
 //= require countdown
 //= require graphs
+//= require zclip

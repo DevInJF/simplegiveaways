@@ -25,7 +25,8 @@
       %p Ends on #{datetime_mdy(giveaway.end_date)}
     = link_to "<i class='icon-eye-open'></i>&nbsp;&nbsp;View Details".html_safe, facebook_page_giveaway_path(page, giveaway), class: "btn btn-large"
     = link_to "<i class='icon-share-alt'></i>&nbsp;&nbsp;View on Facebook".html_safe, giveaway.giveaway_url, class: "btn btn-large", target: "blank"
-    = link_to "<i class='icon-check-empty'></i>&nbsp;&nbsp;Copy Shortlink".html_safe, "#", class: "btn btn-large"
+    = link_to "<i class='icon-check-empty'></i>&nbsp;&nbsp;Copy Shortlink".html_safe, "#", class: "btn btn-large zclip"
+    = link_to "<i class='icon-check'></i>&nbsp;&nbsp;Copyied".html_safe, "#", class: "btn btn-large zclip-success hide"
   .image= image_tag(giveaway.image(:medium))
 
 = render 'stats', giveaway: giveaway
@@ -33,3 +34,6 @@
   = render 'graphs', giveaway: giveaway, page: page, flot: flot
 - if giveaway.entry_count > 0
   = render 'entries', giveaway: giveaway, page: page
+
+:javascript
+  simpleGiveaways["active_giveaway"]["shortlink"] = #{giveaway.shortlink};
