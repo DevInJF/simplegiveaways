@@ -164,10 +164,21 @@ class Giveaway < ActiveRecord::Base
   end
 
   def after_publish
+    save_shortlink
     GabbaClient.new.event(category: "Giveaways", action: "Giveaway#start", label: title)
     facebook_page.users.each do |page_admin|
       GiveawayNoticeMailer.start(page_admin, self).deliver rescue nil
     end
+  end
+
+  def save_shortlink
+    self.shortlink = bitly_client.shorten(giveaway_url).short_url rescue giveaway_url
+    save
+  end
+
+  def bitly_client
+    Bitly.use_api_version_3
+    Bitly.new(BITLY_USERNAME, BITLY_KEY)
   end
 
   def unpublish
