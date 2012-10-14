@@ -3,7 +3,7 @@ class Entry < ActiveRecord::Base
 
   attr_accessible :email, :has_liked, :name, :fb_url, :datetime_entered,
                   :wall_post_count, :request_count, :send_count, :convert_count,
-                  :status, :uid, :ref_ids, :referrer_id, :is_viral
+                  :status, :uid, :ref_ids, :referrer_id, :is_viral, :shortlink
 
   has_many :audits, as: :auditable
 
@@ -12,7 +12,7 @@ class Entry < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { scope: :giveaway_id }
 
-  attr_accessor :referrer_id, :shortlink
+  attr_accessor :referrer_id
 
   serialize :ref_ids, Array
 
