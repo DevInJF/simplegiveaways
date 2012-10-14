@@ -217,10 +217,11 @@ jQuery ->
           e.preventDefault()
 
         $("a.raw-shortlink").zclip(
-          path: '//simplegiveaways.herokuapp.com/ZeroClipboard.swf',
-          copy: -> $shortlink,
+          path: '//simplegiveaways.herokuapp.com/ZeroClipboard.swf'
+          copy: -> $shortlink
           afterCopy: ->
-            $(this).addClass("hide").end().siblings(".hide").show();
+            $(this).addClass("hide").end().siblings(".hide").show()
+            $(body).trigger('click')
         )
 
       callback: (json) ->
