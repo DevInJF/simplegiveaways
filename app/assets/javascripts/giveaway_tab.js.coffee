@@ -218,7 +218,7 @@ jQuery ->
 
         $("a.raw-shortlink").zclip(
           path: '//simplegiveaways.herokuapp.com/ZeroClipboard.swf',
-          copy: $shortlink
+          copy: -> $shortlink
         )
 
       callback: (json) ->
