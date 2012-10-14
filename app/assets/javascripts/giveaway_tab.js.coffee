@@ -149,18 +149,14 @@ jQuery ->
           data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible() + "&ref_id=" + $referrer_id + "&email=" + $email + "&like_id=" + $like_id
           statusCode:
             201: (response) ->
-              console.log(response)
-              $entry = jQuery.parseJSON(response.responseText)
-              console.log($entry)
+              $entry = jQuery.parseJSON(response)
               $entry_id = $entry.id
               $shortlink = $entry.shortlink
               Giveaway.entry.success()
 
             406: (response) ->
-              console.log(response)
               Giveaway.entry.error "You have already entered the giveaway.<br />Entry is limited to one per person."
               $entry = jQuery.parseJSON(response.responseText)
-              console.log($entry)
               $entry_id = $entry.id
               $wall_post_count = parseInt($entry.wall_post_count)
               $request_count = parseInt($entry.request_count)
