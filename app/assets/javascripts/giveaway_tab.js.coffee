@@ -220,8 +220,8 @@ jQuery ->
           path: '//simplegiveaways.herokuapp.com/ZeroClipboard.swf'
           copy: -> $shortlink
           afterCopy: ->
-            $(this).addClass('hide').end()
-              .siblings('.btn-success').removeClass('hide')
+            $(this).addClass('hide')
+            $('a.raw-shortlink.btn-success').removeClass('hide')
             $(body).trigger('click')
         )
 
