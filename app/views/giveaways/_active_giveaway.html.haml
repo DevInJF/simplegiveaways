@@ -23,10 +23,10 @@
     .dates
       %p Started on #{datetime_mdy(giveaway.start_date)}
       %p Ends on #{datetime_mdy(giveaway.end_date)}
-    = link_to "<i class='icon-eye-open'></i>&nbsp;&nbsp;View Details".html_safe, facebook_page_giveaway_path(page, giveaway), class: "btn btn-large"
-    = link_to "<i class='icon-share-alt'></i>&nbsp;&nbsp;View on Facebook".html_safe, giveaway.giveaway_url, class: "btn btn-large", target: "blank"
-    = link_to "<i class='icon-check-empty'></i>&nbsp;&nbsp;Copy Shortlink".html_safe, "#", class: "btn btn-large zclip"
-    = link_to "<i class='icon-check'></i>&nbsp;&nbsp;Copied".html_safe, "#", class: "btn btn-large zclip-success hide"
+    = link_to "<i class='icon-eye-open'></i>&nbsp;&nbsp;View Details".html_safe, facebook_page_giveaway_path(page, giveaway), class: "btn"
+    = link_to "<i class='icon-share-alt'></i>&nbsp;&nbsp;View on Facebook".html_safe, giveaway.giveaway_url, class: "btn", target: "blank"
+    = link_to "<i class='icon-check-empty'></i>&nbsp;&nbsp;Copy Shortlink".html_safe, "#", class: "btn zclip"
+    = link_to "<i class='icon-check'></i>&nbsp;&nbsp;Copied".html_safe, "#", class: "btn zclip-success hide"
   .image= image_tag(giveaway.image(:medium))
 
 = render 'stats', giveaway: giveaway
