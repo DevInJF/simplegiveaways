@@ -277,5 +277,5 @@ jQuery ->
           method: "apprequests"
           message: "#{giveaway_object.description.slice(0, 250) + '...'}"
           data:
-            referrer_id: $entry_id.toString()
+            referrer_id: "#{$entry_id}"
             giveaway_id: "#{giveaway_object.id}"
