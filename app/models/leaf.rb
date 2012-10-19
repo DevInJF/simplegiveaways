@@ -4,12 +4,12 @@ class Leaf
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
 
-  attr_accessor :app_data, :page, :active_resource, :visitor, :outbound_cookie
-
-  # Needs to take some options to be gemified
-  # Name of the model that holds Facebook pages
-  # Name of the model that is the active resource for a Facebook page tab
-  # Name of the pertinent url param for app data when app_data is not used
+  attr_accessor :app_data,
+                :page,
+                :active_resource,
+                :visitor,
+                :outbound_cookie,
+                :referral_source
 
   def initialize(request)
     @request = request
@@ -22,6 +22,7 @@ class Leaf
   end
 
   def page
+    return nil unless @parsed_request.page
     @page ||= OpenStruct.new( id: @parsed_request.page['id'] )
     # @page ||= FacebookPage.find_by_pid( @parsed_request.page['id'] )
   end
@@ -40,16 +41,7 @@ class Leaf
   end
 
   def referral_source
-    # notification
-    # feed
-    # reminders
-    # search
-    # appcenter_request
-    # bookmark_apps
-    # myapps
-    # request
-    # timeline
-    # canvasbookmark
+    @referral_source ||= params[:fb_source] ? params[:fb_source] : 'page'
   end
 
   private
@@ -59,14 +51,14 @@ class Leaf
   end
 
   def visitor_authd_attrs
-    visitor_default_attrs.merge(
+    attrs = visitor_default_attrs.merge(
       id: @parsed_request.user_id,
       oauth_token: @parsed_request.oauth_token,
       token_issued: DateTime.strptime("#{@parsed_request.issued_at}", '%s'),
-      token_expires: DateTime.strptime("#{@parsed_request.expires}", '%s'),
-      admin: @parsed_request.page['admin'],
-      liked: @parsed_request.page['liked']
+      token_expires: DateTime.strptime("#{@parsed_request.expires}", '%s')
     )
+    attrs.merge!( admin: @parsed_request.page['admin'],
+                  liked: @parsed_request.page['liked'] ) if @parsed_request.page
   end
 
   def visitor_default_attrs
@@ -85,7 +77,7 @@ class Leaf
   end
 
   def visitor_is_page_fan?
-    @parsed_request.page['liked']
+    @parsed_request.page ? @parsed_request.page['liked'] : false
   end
 
   def visitor_became_page_fan?
@@ -105,7 +97,9 @@ class Leaf
   end
 
   def inbound_cookie
-    @inbound_cookie ||= JSON.parse( cookie_jar.signed[cookie_key.to_sym] )
+    if cookie = cookie_jar.signed[cookie_key.to_sym]
+      @inbound_cookie ||= JSON.parse(cookie)
+    end
   end
 
   def cookie_jar
@@ -113,6 +107,12 @@ class Leaf
   end
 
   def cookie_key
-    "_leaf_#{FB_APP_ID}_#{page.id}"
+    page ? "_leaf_#{FB_APP_ID}_#{page.id}" : "_leaf"
   end
 end
+
+# TODO
+# Needs to take some options to be gemified
+# * Name of the model that holds Facebook pages
+# * Name of the model that is the active resource for a Facebook page tab
+# * Name of the pertinent url param for app data when app_data is not used

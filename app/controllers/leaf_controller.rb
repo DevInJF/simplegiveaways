@@ -18,6 +18,8 @@ class LeafController < ApplicationController
   end
 
   def set_leaf_cookie
-    cookies.signed["_leaf_#{FB_APP_ID}_#{@leaf.page.id}"] = @leaf.outbound_cookie
+    if @leaf.page
+      cookies.signed["_leaf_#{FB_APP_ID}_#{@leaf.page.id}"] = @leaf.outbound_cookie
+    end
   end
 end
