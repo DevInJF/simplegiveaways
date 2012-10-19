@@ -3,7 +3,8 @@
 #= require bar
 
 describe "Foo", ->
-  loadFixtures 'baz' # located at 'spec/javascripts/fixtures/baz.html.haml'
+  loadFixtures 'baz'
+  # located at 'spec/javascripts/fixtures/baz.html.haml'
   it "it is not bar", ->
     v = new Foo()
     expect(v.bar()).toEqual(false)

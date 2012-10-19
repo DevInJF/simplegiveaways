@@ -5,7 +5,11 @@
 #= require_tree ./routers
 
 window.Sg =
-  Models: {}
-  Collections: {}
-  Routers: {}
-  Views: {}
+  Models:
+    {}
+  Collections:
+    {}
+  Routers:
+    {}
+  Views:
+    {}
