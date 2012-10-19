@@ -26,6 +26,7 @@ group :production, :development, :test do
   gem 'colored'
   gem 'sourceninja', '~> 0.9.0'
   gem 'validates_timeliness', '~> 3.0'
+  gem 'garails'
 end
 
 group :development, :test do
