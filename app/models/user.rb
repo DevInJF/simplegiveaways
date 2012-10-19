@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
+
   rolify
-  attr_accessible :role_ids, :as => :admin
+
+  attr_accessible :role_ids, as: :admin
   attr_accessible :provider, :uid, :name, :email
 
   def self.create_with_omniauth(auth)
+
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
@@ -13,5 +16,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
 end
