@@ -21,6 +21,8 @@ group :production, :development, :test do
   gem 'heroku'
   gem 'foreman'
   gem 'koala'
+  gem 'sidekiq'
+  gem 'rails-backbone'
 end
 
 group :development, :test do
