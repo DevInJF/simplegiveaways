@@ -1,0 +1,1 @@
+Garails.ga_account = ENV['GOOGLE_ANALYTICS_ID']

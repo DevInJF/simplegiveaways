@@ -23,6 +23,9 @@ group :production, :development, :test do
   gem 'koala'
   gem 'sidekiq'
   gem 'rails-backbone'
+  gem 'colored'
+  gem 'sourceninja', '~> 0.9.0'
+  gem 'validates_timeliness', '~> 3.0'
 end
 
 group :development, :test do
@@ -30,6 +33,7 @@ group :development, :test do
   gem 'rspec-rails', '>= 2.11.0'
   gem 'factory_girl_rails', '>= 4.1.0'
   gem 'jasminerice'
+  gem 'figaro'
 end
 
 group :production do
@@ -42,6 +46,19 @@ group :development do
   gem 'ruby_parser', '>= 2.3.1'
   gem 'hpricot', '>= 0.8.6'
   gem 'quiet_assets', '>= 1.0.1'
+  gem 'logging-rails', require: 'logging/rails'
+  gem 'awesome_print'
+  gem 'pry'
+  gem 'erb2haml'
+  gem 'seed_dump'
+  gem 'magic_encoding'
+  gem 'nifty-generators'
+  gem 'rack-mini-profiler'
+  gem 'rails_best_practices'
+  gem 'wirble'
+  gem 'hirb'
+  gem 'itslog'
+  gem 'letters'
 end
 
 group :test do

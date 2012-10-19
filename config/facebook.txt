@@ -1,0 +1,40 @@
+Summary
+
+App ID/API Key
+224405887571151
+
+App Secret
+da7dc60be4b02073a6b584722896e6c9
+
+App Namespace
+simplegiveaways
+
+Site URL
+http://simplegiveaways.com/
+
+Site Domain
+simplegiveaways.com [and others]
+
+Canvas Page
+https://apps.facebook.com/simplegiveaways/
+
+Canvas URL
+http://simplegiveaways.herokuapp.com/canvas/
+
+Secure Canvas URL
+https://simplegiveaways.herokuapp.com/canvas/
+
+Canvas FBML/iframe
+iframe
+
+Deauthorize URL
+http://simplegiveaways.com/deauth/facebook/
+
+Contact Email
+info@simplegiveaways.com
+
+Support URL
+http://simplegiveaways.com/support
+
+App Description
+Easily Create, Deploy, and Manage Giveaways for your Facebook Pages

@@ -12,3 +12,5 @@ config/database.yml
 dump.rdb
 .env
 /.env
+# Ignore application configuration
+/config/application.yml

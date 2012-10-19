@@ -1,0 +1,39 @@
+=== simplegiveaways Config Vars
+
+BITLY_KEY:                   R_2faad364220e00d7ce134790cf58fd09
+BITLY_USERNAME:              o_63ts5ttgh2
+BLITZ_API_KEY:               ec8cf870-4accf35f-af0269d5-c5e25044
+BLITZ_API_USER:              info@simplegiveawayapp.com
+DATABASE_URL:                postgres://ufl1vcaunm1nd7:p37mojoaoodi0o7miiok56lqj67@ec2-50-16-199-68.compute-1.amazonaws.com:5892/dbdl0d408m990h?pool=25
+DEPLOYHOOKS_EMAIL_BODY:      {{user}} deployed {{head}} to {{url}}
+DEPLOYHOOKS_EMAIL_RECIPIENT: notifications@simplegiveaways.com
+DEPLOYHOOKS_EMAIL_SUBJECT:   [Heroku] {{app}} deployed
+FB_APP_ID:                   224405887571151
+FB_APP_KEY:                  224405887571151|SGcDmTmBleKaZizhi0mC4xs-39A
+FB_APP_SECRET:               da7dc60be4b02073a6b584722896e6c9
+GEM_PATH:                    vendor/bundle/ruby/1.9.1
+HEROKU_POSTGRESQL_GOLD_URL:  postgres://ymtbolsqivniot:on268rOG2wLvutwpY4C7wh60kB@ec2-23-21-137-74.compute-1.amazonaws.com:5432/d2kvgarhv3n2l9
+HEROKU_POSTGRESQL_PINK_URL:  postgres://ufl1vcaunm1nd7:p37mojoaoodi0o7miiok56lqj67@ec2-50-16-199-68.compute-1.amazonaws.com:5892/dbdl0d408m990h
+LANG:                        en_US.UTF-8
+LOGGLY_URL:                  http://herokuapp6484261.loggly.com/heroku/resources/herokuapp6484261
+LOG_LEVEL:                   DEBUG
+MANDRILL_KEY:                90687e32-e9d0-4b5d-939a-57b02edae33f
+MANDRILL_USERNAME:           simplegiveaways
+NEW_RELIC_APP_NAME:          simplegiveaways
+NEW_RELIC_ID:                144051
+NEW_RELIC_LICENSE_KEY:       fb3a8af29d7da610e9fd4d94fe69b2f508b5c99c
+NEW_RELIC_LOG:               stdout
+PATH:                        bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin
+PGBACKUPS_URL:               https://61508:92w7nzldehm1fq09b2f8al6m1@pgbackups.heroku.com/client
+RACK_ENV:                    production
+RAILS_ENV:                   production
+REDISTOGO_URL:               redis://redistogo:b797930bb17ad6d11097a405ed6051ef@cowfish.redistogo.com:9171/
+S3_ACCESS_KEY:               AKIAIWZO3QDYQKDCTWZA
+S3_SECRET:                   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
+SCHEDULER_URL:               http://5377v9eg213cdcu6wodwuckek@heroku-scheduler.herokuapp.com/
+SOURCENINJA_EMAIL:           app6484261@heroku.com
+SOURCENINJA_PRODUCT_ID:      174dde2d-08b2-475b-af5b-a00110a2e46d
+SOURCENINJA_TOKEN:           6615a79dbaf7bb8020d8fa95ad526f76
+STATSMIX_URL:                https://www.statsmix.com/api_key/175871332c11369af3da
+STILLALIVE_USERNAME:         app6484261@heroku.com
+TZ:                          America/New_York
