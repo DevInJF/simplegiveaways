@@ -35,6 +35,7 @@ group :development, :test do
   gem 'factory_girl_rails', '>= 4.1.0'
   gem 'jasminerice'
   gem 'figaro'
+  gem 'logging-rails', require: 'logging/rails'
 end
 
 group :production do
@@ -54,7 +55,6 @@ group :development do
   gem 'seed_dump'
   gem 'magic_encoding'
   gem 'nifty-generators'
-  gem 'rack-mini-profiler'
   gem 'rails_best_practices'
   gem 'wirble'
   gem 'hirb'
