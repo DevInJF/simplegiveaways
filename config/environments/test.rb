@@ -1,5 +1,4 @@
-# -*- encoding : utf-8 -*-
-Simplegiveaways::Application.configure do
+Sg::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
@@ -35,4 +34,8 @@ Simplegiveaways::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'example.com' }
+
 end

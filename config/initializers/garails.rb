@@ -1,1 +1,0 @@
-Garails.ga_account = 'UA-29319340-1'

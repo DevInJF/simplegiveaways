@@ -1,58 +1,31 @@
-# -*- encoding : utf-8 -*-
 class SessionsController < ApplicationController
 
-  skip_before_filter :verify_authenticity_token
+  def new
+    redirect_to '/auth/facebook'
+  end
 
-  after_filter  :set_session_vars, only: [:create]
 
   def create
-    auth = request.env['omniauth.auth']
-
-    if BETA_WHITELIST.include? auth['uid'].to_i
-      unless @identity = Identity.find_or_create_with_omniauth(auth)
-        redirect_to root_url, notice: "Something went wrong. Please try again."
-      end
-
-      if signed_in?
-        flash[:notice] = @identity.add_to_existing_user(current_user)
-      else
-        flash[:notice] = @identity.create_or_login_user(auth)
-      end
-
-      render 'sessions/create'
+    auth = request.env["omniauth.auth"]
+    user = User.where(:provider => auth['provider'], 
+                      :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
+    session[:user_id] = user.id
+    user.add_role :admin if User.count == 1 # make the first user an admin
+    if user.email.blank?
+      redirect_to edit_user_path(user), :alert => "Please enter your email address."
     else
-      flash[:notice] = <<-eos
-        Simple Giveaways is currently in closed beta.
-        It won't be long until we're open but please leave your
-        email address if you would like to be notified when we launch.
-      eos
-      redirect_to root_url
+      redirect_to root_url, :notice => 'Signed in!'
     end
+
   end
 
   def destroy
-    self.current_user = nil
-    session[:user_id] = nil
-    if params[:fb] == "true"
-      flash[:error] = "You have been signed out due to a change in your facebook session."
-    else
-      flash[:success] = "Logged out!"
-    end
-    cookies.delete :'_sg-just_logged_in'
-    cookies.delete :_sg_uid
-    redirect_to root_url
+    reset_session
+    redirect_to root_url, :notice => 'Signed out!'
   end
 
-  private
-
-  def set_session_vars
-    if @identity
-      if @identity.process_login(DateTime.now, session['_csrf_token'])
-        self.current_user = @identity.user
-      end
-
-      session['uid'] = @identity.uid
-      cookies.encrypted[:_sg_uid] = { value: @identity.uid, expires: Time.zone.now + 7200 }
-    end
+  def failure
+    redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
+
 end

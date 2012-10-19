@@ -1,4 +1,0 @@
-# -*- encoding : utf-8 -*-
-FB_APP_ID = ENV["FB_APP_ID"]
-FB_APP_SECRET = ENV["FB_APP_SECRET"]
-FB_APP_KEY = ENV["FB_APP_KEY"]

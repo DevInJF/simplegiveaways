@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Simplegiveaways::Application.load_tasks
+Sg::Application.load_tasks

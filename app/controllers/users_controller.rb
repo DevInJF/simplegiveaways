@@ -1,25 +1,27 @@
-# -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :correct_user?, :except => [:index]
 
-  before_filter :parse_signed_request, only: [:deauth]
-
-  def show
-    redirect_to root_path unless @user = current_user
+  def index
+    @users = User.all
   end
 
-  def deauth
-    if @identity = Identity.find_by_uid(@signed_request["user_id"])
-      # TODO: Send email (should we destroy your User account and unsubscribe?)
-      @identity.user.update_attributes(name: 'DEAUTHED_FACEBOOK')
-      @identity.destroy
+    def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      redirect_to @user
+    else
+      render :edit
     end
-    head :ok
   end
 
-  private
 
-  def parse_signed_request
-    oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-    @signed_request = oauth.parse_signed_request(params[:signed_request])
+def show
+    @user = User.find(params[:id])
   end
+
 end

@@ -1,72 +1,27 @@
-source 'http://rubygems.org'
-
-gem 'rails', '3.2.7'
-gem 'mysql2', '~> 0.3.10'
-
-gem 'pg'
-gem 'thin'
-gem 'foreman'
-gem 'heroku'
-gem 'sidekiq'
-gem 'slim', '<= 1.3.0'
-gem 'sinatra', :require => nil
-gem 'colored'
-gem 'bitly'
-
-gem 'sourceninja', '~> 0.9.0'
-
-gem 'meta_search', '>= 1.1.0.pre'
-gem 'activeadmin'
-
-gem 'omniauth'
-gem 'omniauth-facebook', git: 'git://github.com/mkdynamic/omniauth-facebook.git'
-gem 'encrypted-cookies'
-gem 'koala'
-gem 'cancan'
-gem 'garails'
-gem 'gabba'
-gem 'newrelic_rpm'
-
-gem 'aws-sdk'
-gem 'paperclip'
-gem 'fastercsv'
-
-gem 'json'
-gem 'braintree'
-gem 'impressionist'
-gem 'simple_form', '~> 2.0'
-gem 'juggernaut', git: 'git://github.com/FewKinG/juggernaut.git'
-gem 'simple_uuid'
-gem 'whenever', require: false
-gem 'validates_timeliness', '~> 3.0'
-
+source 'https://rubygems.org'
+gem 'rails', '3.2.8'
 group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'font-awesome-sass-rails'
 end
-
-gem 'haml-rails'
-gem 'sass-rails', '~> 3.2.3'
-gem 'bourbon'
-gem 'bootstrap-sass', '~> 2.0.1'
 gem 'jquery-rails'
-gem 'ui_datepicker-rails3'
-
-group :development do
-  gem 'logging-rails', require: 'logging/rails'
-  gem 'awesome_print'
-  gem 'pry'
-  gem 'erb2haml'
-  gem 'seed_dump'
-  gem 'magic_encoding'
-  gem 'nifty-generators'
-  gem 'rack-mini-profiler'
-  gem 'rails_best_practices'
-  gem 'wirble'
-  gem 'hirb'
-  gem 'itslog'
-  gem 'ruby_parser'
-  gem 'hpricot'
-  gem 'letters'
-end
+gem "thin", ">= 1.5.0", :group => [:development, :test]
+gem "unicorn", ">= 4.3.1", :group => :production
+gem "mysql2", ">= 0.3.11"
+gem "haml", ">= 3.1.7"
+gem "haml-rails", ">= 0.3.5", :group => :development
+gem "hpricot", ">= 0.8.6", :group => :development
+gem "ruby_parser", ">= 2.3.1", :group => :development
+gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
+gem "capybara", ">= 1.1.2", :group => :test
+gem "email_spec", ">= 1.2.1", :group => :test
+gem "factory_girl_rails", ">= 4.1.0", :group => [:development, :test]
+gem "bootstrap-sass", ">= 2.1.0.0"
+gem "hominid", ">= 3.0.5"
+gem "omniauth", ">= 1.1.1"
+gem "omniauth-facebook"
+gem "cancan", ">= 1.6.8"
+gem "rolify", ">= 3.2.0"
+gem "simple_form", ">= 2.0.4"
+gem "quiet_assets", ">= 1.0.1", :group => :development
