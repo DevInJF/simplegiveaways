@@ -1,4 +1,3 @@
-
 Logging::Rails.configure do |config|
 
   # Objects will be converted to strings using the :format_as method.

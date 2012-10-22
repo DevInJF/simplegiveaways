@@ -12,6 +12,8 @@ Simplegiveaways::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  match '/blotter', to: 'blotter#index', as: 'blotter'
+
   match '/terms', to: 'welcome#terms'
   match '/privacy', to: 'welcome#privacy'
   match '/support', to: 'welcome#support'
