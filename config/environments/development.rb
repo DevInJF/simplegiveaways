@@ -32,11 +32,10 @@ Simplegiveaways::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # Set the logging destination(s)
-  config.log_to = %w[stdout file]
+  config.log_to = %w(stdout file)
 
   # Show the logging configuration on STDOUT
-  config.show_log_configuration = true
+  config.show_log_configuration = false
 
   config.action_mailer.default_url_options = { host: 'simplegiveaways.com' }
   config.action_mailer.delivery_method     = :smtp

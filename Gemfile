@@ -55,8 +55,9 @@ gem 'ui_datepicker-rails3'
 
 group :development do
   gem 'logging-rails', require: 'logging/rails'
-  gem 'awesome_print'
-  gem 'pry'
+  gem 'awesome_print', require: 'ap'
+  gem 'pry-rails'
+  gem 'pry-remote'
   gem 'erb2haml'
   gem 'seed_dump'
   gem 'magic_encoding'
@@ -68,5 +69,5 @@ group :development do
   gem 'itslog'
   gem 'ruby_parser'
   gem 'hpricot'
-  gem 'letters'
+  gem 'letters', git: 'git://github.com/davejacobs/letters.git'
 end
