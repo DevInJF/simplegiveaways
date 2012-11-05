@@ -3,7 +3,11 @@ class Refresh
   def self.facebook_page_like_count
     FacebookPage.find_each(batch_size: 5) do |pages|
       [pages].flatten.each do |page|
-        page.refresh_likes
+        begin
+          page.refresh_likes
+        rescue Koala::Facebook::APIError => ex
+          puts "#{ex.class}: #{ex.message}"
+        end
       end
       sleep 2.seconds
     end
