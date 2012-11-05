@@ -15,6 +15,10 @@ class FacebookPage < ActiveRecord::Base
 
   blotter :active_giveaway
 
+  def active_giveaway
+    giveaways.detect(&:active?)
+  end
+
   def self.retrieve_fb_meta(user, pages, csrf_token)
     pages = FacebookPage.select_pages(pages).compact.flatten
     page_count = (pages.size - 1)
@@ -149,11 +153,5 @@ class FacebookPage < ActiveRecord::Base
 
   def path
     Rails.application.routes.url_helpers.facebook_page_path(self)
-  end
-
-  private
-
-  def active_giveaway
-    giveaways.detect(&:active?)
   end
 end
