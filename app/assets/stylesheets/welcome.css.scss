@@ -1,184 +1,174 @@
-@import 'bourbon';
 @import 'bootstrap-variables';
 @import 'bootstrap';
 @import 'bootstrap-overrides';
+@import 'compass/css3/border-radius';
+@import 'compass/css3/background-clip';
+@import 'compass/css3/box-shadow';
+@import 'compass/css3/images';
 
 html {
-  min-height: 100%;
+  height: 100%;
+}
+
+a, button, input {
+  outline: 0 none;
 }
 
 body.welcome {
-  background: -webkit-radial-gradient(center, ellipse cover, #5b6879 0%,#323e4c 100%);
-  background:    -moz-radial-gradient(center, ellipse cover, #5b6879 0%,#323e4c 100%);
-  background:      -o-radial-gradient(center, ellipse cover, #5b6879 0%,#323e4c 100%);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #dfe3e8;
+  text-align: center;
+
+  #fb-root {
+    width: 100%;
+    height: 448px;
+    position: fixed;
+    top: 0;
+    z-index: 0;
+    background: transparent image_url('/assets/bg-glow.png') center top repeat-x;
+  }
 
   h1 {
-    font-size: 21px;
-    line-height: 36px;
-    text-align: center;
-  }
-
-  h2 {
-    font-size: 16px;
-    line-height: 22px;
-    text-align: center;
+    position: relative;
+    z-index: 100;
+    color: #8392a3;
+    font-family: "Myriad Pro";
+    font-size: 48px;
     font-weight: normal;
-    padding-top: 10px;
+    text-shadow: 0 1px 0 #fff;
   }
 
-  h3 {
-    font-size: 14px;
-    line-height: 27px;
-    text-align: center;
-  }
-
-  h4 {
-    font-size: 14px;
-    font-weight: normal;
-    text-align: center;
-  }
-
-  h5 {
-    font-size: 12px;
-    text-align: center;
-    padding-top: 5px;
-  }
-
-  form {
-    margin: 69px 0 18px;
-    text-align: center;
-
-    input.email {
-      width: 90%;
-      margin-top: 10px;
-    }
-  }
-
-  .book {
-    background: -webkit-linear-gradient(top, #677ca7 0%, #495a7e 100%);
-    background: -moz-linear-gradient(top, #677ca7 0%, #495a7e 100%);
-    background: -o-linear-gradient(top, #677ca7 0%, #495a7e 100%);
-    width: 500px;
-    height: 350px;
-    margin: 0px auto;
-    margin-top: 100px;
-    padding: 8px;
-    box-shadow: 0px 5px 3px -3px rgba(255, 255, 255, 0.38) inset, 0px 2px 3px rgba(0, 0, 0, 0.5);
+  > .container-narrow {
+    min-height: 100%;
+    height: 100%;
 
     &:before {
       content: '';
-      background: #333;
-      width: 245px;
-      height: 20px;
-      display: block;
-      position: absolute;
-      margin-top: 312px;
-      box-shadow: 10px 31px 30px black;
-      -webkit-transform: rotate(-3deg);
-      -moz-transform: rotate(-3deg);
-      -o-transform: rotate(-3deg);
-      z-index: -25;
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -0.25em; /* Adjusts for spacing */
     }
 
-    &:after {
-      content: '';
-      background: #333;
-      width: 245px;
-      height: 20px;
-      display: block;
-      position: absolute;
-      margin-top: -40px;
-      margin-left: 235px;
-      box-shadow: 10px 31px 30px black;
-      -webkit-transform: rotate(3deg);
-      -moz-transform: rotate(3deg);
-      -o-transform: rotate(3deg);
-      z-index: -25;
+    .inner {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 40px 0;
+      position: relative;
+      top: -0.5%;
     }
   }
 
-  .paper {
-    background: #fff;
-    background: -webkit-linear-gradient(right, #f3f3f3 0%, white 25%);
-    background: -moz-linear-gradient(right, #f3f3f3 0%, white 25%);
-    background: -o-linear-gradient(right, #f3f3f3 0%, white 25%);
-    width: 235px;
-    height: 350px;
-    margin: 0px 15px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5), -5px 0px 0px white, -6px 0px 3px rgba(0, 0, 0, 0.5), -10px 0px 0px white, -11px 0px 3px rgba(0, 0, 0, 0.5), -15px 0px 0px white, -16px 0px 3px rgba(0, 0, 0, 0.5);
+  #primary_content {
+    position: relative;
+    z-index: 100;
+    width: 301px;
+    padding: 24px 0 10px;
+    margin: 35px auto 20px;
+    @include border-radius(8px 7px);
+    @include background-clip();
+    background-color: #fff;
+    @include box-shadow(0 1px 5px rgba(56, 80, 102, .5), 0 0 35px rgba(65, 84, 103, .1), inset 0 3px 7px #fff, inset 0 0 0 1px rgba(255, 255, 255, .5));
+    @include background-image(linear-gradient(bottom, #fff 0%, #e9edf3 75%, #fff 100%));
 
-    &:after {
-      content: '';
-      background: white;
-      background: -webkit-linear-gradient(left, #f3f3f3 0%, white 25%);
-      background: -moz-linear-gradient(left, #f3f3f3 0%, white 25%);
-      background: -o-linear-gradient(left, #f3f3f3 0%, white 25%);
-      width: 235px;
-      height: 350px;
-      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5), 5px 0px 0px white, 6px 0px 3px rgba(0, 0, 0, 0.5), 10px 0px 0px white, 11px 0px 3px rgba(0, 0, 0, 0.5), 15px 0px 0px white, 16px 0px 3px rgba(0, 0, 0, 0.5);
-      display: block;
-      position: absolute;
-      margin-left: 235px;
+    p {
+      color: #717981; /* text color */
+      font-family: "Helvetica Neue";
+      font-size: 13px;
+      width: 75%;
+      margin: 0 auto;
+    }
+
+    form {
+      margin: 21px 0 0;
+    }
+
+    input[type=email],
+    input[type=text] {
+      color: #a0abb8;
+      width: 237px;
+      height: 34px;
+      padding: 0 10px;
+      border: 1px solid #bac4d1;
+      @include border-radius(3px);
+      @include background-clip();
+      background-color: #fff;
+      @include box-shadow(0 1px 0 rgba(255, 255, 255, .5), inset 0 1px 2px #d8dfe8);
+      @include background-image(linear-gradient(bottom, #ecf0f4 0%, #e4ebf2 100%));
+
+      &:hover {
+        color: #57626f;
+        outline: 0 none !important;
+        border: 1px solid #76a9cd; /* stroke */
+      }
+
+      &:active, &:focus {
+        color: #57626f;
+        outline: 0 none !important;
+        border: 1px solid #76a9cd;
+        @include box-shadow(0 1px 0 rgba(255, 255, 255, .5), 0 0 5px rgba(57, 165, 243, .35), inset 0 1px 2px #d8dfe8);
+        @include background-image(linear-gradient(bottom, #fff 0%, #f3f5f7 100%));
+      }
+
+      &.error {
+        border: 1px solid #cc7676;
+        @include box-shadow(0 1px 0 rgba(255, 255, 255, .5), 0 0 5px rgba(243, 57, 57, .35), inset 0 1px 2px #d8dfe8);
+        @include background-image(linear-gradient(bottom, #fff 0%, #f3f5f7 100%));
+      }
+    }
+
+    .media {
+      width: 229px;
+      margin: 0 auto 9px;
+      text-align: right;
+
+      &.btn-large {
+        padding: 10px 14px 7px;
+      }
+
+      p {
+        margin: 0;
+        width: 178px;
+      }
     }
   }
 
-  .left, .right {
-    position: absolute;
+  footer {
+    color: #717981;
+    font-family: "Helvetica Neue";
+    font-size: 13px;
+    position: relative;
+    z-index: 100;
   }
 
-  .left {
-    width: 220px;
-    height: 320px;
-    margin: 5px;
-    padding-top: 65px;
-  }
+  .button {
+    cursor: pointer;
+    width: 257px;
+    height: 40px;
+    margin: 6px auto 0;
+    color: #fff; /* text color */
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 62, 106, .75); /* drop shadow */
+    line-height: 34px;
+    border: 1px solid #015da8;
+    @include border-radius(3px);
+    @include background-clip();
+    background-color: #fff;
+    @include box-shadow(0 2px 2px rgba(164, 170, 178, .5), inset 0 1px 0 rgba(255, 255, 255, .35));
+    @include background-image(linear-gradient(bottom, #0094ff 0%, #0082e0 35.25%, #5cbbff 100%));
 
-  .right {
-    width: 220px;
-    height: 320px;
-    margin: 5px;
-    margin-left: 245px;
-    z-index: 99;
-
-    &:before {
-      content: '';
-      background: #D2D2D2;
-      display: block;
-      position: absolute;
-      width: 4px;
-      height: 40px;
-      left: -13px;
-      bottom: 35px;
-      border-top: 3px solid #BEBEBE;
-      border-bottom: 3px solid #BEBEBE;
-      opacity: 0.8;
-      box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.5);
+    &:hover, &:focus {
+      @include background-image(linear-gradient(bottom, #0094ff 0%, #007edf 35.25%, #8dcfff 100%));
     }
 
-    &:after {
-      content: '';
-      background: #D2D2D2;
-      display: block;
-      position: absolute;
-      width: 4px;
-      height: 40px;
-      left: -13px;
-      top: 35px;
-      border-top: 3px solid #BEBEBE;
-      border-bottom: 3px solid #BEBEBE;
-      opacity: 0.8;
-      box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.5);
+    &:active {
+      border: 1px solid #015da8;
+      @include box-shadow(inset 0 1px 5px rgba(0, 51, 121, .75));
+      @include background-image(linear-gradient(bottom, #31a4f6 0%, #0c6ed3 64.99%, #0c6ed3 100%));
     }
-  }
-
-  .btn-facebook {
-    width: 221px;
-    height: 53px;
-    display: block;
-    background: image_url('/assets/buttons/button_auth_fb.png') no-repeat 0 0;
-    background-size: 100% 100%;
-    margin: 10px auto;
-    border: none;
-    text-indent: -9999em;
   }
 }
