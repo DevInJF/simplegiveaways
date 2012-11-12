@@ -1,16 +1,30 @@
-/ Begin MailChimp Signup Form
-#mc_embed_signup
-  %form#mc-embedded-subscribe-form.validate{:action => "http://simplegiveaways.us5.list-manage.com/subscribe/post?u=fe8c98f13d3a215ac2bfa9ea1&id=2c69ad9d37", :method => "post", :name => "mc-embedded-subscribe-form", :novalidate => "", :target => "_blank"}
-    %h3 We are currently in closed beta.
-    %h4 Please leave your email address to be notified when we launch.
-    .mc-field-group
-      %input#mce-EMAIL.required.email{:name => "EMAIL", :type => "email", :value => ""}
-    #mce-responses.clear
-      #mce-error-response.response{:style => "display:none"}
-      #mce-success-response.response{:style => "display:none"}
-    .clear
-      %input#mc-embedded-subscribe.button{:name => "submit", :type => "submit", :value => "submit"}/
-/ End mc_embed_signup
+.inner
+  %h1= link_to image_tag('/assets/logo.png', alt: 'Simple Giveaways'), root_path
 
-%h5 If you've already been invited, sign in here with Facebook.
-= link_to "Sign In with Facebook", "/auth/facebook", class: "btn-facebook auth-provider facebook clearfix"
+  #primary_content
+    %p.beta-text
+      %b Welcome!
+      %br
+      We are currently in closed beta.
+      Please leave your email address to be notified when we launch.
+    %form
+      = render 'form'
+    %hr
+    = link_to '/auth/facebook', class: 'media btn btn-large' do
+      = image_tag '/assets/facebook-32px.png', alt: "If you've already been invited,
+        sign in here with Facebook.", class: 'media-object pull-right'
+      .media-body
+        %p If you've already been invited, <strong>sign in here with Facebook</strong>.
+
+  %footer= "&copy; #{Time.now.year} Switchrails".html_safe
+
+:javascript
+  $(function() {
+    $('body').noisy({
+      'intensity' : 0.061,
+      'size' : '300',
+      'opacity' : 0.08,
+      'fallback' : '#DFE3E8',
+      'monochrome' : false
+    }).css('background-color', '#DFE3E8');
+  });
