@@ -5,6 +5,7 @@
 //= require jquery_ujs
 //= require vendor/jquery.zclip
 //= require vendor/underscore
+//= require vendor/jquery.noisy
 
 //= require bootstrap-transition
 //= require bootstrap-alert
