@@ -8,26 +8,17 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
 
-    if BETA_WHITELIST.include? auth['uid'].to_i
-      unless @identity = Identity.find_or_create_with_omniauth(auth)
-        redirect_to root_url, notice: "Something went wrong. Please try again."
-      end
-
-      if signed_in?
-        flash[:notice] = @identity.add_to_existing_user(current_user)
-      else
-        flash[:notice] = @identity.create_or_login_user(auth)
-      end
-
-      render 'sessions/create'
-    else
-      flash[:notice] = <<-eos
-        Simple Giveaways is currently in closed beta.
-        It won't be long until we're open but please leave your
-        email address if you would like to be notified when we launch.
-      eos
-      redirect_to root_url
+    unless @identity = Identity.find_or_create_with_omniauth(auth)
+      redirect_to root_url, notice: "Something went wrong. Please try again."
     end
+
+    if signed_in?
+      flash[:notice] = @identity.add_to_existing_user(current_user)
+    else
+      flash[:notice] = @identity.create_or_login_user(auth)
+    end
+
+    render 'sessions/create'
   end
 
   def destroy

@@ -2,20 +2,12 @@
   %h1= link_to image_tag('/assets/logo.png', alt: 'Simple Giveaways'), root_path
 
   #primary_content
-    %p.beta-text
-      %b Welcome!
-      %br
-      We are currently in closed beta.
-      Please leave your email address to be notified when we launch.
-
-      = render 'form'
-
-    %hr
-    = link_to '/auth/facebook', class: 'media btn btn-large' do
-      = image_tag '/assets/facebook-32px.png', alt: "If you've already been invited,
-        sign in here with Facebook.", class: 'media-object pull-right'
-      .media-body
-        %p If you've already been invited, <strong>sign in here with Facebook</strong>.
+    %a#sc-facebook-container-inPage.sc-facebook-container.sc-widget-container{href: '/auth/facebook'}
+      .sc-widget-content Easily create, deploy, and manage giveaways on your Facebook pages.
+      #sc-facebook-button-inPage.sc-widget-button
+        .uibutton.large.facebook Sign In with Facebook
+      .sc-widget-logo
+      .sc-widget-bottom
 
   %footer= "&copy; #{Time.now.year} Switchrails".html_safe
 
