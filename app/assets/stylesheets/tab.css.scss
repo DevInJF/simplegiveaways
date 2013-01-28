@@ -40,6 +40,18 @@ body {
       color:gray;
       line-height:16px;
       margin:0px;
+
+      &.powered-by {
+        text-align: center;
+        font-size: 12px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+
+        a {
+          font-weight: bold;
+        }
+      }
     }
 
     div.terms-text {
