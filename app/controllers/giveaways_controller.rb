@@ -47,7 +47,7 @@ class GiveawaysController < ApplicationController
     end
 
     @giveaway = @page.giveaways.build(giveaway_params)
-    @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}"
+    @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}&ref=ts"
 
     if @giveaway.save
       ga_event("Giveaways", "Giveaway#create", @giveaway.title, @giveaway.id)
