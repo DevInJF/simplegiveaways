@@ -12,6 +12,14 @@ GIT
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1)
 
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 06c860aeeac012f251807322e49eb5eeb0380a58
+  specs:
+    stripe (1.8.6)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -69,8 +77,6 @@ GEM
     bootstrap-sass (2.0.4.0)
     bourbon (2.1.1)
       sass (>= 3.1)
-    braintree (2.16.0)
-      builder (>= 2.0.0)
     builder (3.0.4)
     cancan (1.6.8)
     celluloid (0.11.1)
@@ -360,7 +366,6 @@ DEPENDENCIES
   aws-sdk
   bitly
   bootstrap-sass (~> 2.0.1)
-  braintree
   cancan
   coffee-rails (~> 3.2.1)
   colored
@@ -405,6 +410,7 @@ DEPENDENCIES
   sinatra
   slim (<= 1.3.0)
   sourceninja (~> 0.9.0)
+  stripe!
   thin
   uglifier (>= 1.0.3)
   ui_datepicker-rails3

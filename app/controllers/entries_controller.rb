@@ -32,6 +32,7 @@ class EntriesController < ApplicationController
         render json: @entry.id, status: :precondition_failed
       elsif @entry.save
         @giveaway_cookie.entry_id = @entry.id
+        @entry_json["id"] = @entry.id
         render json: @entry_json.as_json(only: %w(id shortlink)), status: :created
         ga_event("Entries", "Entry#create", @entry.giveaway.title, @entry.id)
       else
