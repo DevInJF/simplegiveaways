@@ -1,0 +1,5 @@
+- @charge = OpenStruct.new(amount: '$40')
+%h2
+  Thanks, you paid
+  = succeed "!" do
+    %strong= @charge.amount

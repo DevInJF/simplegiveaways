@@ -20,6 +20,8 @@ Simplegiveaways::Application.routes.draw do
   match '/canvas/edit', to: 'canvas#edit'
   match '/giveaways/tab', to: 'giveaways#tab'
 
+  resources :charges
+
   resources :likes, only: [:create]
 
   resources :facebook_pages, only: [:show] do

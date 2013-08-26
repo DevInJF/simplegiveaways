@@ -114,6 +114,15 @@ class FacebookPage < ActiveRecord::Base
     batch[:data]["link"].include? "facebook.com"
   end
 
+  def has_free_trial?
+    !used_free_trial?
+  end
+
+  def used_free_trial?
+    entries = giveaways.map(&:entry_count).reject { |count| count == 0 } rescue []
+    entries.any?
+  end
+
   def menu_item_template
     <<-eos
       <li><a href=#{path} data-fb-pid=#{pid}>#{name}</a></li>

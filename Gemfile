@@ -34,6 +34,7 @@ gem 'juggernaut', git: 'git://github.com/FewKinG/juggernaut.git'
 gem 'simple_uuid'
 gem 'whenever', require: false
 gem 'validates_timeliness', '~> 3.0'
+gem 'dotenv-rails'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
