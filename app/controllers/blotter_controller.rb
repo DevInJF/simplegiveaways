@@ -1,8 +1,8 @@
 class BlotterController < ApplicationController
 
+  blotter
+
   def index
-    @blotter = Blotter.new(request)
-    binding.remote_pry
-    head :ok
+    render text: @blotter.view.inspect
   end
 end

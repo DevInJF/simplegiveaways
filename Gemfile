@@ -12,12 +12,9 @@ gem 'slim', '<= 1.3.0'
 gem 'sinatra', :require => nil
 gem 'colored'
 gem 'bitly'
-
 gem 'sourceninja', '~> 0.9.0'
-
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'activeadmin'
-
 gem 'omniauth'
 gem 'omniauth-facebook', git: 'git://github.com/mkdynamic/omniauth-facebook.git'
 gem 'encrypted-cookies'
@@ -26,13 +23,12 @@ gem 'cancan'
 gem 'garails'
 gem 'gabba'
 gem 'newrelic_rpm'
-
 gem 'aws-sdk'
 gem 'paperclip'
 gem 'fastercsv'
-
 gem 'json'
 gem 'braintree'
+gem 'dotenv-rails'
 gem 'impressionist'
 gem 'simple_form', '~> 2.0'
 gem 'juggernaut', git: 'git://github.com/FewKinG/juggernaut.git'

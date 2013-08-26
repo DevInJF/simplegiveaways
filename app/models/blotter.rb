@@ -1,9 +1,18 @@
 module Blotter
+  extend ActiveSupport::Concern
+
+  included do
+    prepend_before_filter :assign_blotter, Blotter.blotter_controller_actions
+
+    def assign_blotter
+      @blotter = Blotter.new(request)
+    end
+  end
 
   class << self
 
     attr_accessor :app_id, :app_secret
-    attr_accessor :blotter_model, :blotter_method
+    attr_accessor :blotter_model, :blotter_method, :blotter_controller_actions
 
     def new(request)
       Blotter::Core.new(request)
@@ -23,6 +32,11 @@ module Blotter
 
     def register_blotter_method(blotter_method)
       @blotter_method = blotter_method
+    end
+
+    def register_controller_actions(controller_actions = {})
+      @blotter_controller_actions = controller_actions
+      puts @blotter_controller_actions.inspect
     end
   end
 

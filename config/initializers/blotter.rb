@@ -1,6 +1,8 @@
 Blotter.register_app_id FB_APP_ID
 Blotter.register_app_secret FB_APP_SECRET
 
+# init.rb in the gem
+
 module ActiveRecord
   class Base
     def self.blotter(blotter_method)
@@ -10,3 +12,11 @@ module ActiveRecord
     end
   end
 end
+
+module BlotterExtensions
+  def blotter(controller_actions = {})
+    Blotter.register_controller_actions(controller_actions)
+    include Blotter
+  end
+end
+ActionController::Base.extend(BlotterExtensions)
