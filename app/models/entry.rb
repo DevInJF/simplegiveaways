@@ -52,6 +52,8 @@ class Entry < ActiveRecord::Base
         self.ref_ids = [@referrer_id].compact
       end
 
+      self.ref_ids = self.ref_ids.reject { |id| id == 0 }
+
       self.is_viral = self.ref_ids.any?
 
       status = self.determine_status(options[:has_liked], options[:access_token]).has_liked
