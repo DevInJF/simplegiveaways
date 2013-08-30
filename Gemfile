@@ -64,4 +64,6 @@ group :development do
   gem 'ruby_parser'
   gem 'hpricot'
   gem 'letters'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end

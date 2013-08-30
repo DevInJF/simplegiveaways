@@ -7,10 +7,14 @@
     = google_analytics_tracking_javascript
     %meta{content: @giveaway_hash.giveaway.description, name: "description"}/
     %meta{property: "og:description", content: "#{@giveaway_hash.giveaway.description}"}
-    = stylesheet_link_tag "//simplegiveaways.herokuapp.com/assets/tab.css"
+    %meta{content: @giveaway_hash.current_page.name, name: "title"}
+    %meta{property: "og:title", content: "#{@giveaway_hash.current_page.name}"}
+    %meta{content: @giveaway_hash.giveaway.feed_image_url, name: "image"}
+    %meta{property: "og:image", content: "#{@giveaway_hash.giveaway.feed_image_url}"}
+    = stylesheet_link_tag "//#{SG_DOMAIN}/assets/tab.css"
     /[if lt IE 9]
       = javascript_include_tag "//html5shim.googlecode.com/svn/trunk/html5.js"
-    = javascript_include_tag "//simplegiveaways.herokuapp.com/assets/tab.js"
+    = javascript_include_tag "//#{SG_DOMAIN}/assets/tab.js"
     = csrf_meta_tags
   %body
     = render "giveaways/init_tab_globals", giveaway_hash: @giveaway_hash

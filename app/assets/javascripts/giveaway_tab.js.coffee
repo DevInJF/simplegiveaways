@@ -266,10 +266,7 @@ jQuery ->
       as_send: ->
         Giveaway.share.dialog
           method: "send"
-          name: "#{giveaway_hash.current_page.name}"
           link: "#{giveaway_object.giveaway_url}" + "&app_data=ref_" + $entry_id
-          picture: "#{giveaway_object.feed_image_url}"
-          description: "#{giveaway_object.title}"
 
       as_app_request: ->
         Giveaway.share.dialog
