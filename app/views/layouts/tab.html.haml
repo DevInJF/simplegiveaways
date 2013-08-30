@@ -9,8 +9,8 @@
     %meta{property: "og:description", content: "#{@giveaway_hash.giveaway.description}"}
     %meta{content: @giveaway_hash.current_page.name, name: "title"}
     %meta{property: "og:title", content: "#{@giveaway_hash.current_page.name}"}
-    %meta{content: @giveaway.feed_image.url, name: "image"}
-    %meta{property: "og:image", content: "#{@giveaway.feed_image.url}"}
+    %meta{content: @giveaway_hash.giveaway.feed_image_url.gsub('https://', 'http://'), name: "image"}
+    %meta{property: "og:image", content: "#{@giveaway_hash.giveaway.feed_image_url.gsub('https://', 'http://')}"}
     = stylesheet_link_tag "//#{SG_DOMAIN}/assets/tab.css"
     /[if lt IE 9]
       = javascript_include_tag "//html5shim.googlecode.com/svn/trunk/html5.js"
