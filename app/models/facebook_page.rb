@@ -11,6 +11,8 @@ class FacebookPage < ActiveRecord::Base
   has_many :giveaways
   has_and_belongs_to_many :users
 
+  belongs_to :subscription
+
   validates :pid, uniqueness: true
 
   def self.retrieve_fb_meta(user, pages, csrf_token)
@@ -112,15 +114,6 @@ class FacebookPage < ActiveRecord::Base
 
   def self.page_eligible?(batch)
     batch[:data]["link"].include? "facebook.com"
-  end
-
-  def has_free_trial?
-    !used_free_trial?
-  end
-
-  def used_free_trial?
-    entries = giveaways.map(&:entry_count).reject { |count| count == 0 } rescue []
-    entries.any?
   end
 
   def menu_item_template

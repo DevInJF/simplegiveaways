@@ -1,0 +1,39 @@
+Subscription Plans v0.0.1
+
+
+FREE - First Giveaway for a single page
+
+$15/mo - Unlimited Giveaways for a single page (monthly)
+
+$150/yr - Unlimited Giveaways for a single page (yearly)
+
+$45/mo - Unlimited Giveaways for multiple pages (monthly)
+
+$450/yr - Unlimited Giveaways for multiple pages (yearly)
+
+
+FacebookPage
+  belongs_to :subscription
+
+User
+  has_many :subscriptions
+
+Subscription
+  has_many :facebook_pages
+  belongs_to :user
+  belongs_to :subscription_plan
+
+  t.belongs_to :user
+  t.belongs_to :subscription_plan
+
+SubscriptionPlan
+  has_many :subscriptions
+
+  t.string  :name
+  t.text    :description
+  t.integer :price_in_cents_per_cycle
+  t.boolean :is_single_page
+  t.boolean :is_multi_page
+  t.boolean :is_onetime
+  t.boolean :is_monthly
+  t.boolean :is_yearly
