@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"price",
+				"price_in_cents_per_cycle"
+			],
+			[
 				"fai",
 				"failure_callback"
 			],
@@ -99,12 +103,20 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 370.0,
+		"height": 76.0,
 		"selected_items":
 		[
 			[
+				"beauti",
+				"BeautifyRuby"
+			],
+			[
 				"pack",
 				"Package Control: Install Package"
+			],
+			[
+				"bound",
+				"List bound keys"
 			],
 			[
 				"gith",
@@ -184,6 +196,23 @@
 	},
 	"file_history":
 	[
+		"/Users/harris/workspace/simplegiveaways/app/models/user.rb",
+		"/Users/harris/workspace/simplegiveaways/app/models/subscription.rb",
+		"/Users/harris/workspace/simplegiveaways/app/models/facebook_page.rb",
+		"/Users/harris/workspace/simplegiveaways/scratch.txt",
+		"/Users/harris/workspace/simplegiveaways/app/models/subscription_plan.rb",
+		"/Users/harris/workspace/simplegiveaways/app/controllers/charges_controller.rb",
+		"/Users/harris/workspace/simplegiveaways/app/views/charges/new.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/pending.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/controllers/giveaways_controller.rb",
+		"/Users/harris/workspace/simplegiveaways/app/models/giveaway.rb",
+		"/Users/harris/workspace/simplegiveaways/app/workers/refresh_worker.rb",
+		"/Users/harris/workspace/simplegiveaways/app/models/graph.rb",
+		"/Users/harris/workspace/simplegiveaways/db/seeds.rb",
+		"/Users/harris/workspace/simplegiveaways/db/migrate/20130901213246_add_subscriptions_to_facebook_pages.rb",
+		"/Users/harris/workspace/simplegiveaways/db/migrate/20130901211957_create_subscription_plans.rb",
+		"/Users/harris/workspace/simplegiveaways/db/migrate/20130901212802_create_subscriptions.rb",
+		"/Users/harris/workspace/simplegiveaways/db/migrate/20130901211830_create_subscriptions.rb",
 		"/Users/harris/workspace/simplegiveaways/tab_scenarios.txt",
 		"/Users/harris/workspace/simplegiveaways/.git/config",
 		"/Users/harris/workspace/rgnrtr/fasttracktool/spec/models/wordpress/environment_spec.rb",
@@ -224,18 +253,12 @@
 		"/Users/harris/workspace/rgnrtr/fasttracktool/spec/factories/site_publish_factory.rb",
 		"/Users/harris/workspace/rgnrtr/fasttracktool/db/migrate/20120912184840_create_site_publishes.rb",
 		"/Users/harris/Desktop/sg-pricing-scratch.txt",
-		"/Users/harris/workspace/simplegiveaways/app/controllers/giveaways_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/app/views/users/_facebook_pages.html.haml",
 		"/Users/harris/workspace/simplegiveaways/app/views/layouts/_header.html.haml",
 		"/Users/harris/workspace/simplegiveaways/db/schema.rb",
 		"/Users/harris/workspace/simplegiveaways/app/controllers/application_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/app/views/users/show.html.haml",
-		"/Users/harris/workspace/simplegiveaways/app/models/facebook_page.rb",
-		"/Users/harris/workspace/simplegiveaways/app/models/giveaway.rb",
-		"/Users/harris/workspace/simplegiveaways/app/models/user.rb",
-		"/Users/harris/workspace/simplegiveaways/app/models/subscription.rb",
 		"/Users/harris/workspace/simplegiveaways/app/models/identity.rb",
-		"/Users/harris/workspace/simplegiveaways/app/models/subscription_plan.rb",
 		"/Users/harris/workspace/simplegiveaways/config/routes.rb",
 		"/Users/harris/workspace/simplegiveaways/Gemfile",
 		"/Users/harris/workspace/simplegiveaways/config/database.yml",
@@ -256,7 +279,6 @@
 		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/tab.html.haml",
 		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/giveaway_tab.js.coffee",
 		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/tab.js",
-		"/Users/harris/workspace/simplegiveaways/app/controllers/charges_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/config/initializers/beta_whitelist.rb",
 		"/Users/harris/workspace/simplegiveaways/config/initializers/secret_token.rb",
 		"/Users/harris/workspace/simplegiveaways/config/initializers/domains.rb",
@@ -285,7 +307,6 @@
 		"/Users/harris/workspace/rgnrtr/fasttracktool/lib/sites/configuration_templates/wordpress.conf.erb",
 		"/Users/harris/workspace/rgnrtr/fasttracktool/chef/cookbooks/fasttracktool/templates/default/nginx.wordpress.conf.erb",
 		"/Users/harris/workspace/rgnrtr/fasttracktool/script/nginx/nginx.conf",
-		"/Users/harris/workspace/simplegiveaways/app/views/charges/new.html.haml",
 		"/Users/harris/workspace/simplegiveaways/.env",
 		"/Users/harris/workspace/simplegiveaways/app/views/charges/create.html.haml",
 		"/Users/harris/workspace/simplegiveaways/config/initializers/04_stripe.rb",
@@ -302,20 +323,11 @@
 		"/Users/harris/workspace/blotter/spec/spec_helper.rb",
 		"/Users/harris/workspace/blotter/.rspec",
 		"/Users/harris/workspace/simplegiveaways/app/controllers/blotter_controller.rb",
-		"/Users/harris/workspace/simplegiveaways/config/initializers/01_facebook.rb",
-		"/Users/harris/workspace/simplegiveaways/.rvmrc",
-		"/Users/harris/workspace/blotter/spec/blotter_spec.rb",
-		"/Users/harris/workspace/blotter/spec/rails/facebook_page.rb",
-		"/Users/harris/workspace/blotter/.rvmrc",
-		"/Users/harris/workspace/simplegiveaways/app/views/shared/_init_globals.html.haml",
-		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/_init_tab_globals.html.haml",
-		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/facebook.js.coffee",
-		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/graphs.js.coffee",
-		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/application.js"
+		"/Users/harris/workspace/simplegiveaways/config/initializers/01_facebook.rb"
 	],
 	"find":
 	{
-		"height": 29.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -330,6 +342,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"RefreshWorker.perform_",
+			"unpublish",
+			"active = false",
+			"there is an active",
+			"Stripe.setPublishableKey",
 			"roles",
 			"site_event_log",
 			"log",
@@ -499,6 +516,38 @@
 		"selected_items":
 		[
 			[
+				"grph",
+				"app/models/graph.rb"
+			],
+			[
+				"refreshwork",
+				"app/workers/refresh_worker.rb"
+			],
+			[
+				"give",
+				"app/models/giveaway.rb"
+			],
+			[
+				"charges/new",
+				"app/views/charges/new.html.haml"
+			],
+			[
+				"addsub",
+				"db/migrate/20130901213246_add_subscriptions_to_facebook_pages.rb"
+			],
+			[
+				"facebo",
+				"app/models/facebook_page.rb"
+			],
+			[
+				"user.rb",
+				"app/models/user.rb"
+			],
+			[
+				"createsub",
+				"db/migrate/20130901212802_create_subscriptions.rb"
+			],
+			[
 				"routes",
 				"config/routes.rb"
 			],
@@ -661,10 +710,6 @@
 			[
 				"migr",
 				"lib/jobs/migrate_wordpress_content.rb"
-			],
-			[
-				"user.rb",
-				"app/models/user.rb"
 			],
 			[
 				"identity.rb",
@@ -981,34 +1026,6 @@
 			[
 				"siteactions",
 				"app/views/sites/_site_actions.html.haml"
-			],
-			[
-				"site/show",
-				"app/views/sites/show.html.haml"
-			],
-			[
-				"wordenv",
-				"app/models/wordpress/environment.rb"
-			],
-			[
-				"site",
-				"app/models/site.rb"
-			],
-			[
-				"createwor",
-				"db/migrate/20130821195400_create_wordpress_environments_wordpress_sites.rb"
-			],
-			[
-				"sche",
-				"db/schema.rb"
-			],
-			[
-				"command",
-				"lib/command.rb"
-			],
-			[
-				"base",
-				"lib/jobs/base.rb"
 			]
 		],
 		"width": 0.0

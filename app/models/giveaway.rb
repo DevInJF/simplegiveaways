@@ -86,10 +86,12 @@ class Giveaway < ActiveRecord::Base
 
   validates_datetime :end_date, on_or_after: -> { (Time.zone.now - 30.seconds) },
                                 on_or_after_message: "must be in the future.",
+                                unless: -> { active_was },
                                 ignore_usec: true
 
   validates_datetime :end_date, after: :start_date,
                                 after_message: "must be after start date/time.",
+                                unless: -> { active_was },
                                 ignore_usec: true
 
   store :analytics, accessors: [ :_total_shares,

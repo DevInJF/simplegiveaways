@@ -25,7 +25,7 @@ class SubscriptionPlan < ActiveRecord::Base
 
     def single_page_monthly
       self.find_or_create_by_name(
-        name: "Single Page (monthly)",
+        name: "Single Page Unlimited (monthly)",
         description: "Run unlimited giveaways on your page.",
         price_in_cents_per_cycle: 1500,
         is_single_page: true,
@@ -38,7 +38,7 @@ class SubscriptionPlan < ActiveRecord::Base
 
     def single_page_yearly
       self.find_or_create_by_name(
-        name: "Single Page (yearly)",
+        name: "Single Page Unlimited (yearly)",
         description: "Run unlimited giveaways on your page.",
         price_in_cents_per_cycle: 15000,
         is_single_page: true,
@@ -51,7 +51,7 @@ class SubscriptionPlan < ActiveRecord::Base
 
     def multi_page_monthly
       self.find_or_create_by_name(
-        name: "Multi Page (monthly)",
+        name: "Multi Page Unlimited (monthly)",
         description: "Run unlimited giveaways on any of your pages.",
         price_in_cents_per_cycle: 4500,
         is_single_page: false,
@@ -64,7 +64,7 @@ class SubscriptionPlan < ActiveRecord::Base
 
     def multi_page_yearly
       self.find_or_create_by_name(
-        name: "Multi Page (yearly)",
+        name: "Multi Page Unlimited (yearly)",
         description: "Run unlimited giveaways on any of your pages.",
         price_in_cents_per_cycle: 45000,
         is_single_page: false,
