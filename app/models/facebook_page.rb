@@ -15,6 +15,14 @@ class FacebookPage < ActiveRecord::Base
 
   validates :pid, uniqueness: true
 
+  def no_active_giveaways?
+    giveaways.active.empty?
+  end
+
+  def has_active_subscription?
+    subscription && subscription.active?
+  end
+
   def self.retrieve_fb_meta(user, pages, csrf_token)
     pages = FacebookPage.select_pages(pages).compact.flatten
     page_count = (pages.size - 1)

@@ -25,6 +25,7 @@ Simplegiveaways::Application.routes.draw do
   resources :likes, only: [:create]
 
   resources :facebook_pages, only: [:show] do
+
     resources :giveaways do
       resources :entries, only: [:create, :update]
 
@@ -37,6 +38,8 @@ Simplegiveaways::Application.routes.draw do
       get :end, on: :member
     end
   end
+
+  match '/facebook_pages/:facebook_page_id/subscription_plans', to: 'subscription_plans#index'
 
   resources :users, only: []
   match '/deauth/:provider', to: 'users#deauth'

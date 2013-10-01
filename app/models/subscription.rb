@@ -4,4 +4,8 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
 
   has_many :facebook_pages
+
+  def active?
+
+  end
 end

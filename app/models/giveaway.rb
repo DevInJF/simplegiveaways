@@ -201,7 +201,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def startable?
-    facebook_page.giveaways.active.empty? rescue false
+    facebook_page.has_active_subscription? && facebook_page.no_active_giveaways? rescue false
   end
 
   def status
