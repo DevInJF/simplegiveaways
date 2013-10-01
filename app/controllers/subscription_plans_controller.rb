@@ -1,4 +1,4 @@
-class SubscriptionPlansController < ActionController::Base
+class SubscriptionPlansController < ApplicationController
 
   def index
     @facebook_page = FacebookPage.find_by_id(params[:facebook_page_id])

@@ -7,7 +7,7 @@
 }
 
 .modal-body {
-  max-height:900px;
+  max-height: 300px;
 
   &.end {
     color:red;
@@ -18,8 +18,14 @@
   border: 0px;
 }
 
-.modal {
-  margin-top: -350px;
+.modal, .modal.fade, .modal.fade.in {
+  top: 5%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  margin: 0 auto;
+  max-height: 330px;
 }
 
 form {

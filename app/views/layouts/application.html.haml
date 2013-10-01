@@ -32,7 +32,7 @@
     .site_wrapper
       = render "layouts/header", user_pages: @user_pages
       = render "layouts/page_header"
-      = render "layouts/sidebar", page: @page, giveaway: @giveaway, user: @user
+      = render "layouts/sidebar", page: @page, giveaway: @giveaway, user: current_user
       = render "layouts/content"
       = render "layouts/footer"
 

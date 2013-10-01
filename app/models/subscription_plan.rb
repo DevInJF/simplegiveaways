@@ -8,6 +8,10 @@ class SubscriptionPlan < ActiveRecord::Base
     "$#{price_in_cents_per_cycle / 100}.00"
   end
 
+  def is_free_trial?
+    self == self.class.free_trial
+  end
+
   class << self
 
     def free_trial

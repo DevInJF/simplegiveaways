@@ -8,11 +8,11 @@
       %h3 Publish #{giveaway.title}
     .modal-body
       = simple_form_for [page, giveaway], url: start_facebook_page_giveaway_path(page, giveaway), html: { class: 'form-horizontal', multipart: true } do |f|
-        %fieldset.schedule
-          %legend Publish Settings
-          = render "giveaways/form/publish_confirm", f: f
+        = render "giveaways/form/publish_confirm", f: f
         .form-actions
           = f.submit "Publish the Giveaway", class: "btn-primary btn btn-xlarge"
+      .hide
+        = render SubscriptionPlan.all, facebook_page: page
 
 - else
   %span.btn.btn-large.btn-primary.btn-publish.disabled
@@ -21,5 +21,5 @@
 
 :javascript
   $(function() {
-    $(".btn.disabled").popover({"title": "End Active Giveaway to Publish", "content": "Go to the <a href=\x27/active\x27>Active Giveaway</a> panel to end the active giveaway", "placement": "bottom"});
+    $(".btn.disabled").popover({"title": "End Active Giveaway to Publish", "content": "Go to the <a href=\x27/active\x27>Active Giveaway</a> panel to end the active giveaway.", "placement": "bottom"});
   });

@@ -1,19 +1,8 @@
-%p.fieldset-help
-  %i.icon-info-sign
-  Modify the ending time for this giveaway.
-  = f.input :end_date, as: :ui_date_time_picker, input_html: { class: "input-mini" },
-                                       label: "End Date/Time",
-                                       start_year: Date.today.year - 1,
-                                       end_year: Date.today.year + 5,
-                                       order: [:month, :day, :year],
-                                       use_short_month: true,
-                                       include_blank: true,
-                                       ampm: true
-  %i.icon-info-sign
-  Add a custom tb name to your giveaway.
-  = f.input :custom_fb_tab_name
+= f.input :end_date, as: :ui_date_time_picker, input_html: { class: "input-mini" }, label: "End Date/Time", start_year: Date.today.year - 1, end_year: Date.today.year + 5, order: [:month, :day, :year], use_short_month: true, include_blank: true, ampm: true, hint: 'Modify the ending time for this giveaway.', required: false
 
-  :javascript
+= f.input :custom_fb_tab_name, hint: 'Create a custom tab name for your giveaway.', required: false
+
+:javascript
   $(function() {
     $('input.ui-datetime-picker').datetimepicker({
       ampm: true,
