@@ -1,13 +1,30 @@
-@import 'bootstrap-variables';
-@import 'bootstrap';
-@import 'jquery-ui-bootstrap/jquery-ui-1.8.16.custom';
-@import 'jquery-ui-bootstrap/jquery-ui-timepicker';
-@import 'styleguide';
-@import 'layout';
-@import 'utilities';
-@import 'facebook_pages';
-@import 'giveaways';
-@import 'giveaway_detail';
-@import 'auth';
-@import 'tables';
-@import 'bootstrap-overrides';
+//@import 'bootstrap-variables';
+//@import 'bootstrap';
+//@import 'jquery-ui-bootstrap/jquery-ui-1.8.16.custom';
+//@import 'jquery-ui-bootstrap/jquery-ui-timepicker';
+//@import 'styleguide';
+//@import 'layout';
+//@import 'utilities';
+//@import 'facebook_pages';
+//@import 'giveaways';
+//@import 'giveaway_detail';
+//@import 'auth';
+//@import 'tables';
+//@import 'bootstrap-overrides';
+@import 'semantic-ui/collections';
+@import 'semantic-ui/elements';
+@import 'semantic-ui/modules';
+@import 'semantic-ui/views';
+
+html,
+body {
+  font-size: 15px;
+}
+
+body {
+  margin: 0px;
+  padding: 50px;
+  color: #555;
+  min-width: 320px;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}

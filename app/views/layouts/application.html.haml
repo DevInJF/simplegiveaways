@@ -21,6 +21,8 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
 
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700"
+
     = csrf_meta_tags
 
   %body.application{ class: body_class }
@@ -29,11 +31,10 @@
 
     #fb-root.logged-in{ :'data-uid' => uid_class }
 
-    .site_wrapper
-      = render "layouts/header", user_pages: @user_pages
-      = render "layouts/page_header"
-      = render "layouts/sidebar", page: @page, giveaway: @giveaway, user: current_user
-      = render "layouts/content"
-      = render "layouts/footer"
+    .ui.page.grid
+      .ui.column
+        = render 'layouts/header'
+        = render 'layouts/page'
+
 
     %noscript= utm_tag

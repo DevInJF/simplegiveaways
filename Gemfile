@@ -39,6 +39,9 @@ group :assets do
   gem 'font-awesome-sass-rails'
 end
 
+gem 'therubyracer', platforms: :ruby
+gem 'less-rails'
+gem 'semantic-ui-rails'
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
 gem 'compass-rails'
