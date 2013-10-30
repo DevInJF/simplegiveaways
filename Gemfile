@@ -50,7 +50,6 @@ gem 'jquery-rails'
 gem 'ui_datepicker-rails3'
 
 group :development, :test do
-  gem 'logging-rails', require: 'logging/rails'
   gem 'awesome_print'
   gem 'hirb'
   gem 'interactive_editor'

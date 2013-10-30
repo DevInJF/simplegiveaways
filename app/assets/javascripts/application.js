@@ -28,3 +28,4 @@
 //= require countdown
 //= require graphs
 //= require zclip
+//= require semantic-ui

@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       flash[:notice] = @identity.create_or_login_user(auth)
     end
 
-    render 'sessions/create'
+    render 'sessions/create', layout: false
   end
 
   def destroy
