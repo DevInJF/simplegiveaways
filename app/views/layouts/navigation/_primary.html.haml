@@ -1,0 +1,6 @@
+.ui.red.labeled.icon.top.right.pointing.dropdown.button
+  %i.settings.icon
+  %span.text My Pages
+  .menu
+    - current_user.facebook_pages.each do |page|
+      .item= link_to page.name, facebook_page_path(page)

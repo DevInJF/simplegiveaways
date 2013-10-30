@@ -1,37 +1,13 @@
-- content_for :page_title do
-  %h1.page_title= current_user.name
-  %p.page_subtitle current_user.facebook_pages.count
+- content_for :sidebar do
+  = render 'users/avatar'
 
-- content_for :avatar do
-  %a{href: dashboard_path, class: "avatar" }
-    = image_tag( current_user.avatar , alt: current_user.name)
-
-- content_for :links do
-  %ul.nav.nav-list
-    %li.active
-      %a{ href: "#page_giveaways_active", :"data-toggle" => "tab"}
-        %i.icon-flag
-        Pages
-    %li
-      %a{ href: "#page_giveaways_pending", :"data-toggle" => "tab"}
-        %i.icon-user
-        Account
-    %li
-      %a{ href: "#page_giveaways_completed", :"data-toggle" => "tab"}
-        %i.icon-calendar
-        Billing
-    %li
-      %a{ href: "#page_stats", :"data-toggle" => "tab"}
-        %i.icon-book
-        Resources
-
-- content_for :content_header do
+- content_for :content do
   %h2 Facebook Pages <strong>(<span class="dynamo">#{current_user.facebook_pages.count}</span>)</strong>
 
-- if current_user.facebook_pages.any?
-  = render "users/facebook_pages"
+  - if current_user.facebook_pages.any?
+    = render 'users/facebook_pages'
 
-- else
-  .loader
-    = image_tag "loader.gif", alt: "Loading Your Facebook Pages"
-    %h1 Loading Facebook Pages
+  - else
+    .loader
+      = image_tag 'loader.gif', alt: 'Loading Your Facebook Pages'
+      %h1 Loading Facebook Pages

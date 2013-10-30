@@ -7,16 +7,6 @@
 //= require vendor/underscore
 //= require vendor/jquery.noisy
 
-//= require bootstrap-transition
-//= require bootstrap-alert
-//= require bootstrap-modal
-//= require bootstrap-dropdown
-//= require bootstrap-tab
-//= require bootstrap-tooltip
-//= require bootstrap-popover
-//= require bootstrap-button
-//= require bootstrap-collapse
-
 //= require vendor/jquery.fb
 //= require vendor/jquery.countdown
 //= require vendor/dynamo
@@ -29,3 +19,4 @@
 //= require graphs
 //= require zclip
 //= require semantic-ui
+//= require ui
