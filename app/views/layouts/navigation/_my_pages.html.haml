@@ -1,0 +1,7 @@
+.ui.right.floated.tiny.teal.buttons
+  = link_to 'My Pages', dashboard_path, class: 'ui button'
+  .ui.floating.dropdown.icon.button
+    %i.dropdown.icon
+    .menu
+      - current_user.facebook_pages.each do |page|
+        = active_link_to page.name, facebook_page_path(page), class: 'item'
