@@ -2,7 +2,6 @@
   = render 'users/avatar'
 
 - content_for :content do
-  %h2 Facebook Pages <strong>(<span class="dynamo">#{current_user.facebook_pages.count}</span>)</strong>
 
   - if current_user.facebook_pages.any?
     = render 'users/facebook_pages'
