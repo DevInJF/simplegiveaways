@@ -1,6 +1,6 @@
 %h2.ui.header
-  %i.circular.emphasized.inverted.teal.gift.icon
+  = link_to '<i class="circular emphasized inverted teal gift icon"></i>'.html_safe, dashboard_path, class: 'logo-link'
   .content
-    Simple Giveaways
+    = link_to 'Simple Giveaways', dashboard_path, class: 'logo-link'
     .sub.header
       Easily create and deploy giveaways on your Facebook pages.
