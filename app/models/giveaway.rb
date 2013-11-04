@@ -57,9 +57,9 @@ class Giveaway < ActiveRecord::Base
                                    :email_required,
                                    :bonus_value ]
 
-  validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "true", "false" ] }
-  validates :allow_multi_entries, presence: true, inclusion: { in: [ "true", "false" ] }
-  validates :email_required, presence: true, inclusion: { in: [ "true", "false" ] }
+  validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "0", "1", 0, 1 ] }
+  validates :allow_multi_entries, presence: true, inclusion: { in: [ "0", "1", 0, 1 ] }
+  validates :email_required, presence: true, inclusion: { in: [ "0", "1", 0, 1 ] }
   validates :bonus_value, presence: true, numericality: { only_integer: true }
 
   store :sticky_post, accessors: [ :sticky_post_enabled?,
