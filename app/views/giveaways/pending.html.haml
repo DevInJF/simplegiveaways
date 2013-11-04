@@ -1,44 +1,32 @@
-- content_for :content_header do
-  %h2 Pending Giveaways
+- content_for :content do
 
-- if @page.giveaways.pending.any?
+  - if @page.giveaways.pending.any?
 
-  - if @page.giveaways.active.any?
-    
-    %section.no_active
-      .create-giveaway
-        %h1 There is an active giveaway on your page right now. You can publish a pending giveaway only once your the active giveaway has ended.
+    - if @page.giveaways.active.any?
 
-  - else
+      .ui.message
+        %i.close.icon
+        .content
+          .header There is an active giveaway on your page right now.
+          %p You can publish a pending giveaway once your active giveaway has ended.
 
-    %section.no_active
-      .create-giveaway
-        %h1 There is no active giveaway on your page right now.
-        %h3 So go ahead and publish one
+    - else
 
-  = render collection: @giveaways, partial: "list_item", as: :giveaway, locals: { page: @page }
+      .ui.message
+        %i.close.icon
+        .content
+          .header There is no active giveaway on your page right now.
+          %p Go ahead and publish one.
 
-- else
-
-  - if @page && @page.giveaways.active.any?
-
-    %section.no_active
-      .create-giveaway
-        %h1 THERE IS AN ACTIVE There are no pending giveaways. Create a new giveaway to publish later.
-        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), class: "btn btn-success btn-xlarge"
+    = render 'facebook_pages/giveaways', giveaways: @giveaways
 
   - else
 
-    %section.no_active
-      .create-giveaway
-        %h1 THERE IS NO ACTIVE There are no pending giveaways. Create a new giveaway to publish later.
-        = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), :class => "btn btn-success btn-xlarge"
+    - if @page && @page.giveaways.active.any?
 
-
-
-
- 
-  
-  
-
-
+      .ui.message
+        %i.close.icon
+        .content
+          .header There are no pending giveaways.
+          %p Create a new giveaway to publish later.
+          = link_to "Create a New Giveaway", new_facebook_page_giveaway_path(@page), class: 'ui tiny teal button'
