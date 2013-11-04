@@ -34,7 +34,14 @@
     .ui.one.column.page.grid
       .column
         #sg_header.clearfix= render 'layouts/header'
-        #sg_page.clearfix= render 'layouts/page'
-
+        #sg_page.clearfix
+          .ui.relaxed.stackable.grid
+            .row
+            .row
+            .row
+              - if content_for?(:layout)
+                = yield(:layout)
+              - else
+                = render 'layouts/page'
 
     %noscript= utm_tag

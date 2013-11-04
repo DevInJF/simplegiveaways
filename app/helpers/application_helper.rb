@@ -1,6 +1,12 @@
 # -*- encoding : utf-8 -*-
 module ApplicationHelper
 
+  def inside_layout(layout, &block)
+    layout = "layouts/#{layout}" unless layout =~ %r[\Alayouts/]
+    content_for :layout, capture(&block)
+    render template: layout
+  end
+
   def current_host_url
     request.env['HTTP_HOST']
   end

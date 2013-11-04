@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class GiveawaysController < ApplicationController
 
+  layout 'facebook_pages'
+
   load_and_authorize_resource :facebook_page, except: [:tab]
   load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab]
 
