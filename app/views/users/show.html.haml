@@ -1,12 +1,14 @@
 - content_for :sidebar do
+
   = render 'users/avatar'
 
 - content_for :content do
 
   - if current_user.facebook_pages.any?
+
     = render 'users/facebook_pages'
 
   - else
-    .loader
-      = image_tag 'loader.gif', alt: 'Loading Your Facebook Pages'
-      %h1 Loading Facebook Pages
+
+    .ui.active.dimmer
+      .ui.large.inverted.text.loader Loading Your Facebook Pages
