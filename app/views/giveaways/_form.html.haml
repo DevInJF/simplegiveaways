@@ -1,14 +1,16 @@
+%h3.ui.header New Giveaway
+
 = simple_form_for [page, giveaway], html: { class: 'fluid segment', multipart: true } do |f|
-  .row.basic-info
-    = render "giveaways/form/basic_info", f: f
-  .row.schedule
-    = render "giveaways/form/schedule", f: f
-  .row.images
-    = render "giveaways/form/images", f: f
-  .row.terms
-    = render "giveaways/form/terms", f: f
-  .row.preferences
-    = render "giveaways/form/preferences", f: f
+
+  = render "giveaways/form/basic_info", f: f
+
+  = render "giveaways/form/schedule", f: f
+
+  = render "giveaways/form/images", f: f
+
+  = render "giveaways/form/terms", f: f
+
+  = render "giveaways/form/preferences", f: f
 
   .form-actions
     = f.button :submit, class: 'ui teal submit button'

@@ -1,7 +1,9 @@
-%h4.ui.header
-  Schedule
-  %p.sub.header You may leave this blank for now if you don't yet know your schedule.
+.row.schedule
 
-= f.input :start_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
+  %h4.ui.header
+    Schedule
+    %p.sub.header You may leave this blank for now if you don't yet know your schedule.
 
-= f.input :end_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'End Date/Time'
+  = f.input :start_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
+
+  = f.input :end_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'End Date/Time'

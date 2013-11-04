@@ -1,9 +1,11 @@
-%h4.ui.header Preferences
+.row.preferences
 
-= f.input :autoshow_share_dialog, as: :boolean, wrapper: :semantic_checkbox_toggle, label: 'Autoshow Share Dialog'
+  %h4.ui.header Preferences
 
-= f.input :allow_multi_entries, as: :boolean, wrapper: :semantic_checkbox_toggle, label: 'Allow Multiple Entries Per User'
+  = f.input :autoshow_share_dialog, as: :boolean, wrapper: :semantic_checkbox_toggle, label: 'Autoshow Share Dialog'
 
-= f.input :email_required, as: :boolean, wrapper: :semantic_checkbox_toggle, input_html: { checked: true }, label: 'Auth Required for Entry'
+  = f.input :allow_multi_entries, as: :boolean, wrapper: :semantic_checkbox_toggle, label: 'Allow Multiple Entries Per User'
 
-= f.input :bonus_value, as: :string, input_html: { value: '5', placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value'
+  = f.input :email_required, as: :boolean, wrapper: :semantic_checkbox_toggle, input_html: { checked: true }, label: 'Auth Required for Entry'
+
+  = f.input :bonus_value, as: :string, input_html: { value: '5', placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value'

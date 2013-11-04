@@ -1,6 +1,8 @@
-%h4.ui.header Basic Info
+.row.basic-info
 
-= f.input :title, input_html: { maxlength: 100, placeholder: 'Title' }
-= f.input :description, input_html: { placeholder: 'Description' }
-= f.input :prize, input_html: { placeholder: 'Prize' }
-= f.input :custom_fb_tab_name, label: 'Custom Tab Name', input_html: { placeholder: 'Custom Tab Name' }
+  %h4.ui.header Basic Info
+
+  = f.input :title, input_html: { maxlength: 100, placeholder: 'Title' }
+  = f.input :description, input_html: { placeholder: 'Description' }
+  = f.input :prize, input_html: { placeholder: 'Prize' }
+  = f.input :custom_fb_tab_name, label: 'Custom Tab Name', input_html: { placeholder: 'Custom Tab Name' }
