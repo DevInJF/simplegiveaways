@@ -1,22 +1,14 @@
-= simple_form_for [page, giveaway], html: { class: 'form-horizontal', multipart: true } do |f|
-  %fieldset.basic-info
-    %legend Basic Info
+= simple_form_for [page, giveaway], html: { class: 'fluid segment', multipart: true } do |f|
+  .row.basic-info
     = render "giveaways/form/basic_info", f: f
-  %fieldset.schedule
-    %legend Schedule
+  .row.schedule
     = render "giveaways/form/schedule", f: f
-  %fieldset.images
-    %legend Images
+  .row.images
     = render "giveaways/form/images", f: f
-  %fieldset.terms
-    %legend Terms &amp; Conditions
+  .row.terms
     = render "giveaways/form/terms", f: f
-  -#%fieldset.sticky-post
-  -#  %legend Sticky Post
-  -#  = render "giveaways/form/sticky_post", f: f
-  %fieldset.preferences
-    %legend Preferences
+  .row.preferences
     = render "giveaways/form/preferences", f: f
 
   .form-actions
-    = f.button :submit, class: "btn-primary"
+    = f.button :submit, class: 'ui teal submit button'

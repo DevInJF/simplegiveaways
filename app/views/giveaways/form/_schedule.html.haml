@@ -1,56 +1,7 @@
-%p.fieldset-help
-  %i.icon-info-sign
-  You may leave this blank for now if you don't yet know your schedule.
-= f.input :start_date, as: :ui_date_time_picker, input_html: { class: "start-date input-mini" },
-                       label: "Start Date/Time",
-                       start_year: Date.today.year - 1,
-                       end_year: Date.today.year + 5,
-                       order: [:month, :day, :year],
-                       use_short_month: true,
-                       include_blank: true,
-                       ampm: true,
-                       hint: "All times are in <strong> #{Time.now.zone}</strong> where it is currently <strong>#{Time.zone.now.to_formatted_s(:time)}</strong>."
-= f.input :end_date, as: :ui_date_time_picker, input_html: { class: "end-date input-mini" },
-                     label: "End Date/Time".html_safe,
-                     start_year: Date.today.year - 1,
-                     end_year: Date.today.year + 5,
-                     order: [:month, :day, :year],
-                     use_short_month: true,
-                     include_blank: true,
-                     ampm: true,
-                     hint: "All times are in <strong> #{Time.now.zone}</strong> where it is currently <strong>#{Time.zone.now.to_formatted_s(:time)}</strong>."
+%h4.ui.header
+  Schedule
+  %p.sub.header You may leave this blank for now if you don't yet know your schedule.
 
-:javascript
-  $(function() {
+= f.input :start_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
 
-    var $startDateEl = $('#giveaway_start_date'),
-          $endDateEl = $('#giveaway_end_date');
-
-    $startDateEl.datetimepicker({
-      ampm: true,
-      defaultDate: null,
-      dateFormat: 'D, dd M yy',
-      timeFormat: 'hh:mm TT',
-      stepMinute: 10,
-      minuteGrid: 10,
-      minDate: '+0d',
-      onSelect: function (selectedDateTime){
-        var start = $(this).datetimepicker('getDate');
-        $endDateEl.datetimepicker('option', 'minDate', new Date(start.getTime()));
-      }
-    });
-
-    $endDateEl.datetimepicker({
-      ampm: true,
-      defaultDate: null,
-      dateFormat: 'D, dd M yy',
-      timeFormat: 'hh:mm TT',
-      stepMinute: 10,
-      minuteGrid: 10,
-      minDate: '+0d',
-      onSelect: function (selectedDateTime){
-        var end = $(this).datetimepicker('getDate');
-        $startDateEl.datetimepicker('option', 'maxDate', new Date(end.getTime()));
-      }
-    });
-  });
+= f.input :end_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'End Date/Time'

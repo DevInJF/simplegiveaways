@@ -1,4 +1,6 @@
-= f.input :autoshow_share_dialog, as: :select, selected: "false", label: "Autoshow<br />Share Dialog".html_safe, input_html: { class: "input-mini" }, wrapper_html: { class: "double" }, hint: "Autoshow the share dialog upon successful entry?<br /><strong>Defaults to No.</strong>".html_safe
+%h4.ui.header Preferences
+
+= f.input :autoshow_share_dialog, as: :boolean, wrapper: :semantic_checkbox_toggle
 
 = f.input :allow_multi_entries, as: :select, selected: "false", label: "Allow Multiple Entries Per User", input_html: { class: "input-mini" }, wrapper_html: { class: "double" }, hint: "Allow a single Facebook user to enter multiple times?<br /><strong>Defaults to No.</strong>".html_safe
 
