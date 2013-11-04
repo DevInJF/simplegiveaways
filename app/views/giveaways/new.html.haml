@@ -1,4 +1,8 @@
-- content_for :content_header do
-  %h2 New Giveaway
+- content_for :sidebar do
 
-= render 'form', page: @page, giveaway: @giveaway
+  = render 'facebook_pages/avatar', facebook_page: @page
+  = render 'facebook_pages/navigation/secondary', facebook_page: @page
+
+- content_for :content do
+
+  = render 'form', page: @page, giveaway: @giveaway
