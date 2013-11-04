@@ -1,4 +1,9 @@
-- content_for :content_header do
-  %h2= @page.name
+- content_for :sidebar do
 
-= render collection: @giveaways, partial: "giveaways/#{@giveaways.first.status.downcase}_giveaway", as: :giveaway
+  = render 'facebook_pages/avatar', facebook_page: @page
+
+- content_for :content do
+
+  - if current_user.facebook_pages.any?
+
+    = render 'facebook_pages/giveaways'

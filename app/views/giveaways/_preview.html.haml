@@ -1,0 +1,9 @@
+.item.giveaway
+  = link_to '', facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'ui circular image', style: "background-image: url('#{giveaway.image(:medium)}');"
+  .content.meta
+    = link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'header'
+    %small #{giveaway.status}
+  .content
+    = render 'giveaways/navigation/primary', giveaway: giveaway
+
+
