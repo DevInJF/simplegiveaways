@@ -1,10 +1,9 @@
 .item.facebook-page{ :'data-fb-pid' => facebook_page.pid }
-  .image
-    = image_tag(facebook_page.avatar_large)
-    .like.ui.corner.label
-      %i.like.icon
+  = link_to '', facebook_page_path(facebook_page), class: 'ui circular image', style: "background-image: url('#{facebook_page.avatar_large}');"
+  .content.meta
+    = link_to facebook_page.name, facebook_page_path(facebook_page), class: 'header'
+    %small #{facebook_page.likes} Likes
   .content
-    .meta #{facebook_page.likes} Likes
-    .name= facebook_page.name
-    %p.description
-    .extra
+    = render 'facebook_pages/navigation/primary', facebook_page: facebook_page
+
+

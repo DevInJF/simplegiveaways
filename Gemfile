@@ -40,8 +40,7 @@ group :assets do
 end
 
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass', '~> 2.0.1'
-gem 'compass-rails'
+gem 'bourbon'
 gem 'haml-rails'
 gem 'less-rails'
 gem 'sass-rails', '~> 3.2.3'

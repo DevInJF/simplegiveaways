@@ -19,6 +19,14 @@ class FacebookPage < ActiveRecord::Base
     giveaways.active.empty?
   end
 
+  def no_pending_giveaways?
+    giveaways.pending.empty?
+  end
+
+  def no_completed_giveaways?
+    giveaways.completed.empty?
+  end
+
   def has_active_subscription?
     subscription && subscription.active?
   end
