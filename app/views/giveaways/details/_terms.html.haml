@@ -1,0 +1,15 @@
+.row.terms
+
+  %h4.ui.dividing.header Terms &amp; Conditions
+
+  - if giveaway.terms_url.present?
+
+    %section.terms-url
+      .ui.small.horizontal.label Terms URL
+      %p.wrap-url= link_to giveaway.terms_url, giveaway.terms_url
+
+  - if giveaway.terms_text.present?
+
+    %section.terms-text
+      .ui.small.horizontal.label Terms Text
+      %p= giveaway.terms_text

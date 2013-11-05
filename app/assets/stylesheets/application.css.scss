@@ -48,7 +48,35 @@ body {
   background-size: cover !important;
 }
 
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.wrap-url {
+  -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
+}
+
 .ui {
+
+  .segment {
+
+    .label {
+
+      &.ribbon {
+        margin: 0 0.2em 2em;
+      }
+
+      &.flex {
+        max-width: 50%;
+      }
+    }
+  }
 
   .form {
 
@@ -75,8 +103,14 @@ body {
 
   .list {
 
-    > .item {
-      line-height: 54px;
+    &.very.relaxed.big {
+
+      > .item {
+        line-height: 54px;
+      }
+    }
+
+    .item {
 
       .image {
         width: 100px;

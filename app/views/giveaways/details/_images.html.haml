@@ -1,0 +1,15 @@
+.row.images
+
+  %h4.ui.dividing.header Images
+
+  .ui.two.column.relaxed.stackable.grid
+
+    %section.image.column
+      .ui.segment.image-container
+        .ui.top.left.attached.small.label Tab Image
+        .ui.image= image_tag giveaway.image(:medium), alt: giveaway.title
+
+    %section.feed-image.column
+      .ui.segment.image-container
+        .ui.top.left.attached.small.label Feed Image
+        .ui.image= image_tag giveaway.feed_image, alt: giveaway.title

@@ -1,0 +1,21 @@
+.row.preferences
+
+  %h4.ui.dividing.header Preferences
+
+  .ui.relaxed.list
+
+    .item.autoshow-share-dialog
+      .ui.small.flex.horizontal.label Autoshow Share Dialog
+      = boolean_label(giveaway.autoshow_share_dialog)
+
+    .item.allow-multi-entries
+      .ui.small.flex.horizontal.label Allow Multiple Entries
+      = boolean_label(giveaway.allow_multi_entries)
+
+    .item.email-required
+      .ui.small.flex.horizontal.label Email Required
+      = boolean_label(giveaway.email_required)
+
+    .item.bonus-value
+      .ui.small.flex.horizontal.label Bonus Value
+      .ui.small.horizontal.black.label= giveaway.bonus_value
