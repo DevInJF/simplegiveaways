@@ -2,6 +2,11 @@
 
   = status_label(giveaway)
 
+  .ui.right.floated.small.buttons
+    = link_to 'Edit', edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'ui button'
+    .or
+    = link_to 'Start', start_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'ui teal button'
+
   .ui.relaxed.stackable.grid
 
     .row

@@ -13,7 +13,7 @@ module GiveawaysHelper
 
   def boolean_label(boolean)
     if boolean
-      '<div class="ui small horizontal green label">TRUE</div>'.html_safe
+      '<div class="ui small horizontal teal label">TRUE</div>'.html_safe
     else
       '<div class="ui small horizontal red label">FALSE</div>'.html_safe
     end
