@@ -1,4 +1,5 @@
-- content_for :content_header do
-  %h2 Edit Giveaway
+- content_for :content do
 
-= render 'form', page: @page, giveaway: @giveaway
+  %h3.ui.header Edit Giveaway
+
+  .ui.segment= render 'form', page: @page, giveaway: @giveaway
