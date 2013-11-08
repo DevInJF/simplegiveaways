@@ -1,5 +1,10 @@
 !!!
-%html
+/[if lt IE 8] <html class="ie7" lang="en">
+/[if IE 8] <html class="ie8" lang="en">
+/[if IE 9] <html class="ie9" lang="en">
+<!--[if gt IE 9]><!-->
+%html{lang: 'en'}<>
+  <!--<![endif]-->
   %head
     %meta{charset: "utf-8"}
     %meta{content: "224405887571151", property: "fb:app_id"}
@@ -9,14 +14,11 @@
 
     %meta{content: "", name: "description"}
 
-    = javascript_include_tag "http://node.simplegiveaways.com/application.js"
-
     /[if lt IE 9]
       = javascript_include_tag "//html5shim.googlecode.com/svn/trunk/html5.js"
 
     /[if lte IE 8]
       = javascript_include_tag "//explorercanvas.googlecode.com/svn/trunk/excanvas.js"
-      = stylesheet_link_tag  "application-ie"
 
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
