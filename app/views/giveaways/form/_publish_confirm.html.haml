@@ -1,12 +1,5 @@
-= f.input :end_date, as: :ui_date_time_picker, input_html: { class: "input-mini" }, label: "End Date/Time", start_year: Date.today.year - 1, end_year: Date.today.year + 5, order: [:month, :day, :year], use_short_month: true, include_blank: true, ampm: true, hint: 'Modify the ending time for this giveaway.', required: false
+= simple_form_for [giveaway.facebook_page, giveaway], html: { multipart: true } do |f|
 
-= f.input :custom_fb_tab_name, hint: 'Create a custom tab name for your giveaway.', required: false
+  = f.input :end_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'End Date/Time'
 
-:javascript
-  $(function() {
-    $('input.ui-datetime-picker').datetimepicker({
-      ampm: true,
-      dateFormat: 'D, dd M yy',
-      timeFormat: 'hh:mm TT'
-    });
-  });
+  = f.input :custom_fb_tab_name, label: 'Custom Tab Name', input_html: { placeholder: 'Custom Tab Name' }, required: false

@@ -1,0 +1,7 @@
+- if giveaway.active?
+
+- elsif giveaway.pending?
+
+  = render 'giveaways/actions/pending', giveaway: giveaway
+
+- elsif giveaway.completed?

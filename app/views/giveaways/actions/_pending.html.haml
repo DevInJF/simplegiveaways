@@ -1,0 +1,6 @@
+.ui.right.floated.small.buttons
+  = link_to 'Edit', edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'ui button'
+  .or
+  %span#start_giveaway.ui.teal.button Start
+
+= render 'giveaways/actions/start', giveaway: giveaway
