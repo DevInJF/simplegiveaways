@@ -8,4 +8,8 @@ class Subscription < ActiveRecord::Base
   def active?
 
   end
+
+  def inactive?
+    !active?
+  end
 end

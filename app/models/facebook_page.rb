@@ -31,6 +31,18 @@ class FacebookPage < ActiveRecord::Base
     subscription && subscription.active?
   end
 
+  def has_inactive_subscription?
+    subscription && subscription.inactive?
+  end
+
+  def has_free_trial_remaining?
+    no_active_giveaways? && no_completed_giveaways?
+  end
+
+  def subscription_plan_name
+    subscription.subscription_plan.name rescue nil
+  end
+
   def self.retrieve_fb_meta(user, pages, csrf_token)
     pages = FacebookPage.select_pages(pages).compact.flatten
     page_count = (pages.size - 1)

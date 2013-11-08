@@ -1,16 +1,10 @@
-.ui.small.modal
+.ui.modal
   %i.close.icon
   .header
     Start Giveaway
   .content
-    .ui.stackable.grid
-      .row.aligned.center
-        .sixteen.wide.column
-          .ui.circular.image.masked-avatar.facebook-page{ style: "background-image: url('#{giveaway.facebook_page.avatar_large}');" }
-          .ui.circular.image.masked-avatar.giveaway{ style: "background-image: url('#{giveaway.image(:medium)}');" }
-      .row
-        .sixteen.wide.column
-          = render 'giveaways/form/publish_confirm', giveaway: giveaway
+    = render 'giveaways/actions/step_one', giveaway: giveaway, facebook_page: giveaway.facebook_page
+    = render 'giveaways/actions/step_two', giveaway: giveaway, facebook_page: giveaway.facebook_page
   .actions
     .ui.two.fluid.buttons
       .ui.labeled.icon.deny.button

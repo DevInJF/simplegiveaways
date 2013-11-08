@@ -1,5 +1,5 @@
-.subscription-plan
-  %h3= subscription_plan.name
-  %p= subscription_plan.description
-  - stripe_button(subscription_plan, facebook_page.name)
-
+.item
+  .content
+    .name= subscription_plan.name
+    %p.description= subscription_plan.description
+    - stripe_button(subscription_plan, facebook_page.name)

@@ -32,6 +32,10 @@ body {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
+.hide {
+  display: none;
+}
+
 #sg_page {
   clear: both;
 }
@@ -92,6 +96,13 @@ body {
       width: 100px;
       height: 100px;
       min-width: 100px;
+    }
+
+    p {
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 
