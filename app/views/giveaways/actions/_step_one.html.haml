@@ -1,9 +1,6 @@
 #step_one.modal-step{:'data-modal-step' => 1}
-  .ui.stackable.grid
-    .row.aligned.center
-      .sixteen.wide.column
-        .ui.circular.image.masked-avatar.facebook-page{ style: "background-image: url('#{facebook_page.avatar_large}');" }
-        .ui.circular.image.masked-avatar.giveaway{ style: "background-image: url('#{giveaway.image(:medium)}');" }
+  .ui.grid
+    = render 'giveaways/actions/avatars', giveaway: giveaway
     .row
       .sixteen.wide.column
         = render 'giveaways/form/publish_confirm', giveaway: giveaway

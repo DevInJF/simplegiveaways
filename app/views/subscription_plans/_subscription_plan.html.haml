@@ -1,5 +1,6 @@
-.item
-  .content
-    .name= subscription_plan.name
-    %p.description= subscription_plan.description
-    - stripe_button(subscription_plan, facebook_page.name)
+.title
+  %i.dropdown.icon
+  = subscription_plan.name
+  .ui.teal.horizontal.label= subscription_plan.price
+.content
+  = subscription_plan.description

@@ -1,5 +1,6 @@
 #step_two.modal-step.hide{:'data-modal-step' => 2}
-  .ui.stackable.grid
+  .ui.grid
+    = render 'giveaways/actions/avatars', giveaway: giveaway
     .row
       .sixteen.wide.column
         - if facebook_page.has_active_subscription?

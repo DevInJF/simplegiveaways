@@ -4,6 +4,8 @@ class SubscriptionPlan < ActiveRecord::Base
 
   validates :name, uniqueness: true
 
+  scope :public, where("price_in_cents_per_cycle > ?", 0)
+
   def price
     "$#{price_in_cents_per_cycle / 100}.00"
   end
