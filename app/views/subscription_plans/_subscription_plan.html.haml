@@ -1,6 +1,16 @@
-.title
-  %i.dropdown.icon
-  = subscription_plan.name
-  .ui.teal.horizontal.label= subscription_plan.price
-.content
-  = subscription_plan.description
+.column.subscription-plan
+  .ui.top.attached.segment
+    .ui.header
+      .number.price= subscription_plan.price
+  .ui.inverted.teal.attached.segment
+    %h5.ui.header
+      = basic_plan_name_string(subscription_plan)
+      .ui.inverted.teal.sub.header
+        = plan_recurring_string(subscription_plan)
+  .ui.bottom.attached.stacked.segment
+    .ui.divided.selection.list
+      .item= page_count_feature_string(subscription_plan)
+      .item= giveaway_count_feature_string(subscription_plan)
+      .item Advanced Analytics
+      .item Giveaway Shortlink
+      .item= white_label_feature_string(subscription_plan)

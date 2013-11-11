@@ -1,7 +1,9 @@
 class SubscriptionPlansController < ApplicationController
 
+  layout 'facebook_pages'
+
   def index
-    @facebook_page = FacebookPage.find_by_id(params[:facebook_page_id])
-    @subscription_plans = SubscriptionPlan.all
+    @page = FacebookPage.find_by_id(params[:facebook_page_id])
+    @subscription_plans = SubscriptionPlan.public
   end
 end

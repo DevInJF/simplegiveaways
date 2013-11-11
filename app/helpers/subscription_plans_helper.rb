@@ -15,4 +15,25 @@ module SubscriptionPlansHelper
       "#{plan.price}/yr"
     end
   end
+
+  def basic_plan_name_string(plan)
+    plan.name.gsub(/\s\(.*\)/, '')
+  end
+
+  def plan_recurring_string(plan)
+    plan.name.match(/\s\(.*\)/)[0]
+  end
+
+  def page_count_feature_string(plan)
+    plan.is_single_page? ? '1 Facebook Page' : 'Unlimited Facebook Pages'
+  end
+
+  def giveaway_count_feature_string(plan)
+    plan.is_free_trial? ? '1 Giveaway' : 'Unlimited Giveaways'
+  end
+
+  def white_label_feature_string(plan)
+    str = plan.is_yearly? ? 'White-label Service' : '<strike>White-label Service</strike>'
+    str.html_safe
+  end
 end
