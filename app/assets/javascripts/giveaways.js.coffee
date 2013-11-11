@@ -2,37 +2,37 @@ SG.Giveaways =
 
   initialize: ->
     @initStartModal()
-    @initButtons()
 
   initStartModal: ->
-    @sidebarEl().sidebar(
-      overlay: true
-    ).sidebar 'attach events', '#start_giveaway'
-
-  initButtons: ->
-    @approveButtonEl().click => @moveForward()
-    @denyButtonEl().click => @sidebarEl().sidebar 'hide'
+    @modalEl().modal(
+      onApprove: =>
+        @moveForward()
+        false
+    ).modal 'attach events', '#start_giveaway'
 
   moveForward: ->
     current = @currentStepEl()
     next = @nextStepEl()
-    current.hide()
-    next.show()
+    if next.find('#free_trial_remaining').length
+      top.location.href = SG.Paths.subscriptionPlans
+    else
+      current.hide()
+      next.show()
 
   currentStep: ->
     @currentStepEl().data('modal-step')
 
   currentStepEl: ->
-    @sidebarEl().find('.modal-step:visible')
+    @modalEl().find('.modal-step:visible')
 
   nextStep: ->
     parseInt(@currentStep()) + 1
 
   nextStepEl: ->
-    @sidebarEl().find(".modal-step[data-modal-step='#{@nextStep()}']").first()
+    @modalEl().find(".modal-step[data-modal-step='#{@nextStep()}']").first()
 
-  denyButtonEl: -> @sidebarEl().find('.deny.button')
+  denyButtonEl: -> @modalEl().find('.deny.button')
 
-  approveButtonEl: -> @sidebarEl().find('.approve.button')
+  approveButtonEl: -> @modalEl().find('.approve.button')
 
-  sidebarEl: -> $('.ui.sidebar')
+  modalEl: -> $('.ui.modal.start-giveaway')

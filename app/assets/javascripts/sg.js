@@ -1,4 +1,5 @@
 SG = {
+  Paths: {},
   UI: {},
   Giveaways: {}
 };

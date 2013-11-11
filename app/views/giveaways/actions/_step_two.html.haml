@@ -9,6 +9,5 @@
           = render 'giveaways/actions/inactive_subscription', facebook_page: facebook_page
         - elsif facebook_page.has_free_trial_remaining?
           = render 'giveaways/actions/free_trial_remaining', facebook_page: facebook_page
-          = render 'subscription_plans/plans', facebook_page: facebook_page
         - else
           = render 'giveaways/actions/no_subscription', facebook_page: facebook_page

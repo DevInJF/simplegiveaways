@@ -66,6 +66,42 @@ body {
           hyphens: auto;
 }
 
+.subscription-plans {
+
+  .subscription-plan {
+    cursor: pointer;
+
+    .top.segment {
+
+      .header {
+        height: 1.3em;
+      }
+
+      .number {
+        display: inline-block;
+      }
+    }
+
+    &:hover {
+
+      .top.segment {
+
+        .number {
+          border-bottom: 3px solid #009A93;
+        }
+      }
+
+      .plan-name {
+        background-color: #009A93 !important;
+
+        .header {
+          background-color: #009A93 !important;
+        }
+      }
+    }
+  }
+}
+
 .ui {
 
   .meta {
@@ -90,7 +126,7 @@ body {
     }
   }
 
-  .sidebar {
+  .modal {
 
     .masked-avatar {
       width: 100px;

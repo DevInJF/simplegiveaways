@@ -1,8 +1,8 @@
-.column.subscription-plan
+.four.wide.column.subscription-plan{id: subscription_plan_id(subscription_plan)}
   .ui.top.attached.segment
     .ui.header
       .number.price= subscription_plan.price
-  .ui.inverted.teal.attached.segment
+  .ui.inverted.teal.attached.segment.plan-name
     %h5.ui.header
       = basic_plan_name_string(subscription_plan)
       .ui.inverted.teal.sub.header
@@ -14,3 +14,13 @@
       .item Advanced Analytics
       .item Giveaway Shortlink
       .item= white_label_feature_string(subscription_plan)
+
+:javascript
+  $('##{subscription_plan_id(subscription_plan)}').click(function(e) {
+    handler.open({
+      name: 'Simple Giveaways',
+      description: '#{subscription_plan.name}',
+      amount: '#{subscription_plan.price_in_cents_per_cycle}'
+    })
+    e.preventDefault();
+  });

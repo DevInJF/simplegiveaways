@@ -29,6 +29,10 @@
     }
   }());
 
+- if @page
+  :javascript
+    SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
+
 - if current_user && current_user.fb_uid
   :javascript
     simpleGiveaways["current_user"]["name"] = '#{current_user.name}';
