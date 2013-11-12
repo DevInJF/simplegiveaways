@@ -1,26 +1,19 @@
 class ChargesController < ApplicationController
 
-  def new
-  end
+  respond_to :json
 
   def create
-    # Amount in cents
-    @amount = 4000
+    begin
+      @customer = Stripe::Customer.create(
+        email: current_user.email,
+        card: params[:stripe_token]
+      )
 
-    customer = Stripe::Customer.create(
-      :email => 'example@stripe.com',
-      :card  => params[:stripeToken]
-    )
+      @customer.update_subscription(plan: Stripe::Plans::SINGLE_PAGE_UNLIMITED_MONTHLY, prorate: true)
 
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => 'Rails Stripe customer',
-      :currency    => 'usd'
-    )
-
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to charges_path
+      respond_with @customer
+    rescue Stripe::CardError => error
+      respond_with error
+    end
   end
 end

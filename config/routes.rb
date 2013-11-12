@@ -20,8 +20,6 @@ Simplegiveaways::Application.routes.draw do
   match '/canvas/edit', to: 'canvas#edit'
   match '/giveaways/tab', to: 'giveaways#tab'
 
-  resources :charges
-
   resources :likes, only: [:create]
 
   resources :facebook_pages, only: [:show] do
@@ -38,6 +36,8 @@ Simplegiveaways::Application.routes.draw do
       get :end, on: :member
     end
   end
+
+  match '/charges/(:stripe_token)', to: 'charges#create', as: 'create_charge'
 
   match '/facebook_pages/:facebook_page_id/subscription_plans', to: 'subscription_plans#index', as: 'facebook_page_subscription_plans'
 

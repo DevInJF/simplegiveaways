@@ -29,7 +29,7 @@ gem 'simple_form', '~> 2.0'
 gem 'simple_uuid'
 gem 'sinatra', require: nil
 gem 'slim', '<= 1.3.0'
-gem 'stripe', git: 'git://github.com/stripe/stripe-ruby.git'
+gem 'stripe-rails'
 gem 'validates_timeliness', '~> 3.0'
 gem 'whenever', require: false
 

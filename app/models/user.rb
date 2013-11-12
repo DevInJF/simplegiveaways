@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
 
+  include Stripe::Callbacks
+
   attr_accessible :name, :roles, :roles_mask
 
   has_many :identities, dependent: :destroy
@@ -8,8 +10,21 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions
 
+  after_customer_created! do |customer, event|
+    Rails.logger.debug(customer)
+    Rails.logger.debug(event)
+  end
+
+  def current_identity
+    identities.find(:all, order: "logged_in_at desc", limit: 1).first
+  end
+
+  def email
+    current_identity.email
+  end
+
   def avatar
-    identities.find(:all, order: "logged_in_at desc", limit: 1).first.avatar
+    current_identity.avatar
   end
 
   def fb_uid

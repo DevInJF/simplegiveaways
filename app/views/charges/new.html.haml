@@ -1,7 +1,0 @@
-- @charge = OpenStruct.new(amount: '$40')
-- @page = FacebookPage.last
-= form_tag charges_path do
-  %article
-    %label.amount
-      %span Amount: #{@charge.amount}
-  %script.stripe-button{"data-amount" => "4000", "data-description" => "Giveaway for #{@page.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
