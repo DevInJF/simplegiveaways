@@ -3,3 +3,4 @@
 //= require sg
 //= require ui
 //= require giveaways
+//= require stripe-client

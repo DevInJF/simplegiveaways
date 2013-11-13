@@ -1,15 +1,4 @@
-%script{src: "https://checkout.stripe.com/v2/checkout.js"}
-
-:javascript
-  var handler = StripeCheckout.configure({
-    key: '#{Rails.configuration.stripe.publishable_key}',
-    token: function(token, args) {
-      console.log(token);
-      $.get('#{create_charge_path}/' + token.id, function(data, status, jqxhr) {
-        console.log(data);
-      })
-    }
-  });
+%script#stripe_js{src: "https://checkout.stripe.com/checkout.js"}
 
 .ui.stackable.grid.subscription-plans
   .sixteen.wide.column

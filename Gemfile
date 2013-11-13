@@ -30,6 +30,7 @@ gem 'simple_uuid'
 gem 'sinatra', require: nil
 gem 'slim', '<= 1.3.0'
 gem 'stripe-rails'
+gem 'stripe_tester'
 gem 'validates_timeliness', '~> 3.0'
 gem 'whenever', require: false
 

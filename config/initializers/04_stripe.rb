@@ -5,3 +5,5 @@ Rails.configuration.stripe = OpenStruct.new({
 })
 
 Stripe.api_key = Rails.configuration.stripe.secret_key
+
+StripeTester.webhook_url = 'http://0.0.0.0:8000/stripe/events'

@@ -37,7 +37,7 @@ Simplegiveaways::Application.routes.draw do
     end
   end
 
-  match '/charges/(:stripe_token)', to: 'charges#create', as: 'create_charge'
+  match '/subscribe/(:facebook_page_id)', to: 'subscriptions#create', as: 'subscribe'
 
   match '/facebook_pages/:facebook_page_id/subscription_plans', to: 'subscription_plans#index', as: 'facebook_page_subscription_plans'
 

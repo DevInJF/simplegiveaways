@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
     Rails.logger.debug(event)
   end
 
+  def stripe_customer
+    Stripe::Customer.retrieve(stripe_customer_id)
+  end
+
   def current_identity
     identities.find(:all, order: "logged_in_at desc", limit: 1).first
   end

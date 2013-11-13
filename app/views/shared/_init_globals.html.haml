@@ -32,8 +32,11 @@
 - if @page
   :javascript
     SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
+    SG.Paths.subscribe = '#{subscribe_path(@page)}';
+    SG.StripeClient.publishableKey = '#{Rails.configuration.stripe.publishable_key}';
 
 - if current_user && current_user.fb_uid
   :javascript
     simpleGiveaways["current_user"]["name"] = '#{current_user.name}';
     simpleGiveaways["current_user"]["fb_uid"] = '#{current_user.fb_uid}';
+    simpleGiveaways["current_user"]["email"] = '#{current_user.email}';
