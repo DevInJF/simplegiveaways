@@ -13,7 +13,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def active?
-
+    true
   end
 
   def inactive?

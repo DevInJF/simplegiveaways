@@ -31,7 +31,7 @@ SG.StripeClient =
       dataType: 'json',
       data:
         stripe_token: token,
-        stripe_subscription_id: $(@planEl).attr('id')
+        subscription_plan_id: $(@planEl).data('subscription_plan_id')
 
   setToken: (token) -> @token = token
 

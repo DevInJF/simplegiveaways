@@ -3,8 +3,9 @@ class FacebookPage < ActiveRecord::Base
 
   include ActionView::Helpers::UrlHelper
 
-  attr_accessible :name, :category, :pid, :token, :avatar_square, :avatar_large,
-                  :description, :likes, :url, :has_added_app
+  attr_accessible :name, :category, :pid, :token, :avatar_square,
+                  :avatar_large, :description, :likes, :url,
+                  :has_added_app, :subscription_id
 
   has_many :audits, as: :auditable
 
