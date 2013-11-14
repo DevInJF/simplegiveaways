@@ -1,39 +1,15 @@
-Subscription Plans v0.0.1
+TODO:
 
+  Don't automatically update stripe subscriptions.
+  If the subscription requires the creation of a new subscription, for example — single page (yearly) to multi page (monthly) — create a new subscription in stripe.
 
-FREE - First Giveaway for a single page
+  Don't automatically create new db subscriptions.
+  If a subscription requires an update and not the creation of a new subscription, for example — all except single page (yearly) to multi page (monthly), update the existing db subscription rather than creating a new one.
 
-$15/mo - Unlimited Giveaways for a single page (monthly)
+  Have the start giveaway modal pop back up on the final step if the user is referred back after successful subscription.
 
-$150/yr - Unlimited Giveaways for a single page (yearly)
+  SG.UI flash messages function.
 
-$45/mo - Unlimited Giveaways for multiple pages (monthly)
+  Create a page for selecting plans that is not tied to giveaway flow or facebook page. In this case you will need to allow user to select a page for single page plans.
 
-$450/yr - Unlimited Giveaways for multiple pages (yearly)
-
-
-FacebookPage
-  belongs_to :subscription
-
-User
-  has_many :subscriptions
-
-Subscription
-  has_many :facebook_pages
-  belongs_to :user
-  belongs_to :subscription_plan
-
-  t.belongs_to :user
-  t.belongs_to :subscription_plan
-
-SubscriptionPlan
-  has_many :subscriptions
-
-  t.string  :name
-  t.text    :description
-  t.integer :price_in_cents_per_cycle
-  t.boolean :is_single_page
-  t.boolean :is_multi_page
-  t.boolean :is_onetime
-  t.boolean :is_monthly
-  t.boolean :is_yearly
+  Create a page for a user to manage his subscriptions.
