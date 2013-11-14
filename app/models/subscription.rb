@@ -19,4 +19,20 @@ class Subscription < ActiveRecord::Base
   def inactive?
     !active?
   end
+
+  def subscribe_pages(pages)
+    pages.each do |page|
+      page.has_active_subscription? ? handle_subscribed_page(page) : subscribe_page(page)
+    end
+  end
+
+  private
+
+  def subscribe_page(page)
+    page.update_attributes(subscription_id: self.id)
+  end
+
+  def handle_subscribed_page(page)
+    subscribe_page(page) if page.subscription_plan < self.subscription_plan
+  end
 end

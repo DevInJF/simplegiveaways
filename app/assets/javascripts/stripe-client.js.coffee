@@ -32,6 +32,10 @@ SG.StripeClient =
       data:
         stripe_token: token,
         subscription_plan_id: $(@planEl).data('subscription_plan_id')
+      success: ->
+        top.location.href = "#{document.referrer}?subscribed"
+      error: ->
+        SG.UI.showFlash('error', 'There was a problem processing the subscription. Please try again or contact support for assistance.')
 
   setToken: (token) -> @token = token
 

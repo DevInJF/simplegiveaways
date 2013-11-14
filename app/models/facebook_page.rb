@@ -16,6 +16,9 @@ class FacebookPage < ActiveRecord::Base
 
   validates :pid, uniqueness: true
 
+  scope :unsubscribed, where(subscription_id: nil)
+  scope :subscribed, where("subscription_id IS NOT ?", nil)
+
   def no_active_giveaways?
     giveaways.active.empty?
   end
@@ -34,6 +37,26 @@ class FacebookPage < ActiveRecord::Base
 
   def has_inactive_subscription?
     subscription && subscription.inactive?
+  end
+
+  def has_monthly_subscription?
+    subscription && subscription_plan.is_monthly?
+  end
+
+  def has_yearly_subscription?
+    subscription && subscription_plan.is_yearly?
+  end
+
+  def has_single_page_subscription?
+    subscription && subscription_plan.is_single_page?
+  end
+
+  def has_multi_page_subscription?
+    subscription && subscription_plan.is_multi_page?
+  end
+
+  def subscription_plan
+    subscription.subscription_plan rescue nil
   end
 
   def has_free_trial_remaining?

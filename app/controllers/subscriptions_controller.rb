@@ -6,8 +6,8 @@ class SubscriptionsController < ApplicationController
 
   def create
     begin
-      if update_stripe_subscription && update_sg_subscription
-        head :ok
+      if update_sg_subscription && update_stripe_subscription
+        render json: true
       else
         head :unprocessable_entity
       end
@@ -37,9 +37,7 @@ class SubscriptionsController < ApplicationController
 
   def update_sg_subscription
     @subscription = @subscription_plan.subscriptions.create(user: current_user)
-    @facebook_pages.each do |page|
-      page.update_attributes(subscription_id: @subscription.id)
-    end
+    @subscription.subscribe_pages(@facebook_pages)
   end
 
   def update_stripe_subscription
