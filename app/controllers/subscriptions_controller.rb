@@ -36,7 +36,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def update_sg_subscription
-    @subscription = @subscription_plan.subscriptions.create(user: current_user)
+    if @subscription = current_user.subscription
+      @subscription.subscription_plan = @subscription_plan
+      @subscription.save
+    else
+      @subscription_plan.subscriptions.create(user: current_user)
+    end
     @subscription.subscribe_pages(@facebook_pages)
   end
 

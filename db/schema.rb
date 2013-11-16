@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113060631) do
+ActiveRecord::Schema.define(:version => 20131116231337) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -206,7 +206,6 @@ ActiveRecord::Schema.define(:version => 20131113060631) do
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id"
     t.integer  "subscription_plan_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
@@ -218,6 +217,7 @@ ActiveRecord::Schema.define(:version => 20131113060631) do
     t.datetime "updated_at",         :null => false
     t.integer  "roles_mask"
     t.string   "stripe_customer_id"
+    t.integer  "subscription_id"
   end
 
 end

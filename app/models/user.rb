@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :identities, dependent: :destroy
   has_and_belongs_to_many :facebook_pages
 
-  has_many :subscriptions
+  belongs_to :subscription
 
   after_customer_created! do |customer, event|
     Rails.logger.debug(customer)
