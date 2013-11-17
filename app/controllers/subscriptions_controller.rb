@@ -29,7 +29,9 @@ class SubscriptionsController < ApplicationController
 
   def assign_facebook_pages
     if @subscription_plan.is_single_page?
-      @facebook_pages = [FacebookPage.find_by_id(params[:facebook_page_id])]
+      @facebook_pages = params[:facebook_page_ids].map do |page_id|
+        FacebookPage.find_by_id(page_id)
+      end
     else
       @facebook_pages = current_user.facebook_pages
     end
