@@ -13,9 +13,10 @@ SG.StripeClient =
 
   attachListener: ->
     @planContainerEl().click (e) =>
-      @planEl = $(e.target).parents('.subscription-plan')
-      @handleClick()
-      e.preventDefault()
+      unless $(e.target).parents('.page-selector').length
+        @planEl = $(e.target).parents('.subscription-plan')
+        @handleClick()
+        e.preventDefault()
 
   handleClick: ->
     if $(@planEl).data('is_single_page')

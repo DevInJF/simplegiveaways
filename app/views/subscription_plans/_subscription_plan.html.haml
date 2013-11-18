@@ -15,4 +15,5 @@
       .item Giveaway Shortlink
       .item= white_label_feature_string(subscription_plan)
     .page-selector
-      I am the page selector!
+      = simple_form_for Subscription.new, url: '/subscriptions' do |f|
+        = f.association :facebook_pages, collection: current_user.facebook_pages, as: :check_boxes, wrapper_html: { class: 'ui toggle checkbox' }
