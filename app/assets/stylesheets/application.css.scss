@@ -82,6 +82,14 @@ body {
       }
     }
 
+    .plan-features {
+      display: block;
+    }
+
+    .page-selector {
+      display: none;
+    }
+
     &:hover {
 
       .top.segment {
@@ -97,6 +105,17 @@ body {
         .header {
           background-color: #009A93 !important;
         }
+      }
+    }
+
+    &.page-selector {
+
+      .plan-features {
+        display: none;
+      }
+
+      .page-selector {
+        display: block;
       }
     }
   }

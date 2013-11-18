@@ -6,6 +6,12 @@ GIT
       redis
 
 GIT
+  remote: git://github.com/halo/leader.git
+  revision: e370bb585b2a8f4f7f31ba7f284b529d9b7f5199
+  specs:
+    leader (0.0.1)
+
+GIT
   remote: git://github.com/mkdynamic/omniauth-facebook.git
   revision: 6f4300b3f8bb6ac1618a33a8fc770f17eb79907d
   specs:
@@ -388,6 +394,7 @@ DEPENDENCIES
   json
   juggernaut!
   koala
+  leader!
   less-rails
   magic_encoding
   meta_search (>= 1.1.0.pre)

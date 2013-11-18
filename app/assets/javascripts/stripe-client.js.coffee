@@ -12,12 +12,21 @@ SG.StripeClient =
         @createSubscription(data.id)
 
   attachListener: ->
-    $('.subscription-plan').click (e) =>
+    @planContainerEl().click (e) =>
       @planEl = $(e.target).parents('.subscription-plan')
       @handleClick()
       e.preventDefault()
 
   handleClick: ->
+    if $(@planEl).data('is_single_page')
+      @openPageSelector()
+    else
+      @openStripeCheckout()
+
+  openPageSelector: ->
+    $(@planEl).addClass('page-selector')
+
+  openStripeCheckout: ->
     @handler.open
       name: 'Simple Giveaways',
       description: $(@planEl).data('description'),
@@ -40,6 +49,8 @@ SG.StripeClient =
   setToken: (token) -> @token = token
 
   fetchToken: -> @token
+
+  planContainerEl: -> $('.subscription-plan')
 
   plansContainerEl: -> $('.subscription-plans')
 
