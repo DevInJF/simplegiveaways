@@ -12,13 +12,13 @@ SG.StripeClient =
         @createSubscription(data.id)
 
   attachListener: ->
-    @checkboxEl().checkbox(onChange: @updatePriceDisplay)
+    @checkboxEl().checkbox(onChange: @updatePrice)
     @planContainerEl().click (e) =>
       if @pageSelectorVisible(e)
         @closePageSelector() if $(e.target).hasClass('remove')
         @openStripeCheckout() if $(e.target).hasClass('check')
       else
-        @planEl = $(e.target).parents('.subscription-plan')
+        @planEl = $(e.target).hasClass('subscription-plan') && $(e.target) || $(e.target).parents('.subscription-plan')
         @handleClick()
         e.preventDefault()
 
@@ -33,24 +33,30 @@ SG.StripeClient =
     $(@planEl).removeClass('four').addClass('page-selector twelve')
 
   closePageSelector: ->
-    $('.page-selector').find('.resetable').checkbox('disable').end().find('.default').checkbox('enable').end().removeClass('page-selector twelve').addClass('four')
+    $('.page-selector').find('.resetable').checkbox('disable').
+    end().find('.default').checkbox('enable').
+    end().removeClass('page-selector twelve').addClass('four')
 
   pageSelectorVisible: (event) ->
     $(event.target).parents('.page-selector').length || $(event.target).hasClass('page-selector')
 
-  updatePriceDisplay: ->
-    quantity = $('.page-selector').find('input:checked').size()
-    currentAmount = parseInt($('.page-selector').data('amount'))
+  updatePrice: ->
+    pageSelector = $('.page-selector')
+    quantity = pageSelector.find('input:checked').size()
+    currentAmount = parseInt pageSelector.data('original_amount')
     currentPrice = currentAmount / 100
     newPrice = "$#{currentPrice * quantity}.00"
-    $('.page-selector').find('.number.price').text(newPrice)
+    pageSelector.data('checkout_amount', quantity * currentAmount)
+    pageSelector.find('.number.price').text(newPrice)
 
   openStripeCheckout: ->
-    @handler.open
-      name: 'Simple Giveaways',
-      description: $(@planEl).data('description'),
-      amount: $(@planEl).data('amount'),
-      email: simpleGiveaways.current_user.email
+    amount = $(@planEl).data('checkout_amount')
+    unless amount is 0
+      @handler.open
+        name: 'Simple Giveaways',
+        description: $(@planEl).data('description'),
+        amount: amount,
+        email: simpleGiveaways.current_user.email
 
   createSubscription: (token) ->
     $.ajax
