@@ -30,6 +30,7 @@ class Subscription < ActiveRecord::Base
 
   def subscribe_page(page)
     page.update_attributes(subscription_id: self.id)
+    self.update_attributes(quantity: quantity + 1) if subscription_plan.is_single_page?
   end
 
   def handle_subscribed_page(page)

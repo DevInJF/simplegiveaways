@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     begin
-      if update_sg_subscription && update_stripe_subscription
+      if update_sg_subscription
         render json: true
       else
         head :unprocessable_entity
@@ -38,14 +38,18 @@ class SubscriptionsController < ApplicationController
       @subscription.subscription_plan = @subscription_plan
       @subscription.save
     else
-      @subscription_plan.subscriptions.create(user: current_user)
+      @subscription = @subscription_plan.subscriptions.create(user: current_user)
     end
-    @subscription.subscribe_pages(@facebook_pages)
+    if @subscription.subscribe_pages(@facebook_pages)
+      update_stripe_subscription
+    else
+      false
+    end
   end
 
   def update_stripe_subscription
     find_or_create_customer
-    @customer.update_subscription(plan: @subscription_plan.stripe_subscription_id, prorate: true)
+    @customer.update_subscription(plan: @subscription_plan.stripe_subscription_id, quantity: @subscription.quantity, prorate: true)
   end
 
   def find_or_create_customer

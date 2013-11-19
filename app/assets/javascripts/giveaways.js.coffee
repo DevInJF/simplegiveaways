@@ -15,9 +15,14 @@ SG.Giveaways =
     next = @nextStepEl()
     if next.find('#free_trial_remaining').length
       top.location.href = SG.Paths.subscriptionPlans
+    else if next.find("#trigger_start_giveaway").length
+      @startGiveaway()
     else
       current.hide()
       next.show()
+
+  startGiveaway: ->
+    $('#step_one form').submit()
 
   currentStep: ->
     @currentStepEl().data('modal-step')

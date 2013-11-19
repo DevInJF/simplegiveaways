@@ -1,4 +1,4 @@
-= simple_form_for [giveaway.facebook_page, giveaway], html: { multipart: true } do |f|
+= simple_form_for [giveaway.facebook_page, giveaway], url: start_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), html: { multipart: true } do |f|
 
   = f.input :end_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'End Date/Time'
 
