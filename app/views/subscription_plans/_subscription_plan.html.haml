@@ -19,7 +19,7 @@
         - current_user.facebook_pages.sort_by { |p| p.name.size }.each do |page|
           .field
             .ui.toggle.checkbox{class: facebook_page == page ? 'default' : 'resetable'}
-              = check_box_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", "#{subscription_plan.name.parameterize}[pages][#{page.id}]", facebook_page == page
+              = check_box_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", page.id, facebook_page == page
               = label_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", page.name
         .form-actions
           .ui.two.fluid.buttons
