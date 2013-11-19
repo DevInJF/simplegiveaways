@@ -14,6 +14,16 @@
       .item Advanced Analytics
       .item Giveaway Shortlink
       .item= white_label_feature_string(subscription_plan)
-    .page-selector
-      = simple_form_for Subscription.new, url: '/subscriptions' do |f|
-        = f.association :facebook_pages, collection: current_user.facebook_pages, as: :check_boxes, wrapper_html: { class: 'ui toggle checkbox' }
+    .pages
+      %form.ui.fluid.form
+        - current_user.facebook_pages.sort_by { |p| p.name.size }.each do |page|
+          .field
+            .ui.toggle.checkbox{class: facebook_page == page ? 'default' : 'resetable'}
+              = check_box_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", "#{subscription_plan.name.parameterize}[pages][#{page.id}]", facebook_page == page
+              = label_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", page.name
+        .form-actions
+          .ui.two.fluid.buttons
+            .ui.icon.button.remove
+              %i.remove.icon
+            .ui.teal.icon.button.check
+              %i.check.icon

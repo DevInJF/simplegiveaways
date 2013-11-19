@@ -86,8 +86,20 @@ body {
       display: block;
     }
 
-    .page-selector {
+    .pages {
       display: none;
+
+      .field {
+        text-align: left;
+
+        .ui.checkbox {
+          height: auto;
+
+          label {
+            display: inline-block;
+          }
+        }
+      }
     }
 
     &:hover {
@@ -114,7 +126,7 @@ body {
         display: none;
       }
 
-      .page-selector {
+      .pages {
         display: block;
       }
     }

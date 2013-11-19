@@ -3,5 +3,6 @@
 .ui.stackable.grid.subscription-plans
   .sixteen.wide.column
     = no_subscription_message(facebook_page)
-  .four.column.center.aligned.row
+  #plan_columns.center.aligned.equal.height.row
     = render SubscriptionPlan.public, facebook_page: facebook_page
+

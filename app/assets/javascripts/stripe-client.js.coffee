@@ -12,20 +12,38 @@ SG.StripeClient =
         @createSubscription(data.id)
 
   attachListener: ->
+    @checkboxEl().checkbox(onChange: @updatePriceDisplay)
     @planContainerEl().click (e) =>
-      unless $(e.target).parents('.page-selector').length
+      if @pageSelectorVisible(e)
+        @closePageSelector() if $(e.target).hasClass('remove')
+        @openStripeCheckout() if $(e.target).hasClass('check')
+      else
         @planEl = $(e.target).parents('.subscription-plan')
         @handleClick()
         e.preventDefault()
 
   handleClick: ->
+    @closePageSelector()
     if $(@planEl).data('is_single_page')
       @openPageSelector()
     else
       @openStripeCheckout()
 
   openPageSelector: ->
-    $(@planEl).addClass('page-selector')
+    $(@planEl).removeClass('four').addClass('page-selector twelve')
+
+  closePageSelector: ->
+    $('.page-selector').find('.resetable').checkbox('disable').end().find('.default').checkbox('enable').end().removeClass('page-selector twelve').addClass('four')
+
+  pageSelectorVisible: (event) ->
+    $(event.target).parents('.page-selector').length || $(event.target).hasClass('page-selector')
+
+  updatePriceDisplay: ->
+    quantity = $('.page-selector').find('input:checked').size()
+    currentAmount = parseInt($('.page-selector').data('amount'))
+    currentPrice = currentAmount / 100
+    newPrice = "$#{currentPrice * quantity}.00"
+    $('.page-selector').find('.number.price').text(newPrice)
 
   openStripeCheckout: ->
     @handler.open
@@ -51,8 +69,10 @@ SG.StripeClient =
 
   fetchToken: -> @token
 
+  checkboxEl: -> $('.ui.checkbox')
+
   planContainerEl: -> $('.subscription-plan')
 
-  plansContainerEl: -> $('.subscription-plans')
+  plansContainerEl: -> $('#plan_columns')
 
   stripeEl: -> $('script#stripe_js')
