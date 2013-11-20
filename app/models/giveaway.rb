@@ -21,7 +21,7 @@ class Giveaway < ActiveRecord::Base
   has_many :likes
 
   scope :active, lambda {
-    where("active IS TRUE")
+    where("active IS TRUE").limit(1)
   }
   scope :pending, lambda {
     where("active IS FALSE AND end_date >= ? OR end_date IS NULL", Time.zone.now)

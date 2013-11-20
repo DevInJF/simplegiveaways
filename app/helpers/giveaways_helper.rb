@@ -3,7 +3,7 @@ module GiveawaysHelper
   def status_label(giveaway)
     case giveaway.status
       when 'Active'
-        '<div class="ui ribbon label green">Active</div>'.html_safe
+        '<div class="ui ribbon label teal">Active</div>'.html_safe
       when 'Pending'
         '<div class="ui ribbon label">Pending</div>'.html_safe
       when 'Completed'

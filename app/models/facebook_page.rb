@@ -19,6 +19,10 @@ class FacebookPage < ActiveRecord::Base
   scope :unsubscribed, where(subscription_id: nil)
   scope :subscribed, where("subscription_id IS NOT ?", nil)
 
+  def active_giveaway
+    giveaways.active.first
+  end
+
   def no_active_giveaways?
     giveaways.active.empty?
   end

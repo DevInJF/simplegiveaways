@@ -4,4 +4,6 @@
 //= require sg
 //= require ui
 //= require giveaways
+//= require giveaways/active_giveaway
+//= require giveaways/start_giveaway
 //= require stripe-client

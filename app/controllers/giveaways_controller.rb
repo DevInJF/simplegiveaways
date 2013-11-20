@@ -17,7 +17,7 @@ class GiveawaysController < ApplicationController
   end
 
   def active
-    @giveaways = (@page.giveaways.active.first || @page.giveaways.to_start.first) rescue nil
+    @giveaway = @page.active_giveaway
     @flot = flot_hash
   end
 

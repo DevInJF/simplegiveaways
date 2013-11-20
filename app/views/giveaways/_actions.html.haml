@@ -1,5 +1,7 @@
 - if giveaway.active?
 
+  = render 'giveaways/actions/active', giveaway: giveaway
+
 - elsif giveaway.pending?
 
   = render 'giveaways/actions/pending', giveaway: giveaway

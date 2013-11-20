@@ -1,0 +1,17 @@
+.ui.small.modal.start-giveaway
+  %i.close.icon
+  .header
+    Start Giveaway
+  .content
+    = render 'giveaways/pending/step_one', giveaway: giveaway, facebook_page: giveaway.facebook_page
+    = render 'giveaways/pending/step_two', giveaway: giveaway, facebook_page: giveaway.facebook_page
+    = render 'giveaways/pending/step_three', giveaway: giveaway, facebook_page: giveaway.facebook_page
+
+  .actions
+    .ui.two.fluid.buttons
+      .ui.labeled.icon.deny.button
+        %i.remove.icon
+        Cancel
+      .ui.teal.right.labeled.icon.approve.button
+        Next
+        %i.right.arrow.icon

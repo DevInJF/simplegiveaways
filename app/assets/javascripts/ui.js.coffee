@@ -15,3 +15,4 @@ SG.UI =
     $('.ui.accordion').accordion() if $('.ui.accordion').length
 
   showFlash: (messageType, content) ->
+    console.log(messageType, content)

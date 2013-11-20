@@ -1,25 +1,19 @@
-.ui.segment
+#giveaway_details.ui.meta.relaxed.stackable.grid
 
-  = status_label(giveaway)
+  .row
+    .eight.wide.column
 
-  = render 'giveaways/actions', giveaway: giveaway
+      = render 'giveaways/details/basic_info', giveaway: giveaway
 
-  .ui.meta.relaxed.stackable.grid
+    .eight.wide.column
 
-    .row
-      .eight.wide.column
+      = render 'giveaways/details/schedule', giveaway: giveaway
 
-        = render 'giveaways/details/basic_info', giveaway: giveaway
+      = render 'giveaways/details/terms', giveaway: giveaway
 
-      .eight.wide.column
+      = render 'giveaways/details/preferences', giveaway: giveaway
 
-        = render 'giveaways/details/schedule', giveaway: giveaway
+  .row
+    .sixteen.wide.column
 
-        = render 'giveaways/details/terms', giveaway: giveaway
-
-        = render 'giveaways/details/preferences', giveaway: giveaway
-
-    .row
-      .sixteen.wide.column
-
-        = render 'giveaways/details/images', giveaway: giveaway
+      = render 'giveaways/details/images', giveaway: giveaway

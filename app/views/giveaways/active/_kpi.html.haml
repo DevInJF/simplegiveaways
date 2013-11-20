@@ -1,0 +1,10 @@
+.ui.stackable.grid
+
+  .row
+    .eight.wide.column
+      %p Started on #{datetime_mdy(giveaway.start_date)}
+      %p Ends on #{datetime_mdy(giveaway.end_date)}
+    .eight.wide.column
+      = render 'giveaways/active/countdown', giveaway: giveaway
+
+  = render 'giveaways/active/stats', giveaway: giveaway

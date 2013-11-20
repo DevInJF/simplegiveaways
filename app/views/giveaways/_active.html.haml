@@ -1,39 +1,6 @@
-- content_for :content do
+= render 'giveaways/active/kpi', giveaway: giveaway, page: page
 
-  .end-giveaway-button
-    = link_to "<i class='icon-remove icon-white'></i> End Now".html_safe, "#end_confirm_#{giveaway.id}", class: "btn btn-end btn-danger btn-small", :"data-toggle" => "modal"
+= render 'giveaways/active/accordion', giveaway: giveaway, page: page, flot: flot
 
-  .modal.end.hide.fade{ id: "end_confirm_#{giveaway.id}" }
-    .modal-header
-      %a.close{ :"data-dismiss" => "modal" }
-        x
-
-    .modal-body
-      %h1 Warning
-      %p If you continue, the <strong>#{giveaway.title}</strong> giveaway will be permanently removed from your Facebook page. This cannot be undone.
-      %a.btn.btn-large{ :"data-dismiss" => "modal" } <i class='icon-arrow-left'></i> Ooops, Take Me Back
-      = link_to "<i class='icon-remove icon-white'></i> End Now".html_safe, end_facebook_page_giveaway_path(page, giveaway), class: "btn btn-large btn-danger"
-
-  = render 'giveaways/countdown', giveaway: giveaway
-
-  %header.giveaway.active.thumbnail
-    .meta
-      %h1= truncate(giveaway.title, length: 26)
-      %p is #{giveaway.status}
-      .dates
-        %p Started on #{datetime_mdy(giveaway.start_date)}
-        %p Ends on #{datetime_mdy(giveaway.end_date)}
-      = link_to "<i class='icon-eye-open'></i>&nbsp;&nbsp;View Details".html_safe, facebook_page_giveaway_path(page, giveaway), class: "btn"
-      = link_to "<i class='icon-share-alt'></i>&nbsp;&nbsp;View on Facebook".html_safe, giveaway.giveaway_url, class: "btn", target: "blank"
-      = link_to "<i class='icon-check-empty'></i>&nbsp;&nbsp;Copy Shortlink".html_safe, "#", class: "btn zclip"
-      = link_to "<i class='icon-check'></i>&nbsp;&nbsp;Copied".html_safe, "#", class: "btn zclip-success hide"
-    .image= image_tag(giveaway.image(:medium))
-
-  = render 'stats', giveaway: giveaway
-  - if flot[:page_likes]
-    = render 'graphs', giveaway: giveaway, page: page, flot: flot
-  - if giveaway.entry_count > 0
-    = render 'entries', giveaway: giveaway, page: page
-
-  :javascript
-    simpleGiveaways["active_giveaway"]["shortlink"] = "#{giveaway.shortlink}";
+:javascript
+  simpleGiveaways["active_giveaway"]["shortlink"] = "#{giveaway.shortlink}";

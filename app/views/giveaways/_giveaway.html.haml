@@ -1,11 +1,13 @@
-- if giveaway.active?
+= render 'header', giveaway: giveaway, page: giveaway.facebook_page
 
-  = render 'giveaways/active', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
+.ui.segment
+  = status_label(giveaway)
+  = render 'actions', giveaway: giveaway
 
-- elsif giveaway.pending?
+  - if giveaway.active?
 
-  = render 'giveaways/pending', giveaway: giveaway
+    = render 'active', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
 
-- elsif giveaway.completed?
+  - else
 
-  = render 'giveaways/completed', giveaway: giveaway, flot: flot
+    = render 'details', giveaway: giveaway, page: giveaway.facebook_page

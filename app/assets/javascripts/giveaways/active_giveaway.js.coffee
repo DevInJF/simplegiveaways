@@ -1,0 +1,4 @@
+SG.Giveaways.Active =
+
+  initialize: ->
+
