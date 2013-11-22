@@ -1,13 +1,43 @@
 TODO:
 
-  User must subscribe before scheduling a giveaway.
+  11/22/13
 
-  Subscription emails.
+    UI:
 
-  Have the start giveaway modal pop back up on the final step if the user is referred back after successful subscription.
+      1) Finish Entries table UI.
 
-  SG.UI flash messages function.
+      2) Completed Giveaways view UI.
 
-  Create a page for selecting plans that is not tied to giveaway flow or facebook page. In this case you will need to allow user to select a page for single page plans.
+      3) End Giveaway modal UI.
 
-  Create a page for a user to manage his subscriptions.
+      4. SG.UI flash messages site-wide but especially subscriptions page.
+
+    Functionality:
+
+      1) Fix page_likes_while_active metric.
+
+      2) Ensure all sharing is working properly.
+
+      3) Subscription Emails.
+
+      4) Require subscription upon scheduling a giveaway.
+
+      5) User-centric subscriptions page.
+
+        a) Subscribe
+
+        b) Cancel subscription
+          If you cancel, you will not receive a refund. You will just not be reupped at the end of the billing cycle.
+
+        c) Update subscription
+          If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. The new plan will start at the end of the cycle.
+
+          - Might need to consider hybrid subscription (single page yearly / multi page monthly) but not sure yet.
+
+      6) Open start giveaway modal when a user is referred back after successful subscription.
+
+      7) Confirm graph dates are correct.
+
+      8) Confirm subscriptions with Stripe callbacks.
+
+
