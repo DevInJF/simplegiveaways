@@ -1,10 +1,8 @@
 TODO:
 
-  Don't automatically update stripe subscriptions.
-  If the subscription requires the creation of a new subscription, for example — single page (yearly) to multi page (monthly) — create a new subscription in stripe.
+  User must subscribe before scheduling a giveaway.
 
-  Don't automatically create new db subscriptions.
-  If a subscription requires an update and not the creation of a new subscription, for example — all except single page (yearly) to multi page (monthly), update the existing db subscription rather than creating a new one.
+  Subscription emails.
 
   Have the start giveaway modal pop back up on the final step if the user is referred back after successful subscription.
 
