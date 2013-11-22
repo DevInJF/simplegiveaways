@@ -3,11 +3,18 @@ module GiveawaysHelper
   def status_label(giveaway)
     case giveaway.status
       when 'Active'
-        '<div class="ui ribbon label teal">Active</div>'.html_safe
+        label = <<-eos
+          <div class="ui ribbon label teal">
+            <strong>Active</strong><br />
+            Started on #{datetime_mdy(giveaway.start_date)}<br />
+            Ends on #{datetime_mdy(giveaway.end_date)}
+          </div>
+        eos
+        label.html_safe
       when 'Pending'
-        '<div class="ui ribbon label">Pending</div>'.html_safe
+        '<div class="ui ribbon label"><strong>Pending</strong></div>'.html_safe
       when 'Completed'
-        '<div class="ui ribbon label red">Completed</div>'.html_safe
+        '<div class="ui ribbon label red"><strong>Completed</strong></div>'.html_safe
     end
   end
 

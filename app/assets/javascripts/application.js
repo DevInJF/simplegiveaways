@@ -1,6 +1,10 @@
 //= require vendor/jquery-1.9.1.min
 //= require semantic-ui
 //= require vendor/underscore
+//= require vendor/jquery.flot.min
+//= require vendor/jquery.flot.resize.min
+//= require vendor/jquery.flot.time.min
+//= require vendor/jquery.tablesorter
 //= require sg
 //= require ui
 //= require giveaways

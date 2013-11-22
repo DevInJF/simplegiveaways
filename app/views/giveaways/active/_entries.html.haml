@@ -1,23 +1,23 @@
 - if giveaway.entry_count > 0
 
-  %section.entries.thumbnail
-    %h2.pull-left Entries
-    = link_to '<i class="icon-download-alt"></i>Export Entries'.html_safe, export_entries_facebook_page_giveaway_path(page, giveaway), class: "btn pull-right"
-    .clearfix
-    %table#entries.table.zebra-striped
-      %thead
-        %tr
-          %th.header Name/Email
-          %th.header Viral?
-          %th.header New Fan?
-          %th.header Wall Posts
-          %th.header Sends
-          %th.header Requests
-          %th.header Conversions
-          %th.header Bonus Entries
-          %th.header Entry Time
-      %tbody
-        = render collection: giveaway.entries, partial: "giveaways/entry", as: :entry
+  %table#entries.ui.small.padded.table.segment
+    %thead
+      %tr
+        %th.header Name/Email
+        %th.header Viral?
+        %th.header New Fan?
+        %th.header Wall Posts
+        %th.header Sends
+        %th.header Requests
+        %th.header Conversions
+        %th.header Bonus Entries
+        %th.header Entry Time
+    %tbody
+      = render collection: giveaway.entries, partial: "giveaways/entry", as: :entry
+    %tfoot
+      %tr
+        %th{colspan: '9'}
+          = link_to '<i class="save icon"></i>Export Entries'.html_safe, export_entries_facebook_page_giveaway_path(page, giveaway), class: 'ui small teal labeled icon button'
 
     :javascript
       $(function() {

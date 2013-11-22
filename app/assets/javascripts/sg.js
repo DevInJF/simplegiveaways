@@ -1,6 +1,7 @@
 SG = {
   UI: {},
   Paths: {},
+  Graphs: {},
   StripeClient: {},
   Giveaways: {}
 };

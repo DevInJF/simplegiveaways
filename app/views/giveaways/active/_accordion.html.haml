@@ -1,15 +1,10 @@
-.ui.fluid.accordion
-  .active.title
-    %i.dropdown.icon
-    Graphs
-  .active.content
-    = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot
-  .title
+.ui.basic.fluid.accordion
+  %h3.ui.title
     %i.dropdown.icon
     Entries
   .content
     = render 'giveaways/active/entries', giveaway: giveaway, page: page
-  .title
+  %h3.ui.title
     %i.dropdown.icon
     Details
   .content

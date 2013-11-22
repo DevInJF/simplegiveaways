@@ -1,12 +1,14 @@
 - if page.audits.any? && flot[:page_likes]
 
-  = stylesheet_link_tag "graph"
+  .row
+    = stylesheet_link_tag :graph
 
-  :javascript
-    simpleGiveaways["flot"]["page_likes"] = #{flot[:page_likes]};
-    simpleGiveaways["flot"]["net_likes"] = #{flot[:net_likes]};
-    simpleGiveaways["flot"]["entries"] = #{flot[:entries]};
-    simpleGiveaways["flot"]["views"] = #{flot[:views]};
+    #graph_placeholder.sixteen.wide.column
 
-  %section.graphs.thumbnail
-    .graph-placeholder
+    :javascript
+      SG.Graphs.pageLikes = #{flot[:page_likes]};
+      SG.Graphs.netLikes = #{flot[:net_likes]};
+      SG.Graphs.entries = #{flot[:entries]};
+      SG.Graphs.views = #{flot[:views]};
+      SG.Giveaways.Active.initGraphs()
+

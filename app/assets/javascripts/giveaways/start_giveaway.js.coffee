@@ -1,7 +1,7 @@
 SG.Giveaways.Start =
 
   initialize: ->
-    @initStartModal()
+    @initStartModal() if @modalEl().length
 
   initStartModal: ->
     @modalEl().modal(

@@ -59,7 +59,7 @@ jQuery ->
         Giveaway.step.two.show()
         Giveaway.onLike()
 
-      $("#enter_giveaway a").live "click", (e) ->
+      $("#enter_giveaway a").on "click", (e) ->
         if Giveaway.eligible()
           Giveaway.entry.eligible()
         else
@@ -67,7 +67,7 @@ jQuery ->
           Giveaway.step.one.show()
         e.preventDefault()
 
-      Giveaway.step.two.find("a").live "click", (e) ->
+      Giveaway.step.two.find("a").on "click", (e) ->
         e.preventDefault()
         Giveaway.entry.statusCheck()
 
