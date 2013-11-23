@@ -1,74 +1,51 @@
 SG.Giveaways.Active =
 
   initialize: ->
-    @initEndCountdown() if @countdownEl().length
+    @initEntriesTable()
 
-  initEndCountdown: ->
-    currentDate = new Date()
-    countdownTarget = simpleGiveaways["active_giveaway"]["countdown_target"]
-
-    iteration = 0
-    countdownOptions = (event) ->
-      if event.type == "daysLeft"
-        if _.include([0, "0", "00"], event.value)
-          $(@).find(".seconds.time-wrapper").show()
-        else
-          $(@).find(".seconds.time-wrapper").hide()
-      if iteration == 0 && _.include([0, "0", "00"], event.value)
-        $(@).find("span.#{event.type}.time-wrapper").remove()
-      else
-        iteration += 1
-        $(@).find("span##{event.type}").html(event.value)
-
-    @countdownEl().countdown(countdownTarget, countdownOptions)
+  initEntriesTable: ->
+    @entriesTableEl().footable
+      breakpoints:
+        phone: 480,
+        tablet: 705
+        full: 740
 
   initGraphs: ->
-
     @initGraphData()
-
-    plot = @plotWithOptions()
-
-    showTooltip = (x, y, contents) ->
-      $("<div class='graph-tooltip'>#{contents}</div>").css(
-        position: 'absolute'
-        display: 'none'
-        top: y + 12
-        left: x + 12
-      ).appendTo("body").stop().fadeIn(150)
-
-    previousPoint = null
-
-    canvasHover = ->
-      plot.unhighlight()
-      $(".graph-tooltip").remove()
-      previousPoint = null
-
-    itemHover = (item) ->
-      if previousPoint != item.dataIndex
-        previousPoint = item.dataIndex
-
-        plot.unhighlight()
-        $(".graph-tooltip").remove()
-
-        plot.highlight(item.series, item.datapoint)
-
-        x = new Date(item.datapoint[0])
-        y = item.datapoint[1]
-
-        showTooltip(item.pageX, item.pageY,
-            "<span class='graph-tip-y'>" + y + " <span class='graph-tip-y-label' style='color:" + item.series.color + "'>" + item.series.label + "</span></span><br /><span class='graph-tip-x'><span class='graph-tip-x-val'>" + x.getMonth() + "/" + x.getDay() + "/" + x.getFullYear() + "</span></span>")
-
-    plotHover = (event, pos, item) ->
-      if item?
-        itemHover(item)
-      else
-        canvasHover
-
-    @graphPlaceholderEl().bind "plothover", plotHover
+    @plot = @plotWithOptions()
+    @previousPoint = null
+    @graphPlaceholderEl().on 'plothover', (event, pos, item) =>
+      if item? then @itemHover(item) else @canvasHover()
 
   plotWithOptions: ->
-    console.log @graphData
     $.plot @graphPlaceholderEl(), @graphData, @graphOptions
+
+  showTooltip: (x, y, contents) ->
+    $("<div class='graph-tooltip'>#{contents}</div>").css(
+      position: 'absolute'
+      display: 'none'
+      top: y + 12
+      left: x + 12
+    ).appendTo("body").stop().fadeIn(150)
+
+  canvasHover: ->
+    @plot.unhighlight()
+    $(".graph-tooltip").remove()
+    @previousPoint = null
+
+  itemHover: (item) ->
+    if @previousPoint != item.dataIndex
+      @previousPoint = item.dataIndex
+
+      @plot.unhighlight()
+      $(".graph-tooltip").remove()
+
+      @plot.highlight(item.series, item.datapoint)
+
+      x = new Date(item.datapoint[0])
+      y = item.datapoint[1]
+
+      @showTooltip(item.pageX, item.pageY, "<span class='graph-tip-y'>" + y + " <span class='graph-tip-y-label' style='color:" + item.series.color + "'>" + item.series.label + "</span></span><br /><span class='graph-tip-x'><span class='graph-tip-x-val'>" + x.getMonth() + "/" + x.getDay() + "/" + x.getFullYear() + "</span></span>")
 
   initGraphData: ->
 
@@ -130,4 +107,4 @@ SG.Giveaways.Active =
 
   graphPlaceholderEl: -> $('#graph_placeholder')
 
-  countdownEl: -> $('div.countdown-timer')
+  entriesTableEl: -> $('.footable')

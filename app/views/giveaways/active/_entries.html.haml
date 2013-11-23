@@ -1,17 +1,20 @@
+= stylesheet_link_tag :footable
+
 - if giveaway.entry_count > 0
 
-  %table#entries.ui.small.padded.table.segment
+  %p Click a header to sort that column. Click a row for detailed info.
+  %table#entries.footable
     %thead
       %tr
-        %th.header Name/Email
-        %th.header Viral?
-        %th.header New Fan?
-        %th.header Wall Posts
-        %th.header Sends
-        %th.header Requests
-        %th.header Conversions
-        %th.header Bonus Entries
-        %th.header Entry Time
+        %th.header{"data-toggle" => "true"} Name/Email
+        %th.header{"data-hide" => "phone"} Viral?
+        %th.header{"data-hide" => "phone"} New Fan?
+        %th.header{"data-hide" => "phone,tablet"} Wall Posts
+        %th.header{"data-hide" => "phone,tablet"} Sends
+        %th.header{"data-hide" => "phone,tablet"} Requests
+        %th.header{"data-hide" => "phone,tablet"} Conversions
+        %th.header{"data-hide" => "all"} Bonus Entries
+        %th.header{"data-hide" => "phone,full"} Entry Time
     %tbody
       = render collection: giveaway.entries, partial: "giveaways/entry", as: :entry
     %tfoot

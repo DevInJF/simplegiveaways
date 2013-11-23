@@ -1,6 +1,9 @@
 //= require vendor/jquery-1.9.1.min
 //= require semantic-ui
 //= require vendor/underscore
+//= require vendor/footable
+//= require vendor/footable.paginate
+//= require vendor/footable.sort
 //= require vendor/jquery.flot.min
 //= require vendor/jquery.flot.resize.min
 //= require vendor/jquery.flot.time.min

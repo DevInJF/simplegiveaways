@@ -1,5 +1,4 @@
 @import 'bootstrap-variables';
-@import 'bootstrap';
 @import 'bootstrap-overrides';
 @import 'compass/css3/border-radius';
 @import 'compass/css3/background-clip';
@@ -12,6 +11,7 @@ html {
 
 a, button, input {
   outline: 0 none;
+  text-decoration: none;
 }
 
 body.welcome {
