@@ -10,7 +10,10 @@
       %i.close.icon
       .content
         .header There is no active giveaway on your page right now.
-        %p Create a new giveaway to publish later or publish one of your pending giveaways.
+        - if @page.giveaways.pending.any?
+          %p Create a new giveaway to publish later or publish one of your pending giveaways.
+        - else
+          %p Create a new giveaway to publish later.
         .ui.small.buttons
           = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: "#{@page.giveaways.pending.any? ? 'ui button' : 'ui teal button'}"
           - if @page.giveaways.pending.any?

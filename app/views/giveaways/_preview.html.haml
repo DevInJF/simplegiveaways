@@ -3,7 +3,19 @@
   .content.meta
     = link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'header'
     %small #{giveaway.status}
-  .content
-    = render 'giveaways/navigation/primary', giveaway: giveaway
+  .content.stats
+    - if giveaway.completed?
+      .ui.grid
+        .statistic.five.wide.column
+          .number= giveaway.entry_count
+          .description Entries
+        .statistic.five.wide.column
+          .number= giveaway.page_likes_while_active
+          .description Likes
+        .statistic.five.wide.column
+          .number= giveaway.total_shares
+          .description Shares
+    - else
+      = render 'giveaways/navigation/primary', giveaway: giveaway
 
 

@@ -18,15 +18,14 @@
           .header There is no active giveaway on your page right now.
           %p Go ahead and publish one.
 
+    %h3.ui.fluid.header Pending Giveaways
     = render 'facebook_pages/giveaways', giveaways: @giveaways
 
   - else
 
-    - if @page && @page.giveaways.active.any?
-
-      .ui.message
-        %i.close.icon
-        .content
-          .header There are no pending giveaways.
-          %p Create a new giveaway to publish later.
-          = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: 'ui small teal button'
+    .ui.message
+      %i.close.icon
+      .content
+        .header There are no pending giveaways.
+        %p Create a new giveaway to publish later.
+        = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: 'ui small teal button'

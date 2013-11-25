@@ -1,13 +1,8 @@
-= render 'header', giveaway: giveaway, page: giveaway.facebook_page
+.completed-giveaway.ui.stackable.grid
+  .clearfix
+  = render 'giveaways/active/stats', giveaway: giveaway
+  = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot
+  = render 'giveaways/active/accordion', giveaway: giveaway, page: page, entries: entries
 
-= render 'stats', giveaway: giveaway
-
-- if flot[:page_likes]
-
-  = render 'graphs', giveaway: giveaway, page: giveaway.facebook_page, flot: flot
-
-- if giveaway.entry_count > 0
-
-  = render 'entries', giveaway: giveaway, page: giveaway.facebook_page
-
-= render 'details', giveaway: giveaway, page: giveaway.facebook_page
+:javascript
+  simpleGiveaways["active_giveaway"]["shortlink"] = "#{giveaway.shortlink}";

@@ -8,6 +8,10 @@
 
     = render 'active', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
 
+  - elsif giveaway.completed?
+
+    = render 'completed', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
+
   - else
 
     = render 'details', giveaway: giveaway, page: giveaway.facebook_page

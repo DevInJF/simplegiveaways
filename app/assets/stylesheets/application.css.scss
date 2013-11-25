@@ -88,7 +88,8 @@ body {
           hyphens: auto;
 }
 
-.active-giveaway {
+.active-giveaway,
+.completed-giveaway {
 
   .ui.dividing.header {
     margin-bottom: 1.5rem;
@@ -312,6 +313,11 @@ body {
 
         &.meta {
           width: 40%;
+        }
+
+        &.stats {
+          width: 35%;
+          text-align: center;
         }
       }
     }

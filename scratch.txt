@@ -4,13 +4,11 @@ TODO:
 
     UI:
 
-      1) Finish Entries table UI.
+      1) Completed Giveaways view UI.
 
-      2) Completed Giveaways view UI.
+      2) End Giveaway modal UI.
 
-      3) End Giveaway modal UI.
-
-      4. SG.UI flash messages site-wide but especially subscriptions page.
+      3) SG.UI flash messages site-wide but especially subscriptions page.
 
     Functionality:
 
