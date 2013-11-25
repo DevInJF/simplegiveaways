@@ -132,9 +132,15 @@ GEM
     excon (0.15.5)
     execjs (2.0.2)
     executable-hooks (1.2.3)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     fastercsv (1.5.5)
+    ffaker (1.22.1)
     ffi (1.9.0)
     font-awesome-sass-rails (2.0.0.0)
       railties (>= 3.1.1)
@@ -390,7 +396,9 @@ DEPENDENCIES
   dotenv-rails
   encrypted-cookies
   erb2haml
+  factory_girl_rails
   fastercsv
+  ffaker
   font-awesome-sass-rails
   foreman
   gabba

@@ -1,5 +1,6 @@
 @import 'semantic-ui';
 @import 'bourbon';
+@import 'mixins';
 
 .clearfix:after {
   content: ".";
@@ -35,11 +36,33 @@ body {
   display: none;
 }
 
+.truncate {
+  @include truncate;
+}
+
+.wrap {
+  @include word-wrap;
+}
+
 #sg_page {
   clear: both;
 }
 
+@media only screen and (max-width: 768px) {
+
+  #page_sidebar,
+  #page_main {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
 .logo-link {
+  color: #555;
+  text-decoration: none;
+}
+
+.giveaway-title {
   color: #555;
   text-decoration: none;
 }
@@ -73,6 +96,27 @@ body {
 
   #graph_placeholder {
     height: 300px;
+  }
+
+  #giveaway_accordion {
+    padding-top: 0 !important;
+
+    .ui.fluid.menu {
+      width: 99% !important;
+      position: relative;
+      left: 0.5%;
+      margin-top: 0;
+    }
+  }
+
+  .accordion {
+
+    .entries {
+
+      p.help-text {
+        margin-top: 0;
+      }
+    }
   }
 }
 

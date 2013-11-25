@@ -1,11 +1,13 @@
-.ui.basic.fluid.accordion
-  %h3.ui.title
-    %i.dropdown.icon
-    Entries
-  .content
-    = render 'giveaways/active/entries', giveaway: giveaway, page: page
-  %h3.ui.title
-    %i.dropdown.icon
-    Details
-  .content
-    = render 'giveaways/details', giveaway: giveaway, page: page
+.row
+  #giveaway_accordion.column
+    .ui.basic.fluid.accordion
+      %h3.ui.active.title
+        %i.dropdown.icon
+        Recent Entries
+      .content.active.entries
+        = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries
+      %h3.ui.title
+        %i.dropdown.icon
+        Details
+      .content.details
+        = render 'giveaways/details', giveaway: giveaway, page: page

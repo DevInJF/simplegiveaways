@@ -97,6 +97,10 @@ class Entry < ActiveRecord::Base
     likes.any?
   end
 
+  def total_shares
+    wall_post_count + request_count + send_count
+  end
+
   def bonus_entries
     ( (giveaway.bonus_value.to_i * convert_count) + (entry_count - 1) ) rescue 0
   end

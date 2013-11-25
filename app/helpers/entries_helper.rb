@@ -9,4 +9,8 @@ module EntriesHelper
       "&mdash;".html_safe
     end
   end
+
+  def entry_unix_timestamp(entry)
+    entry.created_at.to_i
+  end
 end

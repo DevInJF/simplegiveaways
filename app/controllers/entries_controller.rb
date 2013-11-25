@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class EntriesController < ApplicationController
 
+  layout 'facebook_pages'
+
   before_filter :before_entry_callbacks, only: [:create]
   after_filter  :after_entry_callbacks, only: [:create]
 
@@ -53,6 +55,12 @@ class EntriesController < ApplicationController
     else
       head :not_acceptable
     end
+  end
+
+  def index
+    @giveaway = Giveaway.find_by_id(params[:giveaway_id])
+    @page = @giveaway.facebook_page
+    @entries = @giveaway.entries
   end
 
   private

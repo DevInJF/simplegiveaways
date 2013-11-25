@@ -1,1 +1,2 @@
-%h2.ui.fluid.header= giveaway.title
+%h2.ui.fluid.header
+  = link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'giveaway-title'

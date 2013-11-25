@@ -1,13 +1,17 @@
-%tr
+%tr.entry-row
   %td
     .entry-name-email
       .entry-name= entry_name(entry)
-      .entry-email= truncate(entry.email, :length => 36)
+      .entry-email= truncate(entry.email, :length => 30)
+  %td.wrap= entry.email
   %td= boolean_table_item(entry.is_viral)
   %td= boolean_table_item(entry.new_fan?)
+  %td= entry.total_shares
   %td= entry.wall_post_count
   %td= entry.send_count
   %td= entry.request_count
   %td= entry.convert_count
   %td= entry.bonus_entries
-  %td= entry.created_at.strftime('%m/%d/%Y %l:%M %p')
+  %td.last-child{"data-value" => entry_unix_timestamp(entry)}
+    .entry-time
+      = entry.created_at.strftime('%m/%d/%Y<br />%l:%M %p').html_safe

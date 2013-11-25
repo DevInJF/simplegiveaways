@@ -18,6 +18,7 @@ class GiveawaysController < ApplicationController
 
   def active
     @giveaway = @page.active_giveaway
+    @entries = @giveaway.entries.sort_by(&:created_at).reverse.first(50)
     @flot = flot_hash
   end
 
@@ -32,7 +33,9 @@ class GiveawaysController < ApplicationController
   def show
     @giveaway = Giveaway.find_by_id(params[:id])
     @page = @giveaway.facebook_page
-    @flot = flot_hash
+    if @giveaway.active?
+      redirect_to active_facebook_page_giveaways_path(@page)
+    end
   end
 
   def new

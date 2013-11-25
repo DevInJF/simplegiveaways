@@ -25,7 +25,7 @@ Simplegiveaways::Application.routes.draw do
   resources :facebook_pages, only: [:show] do
 
     resources :giveaways do
-      resources :entries, only: [:create, :update]
+      resources :entries, only: [:index, :create, :update]
 
       get :export_entries, on: :member
       get :active, on: :collection

@@ -1,4 +1,5 @@
 @import 'bourbon';
+@import 'mixins';
 
 table {
 
@@ -22,20 +23,47 @@ table {
     position: relative;
     left: 0.5%;
 
+    .footable-row-detail-value {
+      @include word-wrap;
+    }
+
+    th, tr, td {
+      border-collapse: collapse;
+      @include box-sizing(border-box);
+      @include transition(all .1s ease-out);
+    }
+
     thead {
       border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 
       th {
         cursor: pointer;
         font-size: 0.9em;
+        background-color: rgba(0, 0, 0, 0.05);
+        text-align: center;
+        color: rgba(0, 0, 0, 0.8);
+        padding: .5em .7em;
+        vertical-align: middle;
 
-        &:hover {
+        &:hover,
+        &.footable-sorted,
+        &.footable-sorted-desc,
+        &.footable-sorted-asc {
           background-color: rgba(0, 0, 0, 0.13);
           color: rgba(0, 0, 0, 0.8);
         }
 
         &:first-child {
           @include border-radius(5px 0 0);
+          text-align: left;
+        }
+
+        &.first-child {
+          text-align: left;
+        }
+
+        &.last-child {
+          text-align: left;
         }
 
         .footable-sort-indicator {
@@ -44,40 +72,156 @@ table {
       }
     }
 
-    tbody {
+    tr {
+      border-bottom: 1px solid #eee;
 
-      tr:nth-child(2n) {
-        background-color: rgba(0, 0, 50, 0.02);
+      &.entry-row {
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(0, 0, 50, 0.02);
+        }
+      }
+
+      td {
+        padding: .4em .7em;
+        vertical-align: middle;
+        text-align: center;
+
+        &:first-child,
+        &.first-child {
+          text-align: left;
+        }
+
+        &.last-child {
+          text-align: left;
+        }
       }
     }
 
     tfoot {
       border-top: 1px solid rgba(0, 0, 0, 0.03);
       margin-bottom: 0;
-    }
 
-    th {
-      cursor: auto;
-      background-color: rgba(0, 0, 0, 0.05);
-      text-align: left;
-      color: rgba(0, 0, 0, 0.8);
-      padding: .5em .7em;
-      vertical-align: middle;
+      td {
+        cursor: auto;
+        font-size: 0.9em;
+        background-color: rgba(0, 0, 0, 0.05);
+        text-align: center;
+        color: rgba(0, 0, 0, 0.8);
+        padding: .5em .7em;
+        vertical-align: middle;
+      }
     }
+  }
+
+  &#entries {
 
     td {
-      padding: .4em .7em;
-      vertical-align: middle;
 
       .entry-name-email {
         float: left;
+
+        .entry-email {
+          font-size: 0.8rem;
+        }
+      }
+
+      .entry-time {
+        font-size: 0.8rem;
       }
     }
 
-    th, tr, td {
-      border-collapse: collapse;
-      @include box-sizing(border-box);
-      @include transition(all .1s ease-out);
+    tfoot {
+
+      td {
+        text-align: center;
+      }
+    }
+
+    .footable-row-detail-value {
+      @include word-wrap;
+
+      .entry-time {
+        font-size: 1rem;
+      }
+    }
+
+    .entries-pager {
+      display: inline-block;
+      vertical-align: middle;
+
+      &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+
+      ul {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-style: normal;
+        text-align: center;
+        text-decoration: none;
+        list-style: none;
+        background-color: rgba(0, 0, 0, 0) !important;
+        background-image: none;
+        color: #808080 !important;
+        font-weight: 400;
+        text-transform: none;
+        cursor: pointer;
+        vertical-align: middle;
+        min-height: 1em;
+        outline: 0;
+        border: 0;
+        @include box-sizing(border-box);
+        @include border-radius(0.25em);
+        @include transition(opacity .25s ease, background-color .25s ease, color .25s ease, background .25s ease, box-shadow .25s ease);
+
+        li {
+          display: inline-block;
+          @include border-radius(0);
+          border-left: 1px solid rgba(0, 0, 0, 0.1);
+
+          &:first-child {
+            margin-left: 0;
+            border-left: 0;
+            @include border-left-radius(0.25em);
+          }
+
+          &:last-child {
+            @include border-right-radius(0.25em);
+          }
+
+          &.footable-page {
+            display: none;
+          }
+
+          &.active {
+
+            a {
+              background-color: rgba(0, 0, 0, 0.02);
+            }
+          }
+
+          a {
+            display: inline-block;
+            padding: 0.83em 0.95em;
+            font-size: 0.875rem;
+            min-width: 1em;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.75);
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.05);
+            }
+          }
+        }
+      }
     }
   }
 }

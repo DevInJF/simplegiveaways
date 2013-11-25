@@ -57,6 +57,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'erb2haml'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
   gem 'foreman'
   gem 'hirb'
   gem 'interactive_editor'

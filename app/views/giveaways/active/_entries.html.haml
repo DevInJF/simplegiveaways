@@ -1,29 +1,32 @@
-= stylesheet_link_tag :footable
+- if entries
 
-- if giveaway.entry_count > 0
+  = stylesheet_link_tag :footable
 
-  %p Click a header to sort that column. Click a row for detailed info.
-  %table#entries.footable
+  .ui.small.fluid.borderless.teal.menu
+    = link_to '<i class="list icon"></i> View All Entries'.html_safe, facebook_page_giveaway_entries_path(page, giveaway), class: 'item'
+    = link_to '<i class="save icon"></i>Export Entries'.html_safe, export_entries_facebook_page_giveaway_path(page, giveaway), class: 'item', target: '_blank'
+
+  %p.help-text
+    %i.info.icon
+    Click a header to sort that column. Click a row for detailed info.
+
+  %table#entries.footable{data: { :'page-navigation' => '.entries-pager', :'page-size' => '10' }}
     %thead
       %tr
-        %th.header{"data-toggle" => "true"} Name/Email
+        %th.header.first-child{"data-toggle" => "true"} Name/Email
+        %th.header{"data-hide" => "all"} Email
         %th.header{"data-hide" => "phone"} Viral?
         %th.header{"data-hide" => "phone"} New Fan?
-        %th.header{"data-hide" => "phone,tablet"} Wall Posts
-        %th.header{"data-hide" => "phone,tablet"} Sends
-        %th.header{"data-hide" => "phone,tablet"} Requests
-        %th.header{"data-hide" => "phone,tablet"} Conversions
-        %th.header{"data-hide" => "all"} Bonus Entries
-        %th.header{"data-hide" => "phone,full"} Entry Time
+        %th.header{"data-hide" => "phone", "data-type" => "numeric"} Shares
+        %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Wall Posts
+        %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Sends
+        %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Requests
+        %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Conversions
+        %th.header{"data-hide" => "all", "data-type" => "numeric"} Bonus Entries
+        %th.header.last-child{"data-hide" => "phone,tablet", "data-type" => "numeric", "data-sort-initial" => "descending"} Entry Time
     %tbody
-      = render collection: giveaway.entries, partial: "giveaways/entry", as: :entry
+      = render collection: entries, partial: 'giveaways/entry', as: :entry
     %tfoot
       %tr
-        %th{colspan: '9'}
-          = link_to '<i class="save icon"></i>Export Entries'.html_safe, export_entries_facebook_page_giveaway_path(page, giveaway), class: 'ui small teal labeled icon button'
-
-    :javascript
-      $(function() {
-        $("table#entries").tablesorter({ sortList: [[8,1]] });
-      });
-
+        %td{colspan: '11'}
+          .entries-pager.ui.pagination.menu

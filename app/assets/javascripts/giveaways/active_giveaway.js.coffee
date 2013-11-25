@@ -5,10 +5,11 @@ SG.Giveaways.Active =
 
   initEntriesTable: ->
     @entriesTableEl().footable
+      delay: 20
       breakpoints:
-        phone: 480,
+        phone: 480
         tablet: 705
-        full: 740
+        full: 900
 
   initGraphs: ->
     @initGraphData()

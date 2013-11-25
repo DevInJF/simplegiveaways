@@ -1,10 +1,8 @@
 .active-giveaway.ui.stackable.grid
   .clearfix
   = render 'giveaways/active/stats', giveaway: giveaway
-  .one.column.row
-    .column
-      = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot
-      = render 'giveaways/active/accordion', giveaway: giveaway, page: page
+  = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot
+  = render 'giveaways/active/accordion', giveaway: giveaway, page: page, entries: entries
 
 :javascript
   simpleGiveaways["active_giveaway"]["shortlink"] = "#{giveaway.shortlink}";
