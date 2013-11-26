@@ -70,7 +70,7 @@ SG.StripeClient =
       success: ->
         top.location.href = "#{document.referrer}?subscribed"
       error: ->
-        SG.UI.showFlash('error', 'There was a problem processing the subscription. Please try again or contact support for assistance.')
+        SG.UI.showFlash('error', 'Error','There was a problem processing the subscription. Please try again or contact support for assistance.')
 
   mapPageIds: ->
     _.map $(@planEl).find('input:checked'), (input) -> $(input).val()

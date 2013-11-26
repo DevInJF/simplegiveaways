@@ -57,6 +57,22 @@ body {
   }
 }
 
+#flash_messages {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+
+  .ui.message {
+    margin: 5px auto 0;
+    width: 70%;
+    max-width: 400px;
+    min-width: 325px;
+  }
+}
+
 .logo-link {
   color: #555;
   text-decoration: none;

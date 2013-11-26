@@ -1,4 +1,6 @@
 = inside_layout 'application' do
-  .four.wide.column= render 'users/avatar'
-  .twelve.wide.column= yield :content
+  #page_sidebar.four.wide.column
+    = render 'users/avatar'
+  #page_main.twelve.wide.column
+    = yield :content
 

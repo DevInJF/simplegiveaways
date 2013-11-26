@@ -1,6 +1,6 @@
 Simple Giveaways:
 
- ☐ SG.UI flash messages site-wide but especially subscriptions page.
+ ✔ SG.UI flash messages site-wide but especially subscriptions page. @done (13-11-26 02:48)
 
  ☐ Fix page_likes_while_active metric.
 

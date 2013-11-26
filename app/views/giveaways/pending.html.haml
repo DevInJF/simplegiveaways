@@ -5,7 +5,6 @@
     - if @page.giveaways.active.any?
 
       .ui.message
-        %i.close.icon
         .content
           .header There is an active giveaway on your page right now.
           %p You can publish a pending giveaway once your active giveaway has ended.
@@ -13,7 +12,6 @@
     - else
 
       .ui.message
-        %i.close.icon
         .content
           .header There is no active giveaway on your page right now.
           %p Go ahead and publish one.
@@ -24,7 +22,6 @@
   - else
 
     .ui.message
-      %i.close.icon
       .content
         .header There are no pending giveaways.
         %p Create a new giveaway to publish later.
