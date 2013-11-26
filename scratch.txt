@@ -2,7 +2,7 @@ Simple Giveaways:
 
  ✔ SG.UI flash messages site-wide but especially subscriptions page. @done (13-11-26 02:48)
 
- ☐ Fix page_likes_while_active metric.
+ ✔ Fix page_likes_while_active metric. @done (13-11-26 04:27)
 
  ☐ Ensure all sharing is working properly.
 
@@ -12,19 +12,25 @@ Simple Giveaways:
 
  ☐ User-centric subscriptions page.
 
-      a) Subscribe
+      ☐ Subscribe
 
-      b) Cancel subscription
+      ☐ Cancel subscription
           If you cancel, you will not receive a refund. You will just not be reupped at the end of the billing cycle.
 
-      c) Update subscription
+      ☐ Update subscription
           If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. The new plan will start at the end of the cycle.
 
       * Might need to consider hybrid subscription (single page yearly / multi page monthly) but not sure yet.
 
  ☐ Open start giveaway modal when a user is referred back after successful subscription.
 
- ☐ Confirm graph dates are correct.
+ ☐ Graph Fixes
+
+       ☐ Fix graph tooltip dates.
+
+       ☐ Make graph data appear sooner.
+
+       ☐ Normalize Graph Data.
 
  ☐ Confirm subscriptions with Stripe callbacks.
 

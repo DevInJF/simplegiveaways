@@ -27,7 +27,7 @@ class GiveawaysController < ApplicationController
   end
 
   def completed
-    @giveaways = (@page.giveaways.completed | @page.giveaways.to_end)
+    @giveaways = (@page.giveaways.completed | @page.giveaways.to_end).sort_by(&:end_date).reverse
   end
 
   def show

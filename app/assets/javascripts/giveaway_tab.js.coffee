@@ -25,7 +25,8 @@ jQuery ->
   $loader = $modal.find(".loader")
 
   $auth_required = () ->
-    giveaway_object.auth_required == "true"
+    val = giveaway_object.auth_required
+    val == "1" || val == "true"
   $autoshow = () ->
     giveaway_object.autoshow_share == "true"
 

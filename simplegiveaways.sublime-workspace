@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"close",
+				"closeFlash"
+			],
+			[
+				"mess",
+				"messageType"
+			],
+			[
 				"stripe",
 				"stripe_js"
 			],
@@ -111,16 +119,40 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 274.0,
+		"height": 206.0,
 		"selected_items":
 		[
 			[
-				"beauti",
-				"BeautifyRuby"
+				"set tas",
+				"Set Syntax: Tasks"
+			],
+			[
+				"task",
+				"Set Syntax: Tasks"
 			],
 			[
 				"pack",
 				"Package Control: Install Package"
+			],
+			[
+				"pack ins",
+				"Package Control: Install Package"
+			],
+			[
+				"task new",
+				"Tasks: New document"
+			],
+			[
+				"new ",
+				"Tasks: New"
+			],
+			[
+				"pack inst",
+				"Package Control: Install Package"
+			],
+			[
+				"beauti",
+				"BeautifyRuby"
 			],
 			[
 				"bound",
@@ -183,7 +215,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 417.0
+		"width": 615.0
 	},
 	"console":
 	{
@@ -204,6 +236,42 @@
 	},
 	"file_history":
 	[
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/giveaways/active_giveaway.js.coffee",
+		"/Users/harris/workspace/simplegiveaways/app/models/giveaway.rb",
+		"/Users/harris/workspace/simplegiveaways/app/models/graph.rb",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/pending.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/active.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/completed.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/controllers/facebook_pages_controller.rb",
+		"/Users/harris/workspace/simplegiveaways/app/controllers/giveaways_controller.rb",
+		"/Users/harris/workspace/simplegiveaways/scratch.txt",
+		"/Users/harris/workspace/simplegiveaways/app/assets/stylesheets/application.css.scss",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/_preview.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/application.js",
+		"/Users/harris/workspace/simplegiveaways/app/workers/giveaway_schedule_worker.rb",
+		"/Users/harris/workspace/simplegiveaways/app/views/layouts/tab.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/_init_tab_globals.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/actions/_pending.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/active/_accordion.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/workers/fb_app_request_worker.rb",
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/giveaway_tab.js.coffee",
+		"/Users/harris/workspace/simplegiveaways/app/models/facebook_page.rb",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/index.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/facebook_pages/_preview.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/_completed.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/ui.js.coffee",
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/stripe-client.js.coffee",
+		"/Users/harris/workspace/simplegiveaways/app/views/layouts/application.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/pending/_start.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/giveaways.js.coffee",
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/giveaways/start_giveaway.js.coffee",
+		"/Users/harris/workspace/simplegiveaways/app/views/layouts/users.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/layouts/facebook_pages.html.haml",
+		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/actions/_active.html.haml",
+		"/Users/harris/workspace/simplegiveaways/.env",
+		"/Users/harris/workspace/simplegiveaways/config/initializers/01_facebook.rb",
+		"/Users/harris/workspace/simplegiveaways/Gemfile",
+		"/Users/harris/workspace/simplegiveaways/simplegiveaways.sublime-project",
 		"/Users/harris/workspace/simplegiveaways/app/controllers/subscription_plans_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/app/views/subscription_plans/index.html.haml",
 		"/Users/harris/workspace/simplegiveaways/app/models/subscription.rb",
@@ -212,11 +280,9 @@
 		"/Users/harris/workspace/simplegiveaways/app/models/subscription_plan.rb",
 		"/Users/harris/workspace/simplegiveaways/db/seeds.rb",
 		"/Users/harris/workspace/simplegiveaways/app/models/stripe_client.rb",
-		"/Users/harris/workspace/simplegiveaways/Gemfile",
 		"/Users/harris/.bash_profile",
 		"/Users/harris/.bash_profile.bak",
 		"/Users/harris/.bashrc",
-		"/Users/harris/workspace/simplegiveaways/.env",
 		"/Users/harris/workspace/rgnrtr/fasttracktool/.rvmrc",
 		"/Users/harris/workspace/simplegiveaways/config/database.yml",
 		"/Users/harris/workspace/simplegiveaways/.rvmrc",
@@ -230,18 +296,11 @@
 		"/Users/harris/workspace/simplegiveaways/config/application.rb",
 		"/Users/harris/workspace/simplegiveaways/Procfile",
 		"/Users/harris/workspace/simplegiveaways/app/views/facebook_pages/_subscription_plans.html.haml",
-		"/Users/harris/workspace/simplegiveaways/app/models/facebook_page.rb",
-		"/Users/harris/workspace/simplegiveaways/app/models/giveaway.rb",
-		"/Users/harris/workspace/simplegiveaways/app/controllers/facebook_pages_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/db/schema.rb",
 		"/Users/harris/workspace/simplegiveaways/app/models/user.rb",
-		"/Users/harris/workspace/simplegiveaways/scratch.txt",
 		"/Users/harris/workspace/simplegiveaways/app/controllers/charges_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/app/views/charges/new.html.haml",
-		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/pending.html.haml",
-		"/Users/harris/workspace/simplegiveaways/app/controllers/giveaways_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/app/workers/refresh_worker.rb",
-		"/Users/harris/workspace/simplegiveaways/app/models/graph.rb",
 		"/Users/harris/workspace/simplegiveaways/db/migrate/20130901213246_add_subscriptions_to_facebook_pages.rb",
 		"/Users/harris/workspace/simplegiveaways/db/migrate/20130901211957_create_subscription_plans.rb",
 		"/Users/harris/workspace/simplegiveaways/db/migrate/20130901212802_create_subscriptions.rb",
@@ -301,41 +360,14 @@
 		"/Users/harris/workspace/simplegiveaways/db/migrate/20120524045333_add_custom_fb_tab_name_to_giveaways.rb",
 		"/Users/harris/workspace/simplegiveaways/db/migrate/20120702031603_create_viral_likes.rb",
 		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/juggernaut.js.coffee",
-		"/Users/harris/workspace/simplegiveaways/app/views/layouts/tab.html.haml",
 		"/Users/harris/workspace/simplegiveaways/app/controllers/entries_controller.rb",
 		"/Users/harris/workspace/simplegiveaways/app/models/entry.rb",
 		"/Users/harris/workspace/simplegiveaways/app/views/giveaways/tab.html.haml",
-		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/giveaway_tab.js.coffee",
-		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/tab.js",
-		"/Users/harris/workspace/simplegiveaways/config/initializers/beta_whitelist.rb",
-		"/Users/harris/workspace/simplegiveaways/config/initializers/secret_token.rb",
-		"/Users/harris/workspace/simplegiveaways/config/initializers/domains.rb",
-		"/Users/harris/workspace/simplegiveaways/config/initializers/strings.rb",
-		"/Users/harris/workspace/simplegiveaways/config/newrelic.yml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/spec/lib/jobs/sync_wordpress_users_spec.rb",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/config/commands.yml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/spec/lib/jobs/migrate_wordpress_content_spec.rb",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/scratch.txt",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/models/wordpress/user.rb",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/chef/cookbooks/fasttracktool/templates/default/commands.yml.erb",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/models/target.rb",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/chef/cookbooks/fasttracktool/templates/default/paths.yml.erb",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/config/paths.yml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/.env",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/.gitignore",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/views/home/index.html.haml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/views/shared/_sites_list.html.haml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/views/home/_list.html.haml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/views/event_logs/_logs.html.haml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/views/shared/_groups_list.html.haml",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/app/views/groups/_users_with_access.html.haml",
-		"/usr/local/etc/nginx/nginx.conf",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/chef/cookbooks/fasttracktool/metadata.rb",
-		"/Users/harris/workspace/rgnrtr/fasttracktool/chef/cookbooks/fasttracktool/attributes/default.rb"
+		"/Users/harris/workspace/simplegiveaways/app/assets/javascripts/tab.js"
 	],
 	"find":
 	{
-		"height": 37.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -350,6 +382,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"page_likes_wh",
+			"analytics_aud",
+			"auth_req",
+			"tab",
+			"auth_req",
+			"auth",
+			"getLog",
+			"auth_req",
+			"auth_required",
+			"auth",
+			"prefere",
+			"likes",
+			".close.icon",
+			"oauth_key",
+			"koala",
+			"unpublish",
 			"rails",
 			"production",
 			"ruby_noexec_wrapper",
@@ -461,10 +509,7 @@
 			"after_commit",
 			"DS",
 			"puts",
-			"ExpandFile",
-			"Jobs:ExpandFile",
-			"flatla",
-			"times"
+			"ExpandFile"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -534,6 +579,130 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"givcon",
+				"app/controllers/giveaways_controller.rb"
+			],
+			[
+				"facepc",
+				"app/controllers/facebook_pages_controller.rb"
+			],
+			[
+				"compl",
+				"app/views/giveaways/completed.html.haml"
+			],
+			[
+				"active.htm",
+				"app/views/giveaways/active.html.haml"
+			],
+			[
+				"pending",
+				"app/views/giveaways/pending.html.haml"
+			],
+			[
+				"graph",
+				"app/models/graph.rb"
+			],
+			[
+				"giv.rb",
+				"app/models/giveaway.rb"
+			],
+			[
+				"actg",
+				"app/assets/javascripts/giveaways/active_giveaway.js.coffee"
+			],
+			[
+				"givtab",
+				"app/assets/javascripts/giveaway_tab.js.coffee"
+			],
+			[
+				"fbap",
+				"app/workers/fb_app_request_worker.rb"
+			],
+			[
+				"actions/pend",
+				"app/views/giveaways/actions/_pending.html.haml"
+			],
+			[
+				"initta",
+				"app/views/giveaways/_init_tab_globals.html.haml"
+			],
+			[
+				"tab.htm",
+				"app/views/layouts/tab.html.haml"
+			],
+			[
+				"scheduw",
+				"app/workers/giveaway_schedule_worker.rb"
+			],
+			[
+				"app.js",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"accord",
+				"app/views/giveaways/active/_accordion.html.haml"
+			],
+			[
+				"fa",
+				"app/controllers/facebook_pages_controller.rb"
+			],
+			[
+				"giv/in",
+				"app/views/giveaways/index.html.haml"
+			],
+			[
+				"facp",
+				"app/models/facebook_page.rb"
+			],
+			[
+				"preview",
+				"app/views/facebook_pages/_preview.html.haml"
+			],
+			[
+				"compla",
+				"app/views/giveaways/_completed.html.haml"
+			],
+			[
+				"ui.js",
+				"app/assets/javascripts/ui.js.coffee"
+			],
+			[
+				"app.css",
+				"app/assets/stylesheets/application.css.scss"
+			],
+			[
+				"giveawaystart",
+				"app/assets/javascripts/giveaways/start_giveaway.js.coffee"
+			],
+			[
+				"giv.js",
+				"app/assets/javascripts/giveaways.js.coffee"
+			],
+			[
+				"app.html",
+				"app/views/layouts/application.html.haml"
+			],
+			[
+				"ui",
+				"app/assets/javascripts/ui.js.coffee"
+			],
+			[
+				"stripe-c",
+				"app/assets/javascripts/stripe-client.js.coffee"
+			],
+			[
+				"actions/active",
+				"app/views/giveaways/actions/_active.html.haml"
+			],
+			[
+				"gi",
+				"app/models/giveaway.rb"
+			],
+			[
+				"givc",
+				"app/controllers/giveaways_controller.rb"
+			],
 			[
 				".env",
 				".env"
@@ -811,10 +980,6 @@
 				"app/models/facebook_page.rb"
 			],
 			[
-				"givcon",
-				"app/controllers/giveaways_controller.rb"
-			],
-			[
 				"give.rb",
 				"app/models/giveaway.rb"
 			],
@@ -925,126 +1090,6 @@
 			[
 				"siteslist",
 				"app/views/shared/_sites_list.html.haml"
-			],
-			[
-				"index",
-				"app/views/home/index.html.haml"
-			],
-			[
-				".gitig",
-				".gitignore"
-			],
-			[
-				"users.yml",
-				"config/users.yml"
-			],
-			[
-				"users.ym.er",
-				"chef/cookbooks/fasttracktool/templates/default/users.yml.erb"
-			],
-			[
-				"users.yml.er",
-				"chef/cookbooks/fasttracktool/templates/default/users.yml.erb"
-			],
-			[
-				"default",
-				"chef/cookbooks/fasttracktool/attributes/default.rb"
-			],
-			[
-				".conf",
-				"lib/sites/configuration_templates/wordpress.conf.erb"
-			],
-			[
-				"wordpress.conf",
-				"lib/sites/configuration_templates/wordpress.conf.erb"
-			],
-			[
-				"nginx",
-				"script/nginx/nginx.conf"
-			],
-			[
-				"commands.yml",
-				"config/commands.yml"
-			],
-			[
-				"facepage.rb",
-				"app/models/facebook_page.rb"
-			],
-			[
-				"givcontr",
-				"app/controllers/giveaways_controller.rb"
-			],
-			[
-				"charge",
-				"app/controllers/charges_controller.rb"
-			],
-			[
-				"blotter.rb",
-				"lib/blotter.rb"
-			],
-			[
-				"gemspec",
-				"blotter.gemspec"
-			],
-			[
-				"blott",
-				"config/initializers/blotter.rb"
-			],
-			[
-				"giv.rb",
-				"app/models/giveaway.rb"
-			],
-			[
-				"appcon",
-				"app/controllers/application_controller.rb"
-			],
-			[
-				"ge",
-				"Gemfile"
-			],
-			[
-				"rvmr",
-				".rvmrc"
-			],
-			[
-				"entrcon",
-				"app/controllers/entries_controller.rb"
-			],
-			[
-				"entry.rb",
-				"app/models/entry.rb"
-			],
-			[
-				"givecookie",
-				"app/models/giveaway_cookie.rb"
-			],
-			[
-				"entriescontroller",
-				"app/controllers/entries_controller.rb"
-			],
-			[
-				"giveaway.js",
-				"app/assets/javascripts/giveaway_tab.js.coffee"
-			],
-			[
-				"setupserver",
-				"chef/cookbooks/fasttracktool/recipes/setup_server.rb"
-			],
-			[
-				"appli.rb",
-				"config/application.rb"
-			],
-			[
-				"index.final",
-				"index.final.html"
-			],
-			[
-				"contact.fina",
-				"contact.final.js"
-			],
-			[
-				"contact-dev",
-				"contact-dev.coffee"
 			]
 		],
 		"width": 0.0

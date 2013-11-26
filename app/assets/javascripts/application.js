@@ -11,6 +11,8 @@
 //= require vendor/jquery.tablesorter
 //= require sg
 //= require ui
+//= require vendor/jquery.fb
+//= require facebook
 //= require giveaways
 //= require giveaways/active_giveaway
 //= require giveaways/start_giveaway

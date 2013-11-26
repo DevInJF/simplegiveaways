@@ -1,22 +1,23 @@
 - content_for :content do
 
+  %h3.ui.fluid.header Pending Giveaways
+
   - if @page.giveaways.pending.any?
 
     - if @page.giveaways.active.any?
 
-      .ui.message
+      .ui.small.message
         .content
           .header There is an active giveaway on your page right now.
           %p You can publish a pending giveaway once your active giveaway has ended.
 
     - else
 
-      .ui.message
+      .ui.small.message
         .content
           .header There is no active giveaway on your page right now.
           %p Go ahead and publish one.
 
-    %h3.ui.fluid.header Pending Giveaways
     = render 'facebook_pages/giveaways', giveaways: @giveaways
 
   - else
