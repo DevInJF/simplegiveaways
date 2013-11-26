@@ -1,4 +1,5 @@
 //= require vendor/jquery-2.0.3.min
+//= require jquery_ujs
 //= require semantic-ui
 //= require vendor/underscore
 //= require vendor/footable

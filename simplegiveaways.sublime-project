@@ -3,7 +3,27 @@
 	[
 		{
 			"follow_symlinks": true,
-			"path": "/Users/harris/workspace/simplegiveaways"
+			"path": "app"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "config"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "db"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "script"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "lib"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "spec"
 		}
 	]
 }

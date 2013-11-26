@@ -5,14 +5,7 @@ class Giveaway < ActiveRecord::Base
 
   is_impressionable
 
-  attr_accessible :title, :description, :start_date, :end_date, :prize, :terms,
-                  :preferences, :sticky_post, :preview_mode, :giveaway_url,
-                  :facebook_page_id, :image, :feed_image, :custom_fb_tab_name,
-                  :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog,
-                  :allow_multi_entries, :email_required, :bonus_value, :_total_shares,
-                  :_total_wall_posts, :_total_sends, :_total_requests, :_viral_entry_count, :_views,
-                  :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count,
-                  :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes_while_active
+  attr_accessible :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_sends, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes_while_active
 
   has_many :audits, as: :auditable
 
@@ -20,22 +13,15 @@ class Giveaway < ActiveRecord::Base
   has_many :entries
   has_many :likes
 
-  scope :active, lambda {
-    where("active IS TRUE").limit(1)
-  }
-  scope :pending, lambda {
-    where("active IS FALSE AND end_date >= ? OR end_date IS NULL", Time.zone.now)
-  }
-  scope :completed, lambda {
-    where("active IS FALSE AND end_date <= ?", Time.zone.now)
-  }
-  scope :to_start, lambda {
-    where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND start_date > ?",
-          Time.zone.now + 3.minutes, Time.zone.now - 20.minutes)
-  }
-  scope :to_end, lambda {
-    where("end_date IS NOT NULL AND active IS TRUE AND end_date <= ?", Time.zone.now + 3.minutes)
-  }
+  scope :active, -> { where("active IS TRUE").limit(1) }
+
+  scope :pending, -> { where("active IS FALSE AND end_date >= ? OR end_date IS NULL", Time.zone.now) }
+
+  scope :completed, -> { where("active IS FALSE AND end_date <= ?", Time.zone.now) }
+
+  scope :to_start, -> { where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND start_date > ?", Time.zone.now + 3.minutes, Time.zone.now - 20.minutes) }
+
+  scope :to_end, -> { where("end_date IS NOT NULL AND active IS TRUE AND end_date <= ?", Time.zone.now + 3.minutes) }
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :facebook_page_id }
   validates :title, presence: true, length: { maximum: 100 }
@@ -49,8 +35,8 @@ class Giveaway < ActiveRecord::Base
   store :terms, accessors: [ :terms_url, :terms_text ]
 
   validate :terms_present
-  validates :terms_url, format: { with: /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,
-                                  message: "must be a proper URL and start with 'http://'" }, allow_blank: true
+
+  validates :terms_url, format: { with: /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix, message: "must be a proper URL and start with 'http://'" }, allow_blank: true
 
   store :preferences, accessors: [ :autoshow_share_dialog,
                                    :allow_multi_entries,
@@ -137,7 +123,6 @@ class Giveaway < ActiveRecord::Base
     s3_credentials: S3_CREDENTIALS,
     s3_protocol: "https",
     path: "/:style/:id/:filename"
-
 
   def graph_client
     @graph ||= Koala::Facebook::API.new(facebook_page.token)
@@ -241,9 +226,8 @@ class Giveaway < ActiveRecord::Base
   def update_tab
     tabs = graph_client.get_connections("me", "tabs")
     tab = tabs.select do |tab|
-            tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
-          end.compact.flatten.first
-
+      tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
+    end.compact.flatten.first
     put_tab
   rescue Koala::Facebook::APIError
     put_tab(false)
@@ -266,7 +250,7 @@ class Giveaway < ActiveRecord::Base
 
   def select_giveaway_tab(tabs)
     tabs.select do |tab|
-      tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
+      tab["application"] && tab["application"]["namespace"] == FB_NAMESPACE
     end.compact.flatten.first
   end
 

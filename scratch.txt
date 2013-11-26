@@ -1,41 +1,33 @@
-TODO:
+Simple Giveaways:
 
-  11/22/13
+ ☐ SG.UI flash messages site-wide but especially subscriptions page.
 
-    UI:
+ ☐ Fix page_likes_while_active metric.
 
-      1) Completed Giveaways view UI.
+ ☐ Ensure all sharing is working properly.
 
-      2) End Giveaway modal UI.
+ ☐ Subscription Emails.
 
-      3) SG.UI flash messages site-wide but especially subscriptions page.
+ ☐ Require subscription upon scheduling a giveaway.
 
-    Functionality:
+ ☐ User-centric subscriptions page.
 
-      1) Fix page_likes_while_active metric.
+      a) Subscribe
 
-      2) Ensure all sharing is working properly.
-
-      3) Subscription Emails.
-
-      4) Require subscription upon scheduling a giveaway.
-
-      5) User-centric subscriptions page.
-
-        a) Subscribe
-
-        b) Cancel subscription
+      b) Cancel subscription
           If you cancel, you will not receive a refund. You will just not be reupped at the end of the billing cycle.
 
-        c) Update subscription
+      c) Update subscription
           If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. The new plan will start at the end of the cycle.
 
-          - Might need to consider hybrid subscription (single page yearly / multi page monthly) but not sure yet.
+      * Might need to consider hybrid subscription (single page yearly / multi page monthly) but not sure yet.
 
-      6) Open start giveaway modal when a user is referred back after successful subscription.
+ ☐ Open start giveaway modal when a user is referred back after successful subscription.
 
-      7) Confirm graph dates are correct.
+ ☐ Confirm graph dates are correct.
 
-      8) Confirm subscriptions with Stripe callbacks.
+ ☐ Confirm subscriptions with Stripe callbacks.
+
+ ☐ ZeroClipboard links.
 
 
