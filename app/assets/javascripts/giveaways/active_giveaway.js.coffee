@@ -13,40 +13,10 @@ SG.Giveaways.Active =
 
   initGraphs: ->
     @initGraphData()
-    @plot = @plotWithOptions()
-    @previousPoint = null
-    @graphPlaceholderEl().on 'plothover', (event, pos, item) =>
-      if item? then @itemHover(item) else @canvasHover()
+    @plotWithOptions()
 
   plotWithOptions: ->
     $.plot @graphPlaceholderEl(), @graphData, @graphOptions
-
-  showTooltip: (x, y, contents) ->
-    $("<div class='graph-tooltip'>#{contents}</div>").css(
-      position: 'absolute'
-      display: 'none'
-      top: y + 12
-      left: x + 12
-    ).appendTo("body").stop().fadeIn(150)
-
-  canvasHover: ->
-    @plot.unhighlight()
-    $(".graph-tooltip").remove()
-    @previousPoint = null
-
-  itemHover: (item) ->
-    if @previousPoint != item.dataIndex
-      @previousPoint = item.dataIndex
-
-      @plot.unhighlight()
-      $(".graph-tooltip").remove()
-
-      @plot.highlight(item.series, item.datapoint)
-
-      x = new Date(item.datapoint[0])
-      y = item.datapoint[1]
-
-      @showTooltip(item.pageX, item.pageY, "<span class='graph-tip-y'>" + y + " <span class='graph-tip-y-label' style='color:" + item.series.color + "'>" + item.series.label + "</span></span><br /><span class='graph-tip-x'><span class='graph-tip-x-val'>" + x.getMonth() + "/" + x.getDay() + "/" + x.getFullYear() + "</span></span>")
 
   initGraphData: ->
 
@@ -105,6 +75,11 @@ SG.Giveaways.Active =
     points:
       show: true
     colors: [ "#FAA732", "#5BB75B", "#49AFCD", "#0055cc" ]
+    tooltip: true
+    tooltipOpts:
+      content: "<span class='graph-tip-y'><strong>%y</strong> <span class='graph-tip-y-label'>%s</span></span><br /><span class='graph-tip-x'><span class='graph-tip-x-val'>%x</span></span>"
+      onHover: (flotItem, $tooltipEl) ->
+        $tooltipEl.css('border-color', flotItem.series.color)
 
   graphPlaceholderEl: -> $('#graph_placeholder')
 

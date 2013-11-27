@@ -5,7 +5,7 @@ class Giveaway < ActiveRecord::Base
 
   is_impressionable
 
-  attr_accessible :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_sends, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes_while_active
+  attr_accessible :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_sends, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes, :_page_likes_while_active
 
   has_many :audits, as: :auditable
 
@@ -90,6 +90,7 @@ class Giveaway < ActiveRecord::Base
                                  :_viral_views,
                                  :_viral_like_count,
                                  :_likes_from_entries_count,
+                                 :_page_likes,
                                  :_page_likes_while_active,
                                  :_entry_count,
                                  :_entry_rate,
@@ -156,11 +157,16 @@ class Giveaway < ActiveRecord::Base
     facebook_page.users.each do |page_admin|
       GiveawayNoticeMailer.start(page_admin, self).deliver rescue nil
     end
+    seed_graph
   end
 
   def save_shortlink
     self.shortlink = bitly_client.shorten(giveaway_url).short_url rescue giveaway_url
     save
+  end
+
+  def seed_graph
+    2.times { refresh_analytics; sleep 2 }
   end
 
   def bitly_client
@@ -318,6 +324,10 @@ class Giveaway < ActiveRecord::Base
     likes.where("from_entry IS TRUE")
   end
 
+  def page_likes
+    facebook_page.likes
+  end
+
   def page_likes_while_active
     active? ? page_likes_so_far : audits.last.is[:analytics][:_page_likes_while_active]
   rescue StandardError
@@ -368,6 +378,7 @@ class Giveaway < ActiveRecord::Base
     self._uniques = uniques
     self._viral_views = viral_views
     self._viral_like_count = viral_like_count
+    self._page_likes = page_likes
     self._page_likes_while_active = page_likes_while_active
     self._likes_from_entries_count = likes_from_entries_count
     self._entry_count = entry_count

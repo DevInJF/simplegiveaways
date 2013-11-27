@@ -9,6 +9,7 @@
 //= require vendor/jquery.flot.min
 //= require vendor/jquery.flot.resize.min
 //= require vendor/jquery.flot.time.min
+//= require vendor/jquery.flot.tooltip.min
 //= require vendor/jquery.tablesorter
 //= require vendor/moment
 //= require vendor/jquery.filthypillow

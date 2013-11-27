@@ -19,6 +19,7 @@ class GiveawaysController < ApplicationController
   def active
     @giveaway = @page.active_giveaway
     @entries = @giveaway.entries.sort_by(&:created_at).reverse.first(50) rescue []
+    puts flot_hash.inspect.red
     @flot = flot_hash
   end
 
@@ -160,9 +161,7 @@ class GiveawaysController < ApplicationController
   end
 
   def flot_hash
-    @giveaways ||= @giveaway
-    giveaways_graph = Graph.new(@giveaways)
-    puts giveaways_graph.inspect.yellow
+    giveaways_graph = Graph.new(@giveaway)
     { page_likes: giveaways_graph.page_likes,
       net_likes: giveaways_graph.net_likes,
       entries:   giveaways_graph.entries,

@@ -4,16 +4,23 @@ SG.UI =
     @initDropdowns()
     @initCheckboxes()
     @initAccordions()
+    @initPopups()
     @initDateTimePickers()
 
   initDropdowns: ->
-    $('.ui.dropdown').dropdown() if @dropdownEls().length
+    @dropdownEls().dropdown(debug: false) if @dropdownEls().length
 
   initCheckboxes: ->
-    $('.ui.checkbox').checkbox() if @checkboxEls().length
+    @checkboxEls().checkbox(debug: false) if @checkboxEls().length
 
   initAccordions: ->
-    $('.ui.accordion').accordion() if @accordionEls().length
+    @accordionEls().accordion(debug: false) if @accordionEls().length
+
+  initPopups: ->
+    @popupEls().popup
+      debug: false
+      title: $(this).data('title')
+      content: $(this).data('content')
 
   initDateTimePickers: ->
     @attachFilthyPillow(el) for el in @dateTimePickerEls()
@@ -21,8 +28,12 @@ SG.UI =
   attachFilthyPillow: (el) ->
     $el = $(el)
 
-    initial = moment($(el).val()) || moment().add('minutes', 10)
-    minDate = initial || moment()
+    if $(el).val().length
+      initial = moment($(el).val())
+      minDate = initial
+    else
+      initial = moment().add('minutes', 10)
+      minDate = moment()
 
     $el.filthypillow
       initialDateTime: -> initial
@@ -40,5 +51,7 @@ SG.UI =
   checkboxEls: -> $('.ui.checkbox')
 
   accordionEls: -> $('.ui.accordion')
+
+  popupEls: -> $('.popup-trigger')
 
   dateTimePickerEls: -> $('.datetime-picker')
