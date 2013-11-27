@@ -162,7 +162,7 @@ class GiveawaysController < ApplicationController
   def flot_hash
     @giveaways ||= @giveaway
     giveaways_graph = Graph.new(@giveaways)
-    puts giveaways_graph.views.inspect.yellow
+    puts giveaways_graph.inspect.yellow
     { page_likes: giveaways_graph.page_likes,
       net_likes: giveaways_graph.net_likes,
       entries:   giveaways_graph.entries,

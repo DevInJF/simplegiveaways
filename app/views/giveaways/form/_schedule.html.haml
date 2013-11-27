@@ -4,6 +4,6 @@
     Schedule
     %p.sub.header You may leave this blank for now if you don't yet know your schedule.
 
-  = f.input :start_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
+  = f.input :start_date, as: :string, input_html: { value: f.object.start_date && f.object.start_date.in_time_zone, class: 'datetime-picker', disabled: f.object.active? }, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
 
-  = f.input :end_date, as: :datetime, wrapper_html: { class: 'field date' }, label: 'End Date/Time'
+  = f.input :end_date, as: :string, input_html: { value: f.object.end_date && f.object.end_date.in_time_zone, class: 'datetime-picker' }, wrapper_html: { class: 'field date' }, label: 'End Date/Time'

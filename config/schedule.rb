@@ -1,3 +1,8 @@
-every 1.hour do
+every 30.minutes do
   runner "RefreshWorker.perform_async"
+end
+
+every 5.minutes do
+  runner "GiveawayScheduleWorker.perform_async('unpublish')"
+  runner "GiveawayScheduleWorker.perform_async('publish')"
 end

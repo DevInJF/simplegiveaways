@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require semantic-ui
 //= require vendor/underscore
+//= require vendor/jquery.fb
 //= require vendor/footable
 //= require vendor/footable.paginate
 //= require vendor/footable.sort
@@ -9,11 +10,13 @@
 //= require vendor/jquery.flot.resize.min
 //= require vendor/jquery.flot.time.min
 //= require vendor/jquery.tablesorter
+//= require vendor/moment
+//= require vendor/jquery.filthypillow
 //= require sg
-//= require ui
-//= require vendor/jquery.fb
 //= require facebook
+//= require stripe-client
+//= require ui
+//= require ui/flash_messages
 //= require giveaways
 //= require giveaways/active_giveaway
 //= require giveaways/start_giveaway
-//= require stripe-client

@@ -4,28 +4,41 @@ SG.UI =
     @initDropdowns()
     @initCheckboxes()
     @initAccordions()
+    @initDateTimePickers()
 
   initDropdowns: ->
-    $('.ui.dropdown').dropdown() if $('.ui.dropdown').length
+    $('.ui.dropdown').dropdown() if @dropdownEls().length
 
   initCheckboxes: ->
-    $('.ui.checkbox').checkbox() if $('.ui.checkbox').length
+    $('.ui.checkbox').checkbox() if @checkboxEls().length
 
   initAccordions: ->
-    $('.ui.accordion').accordion() if $('.ui.accordion').length
+    $('.ui.accordion').accordion() if @accordionEls().length
 
-  showFlash: (messageType, header, content) ->
-    flash = @buildFlash(messageType, header, content)
-    @flashMessagesEl().append(flash).show()
-    @attachFlashClose()
+  initDateTimePickers: ->
+    @attachFilthyPillow(el) for el in @dateTimePickerEls()
 
-  buildFlash: (messageType, header, content) ->
-    $("<div class='ui message #{messageType}'><i class='close icon'></i><div class='header'>#{header}</div><p>#{content}</p></div>")
+  attachFilthyPillow: (el) ->
+    $el = $(el)
 
-  attachFlashClose: ->
-    @flashMessagesEl().find('.close.icon').on 'click', (e) => @closeFlash(e)
+    initial = moment($(el).val()) || moment().add('minutes', 10)
+    minDate = initial || moment()
 
-  closeFlash: (event) ->
-    @flashMessagesEl().find(event.target).parents('.ui.message').remove()
+    $el.filthypillow
+      initialDateTime: -> initial
+      minDateTime: -> minDate
 
-  flashMessagesEl: -> $('#flash_messages')
+    $el.on 'focus', ->
+      $el.filthypillow 'show'
+
+    $el.on 'fp:save', (e, dateObj) ->
+      $el.val dateObj.format('MMM DD YYYY hh:mm A')
+      $el.filthypillow 'hide'
+
+  dropdownEls: -> $('.ui.dropdown')
+
+  checkboxEls: -> $('.ui.checkbox')
+
+  accordionEls: -> $('.ui.accordion')
+
+  dateTimePickerEls: -> $('.datetime-picker')

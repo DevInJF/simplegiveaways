@@ -17,7 +17,7 @@ class Identity < ActiveRecord::Base
 
     def find_or_create_with_omniauth(auth)
       if identity = Identity.find_with_omniauth(auth)
-        IdentityProviderWorker.perform_async(identity, auth)
+        IdentityProviderWorker.perform_async(identity.id, auth)
       else
         identity = Identity.create_with_omniauth(auth)
       end
@@ -40,8 +40,8 @@ class Identity < ActiveRecord::Base
       end
     end
 
-    def provider_worker(identity, auth)
-      @identity = Identity.find_by_id(identity["id"])
+    def provider_worker(identity_id, auth)
+      @identity = Identity.find_by_id(identity_id)
       @identity.auth = auth
       if @identity.set_provider_data!
         @identity.save
@@ -73,7 +73,7 @@ class Identity < ActiveRecord::Base
   end
 
   def process_login(datetime, csrf_token)
-    UserPagesWorker.perform_async(user, token, csrf_token)
+    UserPagesWorker.perform_async(user.id, token, csrf_token)
 
     self.login_count = self.login_count += 1
     self.logged_in_at = datetime

@@ -13,7 +13,6 @@ SG.Giveaways.Active =
 
   initGraphs: ->
     @initGraphData()
-    console.log @graphData
     @plot = @plotWithOptions()
     @previousPoint = null
     @graphPlaceholderEl().on 'plothover', (event, pos, item) =>
