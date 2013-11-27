@@ -4,6 +4,8 @@ Simple Giveaways:
 
  ✔ Fix page_likes_while_active metric. @done (13-11-26 04:27)
 
+ ✔ DateTime Picker @done (13-11-27 02:14)
+
  ☐ Ensure all sharing is working properly.
 
  ☐ Subscription Emails.
@@ -35,6 +37,4 @@ Simple Giveaways:
  ☐ Confirm subscriptions with Stripe callbacks.
 
  ☐ ZeroClipboard links.
-
- ✔ DateTime Picker @done (13-11-27 02:14)
 
