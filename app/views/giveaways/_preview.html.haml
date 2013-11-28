@@ -4,8 +4,8 @@
     = link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'header'
     %small #{giveaway.status}
   .content.stats
-    - if giveaway.completed?
-      .ui.grid
+    .ui.grid
+      - if giveaway.completed?
         .statistic.five.wide.column
           .number= giveaway.entry_count
           .description Entries
@@ -15,7 +15,15 @@
         .statistic.five.wide.column
           .number= giveaway.total_shares
           .description Shares
-    - else
-      = render 'giveaways/navigation/primary', giveaway: giveaway
+      - elsif giveaway.pending?
+        .statistic.eight.wide.center.aligned.column
+          .description Start Date
+          .number= datetime_mdy_imp(giveaway.start_date)
+        .eight.wide.right.aligned.column
+          = render 'giveaways/navigation/primary', giveaway: giveaway
+      - else
+        .sixteen.wide.column
+          = render 'giveaways/navigation/primary', giveaway: giveaway
+
 
 

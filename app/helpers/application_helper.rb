@@ -50,6 +50,10 @@ module ApplicationHelper
     datetime.strftime('%m/%d/%Y') rescue ""
   end
 
+  def datetime_mdy_imp(datetime)
+    datetime.strftime('%m/%d/%Y<br />%I:%M %p').html_safe rescue ""
+  end
+
   def bonus_entries_select
     (1..100).collect{ |i| i if i % 5 == 0 }.compact.unshift(0, 1)
   end

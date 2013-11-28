@@ -2,18 +2,29 @@ SG.Giveaways.Start =
 
   initialize: ->
     @initStartModal() if @modalEl().length
+    @triggerStartModal() if @justSubscribed()
 
   initStartModal: ->
-    @modalEl().modal(
+    @modalEl().modal
+      debug: false
+      closable: false
       onApprove: =>
         @moveForward()
         false
-    ).modal 'attach events', '#start_giveaway'
+    .modal 'attach events', '#start_giveaway'
+
+  triggerStartModal: ->
+    @modalEl().find(".modal-step[data-modal-step='1']").hide()
+    @modalEl().find(".modal-step[data-modal-step='2']").show()
+    $('#start_giveaway').trigger 'click'
+
+  justSubscribed: ->
+    top.location.search == '?subscribed'
 
   moveForward: ->
     current = @currentStepEl()
     next = @nextStepEl()
-    if next.find('#free_trial_remaining').length
+    if next.find('#no_subscription').length
       top.location.href = SG.Paths.subscriptionPlans
     else if next.find("#trigger_start_giveaway").length
       @startGiveaway()

@@ -16,9 +16,9 @@ Simple Giveaways:
 
  ✔ ZeroClipboard links. @done (13-11-28 01:04)
 
- ☐ Require subscription upon scheduling a giveaway.
+ ✔ Open start giveaway modal when a user is referred back after successful subscription. @done (13-11-28 02:34)
 
- ☐ Open start giveaway modal when a user is referred back after successful subscription.
+ ☐ Require subscription upon scheduling a giveaway.
 
  ☐ User-centric subscriptions page.
 
@@ -37,4 +37,6 @@ Simple Giveaways:
  ☐ Subscription Emails.
 
  ☐ Confirm subscriptions with Stripe callbacks.
+
+ ☐ Handle scheduling conflicts.
 
