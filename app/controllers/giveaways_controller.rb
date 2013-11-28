@@ -48,6 +48,9 @@ class GiveawaysController < ApplicationController
 
   def edit
     @page = @giveaway.facebook_page
+    if @giveaway.completed?
+      redirect_to facebook_page_path(@page)
+    end
   end
 
   def create

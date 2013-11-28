@@ -109,6 +109,17 @@ body {
   text-align: center !important;
 }
 
+a.zclip-trigger {
+
+  &.zeroclipboard-is-hover {
+    color: #00B5AD;
+  }
+
+  &.zeroclipboard-is-active {
+    color: #00B5AD;
+  }
+}
+
 .active-giveaway,
 .completed-giveaway {
 

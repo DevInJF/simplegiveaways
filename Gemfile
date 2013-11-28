@@ -34,6 +34,7 @@ gem 'stripe-rails'
 gem 'stripe_tester'
 gem 'validates_timeliness', '~> 3.0'
 gem 'whenever', require: false
+gem 'zeroclipboard-rails'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
@@ -54,6 +55,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'meta_request'
   gem 'dotenv-rails'
   gem 'erb2haml'
   gem 'factory_girl_rails'
