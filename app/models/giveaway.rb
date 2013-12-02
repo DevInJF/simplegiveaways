@@ -64,21 +64,29 @@ class Giveaway < ActiveRecord::Base
   validates_datetime :start_date, on_or_after: -> { 5.minutes.ago },
                                   on_or_after_message: "must be in the future.",
                                   unless: -> { active || active_was },
-                                  ignore_usec: true
+                                  ignore_usec: true,
+                                  allow_blank: true,
+                                  allow_nil: true
 
   validates_datetime :start_date, before: :end_date,
                                   before_message: "must be before end date/time.",
-                                  ignore_usec: true
+                                  ignore_usec: true,
+                                  allow_blank: true,
+                                  allow_nil: true
 
   validates_datetime :end_date, on_or_after: -> { (Time.zone.now - 30.seconds) },
                                 on_or_after_message: "must be in the future.",
                                 unless: -> { active_was },
-                                ignore_usec: true
+                                ignore_usec: true,
+                                allow_blank: true,
+                                allow_nil: true
 
   validates_datetime :end_date, after: :start_date,
                                 after_message: "must be after start date/time.",
                                 unless: -> { active_was },
-                                ignore_usec: true
+                                ignore_usec: true,
+                                allow_blank: true,
+                                allow_nil: true
 
   store :analytics, accessors: [ :_total_shares,
                                  :_total_wall_posts,
@@ -124,6 +132,8 @@ class Giveaway < ActiveRecord::Base
     s3_credentials: S3_CREDENTIALS,
     s3_protocol: "https",
     path: "/:style/:id/:filename"
+
+  delegate :needs_subscription?, to: :facebook_page
 
   def graph_client
     @graph ||= Koala::Facebook::API.new(facebook_page.token)
@@ -438,7 +448,7 @@ class Giveaway < ActiveRecord::Base
     end
 
     def schedule_worker(method)
-      Giveaway.to_start.each(&:publish) if method == "publish"
+      Giveaway.to_start.reject(&:needs_subscription?).each(&:publish) if method == "publish"
       Giveaway.to_end.each(&:unpublish) if method == "unpublish"
     end
 

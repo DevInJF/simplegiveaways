@@ -15,11 +15,12 @@
         .statistic.five.wide.column
           .number= giveaway.total_shares
           .description Shares
-      - elsif giveaway.pending?
+      - elsif giveaway.pending? && giveaway.start_date
         .statistic.eight.wide.center.aligned.column
           .description Start Date
-          .number= datetime_mdy_imp(giveaway.start_date)
+          .number= start_date_label(giveaway)
         .eight.wide.right.aligned.column
+          = render 'giveaways/pending/start', giveaway: giveaway
           = render 'giveaways/navigation/primary', giveaway: giveaway
       - else
         .sixteen.wide.column

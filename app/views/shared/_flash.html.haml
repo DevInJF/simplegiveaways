@@ -1,6 +1,6 @@
 - if flash
   - flash.each do |level, message|
-    %div.alert-message{ "data-alert" => "alert", class: flash_class(level) }
-      %a.close{ href: "#", "data-dismiss" => "alert" } ×
-      %strong= level.capitalize
-      = message
+    .ui.message{class: "#{level}"}
+      %i.close.icon
+      .header= level.capitalize
+      %p= message

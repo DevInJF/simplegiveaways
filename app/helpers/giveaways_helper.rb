@@ -32,4 +32,12 @@ module GiveawaysHelper
       '<div class="ui small horizontal red label">FALSE</div>'.html_safe
     end
   end
+
+  def start_date_label(giveaway)
+    if giveaway.needs_subscription?
+      "<span class='giveaway-start-date-warning popup-trigger' data-title='Inactive Start Date' data-content='A subscription is required in order to schedule a giveaway.<br /><br /><a class=\"ui mini teal button\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>' data-on='click'><i class='warning icon'></i><s>#{giveaway.start_date}</s></span>".html_safe
+    else
+      datetime_mdy(giveaway.start_date)
+    end
+  end
 end

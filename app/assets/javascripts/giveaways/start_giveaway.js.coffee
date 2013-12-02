@@ -19,7 +19,7 @@ SG.Giveaways.Start =
     $('#start_giveaway').trigger 'click'
 
   justSubscribed: ->
-    top.location.search == '?subscribed'
+    top.location.search == '?subscribed' || top.location.search == '?subscribed=true'
 
   moveForward: ->
     current = @currentStepEl()

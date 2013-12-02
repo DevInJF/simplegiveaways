@@ -2,6 +2,7 @@ SG.StripeClient =
 
   initialize: ->
     if @stripeEl().length
+      @scheduling = top.location.search == '?scheduling=true'
       @configureHandler()
       @attachListener()
 
@@ -67,8 +68,11 @@ SG.StripeClient =
         stripe_token: token,
         subscription_plan_id: $(@planEl).data('subscription_plan_id'),
         facebook_page_ids: @mapPageIds()
-      success: ->
-        top.location.href = "#{document.referrer}?subscribed"
+      success: =>
+        if @scheduling?
+          top.location.href = "#{SG.Paths.facebookPage}?subscribed"
+        else
+          top.location.href = "#{document.referrer}?subscribed"
       error: ->
         SG.UI.FlashMessages.showFlash('error', 'Error','There was a problem processing the subscription. Please try again or contact support for assistance.')
 

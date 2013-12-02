@@ -2,7 +2,10 @@
 
 .ui.stackable.grid.subscription-plans
   .sixteen.wide.column
-    = no_subscription_message(facebook_page)
+    - if @scheduling
+      = no_subscription_schedule_message(facebook_page)
+    - else
+      = no_subscription_message(facebook_page)
   #plan_columns.center.aligned.equal.height.row
     = render SubscriptionPlan.public, facebook_page: facebook_page
 

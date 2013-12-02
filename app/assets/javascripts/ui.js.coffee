@@ -3,6 +3,7 @@ SG.UI =
   initialize: ->
     SG.UI.ZClip.initialize()
     SG.UI.DatetimePickers.initialize()
+    SG.UI.FlashMessages.initialize()
     @initDropdowns()
     @initCheckboxes()
     @initAccordions()
@@ -18,11 +19,12 @@ SG.UI =
     @accordionEls().accordion(debug: false) if @accordionEls().length
 
   initPopups: ->
-    if @popupEls().length
-      @popupEls().popup
-        debug: false
-        title: $(this).data('title')
-        content: $(this).data('content')
+    @initPopup(el) for el in @popupEls()
+
+  initPopup: (el) ->
+    $(el).popup
+      debug: false
+      on: $(el).data('on')
 
   dropdownEls: -> $('.ui.dropdown')
 

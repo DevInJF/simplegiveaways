@@ -120,6 +120,14 @@ a.zclip-trigger {
   }
 }
 
+.giveaway-start-date-warning {
+
+  &:hover {
+    color: #00B5AD;
+    cursor: pointer;
+  }
+}
+
 .active-giveaway,
 .completed-giveaway {
 

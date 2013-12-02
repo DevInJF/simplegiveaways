@@ -1,5 +1,8 @@
 SG.UI.FlashMessages =
 
+  initialize: ->
+    @attachFlashClose()
+
   showFlash: (messageType, header, content) ->
     flash = @buildFlash(messageType, header, content)
     @flashMessagesEl().append(flash).show()

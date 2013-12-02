@@ -18,7 +18,9 @@ Simple Giveaways:
 
  ✔ Open start giveaway modal when a user is referred back after successful subscription. @done (13-11-28 02:34)
 
- ☐ Require subscription upon scheduling a giveaway.
+ ✔ Require subscription upon scheduling a giveaway. @done (13-12-01 19:09)
+
+ ☐ Handle scheduling conflicts.
 
  ☐ User-centric subscriptions page.
 
@@ -32,12 +34,10 @@ Simple Giveaways:
 
       * Might need to consider hybrid subscription (single page yearly / multi page monthly) but not sure yet.
 
- ☐ Ensure all sharing is working properly.
+ ☐ Confirm subscriptions with Stripe callbacks.
 
  ☐ Subscription Emails.
 
- ☐ Confirm subscriptions with Stripe callbacks.
-
- ☐ Handle scheduling conflicts.
+ ☐ Ensure all sharing is working properly.
 
  ☐ Loading indicators site-wide.

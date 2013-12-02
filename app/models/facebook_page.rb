@@ -59,6 +59,10 @@ class FacebookPage < ActiveRecord::Base
     subscription && subscription_plan.is_multi_page?
   end
 
+  def needs_subscription?
+    !has_free_trial_remaining? && !has_active_subscription?
+  end
+
   def subscription_plan
     subscription.subscription_plan rescue nil
   end

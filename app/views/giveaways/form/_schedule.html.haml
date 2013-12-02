@@ -2,7 +2,8 @@
 
   %h4.ui.header
     Schedule
-    %p.sub.header You may leave this blank for now if you don't yet know your schedule.
+    %p.sub.header
+      If you choose a start date and/or end date, we will automatically publish and/or unpublish your giveaway at the chosen date and time (as long as there is not a scheduling conflict with another giveaway).
 
   = f.input :start_date, as: :string, input_html: { value: f.object.start_date && f.object.start_date.in_time_zone, class: 'datetime-picker', disabled: f.object.active? }, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
 

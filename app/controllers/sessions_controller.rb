@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
     if params[:fb] == "true"
       flash[:error] = "You have been signed out due to a change in your facebook session."
     else
-      flash[:success] = "Logged out!"
+      flash[:info] = "Logged out!"
     end
     cookies.delete :'_sg-just_logged_in'
     cookies.delete :_sg_uid

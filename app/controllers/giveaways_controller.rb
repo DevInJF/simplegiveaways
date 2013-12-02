@@ -63,8 +63,12 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.save
       ga_event("Giveaways", "Giveaway#create", @giveaway.title, @giveaway.id)
-      flash[:success] = "The #{@giveaway.title} giveaway has been created."
-      redirect_to pending_facebook_page_giveaways_path(@page)
+      flash[:info] = "The #{@giveaway.title} giveaway has been created."
+      if @page.needs_subscription? && @giveaway.start_date
+        redirect_to facebook_page_subscription_plans_path(@page, scheduling: true)
+      else
+        redirect_to pending_facebook_page_giveaways_path(@page)
+      end
     else
       flash.now[:error] = "There was a problem creating #{@giveaway.title}."
       render :new
@@ -72,20 +76,26 @@ class GiveawaysController < ApplicationController
   end
 
   def update
+    @page = @giveaway.facebook_page
+
     if @giveaway.update_attributes(params[:giveaway])
-      flash[:success] = "The #{@giveaway.title} giveaway has been updated."
-      redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
-      @giveaway.update_tab if @giveaway.active?
+      if @page.needs_subscription? && @giveaway.start_date
+        redirect_to facebook_page_subscription_plans_path(@page, scheduling: true)
+      else
+        flash[:info] = "The #{@giveaway.title} giveaway has been updated."
+        redirect_to facebook_page_giveaway_url(@page, @giveaway)
+        @giveaway.update_tab if @giveaway.active?
+      end
     else
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
       @giveaway.reload
-      render :show
+      render :edit
     end
   end
 
   def destroy
     if @giveaway.destroy
-      flash[:success] = "The #{@giveaway.title} giveaway has been permanently deleted."
+      flash[:info] = "The #{@giveaway.title} giveaway has been permanently deleted."
       redirect_to facebook_page_giveaways_url(@giveaway.facebook_page)
     else
       flash.now[:error] = @giveaway.errors.messages.to_s
@@ -95,7 +105,7 @@ class GiveawaysController < ApplicationController
 
   def start
     if @giveaway.publish(params[:giveaway])
-      flash[:success] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
+      flash[:info] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
       flash[:error] = "There was a problem activating #{@giveaway.title}."
@@ -105,7 +115,7 @@ class GiveawaysController < ApplicationController
 
   def end
     if @giveaway.unpublish
-      flash[:success] = "#{@giveaway.title} has been ended and will no longer accept entries."
+      flash[:info] = "#{@giveaway.title} has been ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
     else
       @giveaway

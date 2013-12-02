@@ -1,5 +1,7 @@
 .ui.mini.basic.buttons
   = link_to 'Edit', edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'ui button'
-  .ui.floating.dropdown.icon.button
-    %i.dropdown.icon
-    .menu
+  - if giveaway.pending?
+    .ui.floating.dropdown.icon.button
+      %i.dropdown.icon
+      .menu
+        = link_to 'Start Now', '#', class: 'ui item', id: 'start_giveaway'
