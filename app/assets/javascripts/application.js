@@ -23,3 +23,4 @@
 //= require giveaways
 //= require giveaways/active_giveaway
 //= require giveaways/start_giveaway
+//= require giveaways/form

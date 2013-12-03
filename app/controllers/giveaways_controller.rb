@@ -19,7 +19,6 @@ class GiveawaysController < ApplicationController
   def active
     @giveaway = @page.active_giveaway
     @entries = @giveaway.entries.sort_by(&:created_at).reverse.first(50) rescue []
-    puts flot_hash.inspect.red
     @flot = flot_hash
   end
 

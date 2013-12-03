@@ -2,6 +2,14 @@ SG.UI.FlashMessages =
 
   initialize: ->
     @attachFlashClose()
+    @initFlashHide()
+
+  initFlashHide: ->
+    if @flashMessagesEl().children().length
+      setTimeout (=> @hideFlash()), 3500
+
+  hideFlash: ->
+    @flashMessagesEl().find('.ui.message.notice').transition()
 
   showFlash: (messageType, header, content) ->
     flash = @buildFlash(messageType, header, content)

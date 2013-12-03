@@ -22,6 +22,8 @@ Simple Giveaways:
 
  ☐ Handle scheduling conflicts.
 
+ ☐ Only initialize JS classes when needed.  Do some kind of check.
+
  ☐ User-centric subscriptions page.
 
       ☐ Subscribe
@@ -41,3 +43,7 @@ Simple Giveaways:
  ☐ Ensure all sharing is working properly.
 
  ☐ Loading indicators site-wide.
+
+ ☐ Ensure user will never be surprised by an action taken by the app.
+
+ ☐ Look into DigitalOcean as a VPS provider.

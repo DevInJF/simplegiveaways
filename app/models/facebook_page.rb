@@ -36,7 +36,7 @@ class FacebookPage < ActiveRecord::Base
   end
 
   def has_active_subscription?
-    subscription && subscription.active?
+    has_free_trial_remaining? || subscription && subscription.active?
   end
 
   def has_inactive_subscription?

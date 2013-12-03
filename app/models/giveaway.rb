@@ -19,6 +19,8 @@ class Giveaway < ActiveRecord::Base
 
   scope :completed, -> { where("active IS FALSE AND end_date <= ?", Time.zone.now) }
 
+  scope :incomplete, -> { where("active IS TRUE OR (active IS FALSE AND end_date >= ? OR end_date IS NULL)", Time.zone.now) }
+
   scope :to_start, -> { where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND start_date > ?", Time.zone.now + 3.minutes, Time.zone.now - 20.minutes) }
 
   scope :to_end, -> { where("end_date IS NOT NULL AND active IS TRUE AND end_date <= ?", Time.zone.now + 3.minutes) }
@@ -202,7 +204,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def startable?
-    facebook_page.has_active_subscription? && facebook_page.no_active_giveaways? rescue false
+    facebook_page.has_active_subscription? && facebook_page.no_active_giveaways? && !has_scheduling_conflict? rescue false
   end
 
   def status
@@ -215,6 +217,16 @@ class Giveaway < ActiveRecord::Base
       "Active"
     else
       nil
+    end
+  end
+
+  def has_scheduling_conflict?
+    scheduling_conflicts.any?
+  end
+
+  def scheduling_conflicts
+    (facebook_page.giveaways.incomplete - [self]).select do |pg|
+      (pg.start_date..pg.end_date).cover?(start_date)
     end
   end
 
