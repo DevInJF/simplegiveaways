@@ -22,7 +22,7 @@ Simple Giveaways:
 
  ✔ Handle scheduling conflicts. @done (13-12-04 00:45)
 
- ☐ Only initialize JS classes when needed.  Do some kind of check.
+ ✔ Only initialize JS classes when needed.  Do some kind of check. @done (13-12-04 02:17)
 
  ☐ User-centric subscriptions page.
 

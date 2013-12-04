@@ -1,7 +1,7 @@
 SG.Giveaways.Active =
 
   initialize: ->
-    @initEntriesTable()
+    @initEntriesTable() if @entriesTableEl().length
 
   initEntriesTable: ->
     @entriesTableEl().footable
