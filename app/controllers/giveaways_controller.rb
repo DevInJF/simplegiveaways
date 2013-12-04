@@ -159,8 +159,17 @@ class GiveawaysController < ApplicationController
 
   def check_schedule
     page = FacebookPage.find_by_id(params[:facebook_page_id])
-    giveaway = page.giveaways.build(start_date: params[:start_date])
-    if conflicts = giveaway.scheduling_conflicts
+    giveaway = params[:giveaway_id].present? ? Giveaway.find_by_id(params[:giveaway_id]) : page.giveaways.build
+
+    if params[:date_type] == 'end'
+      giveaway.end_date = params[:date]
+      conflicts = giveaway.end_date_conflicts
+    else
+      giveaway.start_date = params[:date]
+      conflicts = giveaway.start_date_conflicts
+    end
+
+    if conflicts
       render json: conflicts
     else
       head :unprocessable_entity

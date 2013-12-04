@@ -36,6 +36,10 @@
     SG.Paths.subscribe = '#{subscribe_path(@page)}';
     SG.StripeClient.publishableKey = '#{Rails.configuration.stripe.publishable_key}';
 
+- if @giveaway
+  :javascript
+    SG.currentGiveawayId = '#{@giveaway.id}';
+
 - if current_user && current_user.fb_uid
   :javascript
     simpleGiveaways["current_user"]["name"] = '#{current_user.name}';

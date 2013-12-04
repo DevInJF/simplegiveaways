@@ -8,11 +8,17 @@
   .date-container
     = f.input :start_date, as: :string, input_html: { value: f.object.start_date && f.object.start_date.in_time_zone, class: 'datetime-picker', disabled: f.object.active?, 'data-date-type' => 'start' }, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
     .conflicts-container.ui.pointing.above.label{style: 'display: none'}
-      This start date conflicts with the following giveaway schedules:
-      %br
+      .conflict-message
+        %i.info.icon
+        This start date conflicts with the following giveaway schedules.
+        %br
+        If you choose to keep this date, the current giveaway will not be automatically published.
 
   .date-container
     = f.input :end_date, as: :string, input_html: { value: f.object.end_date && f.object.end_date.in_time_zone, class: 'datetime-picker', 'data-date-type' => 'end' }, wrapper_html: { class: 'field date' }, label: 'End Date/Time'
     .conflicts-container.ui.pointing.above.label{style: 'display: none'}
-      This end date conflicts with the following giveaway schedules:
-      %br
+      .conflict-message
+        %i.info.icon
+        This end date conflicts with the following giveaway schedules.
+        %br
+        If you choose to keep this date, the conflicting giveaways will not be automatically published.

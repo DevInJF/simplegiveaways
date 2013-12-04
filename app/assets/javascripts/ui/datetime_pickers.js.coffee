@@ -6,33 +6,43 @@ SG.UI.DatetimePickers =
   attachDatetimePicker: (el) ->
     $el = $(el)
 
-    if $(el).val().length
-      initial = moment($(el).val())
-    else
-      initial = moment().add('minutes', 10)
-
     $el.datetimepicker
       step: 15
       format: "l, F d, Y @ h:i A"
       formatDate: "m/d/Y"
       formatTime: "h:i A"
-      minDate: "#{moment().add('minutes', 10).format('M/D/YYYY')}"
+      minDate: @setMinDate($el)
       onChangeDateTime: (current, $input) =>
-        @conflictContainerEl($input).find('.conflict').empty()
-        @checkSchedule(current, $input)
+        unless @startConflicts && $input.data('date-type') == 'end'
+          @conflictContainerEl($input).find('.conflict').remove()
+          @checkSchedule(current, $input)
+      onClose: =>
+        SG.UI.DatetimePickers.initialize()
 
   checkSchedule: (datetime, input) ->
     $.ajax
       url: SG.Paths.checkSchedule
       dataType: 'json',
       data:
+        giveaway_id: SG.currentGiveawayId
         facebook_page_id: SG.currentPageId
-        start_date: datetime
+        date: datetime
+        date_type: $(input).data('date-type')
       success: (conflicts, status) =>
         if conflicts.length
+          @startConflicts = true if $(input).data('date-type') == 'start'
           @showConflictMessage(input, conflict) for conflict in conflicts
         else
+          @startConflicts = false if $(input).data('date-type') == 'start'
           @conflictContainerEl(input).hide()
+
+  setMinDate: ($el) ->
+    if $el.data('date-type') == 'end' && $('#giveaway_start_date').val().length
+      "#{moment($('#giveaway_start_date').val()).format('M/D/YYYY')}"
+    else
+      "#{moment().add('minutes', 10).format('M/D/YYYY')}"
+
+  startConflicts: false
 
   showConflictMessage: (input, conflict) ->
     @conflictContainerEl(input).show().append("<div class='conflict'><strong>#{conflict.title}</strong><br />#{moment(conflict.start_date).format('M/D/YYYY')} - #{moment(conflict.end_date).format('M/D/YYYY')}</div>")

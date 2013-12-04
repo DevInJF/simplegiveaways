@@ -221,12 +221,24 @@ class Giveaway < ActiveRecord::Base
   end
 
   def has_scheduling_conflict?
-    scheduling_conflicts.any?
+    start_date_conflicts.any? || end_date_conflicts.any?
   end
 
-  def scheduling_conflicts
+  def all_conflicts
+    start_date_conflicts + end_date_conflicts
+  end
+
+  def start_date_conflicts
+    scheduling_conflicts(start_date)
+  end
+
+  def end_date_conflicts
+    scheduling_conflicts(end_date).reject(&:active?)
+  end
+
+  def scheduling_conflicts(date)
     (facebook_page.giveaways.incomplete - [self]).select do |pg|
-      (pg.start_date..pg.end_date).cover?(start_date)
+      (pg.start_date..pg.end_date).cover?(date)
     end
   end
 

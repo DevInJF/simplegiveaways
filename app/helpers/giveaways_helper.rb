@@ -13,7 +13,7 @@ module GiveawaysHelper
         label.html_safe
       when 'Pending'
         label = <<-eos
-          <div class="ui ribbon label red">
+          <div class="ui ribbon label">
             <strong>Pending</strong><br />
             Starts on #{datetime_mdy(giveaway.start_date)}<br />
             Ends on #{datetime_mdy(giveaway.end_date)}
@@ -41,27 +41,29 @@ module GiveawaysHelper
   end
 
   def start_date_label(giveaway)
+    return giveaway.start_date if giveaway.completed?
     if giveaway.needs_subscription?
       "<span class='giveaway-start-date-warning popup-trigger' data-title='Inactive Start Date' data-content='A subscription is required in order to schedule a giveaway.<br /><br /><a class=\"ui mini teal button\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>' data-on='click'><i class='warning icon'></i><s>#{giveaway.start_date}</s></span>".html_safe
     elsif giveaway.has_scheduling_conflict?
       "<span class=\"giveaway-start-date-warning popup-trigger\" data-title=\"Inactive Start Date\" data-content=\"This giveaway has scheduling conflicts with the following giveaways:<br /><br />#{conflicts(giveaway)}<br /><br />Please update your giveaway schedules in order to activate this start date.<br /><br /><a class='ui mini teal button' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'>Edit Giveaway</a>\" data-on='click'><i class='warning icon'></i><s>#{giveaway.start_date}</s></span>".html_safe
     else
-      datetime_mdy(giveaway.start_date)
+      giveaway.start_date
     end
   end
 
   def end_date_label(giveaway)
+    return giveaway.end_date if giveaway.completed?
     if giveaway.needs_subscription?
       "<span class='giveaway-end-date-warning popup-trigger' data-title='Inactive End Date' data-content='A subscription is required in order to schedule a giveaway.<br /><br /><a class=\"ui mini teal button\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>' data-on='click'><i class='warning icon'></i><s>#{giveaway.end_date}</s></span>".html_safe
     elsif giveaway.has_scheduling_conflict?
       "<span class=\"giveaway-end-date-warning popup-trigger\" data-title=\"Inactive End Date\" data-content=\"This giveaway has scheduling conflicts with the following giveaways:<br /><br />#{conflicts(giveaway)}<br /><br />Please update your giveaway schedules in order to activate this end date.<br /><br /><a class='ui mini teal button' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'>Edit Giveaway</a>\" data-on='click'><i class='warning icon'></i><s>#{giveaway.end_date}</s></span>".html_safe
     else
-      datetime_mdy(giveaway.end_date)
+      giveaway.end_date
     end
   end
 
   def conflicts(giveaway)
-    giveaway.scheduling_conflicts.map do |g|
+    giveaway.all_conflicts.map do |g|
       "<strong><a href='#{facebook_page_giveaway_path(g.facebook_page, g)}'>#{g.title}</a></strong>"
     end.join('<br />')
   end

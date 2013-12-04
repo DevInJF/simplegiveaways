@@ -126,6 +126,10 @@ a.zclip-trigger {
   width: 99%;
   text-align: center;
 
+  .conflict-message {
+    text-transform: none;
+  }
+
   .conflict {
     margin-top: 5px;
   }
