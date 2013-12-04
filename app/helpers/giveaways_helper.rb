@@ -12,7 +12,14 @@ module GiveawaysHelper
         eos
         label.html_safe
       when 'Pending'
-        '<div class="ui ribbon label"><strong>Pending</strong></div>'.html_safe
+        label = <<-eos
+          <div class="ui ribbon label red">
+            <strong>Pending</strong><br />
+            Starts on #{datetime_mdy(giveaway.start_date)}<br />
+            Ends on #{datetime_mdy(giveaway.end_date)}
+          </div>
+        eos
+        label.html_safe
       when 'Completed'
         label = <<-eos
           <div class="ui ribbon label red">

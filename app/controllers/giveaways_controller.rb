@@ -157,6 +157,16 @@ class GiveawaysController < ApplicationController
     end
   end
 
+  def check_schedule
+    page = FacebookPage.find_by_id(params[:facebook_page_id])
+    giveaway = page.giveaways.build(start_date: params[:start_date])
+    if conflicts = giveaway.scheduling_conflicts
+      render json: conflicts
+    else
+      head :unprocessable_entity
+    end
+  end
+
   def export_entries
     return false unless send_data(@giveaway.csv, type: 'text/csv', filename: 'entries_export.csv')
     ga_event("Giveaways", "Giveaway#export_entries", @giveaway.title, @giveaway.id)

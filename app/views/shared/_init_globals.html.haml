@@ -29,7 +29,9 @@
 
 - if @page
   :javascript
+    SG.currentPageId = '#{@page.id}';
     SG.Paths.facebookPage = '#{facebook_page_path(@page)}';
+    SG.Paths.checkSchedule = '#{check_schedule_facebook_page_giveaways_path(@page)}';
     SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
     SG.Paths.subscribe = '#{subscribe_path(@page)}';
     SG.StripeClient.publishableKey = '#{Rails.configuration.stripe.publishable_key}';

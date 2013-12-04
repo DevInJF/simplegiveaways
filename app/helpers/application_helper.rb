@@ -54,6 +54,10 @@ module ApplicationHelper
     datetime.strftime('%m/%d/%Y<br />%I:%M %p').html_safe rescue ""
   end
 
+  def pretty_datetime(datetime)
+    datetime.to_formatted_s
+  end
+
   def bonus_entries_select
     (1..100).collect{ |i| i if i % 5 == 0 }.compact.unshift(0, 1)
   end

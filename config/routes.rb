@@ -31,6 +31,7 @@ Simplegiveaways::Application.routes.draw do
       get :active, on: :collection
       get :pending, on: :collection
       get :completed, on: :collection
+      get :check_schedule, on: :collection
 
       match :start, on: :member
       get :end, on: :member

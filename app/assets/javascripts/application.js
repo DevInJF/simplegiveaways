@@ -12,7 +12,7 @@
 //= require vendor/jquery.flot.resize.min
 //= require vendor/jquery.flot.time.min
 //= require vendor/jquery.flot.tooltip.min
-//= require vendor/jquery.filthypillow
+//= require vendor/jquery.datetimepicker
 //= require sg
 //= require facebook
 //= require stripe-client
@@ -23,4 +23,3 @@
 //= require giveaways
 //= require giveaways/active_giveaway
 //= require giveaways/start_giveaway
-//= require giveaways/form

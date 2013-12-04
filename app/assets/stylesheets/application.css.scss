@@ -1,5 +1,5 @@
 @import 'semantic-ui';
-@import 'jquery.filthypillow';
+@import 'jquery.datetimepicker';
 @import 'bourbon';
 @import 'mixins';
 
@@ -117,6 +117,17 @@ a.zclip-trigger {
 
   &.zeroclipboard-is-active {
     color: #00B5AD;
+  }
+}
+
+.conflicts-container {
+  margin-top: 0 !important;
+  margin-bottom: 1em !important;
+  width: 99%;
+  text-align: center;
+
+  .conflict {
+    margin-top: 5px;
   }
 }
 
