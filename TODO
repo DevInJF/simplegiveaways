@@ -20,7 +20,7 @@ Simple Giveaways:
 
  ✔ Require subscription upon scheduling a giveaway. @done (13-12-01 19:09)
 
- ☐ Handle scheduling conflicts.
+ ✔ Handle scheduling conflicts. @done (13-12-04 00:45)
 
  ☐ Only initialize JS classes when needed.  Do some kind of check.
 
