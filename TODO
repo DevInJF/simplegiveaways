@@ -24,6 +24,8 @@ Simple Giveaways:
 
  ✔ Only initialize JS classes when needed.  Do some kind of check. @done (13-12-04 02:17)
 
+ ☐ Consider getting rid of the ability to have multiple single page subscriptions.  If you want more than one page, you'll need a multi.
+
  ☐ User-centric subscriptions page.
 
       ✔ Subscribe @done (13-12-05 03:49)
