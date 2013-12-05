@@ -9,5 +9,7 @@
 //= require ../../../vendor/assets/javascripts/charts/flot/jquery.flot.tooltip.min
 //= require ../../../vendor/assets/javascripts/charts/flot/jquery.flot.resize
 //= require ../../../vendor/assets/javascripts/charts/flot/jquery.flot.grow
+//= require ../../../vendor/assets/javascripts/charts/flot/demo
 //= require ../../../vendor/assets/javascripts/calendar/bootstrap_calendar
+//= require ../../../vendor/assets/javascripts/calendar/demo
 //= require ../../../vendor/assets/javascripts/sortable/jquery.sortable
