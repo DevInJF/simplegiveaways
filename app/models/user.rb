@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
     Rails.logger.debug(event)
   end
 
+  include SubscriptionStatus
+
+  def has_free_trial_remaining?
+    false
+  end
+
   def stripe_customer
     Stripe::Customer.retrieve(stripe_customer_id)
   end

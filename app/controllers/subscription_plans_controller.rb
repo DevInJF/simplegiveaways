@@ -1,6 +1,6 @@
 class SubscriptionPlansController < ApplicationController
 
-  layout 'facebook_pages'
+  layout Proc.new { |controller| params[:facebook_page_id] ? 'facebook_pages' : 'users' }
 
   def index
     @scheduling = true if params[:scheduling]

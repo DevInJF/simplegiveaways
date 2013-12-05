@@ -1,7 +1,7 @@
 .ui.right.floated.tiny.teal.buttons
   = link_to 'My Account', dashboard_path, class: 'ui button'
-  .ui.teal.floating.dropdown.icon.button
+  .ui.floating.dropdown.icon.button
     %i.dropdown.icon
     .menu
-      = active_link_to 'Subscriptions', '#subscriptions', class: 'item'
+      = active_link_to 'Subscription', user_subscription_plans_path(current_user), class: 'item'
       = active_link_to 'Logout', logout_path, class: 'item'

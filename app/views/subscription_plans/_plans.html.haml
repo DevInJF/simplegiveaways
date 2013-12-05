@@ -1,11 +1,13 @@
 %script#stripe_js{src: "https://checkout.stripe.com/checkout.js"}
 
+- sub_object = facebook_page ? facebook_page : current_user
+
 .ui.stackable.grid.subscription-plans
   .sixteen.wide.column
     - if @scheduling
-      = no_subscription_schedule_message(facebook_page)
+      = no_subscription_schedule_message(sub_object)
     - else
-      = no_subscription_message(facebook_page)
+      = subscription_message(sub_object)
   #plan_columns.center.aligned.equal.height.row
-    = render SubscriptionPlan.public, facebook_page: facebook_page
+    = render SubscriptionPlan.public, sub_object: sub_object
 

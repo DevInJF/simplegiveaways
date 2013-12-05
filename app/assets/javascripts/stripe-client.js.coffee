@@ -61,7 +61,7 @@ SG.StripeClient =
 
   createSubscription: (token) ->
     $.ajax
-      url: SG.Paths.subscribe,
+      url: SG.Paths.pageSubscribe,
       type: 'POST',
       dataType: 'json',
       data:

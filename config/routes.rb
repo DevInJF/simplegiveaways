@@ -38,11 +38,16 @@ Simplegiveaways::Application.routes.draw do
     end
   end
 
-  match '/subscribe/(:facebook_page_id)', to: 'subscriptions#create', as: 'subscribe'
+  match '/facebook_pages/:facebook_page_id/subscribe', to: 'subscriptions#create', as: 'facebook_page_subscribe'
 
   match '/facebook_pages/:facebook_page_id/subscription_plans', to: 'subscription_plans#index', as: 'facebook_page_subscription_plans'
 
-  resources :users, only: []
+  match '/users/:user_id/subscribe', to: 'subscriptions#create', as: 'user_subscribe'
+
+  match '/users/:user_id/subscription_plans', to: 'subscription_plans#index', as: 'user_subscription_plans'
+
+  resources :users
+
   match '/deauth/:provider', to: 'users#deauth'
 
   get '/dashboard', to: 'users#show', as: 'dashboard'

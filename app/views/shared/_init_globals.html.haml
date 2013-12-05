@@ -33,7 +33,7 @@
     SG.Paths.facebookPage = '#{facebook_page_path(@page)}';
     SG.Paths.checkSchedule = '#{check_schedule_facebook_page_giveaways_path(@page)}';
     SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
-    SG.Paths.subscribe = '#{subscribe_path(@page)}';
+    SG.Paths.pageSubscribe = '#{facebook_page_subscribe_path(@page)}';
     SG.StripeClient.publishableKey = '#{Rails.configuration.stripe.publishable_key}';
 
 - if @giveaway
@@ -45,3 +45,4 @@
     simpleGiveaways["current_user"]["name"] = '#{current_user.name}';
     simpleGiveaways["current_user"]["fb_uid"] = '#{current_user.fb_uid}';
     simpleGiveaways["current_user"]["email"] = '#{current_user.email}';
+    SG.Paths.userSubscribe = '#{user_subscribe_path(current_user)}';
