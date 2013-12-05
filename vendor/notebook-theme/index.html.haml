@@ -1,19 +1,20 @@
 !!!
-%html{lang: "en", class: "app"}
+%html.app{lang: "en"}
   %head
-    %meta{charset: "utf-8"}
-    %meta{content: "224405887571151", property: "fb:app_id"}
-    %title Simple Giveaways
-
-    %meta{content: "Easily create, deploy, and manage giveaways on your Facebook pages.", name: "description"}
-    %meta{content: "width=device-width, initial-scale=1, maximum-scale=1", name: "viewport"}
-
-    = google_analytics_tracking_javascript
-
-    = stylesheet_link_tag :application
-
-    = csrf_meta_tags
-
+    %meta{charset: "utf-8"}/
+    %title Notebook | Web Application
+    %meta{content: "app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav", name: "description"}/
+    %meta{content: "width=device-width, initial-scale=1, maximum-scale=1", name: "viewport"}/
+    %link{href: "css/bootstrap.css", rel: "stylesheet", type: "text/css"}/
+    %link{href: "css/animate.css", rel: "stylesheet", type: "text/css"}/
+    %link{href: "css/font-awesome.min.css", rel: "stylesheet", type: "text/css"}/
+    %link{cache: "false", href: "css/font.css", rel: "stylesheet", type: "text/css"}/
+    %link{cache: "false", href: "js\\calendar/bootstrap_calendar.css", rel: "stylesheet", type: "text/css"}/
+    %link{href: "css/app.css", rel: "stylesheet", type: "text/css"}/
+    /[if lt IE 9]
+      <script src="js/ie/html5shiv.js" cache="false"></script>
+      <script src="js/ie/respond.min.js" cache="false"></script>
+      <script src="js/ie/excanvas.js" cache="false"></script>
   %body
     %section.vbox
       %header.bg-dark.dk.header.navbar.navbar-fixed-top-xs
@@ -592,5 +593,20 @@
             %a.hide.nav-off-screen-block{"data-target" => "#nav", "data-toggle" => "class:nav-off-screen", href: "#"}
           %aside#notes.bg-light.lter.b-l.aside-md.hide
             .wrapper Notification
-
-    = javascript_include_tag :application
+    %script{src: "js/jquery.min.js"}
+    / Bootstrap
+    %script{src: "js/bootstrap.js"}
+    / App
+    %script{src: "js/app.js"}
+    %script{src: "js/app.plugin.js"}
+    %script{src: "js/slimscroll/jquery.slimscroll.min.js"}
+    %script{cache: "false", src: "js/charts/easypiechart/jquery.easy-pie-chart.js"}
+    %script{cache: "false", src: "js/charts/sparkline/jquery.sparkline.min.js"}
+    %script{cache: "false", src: "js/charts/flot/jquery.flot.min.js"}
+    %script{cache: "false", src: "js/charts/flot/jquery.flot.tooltip.min.js"}
+    %script{cache: "false", src: "js/charts/flot/jquery.flot.resize.js"}
+    %script{cache: "false", src: "js/charts/flot/jquery.flot.grow.js"}
+    %script{cache: "false", src: "js/charts/flot/demo.js"}
+    %script{cache: "false", src: "js/calendar/bootstrap_calendar.js"}
+    %script{cache: "false", src: "js/calendar/demo.js"}
+    %script{cache: "false", src: "js/sortable/jquery.sortable.js"}
