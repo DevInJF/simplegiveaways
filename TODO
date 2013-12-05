@@ -26,7 +26,9 @@ Simple Giveaways:
 
  ☐ User-centric subscriptions page.
 
-      ☐ Subscribe
+      ✔ Subscribe @done (13-12-05 03:49)
+
+      ☐ Smarter post-subscribe redirect (targeted instead of :back or top.location.referrer)
 
       ☐ Cancel subscription
           If you cancel, you will not receive a refund. You will just not be reupped at the end of the billing cycle.

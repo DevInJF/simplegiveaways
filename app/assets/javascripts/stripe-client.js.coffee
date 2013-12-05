@@ -61,7 +61,7 @@ SG.StripeClient =
 
   createSubscription: (token) ->
     $.ajax
-      url: SG.Paths.pageSubscribe,
+      url: @ajaxPath(),
       type: 'POST',
       dataType: 'json',
       data:
@@ -88,5 +88,12 @@ SG.StripeClient =
   planContainerEl: -> $('.subscription-plan')
 
   plansContainerEl: -> $('#plan_columns')
+
+  isUserCentric: ->
+    @plansContainerEl().data('is-user-centric')
+
+  ajaxPath: ->
+    console.log @isUserCentric()
+    @isUserCentric() && SG.Paths.userSubscribe || SG.Paths.pageSubscribe
 
   stripeEl: -> $('script#stripe_js')

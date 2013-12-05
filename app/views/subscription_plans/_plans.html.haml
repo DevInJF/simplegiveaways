@@ -8,6 +8,6 @@
       = no_subscription_schedule_message(sub_object)
     - else
       = subscription_message(sub_object)
-  #plan_columns.center.aligned.equal.height.row
+  #plan_columns.center.aligned.equal.height.row{ 'data-is-user-centric' => "#{sub_object.is_a?(User) ? 'true' : nil}" }
     = render SubscriptionPlan.public, sub_object: sub_object
 
