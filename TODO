@@ -38,6 +38,8 @@ Simple Giveaways:
 
       * Might need to consider hybrid subscription (single page yearly / multi page monthly) but not sure yet.
 
+ ☐ Ensure subscription update/cancel invoicing is accurate.
+
  ☐ Confirm subscriptions with Stripe callbacks.
 
  ☐ Subscription Emails.

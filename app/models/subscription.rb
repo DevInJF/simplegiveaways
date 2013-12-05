@@ -21,8 +21,9 @@ class Subscription < ActiveRecord::Base
   end
 
   def subscribe_pages(pages)
+    puts pages.inspect.red
     pages.each do |page|
-      page.has_active_subscription? ? handle_subscribed_page(page) : subscribe_page(page)
+      page.subscription_id? ? handle_subscribed_page(page) : subscribe_page(page)
     end
   end
 
