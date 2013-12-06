@@ -13,8 +13,8 @@ SG.Users =
       success: (response, status) =>
         @pagesTargetEl().html(response.html) if response.html.length
         if response.complete
-          @pagesPollerEl().transition(complete: => @pagesPollerEl().remove())
           clearInterval(@pollTimer)
+          @pagesPollerEl().transition(complete: => @pagesPollerEl().remove())
 
   pagesTargetEl: -> $('#user_facebook_pages')
 

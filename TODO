@@ -28,6 +28,8 @@ Simple Giveaways:
 
  ✔ Consider getting rid of the ability to have multiple single page subscriptions.  If you want more than one page, you'll need a multi. @done (13-12-05 22:05)
 
+ ✔ AJAX-load user pages during onboarding process. @done (13-12-05 23:39)
+
  ☐ User-centric subscriptions page.
 
       ✔ Subscribe @done (13-12-05 03:49)

@@ -63,7 +63,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.5)
     arel (3.0.2)
-    autoprefixer-rails (0.8.20131104)
+    autoprefixer-rails (0.8.20131205)
       execjs
     awesome_print (1.2.0)
     aws-sdk (1.6.1)
@@ -180,7 +180,7 @@ GEM
       multi_xml
     httpauth (0.1)
     httpclient (2.2.5)
-    i18n (0.6.5)
+    i18n (0.6.9)
     impressionist (1.1.1)
       httpclient (~> 2.2)
       nokogiri (~> 1.5)
