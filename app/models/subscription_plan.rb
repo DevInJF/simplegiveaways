@@ -9,13 +9,11 @@ class SubscriptionPlan < ActiveRecord::Base
   scope :public, where("price_in_cents_per_cycle > ?", 0)
 
   PLAN_HIERARCHY = [
-    { name: "Single Page Unlimited (monthly)",
+    { name: "Single Page",
       weight: 0 },
-    { name: "Single Page Unlimited (yearly)",
+    { name: "Single Page Pro",
       weight: 1 },
-    { name: "Multi Page Unlimited (monthly)",
-      weight: 1 },
-    { name: "Multi Page Unlimited (yearly)",
+    { name: "Multi Page Pro",
       weight: 2 }
   ]
 
@@ -57,10 +55,23 @@ class SubscriptionPlan < ActiveRecord::Base
       )
     end
 
-    def single_page_monthly
+    def single_page
       self.find_or_create_by_name(
-        name: "Single Page Unlimited (monthly)",
-        description: "Run unlimited giveaways on your page.",
+        name: "Single Page",
+        description: "Run unlimited giveaways on one of your pages.",
+        price_in_cents_per_cycle: 700,
+        is_single_page: true,
+        is_multi_page: false,
+        is_onetime: false,
+        is_monthly: true,
+        is_yearly: false
+      )
+    end
+
+    def single_page_pro
+      self.find_or_create_by_name(
+        name: "Single Page Pro",
+        description: "Run unlimited giveaways on one of your pages. Track viral sharing and referrals, gain insights from advanced analytics, and remove Simple Giveaways branding from your giveaways.",
         price_in_cents_per_cycle: 1500,
         is_single_page: true,
         is_multi_page: false,
@@ -70,42 +81,16 @@ class SubscriptionPlan < ActiveRecord::Base
       )
     end
 
-    def single_page_yearly
+    def multi_page_pro
       self.find_or_create_by_name(
-        name: "Single Page Unlimited (yearly)",
-        description: "Run unlimited giveaways on your page.",
-        price_in_cents_per_cycle: 15000,
-        is_single_page: true,
-        is_multi_page: false,
-        is_onetime: false,
-        is_monthly: false,
-        is_yearly: true
-      )
-    end
-
-    def multi_page_monthly
-      self.find_or_create_by_name(
-        name: "Multi Page Unlimited (monthly)",
-        description: "Run unlimited giveaways on any of your pages.",
+        name: "Multi Page Pro",
+        description: "Run unlimited giveaways on any of your pages. Track viral sharing and referrals, gain insights from advanced analytics, and remove Simple Giveaways branding from your giveaways.",
         price_in_cents_per_cycle: 4500,
         is_single_page: false,
         is_multi_page: true,
         is_onetime: false,
         is_monthly: true,
         is_yearly: false
-      )
-    end
-
-    def multi_page_yearly
-      self.find_or_create_by_name(
-        name: "Multi Page Unlimited (yearly)",
-        description: "Run unlimited giveaways on any of your pages.",
-        price_in_cents_per_cycle: 45000,
-        is_single_page: false,
-        is_multi_page: true,
-        is_onetime: false,
-        is_monthly: false,
-        is_yearly: true
       )
     end
   end
