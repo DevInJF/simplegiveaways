@@ -42,11 +42,22 @@ Simple Giveaways:
 
  ☐ Ensure subscription update/cancel invoicing is accurate.
 
-      ☐ If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. The new plan will start at the end of the cycle.
+      ✔ If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. @done (13-12-06 06:02)
 
-      ☐ If you cancel, you will not receive a refund. You will just not be reupped at the end of the billing cycle.
+      ☐ If you update to a lower plan, the new plan will start at the end of the cycle.
+
+            Mark the user as still having the old subscription until the end of the cycle.
+            Schedule a job to downgrade the user's subscription in our db at the end of the cycle (will already be updated in Stripe).
+
+      ☐ If you update to a higher plan, we will create a new invoice for the prorated charges and bill you immediately.
+
+      ☐ If you cancel, you will not receive a refund.
+
+      ☐ If you cancel, your plan will not be renewed at the end of the cycle.
 
  ☐ Don't mark completed, giveaways which have not been started b/c of scheduling conflict or lack of subscription.
+
+ ☐ Just warn unsubscribed user that his giveaway won't be automatically started.  Don't force a subscription.
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
