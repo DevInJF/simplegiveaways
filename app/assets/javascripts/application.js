@@ -20,6 +20,7 @@
 //= require ui/datetime_pickers
 //= require ui/flash_messages
 //= require ui/zclip
+//= require users
 //= require giveaways
 //= require giveaways/active_giveaway
 //= require giveaways/start_giveaway

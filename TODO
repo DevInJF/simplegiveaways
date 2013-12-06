@@ -24,9 +24,9 @@ Simple Giveaways:
 
  ✔ Only initialize JS classes when needed.  Do some kind of check. @done (13-12-04 02:17)
 
- ☐ Look to Rafflecopter for pricing/features inspiration.
+ ✔ Look to Rafflecopter for pricing inspiration. @done (13-12-05 22:05)
 
- ☐ Consider getting rid of the ability to have multiple single page subscriptions.  If you want more than one page, you'll need a multi.
+ ✔ Consider getting rid of the ability to have multiple single page subscriptions.  If you want more than one page, you'll need a multi. @done (13-12-05 22:05)
 
  ☐ User-centric subscriptions page.
 
@@ -55,3 +55,5 @@ Simple Giveaways:
  ☐ Ensure user will never be surprised by an action taken by the app.
 
  ☐ Look into DigitalOcean as a VPS provider.
+
+ ☐ Market research for subscription and feature modifications/additions.

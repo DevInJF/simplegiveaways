@@ -22,7 +22,7 @@ Simplegiveaways::Application.routes.draw do
 
   resources :likes, only: [:create]
 
-  resources :facebook_pages, only: [:show] do
+  resources :facebook_pages, only: [:index, :show] do
 
     resources :giveaways do
       resources :entries, only: [:index, :create, :update]

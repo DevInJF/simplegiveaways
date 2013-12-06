@@ -3,6 +3,19 @@ class FacebookPagesController < ApplicationController
 
   load_and_authorize_resource through: :current_user
 
+  def index
+    partial = render_to_string(partial: 'users/facebook_pages')
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          complete: current_user.finished_onboarding?,
+          html: "#{partial}"
+        }.to_json
+      end
+    end
+  end
+
   def show
     @page = FacebookPage.find_by_id(params[:id])
 

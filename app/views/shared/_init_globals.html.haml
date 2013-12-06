@@ -45,4 +45,5 @@
     simpleGiveaways["current_user"]["fb_uid"] = '#{current_user.fb_uid}';
     simpleGiveaways["current_user"]["email"] = '#{current_user.email}';
     SG.StripeClient.publishableKey = '#{Rails.configuration.stripe.publishable_key}';
+    SG.Paths.userPages = '#{facebook_pages_path}';
     SG.Paths.userSubscribe = '#{user_subscribe_path(current_user)}';

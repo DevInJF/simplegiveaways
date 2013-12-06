@@ -167,6 +167,8 @@ class FacebookPage < ActiveRecord::Base
         end
       end
 
+      user.update_attributes(finished_onboarding: true)
+
       remove_outdated_pages(user, pages)
     end
 

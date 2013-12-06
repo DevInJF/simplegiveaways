@@ -1,9 +1,12 @@
 - content_for :content do
 
-  - if current_user.facebook_pages.any?
+  #user_facebook_pages
 
-    = render 'users/facebook_pages'
+    - if current_user.finished_onboarding?
 
-  - else
+      = render 'users/facebook_pages'
 
-    = render 'shared/loader', text: 'Loading Your Facebook Pages'
+  - unless current_user.finished_onboarding?
+
+    #pages_poller
+      = render 'shared/loader', text: 'Loading Your Facebook Pages'

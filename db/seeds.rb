@@ -1,5 +1,5 @@
 # Create SubscriptionPlans
-Rake::Task["stripe:prepare"].invoke
+# Rake::Task["stripe:prepare"].invoke
 
 SubscriptionPlan.single_page
 SubscriptionPlan.single_page_pro
