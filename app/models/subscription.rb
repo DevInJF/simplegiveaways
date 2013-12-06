@@ -21,19 +21,15 @@ class Subscription < ActiveRecord::Base
   end
 
   def subscribe_pages(pages)
-    pages.each do |page|
-      page.subscription_id? ? handle_subscribed_page(page) : subscribe_page(page)
-    end
+    self.facebook_pages = select_pages(pages)
+    save!
   end
 
   private
 
-  def subscribe_page(page)
-    page.update_attributes(subscription_id: self.id)
-    self.update_attributes(quantity: quantity + 1) if subscription_plan.is_single_page?
-  end
-
-  def handle_subscribed_page(page)
-    subscribe_page(page) if page.subscription_plan < self.subscription_plan
+  def select_pages(pages)
+    pages.select do |page|
+      page.subscription_id.nil? || page.subscription_id == self.id || page.subscription_plan < self.subscription_plan
+    end
   end
 end

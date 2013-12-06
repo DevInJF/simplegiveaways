@@ -28,8 +28,10 @@ class SubscriptionsController < ApplicationController
   end
 
   def assign_facebook_pages
-    @facebook_pages = params[:facebook_page_ids].map do |page_id|
-      FacebookPage.find_by_id(page_id)
+    @facebook_pages = if params[:facebook_page_ids]
+      params[:facebook_page_ids].map { |pid| FacebookPage.find_by_id(pid) }
+    else
+      current_user.facebook_pages
     end
   end
 
@@ -49,7 +51,7 @@ class SubscriptionsController < ApplicationController
 
   def update_stripe_subscription
     find_or_create_customer
-    @customer.update_subscription(plan: @subscription_plan.stripe_subscription_id, quantity: @subscription.quantity, prorate: true)
+    @customer.update_subscription(plan: @subscription_plan.stripe_subscription_id, prorate: true)
   end
 
   def find_or_create_customer

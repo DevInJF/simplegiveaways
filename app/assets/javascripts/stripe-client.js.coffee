@@ -8,13 +8,12 @@ SG.StripeClient =
 
   configureHandler: ->
     @handler = StripeCheckout.configure
-      key: "#{@publishableKey}",
+      key: "#{@publishableKey}"
       token: (data, args) =>
         @createSubscription(data.id)
 
   attachListener: ->
-    @checkboxEl().checkbox(onChange: @updatePrice)
-    @planContainerEl().click (e) =>
+    @planContainerEls().click (e) =>
       if @pageSelectorVisible(e)
         @closePageSelector() if $(e.target).hasClass('remove')
         @openStripeCheckout() if $(e.target).hasClass('check')
@@ -31,49 +30,40 @@ SG.StripeClient =
       @openStripeCheckout()
 
   openPageSelector: ->
-    $(@planEl).removeClass('four').addClass('page-selector twelve')
+    $(@planEl).removeClass('five').addClass('page-selector six')
 
   closePageSelector: ->
     $('.page-selector').find('.resetable').checkbox('disable').
     end().find('.default').checkbox('enable').
-    end().removeClass('page-selector twelve').addClass('four')
+    end().removeClass('page-selector six').addClass('five')
 
   pageSelectorVisible: (event) ->
     $(event.target).parents('.page-selector').length || $(event.target).hasClass('page-selector')
-
-  updatePrice: ->
-    pageSelector = $('.page-selector')
-    quantity = pageSelector.find('input:checked').size()
-    currentAmount = parseInt pageSelector.data('original_amount')
-    currentPrice = currentAmount / 100
-    newPrice = "$#{currentPrice * quantity}.00"
-    pageSelector.data('checkout_amount', quantity * currentAmount)
-    pageSelector.find('.number.price').text(newPrice)
 
   openStripeCheckout: ->
     amount = $(@planEl).data('checkout_amount')
     unless amount is 0
       @handler.open
-        name: 'Simple Giveaways',
-        description: $(@planEl).data('description'),
-        amount: amount,
+        name: 'Simple Giveaways'
+        description: $(@planEl).data('description')
+        amount: amount
         email: simpleGiveaways.current_user.email
 
   createSubscription: (token) ->
     $.ajax
-      url: @ajaxPath(),
-      type: 'POST',
-      dataType: 'json',
+      url: @ajaxPath()
+      type: 'POST'
+      dataType: 'json'
       data:
-        stripe_token: token,
-        subscription_plan_id: $(@planEl).data('subscription_plan_id'),
+        stripe_token: token
+        subscription_plan_id: $(@planEl).data('subscription_plan_id')
         facebook_page_ids: @mapPageIds()
       success: =>
         if @scheduling?
           top.location.href = "#{SG.Paths.facebookPage}?subscribed"
         else
           top.location.href = "#{document.referrer}?subscribed"
-      error: ->
+      error: =>
         SG.UI.FlashMessages.showFlash('error', 'Error','There was a problem processing the subscription. Please try again or contact support for assistance.')
 
   mapPageIds: ->
@@ -85,7 +75,7 @@ SG.StripeClient =
 
   checkboxEl: -> $('.ui.checkbox')
 
-  planContainerEl: -> $('.subscription-plan')
+  planContainerEls: -> $('.subscription-plan')
 
   plansContainerEl: -> $('#plan_columns')
 
@@ -93,7 +83,6 @@ SG.StripeClient =
     @plansContainerEl().data('is-user-centric')
 
   ajaxPath: ->
-    console.log @isUserCentric()
     @isUserCentric() && SG.Paths.userSubscribe || SG.Paths.pageSubscribe
 
   stripeEl: -> $('script#stripe_js')

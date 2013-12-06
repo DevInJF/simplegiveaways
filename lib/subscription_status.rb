@@ -1,7 +1,7 @@
 module SubscriptionStatus
 
   def has_active_subscription?
-    has_free_trial_remaining? || subscription && subscription.active?
+    subscription && subscription.active?
   end
 
   def has_inactive_subscription?

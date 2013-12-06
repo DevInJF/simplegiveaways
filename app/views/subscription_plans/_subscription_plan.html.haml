@@ -1,14 +1,12 @@
 - is_current_plan = sub_object && sub_object.subscription_plan && sub_object.subscription_plan.id == subscription_plan.id
 
-.four.wide.column.subscription-plan{id: subscription_plan.stripe_subscription_id, class: "#{is_current_plan ? 'current-subscription' : ''}", data: { description: subscription_plan.name, original_amount: subscription_plan.price_in_cents_per_cycle, checkout_amount: subscription_plan.price_in_cents_per_cycle, subscription_plan_id: subscription_plan.id, is_single_page: "#{subscription_plan.is_single_page?}" }}
+.five.wide.column.subscription-plan{id: subscription_plan.stripe_subscription_id, class: "#{is_current_plan ? 'current-subscription' : ''}", data: { description: subscription_plan.name, original_amount: subscription_plan.price_in_cents_per_cycle, checkout_amount: subscription_plan.price_in_cents_per_cycle, subscription_plan_id: subscription_plan.id, is_single_page: "#{subscription_plan.is_single_page?}" }}
   .ui.top.attached.segment
     .ui.header
-      .number.price= subscription_plan.price
+      .number.price= price_label(subscription_plan)
   .ui.inverted.teal.attached.segment.plan-name
     %h5.ui.header
       = basic_plan_name_string(subscription_plan)
-      .ui.inverted.teal.sub.header
-        = plan_recurring_string(subscription_plan)
   .ui.bottom.attached.stacked.segment
     .ui.divided.selection.list.plan-features
       .item= page_count_feature_string(subscription_plan)
@@ -18,10 +16,12 @@
       .item= white_label_feature_string(subscription_plan)
     .pages
       %form.ui.fluid.form
+        %legend Choose a Page
+        .ui.divider
         - current_user.facebook_pages.sort_by { |p| p.name.size }.each do |page|
           .field
-            .ui.toggle.checkbox{class: (sub_object == page || is_current_plan && sub_object.subscription.facebook_pages.include?(page)) ? 'default' : 'resetable'}
-              = check_box_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", page.id, (sub_object == page || is_current_plan && sub_object.subscription.facebook_pages.include?(page))
+            .ui.radio.checkbox{class: (sub_object == page || is_current_plan && sub_object.subscription.facebook_pages.include?(page)) ? 'default' : 'resetable'}
+              = radio_button_tag "#{subscription_plan.name.parameterize}[pages]", page.id, (sub_object == page || is_current_plan && sub_object.subscription.facebook_pages.include?(page))
               = label_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", page.name
         .form-actions
           .ui.two.fluid.buttons

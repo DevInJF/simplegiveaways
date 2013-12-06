@@ -34,17 +34,19 @@ Simple Giveaways:
 
       ✔ Subscribe @done (13-12-05 03:49)
 
-      ☐ Smarter post-subscribe redirect (targeted instead of :back or top.location.referrer)
+      ✔ Update subscription @done (13-12-06 05:35)
 
       ☐ Cancel subscription
-          If you cancel, you will not receive a refund. You will just not be reupped at the end of the billing cycle.
 
-      ☐ Update subscription
-          If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. The new plan will start at the end of the cycle.
-
-      * Might need to consider hybrid subscription (single page yearly / multi page monthly) but not sure yet.
+      ☐ Smarter post-subscribe redirect (targeted instead of :back or top.location.referrer)
 
  ☐ Ensure subscription update/cancel invoicing is accurate.
+
+      ☐ If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. The new plan will start at the end of the cycle.
+
+      ☐ If you cancel, you will not receive a refund. You will just not be reupped at the end of the billing cycle.
+
+ ☐ Don't mark completed, giveaways which have not been started b/c of scheduling conflict or lack of subscription.
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
@@ -54,8 +56,20 @@ Simple Giveaways:
 
  ☐ Loading indicators site-wide.
 
+      ☐ Start Giveaway
+
+      ☐ End Giveaway
+
+      ☐ Subscribe
+
+      ☐ Update Subscription
+
+      ☐ Cancel Subscription
+
  ☐ Ensure user will never be surprised by an action taken by the app.
 
  ☐ Look into DigitalOcean as a VPS provider.
+
+ VERSION 1.0
 
  ☐ Market research for subscription and feature modifications/additions.
