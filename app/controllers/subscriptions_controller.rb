@@ -7,10 +7,23 @@ class SubscriptionsController < ApplicationController
   def create
     begin
       if update_sg_subscription
-        render json: true
+        render json: { redirect_path: session.delete(:return_to) }
       else
         head :unprocessable_entity
       end
+    rescue Stripe::CardError => error
+      respond_with error
+    end
+  end
+
+  def destroy
+    begin
+      if cancel_sg_subscription
+        flash[:info] = "You were successfully unsubscribed from the #{@subscription_plan.name} plan. You will be able to enjoy the benefits of your subscription until the end of the current billing cycle. Thank you for using <strong>Simple Giveaways</strong>.".html_safe
+      else
+        flash[:error] = "We were unable to unsubscribe you from the #{@subscription_plan.name} plan. Please try again or contact support for assistance."
+      end
+      redirect_to user_subscription_plans_path(current_user)
     rescue Stripe::CardError => error
       respond_with error
     end
@@ -47,9 +60,32 @@ class SubscriptionsController < ApplicationController
     after_update
   end
 
+  def cancel_sg_subscription
+    if @subscription = current_user.subscription
+      @cancellation = true
+      @subscription_plan = @subscription.subscription_plan
+
+      if cancel_stripe_subscription
+        @subscription.activate_next_after = @subscription.current_period_end
+        @subscription.next_plan_id = nil
+        @subscription.save
+      end
+    end
+  end
+
   def after_update
     if @subscription.subscribe_pages(@facebook_pages)
-      update_stripe_subscription
+      stripe_response = update_stripe_subscription
+
+      @subscription.current_period_start = DateTime.strptime("#{stripe_response.current_period_start}", '%s')
+      @subscription.current_period_end = DateTime.strptime("#{stripe_response.current_period_end}", '%s')
+
+      if @downgrade
+        @subscription.activate_next_after = @subscription.current_period_end
+        @subscription.next_plan_id = @subscription.subscription_plan.id
+      end
+
+      @subscription.save
     else
       false
     end
@@ -60,15 +96,17 @@ class SubscriptionsController < ApplicationController
       @upgrade = true
     elsif @subscription.subscription_plan > @subscription_plan
       @downgrade = true
-    elsif params[:cancellation]
-      @cancellation = true
     end
   end
 
   def update_stripe_subscription
     find_or_create_customer
-    puts stripe_update_options.inspect.green
     @customer.update_subscription(stripe_update_options)
+  end
+
+  def cancel_stripe_subscription
+    find_or_create_customer
+    @customer.cancel_subscription(stripe_update_options)
   end
 
   def stripe_update_options
@@ -78,7 +116,9 @@ class SubscriptionsController < ApplicationController
     elsif @downgrade
       defaults.merge(prorate: false)
     elsif @cancellation
-      defaults.merge(at_period_end: true)
+      { at_period_end: true }
+    else
+      defaults
     end
   end
 

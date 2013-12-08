@@ -44,6 +44,8 @@ Simplegiveaways::Application.routes.draw do
 
   match '/users/:user_id/subscribe', to: 'subscriptions#create', as: 'user_subscribe'
 
+  match '/users/:user_id/unsubscribe', to: 'subscriptions#destroy', as: 'user_unsubscribe'
+
   match '/users/:user_id/subscription_plans', to: 'subscription_plans#index', as: 'user_subscription_plans'
 
   resources :users
