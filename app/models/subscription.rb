@@ -7,13 +7,17 @@ class Subscription < ActiveRecord::Base
   has_one  :user
   has_many :facebook_pages
 
+  scope :to_update, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id IS NOT ?", Time.zone.now, 0) }
+
+  scope :to_cancel, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id IS ?", Time.zone.now, 0) }
+
   after_customer_subscription_created! do |subscription, event|
     Rails.logger.debug(subscription)
     Rails.logger.debug(event)
   end
 
   def active?
-    true
+    subscription_plan.present?
   end
 
   def inactive?
@@ -23,6 +27,28 @@ class Subscription < ActiveRecord::Base
   def subscribe_pages(pages)
     self.facebook_pages = select_pages(pages)
     save!
+  end
+
+  def cancel_plan
+    self.subscription_plan = nil
+    self.activate_next_after = nil
+    self.next_plan_id = nil
+    save
+  end
+
+  def update_plan
+    self.subscription_plan_id = next_plan_id
+    self.activate_next_after = nil
+    self.next_plan_id = nil
+    save
+  end
+
+  class << self
+
+    def schedule_worker
+      Subscription.to_cancel.each(&:cancel_plan)
+      Subscription.to_update.each(&:update_plan)
+    end
   end
 
   private

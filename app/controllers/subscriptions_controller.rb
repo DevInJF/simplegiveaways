@@ -67,7 +67,7 @@ class SubscriptionsController < ApplicationController
 
       if cancel_stripe_subscription
         @subscription.activate_next_after = @subscription.current_period_end
-        @subscription.next_plan_id = nil
+        @subscription.next_plan_id = 0
         @subscription.save
       end
     end

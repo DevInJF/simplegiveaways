@@ -44,22 +44,32 @@ Simple Giveaways:
 
       ✔ If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. @done (13-12-06 06:02)
 
-      ☐ If you update to a lower plan, the new plan will start at the end of the cycle.
+      ✔ If you update to a lower plan, the new plan will start at the end of the cycle. @done (13-12-07 22:26)
 
             Mark the user as still having the old subscription until the end of the cycle.
             Schedule a job to downgrade the user's subscription in our db at the end of the cycle (will already be updated in Stripe).
 
       ☐ If you update to a higher plan, we will create a new invoice for the prorated charges and bill you immediately.
 
-      ☐ If you cancel, you will not receive a refund.
+      ✔ If you cancel, you will not receive a refund. @done (13-12-07 22:26)
 
-      ☐ If you cancel, your plan will not be renewed at the end of the cycle.
+      ✔ If you cancel, your plan will not be renewed at the end of the cycle. @done (13-12-07 22:26)
+
+      ☐ If you cancel, we will try to associate your page with another active subscription from another user (if possible).
+
+      ☐ If a user's plan is scheduled to change or be cancelled, make sure messaging reflects this.
+
+          Example: "You are currently subscribed to SUBSCRIPTION_PLAN.name.  Your plan will be changed to NEW_SUBSCRIPTION_PLAN.name after ACTIVATE_NEXT_AFTER. or Your plan will be cancelled after ACTIVATE_NEXT_AFTER. or Your plan will be renewed on CURRENT_PERIOD_END."
 
  ☐ Don't mark completed, giveaways which have not been started b/c of scheduling conflict or lack of subscription.
 
  ☐ Just warn unsubscribed user that his giveaway won't be automatically started.  Don't force a subscription.
 
  ☐ Confirm subscriptions with Stripe callbacks.
+
+      ☐ Keep subscription period attrs up to date when invoices are created by Stripe.
+
+      ☐ Deactivate subscriptions when failed charge limit exceeded.
 
  ☐ Subscription Emails.
 

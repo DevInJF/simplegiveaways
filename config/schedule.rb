@@ -1,3 +1,7 @@
+every 1.hours do
+  runner "SubscriptionScheduleWorker.perform_async"
+end
+
 every 30.minutes do
   runner "RefreshWorker.perform_async"
 end
