@@ -21,8 +21,21 @@ class User < ActiveRecord::Base
     false
   end
 
-  def stripe_customer
-    Stripe::Customer.retrieve(stripe_customer_id)
+  def stripe_customer(stripe_token = nil)
+    if stripe_customer_id
+      Stripe::Customer.retrieve(stripe_customer_id)
+    elsif stripe_token
+      create_customer(stripe_token)
+    end
+  end
+
+  def create_customer(stripe_token)
+    customer = Stripe::Customer.create(
+      email: email,
+      card: stripe_token
+    )
+    self.stripe_customer_id = customer.id
+    save ? customer : false
   end
 
   def current_identity

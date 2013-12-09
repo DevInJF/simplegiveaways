@@ -11,6 +11,8 @@ class Subscription < ActiveRecord::Base
 
   scope :to_cancel, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id < ?", Time.zone.now, 1) }
 
+  delegate :name, to: :subscription_plan
+
   after_customer_subscription_created! do |subscription, event|
     Rails.logger.debug(subscription)
     Rails.logger.debug(event)
@@ -24,9 +26,16 @@ class Subscription < ActiveRecord::Base
     !active?
   end
 
-  def subscribe_pages(pages)
-    self.facebook_pages = select_pages(pages)
-    save!
+  def cancellation_pending?
+    activate_next_after && next_plan_id == 0
+  end
+
+  def downgrade_pending?
+    activate_next_after && next_plan_id != 0
+  end
+
+  def next_plan
+    SubscriptionPlan.find_by_id(next_plan_id)
   end
 
   def cancel_plan
@@ -34,6 +43,8 @@ class Subscription < ActiveRecord::Base
     self.activate_next_after = nil
     self.next_plan_id = nil
     save
+
+    after_cancel_actions
   end
 
   def update_plan
@@ -43,7 +54,76 @@ class Subscription < ActiveRecord::Base
     save
   end
 
+  def process_update_request(plan_id)
+    assess_update_type(plan_id)
+
+    if @downgrade
+      self.activate_next_after = current_period_end
+      self.next_plan_id = plan_id
+    else
+      self.subscription_plan_id = plan_id
+      self.activate_next_after = nil
+      self.next_plan_id = nil
+    end
+
+    save
+  end
+
+  def process_cancellation_request(stripe_token)
+    @cancellation = true
+
+    if find_or_create_customer(stripe_token) && cancel_stripe_subscription
+      self.activate_next_after = current_period_end
+      self.next_plan_id = 0
+      save ? self : false
+    end
+  end
+
+  def after_update_actions(options = {})
+    if find_or_create_customer(options[:stripe_token]) && subscribe_pages(options[:facebook_page_ids])
+
+      stripe_response = update_stripe_subscription
+
+      self.current_period_start = DateTime.strptime("#{stripe_response.current_period_start}", '%s')
+      self.current_period_end = DateTime.strptime("#{stripe_response.current_period_end}", '%s')
+
+      save ? self : false
+    end
+  end
+
+  def after_cancel_actions
+    facebook_pages.each do |page|
+      potentials = page.users.map(&:subscription) rescue []
+      if potentials.select(&:is_multi_page?).any?
+        page.subscription_id = potentials.first.id
+      else
+        page.subscription_id = nil
+      end
+      page.save
+    end
+  end
+
   class << self
+
+    def create_or_update(options = {})
+      user = User.find_by_id(options[:user_id])
+
+      if subscription = user.subscription
+        subscription.process_update_request(options[:subscription_plan_id])
+      else
+        subscription = Subscription.create(user: user, subscription_plan_id: options[:subscription_plan_id])
+      end
+
+      subscription.after_update_actions(options)
+    end
+
+    def cancel(options = {})
+      user = User.find_by_id(options[:user_id])
+
+      if subscription = user.subscription
+        subscription.process_cancellation_request(options[:stripe_token])
+      end
+    end
 
     def schedule_worker
       Subscription.to_cancel.each(&:cancel_plan)
@@ -53,9 +133,54 @@ class Subscription < ActiveRecord::Base
 
   private
 
-  def select_pages(pages)
-    pages.select do |page|
-      page.subscription_id.nil? || page.subscription_id == self.id || page.subscription_plan < self.subscription_plan
+  def assess_update_type(plan_id)
+    plan = SubscriptionPlan.find_by_id(plan_id)
+    if subscription_plan < plan
+      @upgrade = true
+    elsif subscription_plan > plan
+      @downgrade = true
+    end
+  end
+
+  def update_stripe_subscription
+    @customer.update_subscription(stripe_update_options).tap do |customer|
+      create_stripe_invoice if @upgrade
+    end
+  end
+
+  def cancel_stripe_subscription
+    @customer.cancel_subscription(stripe_update_options)
+  end
+
+  def create_stripe_invoice
+    Stripe::Invoice.create(customer: @customer.id)
+  end
+
+  def stripe_update_options
+    defaults = { plan: subscription_plan.stripe_subscription_id }
+    if @upgrade
+      defaults.merge(prorate: true)
+    elsif @downgrade
+      defaults.merge(prorate: false)
+    elsif @cancellation
+      { at_period_end: true }
+    else
+      defaults
+    end
+  end
+
+  def find_or_create_customer(stripe_token)
+    @customer = user.stripe_customer(stripe_token)
+  end
+
+  def subscribe_pages(facebook_page_ids)
+    self.facebook_pages = select_pages(facebook_page_ids)
+  end
+
+  def select_pages(facebook_page_ids)
+    facebook_page_ids.map do |pid|
+      page = FacebookPage.find_by_id(pid)
+      page if page.subscription_id.nil? || page.subscription_id == self.id || page.subscription_plan < self.subscription_plan
     end
   end
 end
