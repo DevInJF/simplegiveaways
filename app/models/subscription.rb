@@ -40,10 +40,21 @@ class Subscription < ActiveRecord::Base
     SubscriptionPlan.find_by_id(next_plan_id)
   end
 
+  def next_page
+    if next_plan && next_plan.is_single_page?
+      if next_page_ids.any?
+        FacebookPage.find_by_id(next_page_ids.first)
+      else
+        FacebookPage.find_by_id(facebook_pages.first.id)
+      end
+    end
+  end
+
   def cancel_plan
     self.subscription_plan = nil
     self.activate_next_after = nil
     self.next_plan_id = nil
+    self.next_page_ids = nil
     save
 
     after_cancel_actions
@@ -62,13 +73,13 @@ class Subscription < ActiveRecord::Base
   end
 
   def process_update_request(options = {})
-    assess_update_type(options[:plan_id])
+    assess_update_type(options[:subscription_plan_id])
 
     if @downgrade
       self.activate_next_after = current_period_end
-      self.next_plan_id = options[:plan_id]
+      self.next_plan_id = options[:subscription_plan_id]
     else
-      self.subscription_plan_id = options[:plan_id]
+      self.subscription_plan_id = options[:subscription_plan_id]
       self.activate_next_after = nil
       self.next_plan_id = nil
       self.next_page_ids = nil

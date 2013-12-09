@@ -54,7 +54,7 @@ module SubscriptionPlansHelper
     if sub_object.subscription.cancellation_pending?
       "#{ps}<br /><br /><i class='warning icon'></i>Your subscription will be <strong>cancelled</strong> on #{sub_object.subscription.activate_next_after}."
     elsif sub_object.subscription.downgrade_pending?
-      "#{ps}<br /><br /><i class='warning icon'></i>Your subscription will be <strong>downgraded</strong> to <strong>#{sub_object.subscription.next_plan.name}</strong> on #{sub_object.subscription.activate_next_after}."
+      "#{ps}<br /><br /><i class='warning icon'></i>Your subscription will be <strong>downgraded</strong> to <strong>#{sub_object.subscription.next_plan.name}</strong> for <strong>#{sub_object.subscription.next_page.name}</strong> on #{sub_object.subscription.activate_next_after}."
     else
       "#{ps}<br /><br /><i class='refresh icon'></i>Your subscription will be <strong>renewed</strong> on <strong>#{sub_object.subscription.current_period_end}</strong>."
     end

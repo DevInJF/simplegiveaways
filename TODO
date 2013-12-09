@@ -42,7 +42,7 @@ Simple Giveaways:
 
  ✔ Pass logic params in session instead of url. @done (13-12-08 23:20)
 
- ☐ Ensure subscription update/cancel invoicing is accurate.
+ ✔ Ensure subscription update/cancel invoicing is accurate. @done (13-12-09 05:15)
 
       ✔ If you update to a higher plan, your plan will be prorated.  If you update to a lower plan, you will not be refunded. @done (13-12-06 06:02)
 
@@ -63,11 +63,13 @@ Simple Giveaways:
 
             Example: "You are currently subscribed to SUBSCRIPTION_PLAN.name.  Your plan will be changed to NEW_SUBSCRIPTION_PLAN.name after ACTIVATE_NEXT_AFTER. or Your plan will be cancelled after ACTIVATE_NEXT_AFTER. or Your plan will be renewed on CURRENT_PERIOD_END."
 
+ ☐ On successful subscription redirect, confirm that the page subscribed is the one the user is trying to start the giveaway for.
+
  ☐ Create messaging and UX for case where a page is already subscribed by another admin. Let user's know about auto-upgrading to better plans.
 
  ☐ Let users know that downgrades which will change the subscribed page will subscribe the new page immediately at the remaining time left on the old plan.  Once the new plan is activated, the new page will already be subscribed.
 
- ☐ Don't mark completed, giveaways which have not been started b/c of scheduling conflict or lack of subscription.
+ ✔ Don't mark completed, giveaways which have not been started b/c of scheduling conflict or lack of subscription. @done (13-12-09 05:30)
 
  ☐ Just warn unsubscribed user that his giveaway won't be automatically started.  Don't force a subscription.
 
