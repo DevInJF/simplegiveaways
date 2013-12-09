@@ -21,6 +21,12 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    ParseTree (3.0.8)
+      RubyInline (>= 3.7.0)
+      sexp_processor (>= 3.0.0)
+    RubyInline (3.12.2)
+      ZenTest (~> 4.3)
+    ZenTest (4.9.5)
     actionmailer (3.2.14)
       actionpack (= 3.2.14)
       mail (~> 2.5.4)
@@ -83,6 +89,14 @@ GEM
       oauth2 (>= 0.5.0, < 0.9)
     bourbon (2.1.1)
       sass (>= 3.1)
+    brakeman (1.5.3)
+      activesupport
+      erubis (~> 2.6)
+      haml (~> 3.0)
+      i18n
+      ruby2ruby (~> 1.2)
+      ruport (~> 1.6)
+      sass (~> 3.0)
     builder (3.0.4)
     bundler-unload (1.0.2)
     callsite (0.0.11)
@@ -92,6 +106,8 @@ GEM
     chronic (0.6.7)
     chunky_png (1.2.6)
     cocaine (0.2.1)
+    code_analyzer (0.4.3)
+      sexp_processor
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -100,6 +116,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    color (1.4.2)
     colored (1.2)
     commonjs (0.2.7)
     compass (0.12.2)
@@ -138,6 +155,9 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    factory_girl_sequences (4.1.0)
+      activesupport (>= 3.0.0)
+      factory_girl (~> 4.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     fastercsv (1.5.5)
@@ -174,6 +194,8 @@ GEM
       excon (~> 0.15.5)
     hike (1.2.3)
     hirb (0.7.1)
+    hoe (3.7.2)
+      rake (>= 0.8, < 11.0)
     hpricot (0.8.6)
     httparty (0.8.3)
       multi_json (~> 1.0)
@@ -254,6 +276,9 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (>= 0.0.2)
       mime-types
+    pdf-writer (1.1.8)
+      color (>= 1.4.0)
+      transaction-simple (~> 1.3)
     pg (0.14.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -288,6 +313,15 @@ GEM
       activesupport (= 3.2.14)
       bundler (~> 1.0)
       railties (= 3.2.14)
+    rails_best_practices (1.14.4)
+      activesupport
+      awesome_print
+      code_analyzer (>= 0.4.3)
+      colored
+      erubis
+      i18n
+      require_all
+      ruby-progressbar
     railties (3.2.14)
       actionpack (= 3.2.14)
       activesupport (= 3.2.14)
@@ -302,16 +336,24 @@ GEM
     redis-namespace (1.3.2)
       redis (~> 3.0.4)
     ref (1.0.5)
+    require_all (1.3.2)
     responders (0.9.2)
       railties (~> 3.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ruby-progressbar (1.2.0)
+    ruby2ruby (1.2.2)
+      ParseTree (~> 3.0)
+      hoe (>= 1.8.2)
     ruby_parser (3.2.2)
       sexp_processor (~> 4.1)
     rubygems-bundler (1.3.3)
       bundler-unload (>= 1.0.2)
       executable-hooks (>= 1.2.3)
     rubyzip (0.9.9)
+    ruport (1.6.3)
+      fastercsv
+      pdf-writer (= 1.1.8)
     sass (3.1.20)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -366,6 +408,7 @@ GEM
     tilt (1.3.7)
     timeliness (0.3.6)
     timers (1.1.0)
+    transaction-simple (1.4.0.2)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -398,6 +441,7 @@ DEPENDENCIES
   binding_of_caller
   bitly
   bourbon
+  brakeman
   cancan
   coffee-rails (~> 3.2.1)
   colored
@@ -406,6 +450,7 @@ DEPENDENCIES
   encrypted-cookies
   erb2haml
   factory_girl_rails
+  factory_girl_sequences
   fastercsv
   ffaker
   font-awesome-sass-rails
@@ -435,6 +480,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (~> 3.2)
+  rails_best_practices
   rubygems-bundler
   sass-rails (~> 3.2.3)
   seed_dump

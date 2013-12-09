@@ -34,6 +34,7 @@
     SG.Paths.checkSchedule = '#{check_schedule_facebook_page_giveaways_path(@page)}';
     SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
     SG.Paths.pageSubscribe = '#{facebook_page_subscribe_path(@page)}';
+    SG.Paths.startSubscribe = SG.Paths.subscriptionPlans + '?start';
 
 - if @giveaway
   :javascript

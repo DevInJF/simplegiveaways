@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
   def create
     begin
       if update_sg_subscription
-        render json: { redirect_path: session.delete(:return_to) }
+        render json: { redirect_path: redirect_path }
       else
         head :unprocessable_entity
       end
@@ -119,6 +119,14 @@ class SubscriptionsController < ApplicationController
       { at_period_end: true }
     else
       defaults
+    end
+  end
+
+  def redirect_path
+    if session[:return_to]
+      session.delete(:return_to)
+    else
+      user_subscription_plans_path(current_user)
     end
   end
 

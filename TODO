@@ -30,7 +30,7 @@ Simple Giveaways:
 
  ✔ AJAX-load user pages during onboarding process. @done (13-12-05 23:39)
 
- ☐ User-centric subscriptions page.
+ ✔ User-centric subscriptions page. @done (13-12-08 22:34)
 
       ✔ Subscribe @done (13-12-05 03:49)
 
@@ -38,7 +38,9 @@ Simple Giveaways:
 
       ✔ Cancel subscription @done (13-12-07 21:22)
 
-      ☐ Smarter post-subscribe redirect
+      ✔ Smarter post-subscribe redirect @done (13-12-08 22:33)
+
+ ☐ Pass logic params in session instead of url.
 
  ☐ Ensure subscription update/cancel invoicing is accurate.
 
@@ -88,6 +90,24 @@ Simple Giveaways:
       ☐ Cancel Subscription
 
  ☐ Ensure user will never be surprised by an action taken by the app.
+
+ ☐ Acquire assets from Brian Dillon
+
+      ☐ Amazon S3
+
+      ☐ Mandrill
+
+      ☐ Mailchimp
+
+      ☐ Gmail
+
+      ☐ Github
+
+      ☐ Stripe
+
+      ☐ Facebook
+
+      ☐ Bitly
 
  ☐ Look into DigitalOcean as a VPS provider.
 

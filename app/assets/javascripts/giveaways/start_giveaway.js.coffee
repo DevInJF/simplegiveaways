@@ -25,7 +25,7 @@ SG.Giveaways.Start =
     current = @currentStepEl()
     next = @nextStepEl()
     if next.find('#no_subscription').length
-      top.location.href = SG.Paths.subscriptionPlans
+      top.location.href = SG.Paths.startSubscribe
     else if next.find("#trigger_start_giveaway").length
       @startGiveaway()
     else

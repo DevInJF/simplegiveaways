@@ -52,6 +52,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'ui_datepicker-rails3'
 
 group :development, :test do
+  gem 'brakeman', require: false
+  gem 'rails_best_practices'
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -59,6 +61,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'erb2haml'
   gem 'factory_girl_rails'
+  gem 'factory_girl_sequences'
   gem 'ffaker'
   gem 'foreman'
   gem 'hirb'

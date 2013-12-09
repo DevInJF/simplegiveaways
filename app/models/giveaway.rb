@@ -45,9 +45,9 @@ class Giveaway < ActiveRecord::Base
                                    :email_required,
                                    :bonus_value ]
 
-  validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "0", "1", 0, 1 ] }
-  validates :allow_multi_entries, presence: true, inclusion: { in: [ "0", "1", 0, 1 ] }
-  validates :email_required, presence: true, inclusion: { in: [ "0", "1", 0, 1 ] }
+  validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
+  validates :allow_multi_entries, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
+  validates :email_required, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
   validates :bonus_value, presence: true, numericality: { only_integer: true }
 
   store :sticky_post, accessors: [ :sticky_post_enabled?,
@@ -106,7 +106,14 @@ class Giveaway < ActiveRecord::Base
                                  :_entry_rate,
                                  :_conversion_rate ]
 
-  has_attached_file :image,
+  s3_options = {
+    storage: :s3,
+    s3_credentials: S3_CREDENTIALS,
+    s3_protocol: "https",
+    path: "/:style/:id/:filename"
+  }
+
+  image_opts = {
     styles: {
       medium: "300x300>",
       gallery: "256x320#",
@@ -115,13 +122,11 @@ class Giveaway < ActiveRecord::Base
     convert_options: {
       medium: "-quality 75 -strip",
       gallery: "-quality 70 -strip"
-    },
-    storage: :s3,
-    s3_credentials: S3_CREDENTIALS,
-    s3_protocol: "https",
-    path: "/:style/:id/:filename"
+    }
+  }
+  image_opts.merge!(s3_options) unless Rails.env.development?
 
-  has_attached_file :feed_image,
+  feed_image_opts = {
     styles: {
       thumb: "111x74#",
       feed: "90x90>"
@@ -129,11 +134,12 @@ class Giveaway < ActiveRecord::Base
     convert_options: {
       thumb: "-quality 75 -strip",
       feed: "-quality 70 -strip"
-    },
-    storage: :s3,
-    s3_credentials: S3_CREDENTIALS,
-    s3_protocol: "https",
-    path: "/:style/:id/:filename"
+    }
+  }
+  feed_image_opts.merge!(s3_options) unless Rails.env.development?
+
+  has_attached_file :image, image_opts
+  has_attached_file :feed_image, feed_image_opts
 
   delegate :needs_subscription?, to: :facebook_page
 
@@ -238,6 +244,7 @@ class Giveaway < ActiveRecord::Base
 
   def scheduling_conflicts(date)
     (facebook_page.giveaways.incomplete - [self]).select do |pg|
+      next unless pg.start_date
       (pg.start_date..pg.end_date).cover?(date)
     end
   end
@@ -251,7 +258,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def completed?
-    !active && end_date <= Time.zone.now
+    !active && end_date && end_date <= Time.zone.now
   end
 
   def is_installed?

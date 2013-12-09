@@ -7,9 +7,9 @@ class Subscription < ActiveRecord::Base
   has_one  :user
   has_many :facebook_pages
 
-  scope :to_update, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id IS NOT ?", Time.zone.now, 0) }
+  scope :to_update, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id >= ?", Time.zone.now, 1) }
 
-  scope :to_cancel, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id IS ?", Time.zone.now, 0) }
+  scope :to_cancel, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id < ?", Time.zone.now, 1) }
 
   after_customer_subscription_created! do |subscription, event|
     Rails.logger.debug(subscription)
