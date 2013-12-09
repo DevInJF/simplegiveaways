@@ -58,7 +58,7 @@ SG.StripeClient =
         subscription_plan_id: $(@planEl).data('subscription_plan_id')
         facebook_page_ids: @mapPageIds()
       success: (data) =>
-        top.location.href = "#{data.redirect_path}?subscribed"
+        top.location.href = "#{data.redirect_path}"
       error: =>
         SG.UI.FlashMessages.showFlash('error', 'Error','There was a problem processing the subscription. Please try again or contact support for assistance.')
 

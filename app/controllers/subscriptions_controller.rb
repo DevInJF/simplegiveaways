@@ -7,6 +7,7 @@ class SubscriptionsController < ApplicationController
   def create
     begin
       if update_sg_subscription
+        session[:just_subscribed] = true
         render json: { redirect_path: redirect_path }
       else
         head :unprocessable_entity

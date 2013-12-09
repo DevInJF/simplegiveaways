@@ -18,19 +18,27 @@ SG.Giveaways.Start =
     @modalEl().find(".modal-step[data-modal-step='2']").show()
     $('#start_giveaway').trigger 'click'
 
-  justSubscribed: ->
-    top.location.search == '?subscribed' || top.location.search == '?subscribed=true'
+  justSubscribed: -> SG.userJustSubscribed.length
 
   moveForward: ->
     current = @currentStepEl()
     next = @nextStepEl()
     if next.find('#no_subscription').length
-      top.location.href = SG.Paths.startSubscribe
+      @redirectToSubPlans()
     else if next.find("#trigger_start_giveaway").length
       @startGiveaway()
     else
       current.hide()
       next.show()
+
+  redirectToSubPlans: ->
+    $.ajax
+      url: SG.Paths.subscriptionPlans
+      type: 'POST'
+      data:
+        starting: true
+      success: =>
+        top.location.href = SG.Paths.subscriptionPlans
 
   startGiveaway: ->
     $('#step_one form').submit()

@@ -40,7 +40,7 @@ Simple Giveaways:
 
       ✔ Smarter post-subscribe redirect @done (13-12-08 22:33)
 
- ☐ Pass logic params in session instead of url.
+ ✔ Pass logic params in session instead of url. @done (13-12-08 23:20)
 
  ☐ Ensure subscription update/cancel invoicing is accurate.
 
