@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 
   belongs_to :subscription
 
+  delegate :next_plan, to: :subscription
+  delegate :next_plan_id, to: :subscription
+
   after_customer_created! do |customer, event|
     Rails.logger.debug(customer)
     Rails.logger.debug(event)

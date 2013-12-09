@@ -26,7 +26,10 @@ SG.StripeClient =
     if $(@planEl).data('is_single_page')
       @openPageSelector()
     else
-      @openStripeCheckout()
+      if $(@planEl).data('is_current_plan') || $(@planEl).data('is_next_plan')
+        @openPageSelector()
+      else
+        @openStripeCheckout()
 
   openPageSelector: ->
     $(@planEl).removeClass('five').addClass('page-selector six')

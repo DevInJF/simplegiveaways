@@ -7,6 +7,8 @@ class Subscription < ActiveRecord::Base
   has_one  :user
   has_many :facebook_pages
 
+  serialize :next_page_ids, Array
+
   scope :to_update, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id >= ?", Time.zone.now, 1) }
 
   scope :to_cancel, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id < ?", Time.zone.now, 1) }
@@ -49,24 +51,32 @@ class Subscription < ActiveRecord::Base
 
   def update_plan
     self.subscription_plan_id = next_plan_id
+
+    subscribe_next_pages if next_page_ids.any?
+
     self.activate_next_after = nil
     self.next_plan_id = nil
+    self.next_page_ids = nil
+
     save
   end
 
-  def process_update_request(plan_id)
-    assess_update_type(plan_id)
+  def process_update_request(options = {})
+    assess_update_type(options[:plan_id])
 
     if @downgrade
       self.activate_next_after = current_period_end
-      self.next_plan_id = plan_id
+      self.next_plan_id = options[:plan_id]
     else
-      self.subscription_plan_id = plan_id
+      self.subscription_plan_id = options[:plan_id]
       self.activate_next_after = nil
       self.next_plan_id = nil
+      self.next_page_ids = nil
     end
 
-    save
+    if @plan_class_downgrade
+      self.next_page_ids = options[:facebook_page_ids]
+    end
   end
 
   def process_cancellation_request(stripe_token)
@@ -80,7 +90,9 @@ class Subscription < ActiveRecord::Base
   end
 
   def after_update_actions(options = {})
-    if find_or_create_customer(options[:stripe_token]) && subscribe_pages(options[:facebook_page_ids])
+    if find_or_create_customer(options[:stripe_token])
+
+      subscribe_pages(options[:facebook_page_ids]) unless @plan_class_downgrade
 
       stripe_response = update_stripe_subscription
 
@@ -109,7 +121,7 @@ class Subscription < ActiveRecord::Base
       user = User.find_by_id(options[:user_id])
 
       if subscription = user.subscription
-        subscription.process_update_request(options[:subscription_plan_id])
+        subscription.process_update_request(options)
       else
         subscription = Subscription.create(user: user, subscription_plan_id: options[:subscription_plan_id])
       end
@@ -139,6 +151,9 @@ class Subscription < ActiveRecord::Base
       @upgrade = true
     elsif subscription_plan > plan
       @downgrade = true
+      if subscription_plan.is_multi_page? && plan.is_single_page?
+        @plan_class_downgrade = true
+      end
     end
   end
 
@@ -153,7 +168,8 @@ class Subscription < ActiveRecord::Base
   end
 
   def create_stripe_invoice
-    Stripe::Invoice.create(customer: @customer.id)
+    invoice = Stripe::Invoice.create(customer: @customer.id)
+    invoice.pay
   end
 
   def stripe_update_options
@@ -161,7 +177,7 @@ class Subscription < ActiveRecord::Base
     if @upgrade
       defaults.merge(prorate: true)
     elsif @downgrade
-      defaults.merge(prorate: false)
+      defaults.merge(plan: next_plan.stripe_subscription_id, prorate: false)
     elsif @cancellation
       { at_period_end: true }
     else
@@ -175,6 +191,10 @@ class Subscription < ActiveRecord::Base
 
   def subscribe_pages(facebook_page_ids)
     self.facebook_pages = select_pages(facebook_page_ids)
+  end
+
+  def subscribe_next_pages
+    self.facebook_pages = select_pages(next_page_ids)
   end
 
   def select_pages(facebook_page_ids)
