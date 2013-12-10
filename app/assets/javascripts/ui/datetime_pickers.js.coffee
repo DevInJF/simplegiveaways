@@ -18,6 +18,7 @@ SG.UI.DatetimePickers =
           @checkSchedule(current, $input)
       onClose: =>
         SG.UI.DatetimePickers.initialize()
+      validateOnBlur: false
 
   checkSchedule: (datetime, input) ->
     $.ajax

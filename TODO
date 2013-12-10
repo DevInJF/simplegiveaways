@@ -65,7 +65,9 @@ Simple Giveaways:
 
  ✔ On successful subscription redirect, confirm that the page subscribed is the one the user is trying to start the giveaway for. @done (13-12-10 02:33)
 
- ☐ Allow deletion of start/end dates on pending giveaways.
+ ✔ Store start giveaway inputs in session during subscription redirect in case user subscribes and is redirected back to start giveaway modal. @done (13-12-10 02:34)
+
+ ✔ Allow deletion of start/end dates on pending giveaways. @done (13-12-10 02:43)
 
  ☐ Allow editing certain attrs of active giveaways.
 
