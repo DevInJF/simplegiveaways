@@ -83,7 +83,7 @@ Simple Giveaways:
 
       ✔ Let users know about pages that are already on the user's own current subscription. @done (13-12-10 04:14)
 
- ☐ Let users know that downgrades which will change the subscribed page will subscribe the new page immediately at the remaining time left on the old plan.  Once the new plan is activated, the new page will already be subscribed.
+ ✔ Let users know that downgrades which will change the subscribed page will subscribe the new page immediately at the remaining time left on the old plan.  Once the new plan is activated, the new page will already be subscribed. @done (13-12-10 04:46)
 
  ✔ Don't mark completed, giveaways which have not been started b/c of scheduling conflict or lack of subscription. @done (13-12-09 05:30)
 
