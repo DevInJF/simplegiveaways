@@ -69,7 +69,11 @@ Simple Giveaways:
 
  ✔ Allow deletion of start/end dates on pending giveaways. @done (13-12-10 02:43)
 
- ☐ Allow editing certain attrs of active giveaways.
+ ✔ Allow editing certain attrs of active giveaways (everything except start_date). @done (13-12-10 02:57)
+
+      ✔ Make nav item to the edit action. @done (13-12-10 02:57)
+
+      ✔ Update tab after update. @done (13-12-10 02:57)
 
  ☐ Update plan features text.
 

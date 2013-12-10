@@ -1,5 +1,5 @@
 .ui.right.floated.small.borderless.teal.menu
-  = link_to '<i class="list icon"></i> View Details'.html_safe, '#', class: 'item'
+  = link_to '<i class="list icon"></i> Edit Details'.html_safe, edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'item'
 
   = link_to '<i class="facebook icon"></i> View on Facebook'.html_safe, giveaway.giveaway_url, class: 'item', target: '_blank'
 
