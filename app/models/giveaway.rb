@@ -124,7 +124,7 @@ class Giveaway < ActiveRecord::Base
       gallery: "-quality 70 -strip"
     }
   }
-  image_opts.merge!(s3_options) unless Rails.env.development?
+  image_opts.merge!(s3_options)
 
   feed_image_opts = {
     styles: {
@@ -136,7 +136,7 @@ class Giveaway < ActiveRecord::Base
       feed: "-quality 70 -strip"
     }
   }
-  feed_image_opts.merge!(s3_options) unless Rails.env.development?
+  feed_image_opts.merge!(s3_options)
 
   has_attached_file :image, image_opts
   has_attached_file :feed_image, feed_image_opts
@@ -160,9 +160,14 @@ class Giveaway < ActiveRecord::Base
   end
 
   def publish(giveaway_params = {})
-    return false unless startable?
-    if publish_tab
-      after_publish(giveaway_params)
+    begin
+      ActiveRecord::Base.transaction do
+        raise ActiveRecord::Rollback unless startable?
+        self.update_attributes!(giveaway_params.merge({ start_date: (Time.zone.now - 30.seconds), active: true }))
+        publish_tab ? after_publish : raise(ActiveRecord::Rollback)
+      end
+    rescue => e
+      false
     end
   end
 
@@ -170,8 +175,7 @@ class Giveaway < ActiveRecord::Base
     is_installed? ? update_tab : create_tab
   end
 
-  def after_publish(giveaway_params = {})
-    self.update_attributes(giveaway_params.merge({ start_date: (Time.zone.now - 30.seconds), active: true }))
+  def after_publish
     save_shortlink
     GabbaClient.new.event(category: "Giveaways", action: "Giveaway#start", label: title)
     facebook_page.users.each do |page_admin|
@@ -182,7 +186,7 @@ class Giveaway < ActiveRecord::Base
 
   def save_shortlink
     self.shortlink = bitly_client.shorten(giveaway_url).short_url rescue giveaway_url
-    save
+    save!
   end
 
   def seed_graph

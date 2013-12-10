@@ -103,6 +103,9 @@ class GiveawaysController < ApplicationController
   end
 
   def start
+    session.delete(:proposed_end_date)
+    session.delete(:proposed_tab_name)
+
     if @giveaway.publish(params[:giveaway])
       flash[:info] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)

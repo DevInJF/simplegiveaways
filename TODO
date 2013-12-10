@@ -63,7 +63,13 @@ Simple Giveaways:
 
             Example: "You are currently subscribed to SUBSCRIPTION_PLAN.name.  Your plan will be changed to NEW_SUBSCRIPTION_PLAN.name after ACTIVATE_NEXT_AFTER. or Your plan will be cancelled after ACTIVATE_NEXT_AFTER. or Your plan will be renewed on CURRENT_PERIOD_END."
 
- ☐ On successful subscription redirect, confirm that the page subscribed is the one the user is trying to start the giveaway for.
+ ✔ On successful subscription redirect, confirm that the page subscribed is the one the user is trying to start the giveaway for. @done (13-12-10 02:33)
+
+ ☐ Allow deletion of start/end dates on pending giveaways.
+
+ ☐ Allow editing certain attrs of active giveaways.
+
+ ☐ Update plan features text.
 
  ☐ Create messaging and UX for case where a page is already subscribed by another admin. Let user's know about auto-upgrading to better plans.
 

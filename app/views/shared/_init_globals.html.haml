@@ -35,6 +35,10 @@
     SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
     SG.Paths.pageSubscribe = '#{facebook_page_subscribe_path(@page)}';
 
+  - if @page.has_active_subscription?
+    :javascript
+      SG.currentPageSubscribed = true;
+
 - if @giveaway
   :javascript
     SG.currentGiveawayId = '#{@giveaway.id}';
@@ -47,6 +51,12 @@
     SG.StripeClient.publishableKey = '#{Rails.configuration.stripe.publishable_key}';
     SG.Paths.userPages = '#{facebook_pages_path}';
     SG.Paths.userSubscribe = '#{user_subscribe_path(current_user)}';
-    SG.userJustSubscribed = '#{session[:just_subscribed]}'
+    SG.userJustSubscribed = '#{session.delete(:just_subscribed)}'
 
-- session.delete(:just_subscribed)
+- if session[:proposed_end_date]
+  :javascript
+    SG.proposedEndDate = '#{session[:proposed_end_date]}';
+
+- if session[:proposed_tab_name]
+  :javascript
+    SG.proposedTabName = '#{session[:proposed_tab_name]}';
