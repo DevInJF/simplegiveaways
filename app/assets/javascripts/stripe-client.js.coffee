@@ -14,8 +14,7 @@ SG.StripeClient =
   attachListener: ->
     @planContainerEls().click (e) =>
       if @pageSelectorVisible(e)
-        @closePageSelector() if $(e.target).hasClass('remove')
-        @openStripeCheckout() if $(e.target).hasClass('check')
+        @handlePageSelectorClick(e)
       else
         @planEl = $(e.target).hasClass('subscription-plan') && $(e.target) || $(e.target).parents('.subscription-plan')
         @handleClick()
@@ -30,6 +29,15 @@ SG.StripeClient =
         @openPageSelector()
       else
         @openStripeCheckout()
+
+  handlePageSelectorClick: (event) ->
+    if $(event.target).hasClass('remove')
+      @closePageSelector()
+    else if $(event.target).hasClass('check')
+      if @mapPageIds().length
+        @openStripeCheckout()
+      else
+        $(@planEl).find('legend').css('font-weight', 'bold')
 
   openPageSelector: ->
     $(@planEl).removeClass('five').addClass('page-selector six')

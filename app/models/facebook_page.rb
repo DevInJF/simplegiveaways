@@ -21,6 +21,22 @@ class FacebookPage < ActiveRecord::Base
 
   include SubscriptionStatus
 
+  def has_better_plan_with_other_user?(options = {})
+    user = User.find_by_id(options[:user_id])
+    new_plan = SubscriptionPlan.find_by_id(options[:subscription_plan_id])
+    return false unless has_active_subscription? && subscription.user != user && subscription_plan > new_plan
+  rescue
+    false
+  end
+
+  def has_worse_plan_with_other_user?(options = {})
+    user = User.find_by_id(options[:user_id])
+    new_plan = SubscriptionPlan.find_by_id(options[:subscription_plan_id])
+    return false unless has_active_subscription? && subscription.user != user && subscription_plan < new_plan
+  rescue
+    false
+  end
+
   def active_giveaway
     giveaways.active.first
   end

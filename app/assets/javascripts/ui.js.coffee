@@ -28,7 +28,7 @@ SG.UI =
 
   dropdownEls: -> $('.ui.dropdown')
 
-  checkboxEls: -> $('.ui.checkbox')
+  checkboxEls: -> $('.ui.checkbox').not('.radio')
 
   accordionEls: -> $('.ui.accordion')
 

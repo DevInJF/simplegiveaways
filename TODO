@@ -75,7 +75,13 @@ Simple Giveaways:
 
       ✔ Update tab after update. @done (13-12-10 02:57)
 
- ☐ Create messaging and UX for case where a page is already subscribed by another admin. Let user's know about auto-upgrading to better plans.
+ ✔ Create messaging and UX for case where a page is already subscribed by another admin. @done (13-12-10 04:14)
+
+      ✔ Let users know about auto-upgrading to better plans. @done (13-12-10 04:14)
+
+      ✔ Let users know about pages that already have better plans. @done (13-12-10 04:14)
+
+      ✔ Let users know about pages that are already on the user's own current subscription. @done (13-12-10 04:14)
 
  ☐ Let users know that downgrades which will change the subscribed page will subscribe the new page immediately at the remaining time left on the old plan.  Once the new plan is activated, the new page will already be subscribed.
 
@@ -108,6 +114,8 @@ Simple Giveaways:
       ☐ Cancel Subscription
 
  ☐ Ensure user will never be surprised by an action taken by the app.
+
+ ☐ Create FAQ.
 
  ☐ Acquire assets from Brian Dillon
 

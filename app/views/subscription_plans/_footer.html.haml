@@ -1,0 +1,17 @@
+- if is_current_plan
+
+  - if sub_object.subscription.cancellation_pending?
+
+    %span.ui.tiny.disabled.button.cancel-subscription.popup-trigger{'data-title' => "Will be cancelled on #{sub_object.subscription.activate_next_after}."}
+      Cancellation Pending
+
+  - else
+
+    = link_to 'Unsubscribe', user_unsubscribe_path(current_user), class: 'ui tiny button cancel-subscription', 'data-confirm' => 'Are you sure you want to cancel your subscription? If you continue, you will be able to enjoy the benfits of your subscription until the end of the current billing cycle.'
+
+- if is_next_plan
+
+  - if sub_object.subscription.downgrade_pending?
+
+    %span.ui.tiny.disabled.button.cancel-subscription.popup-trigger{'data-title' => "Will be downgraded on #{sub_object.subscription.activate_next_after}."}
+      Downgrade Pending

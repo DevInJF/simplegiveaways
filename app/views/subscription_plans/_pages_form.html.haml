@@ -1,0 +1,34 @@
+%form.ui.fluid.form
+  %legend Choose a Page
+  .ui.divider
+
+  - current_user.facebook_pages.sort_by { |p| p.name.size }.each do |page|
+
+    - is_exact_current_plan = is_current_plan && sub_object.subscription.facebook_pages.include?(page)
+
+    - is_current_page = sub_object == page || (is_current_plan && sub_object.subscription.facebook_pages.include?(page)) || (is_next_plan && sub_object.subscription.next_page == page)
+
+    - auto_select = is_current_page && !is_exact_current_plan
+
+    - has_better_plan = page.has_better_plan_with_other_user?(subscription_plan_id: subscription_plan.id, user_id: current_user.id)
+
+    - has_worse_plan = page.has_worse_plan_with_other_user?(subscription_plan_id: subscription_plan.id, user_id: current_user.id)
+
+    - already_subscribed = has_better_plan || has_worse_plan || is_exact_current_plan
+
+    .field{class: "#{already_subscribed ? 'popup-trigger' : ''}", 'data-title' => "#{if has_better_plan; 'This page is already subscribed to a better plan belonging to another user.'; elsif has_worse_plan; 'This page is currently subscribed to a lower plan belonging to another user. If you continue, we will upgrade the plan and move the subscription to your account.'; elsif is_exact_current_plan; 'This is your current subscription.'; end}"}
+
+      .ui.radio.checkbox{class: auto_select ? 'default' : 'resetable'}
+        = radio_button_tag "#{subscription_plan.name.parameterize}[pages]", page.id, auto_select, disabled: has_better_plan || is_exact_current_plan
+
+        - if already_subscribed
+          = label_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", "#{page.name} <i class='small teal certificate icon'></i>".html_safe
+        - else
+          = label_tag "#{subscription_plan.name.parameterize}[pages][#{page.id}]", page.name
+
+  .form-actions
+    .ui.two.fluid.buttons
+      .ui.icon.button.remove
+        %i.remove.icon
+      .ui.teal.icon.button.check
+        %i.check.icon
