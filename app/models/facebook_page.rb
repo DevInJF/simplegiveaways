@@ -59,7 +59,7 @@ class FacebookPage < ActiveRecord::Base
   end
 
   def refresh_likes
-    batch = FacebookPage.graph_data(self)
+    batch = FacebookPage.graph_data(page: self)
 
     self.likes = batch[:data]["likes"]
     self.audits << likes_audit
@@ -85,78 +85,56 @@ class FacebookPage < ActiveRecord::Base
     eos
   end
 
-  def preview_template(previous_likes)
-    <<-eos
-      <div class="facebook_page_preview" data-fb-pid="#{pid}">
-        <div class="image">
-          <a class="avatar" href="#{path}">
-            <img alt="#{name}" src="#{avatar_square}" height="100" width="100">
-          </a>
-        </div>
-        <div class="title">
-          <h1><a href="#{path}">#{name}</a></h1>
-          <h2>
-            <span class="dynamo" data-lines="#{likes}">#{previous_likes}</span>
-            <span class="gray">Likes</span>
-          </h2>
-        </div>
-        <div class="buttons">
-          <a class="btn btn-large btn-edit" href="#{path}">
-            <i class="icon-flag"></i>
-            Manage Page
-          </a>
-        </div>
-      </div>
-    eos
-  end
-
   def path
     Rails.application.routes.url_helpers.facebook_page_path(self)
   end
 
   class << self
 
-    def select_pages(pages)
-      pages = pages.reject do |page|
+    def select_pages(options = {})
+      pages = options[:pages].reject do |page|
         page["category"] == "Application"
       end
 
       pages.collect do |page|
-        if page_eligible?(batch = graph_data(page))
-          { page: page, fb_meta: batch }
+        begin
+          if page_eligible?(batch = graph_data(page: page, fb_uid: options[:fb_uid]))
+            { page: page, fb_meta: batch }
+          end
+        rescue
+          nil
         end
       end
     end
 
-    def graph_data(page)
-      batch = batch_data(page)
+    def graph_data(options = {})
+      batch = batch_data(page: options[:page], fb_uid: options[:fb_uid])
 
-      fb_meta          = batch[0]
-      fb_avatar_square = batch[1]
-      fb_avatar_large  = batch[2]
-
-      { data: fb_meta,
-        avatar_square: fb_avatar_square,
-        avatar_large: fb_avatar_large }
+      { data: batch[0],
+        avatar_square: batch[1],
+        avatar_large: batch[2],
+        fb_admin: batch[3].pop }
     end
 
-    def batch_data(page)
-      @token = page["access_token"] || page.token
+    def batch_data(options = {})
+      @token = options[:page]["access_token"] || options[:page].token
       @graph = Koala::Facebook::API.new(@token)
 
       @graph.batch do |batch_api|
         batch_api.get_object("me")
         batch_api.get_picture("me", type: "square")
         batch_api.get_picture("me", type: "large")
+        batch_api.get_connection("me", "admins/#{options[:fb_uid]}")
       end
+    rescue
     end
 
     def page_eligible?(batch)
-      batch[:data]["link"].include? "facebook.com"
+      batch[:data]["link"].include?("facebook.com") && %w(MANAGER CONTENT_CREATOR).include?(batch[:fb_admin]["role"])
     end
 
     def retrieve_fb_meta(user, pages, csrf_token)
-      pages = select_pages(pages).compact.flatten
+      pages = select_pages(pages: pages, fb_uid: user.fb_uid).compact.flatten
       page_count = (pages.size - 1)
 
       pages.each_with_index do |page_hash, index|

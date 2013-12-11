@@ -91,7 +91,7 @@ Simple Giveaways:
 
  ✔ Don't let users start giveaway if there is an active one already. Let them know that they need to end the active first. @done (13-12-11 04:50)
 
- ☐ Ensure that users are actually admins and not some other kind of page user.
+ ✔ Ensure that users are MANAGER or CONTENT_CREATOR of pages and not some other kind of page user. @done (13-12-11 06:48)
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
@@ -120,6 +120,24 @@ Simple Giveaways:
  ☐ Ensure user will never be surprised by an action taken by the app.
 
  ☐ Create FAQ.
+
+ ☐ Acquire assets from Brian Dillon
+
+      ☐ Amazon S3
+
+      ☐ Mandrill
+
+      ☐ Mailchimp
+
+      ☐ Gmail
+
+      ☐ Github
+
+      ☐ Stripe
+
+      ☐ Facebook
+
+      ☐ Bitly
 
  ☐ Look into DigitalOcean as a VPS provider.
 
