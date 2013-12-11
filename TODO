@@ -91,8 +91,7 @@ Simple Giveaways:
 
  ✔ Don't let users start giveaway if there is an active one already. Let them know that they need to end the active first. @done (13-12-11 04:50)
 
- ☐ Add is_non_connection_landing_tab option for giveaways.
-    https://developers.facebook.com/docs/graph-api/reference/page/#tabs
+ ☐ Ensure that users are actually admins and not some other kind of page user.
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
