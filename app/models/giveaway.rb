@@ -199,19 +199,18 @@ class Giveaway < ActiveRecord::Base
   end
 
   def unpublish
-    self.end_date = Time.zone.now
-    self.active = false
-    save ? after_unpublish : false
+    if delete_tab || !is_installed?
+      self.end_date = Time.zone.now
+      self.active = false
+      save
+      after_unpublish
+    end
   end
 
   def after_unpublish
-    if delete_tab
-      GabbaClient.new.event(category: "Giveaways", action: "Giveaway#end", label: title)
-      facebook_page.users.each do |page_admin|
-        GiveawayNoticeMailer.end(page_admin, self).deliver rescue nil
-      end
-    else
-      false
+    GabbaClient.new.event(category: "Giveaways", action: "Giveaway#end", label: title)
+    facebook_page.users.each do |page_admin|
+      GiveawayNoticeMailer.end(page_admin, self).deliver rescue nil
     end
   end
 
@@ -272,34 +271,33 @@ class Giveaway < ActiveRecord::Base
   end
 
   def create_tab
-    graph_client.put_connections("me", "tabs", app_id: FB_APP_ID)
-    update_tab
+    begin
+      graph_client.put_connections("me", "tabs", app_id: FB_APP_ID)
+      update_tab
+    rescue
+      delete_tab
+      false
+    end
   end
 
   def update_tab
-    tabs = graph_client.get_connections("me", "tabs")
-    tab = tabs.select do |tab|
-      tab["application"] && tab["application"]["namespace"] == "simplegiveaways"
-    end.compact.flatten.first
-    put_tab
-  rescue Koala::Facebook::APIError
-    put_tab(false)
-  end
-
-  def delete_tab
-    tabs = graph_client.get_connections("me", "tabs")
-    tab = select_giveaway_tab(tabs)
-
-    graph_client.delete_object(tab["id"]) ? true : false
-  end
-
-  def put_tab(position = 0)
     begin
       options = { tab: "app_#{FB_APP_ID}",
                   custom_name: custom_fb_tab_name,
                   custom_image_url: feed_image(:thumb) }
-      options.merge(position: 0) if position
-      true if graph_client.put_object( facebook_page.pid, "tabs", options )
+      full_options = options.merge(position: 2)
+      graph_client.put_object( facebook_page.pid, "tabs", full_options )
+    rescue
+      graph_client.put_object( facebook_page.pid, "tabs", options )
+    end
+  end
+
+  def delete_tab
+    begin
+      tabs = graph_client.get_connections("me", "tabs")
+      tab = select_giveaway_tab(tabs)
+
+      graph_client.delete_object(tab["id"])
     rescue
       false
     end

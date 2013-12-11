@@ -89,7 +89,10 @@ Simple Giveaways:
 
  ✔ Just warn unsubscribed user that his giveaway won't be automatically started.  Don't force a subscription. @done (13-12-11 01:55)
 
- ☐ Don't let users start giveaways if there is an active one already. Let them know.
+ ✔ Don't let users start giveaway if there is an active one already. Let them know that they need to end the active first. @done (13-12-11 04:50)
+
+ ☐ Add is_non_connection_landing_tab option for giveaways.
+    https://developers.facebook.com/docs/graph-api/reference/page/#tabs
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
@@ -122,5 +125,7 @@ Simple Giveaways:
  ☐ Look into DigitalOcean as a VPS provider.
 
  VERSION 1.0
+
+ ☐ Write basic acceptance tests with Capybara.
 
  ☐ Market research for subscription and feature modifications/additions.

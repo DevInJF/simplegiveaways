@@ -3,4 +3,7 @@
     = render 'giveaways/avatars', giveaway: giveaway
     .row
       .sixteen.wide.column
-        = render 'giveaways/form/publish_confirm', giveaway: giveaway
+        - if facebook_page.no_active_giveaways?
+          = render 'giveaways/form/publish_confirm', giveaway: giveaway
+        - else
+          = render 'giveaways/pending/active_conflict', giveaway: giveaway

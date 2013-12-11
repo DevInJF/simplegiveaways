@@ -41,6 +41,11 @@ class FacebookPage < ActiveRecord::Base
     giveaways.active.first
   end
 
+  def active_giveaway_title
+    return nil unless active_giveaway
+    active_giveaway.title
+  end
+
   def no_active_giveaways?
     giveaways.active.empty?
   end
