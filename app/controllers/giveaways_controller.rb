@@ -62,12 +62,14 @@ class GiveawaysController < ApplicationController
 
     if @giveaway.save
       ga_event("Giveaways", "Giveaway#create", @giveaway.title, @giveaway.id)
-      flash[:info] = "The #{@giveaway.title} giveaway has been created."
+
+      flash[:info] = "#{@giveaway.title} has been created.".html_safe
+
       if @page.needs_subscription? && @giveaway.start_date
-        redirect_to facebook_page_subscription_plans_path(@page, scheduling: true)
-      else
-        redirect_to pending_facebook_page_giveaways_path(@page)
+        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active subscription. Since #{@page.name} is currently unsubscribed, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>choose a plan</a>. If you're not sure right now, no problem. You can choose a plan whenever you like.".html_safe
       end
+
+      redirect_to pending_facebook_page_giveaways_path(@page)
     else
       flash.now[:error] = "There was a problem creating #{@giveaway.title}."
       render :new
@@ -78,13 +80,14 @@ class GiveawaysController < ApplicationController
     @page = @giveaway.facebook_page
 
     if @giveaway.update_attributes(params[:giveaway])
+      flash[:info] = "#{@giveaway.title} has been updated.".html_safe
+
       if @page.needs_subscription? && @giveaway.start_date
-        redirect_to facebook_page_subscription_plans_path(@page, scheduling: true)
-      else
-        flash[:info] = "The #{@giveaway.title} giveaway has been updated."
-        redirect_to facebook_page_giveaway_url(@page, @giveaway)
-        @giveaway.update_tab if @giveaway.active?
+        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active subscription. Since #{@page.name} is currently unsubscribed, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>choose a plan</a>. If you're not sure right now, no problem. You can choose a plan whenever you like.".html_safe
       end
+
+      redirect_to facebook_page_giveaway_url(@page, @giveaway)
+      @giveaway.update_tab if @giveaway.active?
     else
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
       @giveaway.reload
@@ -110,18 +113,18 @@ class GiveawaysController < ApplicationController
       flash[:info] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
-      flash[:error] = "There was a problem activating #{@giveaway.title}."
+      flash[:error] = "There was a problem publishing #{@giveaway.title}. Please try again or contact support for assistance."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
 
   def end
     if @giveaway.unpublish
-      flash[:info] = "#{@giveaway.title} has been ended and will no longer accept entries."
+      flash[:info] = "#{@giveaway.title} has ended and will no longer accept entries."
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
     else
       @giveaway
-      flash[:error] = "There was a problem ending #{@giveaway.title}."
+      flash[:error] = "There was a problem ending #{@giveaway.title}. Please try again or contact support for assistance."
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end

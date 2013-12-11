@@ -294,11 +294,15 @@ class Giveaway < ActiveRecord::Base
   end
 
   def put_tab(position = 0)
-    options = { tab: "app_#{FB_APP_ID}",
-                custom_name: custom_fb_tab_name,
-                custom_image_url: feed_image(:thumb) }
-    options.merge(position: 0) if position
-    graph_client.put_object( facebook_page.pid, "tabs", options )
+    begin
+      options = { tab: "app_#{FB_APP_ID}",
+                  custom_name: custom_fb_tab_name,
+                  custom_image_url: feed_image(:thumb) }
+      options.merge(position: 0) if position
+      true if graph_client.put_object( facebook_page.pid, "tabs", options )
+    rescue
+      false
+    end
   end
 
   def select_giveaway_tab(tabs)
@@ -486,7 +490,7 @@ class Giveaway < ActiveRecord::Base
 
     def schedule_worker(method)
       Giveaway.to_start.reject(&:needs_subscription?).each(&:publish) if method == "publish"
-      Giveaway.to_end.each(&:unpublish) if method == "unpublish"
+      Giveaway.to_end.reject(&:needs_subscription?).each(&:unpublish) if method == "unpublish"
     end
 
     def uniques_worker(giveaway_id)

@@ -87,7 +87,9 @@ Simple Giveaways:
 
  ✔ Don't mark completed, giveaways which have not been started b/c of scheduling conflict or lack of subscription. @done (13-12-09 05:30)
 
- ☐ Just warn unsubscribed user that his giveaway won't be automatically started.  Don't force a subscription.
+ ✔ Just warn unsubscribed user that his giveaway won't be automatically started.  Don't force a subscription. @done (13-12-11 01:55)
+
+ ☐ Don't let users start giveaways if there is an active on already. Let them know.
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
