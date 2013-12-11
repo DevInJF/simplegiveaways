@@ -89,7 +89,7 @@ Simple Giveaways:
 
  ✔ Just warn unsubscribed user that his giveaway won't be automatically started.  Don't force a subscription. @done (13-12-11 01:55)
 
- ☐ Don't let users start giveaways if there is an active on already. Let them know.
+ ☐ Don't let users start giveaways if there is an active one already. Let them know.
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
@@ -118,24 +118,6 @@ Simple Giveaways:
  ☐ Ensure user will never be surprised by an action taken by the app.
 
  ☐ Create FAQ.
-
- ☐ Acquire assets from Brian Dillon
-
-      ☐ Amazon S3
-
-      ☐ Mandrill
-
-      ☐ Mailchimp
-
-      ☐ Gmail
-
-      ☐ Github
-
-      ☐ Stripe
-
-      ☐ Facebook
-
-      ☐ Bitly
 
  ☐ Look into DigitalOcean as a VPS provider.
 
