@@ -40,6 +40,30 @@ class SubscriptionPlan < ActiveRecord::Base
     name.downcase.gsub(/\s/, '_').gsub(/\(|\)/, '')
   end
 
+  def canhaz_basic_analytics?
+    !has_advanced_analytics?
+  end
+
+  def canhaz_advanced_analytics?
+    name.include? 'Pro'
+  end
+
+  def canhaz_scheduled_giveaways?
+    name.include? 'Pro'
+  end
+
+  def canhaz_referral_tracking?
+    name.include? 'Pro'
+  end
+
+  def canhaz_giveaway_shortlink?
+    name.include? 'Pro'
+  end
+
+  def canhaz_white_label?
+    name.include? 'Pro'
+  end
+
   class << self
 
     def free_trial
