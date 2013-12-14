@@ -1,7 +1,5 @@
 class Subscription < ActiveRecord::Base
 
-  include Stripe::Callbacks
-
   belongs_to :subscription_plan
 
   has_one  :user
@@ -15,17 +13,16 @@ class Subscription < ActiveRecord::Base
 
   delegate :name, to: :subscription_plan
 
-  after_customer_subscription_created! do |subscription, event|
-    Rails.logger.debug(subscription)
-    Rails.logger.debug(event)
-  end
-
   def active?
-    subscription_plan.present?
+    subscription_plan.present? && user.account_current?
   end
 
   def inactive?
     !active?
+  end
+
+  def has_failed_payments?
+    !user.account_current?
   end
 
   def cancellation_pending?
@@ -107,6 +104,7 @@ class Subscription < ActiveRecord::Base
 
       stripe_response = update_stripe_subscription
 
+      self.stripe_subscription_id = stripe_response.id
       self.current_period_start = DateTime.strptime("#{stripe_response.current_period_start}", '%s')
       self.current_period_end = DateTime.strptime("#{stripe_response.current_period_end}", '%s')
 

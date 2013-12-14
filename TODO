@@ -95,8 +95,6 @@ Simple Giveaways:
 
  ☐ Confirm subscriptions with Stripe callbacks.
 
-      ☐ Keep subscription period attrs up to date when invoices are created by Stripe.
-
       ☐ Deactivate subscriptions when failed charge limit exceeded.
 
  ☐ Update plan features text.
@@ -140,6 +138,8 @@ Simple Giveaways:
       ☐ Bitly
 
  ☐ Look into DigitalOcean as a VPS provider.
+
+ ☐ Security Audit
 
  VERSION 1.0
 

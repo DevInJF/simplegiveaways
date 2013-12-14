@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
 
-  include Stripe::Callbacks
-
   attr_accessible :name, :roles, :roles_mask, :finished_onboarding
 
   has_many :identities, dependent: :destroy
@@ -13,12 +11,19 @@ class User < ActiveRecord::Base
   delegate :next_plan, to: :subscription
   delegate :next_plan_id, to: :subscription
 
-  after_customer_created! do |customer, event|
-    Rails.logger.debug(customer)
-    Rails.logger.debug(event)
-  end
-
   include SubscriptionStatus
+
+  include Stripe::Callbacks
+
+  after_customer_updated! do |customer, event|
+    user = User.find_by_stripe_customer_id(customer.id)
+    if customer.delinquent
+      user.account_current = false
+    else
+      user.account_current = true
+    end
+    user.save!
+  end
 
   def has_free_trial_remaining?
     false
