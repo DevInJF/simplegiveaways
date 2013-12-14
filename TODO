@@ -93,11 +93,13 @@ Simple Giveaways:
 
  ✔ Ensure that users are MANAGER or CONTENT_CREATOR of pages and not some other kind of page user. @done (13-12-11 06:48)
 
- ☐ Confirm subscriptions with Stripe callbacks.
+ ✔ Confirm subscriptions with Stripe callbacks. @done (13-12-13 23:52)
 
-      ☐ Deactivate subscriptions when failed charge limit exceeded.
+      ✔ Deactivate subscriptions when failed charge limit exceeded. @done (13-12-13 23:52)
 
- ☐ Update plan features text.
+ ✔ Update plan features text. @done (13-12-14 00:23)
+
+ ☐ Implement limits on the Single Page basic plan.
 
  ☐ Subscription Emails.
 
@@ -116,6 +118,8 @@ Simple Giveaways:
       ☐ Cancel Subscription
 
  ☐ Ensure user will never be surprised by an action taken by the app.
+
+      ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 
  ☐ Create FAQ.
 
@@ -146,3 +150,5 @@ Simple Giveaways:
  ☐ Write basic acceptance tests with Capybara.
 
  ☐ Market research for subscription and feature modifications/additions.
+
+ ☐ A/B testing on UI, UX, and features.

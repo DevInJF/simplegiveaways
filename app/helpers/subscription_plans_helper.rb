@@ -20,16 +20,36 @@ module SubscriptionPlansHelper
     plan.name.gsub(/\s\(.*\)/, '')
   end
 
-  def page_count_feature_string(plan)
-    plan.is_single_page? ? '1 Facebook Page' : 'Unlimited Facebook Pages'
+  def page_count_string(plan)
+    plan.is_single_page? ? 'One Facebook Page' : 'Unlimited Facebook Pages'
   end
 
-  def giveaway_count_feature_string(plan)
-    plan.is_free_trial? ? '1 Giveaway' : 'Unlimited Giveaways'
+  def giveaway_count_string(plan)
+    plan.is_free_trial? ? 'One Giveaway' : 'Unlimited Giveaways'
   end
 
-  def white_label_feature_string(plan)
-    str = plan.is_yearly? ? 'White-label Service' : '<strike>White-label Service</strike>'
+  def analytics_string(plan)
+    str = plan.name.include?("Pro") ? 'Advanced Analytics' : 'Basic Analytics'
+    str.html_safe
+  end
+
+  def schedule_string(plan)
+    str = plan.name.include?("Pro") ? 'Scheduled Giveaways' : '<strike>Scheduled Giveaways</strike>'
+    str.html_safe
+  end
+
+  def viral_referrals_string(plan)
+    str = plan.name.include?("Pro") ? 'Viral Referral Tracking' : '<strike>Viral Referral Tracking</strike>'
+    str.html_safe
+  end
+
+  def shortlink_string(plan)
+    str = plan.name.include?("Pro") ? 'Giveaway Shortlink' : '<strike>Giveaway Shortlink</strike>'
+    str.html_safe
+  end
+
+  def white_label_string(plan)
+    str = plan.name.include?("Pro") ? 'White-label' : '<strike>White-label</strike>'
     str.html_safe
   end
 
