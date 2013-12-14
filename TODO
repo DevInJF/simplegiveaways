@@ -101,8 +101,6 @@ Simple Giveaways:
 
  ☐ Implement limits on the Single Page basic plan.
 
- ☐ Subscription Emails.
-
  ☐ Ensure all sharing is working properly.
 
  ☐ Loading indicators site-wide.
@@ -120,6 +118,8 @@ Simple Giveaways:
  ☐ Ensure user will never be surprised by an action taken by the app.
 
       ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
+
+ ☐ Subscription Emails.
 
  ☐ Create FAQ.
 
