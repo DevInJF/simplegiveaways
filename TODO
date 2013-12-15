@@ -101,6 +101,18 @@ Simple Giveaways:
 
  ☐ Implement limits on the Single Page basic plan.
 
+       ✔ Analytics @done (13-12-15 18:35)
+
+       ✔ Shortlink @done (13-12-15 18:35)
+
+       ✔ Scheduling @done (13-12-15 18:35)
+
+       ✔ White-label @done (13-12-15 18:35)
+
+       ☐ Viral Referral Tracking
+
+ ☐ Fix start/end date validations for active giveaway edits.
+
  ☐ Implement clone giveaway feature.
 
  ☐ Ensure all sharing is working properly.

@@ -19,6 +19,16 @@ class FacebookPage < ActiveRecord::Base
   scope :unsubscribed, where(subscription_id: nil)
   scope :subscribed, where("subscription_id IS NOT ?", nil)
 
+  delegate :next_plan, to: :subscription
+  delegate :next_plan_id, to: :subscription
+
+  delegate :canhaz_basic_analytics?,     to: :subscription
+  delegate :canhaz_advanced_analytics?,  to: :subscription
+  delegate :canhaz_scheduled_giveaways?, to: :subscription
+  delegate :canhaz_referral_tracking?,   to: :subscription
+  delegate :canhaz_giveaway_shortlink?,  to: :subscription
+  delegate :canhaz_white_label?,         to: :subscription
+
   include SubscriptionStatus
 
   def has_better_plan_with_other_user?(options = {})
@@ -35,6 +45,14 @@ class FacebookPage < ActiveRecord::Base
     return false unless has_active_subscription? && subscription.user != user && subscription_plan < new_plan
   rescue
     false
+  end
+
+  def cannot_schedule?
+    needs_subscription? || !canhaz_scheduled_giveaways?
+  end
+
+  def can_schedule?
+    !cannot_schedule?
   end
 
   def active_giveaway

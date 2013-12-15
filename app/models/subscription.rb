@@ -11,7 +11,13 @@ class Subscription < ActiveRecord::Base
 
   scope :to_cancel, -> { where("activate_next_after IS NOT NULL AND activate_next_after <= ? AND next_plan_id < ?", Time.zone.now, 1) }
 
-  delegate :name, to: :subscription_plan
+  delegate :name,                        to: :subscription_plan
+  delegate :canhaz_basic_analytics?,     to: :subscription_plan
+  delegate :canhaz_advanced_analytics?,  to: :subscription_plan
+  delegate :canhaz_scheduled_giveaways?, to: :subscription_plan
+  delegate :canhaz_referral_tracking?,   to: :subscription_plan
+  delegate :canhaz_giveaway_shortlink?,  to: :subscription_plan
+  delegate :canhaz_white_label?,         to: :subscription_plan
 
   def active?
     subscription_plan.present? && user.account_current?

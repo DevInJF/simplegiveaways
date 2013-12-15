@@ -34,6 +34,7 @@ class GiveawaysController < ApplicationController
     @giveaway = Giveaway.find_by_id(params[:id])
     @page = @giveaway.facebook_page
     if @giveaway.active?
+      flash.keep
       redirect_to active_facebook_page_giveaways_path(@page)
     elsif @giveaway.completed?
       @entries = @giveaway.entries.sort_by(&:created_at).reverse.first(50)
@@ -65,8 +66,8 @@ class GiveawaysController < ApplicationController
 
       flash[:info] = "#{@giveaway.title} has been created.".html_safe
 
-      if @page.needs_subscription? && @giveaway.start_date
-        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active subscription. Since #{@page.name} is currently unsubscribed, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>choose a plan</a>. If you're not sure right now, no problem. You can choose a plan whenever you like.".html_safe
+      if @page.cannot_schedule? && @giveaway.start_date
+        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since #{@page.name} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like.".html_safe
       end
 
       redirect_to pending_facebook_page_giveaways_path(@page)
@@ -82,8 +83,8 @@ class GiveawaysController < ApplicationController
     if @giveaway.update_attributes(params[:giveaway])
       flash[:info] = "#{@giveaway.title} has been updated.".html_safe
 
-      if @page.needs_subscription? && @giveaway.start_date
-        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active subscription. Since #{@page.name} is currently unsubscribed, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>choose a plan</a>. If you're not sure right now, no problem. You can choose a plan whenever you like.".html_safe
+      if @page.cannot_schedule? && @giveaway.start_date
+        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since #{@page.name} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like.".html_safe
       end
 
       redirect_to facebook_page_giveaway_url(@page, @giveaway)

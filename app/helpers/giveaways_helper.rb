@@ -64,8 +64,8 @@ module GiveawaysHelper
   def start_date_label(giveaway)
     return "No Start Date" unless giveaway.start_date
     return giveaway.start_date if giveaway.active? || giveaway.completed?
-    if giveaway.needs_subscription?
-      "<span class='giveaway-start-date-warning popup-trigger' data-title='Inactive Start Date' data-content='A subscription is required in order to schedule a giveaway.<br /><br /><a class=\"ui mini teal button\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>' data-on='click'><i class='warning icon'></i><s>#{giveaway.start_date}</s></span>".html_safe
+    if giveaway.cannot_schedule?
+      "<span class='giveaway-start-date-warning popup-trigger' data-title='Inactive Start Date' data-content='A Pro subscription is required in order to schedule a giveaway.<br /><br /><a class=\"ui mini teal button\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>' data-on='click'><i class='warning icon'></i><s>#{giveaway.start_date}</s></span>".html_safe
     elsif giveaway.has_scheduling_conflict?
       "<span class=\"giveaway-start-date-warning popup-trigger\" data-title=\"Inactive Start Date\" data-content=\"This giveaway has scheduling conflicts with the following giveaways:<br /><br />#{conflicts(giveaway)}<br /><br />Please update your giveaway schedules in order to activate this start date.<br /><br /><a class='ui mini teal button' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'>Edit Giveaway</a>\" data-on='click'><i class='warning icon'></i><s>#{giveaway.start_date}</s></span>".html_safe
     else
@@ -75,9 +75,9 @@ module GiveawaysHelper
 
   def end_date_label(giveaway)
     return "No End Date" unless giveaway.end_date
-    return giveaway.end_date if giveaway.active? || giveaway.completed?
-    if giveaway.needs_subscription?
-      "<span class='giveaway-end-date-warning popup-trigger' data-title='Inactive End Date' data-content='A subscription is required in order to schedule a giveaway.<br /><br /><a class=\"ui mini teal button\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>' data-on='click'><i class='warning icon'></i><s>#{giveaway.end_date}</s></span>".html_safe
+    return giveaway.end_date if giveaway.completed?
+    if giveaway.cannot_schedule?
+      "<span class='giveaway-end-date-warning popup-trigger' data-title='Inactive End Date' data-content='A Pro subscription is required in order to schedule a giveaway.<br /><br /><a class=\"ui mini teal button\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>' data-on='click'><i class='warning icon'></i><s>#{giveaway.end_date}</s></span>".html_safe
     elsif giveaway.has_scheduling_conflict?
       "<span class=\"giveaway-end-date-warning popup-trigger\" data-title=\"Inactive End Date\" data-content=\"This giveaway has scheduling conflicts with the following giveaways:<br /><br />#{conflicts(giveaway)}<br /><br />Please update your giveaway schedules in order to activate this end date.<br /><br /><a class='ui mini teal button' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'>Edit Giveaway</a>\" data-on='click'><i class='warning icon'></i><s>#{giveaway.end_date}</s></span>".html_safe
     else

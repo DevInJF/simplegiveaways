@@ -142,6 +142,8 @@ class Giveaway < ActiveRecord::Base
   has_attached_file :feed_image, feed_image_opts
 
   delegate :needs_subscription?, to: :facebook_page
+  delegate :cannot_schedule?, to: :facebook_page
+  delegate :can_schedule?, to: :facebook_page
 
   def graph_client
     @graph ||= Koala::Facebook::API.new(facebook_page.token)
@@ -472,7 +474,8 @@ class Giveaway < ActiveRecord::Base
         has_liked: signed_request["page"]["liked"],
         current_page: current_page,
         giveaway: giveaway.tab_attrs,
-        tab_height: giveaway.tab_height
+        tab_height: giveaway.tab_height,
+        canhaz_white_label: giveaway.facebook_page.canhaz_white_label?
       })
     end
 
@@ -487,8 +490,8 @@ class Giveaway < ActiveRecord::Base
     end
 
     def schedule_worker(method)
-      Giveaway.to_start.reject(&:needs_subscription?).each(&:publish) if method == "publish"
-      Giveaway.to_end.reject(&:needs_subscription?).each(&:unpublish) if method == "unpublish"
+      Giveaway.to_start.reject(&:cannot_schedule?).each(&:publish) if method == "publish"
+      Giveaway.to_end.reject(&:cannot_schedule?).each(&:unpublish) if method == "unpublish"
     end
 
     def uniques_worker(giveaway_id)

@@ -1,7 +1,7 @@
 .active-giveaway.ui.stackable.grid
   .clearfix
   = render 'giveaways/active/stats', giveaway: giveaway
-  = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot
+  = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot if page.canhaz_advanced_analytics?
   = render 'giveaways/active/accordion', giveaway: giveaway, page: page, entries: entries
 
 :javascript

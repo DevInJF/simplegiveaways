@@ -41,7 +41,7 @@ class SubscriptionPlan < ActiveRecord::Base
   end
 
   def canhaz_basic_analytics?
-    !has_advanced_analytics?
+    !canhaz_advanced_analytics?
   end
 
   def canhaz_advanced_analytics?

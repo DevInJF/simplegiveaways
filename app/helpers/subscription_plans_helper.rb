@@ -109,6 +109,6 @@ module SubscriptionPlansHelper
   end
 
   def no_subscription_schedule_message(sub_object)
-    "<strong>#{sub_object.name}</strong> is not currently subscribed to any plan. In order to schedule a giveaway to start automatically, a subscription is required. Please choose the plan that is right for you and then we will automatically publish the giveaway at the chosen date and time. If you decide not to choose a plan right now, we will save your giveaway but ignore the scheduling information so that you can come back to it in the future. Good luck and please don't hesitate to contact us for any help or advice. Thank you for using <strong>Simple Giveaways</strong>.".html_safe
+    "<strong>#{sub_object.name}</strong> is not currently subscribed to any plan. In order to schedule a giveaway to start or end automatically, a Pro subscription is required. Please choose the plan that is right for you and then we will automatically publish the giveaway at the chosen date and time. If you decide not to choose a plan right now, we will save your giveaway but ignore the scheduling information so that you can come back to it in the future. Good luck and please don't hesitate to contact us for any help or advice. Thank you for using <strong>Simple Giveaways</strong>.".html_safe
   end
 end
