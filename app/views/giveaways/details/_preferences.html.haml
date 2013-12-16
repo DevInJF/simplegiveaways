@@ -16,6 +16,7 @@
       .ui.small.flex.horizontal.label Allow Multiple Entries
       = boolean_label(giveaway.allow_multi_entries)
 
-    .item.bonus-value
-      .ui.small.flex.horizontal.label Bonus Value
-      .ui.small.horizontal.black.label= giveaway.bonus_value
+    - if giveaway.bonus_value.present?
+      .item.bonus-value
+        .ui.small.flex.horizontal.label Bonus Value
+        .ui.small.horizontal.black.label= giveaway.bonus_value

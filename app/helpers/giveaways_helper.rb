@@ -1,5 +1,7 @@
 module GiveawaysHelper
 
+  include PublicUtils
+
   def status_label(giveaway)
     case giveaway.status
       when 'Active'
@@ -54,7 +56,7 @@ module GiveawaysHelper
   end
 
   def boolean_label(boolean)
-    if boolean
+    if to_bool(boolean)
       '<div class="ui small horizontal teal label">TRUE</div>'.html_safe
     else
       '<div class="ui small horizontal red label">FALSE</div>'.html_safe

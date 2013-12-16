@@ -8,4 +8,10 @@
 
   = f.input :allow_multi_entries, as: :boolean, wrapper: :semantic_checkbox_toggle, label: 'Allow Multiple Entries Per User'
 
-  = f.input :bonus_value, as: :string, input_html: { value: '5', placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value'
+  - if f.object.facebook_page.canhaz_referral_tracking? || f.object.allow_multi_entries == "1"
+
+    = f.input :bonus_value, as: :string, input_html: { value: '5', placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value'
+
+  - else
+
+    = f.input :bonus_value, as: :string, input_html: { value: '', placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value', wrapper_html: { style: 'display:none', id: 'bonus_value_wrapper' }

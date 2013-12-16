@@ -22,7 +22,7 @@
         %span Congratulations!
         %span You have successfully entered the giveaway.
       .share-page
-        - if @giveaway_hash.giveaway.bonus_value == "0"
+        - if @giveaway_hash.giveaway.bonus_value == "0" || !@giveaway_hash.canhaz_referral_tracking
           %span Share this giveaway with your friends.
         - elsif @giveaway_hash.giveaway.bonus_value == "1"
           %span Share this giveaway to receive <strong class="badge badge-warning">1</strong> bonus entry for each friend who enters.

@@ -5,6 +5,8 @@ class Giveaway < ActiveRecord::Base
 
   is_impressionable
 
+  include PublicUtils
+
   attr_accessible :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_sends, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes, :_page_likes_while_active
 
   has_many :audits, as: :auditable
@@ -48,7 +50,7 @@ class Giveaway < ActiveRecord::Base
   validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
   validates :allow_multi_entries, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
   validates :email_required, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
-  validates :bonus_value, presence: true, numericality: { only_integer: true }
+  validates :bonus_value, presence: true, numericality: { only_integer: true }, if: -> { facebook_page.canhaz_referral_tracking? || to_bool(allow_multi_entries) }
 
   store :sticky_post, accessors: [ :sticky_post_enabled?,
                                    :sticky_post_title,
@@ -242,16 +244,18 @@ class Giveaway < ActiveRecord::Base
   end
 
   def start_date_conflicts
+    return [] unless start_date
     scheduling_conflicts(start_date)
   end
 
   def end_date_conflicts
+    return [] unless end_date
     scheduling_conflicts(end_date).reject(&:active?)
   end
 
   def scheduling_conflicts(date)
     (facebook_page.giveaways.incomplete - [self]).select do |pg|
-      next unless pg.start_date
+      next unless pg.start_date && pg.end_date
       (pg.start_date..pg.end_date).cover?(date)
     end
   end
@@ -475,7 +479,8 @@ class Giveaway < ActiveRecord::Base
         current_page: current_page,
         giveaway: giveaway.tab_attrs,
         tab_height: giveaway.tab_height,
-        canhaz_white_label: giveaway.facebook_page.canhaz_white_label?
+        canhaz_white_label: giveaway.facebook_page.canhaz_white_label?,
+        canhaz_referral_tracking: giveaway.facebook_page.canhaz_referral_tracking?
       })
     end
 

@@ -99,7 +99,7 @@ Simple Giveaways:
 
  ✔ Update plan features text. @done (13-12-14 00:23)
 
- ☐ Implement limits on the Single Page basic plan.
+ ✔ Implement limits on the Single Page basic plan. @done (13-12-15 19:19)
 
        ✔ Analytics @done (13-12-15 18:35)
 
@@ -109,7 +109,7 @@ Simple Giveaways:
 
        ✔ White-label @done (13-12-15 18:35)
 
-       ☐ Viral Referral Tracking
+       ✔ Viral Referral Tracking @done (13-12-15 19:19)
 
  ☐ Fix start/end date validations for active giveaway edits.
 
