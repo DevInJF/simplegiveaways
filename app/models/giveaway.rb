@@ -12,8 +12,8 @@ class Giveaway < ActiveRecord::Base
   has_many :audits, as: :auditable
 
   belongs_to :facebook_page
-  has_many :entries
-  has_many :likes
+  has_many :entries, dependent: :delete_all
+  has_many :likes, dependent: :delete_all
 
   scope :active, -> { where("active IS TRUE").limit(1) }
 

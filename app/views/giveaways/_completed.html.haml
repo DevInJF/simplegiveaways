@@ -4,5 +4,7 @@
   = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot
   = render 'giveaways/active/accordion', giveaway: giveaway, page: page, entries: entries
 
-:javascript
-  simpleGiveaways["active_giveaway"]["shortlink"] = "#{giveaway.shortlink}";
+  .row
+    .column
+      .ui.right.floated.tiny.red.buttons
+        = link_to 'Delete', facebook_page_giveaway_path(page, giveaway), method: :delete, 'data-confirm' => "Are you sure you want to delete the giveaway? You will not be able to recover this giveaway if you proceed.", class: 'ui button'

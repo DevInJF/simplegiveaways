@@ -6,8 +6,8 @@ class GiveawaysController < ApplicationController
   load_and_authorize_resource :facebook_page, except: [:tab]
   load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab]
 
-  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone]
-  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone]
+  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy]
+  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy]
 
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
@@ -98,8 +98,8 @@ class GiveawaysController < ApplicationController
 
   def destroy
     if @giveaway.destroy
-      flash[:info] = "The #{@giveaway.title} giveaway has been permanently deleted."
-      redirect_to facebook_page_giveaways_url(@giveaway.facebook_page)
+      flash[:info] = "#{@giveaway.title} has been permanently deleted."
+      redirect_to facebook_page_url(@giveaway.facebook_page)
     else
       flash.now[:error] = @giveaway.errors.messages.to_s
       render :show

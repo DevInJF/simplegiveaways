@@ -23,8 +23,10 @@ class FacebookPagesController < ApplicationController
       flash[:info] = "#{@page.name} has been successfully subscribed to the #{@page.subscription_plan_name} plan. Thank you for using <strong>Simple Giveaways</strong>.".html_safe
       redirect_to pending_facebook_page_giveaways_path(@page, subscribed: true)
     elsif @page.active_giveaway
+      flash.keep
       redirect_to active_facebook_page_giveaways_path(@page)
     else
+      flash.keep
       redirect_to pending_facebook_page_giveaways_path(@page)
     end
   end

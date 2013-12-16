@@ -115,6 +115,8 @@ Simple Giveaways:
 
  ✔ Implement clone giveaway feature. @done (13-12-15 20:00)
 
+ ✔ Allow deletion of pending and completed giveaways. @done (13-12-15 20:16)
+
  ☐ Ensure all sharing is working properly.
 
  ☐ Loading indicators site-wide.
