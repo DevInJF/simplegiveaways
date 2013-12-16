@@ -74,20 +74,21 @@ class Giveaway < ActiveRecord::Base
 
   validates_datetime :start_date, before: :end_date,
                                   before_message: "must be before end date/time.",
+                                  unless: -> { active },
                                   ignore_usec: true,
                                   allow_blank: true,
                                   allow_nil: true
 
   validates_datetime :end_date, on_or_after: -> { (Time.zone.now - 30.seconds) },
                                 on_or_after_message: "must be in the future.",
-                                unless: -> { active_was },
+                                unless: -> { !active && active_was },
                                 ignore_usec: true,
                                 allow_blank: true,
                                 allow_nil: true
 
   validates_datetime :end_date, after: :start_date,
                                 after_message: "must be after start date/time.",
-                                unless: -> { active_was },
+                                unless: -> { !active && active_was },
                                 ignore_usec: true,
                                 allow_blank: true,
                                 allow_nil: true
