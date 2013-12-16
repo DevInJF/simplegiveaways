@@ -3,11 +3,11 @@ class GiveawaysController < ApplicationController
 
   layout 'facebook_pages'
 
-  load_and_authorize_resource :facebook_page, except: [:tab]
-  load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab]
+  load_and_authorize_resource :facebook_page, except: [:tab, :enter]
+  load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab, :enter]
 
-  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy]
-  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy]
+  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy, :enter]
+  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy, :enter]
 
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
@@ -164,6 +164,11 @@ class GiveawaysController < ApplicationController
     end
   end
 
+  def enter
+    ga_event("Giveaways", "Giveaway#enter", @giveaway.title, @giveaway.id)
+    render layout: "enter"
+  end
+
   def check_schedule
     page = FacebookPage.find_by_id(params[:facebook_page_id])
     giveaway = params[:giveaway_id].present? ? Giveaway.find_by_id(params[:giveaway_id]) : page.giveaways.build
@@ -205,11 +210,20 @@ class GiveawaysController < ApplicationController
   private
 
   def assign_page
-    @page = FacebookPage.find_by_id(params[:facebook_page_id])
+    @page = if params[:facebook_page_id]
+      FacebookPage.find_by_id(params[:facebook_page_id])
+    elsif params[:giveaway_id]
+      @giveaway ||= Giveaway.find_by_id(params[:giveaway_id])
+      @giveaway.facebook_page
+    end
   end
 
   def assign_giveaway
-    @giveaway = Giveaway.find_by_id(params[:id])
+    @giveaway = if params[:giveaway_id]
+      Giveaway.find_by_id(params[:giveaway_id])
+    else
+      Giveaway.find_by_id(params[:id])
+    end
   end
 
   def flot_hash
