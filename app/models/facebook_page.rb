@@ -22,13 +22,6 @@ class FacebookPage < ActiveRecord::Base
   delegate :next_plan, to: :subscription
   delegate :next_plan_id, to: :subscription
 
-  delegate :canhaz_basic_analytics?,     to: :subscription
-  delegate :canhaz_advanced_analytics?,  to: :subscription
-  delegate :canhaz_scheduled_giveaways?, to: :subscription
-  delegate :canhaz_referral_tracking?,   to: :subscription
-  delegate :canhaz_giveaway_shortlink?,  to: :subscription
-  delegate :canhaz_white_label?,         to: :subscription
-
   include SubscriptionStatus
 
   def has_better_plan_with_other_user?(options = {})
@@ -105,6 +98,30 @@ class FacebookPage < ActiveRecord::Base
 
   def path
     Rails.application.routes.url_helpers.facebook_page_path(self)
+  end
+
+  def canhaz_basic_analytics?
+    subscription && subscription.canhaz_basic_analytics?
+  end
+
+  def canhaz_advanced_analytics?
+    subscription && subscription.canhaz_advanced_analytics? || has_free_trial_remaining?
+  end
+
+  def canhaz_scheduled_giveaways?
+    subscription && subscription.canhaz_scheduled_giveaways? || has_free_trial_remaining?
+  end
+
+  def canhaz_referral_tracking?
+    subscription && subscription.canhaz_referral_tracking? || has_free_trial_remaining?
+  end
+
+  def canhaz_giveaway_shortlink?
+    subscription && subscription.canhaz_giveaway_shortlink? || has_free_trial_remaining?
+  end
+
+  def canhaz_white_label?
+    subscription && subscription.canhaz_white_label?
   end
 
   class << self
