@@ -6,8 +6,8 @@ class GiveawaysController < ApplicationController
   load_and_authorize_resource :facebook_page, except: [:tab]
   load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab]
 
-  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create]
-  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries]
+  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone]
+  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone]
 
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
@@ -186,6 +186,20 @@ class GiveawaysController < ApplicationController
   def export_entries
     return false unless send_data(@giveaway.csv, type: 'text/csv', filename: 'entries_export.csv')
     ga_event("Giveaways", "Giveaway#export_entries", @giveaway.title, @giveaway.id)
+  end
+
+  def clone
+    @clone = @giveaway.dup
+    @clone.title = "Copy of #{@clone.title} (#{Time.now.to_s(:short)})"
+    @clone.start_date = nil
+    @clone.end_date = nil
+
+    if @clone.save
+      redirect_to edit_facebook_page_giveaway_path(@page, @clone)
+    else
+      flash[:error] = "There was a problem cloning the giveaway. Please try again or contact support for assistance."
+      redirect_to facebook_page_giveaway_path(@page, @giveaway)
+    end
   end
 
   private

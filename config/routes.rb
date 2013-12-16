@@ -32,7 +32,7 @@ Simplegiveaways::Application.routes.draw do
       get :pending, on: :collection
       get :completed, on: :collection
       get :check_schedule, on: :collection
-
+      get :clone, on: :member
       match :start, on: :member
       get :end, on: :member
     end
