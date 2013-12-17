@@ -167,8 +167,12 @@ class GiveawaysController < ApplicationController
   def enter
     @giveaway = Giveaway.find(params[:giveaway_id])
     @page = @giveaway.facebook_page
-    ga_event("Giveaways", "Giveaway#enter", @giveaway.title, @giveaway.id)
-    render layout: "enter"
+    if @giveaway.active?
+      ga_event("Giveaways", "Giveaway#enter", @giveaway.title, @giveaway.id)
+      render layout: "enter"
+    else
+      redirect_to root_path
+    end
   end
 
   def check_schedule
