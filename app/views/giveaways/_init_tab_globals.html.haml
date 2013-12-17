@@ -1,14 +1,10 @@
 :javascript
-  simpleGiveaways = {
+  (function() {
+    _SG.Config.FB_APP_ID = '#{FB_APP_ID}';
+    _SG.Config.SG_SSL_DOMAIN = '#{SG_SSL_DOMAIN}';
+    _SG.CurrentGiveaway = #{giveaway_hash.to_json};
+    _SG.Paths.likes = '#{likes_path}';
+    _SG.Paths.giveawayEntry = '#{facebook_page_giveaway_entries_path(giveaway_hash.current_page, giveaway_hash.giveaway.id)}';
 
-    config: {
-      fb_app_id: '#{FB_APP_ID}'
-    },
-
-    giveaway_hash: #{giveaway_hash.to_json},
-
-    paths: {
-      likes: '#{likes_path}',
-      giveaway_entry: '#{facebook_page_giveaway_entries_path(giveaway_hash.current_page, giveaway_hash.giveaway.id)}'
-    }
-  }
+    Object.freeze(_SG);
+  }());

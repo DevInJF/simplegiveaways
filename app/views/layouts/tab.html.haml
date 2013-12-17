@@ -14,10 +14,10 @@
     %meta{property: "og:description", content: "#{@giveaway_hash.giveaway.description}"}
     %meta{property: "og:url", content: "#{@giveaway_hash.giveaway.giveaway_url}"}
     %link{rel: 'canonical', href: "#{@giveaway_hash.giveaway.giveaway_url}"}
-    = stylesheet_link_tag "//0.0.0.0:3000/assets/tab.css?234asdf23"
+    = stylesheet_link_tag "//#{SG_SSL_DOMAIN}/assets/tab.css"
     /[if lt IE 9]
       = javascript_include_tag "//html5shim.googlecode.com/svn/trunk/html5.js"
-    = javascript_include_tag "//0.0.0.0:3000/assets/tab.js"
+    = javascript_include_tag "//#{SG_SSL_DOMAIN}/assets/tab.js"
 
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700"
 

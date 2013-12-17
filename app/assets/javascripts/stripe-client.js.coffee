@@ -1,5 +1,7 @@
 SG.StripeClient =
 
+  _sg: _SG
+
   initialize: ->
     if @stripeEl().length
       @configureHandler()
@@ -7,7 +9,7 @@ SG.StripeClient =
 
   configureHandler: ->
     @handler = StripeCheckout.configure
-      key: "#{@publishableKey}"
+      key: "#{_sg.Config.STRIPE_KEY}"
       token: (data, args) =>
         @createSubscription(data.id)
 
@@ -57,7 +59,7 @@ SG.StripeClient =
         name: 'Simple Giveaways'
         description: $(@planEl).data('description')
         amount: amount
-        email: simpleGiveaways.current_user.email
+        email: _sg.CurrentUser.email
 
   createSubscription: (token) ->
     $.ajax
@@ -90,6 +92,6 @@ SG.StripeClient =
     @plansContainerEl().data('is-user-centric')
 
   ajaxPath: ->
-    @isUserCentric() && SG.Paths.userSubscribe || SG.Paths.pageSubscribe
+    @isUserCentric() && _sg.Paths.userSubscribe || _sg.Paths.pageSubscribe
 
   stripeEl: -> $('script#stripe_js')

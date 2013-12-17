@@ -1,62 +1,55 @@
 :javascript
-  var simpleGiveaways = (function() {
-
-    return {
-
-      config: {
-        port: '#{ENV["PORT"]}',
-        fb_app_id: '#{FB_APP_ID}'
-      },
-
-      current_user: {},
-
-      active_giveaway: {},
-
-      csrf: function() {
-        return $("meta[name='csrf-token']").attr("content");
-      },
-
-      utils: {
-
-        getURLParameter: function(name) {
-          return decodeURI(
-            (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, false])[1]
-          );
-        }
-      }
-    }
+  (function() {
+    _SG.Config.FB_APP_ID = '#{FB_APP_ID}';
+    _SG.Config.STRIPE_KEY = '#{Rails.configuration.stripe.publishable_key}';
   }());
 
 - if @page
   :javascript
-    SG.currentPageId = '#{@page.id}';
-    SG.Paths.facebookPage = '#{facebook_page_path(@page)}';
-    SG.Paths.checkSchedule = '#{check_schedule_facebook_page_giveaways_path(@page)}';
-    SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
-    SG.Paths.pageSubscribe = '#{facebook_page_subscribe_path(@page)}';
+    (function() {
+      _SG.CurrentPage.ID = '#{@page.id}';
+      _SG.Paths.facebookPage = '#{facebook_page_path(@page)}';
+      _SG.Paths.checkSchedule = '#{check_schedule_facebook_page_giveaways_path(@page)}';
+      _SG.Paths.subscriptionPlans = '#{facebook_page_subscription_plans_path(@page)}';
+      _SG.Paths.pageSubscribe = '#{facebook_page_subscribe_path(@page)}';
+    }());
 
   - if @page.has_active_subscription?
     :javascript
-      SG.currentPageSubscribed = true;
+      (function() {
+        _SG.CurrentPage.isSubscribed = true;
+      }());
 
 - if @giveaway
   :javascript
-    SG.currentGiveawayId = '#{@giveaway.id}';
+    (function() {
+      _SG.CurrentGiveaway.ID = '#{@giveaway.id}';
+    }());
 
 - if current_user && current_user.fb_uid
   :javascript
-    simpleGiveaways["current_user"]["name"] = '#{current_user.name}';
-    simpleGiveaways["current_user"]["fb_uid"] = '#{current_user.fb_uid}';
-    simpleGiveaways["current_user"]["email"] = '#{current_user.email}';
-    SG.StripeClient.publishableKey = '#{Rails.configuration.stripe.publishable_key}';
-    SG.Paths.userPages = '#{facebook_pages_path}';
-    SG.Paths.userSubscribe = '#{user_subscribe_path(current_user)}';
-    SG.userJustSubscribed = '#{session.delete(:just_subscribed)}'
+    (function() {
+      _SG.CurrentUser.name = '#{current_user.name}';
+      _SG.CurrentUser.FB_UID = '#{current_user.fb_uid}';
+      _SG.CurrentUser.email = '#{current_user.email}';
+      _SG.Paths.userPages = '#{facebook_pages_path}';
+      _SG.Paths.userSubscribe = '#{user_subscribe_path(current_user)}';
+      _SG.CurrentUser.justSubscribed = '#{session.delete(:just_subscribed)}';
+    }());
 
 - if session[:proposed_end_date]
   :javascript
-    SG.proposedEndDate = '#{session[:proposed_end_date]}';
+    (function() {
+      _SG.CurrentGiveaway.proposedEndDate = '#{session[:proposed_end_date]}';
+    }());
 
 - if session[:proposed_tab_name]
   :javascript
-    SG.proposedTabName = '#{session[:proposed_tab_name]}';
+    (function() {
+      _SG.CurrentGiveaway.proposedTabName = '#{session[:proposed_tab_name]}';
+    }());
+
+:javascript
+  (function() {
+    Object.freeze(_SG);
+  }());

@@ -1,10 +1,10 @@
 jQuery ->
 
-  _sg = simpleGiveaways
+  _sg = _SG
 
-  giveaway_hash = _sg.giveaway_hash.table
+  giveaway_hash = _sg.CurrentGiveaway.table
   giveaway_object = giveaway_hash.giveaway.table
-  paths = _sg.paths
+  paths = _sg.Paths
 
   $like_id = null
   $authed = null
@@ -38,9 +38,9 @@ jQuery ->
     status: true
     cookie: true
     xfbml: true
-    channelUrl: '//simplegiveaways.herokuapp.com/channel.html'
+    channelUrl: "//#{_sg.Config.SG_SSL_DOMAIN}/channel.html"
 
-  $(document).fb _sg.config.fb_app_id, fb_init_options
+  $(document).fb _sg.Config.FB_APP_ID, fb_init_options
 
   $(document).on 'fb:initialized', ->
 
@@ -276,7 +276,7 @@ jQuery ->
       $el = $("a.zclip-trigger")
 
       clip = new ZeroClipboard $el,
-        moviePath: "//0.0.0.0:3000/assets/ZeroClipboard.swf"
+        moviePath: "//#{_sg.Config.SG_SSL_DOMAIN}/assets/ZeroClipboard.swf"
         trustedOrigins: [window.location.protocol + "//" + window.location.host]
         allowScriptAccess: 'always'
 

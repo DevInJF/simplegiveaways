@@ -1,8 +1,10 @@
 jQuery ->
 
-  _sg = simpleGiveaways
+  _sg = _SG
 
-  loggedIn = _sg.current_user.name?
+  currentUser = _sg.CurrentUser
+
+  loggedIn = currentUser.name?
 
   fbAuthStatusChange = (response) ->
     authorizeUser(response) if response? and loggedIn?
@@ -13,9 +15,9 @@ jQuery ->
     doRedirect() if readableStatus and shouldRedirect(response)
 
   shouldRedirect = (response) ->
-    return false unless _sg.current_user.fb_uid?
+    return false unless currentUser.FB_UID?
     return true unless response.authResponse?
-    response.authResponse.userID isnt _sg.current_user.fb_uid
+    response.authResponse.userID isnt currentUser.FB_UID
 
   doRedirect = ->
     window.location.href = "/logout?fb=true"
@@ -23,4 +25,4 @@ jQuery ->
   $(document).on 'fb:initialized', ->
     FB.getLoginStatus(fbAuthStatusChange)
 
-  $(document).fb _sg.config.fb_app_id
+  $(document).fb _sg.Config.FB_APP_ID

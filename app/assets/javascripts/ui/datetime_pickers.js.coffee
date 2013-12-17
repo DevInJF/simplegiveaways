@@ -1,5 +1,7 @@
 SG.UI.DatetimePickers =
 
+  _sg: _SG
+
   initialize: ->
     @attachDatetimePicker(el) for el in @dateTimePickerEls()
 
@@ -22,11 +24,11 @@ SG.UI.DatetimePickers =
 
   checkSchedule: (datetime, input) ->
     $.ajax
-      url: SG.Paths.checkSchedule
+      url: _sg.Paths.checkSchedule
       dataType: 'json',
       data:
-        giveaway_id: SG.currentGiveawayId
-        facebook_page_id: SG.currentPageId
+        giveaway_id: _sg.CurrentGiveaway.ID
+        facebook_page_id: _sg.CurrentPage.ID
         date: datetime
         date_type: $(input).data('date-type')
       success: (conflicts, status) =>
