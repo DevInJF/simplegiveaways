@@ -146,7 +146,7 @@ jQuery ->
           access_token = eval("(" + access_token + ")")
         $.ajax
           type: "POST"
-          url: "#{paths.giveaway_entry}"
+          url: "#{paths.giveawayEntry}"
           dataType: "json"
           data: "access_token=" + access_token + "&has_liked=" + Giveaway.eligible() + "&ref_id=" + $referrer_id + "&email=" + $email + "&like_id=" + $like_id
           statusCode:
@@ -223,7 +223,7 @@ jQuery ->
       callback: (json) ->
         $.ajax
           type: "PUT"
-          url: "#{paths.giveaway_entry}/#{$entry_id}"
+          url: "#{paths.giveawayEntry}/#{$entry_id}"
           dataType: "text"
           data: json
           statusCode:

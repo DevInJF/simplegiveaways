@@ -24,11 +24,11 @@ SG.UI.DatetimePickers =
 
   checkSchedule: (datetime, input) ->
     $.ajax
-      url: _sg.Paths.checkSchedule
+      url: @_sg.Paths.checkSchedule
       dataType: 'json',
       data:
-        giveaway_id: _sg.CurrentGiveaway.ID
-        facebook_page_id: _sg.CurrentPage.ID
+        giveaway_id: @_sg.CurrentGiveaway.ID
+        facebook_page_id: @_sg.CurrentPage.ID
         date: datetime
         date_type: $(input).data('date-type')
       success: (conflicts, status) =>

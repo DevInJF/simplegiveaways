@@ -10,7 +10,7 @@ SG.Users =
 
   pollPages: ->
     $.ajax
-      url: _sg.Paths.userPages
+      url: @_sg.Paths.userPages
       dataType: 'json',
       success: (response, status) =>
         @pagesTargetEl().html(response.html) if response.html.length

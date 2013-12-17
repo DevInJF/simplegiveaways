@@ -23,7 +23,7 @@ SG.Giveaways.Start =
     $('#start_giveaway').trigger 'click'
 
   justSubscribed: ->
-    _sg.CurrentUser.justSubscribed.length && _sg.CurrentPage.isSubscribed?
+    @_sg.CurrentUser.justSubscribed.length && @_sg.CurrentPage.isSubscribed?
 
   moveForward: ->
     current = @currentStepEl()
@@ -38,14 +38,14 @@ SG.Giveaways.Start =
 
   redirectToSubPlans: ->
     $.ajax
-      url: _sg.Paths.subscriptionPlans
+      url: @_sg.Paths.subscriptionPlans
       type: 'POST'
       data:
         starting: true
         end_date: $('#start_giveaway_end_date').val()
         custom_tab_name: $('#start_giveaway_tab_name').val()
       success: =>
-        top.location.href = _sg.Paths.subscriptionPlans
+        top.location.href = @_sg.Paths.subscriptionPlans
 
   startGiveaway: ->
     $('#step_one form').submit()
