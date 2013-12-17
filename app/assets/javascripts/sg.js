@@ -1,14 +1,17 @@
 function deepFreeze (o) {
-  var prop, propKey;
   Object.freeze(o);
-  for (propKey in o) {
-    prop = o[propKey];
-    if (!o.hasOwnProperty(propKey) || !(typeof prop === "object") || Object.isFrozen(prop)) {
-      continue;
+
+  Object.getOwnPropertyNames(o).forEach(function (prop) {
+    if (o.hasOwnProperty(prop)
+    && o[prop] !== null
+    && (typeof o[prop] === "object" || typeof o[prop] === "function")
+    && !Object.isFrozen(o[prop])) {
+      deepFreeze(o[prop]);
     }
-    deepFreeze(prop);
-  }
-}
+  });
+
+  return o;
+};
 
 SG = {
   UI: {},

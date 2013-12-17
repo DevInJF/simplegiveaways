@@ -91,7 +91,7 @@ jQuery ->
         e.preventDefault()
 
     eligible: ->
-      (("#{giveaway_hash.has_liked}" == "true") || $just_liked) ? true : false
+      ("#{giveaway_hash.has_liked}" == "true") || $just_liked
 
     onLike: ->
       $.ajax
@@ -202,7 +202,6 @@ jQuery ->
             Giveaway.entry.error "You must grant permissions in order to enter the giveaway."
           $auth.hide()
         , scope: "email, user_location, user_birthday, user_likes"
-        e.preventDefault()
 
     share:
       listener: ->

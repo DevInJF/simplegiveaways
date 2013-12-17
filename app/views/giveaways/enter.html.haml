@@ -1,20 +1,20 @@
 #enter_giveaway
   %a.btn.btn-primary.btn-xlarge{href: "#"} Enter Giveaway
 #giveaway_image
-  = image_tag @giveaway.image(:tab).gsub("http://", "//") rescue ""
+  = image_tag @giveaway_hash.giveaway.image_url.gsub("http://", "//") rescue ""
 #giveaway_terms
-  - unless @page.canhaz_white_label?
+  - unless @giveaway_hash.canhaz_white_label
     %p.powered-by Powered by <a href='http://simplegiveaways.com' target='_blank'>Simple Giveaways</a>.
-  %p This promotion is in no way sponsored, endorsed or administered by, or associated with, Facebook. You understand that you are providing your information to "#{@page.name}" and not to Facebook. Your information will only be used to administer this promotion. Entry in this promotion is subject to the #{@giveaway.terms_link}.
-  .terms-text.hidden{style: "display:none"}= @giveaway.terms_text
+  %p This promotion is in no way sponsored, endorsed or administered by, or associated with, Facebook. You understand that you are providing your information to "#{@giveaway_hash.current_page.name}" and not to Facebook. Your information will only be used to administer this promotion. Entry in this promotion is subject to the #{@giveaway_hash.giveaway.terms_link}.
+  .terms-text.hidden{style: "display:none"}= @giveaway_hash.giveaway.terms_text
 
 #giveaway_modal{style: "display:none"}
   .modal-header
-    %h3= @giveaway.title
+    %h3= @giveaway_hash.giveaway.title
   .modal-body
     .step.one
       %span To be eligible for the giveaway, please like this page first.
-      %fb:like-box{border_color: "", header: "false", href: @page.url, show_faces: "true", stream: "false", width: "402"}
+      %fb:like-box{border_color: "", header: "false", href: @giveaway_hash.current_page.url, show_faces: "true", stream: "false", width: "402"}
     .step.two{style: "display:none"}
       %a{href: "#"} Click Here to Enter the Giveaway
     .step.three{style: "display:none"}
@@ -22,18 +22,18 @@
         %span Congratulations!
         %span You have successfully entered the giveaway.
       .share-page
-        - if @giveaway.bonus_value == "0" || !@page.canhaz_referral_tracking?
+        - if @giveaway_hash.giveaway.bonus_value == "0" || !@giveaway_hash.canhaz_referral_tracking
           %span Share this giveaway with your friends.
-        - elsif @giveaway.bonus_value == "1"
+        - elsif @giveaway_hash.giveaway.bonus_value == "1"
           %span Share this giveaway to receive <strong class="badge badge-warning">1</strong> bonus entry for each friend who enters.
         - else
-          %span Share this giveaway to receive <strong class="badge badge-warning">#{@giveaway.bonus_value}</strong> bonus entries <br />for each friend who enters.
+          %span Share this giveaway to receive <strong class="badge badge-warning">#{@giveaway_hash.giveaway.bonus_value}</strong> bonus entries <br />for each friend who enters.
         .share-buttons
           .btn-group
             %a.wall-post.btn.btn-primary{href: "#"} Post
             %a.send.btn.btn-primary{href: "#"} Message
             %a.app-request.btn.btn-primary{href: "#"} Invite
-          %a.raw-shortlink.btn.btn-info{href: "#"}
+          %a.raw-shortlink.btn.btn-info.zclip-trigger{href: "#"}
             Copy Link
           %a.raw-shortlink.btn.btn-success.hide{href: "#"}
             Copied

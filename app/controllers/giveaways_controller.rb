@@ -136,7 +136,7 @@ class GiveawaysController < ApplicationController
       oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
       @signed_request = oauth.parse_signed_request(params[:signed_request])
 
-      @giveaway_hash = Giveaway.tab(@signed_request)
+      @giveaway_hash = Giveaway.tab(signed_request: @signed_request)
 
       if @giveaway_hash.giveaway.nil?
         redirect_to "/404.html"
@@ -158,7 +158,6 @@ class GiveawaysController < ApplicationController
         ga_event("Giveaways", "Giveaway#tab", @giveaway.title, @giveaway.id)
         render layout: "tab"
       end
-
     else
       redirect_to "/500.html"
     end
@@ -167,7 +166,9 @@ class GiveawaysController < ApplicationController
   def enter
     @giveaway = Giveaway.find(params[:giveaway_id])
     @page = @giveaway.facebook_page
+
     if @giveaway.active?
+      @giveaway_hash = Giveaway.tab(facebook_page_id: @page.id, app_data: params[:app_data])
       ga_event("Giveaways", "Giveaway#enter", @giveaway.title, @giveaway.id)
       render layout: "enter"
     else

@@ -472,22 +472,41 @@ class Giveaway < ActiveRecord::Base
       { width: dimensions[0], height: dimensions[1] }
     end
 
-    def tab(signed_request)
-      app_data = signed_request["app_data"]
-      referrer_id = app_data.split("ref_")[1] rescue []
-      current_page = FacebookPage.select("id, url, name, slug").find_by_pid(signed_request["page"]["id"])
-      giveaway = current_page.active_giveaway
+    def tab(options = {})
+      options = options[:signed_request] ? init_from_signed_request(options[:signed_request]) : init_from_params(options)
 
       OpenStruct.new({
-        fb_uid: signed_request["user_id"],
-        referrer_id: referrer_id,
-        has_liked: signed_request["page"]["liked"],
-        current_page: current_page,
-        giveaway: giveaway.tab_attrs,
-        tab_height: giveaway.tab_height,
-        canhaz_white_label: giveaway.facebook_page.canhaz_white_label?,
-        canhaz_referral_tracking: giveaway.facebook_page.canhaz_referral_tracking?
+        fb_uid: options[:fb_uid],
+        referrer_id: options[:referrer_id],
+        has_liked: options[:has_liked],
+        current_page: options[:current_page],
+        giveaway: options[:giveaway].tab_attrs,
+        tab_height: options[:giveaway].tab_height,
+        canhaz_white_label: options[:giveaway].facebook_page.canhaz_white_label?,
+        canhaz_referral_tracking: options[:giveaway].facebook_page.canhaz_referral_tracking?
       })
+    end
+
+    def init_from_signed_request(signed_request)
+      current_page = FacebookPage.select("id, url, name, slug").find_by_pid(signed_request["page"]["id"])
+      {
+        referrer_id: "#{signed_request['app_data'].split('ref_')[1] rescue nil}",
+        current_page: current_page,
+        giveaway: current_page.active_giveaway,
+        fb_uid: signed_request["user_id"],
+        has_liked: signed_request["page"]["liked"]
+      }
+    end
+
+    def init_from_params(options = {})
+      current_page = FacebookPage.select("id, url, name, slug").find_by_id(options[:facebook_page_id])
+      {
+        referrer_id: "#{options[:app_data].split('ref_')[1] rescue nil}",
+        current_page: current_page,
+        giveaway: current_page.active_giveaway,
+        fb_uid: '',
+        has_liked: nil
+      }
     end
 
     def app_request_worker(request_id, signed_request)
