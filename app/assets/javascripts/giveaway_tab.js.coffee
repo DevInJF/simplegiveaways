@@ -28,7 +28,8 @@ jQuery ->
     val = giveaway_object.auth_required
     val == "1" || val == "true"
   $autoshow = () ->
-    giveaway_object.autoshow_share == "true"
+    val = giveaway_object.autoshow_share
+    val == "1" || val == "true"
 
   $("#giveaway_image").click ->
     Giveaway.modal.hide()
@@ -156,13 +157,13 @@ jQuery ->
               Giveaway.entry.success()
 
             406: (response) ->
-              Giveaway.entry.error "You have already entered the giveaway.<br />Entry is limited to one per person."
               $entry = jQuery.parseJSON(response.responseText)
               $entry_id = $entry.id
               $wall_post_count = parseInt($entry.wall_post_count)
               $request_count = parseInt($entry.request_count)
               $send_count = parseInt($entry.send_count)
               $shortlink = $entry.shortlink
+              Giveaway.entry.error "You have already entered the giveaway.<br />Entry is limited to one per person."
 
             412: ->
               $loader.hide()
@@ -217,14 +218,7 @@ jQuery ->
           Giveaway.share.as_app_request()
           e.preventDefault()
 
-        $("a.raw-shortlink.btn-info").zclip(
-          path: '//simplegiveaways.herokuapp.com/ZeroClipboard.swf'
-          copy: -> $shortlink
-          afterCopy: ->
-            $(this).addClass('hide')
-            $('a.raw-shortlink.btn-success').removeClass('hide')
-            $(body).trigger('click')
-        )
+        Giveaway.initZClip()
 
       callback: (json) ->
         $.ajax
@@ -267,7 +261,7 @@ jQuery ->
       as_send: ->
         Giveaway.share.dialog
           method: "send"
-          link: "#{giveaway_object.giveaway_url}" + "&app_data=ref_" + $entry_id
+          link: "#{giveaway_object.enter_url}&app_data=ref_#{$entry_id}"
 
       as_app_request: ->
         Giveaway.share.dialog
@@ -277,3 +271,19 @@ jQuery ->
           data:
             referrer_id: "#{$entry_id}"
             giveaway_id: "#{giveaway_object.id}"
+
+    initZClip: ->
+      $el = $("a.zclip-trigger")
+
+      clip = new ZeroClipboard $el,
+        moviePath: "//0.0.0.0:3000/assets/ZeroClipboard.swf"
+        trustedOrigins: [window.location.protocol + "//" + window.location.host]
+        allowScriptAccess: 'always'
+
+      clip.on 'dataRequested', (client, args) ->
+        client.setText($shortlink)
+
+      clip.on 'complete', ->
+        $el.addClass('hide')
+        $('a.raw-shortlink.btn-success').removeClass('hide')
+        $('body').trigger('click')

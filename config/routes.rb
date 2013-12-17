@@ -20,8 +20,6 @@ Simplegiveaways::Application.routes.draw do
   match '/canvas/edit', to: 'canvas#edit'
   match '/giveaways/tab', to: 'giveaways#tab'
 
-  match '/giveaways/:giveaway_id/enter', to: 'giveaways#enter', as: 'enter'
-
   resources :likes, only: [:create]
 
   resources :facebook_pages, only: [:index, :show] do
@@ -60,4 +58,6 @@ Simplegiveaways::Application.routes.draw do
   match '/logout', to: 'sessions#destroy'
 
   root to: 'welcome#index'
+
+  match '/:giveaway_id', to: 'giveaways#enter', as: 'enter'
 end

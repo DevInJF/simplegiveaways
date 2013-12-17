@@ -17,7 +17,7 @@ class FacebookPagesController < ApplicationController
   end
 
   def show
-    @page = FacebookPage.find_by_id(params[:id])
+    @page = FacebookPage.find(params[:id])
 
     if params.has_key?(:subscribed)
       flash[:info] = "#{@page.name} has been successfully subscribed to the #{@page.subscription_plan_name} plan. Thank you for using <strong>Simple Giveaways</strong>.".html_safe

@@ -117,9 +117,21 @@ Simple Giveaways:
 
  ✔ Allow deletion of pending and completed giveaways. @done (13-12-15 20:16)
 
+ ✔ Friendly URLs. @done (13-12-16 23:11)
+
  ☐ Ensure all sharing is working properly.
 
       ☐ Fix send button image issue if possible. Might need to provide an SG url instead of FB.
+
+      ✔ Fix zClip. @done (13-12-17 01:09)
+
+ ☐ Make sure users know that changing page on single page subscription will make other page subs inactive immediately.
+
+      ☐ Confirmation?
+
+      ☐ 'This is your current subscription' badge.
+
+ ☐ Handle case of deactivated subscription while there is an active giveaway.
 
  ☐ Subscription Emails.
 

@@ -3,6 +3,11 @@ require 'csv'
 
 class Giveaway < ActiveRecord::Base
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+  include ActionView::Helpers::UrlHelper
+
   is_impressionable
 
   include PublicUtils
@@ -470,8 +475,8 @@ class Giveaway < ActiveRecord::Base
     def tab(signed_request)
       app_data = signed_request["app_data"]
       referrer_id = app_data.split("ref_")[1] rescue []
-      current_page = FacebookPage.select("id, url, name").find_by_pid(signed_request["page"]["id"])
-      giveaway = current_page.giveaways.detect(&:active?)
+      current_page = FacebookPage.select("id, url, name, slug").find_by_pid(signed_request["page"]["id"])
+      giveaway = current_page.active_giveaway
 
       OpenStruct.new({
         fb_uid: signed_request["user_id"],
@@ -513,6 +518,7 @@ class Giveaway < ActiveRecord::Base
       title: title,
       description: description,
       giveaway_url: giveaway_url,
+      enter_url: Rails.application.routes.url_helpers.enter_url(self, host: SG_DOMAIN),
       image_url: self.image.url(:tab).gsub("http://", "https://"),
       feed_image_url: self.feed_image.url.gsub("http://", "https://"),
       bonus_value: bonus_value,

@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   attr_accessible :name, :roles, :roles_mask, :finished_onboarding
 
   has_many :identities, dependent: :destroy

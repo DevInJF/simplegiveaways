@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 class FacebookPage < ActiveRecord::Base
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   include ActionView::Helpers::UrlHelper
 
   attr_accessible :name, :category, :pid, :token, :avatar_square,
@@ -88,12 +91,6 @@ class FacebookPage < ActiveRecord::Base
     users.map do |user|
       user.identities.first.email if user
     end
-  end
-
-  def menu_item_template
-    <<-eos
-      <li><a href=#{path} data-fb-pid=#{pid}>#{name}</a></li>
-    eos
   end
 
   def path

@@ -13,6 +13,6 @@
   .form-actions
     = f.button :submit, class: 'ui teal submit button'
 
-    - unless giveaway.active?
+    - unless giveaway.active? || giveaway.new_record?
       .ui.right.floated.tiny.red.buttons
         = link_to 'Delete', facebook_page_giveaway_path(page, giveaway), method: :delete, 'data-confirm' => "Are you sure you want to delete the giveaway? You will not be able to recover this giveaway if you proceed.", class: 'ui button'

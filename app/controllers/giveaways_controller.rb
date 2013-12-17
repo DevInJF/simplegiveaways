@@ -6,8 +6,8 @@ class GiveawaysController < ApplicationController
   load_and_authorize_resource :facebook_page, except: [:tab, :enter]
   load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab, :enter]
 
-  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy, :enter]
-  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy, :enter]
+  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy]
+  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy]
 
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
@@ -31,7 +31,7 @@ class GiveawaysController < ApplicationController
   end
 
   def show
-    @giveaway = Giveaway.find_by_id(params[:id])
+    @giveaway = Giveaway.find(params[:id])
     @page = @giveaway.facebook_page
     if @giveaway.active?
       flash.keep
@@ -165,13 +165,15 @@ class GiveawaysController < ApplicationController
   end
 
   def enter
+    @giveaway = Giveaway.find(params[:giveaway_id])
+    @page = @giveaway.facebook_page
     ga_event("Giveaways", "Giveaway#enter", @giveaway.title, @giveaway.id)
     render layout: "enter"
   end
 
   def check_schedule
-    page = FacebookPage.find_by_id(params[:facebook_page_id])
-    giveaway = params[:giveaway_id].present? ? Giveaway.find_by_id(params[:giveaway_id]) : page.giveaways.build
+    page = FacebookPage.find(params[:facebook_page_id])
+    giveaway = params[:giveaway_id].present? ? Giveaway.find(params[:giveaway_id]) : page.giveaways.build
 
     if params[:date_type] == 'end'
       giveaway.end_date = params[:date]
@@ -211,18 +213,18 @@ class GiveawaysController < ApplicationController
 
   def assign_page
     @page = if params[:facebook_page_id]
-      FacebookPage.find_by_id(params[:facebook_page_id])
+      FacebookPage.find(params[:facebook_page_id])
     elsif params[:giveaway_id]
-      @giveaway ||= Giveaway.find_by_id(params[:giveaway_id])
+      @giveaway ||= Giveaway.find(params[:giveaway_id])
       @giveaway.facebook_page
     end
   end
 
   def assign_giveaway
     @giveaway = if params[:giveaway_id]
-      Giveaway.find_by_id(params[:giveaway_id])
+      Giveaway.find(params[:giveaway_id])
     else
-      Giveaway.find_by_id(params[:id])
+      Giveaway.find(params[:id])
     end
   end
 

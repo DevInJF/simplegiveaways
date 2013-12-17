@@ -10,7 +10,7 @@ class SubscriptionPlansController < ApplicationController
       head :ok
     else
       @scheduling = true if params[:scheduling]
-      @page = FacebookPage.find_by_id(params[:facebook_page_id])
+      @page = FacebookPage.find(params[:facebook_page_id]) if params[:facebook_page_id]
       @subscription_plans = SubscriptionPlan.public
     end
   end

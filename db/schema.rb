@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214042956) do
+ActiveRecord::Schema.define(:version => 20131217024934) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -94,9 +94,11 @@ ActiveRecord::Schema.define(:version => 20131214042956) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "subscription_id"
+    t.string   "slug"
   end
 
   add_index "facebook_pages", ["pid"], :name => "index_facebook_pages_on_pid", :unique => true
+  add_index "facebook_pages", ["slug"], :name => "index_facebook_pages_on_slug", :unique => true
 
   create_table "facebook_pages_users", :id => false, :force => true do |t|
     t.integer "facebook_page_id", :null => false
@@ -105,6 +107,17 @@ ActiveRecord::Schema.define(:version => 20131214042956) do
 
   add_index "facebook_pages_users", ["facebook_page_id"], :name => "index_facebook_pages_users_on_facebook_page_id"
   add_index "facebook_pages_users", ["user_id"], :name => "index_facebook_pages_users_on_user_id"
+
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "giveaways", :force => true do |t|
     t.string   "title"
@@ -131,8 +144,10 @@ ActiveRecord::Schema.define(:version => 20131214042956) do
     t.boolean  "active",                  :default => false
     t.integer  "uniques",                 :default => 0
     t.string   "shortlink"
+    t.string   "slug"
   end
 
+  add_index "giveaways", ["slug"], :name => "index_giveaways_on_slug", :unique => true
   add_index "giveaways", ["title", "facebook_page_id"], :name => "index_giveaways_on_title_and_facebook_page_id", :unique => true
 
   create_table "identities", :force => true do |t|
@@ -226,6 +241,9 @@ ActiveRecord::Schema.define(:version => 20131214042956) do
     t.integer  "subscription_id"
     t.boolean  "finished_onboarding", :default => false
     t.boolean  "account_current",     :default => true
+    t.string   "slug"
   end
+
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
 end

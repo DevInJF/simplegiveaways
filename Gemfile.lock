@@ -171,6 +171,8 @@ GEM
       thor (>= 0.13.6)
     formtastic (2.1.1)
       actionpack (~> 3.0)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
     fssm (0.2.9)
     gabba (0.3.0)
     gabbara (0.0.6)
@@ -456,6 +458,7 @@ DEPENDENCIES
   ffaker
   font-awesome-sass-rails
   foreman
+  friendly_id
   gabba
   garails
   haml-rails

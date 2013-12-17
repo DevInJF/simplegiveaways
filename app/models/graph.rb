@@ -39,7 +39,7 @@ class Graph
   private
 
   def graphable_audits
-    @graphable_audits ||= @giveaway.audits.where("created_at >= ? AND created_at <= ?", @giveaway.start_date, @giveaway.end_date)
+    @graphable_audits ||= @giveaway.audits.where("created_at >= ? AND created_at <= ?", @giveaway.start_date, (@giveaway.end_date || Time.now))
   rescue => e
     []
   end

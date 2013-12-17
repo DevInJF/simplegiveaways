@@ -58,7 +58,7 @@ class EntriesController < ApplicationController
   end
 
   def index
-    @giveaway = Giveaway.find_by_id(params[:giveaway_id])
+    @giveaway = Giveaway.find(params[:giveaway_id])
     @page = @giveaway.facebook_page
     @entries = @giveaway.entries
   end
