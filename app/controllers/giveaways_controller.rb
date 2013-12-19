@@ -204,6 +204,8 @@ class GiveawaysController < ApplicationController
     @clone.title = "Copy of #{@clone.title} (#{Time.now.to_s(:short)})"
     @clone.start_date = nil
     @clone.end_date = nil
+    @clone.analytics = nil
+    @clone.uniques = 0
 
     if @clone.save
       redirect_to edit_facebook_page_giveaway_path(@page, @clone)

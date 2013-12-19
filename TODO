@@ -137,13 +137,21 @@ Simple Giveaways:
 
  ✔ Handle case of deactivated subscription while there is an active giveaway. @done (13-12-19 03:15)
 
- ☐ Confirm liking works.
+ ✔ Confirm liking works. @done (13-12-19 03:30)
 
- ☐ Confirm viral markers are being applied correctly.
+ ✔ Confirm viral markers are being applied correctly. @done (13-12-19 03:31)
 
-      ☐ Entries
+      ✔ Entries @done (13-12-19 03:30)
 
-      ☐ Likes
+      ✔ Likes @done (13-12-19 03:30)
+
+      ✔ Impressions @done (13-12-19 03:30)
+
+ ✔ Look into weird unique visitors issue on just-published giveaways (especially clones). @done (13-12-19 03:46)
+
+ ☐ Subscribe to stripe subscription cancelled webhook to cancel delinquent subscriptions.
+
+ ☐ Provide shortlink analytics.
 
  ☐ Subscription Emails.
 
