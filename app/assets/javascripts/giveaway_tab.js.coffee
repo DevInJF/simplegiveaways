@@ -13,7 +13,6 @@ jQuery ->
   $entry_id = null
   $request_count = 0
   $wall_post_count = 0
-  $send_count = 0
   $shortlink = null
   $just_liked = false
   $referrer_id = "#{giveaway_hash.referrer_id}" or ""
@@ -161,7 +160,6 @@ jQuery ->
               $entry_id = $entry.id
               $wall_post_count = parseInt($entry.wall_post_count)
               $request_count = parseInt($entry.request_count)
-              $send_count = parseInt($entry.send_count)
               $shortlink = $entry.shortlink
               Giveaway.entry.error "You have already entered the giveaway.<br />Entry is limited to one per person."
 
@@ -210,10 +208,6 @@ jQuery ->
           Giveaway.share.as_wall_post()
           e.preventDefault()
 
-        $("a.send").click (e) ->
-          Giveaway.share.as_send()
-          e.preventDefault()
-
         $("a.app-request").click (e) ->
           Giveaway.share.as_app_request()
           e.preventDefault()
@@ -242,10 +236,6 @@ jQuery ->
             json = entry:
               request_count: $request_count + response.to.length
             Giveaway.share.callback json
-          else if response and response.success
-            json = entry:
-              send_count: $send_count + 1
-            Giveaway.share.callback json
           else
             return true
 
@@ -257,11 +247,6 @@ jQuery ->
           picture: "#{giveaway_object.feed_image_url}"
           caption: "#{giveaway_object.title}"
           description: "#{giveaway_object.description}"
-
-      as_send: ->
-        Giveaway.share.dialog
-          method: "send"
-          link: "#{giveaway_object.enter_url}&app_data=ref_#{$entry_id}"
 
       as_app_request: ->
         Giveaway.share.dialog

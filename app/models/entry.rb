@@ -2,7 +2,7 @@
 class Entry < ActiveRecord::Base
 
   attr_accessible :email, :has_liked, :name, :fb_url, :datetime_entered,
-                  :wall_post_count, :entry_count, :request_count, :send_count,
+                  :wall_post_count, :entry_count, :request_count,
                   :convert_count, :status, :uid, :ref_ids, :referrer_id,
                   :is_viral, :shortlink
 
@@ -98,7 +98,7 @@ class Entry < ActiveRecord::Base
   end
 
   def total_shares
-    wall_post_count + request_count + send_count
+    wall_post_count + request_count
   end
 
   def bonus_entries
