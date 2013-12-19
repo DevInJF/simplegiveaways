@@ -108,11 +108,13 @@ class Subscription < ActiveRecord::Base
 
       subscribe_pages(options[:facebook_page_ids]) unless @plan_class_downgrade
 
-      stripe_response = update_stripe_subscription
+      unless @page_change
+        stripe_response = update_stripe_subscription
 
-      self.stripe_subscription_id = stripe_response.id
-      self.current_period_start = DateTime.strptime("#{stripe_response.current_period_start}", '%s')
-      self.current_period_end = DateTime.strptime("#{stripe_response.current_period_end}", '%s')
+        self.stripe_subscription_id = stripe_response.id
+        self.current_period_start = DateTime.strptime("#{stripe_response.current_period_start}", '%s')
+        self.current_period_end = DateTime.strptime("#{stripe_response.current_period_end}", '%s')
+      end
 
       save ? self : false
     end
@@ -169,6 +171,8 @@ class Subscription < ActiveRecord::Base
       if subscription_plan.is_multi_page? && plan.is_single_page?
         @plan_class_downgrade = true
       end
+    elsif subscription_plan == plan
+      @page_change = true
     end
   end
 

@@ -42,6 +42,18 @@ SG.StripeClient =
         $(@planEl).find('legend').css('font-weight', 'bold')
 
   handleFormSubmit: ->
+    if $(@planEl).data('is_current_plan') || $(@planEl).data('is_next_plan')
+      @handleCurrentOrNextPlan()
+    else
+      @handleNewPlan()
+
+  handleCurrentOrNextPlan: ->
+    if @pageChangeWarning?
+      @createSubscription('page_change') if confirm @pageChangeWarning
+    else
+      @createSubscription('page_change')
+
+  handleNewPlan: ->
     if @pageChangeWarning?
       @openStripeCheckout() if confirm @pageChangeWarning
     else
@@ -85,10 +97,6 @@ SG.StripeClient =
     _.map $(@planEl).find('input:checked'), (input) =>
       @pageChangeWarning = $(input).hasClass('page-change-warning') && "#{$(input).data('page-change-warning')}" || null
       $(input).val()
-
-  setToken: (token) -> @token = token
-
-  fetchToken: -> @token
 
   checkboxEl: -> $('.ui.checkbox')
 
