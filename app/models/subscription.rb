@@ -121,15 +121,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def after_cancel_actions
-    facebook_pages.each do |page|
-      potentials = page.users.map(&:subscription) rescue []
-      if potentials.select(&:is_multi_page?).any?
-        page.subscription_id = potentials.first.id
-      else
-        page.subscription_id = nil
-      end
-      page.save
-    end
+    facebook_pages.each(&:find_or_remove_subscription)
   end
 
   class << self

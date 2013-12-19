@@ -121,6 +121,16 @@ class FacebookPage < ActiveRecord::Base
     subscription && subscription.canhaz_white_label?
   end
 
+  def find_or_remove_subscription
+    potentials = users.map(&:subscription).select(&:active?) rescue []
+    if potentials.select(&:is_multi_page?).any?
+      self.subscription_id = potentials.first.id
+    else
+      self.subscription_id = nil
+    end
+    save
+  end
+
   class << self
 
     def select_pages(options = {})
@@ -195,6 +205,9 @@ class FacebookPage < ActiveRecord::Base
         unless user.facebook_pages.include? @page
           @page.refresh_likes
           user.facebook_pages << @page
+          if user.has_active_subscription? && user.has_multi_page_subscription?
+            @page.update_attributes(subscription_id: user.subscription_id)
+          end
         end
       end
 
@@ -207,7 +220,11 @@ class FacebookPage < ActiveRecord::Base
       user_pids = user.facebook_pages.map(&:pid)
       fb_pids = pages.map { |page_hash| page_hash[:page]["id"] }
       (user_pids - fb_pids).each do |pid|
-        user.facebook_pages.delete(find_by_pid(pid))
+        page = find_by_pid(pid)
+        if page.has_active_subscription? && page.subscription.user == user
+          page.find_or_remove_subscription
+        end
+        user.facebook_pages.delete(page)
       end
     end
   end

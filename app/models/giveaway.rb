@@ -497,6 +497,14 @@ class Giveaway < ActiveRecord::Base
       Giveaway.to_end.reject(&:cannot_schedule?).each(&:unpublish) if method == "unpublish"
     end
 
+    def orphans
+      Giveaway.active.select(&:needs_subscription?)
+    end
+
+    def orphans_worker
+      Giveaway.orphans.each(&:unpublish)
+    end
+
     def uniques_worker(giveaway_id)
       @giveaway = Giveaway.find_by_id(giveaway_id)
       @giveaway.uniques += 1
