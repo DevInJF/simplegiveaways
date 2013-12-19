@@ -28,7 +28,7 @@ class EntriesController < ApplicationController
           render json: @entry_json.as_json(only: %w(id shortlink)), status: :created
           ga_event("Entries", "Entry#multi", @entry.giveaway.title, @entry.id)
         else
-          render json: @entry_json.as_json(only: %w(id shortlink wall_post_count request_count send_count)), status: :not_acceptable
+          render json: @entry_json.as_json(only: %w(id shortlink wall_post_count request_count)), status: :not_acceptable
         end
       elsif @entry.status == "incomplete"
         render json: @entry.id, status: :precondition_failed

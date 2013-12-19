@@ -12,8 +12,6 @@ FactoryGirl.define do
 
     wall_post_count { rand(10) }
 
-    send_count { rand(10) }
-
     request_count { rand(10) }
 
     convert_count { rand(3) }
