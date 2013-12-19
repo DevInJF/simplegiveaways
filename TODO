@@ -125,15 +125,15 @@ Simple Giveaways:
 
       ✔ Fix zClip. @done (13-12-17 01:09)
 
- ☐ Make sure users know that changing page on single page subscription will make other page subs inactive immediately.
+ ✔ Make sure users know that changing page on single page subscription will make other page subs inactive immediately. @done (13-12-19 01:18)
 
-      ☐ Confirmation?
-
-      ☐ 'This is your current subscription' badge.
+      ✔ Confirmation message. @done (13-12-19 01:18)
 
  ☐ Handle case of deactivated subscription while there is an active giveaway.
 
  ☐ Normalize boolish booleans throughtout the app.
+
+ ☐ If a user has a multi-page plan, when a new page is added to the user's account, add the page to the subscription.
 
  ☐ Subscription Emails.
 

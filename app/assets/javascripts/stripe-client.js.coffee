@@ -37,9 +37,15 @@ SG.StripeClient =
       @closePageSelector()
     else if $(event.target).hasClass('check')
       if @mapPageIds().length
-        @openStripeCheckout()
+        @handleFormSubmit()
       else
         $(@planEl).find('legend').css('font-weight', 'bold')
+
+  handleFormSubmit: ->
+    if @pageChangeWarning?
+      @openStripeCheckout() if confirm @pageChangeWarning
+    else
+      @openStripeCheckout()
 
   openPageSelector: ->
     $(@planEl).removeClass('five').addClass('page-selector six')
@@ -73,10 +79,12 @@ SG.StripeClient =
       success: (data) =>
         top.location.href = "#{data.redirect_path}"
       error: =>
-        SG.UI.FlashMessages.showFlash('error', 'Error','There was a problem processing the subscription. Please try again or contact support for assistance.')
+        SG.UI.FlashMessages.showFlash('error', 'Error', 'There was a problem processing the subscription. Please try again or contact support for assistance.')
 
   mapPageIds: ->
-    _.map $(@planEl).find('input:checked'), (input) -> $(input).val()
+    _.map $(@planEl).find('input:checked'), (input) =>
+      @pageChangeWarning = $(input).hasClass('page-change-warning') && "#{$(input).data('page-change-warning')}" || null
+      $(input).val()
 
   setToken: (token) -> @token = token
 
