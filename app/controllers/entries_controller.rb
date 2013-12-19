@@ -19,10 +19,9 @@ class EntriesController < ApplicationController
         cookie: @giveaway_cookie
       )
 
-      @entry_json = @entry.attributes.merge("shortlink" => @entry.shortlink)
-
       if @entry.persisted?
         @giveaway_cookie.entry_id = @entry.id
+        @entry_json = @entry.attributes.merge("shortlink" => @entry.shortlink)
         if @giveaway.allow_multi_entries.truthy?
           @entry.update_attributes(entry_count: @entry.entry_count += 1)
           render json: @entry_json.as_json(only: %w(id shortlink)), status: :created
@@ -34,7 +33,7 @@ class EntriesController < ApplicationController
         render json: @entry.id, status: :precondition_failed
       elsif @entry.save
         @giveaway_cookie.entry_id = @entry.id
-        @entry_json["id"] = @entry.id
+        @entry_json = @entry.attributes.merge("shortlink" => @entry.shortlink)
         render json: @entry_json.as_json(only: %w(id shortlink)), status: :created
         ga_event("Entries", "Entry#create", @entry.giveaway.title, @entry.id)
       else

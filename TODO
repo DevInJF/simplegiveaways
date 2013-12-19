@@ -119,9 +119,9 @@ Simple Giveaways:
 
  ✔ Friendly URLs. @done (13-12-16 23:11)
 
- ☐ Ensure all sharing is working properly.
+ ✔ Ensure all sharing is working properly. @done (13-12-18 23:00)
 
-      ☐ Remove send button functionality.
+      ✔ Remove send button functionality. @done (13-12-18 23:00)
 
       ✔ Fix zClip. @done (13-12-17 01:09)
 
@@ -132,6 +132,8 @@ Simple Giveaways:
       ☐ 'This is your current subscription' badge.
 
  ☐ Handle case of deactivated subscription while there is an active giveaway.
+
+ ☐ Normalize
 
  ☐ Subscription Emails.
 

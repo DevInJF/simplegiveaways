@@ -28,7 +28,7 @@ class Giveaway < ActiveRecord::Base
 
   scope :incomplete, -> { where("active IS TRUE OR (active IS FALSE AND end_date >= ? OR end_date IS NULL)", Time.zone.now) }
 
-  scope :to_start, -> { where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND start_date > ?", Time.zone.now + 3.minutes, Time.zone.now - 20.minutes) }
+  scope :to_start, -> { where("start_date IS NOT NULL AND active IS FALSE AND start_date <= ? AND start_date > ? AND end_date > ?", Time.zone.now + 3.minutes, Time.zone.now - 20.minutes, Time.now) }
 
   scope :to_end, -> { where("end_date IS NOT NULL AND active IS TRUE AND end_date <= ?", Time.zone.now + 3.minutes) }
 
