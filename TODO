@@ -133,7 +133,7 @@ Simple Giveaways:
 
  ☐ Handle case of deactivated subscription while there is an active giveaway.
 
- ☐ Normalize
+ ☐ Normalize boolish booleans throughtout the app.
 
  ☐ Subscription Emails.
 
