@@ -19,6 +19,20 @@ class Subscription < ActiveRecord::Base
   delegate :canhaz_giveaway_shortlink?,  to: :subscription_plan
   delegate :canhaz_white_label?,         to: :subscription_plan
 
+  include Stripe::Callbacks
+
+  after_customer_subscription_deleted! do |sub, event|
+    begin
+      if sub.status == 'canceled'
+        user = User.find_by_stripe_customer_id(sub.customer)
+        user.account_current = false
+        user.subscription.after_cancel_actions if user.save
+      end
+    rescue => e
+      Rails.logger.debug("#{e.class}: #{e.message}")
+    end
+  end
+
   def active?
     subscription_plan.present? && user.account_current?
   end
