@@ -149,7 +149,7 @@ Simple Giveaways:
 
  ✔ Look into weird unique visitors issue on just-published giveaways (especially clones). @done (13-12-19 03:46)
 
- ☐ Subscribe to stripe subscription cancelled webhook to cancel delinquent subscriptions.
+ ✔ Subscribe to stripe subscription cancelled webhook to cancel delinquent subscriptions. @done (13-12-20 20:01)
 
  ☐ Provide shortlink analytics.
 

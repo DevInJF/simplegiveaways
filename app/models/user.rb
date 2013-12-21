@@ -16,6 +16,16 @@ class User < ActiveRecord::Base
 
   include SubscriptionStatus
 
+  include Stripe::Callbacks
+
+  after_customer_updated! do |customer, event|
+    user = User.find_by_stripe_customer_id(customer.id)
+    unless customer.delinquent
+      user.account_current = true
+    end
+    user.save!
+  end
+
   def has_free_trial_remaining?
     false
   end
@@ -76,7 +86,7 @@ class User < ActiveRecord::Base
   def self.pages_worker(user_id, fb_token, csrf_token)
     graph = Koala::Facebook::API.new(fb_token)
     pages = graph.get_connections("me", "accounts")
-    user = User.find_by_id(user_id)
-    FacebookPage.retrieve_fb_meta(user, pages, csrf_token)
+    @user = User.find_by_id(user_id)
+    FacebookPage.retrieve_fb_meta(@user, pages, csrf_token)
   end
 end
