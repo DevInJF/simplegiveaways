@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219071403) do
+ActiveRecord::Schema.define(:version => 20131221064329) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20131219071403) do
     t.text     "ref_ids"
     t.boolean  "is_viral",         :default => false
     t.integer  "entry_count",      :default => 1
+    t.string   "shortlink"
   end
 
   add_index "entries", ["email", "giveaway_id"], :name => "index_entries_on_email_and_giveaway_id", :unique => true
@@ -144,6 +145,8 @@ ActiveRecord::Schema.define(:version => 20131219071403) do
     t.integer  "uniques",                 :default => 0
     t.string   "shortlink"
     t.string   "slug"
+    t.boolean  "is_free_trial",           :default => false
+    t.boolean  "is_hidden",               :default => false
   end
 
   add_index "giveaways", ["slug"], :name => "index_giveaways_on_slug", :unique => true

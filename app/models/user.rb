@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
     user.save!
   end
 
-  def has_free_trial_remaining?
-    false
+  def giveaways
+    facebook_pages.map(&:giveaways).flatten
   end
 
   def stripe_customer(stripe_token = nil)

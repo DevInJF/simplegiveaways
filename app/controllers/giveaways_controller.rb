@@ -13,7 +13,7 @@ class GiveawaysController < ApplicationController
   after_filter  :set_giveaway_cookie, only: [:tab]
 
   def index
-    @giveaways = Giveaway.all
+    @giveaways = Giveaway.visible
   end
 
   def active
@@ -23,11 +23,11 @@ class GiveawaysController < ApplicationController
   end
 
   def pending
-    @giveaways = @page.giveaways.pending
+    @giveaways = @page.giveaways.visible.pending
   end
 
   def completed
-    @giveaways = (@page.giveaways.completed | @page.giveaways.to_end).sort_by(&:end_date).reverse
+    @giveaways = (@page.giveaways.visible.completed | @page.giveaways.to_end).sort_by(&:end_date).reverse
   end
 
   def show
@@ -97,12 +97,12 @@ class GiveawaysController < ApplicationController
   end
 
   def destroy
-    if @giveaway.destroy
-      flash[:info] = "#{@giveaway.title} has been permanently deleted."
+    if @giveaway.hide
+      flash[:info] = "#{@giveaway.title} has been successfully deleted."
       redirect_to facebook_page_url(@giveaway.facebook_page)
     else
-      flash.now[:error] = @giveaway.errors.messages.to_s
-      render :show
+      flash[:error] = "There was a problem deleting the giveaway:<br />#{@giveaway.errors.full_messages.to_sentence}".html_safe
+      redirect_to facebook_page_url(@giveaway.facebook_page)
     end
   end
 

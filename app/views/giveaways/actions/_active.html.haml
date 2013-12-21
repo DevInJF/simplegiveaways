@@ -3,7 +3,7 @@
 
   = link_to '<i class="facebook icon"></i> View on Facebook'.html_safe, giveaway.giveaway_url, class: 'item', target: '_blank'
 
-  - if giveaway.facebook_page.canhaz_giveaway_shortlink?
+  - if giveaway.canhaz_giveaway_shortlink?
     = link_to '<i class="copy icon"></i> Copy Shortlink'.html_safe, '#', class: 'item zclip-trigger', 'data-clipboard-text' => giveaway.shortlink
 
   = link_to '<i class="legal icon"></i> End Now'.html_safe, end_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), :'data-confirm' => 'Are you sure you want to end the giveaway right now? It will be removed from your Facebook Page.', class: 'item'

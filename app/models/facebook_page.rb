@@ -217,7 +217,7 @@ class FacebookPage < ActiveRecord::Base
     end
 
     def remove_outdated_pages(user, pages)
-      user_pids = user.facebook_pages.map(&:pid)
+      user_pids = user.facebook_pages.pluck(:pid)
       fb_pids = pages.map { |page_hash| page_hash[:page]["id"] }
       (user_pids - fb_pids).each do |pid|
         page = find_by_pid(pid)

@@ -33,7 +33,7 @@ module SubscriptionStatus
   end
 
   def has_free_trial_remaining?
-    no_active_giveaways? && no_completed_giveaways?
+    self.is_a?(FacebookPage) && giveaways.free_trials.none?
   end
 
   def subscription_plan_name

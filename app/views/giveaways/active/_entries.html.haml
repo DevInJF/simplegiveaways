@@ -15,14 +15,14 @@
       %tr
         %th.header.first-child{"data-toggle" => "true"} Name/Email
         %th.header{"data-hide" => "all"} Email
-        - if giveaway.facebook_page.canhaz_referral_tracking?
+        - if giveaway.canhaz_referral_tracking?
           %th.header{"data-hide" => "phone"} Viral?
         %th.header{"data-hide" => "phone"} New Fan?
         %th.header{"data-hide" => "phone", "data-type" => "numeric"} Shares
-        - if giveaway.facebook_page.canhaz_advanced_analytics?
+        - if giveaway.canhaz_advanced_analytics?
           %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Wall Posts
           %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Requests
-        - if giveaway.facebook_page.canhaz_referral_tracking?
+        - if giveaway.canhaz_referral_tracking?
           %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Conversions
         %th.header{"data-hide" => "all", "data-type" => "numeric"} Bonus Entries
         %th.header.last-child{"data-hide" => "phone,tablet", "data-type" => "numeric", "data-sort-initial" => "descending"} Entry Time

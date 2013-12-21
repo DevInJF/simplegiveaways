@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 ruby '2.0.0'
 
 gem 'active_link_to'
@@ -35,22 +36,25 @@ gem 'stripe-rails'
 gem 'stripe_tester'
 gem 'validates_timeliness', '~> 3.0'
 gem 'whenever', require: false
-gem 'zeroclipboard-rails'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'font-awesome-sass-rails'
   gem 'uglifier', '>= 1.0.3'
+  gem 'rails-assets-bourbon'
+  gem 'rails-assets-jquery', '~> 2.0.3'
+  gem 'rails-assets-underscore'
+  gem 'rails-assets-moment'
+  gem 'rails-assets-jquery-flot'
 end
 
 gem 'autoprefixer-rails'
-gem 'bourbon'
 gem 'haml-rails'
 gem 'less-rails'
 gem 'sass-rails', '~> 3.2.3'
 gem 'semantic-ui-rails'
+gem 'zeroclipboard-rails'
 gem 'therubyracer', platforms: :ruby
-gem 'ui_datepicker-rails3'
 
 group :development, :test do
   gem 'brakeman', require: false

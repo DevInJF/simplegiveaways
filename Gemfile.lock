@@ -20,6 +20,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     ParseTree (3.0.8)
       RubyInline (>= 3.7.0)
@@ -83,9 +84,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bitly (0.8.0)
-      crack (>= 0.1.4)
+    bitly (0.9.0)
       httparty (>= 0.7.6)
+      multi_json (~> 1.3)
       oauth2 (>= 0.5.0, < 0.9)
     bourbon (2.1.1)
       sass (>= 3.1)
@@ -127,7 +128,6 @@ GEM
       compass (>= 0.12.2, < 0.14)
     connection_pool (1.2.0)
     coolline (0.4.2)
-    crack (0.3.1)
     daemons (1.1.9)
     debug_inspector (0.0.2)
     devise (2.1.2)
@@ -200,9 +200,9 @@ GEM
     hoe (3.7.2)
       rake (>= 0.8, < 11.0)
     hpricot (0.8.6)
-    httparty (0.8.3)
-      multi_json (~> 1.0)
-      multi_xml
+    httparty (0.12.0)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpauth (0.2.0)
     httpclient (2.2.5)
     i18n (0.6.9)
@@ -254,7 +254,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25)
     multi_json (1.8.2)
-    multi_xml (0.5.1)
+    multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.3.13)
     netrc (0.7.5)
@@ -316,6 +316,12 @@ GEM
       activesupport (= 3.2.14)
       bundler (~> 1.0)
       railties (= 3.2.14)
+    rails-assets-bourbon (3.1.8)
+    rails-assets-jquery (2.0.3)
+    rails-assets-jquery-flot (0.8.2)
+      rails-assets-jquery (>= 1.2.6)
+    rails-assets-moment (2.4.0)
+    rails-assets-underscore (1.5.2)
     rails_best_practices (1.14.4)
       activesupport
       awesome_print
@@ -419,7 +425,6 @@ GEM
     uglifier (1.2.7)
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
-    ui_datepicker-rails3 (1.1.1)
     uuidtools (2.1.3)
     validates_timeliness (3.0.12)
       timeliness (~> 0.3.6)
@@ -443,7 +448,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bitly
-  bourbon
   brakeman
   cancan
   coffee-rails (~> 3.2.1)
@@ -484,6 +488,11 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (~> 3.2)
+  rails-assets-bourbon
+  rails-assets-jquery (~> 2.0.3)
+  rails-assets-jquery-flot
+  rails-assets-moment
+  rails-assets-underscore
   rails_best_practices
   rubygems-bundler
   sass-rails (~> 3.2.3)
@@ -499,7 +508,6 @@ DEPENDENCIES
   therubyracer
   thin
   uglifier (>= 1.0.3)
-  ui_datepicker-rails3
   validates_timeliness (~> 3.0)
   whenever
   zeroclipboard-rails

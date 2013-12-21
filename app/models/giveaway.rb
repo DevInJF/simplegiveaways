@@ -12,13 +12,18 @@ class Giveaway < ActiveRecord::Base
 
   include PublicUtils
 
-  attr_accessible :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes, :_page_likes_while_active
+  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes, :_page_likes_while_active
 
   has_many :audits, as: :auditable
 
   belongs_to :facebook_page
   has_many :entries, dependent: :delete_all
   has_many :likes, dependent: :delete_all
+
+  scope :visible, -> { where("is_hidden IS FALSE") }
+  scope :hidden, -> { where("is_hidden IS TRUE") }
+
+  scope :free_trials, -> { where(is_free_trial: true) }
 
   scope :active, -> { where("active IS TRUE").limit(1) }
 
@@ -55,7 +60,7 @@ class Giveaway < ActiveRecord::Base
   validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
   validates :allow_multi_entries, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
   validates :email_required, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
-  validates :bonus_value, presence: true, numericality: { only_integer: true }, if: -> { facebook_page.canhaz_referral_tracking? || to_bool(allow_multi_entries) }
+  validates :bonus_value, presence: true, numericality: { only_integer: true }, if: -> { giveaway.canhaz_referral_tracking? || to_bool(allow_multi_entries) }
 
   store :sticky_post, accessors: [ :sticky_post_enabled?,
                                    :sticky_post_title,
@@ -72,28 +77,28 @@ class Giveaway < ActiveRecord::Base
 
   validates_datetime :start_date, on_or_after: -> { 5.minutes.ago },
                                   on_or_after_message: "must be in the future.",
-                                  unless: -> { active || active_was },
+                                  unless: -> { active || active_was || is_hidden },
                                   ignore_usec: true,
                                   allow_blank: true,
                                   allow_nil: true
 
   validates_datetime :start_date, before: :end_date,
                                   before_message: "must be before end date/time.",
-                                  unless: -> { active },
+                                  unless: -> { active || is_hidden },
                                   ignore_usec: true,
                                   allow_blank: true,
                                   allow_nil: true
 
   validates_datetime :end_date, on_or_after: -> { (Time.zone.now - 30.seconds) },
                                 on_or_after_message: "must be in the future.",
-                                unless: -> { !active && active_was },
+                                unless: -> { (!active && active_was) || is_hidden },
                                 ignore_usec: true,
                                 allow_blank: true,
                                 allow_nil: true
 
   validates_datetime :end_date, after: :start_date,
                                 after_message: "must be after start date/time.",
-                                unless: -> { !active && active_was },
+                                unless: -> { (!active && active_was) || is_hidden },
                                 ignore_usec: true,
                                 allow_blank: true,
                                 allow_nil: true
@@ -149,8 +154,30 @@ class Giveaway < ActiveRecord::Base
   has_attached_file :feed_image, feed_image_opts
 
   delegate :needs_subscription?, to: :facebook_page
-  delegate :cannot_schedule?, to: :facebook_page
-  delegate :can_schedule?, to: :facebook_page
+
+  def cannot_schedule?
+    !can_schedule?
+  end
+
+  def can_schedule?
+    canhaz_scheduled_giveaways?
+  end
+
+  def canhaz_advanced_analytics?
+    facebook_page.canhaz_advanced_analytics? || is_free_trial?
+  end
+
+  def canhaz_referral_tracking?
+    facebook_page.canhaz_referral_tracking? || is_free_trial?
+  end
+
+  def canhaz_scheduled_giveaways?
+    facebook_page.canhaz_scheduled_giveaways? || is_free_trial?
+  end
+
+  def canhaz_giveaway_shortlink?
+    facebook_page.canhaz_giveaway_shortlink? || is_free_trial?
+  end
 
   def graph_client
     @graph ||= Koala::Facebook::API.new(facebook_page.token)
@@ -165,6 +192,10 @@ class Giveaway < ActiveRecord::Base
                 entry.new_fan?, entry.datetime_entered, entry.wall_post_count, entry.request_count, entry.convert_count, entry.bonus_entries]
       end
     end
+  end
+
+  def hide
+    self.update_attributes(is_hidden: true)
   end
 
   def publish(giveaway_params = {})
@@ -190,6 +221,7 @@ class Giveaway < ActiveRecord::Base
       GiveawayNoticeMailer.start(page_admin, self).deliver rescue nil
     end
     seed_graph
+    self.update_attributes(is_free_trial: facebook_page.giveaways.completed.none? && active?)
   end
 
   def save_shortlink
@@ -478,7 +510,7 @@ class Giveaway < ActiveRecord::Base
         giveaway: giveaway.tab_attrs,
         tab_height: giveaway.tab_height,
         canhaz_white_label: giveaway.facebook_page.canhaz_white_label?,
-        canhaz_referral_tracking: giveaway.facebook_page.canhaz_referral_tracking?
+        canhaz_referral_tracking: giveaway.canhaz_referral_tracking?
       })
     end
 
@@ -527,6 +559,31 @@ class Giveaway < ActiveRecord::Base
       autoshow_share: autoshow_share_dialog,
       auth_required: email_required
     })
+  end
+
+  def shortlinks
+    entries.pluck(:shortlink)
+  end
+
+  def shortlink_impressions
+    bitly_client.clicks(shortlink).global_clicks
+  end
+
+  def viral_facebook_impressions
+    viral_views - viral_shortlink_impressions
+  end
+
+  def viral_shortlink_impressions
+    total_clicks = 0
+    shortlinks.each_slice(15).with_index do |links, index|
+      begin
+        sleep 10 unless index == 0
+        total_clicks += bitly_client.clicks(links).map(&:global_clicks).inject('+')
+      rescue
+        sleep 60
+      end
+    end
+    total_clicks
   end
 
   private

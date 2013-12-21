@@ -6,6 +6,8 @@ class Entry < ActiveRecord::Base
                   :convert_count, :status, :uid, :ref_ids, :referrer_id,
                   :is_viral, :shortlink
 
+  attr_accessor :referrer_id
+
   has_many :audits, as: :auditable
 
   belongs_to :giveaway
@@ -13,9 +15,16 @@ class Entry < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: { scope: :giveaway_id }
 
-  attr_accessor :referrer_id
-
   serialize :ref_ids, Array
+
+  after_commit :create_shortlink, unless: -> { self.shortlink.present? }
+
+  def as_json(options = {})
+    { id: id,
+      shortlink: shortlink,
+      wall_post_count: wall_post_count,
+      request_count: request_count }
+  end
 
   def process(*args)
     options = args.extract_options!
@@ -48,8 +57,10 @@ class Entry < ActiveRecord::Base
       self.datetime_entered = DateTime.now
 
       if @cookie.belongs_to_user && @referrer_id
+        puts "@cookie.belongs_to_user: #{@cookie.inspect} && @referrer_id: #{@referrer_id}".green
         self.ref_ids = @cookie.ref_ids.push(@referrer_id).uniq
       else
+        puts "@referrer_id: #{@referrer_id}".green
         self.ref_ids = [@referrer_id].compact
       end
 
@@ -105,10 +116,6 @@ class Entry < ActiveRecord::Base
     ( (giveaway.bonus_value.to_i * convert_count) + (entry_count - 1) ) rescue 0
   end
 
-  def shortlink
-    @shortlink ||= bitly_client.shorten(referral_url).short_url rescue referral_url
-  end
-
   def referral_url
     "#{giveaway.giveaway_url}&app_data=ref_#{id}"
   end
@@ -121,11 +128,17 @@ class Entry < ActiveRecord::Base
   def self.conversion_worker(has_liked, ref_ids, giveaway_cookie)
     if has_liked
       ref_ids.uniq.each do |ref|
+        puts ref_ids.inspect.red
         if @ref = Entry.find_by_id_and_giveaway_id(ref, giveaway_cookie['giveaway_id'])
           @ref.convert_count += 1
           @ref.save
         end
       end
     end
+  end
+
+  def create_shortlink
+    link = bitly_client.shorten(referral_url).short_url rescue referral_url
+    self.update_attributes(shortlink: link)
   end
 end
