@@ -161,6 +161,8 @@ Simple Giveaways:
 
       ☐ Top shortlink referral domains (with click/impression counts).
 
+ ☐ Verify/Clean/Simplify giveaway cookie referrals.
+
  ✔ More robust free_trial_remaining method. @done (13-12-21 01:53)
 
  ✔ Don't actually delete giveaways — hide them. @done (13-12-21 01:53)
