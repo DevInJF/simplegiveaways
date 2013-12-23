@@ -18,6 +18,14 @@ GIT
     omniauth-facebook (1.6.0.rc1)
       omniauth-oauth2 (~> 1.1)
 
+PATH
+  remote: /Users/harris/.rvm/gems/ruby-2.0.0-p353@sg/gems/bitly-0.9.0
+  specs:
+    bitly (0.9.0)
+      httparty (>= 0.7.6)
+      multi_json (~> 1.3)
+      oauth2 (>= 0.5.0, < 0.9)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -70,7 +78,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.5)
     arel (3.0.2)
-    autoprefixer-rails (0.8.20131213)
+    autoprefixer-rails (1.0.20131222)
       execjs
     awesome_print (1.2.0)
     aws-sdk (1.6.1)
@@ -84,10 +92,6 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bitly (0.9.0)
-      httparty (>= 0.7.6)
-      multi_json (~> 1.3)
-      oauth2 (>= 0.5.0, < 0.9)
     bourbon (2.1.1)
       sass (>= 3.1)
     brakeman (1.5.3)
@@ -447,7 +451,7 @@ DEPENDENCIES
   aws-sdk
   better_errors
   binding_of_caller
-  bitly
+  bitly!
   brakeman
   cancan
   coffee-rails (~> 3.2.1)

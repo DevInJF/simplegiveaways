@@ -565,15 +565,15 @@ class Giveaway < ActiveRecord::Base
     entries.pluck(:shortlink)
   end
 
-  def shortlink_impressions
+  def shortlink_views
     bitly_client.clicks(shortlink).global_clicks
   end
 
-  def viral_facebook_impressions
-    viral_views - viral_shortlink_impressions
+  def viral_facebook_views
+    viral_views - viral_shortlink_views
   end
 
-  def viral_shortlink_impressions
+  def viral_shortlink_views
     total_clicks = 0
     shortlinks.each_slice(15).with_index do |links, index|
       begin
@@ -584,6 +584,30 @@ class Giveaway < ActiveRecord::Base
       end
     end
     total_clicks
+  end
+
+  def shortlink_referrers
+    referrers = shortlinks.map.with_index do |link, index|
+      begin
+        sleep 10 unless index == 0 || index % 15 != 0
+        bitly_client.referrers(link).referrers rescue nil
+      rescue
+        sleep 60
+      end
+    end
+    referrers.compact
+  end
+
+  def shortlink_shares
+    shares = shortlinks.map.with_index do |link, index|
+      begin
+        sleep 10 unless index == 0 || index % 15 != 0
+        bitly_client.shares(link) rescue nil
+      rescue
+        sleep 60
+      end
+    end
+    shares.compact
   end
 
   private
