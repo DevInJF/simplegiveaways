@@ -60,7 +60,7 @@ class Giveaway < ActiveRecord::Base
   validates :autoshow_share_dialog, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
   validates :allow_multi_entries, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
   validates :email_required, presence: true, inclusion: { in: [ "0", "1", 0, 1, true, false ] }
-  validates :bonus_value, presence: true, numericality: { only_integer: true }, if: -> { giveaway.canhaz_referral_tracking? || to_bool(allow_multi_entries) }
+  validates :bonus_value, presence: true, numericality: { only_integer: true }, if: -> { canhaz_referral_tracking? || to_bool(allow_multi_entries) }
 
   store :sticky_post, accessors: [ :sticky_post_enabled?,
                                    :sticky_post_title,
@@ -443,15 +443,15 @@ class Giveaway < ActiveRecord::Base
   end
 
   def entry_rate
-    entry_count > 0 ? "#{((entry_count.to_f / uniques.to_f) * 100).round(2)}%" : "N/A"
+    (entry_count > 0 && uniques > 0) ? "#{((entry_count.to_f / uniques.to_f) * 100).round(2)}%" : "N/A"
   rescue StandardError
-    0
+    "N/A"
   end
 
   def conversion_rate
-    entry_count > 0 ? "#{((viral_entry_count.to_f / (total_shares.to_f)) * 100).round(2)}%" : "N/A"
+    (entry_count > 0 && uniques > 0) ? "#{((viral_entry_count.to_f / (total_shares.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
-    0
+    "N/A"
   end
 
   def refresh_analytics
@@ -603,12 +603,13 @@ class Giveaway < ActiveRecord::Base
     shares = shortlinks.map.with_index do |link, index|
       begin
         sleep 10 unless index == 0 || index % 15 != 0
-        bitly_client.social(link) rescue nil
+        share = bitly_client.shares(link).shares.pop rescue nil
+        { share.share_type => share.shares } rescue nil
       rescue
         sleep 60
       end
     end
-    shares.compact
+    shares.compact.flatten
   end
 
   private

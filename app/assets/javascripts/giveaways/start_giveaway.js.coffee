@@ -18,8 +18,8 @@ SG.Giveaways.Start =
   triggerStartModal: ->
     @modalEl().find(".modal-step[data-modal-step='1']").hide()
     @modalEl().find(".modal-step[data-modal-step='2']").show()
-    $('#start_giveaway_end_date').val _sg.CurrentGiveaway.proposedEndDate
-    $('#start_giveaway_tab_name').val _sg.CurrentGiveaway.proposedTabName
+    $('#start_giveaway_end_date').val @_sg.CurrentGiveaway.proposedEndDate
+    $('#start_giveaway_tab_name').val @_sg.CurrentGiveaway.proposedTabName
     $('#start_giveaway').trigger 'click'
 
   justSubscribed: ->
