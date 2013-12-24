@@ -1,5 +1,5 @@
 //= require jquery
-//= require vendor/jquery.noisy
+//= require ../../../vendor/assets/javascripts/jquery.noisy
 
 $(function() {
   $('body').noisy({

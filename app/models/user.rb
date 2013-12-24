@@ -67,6 +67,10 @@ class User < ActiveRecord::Base
     identities.where("provider = 'facebook'").first.token
   end
 
+  def first_name
+    name.split(' ').first rescue name
+  end
+
   ROLES = %w[superadmin admin team restricted banned]
 
   def is?(role)

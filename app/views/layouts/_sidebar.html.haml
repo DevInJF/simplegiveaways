@@ -1,1 +1,222 @@
-= yield :sidebar
+-# = yield :sidebar
+%aside#nav.bg-dark.lter.aside-md.hidden-print
+  %section.vbox
+    %header.header.bg-primary.lter.text-center.clearfix
+      .btn-group
+        %button.btn.btn-sm.btn-dark.btn-icon{title: "New project", type: "button"}
+          %i.fa.fa-plus
+        .btn-group.hidden-nav-xs
+          %button.btn.btn-sm.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+            Switch Project
+            %span.caret
+          %ul.dropdown-menu.text-left
+            %li
+              %a{href: "#"} Project
+            %li
+              %a{href: "#"} Another Project
+            %li
+              %a{href: "#"} More Projects
+    %section.w-f.scrollable
+      .slim-scroll{"data-color" => "#333333", "data-disable-fade-out" => "true", "data-distance" => "0", "data-height" => "auto", "data-size" => "5px"}
+        / nav
+        %nav.nav-primary.hidden-xs
+          %ul.nav
+            %li.active
+              %a.active{href: "index.html"}
+                %i.fa.fa-dashboard.icon
+                  %b.bg-danger
+                %span Workset
+            %li
+              %a{href: "#layout"}
+                %i.fa.fa-columns.icon
+                  %b.bg-warning
+                %span.pull-right
+                  %i.fa.fa-angle-down.text
+                  %i.fa.fa-angle-up.text-active
+                %span Layouts
+              %ul.nav.lt
+                %li
+                  %a{href: "layout-c.html"}
+                    %i.fa.fa-angle-right
+                    %span Color option
+                %li
+                  %a{href: "layout-r.html"}
+                    %i.fa.fa-angle-right
+                    %span Right nav
+                %li
+                  %a{href: "layout-h.html"}
+                    %i.fa.fa-angle-right
+                    %span H-Layout
+            %li
+              %a{href: "#uikit"}
+                %i.fa.fa-flask.icon
+                  %b.bg-success
+                %span.pull-right
+                  %i.fa.fa-angle-down.text
+                  %i.fa.fa-angle-up.text-active
+                %span UI kit
+              %ul.nav.lt
+                %li
+                  %a{href: "buttons.html"}
+                    %i.fa.fa-angle-right
+                    %span Buttons
+                %li
+                  %a{href: "icons.html"}
+                    %b.badge.bg-info.pull-right 369
+                    %i.fa.fa-angle-right
+                    %span Icons
+                %li
+                  %a{href: "grid.html"}
+                    %i.fa.fa-angle-right
+                    %span Grid
+                %li
+                  %a{href: "widgets.html"}
+                    %b.badge.pull-right 8
+                    %i.fa.fa-angle-right
+                    %span Widgets
+                %li
+                  %a{href: "components.html"}
+                    %i.fa.fa-angle-right
+                    %span Components
+                %li
+                  %a{href: "list.html"}
+                    %i.fa.fa-angle-right
+                    %span List group
+                %li
+                  %a{href: "#table"}
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                    %span Table
+                  %ul.nav.bg
+                    %li
+                      %a{href: "table-static.html"}
+                        %i.fa.fa-angle-right
+                        %span Table static
+                    %li
+                      %a{href: "table-datatable.html"}
+                        %i.fa.fa-angle-right
+                        %span Datatable
+                    %li
+                      %a{href: "table-datagrid.html"}
+                        %i.fa.fa-angle-right
+                        %span Datagrid
+                %li
+                  %a{href: "#form"}
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                    %span Form
+                  %ul.nav.bg
+                    %li
+                      %a{href: "form-elements.html"}
+                        %i.fa.fa-angle-right
+                        %span Form elements
+                    %li
+                      %a{href: "form-validation.html"}
+                        %i.fa.fa-angle-right
+                        %span Form validation
+                    %li
+                      %a{href: "form-wizard.html"}
+                        %i.fa.fa-angle-right
+                        %span Form wizard
+                %li
+                  %a{href: "chart.html"}
+                    %i.fa.fa-angle-right
+                    %span Chart
+                %li
+                  %a{href: "fullcalendar.html"}
+                    %i.fa.fa-angle-right
+                    %span Fullcalendar
+                %li
+                  %a{href: "portlet.html"}
+                    %i.fa.fa-angle-right
+                    %span Portlet
+                %li
+                  %a{href: "timeline.html"}
+                    %i.fa.fa-angle-right
+                    %span Timeline
+            %li
+              %a{href: "#pages"}
+                %i.fa.fa-file-text.icon
+                  %b.bg-primary
+                %span.pull-right
+                  %i.fa.fa-angle-down.text
+                  %i.fa.fa-angle-up.text-active
+                %span Pages
+              %ul.nav.lt
+                %li
+                  %a{href: "gallery.html"}
+                    %i.fa.fa-angle-right
+                    %span Gallery
+                %li
+                  %a{href: "profile.html"}
+                    %i.fa.fa-angle-right
+                    %span Profile
+                %li
+                  %a{href: "invoice.html"}
+                    %i.fa.fa-angle-right
+                    %span Invoice
+                %li
+                  %a{href: "intro.html"}
+                    %i.fa.fa-angle-right
+                    %span Intro
+                %li
+                  %a{href: "master.html"}
+                    %i.fa.fa-angle-right
+                    %span Master
+                %li
+                  %a{href: "gmap.html"}
+                    %i.fa.fa-angle-right
+                    %span Google Map
+                %li
+                  %a{href: "signin.html"}
+                    %i.fa.fa-angle-right
+                    %span Signin
+                %li
+                  %a{href: "signup.html"}
+                    %i.fa.fa-angle-right
+                    %span Signup
+                %li
+                  %a{href: "404.html"}
+                    %i.fa.fa-angle-right
+                    %span 404
+            %li
+              %a{href: "mail.html"}
+                %b.badge.bg-danger.pull-right 3
+                %i.fa.fa-envelope-o.icon
+                  %b.bg-primary.dker
+                %span Message
+            %li
+              %a{href: "notebook.html"}
+                %i.fa.fa-pencil.icon
+                  %b.bg-info
+                %span Notes
+        / / nav
+    %footer.footer.lt.hidden-xs.b-t.b-dark
+      #chat.dropup
+        %section.dropdown-menu.on.aside-md.m-l-n
+          %section.panel.bg-white
+            %header.panel-heading.b-b.b-light Active chats
+            .panel-body.animated.fadeInRight
+              %p.text-sm No active chats.
+              %p
+                %a.btn.btn-sm.btn-default{href: "#"} Start a chat
+      #invite.dropup
+        %section.dropdown-menu.on.aside-md.m-l-n
+          %section.panel.bg-white
+            %header.panel-heading.b-b.b-light
+              John
+              %i.fa.fa-circle.text-success
+            .panel-body.animated.fadeInRight
+              %p.text-sm No contacts in your lists.
+              %p
+                %a.btn.btn-sm.btn-facebook{href: "#"}
+                  %i.fa.fa-fw.fa-facebook
+                  Invite from Facebook
+      %a.pull-right.btn.btn-sm.btn-dark.btn-icon{"data-toggle" => "class:nav-xs", href: "#nav"}
+        %i.fa.fa-angle-left.text
+        %i.fa.fa-angle-right.text-active
+      .btn-group.hidden-nav-xs
+        %button.btn.btn-icon.btn-sm.btn-dark{"data-target" => "#chat", "data-toggle" => "dropdown", title: "Chats", type: "button"}
+          %i.fa.fa-comment-o
+        %button.btn.btn-icon.btn-sm.btn-dark{"data-target" => "#invite", "data-toggle" => "dropdown", title: "Contacts", type: "button"}
+          %i.fa.fa-facebook
