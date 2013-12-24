@@ -18,8 +18,10 @@ GIT
     omniauth-facebook (1.6.0.rc1)
       omniauth-oauth2 (~> 1.1)
 
-PATH
-  remote: /Users/harris/.rvm/gems/ruby-2.0.0-p353@sg/gems/bitly-0.9.0
+GIT
+  remote: git://github.com/pelf/bitly.git
+  revision: 9ac3b38ab22addd21d0e95b43631744a1dd042d2
+  branch: v3_api_generic_oauth2_access_token
   specs:
     bitly (0.9.0)
       httparty (>= 0.7.6)
@@ -297,8 +299,13 @@ GEM
     pry-coolline (0.2.2)
       coolline (~> 0.3)
       io-console (~> 0.3.0)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
     pry-rails (0.2.0)
       pry
+    pry-remote (0.1.7)
+      pry (~> 0.9)
+      slop (~> 3.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -489,7 +496,9 @@ DEPENDENCIES
   pg
   pry
   pry-coolline
+  pry-nav
   pry-rails
+  pry-remote
   quiet_assets
   rails (~> 3.2)
   rails-assets-bourbon

@@ -235,7 +235,7 @@ class Giveaway < ActiveRecord::Base
 
   def bitly_client
     Bitly.use_api_version_3
-    Bitly.new(BITLY_USERNAME, BITLY_KEY)
+    Bitly.new(BITLY_KEY)
   end
 
   def unpublish
@@ -590,19 +590,20 @@ class Giveaway < ActiveRecord::Base
     referrers = shortlinks.map.with_index do |link, index|
       begin
         sleep 10 unless index == 0 || index % 15 != 0
-        bitly_client.referrers(link).referrers rescue nil
+        ref = bitly_client.referrers(link).referrers.pop rescue nil
+        { ref.referrer => ref.clicks } rescue nil
       rescue
         sleep 60
       end
     end
-    referrers.compact
+    referrers.compact.flatten
   end
 
   def shortlink_shares
     shares = shortlinks.map.with_index do |link, index|
       begin
         sleep 10 unless index == 0 || index % 15 != 0
-        bitly_client.shares(link) rescue nil
+        bitly_client.social(link) rescue nil
       rescue
         sleep 60
       end
