@@ -35,4 +35,26 @@
   i {
     margin-right: 5px;
   }
+
+  .dropdown-menu {
+    padding-top: 0;
+  }
+}
+
+.nav-primary > ul > li > a {
+
+  span.hidden-nav {
+    display: none;
+  }
+}
+
+.nav-xs .nav-primary > ul > li > a {
+
+  span.hidden-nav {
+    display: table-cell;
+  }
+
+  span.hidden-nav-xs {
+    display: none;
+  }
 }

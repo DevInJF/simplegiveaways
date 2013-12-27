@@ -1,1 +1,11 @@
-= yield :content
+%section#content
+  %section.vbox
+    %section.scrollable.padder
+
+      = render 'layouts/navigation/breadcrumbs'
+
+      = render 'layouts/navigation/header'
+
+      = yield
+
+  %a.hide.nav-off-screen-block{"data-target" => "#nav", "data-toggle" => "class:nav-off-screen", href: "#"}

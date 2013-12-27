@@ -8,7 +8,7 @@
 
 %ul.nav.navbar-nav.navbar-right.hidden-xs.nav-user
   %li.hidden-xs
-    %a.dropdown-toggle.dk{"data-toggle" => "dropdown", href: "#"}
+    %a.dropdown-toggle.dker{"data-toggle" => "dropdown", href: "#"}
       %i.fa.fa-bell
       %span.badge.badge-sm.up.bg-danger.m-l-n-sm.count 2
     %section.dropdown-menu.aside-xl
@@ -35,18 +35,6 @@
           %a.pull-right{href: "#"}
             %i.fa.fa-cog
           %a{"data-toggle" => "class:show animated fadeInRight", href: "#notes"} See all the notifications
-  %li.dropdown.hidden-xs
-    %a.dropdown-toggle.dker{"data-toggle" => "dropdown", href: "#"}
-      %i.fa.fa-fw.fa-search
-    %section.dropdown-menu.aside-xl.animated.fadeInUp
-      %section.panel.bg-white
-        %form{role: "search"}
-          .form-group.wrapper.m-b-none
-            .input-group
-              %input.form-control{placeholder: "Search", type: "text"}/
-              %span.input-group-btn
-                %button.btn.btn-info.btn-icon{type: "submit"}
-                  %i.fa.fa-search
   %li.dropdown
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
       %span.thumb-sm.avatar.pull-left

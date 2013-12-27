@@ -5,6 +5,11 @@ class UsersController < ApplicationController
 
   def show
     redirect_to root_path unless @user = current_user
+    render 'dashboard/index'
+  end
+
+  def edit
+    redirect_to root_path unless @user = current_user
   end
 
   def deauth

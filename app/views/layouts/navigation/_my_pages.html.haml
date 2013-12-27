@@ -1,35 +1,20 @@
--# .ui.right.floated.tiny.teal.buttons
--#   = link_to 'My Pages', dashboard_path, class: 'ui button'
--#   .ui.floating.dropdown.icon.button
--#     %i.dropdown.icon
--#     .menu
--#       - current_user.facebook_pages.each do |page|
--#         = active_link_to page.name, facebook_page_path(page), class: 'item'
-
 %ul.nav.navbar-nav.hidden-xs.my-pages-dropdown
   %li.dropdown
     %a.dropdown-toggle.dker{"data-toggle" => "dropdown", href: "#"}
       %i.fa.fa-facebook-square
       %span.font-bold My Pages
-    %section.dropdown-menu.aside-xl.on.animated.fadeInLeft.no-borders.lt
-      .wrapper.lter.m-t-n-xs
-        %a.thumb.pull-left.m-r{href: "#"}
-          %img.img-circle{src: "images/avatar.jpg"}/
-        .clear
-          %a{href: "#"}
-            %span.text-white.font-bold @Mike Mcalidek
-          %small.block Art Director
-          %a.btn.btn-xs.btn-success.m-t-xs{href: "#"} Upgrade
-      .row.m-l-none.m-r-none.m-b-n-xs.text-center
-        .col-xs-4
-          .padder-v
-            %span.m-b-xs.h4.block.text-white 245
-            %small.text-muted Followers
-        .col-xs-4.dk
-          .padder-v
-            %span.m-b-xs.h4.block.text-white 55
-            %small.text-muted Likes
-        .col-xs-4
-          .padder-v
-            %span.m-b-xs.h4.block.text-white 2,035
-            %small.text-muted Photos
+    %section.panel.panel-default.dropdown-menu.aside-xl.on.animated.fadeInLeft.no-borders
+      %header.panel-heading
+        %input.form-control{placeholder: "Search", type: "text"}
+      %ul.list-group.alt
+        - current_user.facebook_pages.each do |page|
+          = active_link_to facebook_page_path(page) do
+            %li.list-group-item
+              .media
+                %span.pull-left.thumb-sm
+                  %img.img-circle{alt: page.name, src: page.avatar_square}
+                .pull-right.text-success.m-t-sm
+                  %i.fa.fa-circle
+                .media-body
+                  %div= page.name
+                  %small.text-muted= like_count(page.likes)
