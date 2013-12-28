@@ -57,7 +57,7 @@ Simplegiveaways::Application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/logout', to: 'sessions#destroy'
 
-  root to: 'welcome#index'
-
   match '/:giveaway_id', to: 'giveaways#enter', as: 'enter'
+
+  root to: 'welcome#index'
 end

@@ -1,29 +1,27 @@
-- content_for :content do
+%h3.ui.fluid.header Pending Giveaways
 
-  %h3.ui.fluid.header Pending Giveaways
+- if @page.giveaways.pending.any?
 
-  - if @page.giveaways.pending.any?
+  - if @page.giveaways.active.any?
 
-    - if @page.giveaways.active.any?
-
-      .ui.small.message
-        .content
-          .header There is an active giveaway on your page right now.
-          %p You can publish a pending giveaway once your active giveaway has ended.
-
-    - else
-
-      .ui.small.message
-        .content
-          .header There is no active giveaway on your page right now.
-          %p Go ahead and publish one.
-
-    = render 'facebook_pages/giveaways', giveaways: @giveaways
+    .ui.small.message
+      .content
+        .header There is an active giveaway on your page right now.
+        %p You can publish a pending giveaway once your active giveaway has ended.
 
   - else
 
-    .ui.message
+    .ui.small.message
       .content
-        .header There are no pending giveaways.
-        %p Create a new giveaway to publish later.
-        = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: 'ui small teal button'
+        .header There is no active giveaway on your page right now.
+        %p Go ahead and publish one.
+
+  = render 'facebook_pages/giveaways', giveaways: @giveaways
+
+- else
+
+  .ui.message
+    .content
+      .header There are no pending giveaways.
+      %p Create a new giveaway to publish later.
+      = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: 'ui small teal button'

@@ -2,27 +2,31 @@ crumb :root do
   link "<i class='fa fa-home'></i> Dashboard".html_safe, dashboard_path
 end
 
-# crumb :projects do
-#   link "Projects", projects_path
-# end
+crumb :facebook_page do |facebook_page|
+  link facebook_page.name, facebook_page_path(facebook_page)
+  parent :root
+end
 
-# crumb :project do |project|
-#   link project.name, project_path(project)
-#   parent :projects
-# end
+crumb :active_giveaway do |facebook_page|
+  link "Active Giveaway", active_facebook_page_giveaways_path(facebook_page)
+  parent :facebook_page, facebook_page
+end
 
-# crumb :project_issues do |project|
-#   link "Issues", project_issues_path(project)
-#   parent :project, project
-# end
+crumb :pending_giveaways do |facebook_page|
+  link "Pending Giveaways", pending_facebook_page_giveaways_path(facebook_page)
+  parent :facebook_page, facebook_page
+end
 
-# crumb :issue do |issue|
-#   link issue.title, issue_path(issue)
-#   parent :project_issues, issue.project
-# end
+crumb :completed_giveaways do |facebook_page|
+  link "Completed Giveaways", completed_facebook_page_giveaways_path(facebook_page)
+  parent :facebook_page, facebook_page
+end
 
-# If you want to split your breadcrumbs configuration over multiple files, you
-# can create a folder named `config/breadcrumbs` and put your configuration
-# files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that
-# folder are loaded and reloaded automatically when you change them, just like
-# this file (`config/breadcrumbs.rb`).
+crumb :giveaway do |giveaway|
+  if giveaway.persisted?
+    link giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
+  else
+    link "New Giveaway", new_facebook_page_giveaway_path(giveaway.facebook_page)
+  end
+  parent :facebook_page, giveaway.facebook_page
+end

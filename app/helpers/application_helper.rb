@@ -27,6 +27,10 @@ module ApplicationHelper
     "#{controller.controller_name} #{controller.action_name}"
   end
 
+  def current_action
+    "#{controller.controller_name}/#{controller.action_name}"
+  end
+
   def uid_class
     session['uid'] || cookies.encrypted[:_sg_uid]
   end

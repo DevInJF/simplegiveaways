@@ -6,15 +6,13 @@
     %section.panel.panel-default.dropdown-menu.aside-xl.on.animated.fadeInLeft.no-borders
       %header.panel-heading
         %input.form-control{placeholder: "Search", type: "text"}
-      %ul.list-group.alt
+      .list-group.bg-white.no-radius.alt
         - current_user.facebook_pages.each do |page|
-          = active_link_to facebook_page_path(page) do
-            %li.list-group-item
-              .media
-                %span.pull-left.thumb-sm
-                  %img.img-circle{alt: page.name, src: page.avatar_square}
-                .pull-right.text-success.m-t-sm
-                  %i.fa.fa-circle
-                .media-body
-                  %div= page.name
-                  %small.text-muted= like_count(page.likes)
+          = active_link_to facebook_page_path(page), class: 'list-group-item media' do
+            %span.pull-left.thumb-sm
+              %img.img-circle{alt: page.name, src: page.avatar_square}
+            .pull-right.text-success.m-t-sm
+              %i.fa.fa-circle
+            .media-body
+              %div= page.name
+              %small= like_count(page.likes)
