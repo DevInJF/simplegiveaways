@@ -1,13 +1,7 @@
--# %h1.ui.left.floated.header
--#   %i.circular.emphasized.inverted.teal.gift.icon
--#   .content
--#     = link_to 'Simple Giveaways', dashboard_path, class: 'logo-link'
--#     .sub.header
--#       Easily create and deploy giveaways on your Facebook pages.
 .navbar-header.aside-md
   %a.btn.btn-link.visible-xs{"data-target" => "#nav", "data-toggle" => "class:nav-off-screen"}
     %i.fa.fa-bars
-  %a.navbar-brand{"data-toggle" => "fullscreen", href: "#"}
+  %a.navbar-brand{href: dashboard_path}
     %i.fa.fa-gift
     Simple Giveaways
   %a.btn.btn-link.visible-xs{"data-target" => ".nav-user", "data-toggle" => "dropdown"}

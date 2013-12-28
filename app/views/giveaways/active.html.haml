@@ -1,22 +1,21 @@
-- content_for :content do
+- if @giveaway && @giveaway.active?
 
-  - if @giveaway && @giveaway.active?
+  = render @giveaway, page: @page, flot: @flot, entries: @entries
 
-    = render @giveaway, page: @page, flot: @flot, entries: @entries
+- else
 
-  - else
+  - content_for :page_heading do
+    = render 'facebook_pages/header', content: 'Active Giveaway'
 
-    %h3.ui.fluid.header Active Giveaway
-
-    .ui.message
-      .content
-        .header There is no active giveaway on your page right now.
+  .ui.message
+    .content
+      .header There is no active giveaway on your page right now.
+      - if @page.giveaways.pending.any?
+        %p Create a new giveaway to publish later or publish one of your pending giveaways.
+      - else
+        %p Create a new giveaway to publish later.
+      .ui.small.buttons
+        = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: "#{@page.giveaways.pending.any? ? 'ui button' : 'ui teal button'}"
         - if @page.giveaways.pending.any?
-          %p Create a new giveaway to publish later or publish one of your pending giveaways.
-        - else
-          %p Create a new giveaway to publish later.
-        .ui.small.buttons
-          = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: "#{@page.giveaways.pending.any? ? 'ui button' : 'ui teal button'}"
-          - if @page.giveaways.pending.any?
-            .or
-            = link_to '<i class="time icon"></i>Pending Giveaways'.html_safe, pending_facebook_page_giveaways_path(@page), class: 'ui teal button'
+          .or
+          = link_to '<i class="time icon"></i>Pending Giveaways'.html_safe, pending_facebook_page_giveaways_path(@page), class: 'ui teal button'

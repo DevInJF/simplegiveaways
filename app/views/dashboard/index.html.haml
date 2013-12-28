@@ -1,3 +1,9 @@
+- content_for :page_heading do
+  Dashboard
+
+- content_for :page_subheading do
+  Welcome back, #{current_user.first_name}
+
 = render 'dashboard/kpis'
 
 = render 'dashboard/charts'

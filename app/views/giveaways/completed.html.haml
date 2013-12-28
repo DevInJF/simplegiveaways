@@ -1,14 +1,14 @@
-- content_for :content do
+- content_for :page_heading do
+  = render 'facebook_pages/header', content: 'Completed Giveaways'
 
-  - if @giveaways.any?
+- if @giveaways.any?
 
-    %h3.ui.fluid.header Completed Giveaways
-    = render 'facebook_pages/giveaways', giveaways: @giveaways
+  = render 'facebook_pages/giveaways', giveaways: @giveaways
 
-  - else
+- else
 
-    .ui.message
-      .content
-        .header There are no completed giveaways yet.
-        %p Create a new giveaway to publish later.
-        = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: 'ui small teal button'
+  .ui.message
+    .content
+      .header There are no completed giveaways yet.
+      %p Create a new giveaway to publish later.
+      = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: 'ui small teal button'

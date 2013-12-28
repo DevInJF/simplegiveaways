@@ -1,4 +1,5 @@
-%h3.ui.fluid.header Pending Giveaways
+- content_for :page_heading do
+  = render 'facebook_pages/header', content: 'Pending Giveaways'
 
 - if @page.giveaways.pending.any?
 
