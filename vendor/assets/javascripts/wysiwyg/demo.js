@@ -1,6 +1,6 @@
 $(function(){
   function initToolbarBootstrapBindings() {
-    var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier', 
+    var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
           'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
           'Times New Roman', 'Verdana'],
           fontTarget = $('[title=Font]').siblings('.dropdown-menu');
@@ -12,8 +12,8 @@ $(function(){
 	    .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
       .keydown('esc', function () {this.value='';$(this).change();});
 
-    $('[data-role=magic-overlay]').each(function () { 
-      var overlay = $(this), target = $(overlay.data('target')); 
+    $('[data-role=magic-overlay]').each(function () {
+      var overlay = $(this), target = $(overlay.data('target'));
       overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
     });
     if ("onwebkitspeechchange" in document.createElement("input")) {
@@ -29,9 +29,9 @@ $(function(){
 		else {
 			console.log("error uploading file", reason, detail);
 		}
-		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
+		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+
 		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
 	};
-  initToolbarBootstrapBindings();  
-	$('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
+  initToolbarBootstrapBindings();
+	$('#editor').wysiwyg({ fileUploadError: showErrorAlert, hotKeys: {} });
 });

@@ -1,8 +1,7 @@
-.row.basic-info
+= f.input :title, input_html: { maxlength: 100, placeholder: 'Title', 'data-trigger' => 'change', 'data-required' => 'true' }
 
-  %h4.ui.header Basic Info
+= render 'giveaways/form/wysiwyg', f: f
 
-  = f.input :title, input_html: { maxlength: 100, placeholder: 'Title' }
-  = f.input :description, input_html: { placeholder: 'Description' }
-  = f.input :prize, input_html: { placeholder: 'Prize' }
-  = f.input :custom_fb_tab_name, label: 'Custom Tab Name', input_html: { placeholder: 'Custom Tab Name' }
+= f.input :prize, input_html: { placeholder: 'Prize', 'data-trigger' => 'change', 'data-required' => 'true' }
+
+= f.input :custom_fb_tab_name, label: 'Custom Tab Name', input_html: { placeholder: 'Custom Tab Name', 'data-trigger' => 'change', 'data-required' => 'true' }

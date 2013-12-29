@@ -14,6 +14,9 @@
 //= require ../../../vendor/assets/javascripts/jquery.flot.tooltip.min
 //= require ../../../vendor/assets/javascripts/jquery.datetimepicker
 //= require ../../../vendor/assets/javascripts/bootstrap
+//= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysiwyg
+//= require ../../../vendor/assets/javascripts/wysiwyg/demo
+//= require ../../../vendor/assets/javascripts/parsley/parsley.min
 //= require ../../../vendor/assets/javascripts/app
 //= require ../../../vendor/assets/javascripts/app.plugin
 //= require ../../../vendor/assets/javascripts/slimscroll/jquery.slimscroll.min
@@ -22,6 +25,7 @@
 //= require ../../../vendor/assets/javascripts/charts/flot/demo
 //= require ../../../vendor/assets/javascripts/calendar/bootstrap_calendar
 //= require ../../../vendor/assets/javascripts/calendar/demo
+//= require ../../../vendor/assets/javascripts/fuelux/fuelux
 //= require ../../../vendor/assets/javascripts/sortable/jquery.sortable
 //= require sg
 //= require facebook

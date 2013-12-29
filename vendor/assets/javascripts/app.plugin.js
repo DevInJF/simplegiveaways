@@ -1,7 +1,7 @@
 !function ($) {
 
   $(function(){
- 	
+
 	// sparkline
 	var sr, sparkline = function($re){
 		$(".sparkline").each(function(){
@@ -22,9 +22,9 @@
 
 	// easypie
     $('.easypiechart').each(function(){
-    	var $this = $(this), 
-    	$data = $this.data(), 
-    	$step = $this.find('.step'), 
+    	var $this = $(this),
+    	$data = $this.data(),
+    	$step = $this.find('.step'),
     	$target_value = parseInt($($data.target).text()),
     	$value = 0;
     	$data.barColor || ( $data.barColor = function($percent) {
@@ -46,7 +46,7 @@
 	});
 
   	// combodate
-	$(".combodate").each(function(){ 
+	$(".combodate").each(function(){
 		$(this).combodate();
 		$(this).next('.combodate').find('select').addClass('form-control');
 	});
@@ -111,31 +111,6 @@
 	// slider
 	$('.slider').each(function(){
 		$(this).slider();
-	});
-
-	// wizard
-	var $nextText;
-	$(document).on('click', '[data-wizard]', function (e) {
-		var $this   = $(this), href;
-	    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''));
-	    var option = $this.data('wizard');
-	    var item = $target.wizard('selectedItem');
-	    var $step = $target.next().find('.step-pane:eq(' + (item.step-1) + ')');
-	    !$nextText && ($nextText = $('[data-wizard="next"]').html());
-	    var validated = false;
-	    $('[data-required="true"]', $step).each(function(){
-	    	return (validated = $(this).parsley( 'validate' ));
-	    });
-	    if($(this).hasClass('btn-next') && !validated){
-	    	return false;
-	    }else{
-	    	$target.wizard(option);
-	    	var activeStep = (option=="next") ? (item.step+1) : (item.step-1);
-	    	var prev = ($(this).hasClass('btn-prev') && $(this)) || $(this).prev();
-	    	var next = ($(this).hasClass('btn-next') && $(this)) || $(this).next();
-	    	prev.attr('disabled', (activeStep == 1) ? true : false);
-	    	next.html((activeStep < $target.find('li').length) ? $nextText : next.data('last'));
-	    }
 	});
 
 	// sortable
@@ -212,7 +187,7 @@
 			}
 		);
 	});
-	
+
 	// add notes
 	function addMsg($msg){
 		var $el = $('.nav-user'), $n = $('.count:first', $el), $v = parseInt($n.text());
@@ -227,7 +202,7 @@
                     'Sophi sent you a email<br>'+
                     '<small class="text-muted">1 minutes ago</small>'+
                   '</span>'+
-                '</a>';	
+                '</a>';
     setTimeout(function(){addMsg($msg);}, 1500);
 
 	// datatable
@@ -247,7 +222,7 @@
 		} );
 	});
 
-	// select2 
+	// select2
  	if ($.fn.select2) {
       $("#select2-option").select2();
       $("#select2-tags").select2({

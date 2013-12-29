@@ -524,8 +524,8 @@
 			var pageRequested = parseInt($(e.target).val(), 10);
 			pageRequested = (isNaN(pageRequested)) ? 1 : pageRequested;
 			var maxPages = this.$pageslabel.text();
-		
-			this.options.dataOptions.pageIndex = 
+
+			this.options.dataOptions.pageIndex =
 				(pageRequested > maxPages) ? maxPages - 1 : pageRequested - 1;
 
 			this.renderData();
@@ -652,7 +652,7 @@
  */
 
 +function ($) { "use strict";
-	
+
 	// PILLBOX CONSTRUCTOR AND PROTOTYPE
 
 	var Pillbox = function (element, options) {
@@ -709,7 +709,7 @@
 			$this.pillbox($this.data());
 		});
 	});
-	
+
 }(window.jQuery);
 
 
@@ -1490,13 +1490,13 @@
 
 	var Wizard = function (element, options) {
 		var kids;
-
 		this.$element = $(element);
+		this.$container = this.$element.parents('.wizard-container');
 		this.options = $.extend({}, $.fn.wizard.defaults, options);
 		this.currentStep = 1;
 		this.numSteps = this.$element.find('li').length;
-		this.$prevBtn = this.$element.find('button.btn-prev');
-		this.$nextBtn = this.$element.find('button.btn-next');
+		this.$prevBtn = this.$container.find('button.btn-prev');
+		this.$nextBtn = this.$container.find('button.btn-next');
 
 		kids = this.$nextBtn.children().detach();
 		this.nextText = $.trim(this.$nextBtn.text());

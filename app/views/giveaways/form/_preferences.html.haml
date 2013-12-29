@@ -2,11 +2,11 @@
 
   %h4.ui.header Preferences
 
-  = f.input :email_required, as: :boolean, wrapper: :semantic_checkbox_toggle, input_html: { checked: true }, label: 'Email Required for Entry'
+  = f.input :email_required, as: :boolean, input_html: { checked: true }, label: 'Email Required for Entry'
 
-  = f.input :autoshow_share_dialog, as: :boolean, wrapper: :semantic_checkbox_toggle, label: 'Autoshow Share Dialog'
+  = f.input :autoshow_share_dialog, as: :boolean, label: 'Autoshow Share Dialog'
 
-  = f.input :allow_multi_entries, as: :boolean, wrapper: :semantic_checkbox_toggle, label: 'Allow Multiple Entries Per User'
+  = f.input :allow_multi_entries, as: :boolean, label: 'Allow Multiple Entries Per User'
 
   - if f.object.facebook_page.canhaz_referral_tracking? || f.object.allow_multi_entries == "1"
 
