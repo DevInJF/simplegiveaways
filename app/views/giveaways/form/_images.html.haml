@@ -1,19 +1,8 @@
-.row.images
+.form-group
+  = f.input :image, as: :file, html: { 'data-trigger' => 'change', 'data-required' => 'true' }
+  - if f.object.image.present?
+    .ui.image= image_tag f.object.image(:medium), alt: f.object.title
 
-  %h4.ui.header Images
-
-  .ui.two.column.stackable.grid
-
-    %section.image.column
-      .ui.segment.image-container
-        .ui.top.left.attached.small.label Tab Image
-        = f.input :image, as: :file, label: false
-        - if f.object.image.present?
-          .ui.image= image_tag f.object.image(:medium), alt: f.object.title
-
-    %section.feed-image.column
-      .ui.segment.image-container
-        .ui.top.left.attached.small.label Feed Image
-        = f.input :feed_image, as: :file, label: false
-        - if f.object.feed_image.present?
-          .ui.image= image_tag f.object.feed_image, alt: f.object.title
+  = f.input :feed_image, as: :file, html: { 'data-trigger' => 'change', 'data-required' => 'true' }
+  - if f.object.feed_image.present?
+    .ui.image= image_tag f.object.feed_image, alt: f.object.title

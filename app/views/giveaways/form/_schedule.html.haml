@@ -1,5 +1,6 @@
-%p.sub.header
-  If you choose a start date and/or end date, we will automatically publish and/or unpublish your giveaway at the chosen date and time (as long as there is not a scheduling conflict with another giveaway).
+.bs-callout.bs-callout-info
+  %h4 Scheduled Giveaways
+  %p If you choose a start date and/or end date, we will automatically publish and/or unpublish your giveaway at the chosen date and time (as long as there is not a scheduling conflict with another giveaway).
 
 .date-container
   = f.input :start_date, as: :string, input_html: { value: f.object.start_date && f.object.start_date.in_time_zone, class: 'datetime-picker', disabled: f.object.active?, 'data-date-type' => 'start' }, wrapper_html: { class: 'field date' }, label: 'Start Date/Time'
