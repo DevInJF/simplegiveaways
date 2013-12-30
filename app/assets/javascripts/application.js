@@ -14,7 +14,8 @@
 //= require ../../../vendor/assets/javascripts/jquery.datetimepicker
 //= require ../../../vendor/assets/javascripts/bootstrap
 //= require ../../../vendor/assets/javascripts/file-input/bootstrap-filestyle.min
-//= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysiwyg
+//= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min
+//= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 //= require ../../../vendor/assets/javascripts/wysiwyg/demo
 //= require ../../../vendor/assets/javascripts/parsley/parsley.min
 //= require ../../../vendor/assets/javascripts/app

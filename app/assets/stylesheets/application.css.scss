@@ -1,8 +1,11 @@
 /*
 *= require ../../../vendor/assets/stylesheets/bootstrap
+*= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
+*= require ../../../vendor/assets/javascripts/wysiwyg/wysiwyg-color
 *= require ../../../vendor/assets/stylesheets/animate
 *= require ../../../vendor/assets/stylesheets/font-awesome.min
 *= require ../../../vendor/assets/stylesheets/font
+*= require ../../../vendor/assets/stylesheets/jquery.datetimepicker
 *= require ../../../vendor/assets/javascripts/calendar/bootstrap_calendar
 *= require ../../../vendor/assets/stylesheets/app
 *= require ../../../vendor/assets/javascripts/fuelux/fuelux
@@ -199,6 +202,18 @@ input[type="file"] {
 
 .form-group {
 
+  &.giveaway_description {
+
+    .parsley-error-list ~ .wysihtml5-sandbox {
+      margin-top: 5px !important;
+      border-color: #FF5F5F !important;
+    }
+
+    .parsley-error-list {
+      margin-top: 0;
+    }
+  }
+
   &.boolean {
     margin-bottom: 5px;
   }
@@ -246,4 +261,12 @@ input[type="file"] {
       }
     }
   }
+}
+
+.modal {
+  z-index: 2000;
+}
+
+button {
+  outline: none !important;
 }
