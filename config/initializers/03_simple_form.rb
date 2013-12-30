@@ -47,7 +47,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.wrapper tag: 'div', class: 'controls' do |input|
       input.wrapper tag: 'div', class: 'input-group' do |prepend|
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+        prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
         prepend.use :input
       end
       input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
@@ -61,7 +61,7 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'div', class: 'controls' do |input|
       input.wrapper tag: 'div', class: 'input-group' do |prepend|
         prepend.use :input
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+        prepend.use :label , class: 'input-group-addon' ###Please note setting class here for the label does not currently work (let me know if you know a workaround as this is the final hurdle)
       end
       input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
       input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
@@ -74,13 +74,24 @@ SimpleForm.setup do |config|
     b.use :html5
 
     # Form components
-    b.wrapper tag: :label do |ba|
+    b.wrapper tag: :label, class: "switch" do |ba|
       ba.use :input
       ba.use :label_text
     end
 
     b.use :hint,  wrap_with: { tag: :p, class: "help-block" }
     b.use :error, wrap_with: { tag: :span, class: "help-block text-danger" }
+  end
+
+  config.wrappers :inline_checkbox, :tag => 'div', :class => 'form-group', :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.wrapper :tag => 'label', :class => 'switch' do |ba|
+      ba.use :input
+      ba.use :label
+      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+      ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
+    end
   end
 
   # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.

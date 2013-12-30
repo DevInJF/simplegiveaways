@@ -81,6 +81,11 @@
   }
 }
 
+/*
+ * Navigation
+ *
+ */
+
 .my-pages-dropdown {
 
   i {
@@ -176,6 +181,69 @@ h1, h2, h3, h4, h5, h6 {
 
     span.level-two {
       font-size: 80%;
+    }
+  }
+}
+
+/*
+ * Forms
+ *
+ */
+
+input[type="file"] {
+
+  &.form-control {
+    width: auto;
+  }
+}
+
+.form-group {
+
+  &.boolean {
+    margin-bottom: 5px;
+  }
+
+  label {
+
+    &.switch {
+      cursor: pointer;
+
+      > label {
+        cursor: pointer;
+        position: relative;
+        top: -11px;
+        margin-left: 15px;
+      }
+
+      input + span {
+        background-color: #FB6B5B;
+      }
+
+      input:checked + span {
+        background-color: #8ec165;
+      }
+    }
+  }
+
+  &.text {
+    display: block !important;
+
+    textarea {
+      height: 140px;
+    }
+  }
+
+  &.file {
+
+    label {
+      display: block;
+    }
+
+    .bootstrap-filestyle {
+
+      label {
+        display: inline;
+      }
     }
   }
 }
