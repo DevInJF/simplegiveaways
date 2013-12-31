@@ -1,11 +1,11 @@
-#giveaway_details.ui.meta.relaxed.stackable.grid
+#giveaway_details
 
   .row
-    .eight.wide.column
+    .col-lg-6
 
       = render 'giveaways/details/basic_info', giveaway: giveaway
 
-    .eight.wide.column
+    .col-lg-6
 
       = render 'giveaways/details/schedule', giveaway: giveaway
 
@@ -14,6 +14,6 @@
       = render 'giveaways/details/preferences', giveaway: giveaway
 
   .row
-    .sixteen.wide.column
+    .col-lg-12
 
       = render 'giveaways/details/images', giveaway: giveaway

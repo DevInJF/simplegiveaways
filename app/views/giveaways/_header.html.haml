@@ -1,2 +1,7 @@
-%h2.ui.fluid.header
-  = link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'giveaway-title'
+%header.panel-heading.lt.no-border{class: giveaway_header_class(giveaway)}
+  .clearfix
+    %span.pull-left.thumb.avatar.b-3x.m-r
+      %img.img-circle{src: giveaway.image(:medium)}/
+    .clear
+      .h3.m-t-xs.m-b-xs.text-white.col-lg-10
+        = render 'facebook_pages/header', content: giveaway.title

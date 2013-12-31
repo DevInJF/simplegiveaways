@@ -28,7 +28,6 @@
 //= require ../../../vendor/assets/javascripts/calendar/demo
 //= require ../../../vendor/assets/javascripts/fuelux/fuelux
 //= require ../../../vendor/assets/javascripts/sortable/jquery.sortable
-//= require sg
 //= require facebook
 //= require stripe-client
 //= require ui

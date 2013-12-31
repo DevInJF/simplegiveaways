@@ -1,17 +1,19 @@
-= render 'header', giveaway: giveaway, page: giveaway.facebook_page
+%section.panel.panel-default
+  = render 'header', giveaway: giveaway, page: giveaway.facebook_page
 
-.ui.segment
-  = status_label(giveaway)
-  = render 'actions', giveaway: giveaway
+  .list-group.no-radius.alt
+    .list-group-item
+      -# = status_label(giveaway)
+      = render 'actions', giveaway: giveaway
 
-  - if giveaway.active?
+      - if giveaway.active?
 
-    = render 'active', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
+        = render 'active', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
 
-  - elsif giveaway.completed?
+      - elsif giveaway.completed?
 
-    = render 'completed', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
+        = render 'completed', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
 
-  - else
+      - else
 
-    = render 'details', giveaway: giveaway, page: giveaway.facebook_page
+        = render 'details', giveaway: giveaway, page: giveaway.facebook_page

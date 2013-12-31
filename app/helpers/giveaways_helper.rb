@@ -2,6 +2,17 @@ module GiveawaysHelper
 
   include PublicUtils
 
+  def giveaway_header_class(giveaway)
+    case giveaway.status
+      when 'Active'
+        'bg-primary'
+      when 'Pending'
+        'bg-dark'
+      when 'Completed'
+        'bg-danger'
+    end
+  end
+
   def status_label(giveaway)
     case giveaway.status
       when 'Active'

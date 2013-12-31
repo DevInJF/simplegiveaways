@@ -2,6 +2,7 @@ SG.Giveaways.Active =
 
   initialize: ->
     @initEntriesTable() if @entriesTableEl().length
+    @initGraphs() if @graphPlaceholderEl().length
 
   initEntriesTable: ->
     @entriesTableEl().footable
