@@ -7,13 +7,6 @@ SG.Giveaways.Start =
     @triggerStartModal() if @justSubscribed()
 
   initStartModal: ->
-    @modalEl().modal
-      debug: false
-      closable: false
-      onApprove: =>
-        @moveForward()
-        false
-    .modal 'attach events', '#start_giveaway'
 
   triggerStartModal: ->
     @modalEl().find(".modal-step[data-modal-step='1']").hide()
