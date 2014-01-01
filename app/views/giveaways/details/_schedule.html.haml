@@ -1,11 +1,20 @@
-%section.schedule
-
-  %h4 Schedule
-
-  %section.start-date
-    .ui.small.horizontal.label Start Date
-    %p= start_date_label(giveaway)
-
-  %section.end-date
-    .ui.small.horizontal.label End Date
-    %p= end_date_label(giveaway)
+%section.schedule.panel.panel-default
+  .panel-heading
+    %h3.panel-title Schedule
+  %table.table.table-striped.m-b-none
+    %thead
+    %tbody
+      %tr
+        %td Start Date
+        %td.val= start_date_label(giveaway)
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
+      %tr
+        %td End Date
+        %td.val= end_date_label(giveaway)
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil

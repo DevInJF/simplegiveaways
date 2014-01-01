@@ -1,22 +1,34 @@
-%section.preferences
-
-  %h4 Preferences
-
-  .ui.relaxed.list
-
-    .item.email-required
-      .ui.small.flex.horizontal.label Email Required
-      = boolean_label(giveaway.email_required)
-
-    .item.autoshow-share-dialog
-      .ui.small.flex.horizontal.label Autoshow Share Dialog
-      = boolean_label(giveaway.autoshow_share_dialog)
-
-    .item.allow-multi-entries
-      .ui.small.flex.horizontal.label Allow Multiple Entries
-      = boolean_label(giveaway.allow_multi_entries)
-
-    - if giveaway.bonus_value.present?
-      .item.bonus-value
-        .ui.small.flex.horizontal.label Bonus Value
-        .ui.small.horizontal.black.label= giveaway.bonus_value
+%section.preferences.panel.panel-default
+  .panel-heading
+    %h3.panel-title Preferences
+  %table.table.table-striped.m-b-none
+    %thead
+    %tbody
+      %tr
+        %td Email Required for Entry?
+        %td= boolean_label(giveaway.email_required)
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
+      %tr
+        %td Autoshow Share Dialog?
+        %td= boolean_label(giveaway.autoshow_share_dialog)
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
+      %tr
+        %td Allow Multiple Entries?
+        %td= boolean_label(giveaway.allow_multi_entries)
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
+      %tr
+        %td Bonus Entry Value
+        %td= giveaway.bonus_value
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil

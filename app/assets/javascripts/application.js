@@ -12,6 +12,7 @@
 //= require ../../../vendor/assets/javascripts/jquery.flot.growraf
 //= require ../../../vendor/assets/javascripts/jquery.flot.tooltip.min
 //= require ../../../vendor/assets/javascripts/jquery.datetimepicker
+//= require ../../../vendor/assets/javascripts/jquery.jtruncate
 //= require ../../../vendor/assets/javascripts/bootstrap
 //= require ../../../vendor/assets/javascripts/file-input/bootstrap-filestyle.min
 //= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min

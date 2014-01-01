@@ -12,6 +12,8 @@
 *= require_self
 */
 
+@import 'mixins';
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: asset-url('glyphicons-halflings-regular.eot', font);
@@ -264,10 +266,49 @@ input[type="file"] {
   }
 }
 
+.truncate_ellipsis {
+  display: inline;
+}
+
+.truncate-toggle {
+  margin-top: 5px;
+}
+
 .modal {
   z-index: 2000;
 }
 
 button {
   outline: none !important;
+}
+
+.panel {
+
+  &.image-panel {
+
+    &.bleed {
+
+      .panel-body {
+        padding: 0;
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+#giveaway_details {
+
+  td.val {
+    @include word-wrap;
+  }
+
+  .giveaway-image.panel {
+
+    img {
+      width: 810px;
+    }
+  }
 }

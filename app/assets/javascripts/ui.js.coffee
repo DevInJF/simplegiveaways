@@ -8,6 +8,7 @@ SG.UI =
     @initCheckboxes()
     @initAccordions()
     @initPopups()
+    @initReadmores()
 
   initDropdowns: ->
     @dropdownEls().dropdown(debug: false) if @dropdownEls().length
@@ -26,6 +27,11 @@ SG.UI =
       debug: false
       on: $(el).data('on')
 
+  initReadmores: ->
+    @initReadmore(el) for el in @readmoreEls()
+
+  initReadmore: (el) -> $(el).jTruncate()
+
   dropdownEls: -> $('.ui.dropdown')
 
   checkboxEls: -> $('.ui.checkbox').not('.radio')
@@ -33,3 +39,5 @@ SG.UI =
   accordionEls: -> $('.ui.accordion')
 
   popupEls: -> $('.popup-trigger')
+
+  readmoreEls: -> $('.readmore')

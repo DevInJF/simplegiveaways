@@ -1,15 +1,21 @@
-%section.terms
-
-  %h4 Terms &amp; Conditions
-
-  - if giveaway.terms_url.present?
-
-    %section.terms-url
-      .ui.small.horizontal.label Terms URL
-      %p.wrap-url= link_to giveaway.terms_url, giveaway.terms_url
-
-  - if giveaway.terms_text.present?
-
-    %section.terms-text
-      .ui.small.horizontal.label Terms Text
-      %p= giveaway.terms_text
+%section.terms.panel.panel-default
+  .panel-heading
+    %h3.panel-title Terms &amp; Conditions
+  %table.table.table-striped.m-b-none
+    %thead
+    %tbody
+      %tr
+        %td URL
+        %td.val= link_to giveaway.terms_url, giveaway.terms_url
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
+      %tr
+        %td Text
+        %td.val
+          %p.readmore= giveaway.terms_text
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil

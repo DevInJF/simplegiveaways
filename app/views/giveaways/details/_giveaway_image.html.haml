@@ -1,0 +1,8 @@
+%section.giveaway-image.panel.panel-default.image-panel.bleed
+  .panel-heading.clearfix
+    %h3.panel-title.pull-left Giveaway Image
+    .btn-group.pull-right
+      %a{href: "#"}
+        %i.fa.fa-pencil
+  .panel-body
+    = image_tag giveaway.image(:tab), alt: giveaway.title, class: 'center-block'

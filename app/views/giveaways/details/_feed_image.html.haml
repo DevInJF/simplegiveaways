@@ -1,0 +1,8 @@
+%section.feed-image.panel.panel-default.image-panel
+  .panel-heading.clearfix
+    %h3.panel-title.pull-left Feed Image
+    .btn-group.pull-right
+      %a{href: "#"}
+        %i.fa.fa-pencil
+  .panel-body
+    = image_tag giveaway.feed_image(:thumb), alt: giveaway.title

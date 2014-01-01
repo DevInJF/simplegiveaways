@@ -68,9 +68,9 @@ module GiveawaysHelper
 
   def boolean_label(boolean)
     if to_bool(boolean)
-      '<div class="ui small horizontal teal label">TRUE</div>'.html_safe
+      '<span class="label bg-primary">TRUE</span>'.html_safe
     else
-      '<div class="ui small horizontal red label">FALSE</div>'.html_safe
+      '<span class="label bg-danger">FALSE</span>'.html_safe
     end
   end
 

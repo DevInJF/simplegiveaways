@@ -1,15 +1,27 @@
-%section.info
-
-  %h4 Basic Info
-
-  %section.prize
-    .ui.small.horizontal.label Prize
-    %p= giveaway.prize
-
-  %section.description
-    .ui.small.horizontal.label Description
-    %p= giveaway.description
-
-  %section.custom-tab-name
-    .ui.small.horizontal.label Custom Tab Name
-    %p= giveaway.custom_fb_tab_name
+%section.info.panel.panel-default
+  .panel-heading
+    %h3.panel-title Basic Info
+  %table.table.table-striped.m-b-none
+    %thead
+    %tbody
+      %tr
+        %td Prize
+        %td.val= giveaway.prize
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
+      %tr
+        %td Description
+        %td.val= giveaway.description.html_safe
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
+      %tr
+        %td Custom Tab Name
+        %td.val= giveaway.custom_fb_tab_name
+        %td.text-right
+          .btn-group
+            %a{href: "#"}
+              %i.fa.fa-pencil
