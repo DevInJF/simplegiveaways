@@ -37,6 +37,7 @@ gem 'stripe-rails'
 gem 'stripe_tester'
 gem 'validates_timeliness', '~> 3.0'
 gem 'whenever', require: false
+gem 'x-editable-rails'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'

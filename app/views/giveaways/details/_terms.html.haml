@@ -6,16 +6,16 @@
     %tbody
       %tr
         %td URL
-        %td.val= link_to giveaway.terms_url, giveaway.terms_url
+        %td.val= editable giveaway, :terms_url, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea'
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil
       %tr
         %td Text
         %td.val
-          %p.readmore= giveaway.terms_text
+          %p= editable giveaway, :terms_text, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: giveaway.terms_text, type: 'textarea', class: 'editable-readmore'
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil

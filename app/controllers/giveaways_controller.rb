@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class GiveawaysController < ApplicationController
 
+  respond_to :html, :json
+
   load_and_authorize_resource :facebook_page, except: [:tab, :enter]
   load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab, :enter]
 
@@ -85,12 +87,20 @@ class GiveawaysController < ApplicationController
         flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since #{@page.name} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like.".html_safe
       end
 
-      redirect_to facebook_page_giveaway_url(@page, @giveaway)
+      respond_to do |format|
+        format.html { redirect_to facebook_page_giveaway_url(@page, @giveaway) }
+        format.json { render json: @giveaway }
+      end
+
       @giveaway.update_tab if @giveaway.active?
     else
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
       @giveaway.reload
-      render :edit
+
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @giveaway }
+      end
     end
   end
 

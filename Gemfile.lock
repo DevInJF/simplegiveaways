@@ -446,6 +446,8 @@ GEM
     whenever (0.8.4)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
+    x-editable-rails (1.5.2)
+      railties
     zeroclipboard-rails (0.0.10)
       railties (>= 3.1)
 
@@ -526,4 +528,5 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   validates_timeliness (~> 3.0)
   whenever
+  x-editable-rails
   zeroclipboard-rails

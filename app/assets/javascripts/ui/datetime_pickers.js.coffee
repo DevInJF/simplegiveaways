@@ -2,10 +2,13 @@ SG.UI.DatetimePickers =
 
   _sg: _SG
 
-  initialize: ->
-    @attachDatetimePicker(el) for el in @dateTimePickerEls()
+  initialize: (el) ->
+    if el?
+      @attachDatetimePicker(el, true)
+    else
+      @attachDatetimePicker(el) for el in @dateTimePickerEls()
 
-  attachDatetimePicker: (el) ->
+  attachDatetimePicker: (el, inline = false) ->
     $el = $(el)
 
     $el.datetimepicker
@@ -13,6 +16,7 @@ SG.UI.DatetimePickers =
       format: "l, F d, Y @ h:i A"
       formatDate: "m/d/Y"
       formatTime: "h:i A"
+      inline: inline
       minDate: @setMinDate($el)
       onChangeDateTime: (current, $input) =>
         unless @startConflicts && $input.data('date-type') == 'end'

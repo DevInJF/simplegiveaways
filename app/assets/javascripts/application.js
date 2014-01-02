@@ -15,9 +15,6 @@
 //= require ../../../vendor/assets/javascripts/jquery.jtruncate
 //= require ../../../vendor/assets/javascripts/bootstrap
 //= require ../../../vendor/assets/javascripts/file-input/bootstrap-filestyle.min
-//= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min
-//= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
-//= require ../../../vendor/assets/javascripts/wysiwyg/demo
 //= require ../../../vendor/assets/javascripts/parsley/parsley.min
 //= require ../../../vendor/assets/javascripts/app
 //= require ../../../vendor/assets/javascripts/app.plugin
@@ -29,6 +26,10 @@
 //= require ../../../vendor/assets/javascripts/calendar/demo
 //= require ../../../vendor/assets/javascripts/fuelux/fuelux
 //= require ../../../vendor/assets/javascripts/sortable/jquery.sortable
+//= require editable/bootstrap-editable
+//= require editable/rails
+//= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min
+//= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 //= require facebook
 //= require stripe-client
 //= require ui
@@ -40,3 +41,4 @@
 //= require giveaways/active_giveaway
 //= require giveaways/start_giveaway
 //= require giveaways/form
+//= require giveaways/form/wysiwyg

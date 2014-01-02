@@ -6,15 +6,15 @@
     %tbody
       %tr
         %td Start Date
-        %td.val= start_date_label(giveaway)
+        %td.val= editable giveaway, :start_date, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: start_date_label(giveaway), class: 'editable-datetime'
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil
       %tr
         %td End Date
-        %td.val= end_date_label(giveaway)
+        %td.val= editable giveaway, :end_date, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: end_date_label(giveaway), class: 'editable-datetime'
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil

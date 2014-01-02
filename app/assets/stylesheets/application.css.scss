@@ -1,5 +1,6 @@
 /*
 *= require ../../../vendor/assets/stylesheets/bootstrap
+*= require editable/bootstrap-editable
 *= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 *= require ../../../vendor/assets/javascripts/wysiwyg/wysiwyg-color
 *= require ../../../vendor/assets/stylesheets/animate
@@ -301,14 +302,75 @@ button {
 
 #giveaway_details {
 
-  td.val {
-    @include word-wrap;
+  tr {
+
+    &.editable-datetime {
+
+      span.editable-clear-x {
+        display: none;
+      }
+    }
+  }
+
+  td {
+
+    .key-label {
+      margin-bottom: 5px;
+    }
+
+    &.val {
+      @include word-wrap;
+    }
+
+    &.bool {
+      text-transform: uppercase;
+    }
+
+    .editable-click, a.editable-click, a.editable-click:hover {
+      border-bottom: 0 none;
+    }
+
+    .editable-wysiwyg {
+      display: inline-block;
+      margin-bottom: 5px;
+
+      & +.editable-container {
+        display: block;
+
+        .control-group {
+          display: block;
+        }
+
+        .editable-input {
+          min-width: 100%;
+
+          iframe.wysihtml5-sandbox {
+            min-width: 100%;
+          }
+        }
+
+        .editable-buttons {
+          display: block;
+          margin-left: 0;
+          margin-top: 8px;
+        }
+      }
+    }
   }
 
   .giveaway-image.panel {
 
     img {
       width: 810px;
+    }
+  }
+
+  .xdsoft_datetimepicker {
+    max-width: 308px;
+    max-height: 218px;
+
+    .xdsoft_calendar td, .xdsoft_calendar th {
+      padding: 0 !important;
     }
   }
 }

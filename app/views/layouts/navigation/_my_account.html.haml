@@ -1,11 +1,3 @@
--# .ui.right.floated.tiny.teal.buttons
--#   = link_to 'My Account', dashboard_path, class: 'ui button'
--#   .ui.floating.dropdown.icon.button
--#     %i.dropdown.icon
--#     .menu
--#       = active_link_to 'Subscription', user_subscription_plans_path(current_user), class: 'item'
--#       = active_link_to 'Logout', logout_path, class: 'item'
-
 %ul.nav.navbar-nav.navbar-right.hidden-xs.nav-user
   %li.hidden-xs
     %a.dropdown-toggle.dker{"data-toggle" => "dropdown", href: "#"}
@@ -21,7 +13,7 @@
         .list-group.list-group-alt.animated.fadeInRight
           %a.media.list-group-item{href: "#"}
             %span.pull-left.thumb-sm
-              %img.img-circle{alt: "John said", src: "images/avatar.jpg"}/
+              %img.img-circle{alt: "John said", src: "/assets/avatar_default.jpg"}/
             %span.media-body.block.m-b-none
               Use awesome animate.css
               %br/

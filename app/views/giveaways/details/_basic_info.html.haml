@@ -6,22 +6,24 @@
     %tbody
       %tr
         %td Prize
-        %td.val= giveaway.prize
+        %td.val= editable giveaway, :prize, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea'
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil
       %tr
-        %td Description
-        %td.val= giveaway.description.html_safe
-        %td.text-right
-          .btn-group
-            %a{href: "#"}
-              %i.fa.fa-pencil
+        %td.val{colspan: 3}
+          .key-label.clearfix
+            .pull-left Description
+            .text-right.pull-right
+              .btn-group.editable-trigger
+                %a{href: "#"}
+                  %i.fa.fa-pencil
+          = editable giveaway, :description, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: h(giveaway.description), type: 'textarea', class: 'editable-wysiwyg', escape: false
       %tr
         %td Custom Tab Name
-        %td.val= giveaway.custom_fb_tab_name
+        %td.val= editable giveaway, :custom_fb_tab_name, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil

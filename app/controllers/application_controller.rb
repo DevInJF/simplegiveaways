@@ -1,12 +1,18 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
 
+  helper_method :xeditable?
+
   before_filter :user_pages, :if => :signed_in?
 
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
+  end
+
+  def xeditable?(object = nil)
+    true
   end
 
   protected

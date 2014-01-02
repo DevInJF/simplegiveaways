@@ -113,9 +113,6 @@
 			]
 		]
 	},
-	"buffers":
-	[
-	],
 	"build_system": "",
 	"command_palette":
 	{
@@ -525,14 +522,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"groups":
-	[
-		{
-			"sheets":
-			[
-			]
-		}
-	],
 	"incremental_find":
 	{
 		"height": 23.0
@@ -568,7 +557,10 @@
 	{
 		"height": 390.0
 	},
-	"project": "simplegiveaways.sublime-project",
+	"output.find_results":
+	{
+		"height": 0.0
+	},
 	"replace":
 	{
 		"height": 72.0

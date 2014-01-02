@@ -6,29 +6,29 @@
     %tbody
       %tr
         %td Email Required for Entry?
-        %td= boolean_label(giveaway.email_required)
+        %td.bool{class: "bool-#{to_bool(giveaway.email_required)}"}= editable giveaway, :email_required, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: to_bool(giveaway.email_required), source: {"0" => "False", "1" => "True"}, classes: { "1" => 'label bg-primary', "0" => 'label bg-danger' }
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil
       %tr
         %td Autoshow Share Dialog?
-        %td= boolean_label(giveaway.autoshow_share_dialog)
+        %td.bool{class: "bool-#{to_bool(giveaway.autoshow_share_dialog)}"}= editable giveaway, :autoshow_share_dialog, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: to_bool(giveaway.autoshow_share_dialog), source: {"0" => "False", "1" => "True"}, classes: { "1" => 'label bg-primary', "0" => 'label bg-danger' }
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil
       %tr
         %td Allow Multiple Entries?
-        %td= boolean_label(giveaway.allow_multi_entries)
+        %td.bool{class: "bool-#{to_bool(giveaway.allow_multi_entries)}"}= editable giveaway, :allow_multi_entries, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: to_bool(giveaway.allow_multi_entries), source: {"0" => "False", "1" => "True"}, classes: { "1" => 'label bg-primary', "0" => 'label bg-danger' }
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil
       %tr
         %td Bonus Entry Value
-        %td= giveaway.bonus_value
+        %td= editable giveaway, :bonus_value, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
         %td.text-right
-          .btn-group
+          .btn-group.editable-trigger
             %a{href: "#"}
               %i.fa.fa-pencil

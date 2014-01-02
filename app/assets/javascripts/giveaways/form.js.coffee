@@ -2,6 +2,7 @@ SG.Giveaways.Form =
 
   initialize: ->
     if @formEl().length
+      SG.Giveaways.Form.WYSIWYG.initialize()
       @initWizard()
       @initBonusEntriesToggle()
 
