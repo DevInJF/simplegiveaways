@@ -2,15 +2,23 @@
   .panel-heading
     %h3.panel-title Schedule
   %ul.list-group
+
     %li#giveaway_start_date.date-container.list-group-item{ 'data-date' => start_date_label(giveaway), 'data-date-type' => 'start' }
       .m-b-xs.editable-trigger
         Start Date
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
       = editable giveaway, :start_date, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: start_date_label(giveaway), class: 'editable-datetime', 'date-type' => 'start'
+      %input.date-trigger.hide{type: "text"}/
+      %input.time-trigger.hide{type: "text"}/
+      .pickadate-outlet
+
     %li#giveaway_end_date.date-container.list-group-item{ 'data-date' => end_date_label(giveaway), 'data-date-type' => 'end' }
       .m-b-xs.editable-trigger
         End Date
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
       = editable giveaway, :end_date, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: end_date_label(giveaway), class: 'editable-datetime', 'date-type' => 'end'
+      %input.date-trigger.hide{type: "text"}/
+      %input.time-trigger.hide{type: "text"}/
+      .pickadate-outlet

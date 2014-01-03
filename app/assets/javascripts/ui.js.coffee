@@ -49,7 +49,7 @@ SG.UI =
           setTimeout (-> $(el).editable('setValue', $(el).data('editable').options.value)), 1000
         else
           if $(el).hasClass('editable-datetime')
-            $(el).parents('.datetime-parent').data('date', newValue)
+            $(el).parents('.date-container').data('date', newValue)
     @initEditableShown(el)
 
   initReadmoreEditables: (el) ->

@@ -8,21 +8,41 @@ SG.UI.DatetimePickers =
     else
       @attachDatetimePicker(el) for el in @dateTimePickerEls()
 
-  attachDatetimePicker: (el, inline = false) ->
+  attachDatetimePicker: (el) ->
     $el = $(el)
+    $container = $el.parents('.date-container')
 
-    $el.pickadate
-      # step: 15
-      editable: false
-      format: "dddd, mmmm dd, yyyy"
-      # formatDate: "m/d/Y"
-      # formatTime: "h:i A"
-      # inline: inline
+    datepicker = $container.find('.date-trigger').pickadate
+      container: $container.find('.pickadate-outlet')
+      format: 'dddd, mmmm dd, yyyy'
       min: @setMinDate($el)
-      onSet: (event) =>
-        # unless @startConflicts && $input.data('date-type') == 'end'
-        #   @conflictContainerEl($input).find('.conflict').remove()
-        #   @checkSchedule(current, $input)
+      onSet: (item) ->
+        setTimeout timepicker.open, 0  if 'select' of item
+    .pickadate('picker')
+
+    timepicker = $container.find('.time-trigger').pickatime
+      container: $container.find('.pickadate-outlet')
+      onRender: ->
+        $('<span class="btn btn-default btn-block btn-sm">Back to Date</span>').on 'click', ->
+          timepicker.close()
+          datepicker.open()
+        .prependTo @$root.find('.picker__box')
+      onSet: (item) =>
+        if 'select' of item
+          setTimeout (=> @onDateTimeSet($el, datepicker, timepicker)), 0
+    .pickatime('picker')
+
+    $el.on('focus', datepicker.open).on 'click', (event) ->
+      event.stopPropagation()
+      datepicker.open()
+
+  onDateTimeSet: ($el, datepicker, timepicker) ->
+    $el.off('focus').val("#{datepicker.get()} @ #{timepicker.get()}").focus()
+    datepicker.stop()
+    timepicker.stop()
+    # unless @startConflicts && $input.data('date-type') == 'end'
+    #   @conflictContainerEl($input).find('.conflict').remove()
+    #   @checkSchedule(current, $input)
 
   dateType: ($el) ->
     ($el.parents('#giveaway_start_date').length && 'start') || ($el.parents('#giveaway_end_date').length && 'end')
@@ -70,4 +90,4 @@ SG.UI.DatetimePickers =
   conflictContainerEl: (input) ->
     $(input).parents('.date-container').children('.conflicts-container')
 
-  dateTimePickerEls: -> $('.datetime-picker')
+  dateTimePickerEls: -> $('.datetime-picker-input')
