@@ -1,29 +1,22 @@
 %section.info.panel.panel-default
   .panel-heading
     %h3.panel-title Basic Info
-  %table.table.table-striped.m-b-none
-    %thead
-    %tbody
-      %tr
-        %td Prize
-        %td.val= editable giveaway, :prize, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea'
-        %td.text-right
-          .btn-group.editable-trigger
-            %a{href: "#"}
-              %i.fa.fa-pencil
-      %tr
-        %td.val{colspan: 3}
-          .key-label.clearfix
-            .pull-left Description
-            .text-right.pull-right
-              .btn-group.editable-trigger
-                %a{href: "#"}
-                  %i.fa.fa-pencil
-          = editable giveaway, :description, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: h(giveaway.description), type: 'textarea', class: 'editable-wysiwyg', escape: false
-      %tr
-        %td Custom Tab Name
-        %td.val= editable giveaway, :custom_fb_tab_name, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
-        %td.text-right
-          .btn-group.editable-trigger
-            %a{href: "#"}
-              %i.fa.fa-pencil
+  %ul.list-group
+    %li.list-group-item
+      .m-b-xs.editable-trigger
+        Prize
+        %a.pull-right{href: "#"}
+          %i.fa.fa-pencil
+      = editable giveaway, :prize, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea'
+    %li.list-group-item
+      .m-b-xs.editable-trigger
+        Description
+        %a.pull-right{href: "#"}
+          %i.fa.fa-pencil
+      = editable giveaway, :description, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: h(giveaway.description), type: 'textarea', class: 'editable-wysiwyg', escape: false
+    %li.list-group-item
+      .m-b-xs.editable-trigger
+        Custom Tab Name
+        %a.pull-right{href: "#"}
+          %i.fa.fa-pencil
+      = editable giveaway, :custom_fb_tab_name, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway)

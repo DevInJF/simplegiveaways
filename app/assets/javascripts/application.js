@@ -11,7 +11,9 @@
 //= require jquery-flot/jquery.flot.time
 //= require ../../../vendor/assets/javascripts/jquery.flot.growraf
 //= require ../../../vendor/assets/javascripts/jquery.flot.tooltip.min
-//= require ../../../vendor/assets/javascripts/jquery.datetimepicker
+//= require ../../../vendor/assets/javascripts/pickadate/picker
+//= require ../../../vendor/assets/javascripts/pickadate/picker.date
+//= require ../../../vendor/assets/javascripts/pickadate/picker.time
 //= require ../../../vendor/assets/javascripts/jquery.jtruncate
 //= require ../../../vendor/assets/javascripts/bootstrap
 //= require ../../../vendor/assets/javascripts/file-input/bootstrap-filestyle.min

@@ -3,10 +3,12 @@
 *= require editable/bootstrap-editable
 *= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 *= require ../../../vendor/assets/javascripts/wysiwyg/wysiwyg-color
+*= require ../../../vendor/assets/javascripts/pickadate/default
+*= require ../../../vendor/assets/javascripts/pickadate/default.date
+*= require ../../../vendor/assets/javascripts/pickadate/default.time
 *= require ../../../vendor/assets/stylesheets/animate
 *= require ../../../vendor/assets/stylesheets/font-awesome.min
 *= require ../../../vendor/assets/stylesheets/font
-*= require ../../../vendor/assets/stylesheets/jquery.datetimepicker
 *= require ../../../vendor/assets/javascripts/calendar/bootstrap_calendar
 *= require ../../../vendor/assets/stylesheets/app
 *= require ../../../vendor/assets/javascripts/fuelux/fuelux
@@ -21,7 +23,7 @@
   src: asset-url('glyphicons-halflings-regular.eot?#iefix', font) format('embedded-opentype'), asset-url('glyphicons-halflings-regular.woff', font) format('woff'), asset-url('glyphicons-halflings-regular.ttf', font) format('truetype'), asset-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular', font) format('svg');
 }
 
-@font-face{
+@font-face {
   font-family: 'FontAwesome';
   src: asset-url('fontawesome-webfont.eot?v=4.0.3', font);
   src: asset-url('fontawesome-webfont.eot?#iefix&v=4.0.3', font) format('embedded-opentype'), asset-url('fontawesome-webfont.woff?v=4.0.3', font) format('woff'), asset-url('fontawesome-webfont.ttf?v=4.0.3', font) format('truetype'), asset-url('fontawesome-webfont.svg?v=4.0.3#fontawesomeregular', font) format('svg');
@@ -302,57 +304,63 @@ button {
 
 #giveaway_details {
 
-  tr {
+  .list-group-item {
+    @include word-wrap;
 
-    &.editable-datetime {
+    &.bool-true,
+    &.bool-false {
 
-      span.editable-clear-x {
-        display: none;
+      span.label {
+        text-transform: uppercase;
       }
-    }
-  }
 
-  td {
+      .editable-container {
 
-    .key-label {
-      margin-bottom: 5px;
-    }
+        .editable-input {
+          min-width: 100px;
+        }
+      }
 
-    &.val {
-      @include word-wrap;
-    }
-
-    &.bool {
-      text-transform: uppercase;
+      .editable-buttons {
+        display: inline-block;
+        margin-left: 7px;
+        margin-top: 0;
+      }
     }
 
     .editable-click, a.editable-click, a.editable-click:hover {
       border-bottom: 0 none;
     }
 
+    .editable-trigger {
+      font-weight: bold;
+    }
+
+    .editable-container {
+      display: block;
+
+      .control-group {
+        display: block;
+      }
+
+      .editable-input {
+        min-width: 90%;
+      }
+    }
+
+    .editable-buttons {
+      display: block;
+      margin-left: 0;
+      margin-top: 8px;
+    }
+
     .editable-wysiwyg {
-      display: inline-block;
       margin-bottom: 5px;
 
-      & +.editable-container {
-        display: block;
-
-        .control-group {
-          display: block;
-        }
+      & + .editable-container {
 
         .editable-input {
           min-width: 100%;
-
-          iframe.wysihtml5-sandbox {
-            min-width: 100%;
-          }
-        }
-
-        .editable-buttons {
-          display: block;
-          margin-left: 0;
-          margin-top: 8px;
         }
       }
     }

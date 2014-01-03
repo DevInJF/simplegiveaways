@@ -99,7 +99,9 @@ class GiveawaysController < ApplicationController
 
       respond_to do |format|
         format.html { render :edit }
-        format.json { render json: @giveaway }
+        format.json {
+          render json: { giveaway: @giveaway, errors: @giveaway.errors.full_messages }
+        }
       end
     end
   end

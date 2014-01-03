@@ -4,27 +4,40 @@ SG.UI.DatetimePickers =
 
   initialize: (el) ->
     if el?
-      @attachDatetimePicker(el, true)
+      @attachDatetimePicker(el)
     else
       @attachDatetimePicker(el) for el in @dateTimePickerEls()
 
   attachDatetimePicker: (el, inline = false) ->
     $el = $(el)
 
-    $el.datetimepicker
-      step: 15
-      format: "l, F d, Y @ h:i A"
-      formatDate: "m/d/Y"
-      formatTime: "h:i A"
-      inline: inline
-      minDate: @setMinDate($el)
-      onChangeDateTime: (current, $input) =>
-        unless @startConflicts && $input.data('date-type') == 'end'
-          @conflictContainerEl($input).find('.conflict').remove()
-          @checkSchedule(current, $input)
-      onClose: =>
-        SG.UI.DatetimePickers.initialize()
-      validateOnBlur: false
+    $el.pickadate
+      # step: 15
+      editable: false
+      format: "dddd, mmmm dd, yyyy"
+      # formatDate: "m/d/Y"
+      # formatTime: "h:i A"
+      # inline: inline
+      min: @setMinDate($el)
+      onSet: (event) =>
+        # unless @startConflicts && $input.data('date-type') == 'end'
+        #   @conflictContainerEl($input).find('.conflict').remove()
+        #   @checkSchedule(current, $input)
+
+  dateType: ($el) ->
+    ($el.parents('#giveaway_start_date').length && 'start') || ($el.parents('#giveaway_end_date').length && 'end')
+
+  isStart: ($el) ->
+    @dateType($el) == 'start'
+
+  isEnd: ($el) ->
+    @dateType($el) == 'end'
+
+  startDate: ->
+    $('#giveaway_start_date').data('date')? && $('#giveaway_start_date').data('date')
+
+  endDate: ->
+    $('#giveaway_end_date').data('date')? && $('#giveaway_end_date').data('date')
 
   checkSchedule: (datetime, input) ->
     $.ajax
@@ -34,20 +47,20 @@ SG.UI.DatetimePickers =
         giveaway_id: @_sg.CurrentGiveaway.ID
         facebook_page_id: @_sg.CurrentPage.ID
         date: datetime
-        date_type: $(input).data('date-type')
+        date_type: @dateType($(input))
       success: (conflicts, status) =>
         if conflicts.length
-          @startConflicts = true if $(input).data('date-type') == 'start'
+          @startConflicts = true if @isStart($(input))
           @showConflictMessage(input, conflict) for conflict in conflicts
         else
-          @startConflicts = false if $(input).data('date-type') == 'start'
+          @startConflicts = false if @isStart($(input))
           @conflictContainerEl(input).hide()
 
   setMinDate: ($el) ->
-    if $el.data('date-type') == 'end' && $('#giveaway_start_date').val().length
-      "#{moment($('#giveaway_start_date').val()).format('M/D/YYYY')}"
+    if @isEnd($el) && (start = @startDate())
+      moment(start).toDate()
     else
-      "#{moment().add('minutes', 10).format('M/D/YYYY')}"
+      moment().add('minutes', 10).toDate()
 
   startConflicts: false
 

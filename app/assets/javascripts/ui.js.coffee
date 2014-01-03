@@ -35,7 +35,7 @@ SG.UI =
     $(el).jTruncate()
 
   initEditables: ->
-    $.fn.editableform.buttons = '<button type="submit" class="editable-submit btn btn-sm btn-primary"><i class="fa fa-check"></i></button><button type="button" class="editable-cancel btn btn-sm btn-default"><i class="fa fa-times"></i></button>'
+    $.fn.editableform.buttons = '<button type="submit" class="editable-submit btn btn-xs btn-primary"><i class="fa fa-check"></i></button><button type="button" class="editable-cancel btn btn-xs btn-default"><i class="fa fa-times"></i></button>'
     @initEditable(el) for el in @editableEls()
     @initEditableTrigger(el) for el in @editableTriggerEls()
 
@@ -44,6 +44,12 @@ SG.UI =
     $(el).editable
       mode: $(el).data('editable-mode') || 'inline'
       autotext: 'always'
+      success: (response, newValue) =>
+        if response.errors?
+          setTimeout (-> $(el).editable('setValue', $(el).data('editable').options.value)), 1000
+        else
+          if $(el).hasClass('editable-datetime')
+            $(el).parents('.datetime-parent').data('date', newValue)
     @initEditableShown(el)
 
   initReadmoreEditables: (el) ->
@@ -61,7 +67,8 @@ SG.UI =
   initEditableTrigger: (el) ->
     $(el).on 'click', (e) =>
       e.stopPropagation()
-      $(el).parents('tr').find('.editable').editable('toggle')
+      $(el).next('.editable').editable('toggle')
+      return false
 
   dropdownEls: -> $('.ui.dropdown')
 
