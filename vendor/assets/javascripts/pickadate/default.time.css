@@ -6,7 +6,7 @@
  */
 .picker__list {
   list-style: none;
-  padding: 0.75em 0 4.2em;
+  padding: 0 0 4.2em;
   margin: 0;
 }
 /**
@@ -45,14 +45,14 @@
 }
 /* Highlighted and hovered/focused time */
 .picker__list-item--highlighted:hover,
-.picker--focused .picker__list-item--highlighted {
+.picker--opened .picker__list-item--highlighted {
   background: #0089ec;
   color: #ffffff;
 }
 /* Disabled time */
 .picker__list-item--disabled,
 .picker__list-item--disabled:hover,
-.picker--focused .picker__list-item--disabled {
+.picker--opened .picker__list-item--disabled {
   background: #f5f5f5;
   border-color: #f5f5f5;
   color: #dddddd;

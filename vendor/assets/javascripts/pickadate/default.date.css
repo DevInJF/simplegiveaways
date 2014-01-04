@@ -14,6 +14,10 @@
   text-align: center;
   position: relative;
   margin-top: .75em;
+  box-sizing: content-box;
+}
+.picker__header * {
+  box-sizing: content-box;
 }
 /**
  * The month and year labels.
@@ -151,10 +155,11 @@
  */
 .picker__weekday {
   width: 14.285714286%;
-  font-size: .75em;
+  font-size: .7em;
   padding-bottom: .25em;
   color: #999999;
   font-weight: 500;
+  text-align: center;
   /* Increase the spacing a tad */
 
 }
@@ -205,7 +210,7 @@
   background: #b1dcfb;
 }
 .picker__day--highlighted:hover,
-.picker--focused .picker__day--highlighted {
+.picker--opened .picker__day--highlighted {
   background: #0089ec;
   color: #ffffff;
 }

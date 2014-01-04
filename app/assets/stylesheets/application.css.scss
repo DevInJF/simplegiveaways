@@ -3,15 +3,15 @@
 *= require editable/bootstrap-editable
 *= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 *= require ../../../vendor/assets/javascripts/wysiwyg/wysiwyg-color
-*= require ../../../vendor/assets/javascripts/pickadate/default
-*= require ../../../vendor/assets/javascripts/pickadate/default.date
-*= require ../../../vendor/assets/javascripts/pickadate/default.time
 *= require ../../../vendor/assets/stylesheets/animate
 *= require ../../../vendor/assets/stylesheets/font-awesome.min
 *= require ../../../vendor/assets/stylesheets/font
 *= require ../../../vendor/assets/javascripts/calendar/bootstrap_calendar
 *= require ../../../vendor/assets/stylesheets/app
 *= require ../../../vendor/assets/javascripts/fuelux/fuelux
+*= require ../../../vendor/assets/javascripts/pickadate/default
+*= require ../../../vendor/assets/javascripts/pickadate/default.date
+*= require ../../../vendor/assets/javascripts/pickadate/default.time
 *= require_self
 */
 
@@ -363,6 +363,11 @@ button {
           min-width: 100%;
         }
       }
+    }
+
+    .pickadate-outlet {
+      font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      font-weight: 200;
     }
   }
 

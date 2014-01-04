@@ -23,7 +23,7 @@ SG.UI.DatetimePickers =
     timepicker = $container.find('.time-trigger').pickatime
       container: $container.find('.pickadate-outlet')
       onRender: ->
-        $('<span class="btn btn-default btn-block btn-sm">Back to Date</span>').on 'click', ->
+        $('<span class="btn btn-default btn-block">Back to Date</span>').on 'click', ->
           timepicker.close()
           datepicker.open()
         .prependTo @$root.find('.picker__box')
@@ -53,8 +53,12 @@ SG.UI.DatetimePickers =
   isEnd: ($el) ->
     @dateType($el) == 'end'
 
-  startDate: ->
-    $('#giveaway_start_date').data('date')? && $('#giveaway_start_date').data('date')
+  startDate: ($el) ->
+    console.log $el
+    if $el.hasClass('datetime-picker-input')
+      $('#giveaway_start_date').find('.datetime-picker-input').val()
+    else
+      $('#giveaway_start_date').data('date')? && $('#giveaway_start_date').data('date')
 
   endDate: ->
     $('#giveaway_end_date').data('date')? && $('#giveaway_end_date').data('date')
@@ -77,7 +81,7 @@ SG.UI.DatetimePickers =
           @conflictContainerEl(input).hide()
 
   setMinDate: ($el) ->
-    if @isEnd($el) && (start = @startDate())
+    if @isEnd($el) && (start = @startDate($el))
       moment(start).toDate()
     else
       moment().add('minutes', 10).toDate()
