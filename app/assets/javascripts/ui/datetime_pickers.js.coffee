@@ -27,6 +27,8 @@ SG.UI.DatetimePickers =
     $dateTriggerEl.pickadate
       container: $outlet
       format: 'dddd, mmmm dd, yyyy'
+      today: 'Today'
+      clear: ''
     .pickadate('picker')
 
   initDatepicker: ($el, $dateTriggerEl, datepicker, timepicker) ->
@@ -37,6 +39,7 @@ SG.UI.DatetimePickers =
   attachTimepicker: ($el, $outlet, $timeTriggerEl) ->
     $timeTriggerEl.pickatime
       container: $outlet
+      clear: ''
     .pickatime('picker')
 
   initTimepicker: ($el, $timePickerEl, datepicker, timepicker) ->
@@ -64,6 +67,12 @@ SG.UI.DatetimePickers =
     unless @startConflicts && @isEnd($el)
       @conflictContainerEl($el).find('.conflict').remove()
       @checkSchedule(newVal, $el)
+
+  onDateTimeClear: ($el, datepicker, timepicker) ->
+    $el.off('focus').val('').focus()
+    unless $el.hasClass('datetime-picker-input')
+      datepicker.stop()
+      timepicker.stop()
 
   dateType: ($el) ->
     ($el.parents('#giveaway_start_date').length && 'start') || ($el.parents('#giveaway_end_date').length && 'end')
