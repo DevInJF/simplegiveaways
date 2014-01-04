@@ -56,13 +56,14 @@ SG.UI.DatetimePickers =
       datepicker.open()
 
   onDateTimeSet: ($el, datepicker, timepicker) ->
-    $el.off('focus').val("#{datepicker.get()} @ #{timepicker.get()}").focus()
+    newVal = "#{datepicker.get()} @ #{timepicker.get()}"
+    $el.off('focus').val(newVal).focus()
     unless $el.hasClass('datetime-picker-input')
       datepicker.stop()
       timepicker.stop()
-    # unless @startConflicts && $input.data('date-type') == 'end'
-    #   @conflictContainerEl($input).find('.conflict').remove()
-    #   @checkSchedule(current, $input)
+    unless @startConflicts && @isEnd($el)
+      @conflictContainerEl($el).find('.conflict').remove()
+      @checkSchedule(newVal, $el)
 
   dateType: ($el) ->
     ($el.parents('#giveaway_start_date').length && 'start') || ($el.parents('#giveaway_end_date').length && 'end')
@@ -82,7 +83,7 @@ SG.UI.DatetimePickers =
   endDate: ->
     $('#giveaway_end_date').data('date')? && $('#giveaway_end_date').data('date')
 
-  checkSchedule: (datetime, input) ->
+  checkSchedule: (datetime, $el) ->
     $.ajax
       url: @_sg.Paths.checkSchedule
       dataType: 'json',
@@ -90,14 +91,14 @@ SG.UI.DatetimePickers =
         giveaway_id: @_sg.CurrentGiveaway.ID
         facebook_page_id: @_sg.CurrentPage.ID
         date: datetime
-        date_type: @dateType($(input))
+        date_type: @dateType($el)
       success: (conflicts, status) =>
         if conflicts.length
-          @startConflicts = true if @isStart($(input))
-          @showConflictMessage(input, conflict) for conflict in conflicts
+          @startConflicts = true if @isStart($el)
+          @showConflictMessage($el, conflict) for conflict in conflicts
         else
-          @startConflicts = false if @isStart($(input))
-          @conflictContainerEl(input).hide()
+          @startConflicts = false if @isStart($el)
+          @conflictContainerEl($el).hide()
 
   setMinDate: ($el) ->
     if @isEnd($el) && (start = @startDate($el))
@@ -107,10 +108,10 @@ SG.UI.DatetimePickers =
 
   startConflicts: false
 
-  showConflictMessage: (input, conflict) ->
-    @conflictContainerEl(input).show().append("<div class='conflict'><strong>#{conflict.title}</strong><br />#{moment(conflict.start_date).format('M/D/YYYY')} - #{moment(conflict.end_date).format('M/D/YYYY')}</div>")
+  showConflictMessage: ($el, conflict) ->
+    @conflictContainerEl($el).show().append("<div class='conflict'><strong>#{conflict.title}</strong><br />#{moment(conflict.start_date).format('M/D/YYYY')} - #{moment(conflict.end_date).format('M/D/YYYY')}</div>")
 
-  conflictContainerEl: (input) ->
-    $(input).parents('.date-container').children('.conflicts-container')
+  conflictContainerEl: ($el) ->
+    $el.parents('.date-container').children('.conflicts-container')
 
   dateTimePickerEls: -> $('.datetime-picker-input')
