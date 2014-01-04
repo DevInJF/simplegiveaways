@@ -9,8 +9,8 @@
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
       = editable giveaway, :start_date, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: start_date_label(giveaway), class: 'editable-datetime', 'date-type' => 'start'
-      %input.date-trigger.hide{type: "text"}/
-      %input.time-trigger.hide{type: "text"}/
+      %input.date-trigger.hide{type: "text", value: "#{giveaway.start_date.to_formatted_s(:date)}"}/
+      %input.time-trigger.hide{type: "text", value: "#{giveaway.start_date.to_formatted_s(:time)}"}/
       .pickadate-outlet
 
     %li#giveaway_end_date.date-container.list-group-item{ 'data-date' => end_date_label(giveaway), 'data-date-type' => 'end' }
@@ -19,6 +19,6 @@
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
       = editable giveaway, :end_date, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: end_date_label(giveaway), class: 'editable-datetime', 'date-type' => 'end'
-      %input.date-trigger.hide{type: "text"}/
-      %input.time-trigger.hide{type: "text"}/
+      %input.date-trigger.hide{type: "text", value: "#{giveaway.end_date.to_formatted_s(:date)}"}/
+      %input.time-trigger.hide{type: "text", value: "#{giveaway.end_date.to_formatted_s(:time)}"}/
       .pickadate-outlet

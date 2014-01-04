@@ -11,27 +11,46 @@ SG.UI.DatetimePickers =
   attachDatetimePicker: (el) ->
     $el = $(el)
     $container = $el.parents('.date-container')
+    $outlet = $container.find('.pickadate-outlet')
+    $dateTriggerEl = $container.find('.date-trigger')
+    $timeTriggerEl = $container.find('.time-trigger')
 
-    datepicker = $container.find('.date-trigger').pickadate
-      container: $container.find('.pickadate-outlet')
+    datepicker = @attachDatepicker($el, $outlet, $dateTriggerEl)
+    timepicker = @attachTimepicker($el, $outlet, $timeTriggerEl)
+
+    @initDatepicker($el, $dateTriggerEl, datepicker, timepicker)
+    @initTimepicker($el, $timeTriggerEl, datepicker, timepicker)
+
+    @initPickerTrigger($el, datepicker)
+
+  attachDatepicker: ($el, $outlet, $dateTriggerEl) ->
+    $dateTriggerEl.pickadate
+      container: $outlet
       format: 'dddd, mmmm dd, yyyy'
       min: @setMinDate($el)
-      onSet: (item) ->
-        setTimeout timepicker.open, 0  if 'select' of item
     .pickadate('picker')
 
-    timepicker = $container.find('.time-trigger').pickatime
-      container: $container.find('.pickadate-outlet')
-      onRender: ->
+  initDatepicker: ($el, $dateTriggerEl, datepicker, timepicker) ->
+    datepicker.on
+      set: (item) -> setTimeout timepicker.open, 0  if 'select' of item
+
+  attachTimepicker: ($el, $outlet, $timeTriggerEl) ->
+    $timeTriggerEl.pickatime
+      container: $outlet
+    .pickatime('picker')
+
+  initTimepicker: ($el, $timePickerEl, datepicker, timepicker) ->
+    timepicker.on
+      render: ->
         $('<span class="btn btn-default btn-block">Back to Date</span>').on 'click', ->
           timepicker.close()
           datepicker.open()
-        .prependTo @$root.find('.picker__box')
-      onSet: (item) =>
+        .prependTo timepicker.$root.find('.picker__box')
+      set: (item) =>
         if 'select' of item
           setTimeout (=> @onDateTimeSet($el, datepicker, timepicker)), 0
-    .pickatime('picker')
 
+  initPickerTrigger: ($el, datepicker) ->
     $el.on('focus', datepicker.open).on 'click', (event) ->
       event.stopPropagation()
       datepicker.open()
@@ -54,7 +73,6 @@ SG.UI.DatetimePickers =
     @dateType($el) == 'end'
 
   startDate: ($el) ->
-    console.log $el
     if $el.hasClass('datetime-picker-input')
       $('#giveaway_start_date').find('.datetime-picker-input').val()
     else
