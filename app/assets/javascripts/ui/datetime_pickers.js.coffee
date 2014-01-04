@@ -27,11 +27,11 @@ SG.UI.DatetimePickers =
     $dateTriggerEl.pickadate
       container: $outlet
       format: 'dddd, mmmm dd, yyyy'
-      min: @setMinDate($el)
     .pickadate('picker')
 
   initDatepicker: ($el, $dateTriggerEl, datepicker, timepicker) ->
     datepicker.on
+      open: => datepicker.set(min: @setMinDate($el))
       set: (item) -> setTimeout timepicker.open, 0  if 'select' of item
 
   attachTimepicker: ($el, $outlet, $timeTriggerEl) ->
@@ -57,8 +57,9 @@ SG.UI.DatetimePickers =
 
   onDateTimeSet: ($el, datepicker, timepicker) ->
     $el.off('focus').val("#{datepicker.get()} @ #{timepicker.get()}").focus()
-    datepicker.stop()
-    timepicker.stop()
+    unless $el.hasClass('datetime-picker-input')
+      datepicker.stop()
+      timepicker.stop()
     # unless @startConflicts && $input.data('date-type') == 'end'
     #   @conflictContainerEl($input).find('.conflict').remove()
     #   @checkSchedule(current, $input)
