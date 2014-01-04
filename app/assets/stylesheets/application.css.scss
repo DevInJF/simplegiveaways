@@ -437,10 +437,24 @@ button {
       position: relative;
     }
 
+    &.feed-image {
+
+      img {
+        float: left;
+      }
+    }
+
     &.edit-mode {
 
       .panel-body {
         text-align: center;
+      }
+
+      &.giveaway-image {
+
+        form {
+          padding: 80px 40px 40px;
+        }
       }
 
       form {
