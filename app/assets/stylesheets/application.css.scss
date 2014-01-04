@@ -55,6 +55,35 @@
   }
 }
 
+.btn-group {
+
+  &.btn-group-relaxed {
+    width: 100%;
+
+    .btn {
+      width: 48%;
+
+      &:first-child:not(:last-child):not(.dropdown-toggle) {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      &:last-child {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+
+      &.btn-left {
+        width: 48%;
+      }
+
+      &.btn-right {
+        float: right;
+      }
+    }
+  }
+}
+
 /*
  * Callouts
  *
