@@ -1,7 +1,7 @@
 %header.panel-heading.lt.no-border{class: giveaway_header_class(giveaway)}
   .clearfix
-    %span.pull-left.thumb.avatar.b-3x.m-r
-      %img.img-circle{src: giveaway.image(:medium)}/
+    %span.pull-left.avatar-wrapper
+      %span.thumb.masked.avatar{style: "background-image: url(#{giveaway.image(:medium)})"}
     .clear
       .h3.m-t-xs.m-b-xs.text-white.col-lg-10
         = render 'facebook_pages/header', content: giveaway.title

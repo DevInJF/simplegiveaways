@@ -35,6 +35,7 @@
 //= require facebook
 //= require stripe-client
 //= require ui
+//= require ui/editables
 //= require ui/datetime_pickers
 //= require ui/flash_messages
 //= require ui/zclip
