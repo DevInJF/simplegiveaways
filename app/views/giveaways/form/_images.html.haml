@@ -1,8 +1,8 @@
 .form-group
-  = f.input :image, as: :file, input_html: { class: 'filestyle', 'data-trigger' => 'change', 'data-required' => 'true', 'data-classbutton' => 'btn btn-default', 'data-classinput' => 'form-control inline input-s', 'data-icon' => 'false' }
+  = f.input :image, as: :file, input_html: { class: 'filestyle', 'data-trigger' => 'change', 'data-required' => "#{!f.object.image.present?}", 'data-classbutton' => 'btn btn-default', 'data-classinput' => 'form-control inline input-s', 'data-icon' => 'false' }
   - if f.object.image.present?
     .ui.image= image_tag f.object.image(:medium), alt: f.object.title
 
-  = f.input :feed_image, as: :file, input_html: { class: 'filestyle', 'data-trigger' => 'change', 'data-required' => 'true', 'data-classbutton' => 'btn btn-default', 'data-classinput' => 'form-control inline input-s', 'data-icon' => 'false' }
+  = f.input :feed_image, as: :file, input_html: { class: 'filestyle', 'data-trigger' => 'change', 'data-required' => "#{!f.object.feed_image.present?}", 'data-classbutton' => 'btn btn-default', 'data-classinput' => 'form-control inline input-s', 'data-icon' => 'false' }
   - if f.object.feed_image.present?
-    .ui.image= image_tag f.object.feed_image, alt: f.object.title
+    .ui.image= image_tag f.object.feed_image(:thumb), alt: f.object.title
