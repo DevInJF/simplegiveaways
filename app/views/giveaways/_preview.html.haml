@@ -1,52 +1,25 @@
--# .item.giveaway
--#   .content.meta
--#     = link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway), class: 'header'
--#     %small #{giveaway.status}
--#   .content.stats
--#     .ui.grid
--#       - if giveaway.completed?
--#         .statistic.five.wide.column
--#           .number= giveaway.entry_count
--#           .description Entries
--#         .statistic.five.wide.column
--#           .number= giveaway.page_likes_while_active
--#           .description Likes
--#         .statistic.five.wide.column
--#           .number= giveaway.total_shares
--#           .description Shares
--#       - elsif giveaway.pending? && giveaway.start_date
--#         .statistic.eight.wide.center.aligned.column
--#           .description Start Date
--#           .number= start_date_label(giveaway)
--#         .eight.wide.right.aligned.column
--#           = render 'giveaways/pending/start', giveaway: giveaway
--#           = render 'giveaways/navigation/primary', giveaway: giveaway
--#       - else
--#         .sixteen.wide.column
--#           = render 'giveaways/navigation/primary', giveaway: giveaway
-
 %li.list-group-item.giveaway
-  .media
-    %a.pull-left.avatar-wrapper{href: facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}
-      %span.thumb.masked.avatar{style: "background-image: url('#{giveaway.image(:medium)}')"}
-    -# .pull-right.m-t-sm
-    -#   = render 'giveaways/navigation/primary', giveaway: giveaway
-    .media-body.m-t-sm.m-b-xs
-      .h4.media-heading= link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
-      .stats
+  .row.no-gutter
+    .col-xs-12.col-sm-7
+      .media
+        %a.pull-left.avatar-wrapper{href: facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}
+          %span.thumb.masked.avatar{style: "background-image: url('#{giveaway.image(:medium)}')"}
+        .media-body.m-t-sm.m-b-xs
+          .h4.media-heading= link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
+          .meta
+            - if giveaway.pending?
+              = render 'giveaways/pending/start', giveaway: giveaway
+              %p
+                %i.fa.fa-clock-o.m-r-xs
+                = start_date_label(giveaway, true)
+            - elsif giveaway.completed?
+              %p
+                %i.fa.fa-clock-o.m-r-xs
+                = end_date_label(giveaway, true)
+    .col-xs-12.col-sm-5
+      .row.m-t-sm-sm.m-b-xs
         - if giveaway.completed?
-          .statistic.five.wide.column
-            .number= giveaway.entry_count
-            .description Entries
-          .statistic.five.wide.column
-            .number= giveaway.page_likes_while_active
-            .description Likes
-          .statistic.five.wide.column
-            .number= giveaway.total_shares
-            .description Shares
-        - elsif giveaway.pending?
-          %p
-            %i.fa.fa-clock-o.m-r-xs
-            = start_date_label(giveaway, true)
-        .eight.wide.right.aligned.column
-          = render 'giveaways/pending/start', giveaway: giveaway
+          = render 'giveaways/preview/stats', giveaway: giveaway
+        - if giveaway.pending?
+          .avatar-push.text-right-sm.m-r-md-sm.m-l-md-xs
+            = render 'giveaways/navigation/primary', giveaway: giveaway, size_class: 'btn-sm'

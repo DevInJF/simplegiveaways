@@ -6,8 +6,9 @@ module GiveawaysHelper
 
   include ActionView::Helpers::DateHelper
 
-  def time_from_now(time)
-    distance_of_time_in_words(Time.now, time, false, only: %w(days hours), accumulate_on: :days)
+  def time_from_now(time, options = {})
+    only_options = options[:only] || %w(days hours)
+    distance_of_time_in_words(Time.now, time, false, only: only_options, accumulate_on: :days)
   end
 
   def giveaway_header_class(giveaway)
@@ -100,7 +101,7 @@ module GiveawaysHelper
   def end_date_label(giveaway, relative = false)
     return "No End Date" unless giveaway.end_date
 
-    end_date = relative ? time_from_now(giveaway.end_date) : giveaway.end_date
+    end_date = relative ? "#{time_from_now(giveaway.end_date, only: %w(days))} ago" : giveaway.end_date
 
     return end_date if giveaway.completed?
     if giveaway.cannot_schedule?

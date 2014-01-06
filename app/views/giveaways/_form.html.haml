@@ -1,39 +1,38 @@
-.panel.panel-default.wizard-container
-  #form-wizard.wizard.clearfix
-    %ul.steps
-      %li.active{"data-target" => "#step1"}<
-        %span.badge.badge-info> 1
-        Basic Info
-      %li{"data-target" => "#step2"}<
-        %span.badge> 2
-        Schedule
-      %li{"data-target" => "#step3"}<
-        %span.badge> 3
-        Images
-      %li{"data-target" => "#step4"}<
-        %span.badge> 4
-        Terms
-      %li{"data-target" => "#step5"}<
-        %span.badge> 5
-        Options
-  .step-content
-    = simple_form_for [page, giveaway], html: { class: 'giveaway-form fluid', multipart: true } do |f|
-      #step1.step-pane.active
-        = render "giveaways/form/basic_info", f: f
-      #step2.step-pane
-        = render "giveaways/form/schedule", f: f
-      #step3.step-pane
-        = render "giveaways/form/images", f: f
-      #step4.step-pane
-        = render "giveaways/form/terms", f: f
-      #step5.step-pane
-        = render "giveaways/form/preferences", f: f
-    .actions.m-t
-      %button.btn.btn-default.btn-sm.btn-prev{"data-target" => "#form-wizard", "data-wizard" => "previous", disabled: "disabled", type: "button"} Prev
-      %button.btn.btn-default.btn-sm.btn-next{"data-last" => "Finish", "data-target" => "#form-wizard", "data-wizard" => "next", type: "button"} Next
+#form-wizard.wizard.clearfix
+  %ul.steps
+    %li.active{"data-target" => "#step1"}<
+      %span.badge.badge-info> 1
+      Basic Info
+    %li{"data-target" => "#step2"}<
+      %span.badge> 2
+      Schedule
+    %li{"data-target" => "#step3"}<
+      %span.badge> 3
+      Images
+    %li{"data-target" => "#step4"}<
+      %span.badge> 4
+      Terms
+    %li{"data-target" => "#step5"}<
+      %span.badge> 5
+      Options
+.step-content
+  = simple_form_for [page, giveaway], html: { class: 'giveaway-form fluid', multipart: true } do |f|
+    #step1.step-pane.active
+      = render "giveaways/form/basic_info", f: f
+    #step2.step-pane
+      = render "giveaways/form/schedule", f: f
+    #step3.step-pane
+      = render "giveaways/form/images", f: f
+    #step4.step-pane
+      = render "giveaways/form/terms", f: f
+    #step5.step-pane
+      = render "giveaways/form/preferences", f: f
+  .actions.m-t
+    %button.btn.btn-default.btn-sm.btn-prev{"data-target" => "#form-wizard", "data-wizard" => "previous", disabled: "disabled", type: "button"} Prev
+    %button.btn.btn-default.btn-sm.btn-next{"data-last" => "Finish", "data-target" => "#form-wizard", "data-wizard" => "next", type: "button"} Next
 
-      -# = f.button :submit, class: 'ui teal submit button'
+    -# = f.button :submit, class: 'ui teal submit button'
 
-      -# - unless giveaway.active? || giveaway.new_record?
-      -#   .ui.right.floated.tiny.red.buttons
-      -#     = link_to 'Delete', facebook_page_giveaway_path(page, giveaway), method: :delete, 'data-confirm' => "Are you sure you want to delete the giveaway? You will not be able to recover this giveaway if you proceed.", class: 'ui button'
+    -# - unless giveaway.active? || giveaway.new_record?
+    -#   .ui.right.floated.tiny.red.buttons
+    -#     = link_to 'Delete', facebook_page_giveaway_path(page, giveaway), method: :delete, 'data-confirm' => "Are you sure you want to delete the giveaway? You will not be able to recover this giveaway if you proceed.", class: 'ui button'

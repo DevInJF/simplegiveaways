@@ -2,11 +2,11 @@
 
   .row
 
-    .col-lg-6.m-t-xs
+    .col-md-6.m-t-xs
 
       .btn-group.btn-group-relaxed.m-b
-        #start_giveaway.btn.btn-lg.btn-primary.btn-left= '<i class="fa fa-bolt"></i>&nbsp;&nbsp;Start'.html_safe
-        = link_to '<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit'.html_safe, edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), id: 'edit_giveaway', class: 'btn btn-lg btn-default btn-right'
+        = link_to '<i class="fa fa-bolt"></i>&nbsp;&nbsp;Start'.html_safe, '#', id: 'start_giveaway', class: "btn btn-lg btn-primary btn-left"
+        = link_to '<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit'.html_safe, edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway), id: 'edit_giveaway', class: "btn btn-lg btn-default btn-right"
 
       = render 'giveaways/details/basic_info', giveaway: giveaway
 
@@ -16,7 +16,7 @@
 
       = render 'giveaways/details/terms', giveaway: giveaway
 
-    .col-lg-6.m-t-xs
+    .col-md-6.m-t-xs
 
       = render 'giveaways/details/giveaway_image', giveaway: giveaway
 

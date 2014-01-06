@@ -31,6 +31,54 @@
   font-style: normal
 }
 
+.text-right-sm,
+.text-center-sm {
+  text-align: left;
+}
+
+.m-l-md-xs {
+  margin-left: 20px;
+}
+
+.m-t-sm-xs {
+  margin-top: 10px;
+}
+
+.avatar-push {
+  margin-left: 89px;
+}
+
+@media (min-width: 768px) {
+
+  .text-right-sm {
+    text-align: right;
+  }
+
+  .text-center-sm {
+    text-align: center;
+  }
+
+  .m-r-md-sm {
+    margin-right: 20px;
+  }
+
+  .m-l-md-xs {
+    margin-left: auto;
+  }
+
+  .m-t-sm-sm {
+    margin-top: 10px;
+  }
+
+  .m-t-sm-xs {
+    margin-top: auto;
+  }
+
+  .avatar-push {
+    margin-left: auto;
+  }
+}
+
 .avatar-wrapper {
   width: 64px;
   height: 64px;
@@ -258,6 +306,10 @@ input[type="file"] {
   &.form-control {
     width: auto;
   }
+}
+
+.wizard ul li:first-child {
+  border-top-left-radius: 0;
 }
 
 .form-group {
@@ -500,5 +552,12 @@ button {
     .xdsoft_calendar td, .xdsoft_calendar th {
       padding: 0 !important;
     }
+  }
+}
+
+.list-group {
+
+  &.giveaways {
+
   }
 }
