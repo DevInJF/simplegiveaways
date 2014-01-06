@@ -34,6 +34,7 @@ Simplegiveaways::Application.routes.draw do
       get :check_schedule, on: :collection
       get :clone, on: :member
       match :start, on: :member
+      get :start_modal, on: :member
       get :end, on: :member
     end
   end

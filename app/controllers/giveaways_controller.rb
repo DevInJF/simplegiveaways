@@ -6,8 +6,8 @@ class GiveawaysController < ApplicationController
   load_and_authorize_resource :facebook_page, except: [:tab, :enter]
   load_and_authorize_resource :giveaway, through: :facebook_page, except: [:tab, :enter]
 
-  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy]
-  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy]
+  before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy, :start_modal]
+  before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy, :start_modal]
 
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
@@ -114,6 +114,10 @@ class GiveawaysController < ApplicationController
       flash[:error] = "There was a problem deleting the giveaway:<br />#{@giveaway.errors.full_messages.to_sentence}".html_safe
       redirect_to facebook_page_url(@giveaway.facebook_page)
     end
+  end
+
+  def start_modal
+    render partial: 'giveaways/pending/start', locals: { giveaway: @giveaway }
   end
 
   def start

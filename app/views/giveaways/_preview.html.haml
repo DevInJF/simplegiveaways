@@ -8,7 +8,7 @@
           .h4.media-heading= link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
           .meta
             - if giveaway.pending?
-              = render 'giveaways/pending/start', giveaway: giveaway
+              #start_giveaway_modal.modal.fade
               %p
                 %i.fa.fa-clock-o.m-r-xs
                 = start_date_label(giveaway, true)

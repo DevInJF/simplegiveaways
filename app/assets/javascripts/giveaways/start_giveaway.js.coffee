@@ -7,6 +7,8 @@ SG.Giveaways.Start =
     @triggerStartModal() if @justSubscribed()
 
   initStartModal: ->
+    @modalEl().on 'hidden.bs.modal', ->
+      $(this).removeData('bs.modal')
 
   triggerStartModal: ->
     @modalEl().find(".modal-step[data-modal-step='1']").hide()
@@ -59,4 +61,4 @@ SG.Giveaways.Start =
 
   approveButtonEl: -> @modalEl().find('.approve.button')
 
-  modalEl: -> $('.ui.modal.start-giveaway')
+  modalEl: -> $('#start_giveaway_modal')
