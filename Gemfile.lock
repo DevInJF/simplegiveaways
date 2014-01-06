@@ -144,6 +144,8 @@ GEM
     dotenv (0.8.0)
     dotenv-rails (0.8.0)
       dotenv (= 0.8.0)
+    dotiw (1.1.1)
+      actionpack (~> 3)
     encrypted-cookies (1.0)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
@@ -469,6 +471,7 @@ DEPENDENCIES
   colored
   compass-rails
   dotenv-rails
+  dotiw
   encrypted-cookies
   erb2haml
   factory_girl_rails

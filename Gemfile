@@ -9,6 +9,7 @@ gem 'bitly', github: 'lightyrs/bitly', branch: 'v3_api_generic_oauth2_access_tok
 gem 'cancan'
 gem 'colored'
 gem 'compass-rails'
+gem 'dotiw'
 gem 'encrypted-cookies'
 gem 'fastercsv'
 gem 'friendly_id'

@@ -6,19 +6,21 @@ FactoryGirl.define do
 
     facebook_page_id { FacebookPage.all.sample.id }
 
-    title { generate(:title) }
+    title { Faker::Movie.title }
 
-    description { generate(:description) }
+    description { Faker::HTMLIpsum.p(12) }
 
-    prize { generate(:content) }
+    prize { Faker::Product.product_name }
 
-    custom_fb_tab_name { generate(:title) }
+    custom_fb_tab_name { Faker::Name.name }
 
     image { fixture_file_upload "#{Rails.root}/spec/support/obama-dog.jpg", 'jpeg' }
 
     feed_image { fixture_file_upload "#{Rails.root}/spec/support/obama-dog.jpg", 'jpeg' }
 
-    terms_url { generate(:url) }
+    terms_url { Faker::Internet.http_url }
+
+    terms_text { Faker::HipsterIpsum.paragraphs }
 
     autoshow_share_dialog { [1, 0][rand(2)] }
 
