@@ -2,8 +2,7 @@
   .row.no-gutter
     .col-xs-12.col-sm-7
       .media
-        %a.pull-left.avatar-wrapper{href: facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}
-          %span.thumb.masked.avatar{style: "background-image: url('#{giveaway.image(:medium)}')"}
+        - avatar link: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), image_url: giveaway.image(:medium)
         .media-body.m-t-sm.m-b-xs
           .h4.media-heading= link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
           .meta

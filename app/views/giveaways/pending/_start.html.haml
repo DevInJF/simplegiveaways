@@ -1,30 +1,16 @@
--# .ui.small.modal
--#   %i.close.icon
--#   .header
--#     Start Giveaway
--#   .content
-
-
--#   .actions
--#     .ui.fluid.buttons{ class: giveaway.facebook_page.no_active_giveaways? ? 'two' : 'one' }
--#       .ui.labeled.icon.deny.button
--#         %i.remove.icon
--#         Cancel
--#       - if giveaway.facebook_page.no_active_giveaways?
--#         .ui.teal.right.labeled.icon.approve.button
--#           Next
--#           %i.right.arrow.icon
-
 .modal-dialog
   .modal-content
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
       %h4.modal-title Start Giveaway
     .modal-body
+      = render 'giveaways/avatars', giveaway: giveaway
       = render 'giveaways/pending/step_one', giveaway: giveaway, facebook_page: giveaway.facebook_page
       = render 'giveaways/pending/step_two', giveaway: giveaway, facebook_page: giveaway.facebook_page
       = render 'giveaways/pending/step_three', giveaway: giveaway, facebook_page: giveaway.facebook_page
     .modal-footer
-      %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Cancel
+      %button.btn.btn-default.deny{"data-dismiss" => "modal", type: "button"} Cancel
       - if giveaway.facebook_page.no_active_giveaways?
-        %button.btn.btn-primary{type: "button"} Next
+        %button.btn.btn-primary.approve{type: "button"}
+          Next
+          %i.fa.fa-arrow-right.m-l-xs

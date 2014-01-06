@@ -385,6 +385,13 @@ input[type="file"] {
 
 .modal {
   z-index: 2000;
+
+  &#start_giveaway_modal {
+
+    .modal-body {
+      padding-bottom: 0;
+    }
+  }
 }
 
 button {

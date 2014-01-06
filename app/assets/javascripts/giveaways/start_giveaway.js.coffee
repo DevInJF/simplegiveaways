@@ -7,8 +7,15 @@ SG.Giveaways.Start =
     @triggerStartModal() if @justSubscribed()
 
   initStartModal: ->
-    @modalEl().on 'hidden.bs.modal', ->
-      $(this).removeData('bs.modal')
+    @modalEl().on
+      'hidden.bs.modal': -> $(this).removeData('bs.modal')
+      'shown.bs.modal': =>
+        SG.UI.DatetimePickers.initialize()
+        @attachButtonEvents()
+
+  attachButtonEvents: ->
+    @approveButtonEl().on 'click', (e) =>
+      @moveForward()
 
   triggerStartModal: ->
     @modalEl().find(".modal-step[data-modal-step='1']").hide()
@@ -57,8 +64,8 @@ SG.Giveaways.Start =
   nextStepEl: ->
     @modalEl().find(".modal-step[data-modal-step='#{@nextStep()}']").first()
 
-  denyButtonEl: -> @modalEl().find('.deny.button')
+  denyButtonEl: -> @modalEl().find('.deny.btn')
 
-  approveButtonEl: -> @modalEl().find('.approve.button')
+  approveButtonEl: -> @modalEl().find('.approve.btn')
 
   modalEl: -> $('#start_giveaway_modal')
