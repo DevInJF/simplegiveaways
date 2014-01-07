@@ -10,11 +10,11 @@
               #start_giveaway_modal.modal.fade
               %p
                 %i.fa.fa-clock-o.m-r-xs
-                = start_date_label(giveaway, true)
+                = start_date_label(giveaway, relative: true)
             - elsif giveaway.completed?
               %p
                 %i.fa.fa-clock-o.m-r-xs
-                = end_date_label(giveaway, true)
+                = end_date_label(giveaway, relative: true)
     .col-xs-12.col-sm-5
       .row.m-t-sm-sm.m-b-xs
         - if giveaway.completed?

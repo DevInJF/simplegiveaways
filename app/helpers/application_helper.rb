@@ -65,4 +65,8 @@ module ApplicationHelper
   def bonus_entries_select
     (1..100).collect{ |i| i if i % 5 == 0 }.compact.unshift(0, 1)
   end
+
+  def raw_escape(html)
+    raw(CGI::escapeHTML(html))
+  end
 end

@@ -15,6 +15,7 @@ SG.UI.Editables =
     $(el).editable
       mode: $(el).data('editable-mode') || 'inline'
       autotext: 'always'
+      escape: false
       success: (response, newValue) =>
         if response.errors?
           setTimeout (-> $(el).editable('setValue', $(el).data('editable').options.value)), 1000

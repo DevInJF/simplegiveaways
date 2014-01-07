@@ -1,12 +1,12 @@
-= f.input :email_required, as: :boolean, wrapper: :inline_checkbox, label: 'Email Required for Entry' do
+= f.input :email_required, as: :boolean, wrapper: :inline_checkbox, label: 'Email Required for Entry?' do
   = f.input_field :email_required, as: :boolean, boolean_style: :inline, checked: true
   %span
 
-= f.input :autoshow_share_dialog, as: :boolean, wrapper: :inline_checkbox, label: 'Autoshow Share Dialog' do
+= f.input :autoshow_share_dialog, as: :boolean, wrapper: :inline_checkbox, label: 'Autoshow Share Dialog?' do
   = f.input_field :autoshow_share_dialog, as: :boolean, boolean_style: :inline
   %span
 
-= f.input :allow_multi_entries, as: :boolean, wrapper: :inline_checkbox, label: 'Allow Multiple Entries Per User' do
+= f.input :allow_multi_entries, as: :boolean, wrapper: :inline_checkbox, label: 'Multiple Entries Per User?' do
   = f.input_field :allow_multi_entries, as: :boolean, boolean_style: :inline
   %span
 

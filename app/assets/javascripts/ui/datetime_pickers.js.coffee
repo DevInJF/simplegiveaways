@@ -118,9 +118,12 @@ SG.UI.DatetimePickers =
   startConflicts: false
 
   showConflictMessage: ($el, conflict) ->
-    @conflictContainerEl($el).show().append("<div class='conflict'><strong>#{conflict.title}</strong><br />#{moment(conflict.start_date).format('M/D/YYYY')} - #{moment(conflict.end_date).format('M/D/YYYY')}</div>")
+    @conflictContainerEl($el).show().append("<div class='conflict'>#{@conflictLink(conflict)}<br />#{moment(conflict.start_date).format('M/D/YYYY')} - #{moment(conflict.end_date).format('M/D/YYYY')}</div>")
 
   conflictContainerEl: ($el) ->
     $el.parents('.date-container').children('.conflicts-container')
+
+  conflictLink: (conflict) ->
+    "<a href='#{@_sg.Paths.giveaways}/#{conflict.slug}'>#{conflict.title}</a>"
 
   dateTimePickerEls: -> $('.datetime-picker-input')

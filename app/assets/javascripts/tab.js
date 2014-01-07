@@ -1,4 +1,3 @@
-//= require jquery
-//= require vendor/jquery.fb
+//= require ../../../vendor/assets/javascripts/jquery.fb
 //= require zeroclipboard
 //= require giveaway_tab

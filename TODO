@@ -183,6 +183,10 @@ Simple Giveaways:
 
       ☐ Pagination
 
+      ☐ Render editable errors via ajax
+
+ ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
+
  ☐ Giveaway Preview
 
  ☐ Subscription Emails.

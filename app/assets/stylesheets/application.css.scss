@@ -119,6 +119,36 @@
   }
 }
 
+.giveaway-start-date-warning,
+.giveaway-end-date-warning {
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: #4A647E;
+  }
+}
+
+#giveaway_start_date,
+#giveaway_end_date {
+
+  .conflicts-container {
+    display: none;
+    margin-bottom: 5px;
+  }
+}
+
+.wizard-container {
+
+  #giveaway_start_date,
+  #giveaway_end_date {
+
+    .conflicts-container {
+      margin-bottom: 15px;
+    }
+  }
+}
+
 .btn-group {
 
   &.btn-group-relaxed {
@@ -167,6 +197,11 @@
     font-weight: 500;
   }
 
+  a {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
   p {
     font-size: 14px;
 
@@ -181,21 +216,24 @@
   background-color: #fdf7f7;
   border-color: #eed3d7;
 }
-.bs-callout-danger h4 {
+.bs-callout-danger h4,
+.bs-callout-danger a {
   color: #b94a48;
 }
 .bs-callout-warning {
   background-color: #faf8f0;
   border-color: #faebcc;
 }
-.bs-callout-warning h4 {
+.bs-callout-warning h4,
+.bs-callout-warning a {
   color: #8a6d3b;
 }
 .bs-callout-info {
   background-color: #f4f8fa;
   border-color: #bce8f1;
 }
-.bs-callout-info h4 {
+.bs-callout-info h4,
+.bs-callout-info a {
   color: #34789a;
 }
 
@@ -324,8 +362,11 @@ input[type="file"] {
   }
 }
 
-.wizard ul li:first-child {
-  border-top-left-radius: 0;
+.wizard {
+
+  ul li:first-child {
+    border-top-left-radius: 0;
+  }
 }
 
 .form-group {
