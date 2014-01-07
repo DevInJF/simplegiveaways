@@ -5,17 +5,20 @@
 - else
 
   - content_for :page_heading do
-    = render 'facebook_pages/header', content: 'Active Giveaway'
+    = render 'facebook_pages/header', content: ''
 
-  .ui.message
-    .content
-      .header There is no active giveaway on your page right now.
-      - if @page.giveaways.pending.any?
-        %p Create a new giveaway to publish later or publish one of your pending giveaways.
-      - else
-        %p Create a new giveaway to publish later.
-      .ui.small.buttons
-        = link_to '<i class="add sign icon"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: "#{@page.giveaways.pending.any? ? 'ui button' : 'ui teal button'}"
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title Active Giveaway
+
+    .panel-body.panel-body-callout.text-center-xs
+
+      - callout type: 'info', title: "There is no active giveaway on your page right now." do
         - if @page.giveaways.pending.any?
-          .or
-          = link_to '<i class="time icon"></i>Pending Giveaways'.html_safe, pending_facebook_page_giveaways_path(@page), class: 'ui teal button'
+          %p Create a new giveaway to publish later or publish one of your pending giveaways.
+        - else
+          %p Create a new giveaway to publish later.
+
+        = link_to '<i class="fa fa-plus m-r-xs"></i>New Giveaway'.html_safe, new_facebook_page_giveaway_path(@page), class: 'btn btn-primary m-t-sm-xs'
+        - if @page.giveaways.pending.any?
+          = link_to '<i class="fa fa-clock-o m-r-xs"></i>Pending Giveaways'.html_safe, pending_facebook_page_giveaways_path(@page), class: 'btn btn-default m-t-sm-xs'

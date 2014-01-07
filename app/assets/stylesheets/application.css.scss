@@ -36,12 +36,20 @@
   text-align: left;
 }
 
+.text-center-xs {
+  text-align: center;
+}
+
 .m-l-md-xs {
   margin-left: 20px;
 }
 
 .m-t-sm-xs {
   margin-top: 10px;
+}
+
+.m-b-sm-xs {
+  margin-bottom: 10px;
 }
 
 .avatar-push {
@@ -58,6 +66,10 @@
     text-align: center;
   }
 
+  .text-center-xs {
+    text-align: left;
+  }
+
   .m-r-md-sm {
     margin-right: 20px;
   }
@@ -72,6 +84,10 @@
 
   .m-t-sm-xs {
     margin-top: auto;
+  }
+
+  .m-b-sm-xs {
+    margin-bottom: auto;
   }
 
   .avatar-push {
