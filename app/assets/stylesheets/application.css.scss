@@ -147,6 +147,23 @@
       margin-bottom: 15px;
     }
   }
+
+  .step-pane {
+
+    &.images {
+
+      .form-group.row {
+        margin-bottom: 0;
+      }
+    }
+
+    &.terms {
+
+      textarea {
+        height: 200px;
+      }
+    }
+  }
 }
 
 .btn-group {
@@ -371,6 +388,10 @@ input[type="file"] {
 
 .form-group {
 
+  #editor {
+    height: 220px;
+  }
+
   &.giveaway_description {
 
     .parsley-error-list ~ .wysihtml5-sandbox {
@@ -489,6 +510,13 @@ button {
 
   .list-group-item {
     @include word-wrap;
+
+    &.description {
+
+      textarea {
+        height: 220px;
+      }
+    }
 
     &.bool-true,
     &.bool-false {

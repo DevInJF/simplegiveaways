@@ -185,6 +185,10 @@ Simple Giveaways:
 
       ☐ Render editable errors via ajax
 
+      ☐ Add info callouts for giveaway images and preferences
+
+      ☐ Kill scheduling conflict callout when user cancels editable edit
+
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 
  ☐ Giveaway Preview
