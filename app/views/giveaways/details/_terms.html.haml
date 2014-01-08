@@ -2,15 +2,15 @@
   .panel-heading
     %h3.panel-title Terms &amp; Conditions
   %ul.list-group
-    %li.list-group-item
+    %li.list-group-item.terms-url
       .m-b-xs.editable-trigger
         URL
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
-      = editable giveaway, :terms_url, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea'
-    %li.list-group-item
+      = editable giveaway, :terms_url, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea', class: 'editable-textarea'
+    %li.list-group-item.terms-text
       .m-b-xs.editable-trigger
         Text
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
-      = editable giveaway, :terms_text, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: giveaway.terms_text, type: 'textarea', class: 'editable-readmore'
+      = editable giveaway, :terms_text, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: giveaway.terms_text, type: 'textarea', class: 'editable-readmore editable-textarea'

@@ -7,6 +7,7 @@ SG.UI =
     @initAccordions()
     @initPopups()
     @initReadmores()
+    @initAutosize()
     SG.UI.ZClip.initialize()
     SG.UI.DatetimePickers.initialize()
     SG.UI.Editables.initialize()
@@ -27,6 +28,9 @@ SG.UI =
     $(el).popup
       debug: false
       on: $(el).data('on')
+
+  initAutosize: ->
+    $('textarea').autosize()
 
   initReadmores: ->
     @initReadmore(el) for el in @readmoreEls()

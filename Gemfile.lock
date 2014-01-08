@@ -333,6 +333,8 @@ GEM
       railties (= 3.2.14)
     rails-assets-bourbon (3.1.8)
     rails-assets-jquery (2.0.3)
+    rails-assets-jquery-autosize (1.18.2)
+      rails-assets-jquery (>= 1.7)
     rails-assets-jquery-flot (0.8.2)
       rails-assets-jquery (>= 1.2.6)
     rails-assets-moment (2.4.0)
@@ -511,6 +513,7 @@ DEPENDENCIES
   rails (~> 3.2)
   rails-assets-bourbon
   rails-assets-jquery (~> 2.0.3)
+  rails-assets-jquery-autosize
   rails-assets-jquery-flot
   rails-assets-moment
   rails-assets-underscore

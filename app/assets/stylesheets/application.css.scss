@@ -156,13 +156,6 @@
         margin-bottom: 0;
       }
     }
-
-    &.terms {
-
-      textarea {
-        height: 200px;
-      }
-    }
   }
 }
 
@@ -388,10 +381,6 @@ input[type="file"] {
 
 .form-group {
 
-  #editor {
-    height: 220px;
-  }
-
   &.giveaway_description {
 
     .parsley-error-list ~ .wysihtml5-sandbox {
@@ -432,10 +421,6 @@ input[type="file"] {
 
   &.text {
     display: block !important;
-
-    textarea {
-      height: 140px;
-    }
   }
 
   &.file {
@@ -510,13 +495,6 @@ button {
 
   .list-group-item {
     @include word-wrap;
-
-    &.description {
-
-      textarea {
-        height: 220px;
-      }
-    }
 
     &.bool-true,
     &.bool-false {
@@ -647,9 +625,6 @@ button {
   }
 }
 
-.list-group {
-
-  &.giveaways {
-
-  }
+#editor {
+  height: 100px;
 }

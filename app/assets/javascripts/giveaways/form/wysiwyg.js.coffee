@@ -3,8 +3,8 @@ SG.Giveaways.Form.WYSIWYG =
   initialize: (el) ->
     if el?
       $(el).wysihtml5(@options(@tpl))
-    else
-      @editorEl().wysihtml5(@options(@tpl)) if @editorEl().length
+    else if @editorEl().length
+      @editorEl().wysihtml5(@options(@tpl))
 
   editorEl: -> $("#editor")
 
@@ -18,6 +18,8 @@ SG.Giveaways.Form.WYSIWYG =
     link: true
     image: false
     color: true
+    events:
+      load: -> $(this.composer.iframe).wysihtml5_size_matters()
 
   tpl:
     "font-styles": (locale, options) ->

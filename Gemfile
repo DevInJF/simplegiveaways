@@ -46,6 +46,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'rails-assets-bourbon'
   gem 'rails-assets-jquery', '~> 2.0.3'
+  gem 'rails-assets-jquery-autosize'
   gem 'rails-assets-jquery-flot'
   gem 'rails-assets-moment'
   gem 'rails-assets-underscore'

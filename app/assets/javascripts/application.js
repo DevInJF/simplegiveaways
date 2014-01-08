@@ -2,6 +2,7 @@
 //= require underscore
 //= require moment
 //= require zeroclipboard
+//= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb
 //= require ../../../vendor/assets/javascripts/footable
 //= require ../../../vendor/assets/javascripts/footable.paginate
@@ -32,6 +33,7 @@
 //= require editable/rails
 //= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min
 //= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
+//= require ../../../vendor/assets/javascripts/wysiwyg/jquery.wysihtml5_size_matters
 //= require facebook
 //= require stripe-client
 //= require ui

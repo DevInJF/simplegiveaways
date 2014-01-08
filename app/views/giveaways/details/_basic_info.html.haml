@@ -7,7 +7,7 @@
         Prize
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
-      = editable giveaway, :prize, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea'
+      = editable giveaway, :prize, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), type: 'textarea', class: 'editable-textarea'
     %li.list-group-item.description
       .m-b-xs.editable-trigger
         Description

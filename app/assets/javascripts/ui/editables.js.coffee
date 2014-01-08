@@ -31,10 +31,13 @@ SG.UI.Editables =
 
   initEditableShown: (el) ->
     $(el).on 'shown', (e, editable) ->
-      if editable.$element.length && editable.$element.hasClass('editable-datetime')
-        SG.UI.DatetimePickers.initialize editable.input.$input
-      else if editable.$element.length && editable.$element.hasClass('editable-wysiwyg')
-        SG.Giveaways.Form.WYSIWYG.initialize editable.input.$input
+      if editable.$element.length
+        if editable.$element.hasClass('editable-datetime')
+          SG.UI.DatetimePickers.initialize editable.input.$input
+        else if editable.$element.hasClass('editable-wysiwyg')
+          SG.Giveaways.Form.WYSIWYG.initialize editable.input.$input
+        else if editable.$element.hasClass('editable-textarea')
+          SG.UI.initAutosize()
 
   initEditableUploads: (el) ->
     $(el).on 'change', ->
