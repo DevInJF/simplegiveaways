@@ -1499,8 +1499,8 @@
 		this.$nextBtn = this.$container.find('button.btn-next');
 
 		kids = this.$nextBtn.children().detach();
-		this.nextText = $.trim(this.$nextBtn.text());
-		this.$nextBtn.append(kids);
+		this.nextText = "Next";
+		// this.$nextBtn.append(kids);
 
 		// handle events
 		this.$prevBtn.on('click', $.proxy(this.previous, this));
@@ -1559,6 +1559,7 @@
 		},
 
 		stepclicked: function (e) {
+
 			var li = $(e.currentTarget);
 
 			// Dillon changed for support multi wizard
@@ -1573,6 +1574,8 @@
 		},
 
 		previous: function () {
+			this.$prevBtn.trigger('blur')
+
 			var canMovePrev = (this.currentStep > 1);
 			if (canMovePrev) {
 				var e = $.Event('change');
@@ -1585,6 +1588,8 @@
 		},
 
 		next: function () {
+			this.$nextBtn.trigger('blur')
+
 			var canMoveNext = (this.currentStep + 1 <= this.numSteps);
 			var lastStep = (this.currentStep === this.numSteps);
 

@@ -15,6 +15,9 @@
     %li{"data-target" => "#step5"}<
       %span.badge> 5
       Options
+  .actions
+    %button.btn.btn-default.btn-xs.btn-prev{"data-target" => "#form-wizard", "data-wizard" => "previous", disabled: "disabled", type: "button"} Prev
+    %button.btn.btn-default.btn-xs.btn-next{"data-last" => "Finish", "data-target" => "#form-wizard", "data-wizard" => "next", type: "button"} Next
 .step-content
   = simple_form_for [page, giveaway], html: { class: 'giveaway-form fluid', multipart: true } do |f|
     #step1.step-pane.active.basic-info
