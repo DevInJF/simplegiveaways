@@ -189,6 +189,8 @@ Simple Giveaways:
 
       ☐ Kill scheduling conflict callout when user cancels editable edit
 
+      ☐ Fix pickadate picker in modals
+
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 
  ☐ Giveaway Preview
