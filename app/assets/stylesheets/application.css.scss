@@ -633,12 +633,35 @@ button {
 
   #giveaway_stats {
 
-    .kpi {
-      cursor: pointer;
+    .row.kpis {
+
+      .kpi {
+        cursor: pointer;
+        padding-bottom: 15px;
+        margin-bottom: 0;
+      }
     }
   }
 
   #graph_placeholder {
     height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  #active_giveaway_tabs {
+
+    #giveaway_stats {
+
+      .row.kpis {
+        overflow: hidden;
+
+        .kpi {
+          padding-bottom: 500px;
+          margin-bottom: -485px;
+        }
+      }
+    }
   }
 }

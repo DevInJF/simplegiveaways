@@ -191,6 +191,8 @@ Simple Giveaways:
 
       ☐ Fix pickadate picker in modals
 
+      ☐ Fix pickadate picker in case where start date is disabled (active giveaway)
+
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 
  ☐ Giveaway Preview
