@@ -455,13 +455,13 @@ class Giveaway < ActiveRecord::Base
   end
 
   def fan_visitor_rate
-    (uniques > 0 && fan_uniques > 0) ? "#{((fan_uniques.to_f / (uniques.to_f)) * 100).round(2)}%" : "N/A"
+    (uniques > 0) ? "#{((fan_uniques.to_f / (uniques.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end
 
   def non_fan_visitor_rate
-    (uniques > 0 && non_fan_uniques > 0) ? "#{((non_fan_uniques.to_f / (uniques.to_f)) * 100).round(2)}%" : "N/A"
+    (uniques > 0) ? "#{((non_fan_uniques.to_f / (uniques.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end
