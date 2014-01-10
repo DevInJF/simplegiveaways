@@ -12,7 +12,7 @@ class Giveaway < ActiveRecord::Base
 
   include PublicUtils
 
-  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes, :_page_likes_while_active
+  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_fan_uniques, :_non_fan_uniques, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes, :_page_likes_while_active
 
   has_many :audits, as: :auditable
 
@@ -109,6 +109,8 @@ class Giveaway < ActiveRecord::Base
                                  :_viral_entry_count,
                                  :_views,
                                  :_uniques,
+                                 :_fan_uniques,
+                                 :_non_fan_uniques,
                                  :_viral_views,
                                  :_viral_like_count,
                                  :_likes_from_entries_count,
@@ -382,12 +384,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def fb_user_uniques
-    impressions.where("message LIKE ?", "%fb_uid: %").map do |impression|
-      YAML.load(impression.message)[:message].match(/fb_uid: ([A-Za-z0-9]*)/)
-      $1
-    end.uniq.count
-  rescue StandardError
-    0
+    impressions.where("message LIKE ?", "%fb_uid: %").pluck("message").uniq.count rescue 0
   end
 
   def viral_views
@@ -461,6 +458,8 @@ class Giveaway < ActiveRecord::Base
     self._viral_entry_count = viral_entry_count
     self._views = views
     self._uniques = uniques
+    self._fan_uniques = fan_uniques
+    self._non_fan_uniques = non_fan_uniques
     self._viral_views = viral_views
     self._viral_like_count = viral_like_count
     self._page_likes = page_likes
@@ -537,9 +536,10 @@ class Giveaway < ActiveRecord::Base
       Giveaway.orphans.each(&:unpublish)
     end
 
-    def uniques_worker(giveaway_id)
+    def uniques_worker(giveaway_id, is_fan)
       @giveaway = Giveaway.find_by_id(giveaway_id)
       @giveaway.uniques += 1
+      is_fan ? (@giveaway.fan_uniques += 1) : (@giveaway.non_fan_uniques += 1)
       @giveaway.save
     end
   end

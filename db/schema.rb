@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131221064329) do
+ActiveRecord::Schema.define(:version => 20140110104158) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(:version => 20131221064329) do
     t.string   "slug"
     t.boolean  "is_free_trial",           :default => false
     t.boolean  "is_hidden",               :default => false
+    t.integer  "fan_uniques",             :default => 0
+    t.integer  "non_fan_uniques",         :default => 0
   end
 
   add_index "giveaways", ["slug"], :name => "index_giveaways_on_slug", :unique => true

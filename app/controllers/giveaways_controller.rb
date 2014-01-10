@@ -157,7 +157,9 @@ class GiveawaysController < ApplicationController
       else
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
 
-        GiveawayUniquesWorker.perform_async(@giveaway.id) if last_giveaway_cookie.nil?
+        is_fan_integer = !!@giveaway_hash.has_liked ? 1 : 0
+
+        GiveawayUniquesWorker.perform_async(@giveaway.id, is_fan_integer) if last_giveaway_cookie.nil?
 
         @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)
         @giveaway_cookie.giveaway_id = @giveaway.id
@@ -261,6 +263,7 @@ class GiveawaysController < ApplicationController
   def register_impression
     @message = @signed_request["user_id"] ? "fb_uid: #{@signed_request['user_id']} " : ""
     @message += "ref_id: #{@giveaway_hash.referrer_id}" if @giveaway_hash.referrer_id.is_a?(String)
+
     if @signed_request["user_id"]
       impressionist(@giveaway, message: "#{@message}")
     else
