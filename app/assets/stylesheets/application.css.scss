@@ -628,3 +628,17 @@ button {
 #editor {
   height: 100px;
 }
+
+#active_giveaway_tabs {
+
+  #giveaway_stats {
+
+    .kpi {
+      cursor: pointer;
+    }
+  }
+
+  #graph_placeholder {
+    height: 300px;
+  }
+}

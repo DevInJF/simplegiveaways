@@ -1,21 +1,35 @@
-.giveaway-stats.center.aligned.equal.height.row
-  .four.wide.column
-    .ui.stacked.segment
-      .ui.statistic.impressions.popup-trigger{ data: { title: "Impressions", content: "The total number of views the giveaway has recieved." } }
-        .number= giveaway.views
-        .description Impressions
-  .four.wide.column
-    .ui.stacked.segment
-      .ui.statistic.net-likes.popup-trigger{ data: { title: "Net Likes", content: "The total number of likes added to your page since the giveaway has gone live." } }
-        .number= giveaway.page_likes_while_active
-        .description Net Likes
-  .four.wide.column
-    .ui.stacked.segment
-      .ui.statistic.entries.popup-trigger{ data: { title: "Entries", content: "The total number of people who successfully entered the giveaway." } }
-        .number= giveaway.entry_count
-        .description Entries
-  .four.wide.column
-    .ui.stacked.segment
-      .ui.statistic.shares.popup-trigger{ data: { title: "Shares", content: "The total number of share actions (Wall Posts and Requests) taken by visitors and entrants." } }
-        .number= giveaway.total_shares
-        .description Shares
+#giveaway_stats.basic-stats
+  %section.panel.panel-default
+    .row.m-l-none.m-r-none.bg-light.lter
+      .col-sm-6.col-md-3.padder-v.b-r.b-light.kpi{ data: { toggle: "popover", placement: "auto top", html: "true", trigger: "hover", title: "Impressions", content: "The total number of views the giveaway has recieved." } }
+        %span.fa-stack.fa-2x.pull-left.m-r-sm
+          %i.fa.fa-circle.fa-stack-2x.text-danger
+          %i.fa.fa-eye.fa-stack-1x.text-white
+        %a.clear{href: "#"}
+          %span.h3.block.m-t-xs
+            %strong= giveaway.views
+          %small.text-muted.text-uc Views
+      .col-sm-6.col-md-3.padder-v.b-r.b-light.lt.kpi{ data: { toggle: "popover", placement: "auto top", html: "true", trigger: "hover", title: "Net Likes", content: "The total number of likes added to your page since the giveaway has gone live." } }
+        %span.fa-stack.fa-2x.pull-left.m-r-sm
+          %i.fa.fa-circle.fa-stack-2x.text-info
+          %i.fa.fa-thumbs-o-up.fa-stack-1x.text-white
+        %a.clear{href: "#"}
+          %span.h3.block.m-t-xs
+            %strong= giveaway.page_likes_while_active
+          %small.text-muted.text-uc Likes
+      .col-sm-6.col-md-3.padder-v.b-r.b-light.kpi{ data: { toggle: "popover", placement: "auto top", html: "true", trigger: "hover", title: "Entries", content: "The total number of people who successfully entered the giveaway." } }
+        %span.fa-stack.fa-2x.pull-left.m-r-sm
+          %i.fa.fa-circle.fa-stack-2x.text-primary
+          %i.fa.fa-ticket.fa-stack-1x.text-white
+        %a.clear{href: "#"}
+          %span.h3.block.m-t-xs
+            %strong= giveaway.entry_count
+          %small.text-muted.text-uc Entries
+      .col-sm-6.col-md-3.padder-v.b-r.b-light.lt.kpi{ data: { toggle: "popover", placement: "auto top", html: "true", trigger: "hover", title: "Shares", content: "The total number of share actions (Wall Posts and Requests) taken by visitors and entrants." } }
+        %span.fa-stack.fa-2x.pull-left.m-r-sm
+          %i.fa.fa-circle.fa-stack-2x.text-warning
+          %i.fa.fa-share.fa-stack-1x.text-white
+        %a.clear{href: "#"}
+          %span.h3.block.m-t-xs
+            %strong= giveaway.total_shares
+          %small.text-muted.text-uc Shares

@@ -1,24 +1,24 @@
-%section#active_giveaway_tabs.panel.panel-default.m-t-xs
+%section#active_giveaway_tabs
   %header.panel-heading.text-right.bg-light.clearfix
     %ul.nav.nav-tabs.pull-left
       %li.active
-        %a{"data-toggle" => "tab", href: "#overview_tab"}
+        %a#overview_tab_trigger{"data-toggle" => "tab", href: "#overview_tab"}
           %i.fa.fa-dashboard.text-default.m-r-xs
           Overview
       %li
-        %a{"data-toggle" => "tab", href: "#entries_tab"}
+        %a#entries_tab_trigger{"data-toggle" => "tab", href: "#entries_tab"}
           %i.fa.fa-users.text-default.m-r-xs
           Entries
       %li
-        %a{"data-toggle" => "tab", href: "#details_tab"}
+        %a#details_tab_trigger{"data-toggle" => "tab", href: "#details_tab"}
           %i.fa.fa-cogs.text-default.m-r-xs
           Settings
   .panel-body
     .tab-content
       #overview_tab.tab-pane.fade.active.in
         = render 'giveaways/active/stats', giveaway: giveaway
-        = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot if giveaway.canhaz_advanced_analytics?
-        = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries if entries.any?
+        -# = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot if giveaway.canhaz_advanced_analytics?
+        -# = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries if entries.any?
       #entries_tab.tab-pane.fade
         = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries
       #details_tab.tab-pane.fade

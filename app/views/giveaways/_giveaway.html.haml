@@ -1,17 +1,19 @@
 %section.panel.panel-default
   = render 'header', giveaway: giveaway, page: giveaway.facebook_page
 
-  .list-group.no-radius.alt
-    .list-group-item
+  - if giveaway.active?
 
-      - if giveaway.active?
+    = render 'active', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
 
-        = render 'active', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
+  - else
 
-      - elsif giveaway.completed?
+    .list-group.no-radius.alt
+      .list-group-item
 
-        = render 'completed', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
+        - if giveaway.completed?
 
-      - else
+          = render 'completed', giveaway: giveaway, page: giveaway.facebook_page, entries: entries, flot: flot
 
-        = render 'details', giveaway: giveaway, page: giveaway.facebook_page
+        - elsif giveaway.pending?
+
+          = render 'details', giveaway: giveaway, page: giveaway.facebook_page
