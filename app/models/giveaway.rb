@@ -467,7 +467,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def fan_conversion_rate
-    (fan_uniques > 0 && page_likes > 0) ? "#{((page_likes.to_f / (fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
+    (fan_uniques > 0 && page_likes_while_active > 0) ? "#{((page_likes_while_active.to_f / (fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end

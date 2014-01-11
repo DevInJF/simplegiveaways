@@ -643,8 +643,13 @@ button {
     }
   }
 
-  #graph_placeholder {
-    height: 300px;
+  #graph_legend {
+    text-align: center;
+    margin-bottom: 3px;
+
+    > table {
+      margin: 0 auto;
+    }
 
     .legendColorBox {
 
@@ -666,9 +671,13 @@ button {
 
     .legendLabel {
       color: #2E3E4E;
-      padding-left: 5px;
-      padding-right: 5px;
+      padding-left: 3px;
+      padding-right: 7px;
     }
+  }
+
+  #graph_placeholder {
+    height: 300px;
   }
 }
 

@@ -38,15 +38,15 @@ SG.Giveaways.Active =
         label: "Views"
         data: @flot_views()
 
-    if @flot_entries()
-      @graphDatasets["entry_count"] =
-        label: "Entries"
-        data: @flot_entries()
-
     if @flot_page_likes()
       @graphDatasets["page_likes"] =
         label: "Likes"
         data: @flot_page_likes()
+
+    if @flot_entries()
+      @graphDatasets["entry_count"] =
+        label: "Entries"
+        data: @flot_entries()
 
     if @flot_shares()
       @graphDatasets["shares"] =
@@ -90,6 +90,7 @@ SG.Giveaways.Active =
       minTickSize: [1, "day"]
     yaxis:
       tickDecimals: 0
+      ticks: 10
       min: 0
     grid:
       hoverable: true
@@ -97,10 +98,11 @@ SG.Giveaways.Active =
       tickColor: "#f0f0f0"
       borderWidth: 1
       color: '#f0f0f0'
-    colors: ["#fb6b5b","#65bd77","#4cc0c1","#ffc333"]
+    colors: ["#fb6b5b","#4cc0c1","#65bd77","#ffc333"]
     legend:
-      noColumns: 2
+      noColumns: 4
       position: 'ne'
+      container: '#graph_legend'
     tooltip: true
     tooltipOpts:
       content: "<div class='text-center'>%y.4 %s<br />%x.1</div>"
