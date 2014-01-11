@@ -4,10 +4,66 @@
     = stylesheet_link_tag :graph
 
     %section.panel.panel-default
-      %header.panel-heading Giveaway Performance
+      %header.panel-heading.font-bold Performance
       .panel-body
         #graph_legend
         #graph_placeholder
+
+    .row
+      .col-lg-4
+        %section.panel.panel-default
+          %header.panel-heading
+            %strong Visitors
+            %span.pull-right Like Status
+          .panel-body.text-center
+            .sparkline.inline{"data-height" => "150", "data-slice-colors" => "['#99c7ce','#f2f2f2']", "data-type" => "pie", values: "#{giveaway.fan_uniques},#{giveaway.non_fan_uniques}"}
+            .line.pull-in
+            .text-xs
+              .col-xs-6
+                %span
+                  %i.fa.fa-circle.text-info
+                  = giveaway.fan_uniques
+                  %br
+                  Has Liked
+              .col-xs-6
+                %span
+                  %i.fa.fa-circle.text-muted
+                  = giveaway.non_fan_uniques
+                  %br
+                  Has Not Liked
+      .col-lg-4
+        %section.panel.panel-default
+          %header.panel-heading
+            %strong Visitors
+            %span.pull-right Virality
+          .panel-body.text-center
+            .sparkline.inline{"data-height" => "150", "data-slice-colors" => "['#99c7ce','#f2f2f2']", "data-type" => "pie", values: "#{giveaway.fan_uniques},#{giveaway.non_fan_uniques}"}
+            .line.pull-in
+            .text-xs
+              .col-xs-6
+                %span
+                  %i.fa.fa-circle.text-info
+                  = giveaway.fan_uniques
+                  %br
+                  Viral
+              .col-xs-6
+                %span
+                  %i.fa.fa-circle.text-muted
+                  = giveaway.non_fan_uniques
+                  %br
+                  Direct
+      .col-lg-4
+        %section.panel.panel-default
+          %header.panel-heading
+            %strong Conversion Rate
+            %span.pull-right Likes
+          .panel-body.text-center
+            .inline
+              .easypiechart.easyPieChart{"data-bar-color" => "#4cc0c1", "data-line-cap" => "butt", "data-line-width" => "30", "data-percent" => "#{giveaway.fan_conversion_rate.gsub('%', '')}", "data-scale-color" => "#fff", "data-size" => "200", "data-track-color" => "#eee", style: "width: 200px; height: 200px; line-height: 188px;"}
+                %span.h2.step> #{giveaway.fan_conversion_rate.gsub('%', '')}
+                \%
+                .easypie-text became fans
+
 
     :javascript
       SG.Graphs.pageLikes = #{flot[:page_likes]};

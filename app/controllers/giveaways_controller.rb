@@ -160,7 +160,7 @@ class GiveawaysController < ApplicationController
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
 
         if last_giveaway_cookie.nil?
-          GiveawayUniquesWorker.perform_async(giveaway_id: @giveaway.id, is_fan: bool_to_i(!!@giveaway_hash.has_liked), is_viral: bool_to_i(@giveaway_hash.referrer_id.is_a?(String)))
+          GiveawayUniquesWorker.perform_async(@giveaway.id, bool_to_i(!!@giveaway_hash.has_liked), bool_to_i(@giveaway_hash.referrer_id.is_a?(String)))
         end
 
         @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)

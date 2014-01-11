@@ -241,6 +241,8 @@ Simple Giveaways:
 
  VERSION 1.0
 
+ ☐ Move analytics to redis or similar key/value store to ease strain on db.
+
  ☐ Write basic acceptance tests with Capybara.
 
  ☐ Market research for subscription and feature modifications/additions.
