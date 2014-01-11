@@ -16,4 +16,15 @@ module PublicUtils
       false
     end
   end
+
+  def bool_to_i(bool)
+    case bool
+    when false
+      0
+    when true
+      1
+    else
+      bool
+    end
+  end
 end

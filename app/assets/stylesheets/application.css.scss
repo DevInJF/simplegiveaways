@@ -631,6 +631,10 @@ button {
 
 #active_giveaway_tabs {
 
+  .panel-heading .nav-tabs > li > a {
+    line-height: 2;
+  }
+
   #giveaway_stats {
 
     .row.kpis {
@@ -677,7 +681,7 @@ button {
   }
 
   #graph_placeholder {
-    height: 300px;
+    height: 260px;
   }
 }
 

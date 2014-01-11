@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class GiveawaysController < ApplicationController
 
+  include PublicUtils
+
   respond_to :html, :json
 
   load_and_authorize_resource :facebook_page, except: [:tab, :enter]
@@ -157,9 +159,9 @@ class GiveawaysController < ApplicationController
       else
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
 
-        is_fan_integer = !!@giveaway_hash.has_liked ? 1 : 0
-
-        GiveawayUniquesWorker.perform_async(@giveaway.id, is_fan_integer) if last_giveaway_cookie.nil?
+        if last_giveaway_cookie.nil?
+          GiveawayUniquesWorker.perform_async(giveaway_id: @giveaway.id, is_fan: bool_to_i(!!@giveaway_hash.has_liked), is_viral: bool_to_i(@giveaway_hash.referrer_id.is_a?(String)))
+        end
 
         @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)
         @giveaway_cookie.giveaway_id = @giveaway.id

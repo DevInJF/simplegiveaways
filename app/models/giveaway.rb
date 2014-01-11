@@ -12,7 +12,7 @@ class Giveaway < ActiveRecord::Base
 
   include PublicUtils
 
-  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_fan_uniques, :_non_fan_uniques, :_fan_visitor_rate, :_non_fan_visitor_rate, :_fan_conversion_rate, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_rate, :_conversion_rate, :_page_likes, :_page_likes_while_active
+  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_uniques, :_fan_uniques, :_non_fan_uniques, :_fan_visitor_rate, :_non_fan_visitor_rate, :_fan_conversion_rate, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_conversion_rate, :_viral_entry_conversion_rate, :_page_likes, :_page_likes_while_active
 
   has_many :audits, as: :auditable
 
@@ -109,6 +109,7 @@ class Giveaway < ActiveRecord::Base
                                  :_viral_entry_count,
                                  :_views,
                                  :_uniques,
+                                 :_viral_uniques,
                                  :_fan_uniques,
                                  :_non_fan_uniques,
                                  :_fan_visitor_rate,
@@ -120,8 +121,8 @@ class Giveaway < ActiveRecord::Base
                                  :_page_likes,
                                  :_page_likes_while_active,
                                  :_entry_count,
-                                 :_entry_rate,
-                                 :_conversion_rate ]
+                                 :_entry_conversion_rate,
+                                 :_viral_entry_conversion_rate ]
 
   s3_options = {
     storage: :s3,
@@ -442,14 +443,14 @@ class Giveaway < ActiveRecord::Base
     entries.size
   end
 
-  def entry_rate
-    (entry_count > 0 && uniques > 0) ? "#{((entry_count.to_f / uniques.to_f) * 100).round(2)}%" : "N/A"
+  def entry_conversion_rate
+    (uniques > 0) ? "#{((entry_count.to_f / uniques.to_f) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end
 
-  def conversion_rate
-    (entry_count > 0 && uniques > 0) ? "#{((viral_entry_count.to_f / (total_shares.to_f)) * 100).round(2)}%" : "N/A"
+  def viral_entry_conversion_rate
+    (viral_uniques > 0) ? "#{((viral_entry_count.to_f / (viral_uniques.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end
@@ -467,7 +468,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def fan_conversion_rate
-    (fan_uniques > 0 && page_likes_while_active > 0) ? "#{((page_likes_while_active.to_f / (fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
+    (non_fan_uniques > 0) ? "#{((page_likes_while_active.to_f / (non_fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end
@@ -479,19 +480,15 @@ class Giveaway < ActiveRecord::Base
     self._viral_entry_count = viral_entry_count
     self._views = views
     self._uniques = uniques
+    self._viral_uniques = viral_uniques
     self._fan_uniques = fan_uniques
     self._non_fan_uniques = non_fan_uniques
-    self._fan_visitor_rate = fan_visitor_rate
-    self._non_fan_visitor_rate = non_fan_visitor_rate
-    self._fan_conversion_rate = fan_conversion_rate
     self._viral_views = viral_views
     self._viral_like_count = viral_like_count
     self._page_likes = page_likes
     self._page_likes_while_active = page_likes_while_active
     self._likes_from_entries_count = likes_from_entries_count
     self._entry_count = entry_count
-    self._entry_rate = entry_rate
-    self._conversion_rate = conversion_rate
     self.audits << analytics_audit
     save
   end
@@ -560,10 +557,11 @@ class Giveaway < ActiveRecord::Base
       Giveaway.orphans.each(&:unpublish)
     end
 
-    def uniques_worker(giveaway_id, is_fan)
-      @giveaway = Giveaway.find_by_id(giveaway_id)
+    def uniques_worker(options = {})
+      @giveaway = Giveaway.find_by_id(options[:giveaway_id])
       @giveaway.uniques += 1
-      is_fan ? (@giveaway.fan_uniques += 1) : (@giveaway.non_fan_uniques += 1)
+      options[:is_fan] ? (@giveaway.fan_uniques += 1) : (@giveaway.non_fan_uniques += 1)
+      (@giveaway.viral_uniques += 1) if options[:is_viral]
       @giveaway.save
     end
   end
