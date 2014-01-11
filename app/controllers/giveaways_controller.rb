@@ -254,6 +254,7 @@ class GiveawaysController < ApplicationController
     giveaways_graph = Graph.new(@giveaway)
     { page_likes: giveaways_graph.page_likes,
       net_likes: giveaways_graph.net_likes,
+      shares:    giveaways_graph.shares,
       entries:   giveaways_graph.entries,
       views:     giveaways_graph.views }
   rescue StandardError

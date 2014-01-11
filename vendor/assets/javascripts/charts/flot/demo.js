@@ -1,6 +1,6 @@
 $(function(){
 
-  // 
+  //
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var d1 = [];
   for (var i = 0; i <= 11; i += 1) {
@@ -8,7 +8,7 @@ $(function(){
   }
   $("#flot-1ine").length && $.plot($("#flot-1ine"), [{
           data: d1
-      }], 
+      }],
       {
         series: {
             lines: {
@@ -57,7 +57,7 @@ $(function(){
         }
       }
   );
-  
+
   var d2 = [];
   for (var i = 0; i <= 6; i += 1) {
     d2.push([i, parseInt((Math.floor(Math.random() * (1 + 30 - 10))) + 10)]);
@@ -72,7 +72,7 @@ $(function(){
       }, {
           data: d3,
           label: "Page Views"
-      }], 
+      }],
       {
         series: {
             lines: {
@@ -98,7 +98,7 @@ $(function(){
             tickColor: "#f0f0f0",
             borderWidth: 0
         },
-        colors: ["#dddddd","#89cb4e"],
+        colors: ["#d1efef","#89cb4e"],
         xaxis: {
             ticks: 15,
             tickDecimals: 0
@@ -322,10 +322,10 @@ $(function(){
 
   $("#flot-bar").length && $.plot($("#flot-bar"), data1, {
       xaxis: {
-          
+
       },
       yaxis: {
-          
+
       },
       grid: {
           hoverable: true,
@@ -344,10 +344,10 @@ $(function(){
 
   $("#flot-bar-h").length && $.plot($("#flot-bar-h"), data2, {
       xaxis: {
-          
+
       },
       yaxis: {
-          
+
       },
       grid: {
           hoverable: true,
@@ -366,7 +366,7 @@ $(function(){
 
   // pie
 
-  var da = [], 
+  var da = [],
       da1 = [],
       series = Math.floor(Math.random() * 4) + 3;
 
@@ -411,7 +411,7 @@ $(function(){
             },
         show: true
       }
-    },    
+    },
     colors: ["#99c7ce","#999999","#bbbbbb","#dddddd","#f0f0f0"],
     legend: {
       show: false

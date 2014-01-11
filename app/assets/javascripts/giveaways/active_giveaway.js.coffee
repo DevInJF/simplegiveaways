@@ -33,25 +33,25 @@ SG.Giveaways.Active =
 
     @graphDatasets = {}
 
-    if @flot_page_likes()
-      @graphDatasets["page_likes"] =
-        label: "Likes"
-        data: @flot_page_likes()
-
-    if @flot_net_likes()
-      @graphDatasets["net_likes"] =
-        label: "Net Likes"
-        data: @flot_net_likes()
+    if @flot_views()
+      @graphDatasets["view_count"] =
+        label: "Views"
+        data: @flot_views()
 
     if @flot_entries()
       @graphDatasets["entry_count"] =
         label: "Entries"
         data: @flot_entries()
 
-    if @flot_views()
-      @graphDatasets["view_count"] =
-        label: "Views"
-        data: @flot_views()
+    if @flot_page_likes()
+      @graphDatasets["page_likes"] =
+        label: "Likes"
+        data: @flot_page_likes()
+
+    if @flot_shares()
+      @graphDatasets["shares"] =
+        label: "Shares"
+        data: @flot_shares()
 
     for key, val of @graphDatasets
       @graphData.push @graphDatasets[key]
@@ -62,17 +62,28 @@ SG.Giveaways.Active =
 
   flot_net_likes: -> SG.Graphs.netLikes
 
+  flot_shares: -> SG.Graphs.shares
+
   flot_entries: -> SG.Graphs.entries
 
   flot_views: -> SG.Graphs.views
 
   graphOptions:
     series:
+      downsample:
+        threshold: 50
       stack: false
       lines:
         show: true
+        lineWidth: 2
         fill: false
-        steps: false
+      shadowSize: 1
+      grow:
+        active: true
+        steps: 50
+      points:
+        radius: 4
+        show: true
     xaxis:
       mode: "time"
       tickSize: [1, "day"]
@@ -81,16 +92,22 @@ SG.Giveaways.Active =
       tickDecimals: 0
       min: 0
     grid:
-      clickable: true
       hoverable: true
-    points:
-      show: true
-    colors: [ "#FAA732", "#5BB75B", "#49AFCD", "#0055cc" ]
+      clickable: true
+      tickColor: "#f0f0f0"
+      borderWidth: 1
+      color: '#f0f0f0'
+    colors: ["#fb6b5b","#65bd77","#4cc0c1","#ffc333"]
+    legend:
+      noColumns: 2
+      position: 'ne'
     tooltip: true
     tooltipOpts:
-      content: "<span class='graph-tip-y'><strong>%y</strong> <span class='graph-tip-y-label'>%s</span></span><br /><span class='graph-tip-x'><span class='graph-tip-x-val'>%x</span></span>"
-      onHover: (flotItem, $tooltipEl) ->
-        $tooltipEl.css('border-color', flotItem.series.color)
+      content: "<div class='text-center'>%y.4 %s<br />%x.1</div>"
+      defaultTheme: false
+      shifts:
+        x: 0
+        y: 20
 
   graphPlaceholderEl: -> $('#graph_placeholder')
 

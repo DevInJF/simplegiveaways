@@ -10,8 +10,9 @@
 //= require jquery-flot/jquery.flot
 //= require jquery-flot/jquery.flot.resize
 //= require jquery-flot/jquery.flot.time
-//= require ../../../vendor/assets/javascripts/jquery.flot.growraf
-//= require ../../../vendor/assets/javascripts/jquery.flot.tooltip.min
+//= require ../../../vendor/assets/javascripts/charts/flot/jquery.flot.growraf
+//= require ../../../vendor/assets/javascripts/charts/flot/jquery.flot.downsample
+//= require ../../../vendor/assets/javascripts/charts/flot/jquery.flot.tooltip.min
 //= require ../../../vendor/assets/javascripts/pickadate/picker
 //= require ../../../vendor/assets/javascripts/pickadate/picker.date
 //= require ../../../vendor/assets/javascripts/pickadate/picker.time

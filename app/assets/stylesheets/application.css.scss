@@ -645,6 +645,30 @@ button {
 
   #graph_placeholder {
     height: 300px;
+
+    .legendColorBox {
+
+      > div {
+        border: 1px solid #CCC;
+        padding: 1px;
+        border-radius: 190px;
+        overflow: hidden;
+        width: 14px;
+
+        > div {
+          width: auto;
+          height: 0;
+          overflow: hidden;
+          border-radius: 100px;
+        }
+      }
+    }
+
+    .legendLabel {
+      color: #2E3E4E;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
   }
 }
 

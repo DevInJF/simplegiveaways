@@ -5,38 +5,35 @@ class Graph
   end
 
   def page_likes
-    graphable_audits.map do |audit|
-      if audit.is.has_key?(:analytics)
-        format_audit(audit, audit.is[:analytics][:_page_likes])
-      end
-    end.compact
+    generate_graph_data :_page_likes
   end
 
   def net_likes
-    graphable_audits.map do |audit|
-      if audit.is.has_key?(:analytics)
-        format_audit(audit, audit.is[:analytics][:_page_likes_while_active])
-      end
-    end.compact
+    generate_graph_data :_page_likes_while_active
+  end
+
+  def shares
+    generate_graph_data :_total_shares
   end
 
   def entries
-    graphable_audits.map do |audit|
-      if audit.is.has_key?(:analytics)
-        format_audit(audit, audit.is[:analytics][:_entry_count])
-      end
-    end.compact
+    generate_graph_data :_entry_count
   end
 
   def views
-    graphable_audits.map do |audit|
-      if audit.is.has_key?(:analytics)
-        format_audit(audit, audit.is[:analytics][:_views])
-      end
-    end.compact
+    generate_graph_data :_views
   end
 
   private
+
+  def generate_graph_data(key)
+    return [] unless key.is_a? Symbol
+    graphable_audits.map do |audit|
+      if audit.is.has_key?(:analytics)
+        format_audit(audit, audit.is[:analytics][key])
+      end
+    end.compact
+  end
 
   def graphable_audits
     @graphable_audits ||= @giveaway.audits.where("created_at >= ? AND created_at <= ?", @giveaway.start_date, (@giveaway.end_date || Time.now))
