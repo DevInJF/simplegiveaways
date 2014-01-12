@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111070950) do
+ActiveRecord::Schema.define(:version => 20140112095815) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -209,7 +209,9 @@ ActiveRecord::Schema.define(:version => 20140111070950) do
     t.boolean  "is_viral",    :default => false
   end
 
+  add_index "likes", ["entry_id", "giveaway_id"], :name => "index_likes_on_entry_id_and_giveaway_id", :unique => true
   add_index "likes", ["entry_id"], :name => "index_likes_on_entry_id"
+  add_index "likes", ["fb_uid", "giveaway_id"], :name => "index_likes_on_fb_uid_and_giveaway_id", :unique => true
   add_index "likes", ["giveaway_id"], :name => "index_likes_on_giveaway_id"
 
   create_table "subscription_plans", :force => true do |t|

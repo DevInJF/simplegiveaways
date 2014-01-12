@@ -187,6 +187,8 @@ Simple Giveaways:
 
       ☐ Add info callouts for giveaway images and preferences
 
+      ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
+
       ☐ Kill scheduling conflict callout when user cancels editable edit
 
       ☐ Fix pickadate picker in modals

@@ -13,8 +13,7 @@ class GiveawaysController < FacebookController
 
   before_filter :parse_signed_request, only: [:tab], if: -> { params[:signed_request] }
 
-  after_filter  :register_impression, only: [:tab]
-  after_filter  :set_giveaway_cookie, only: [:tab]
+  after_filter :after_tab_actions, only: [:tab]
 
   def index
     @giveaways = Giveaway.visible
@@ -150,32 +149,20 @@ class GiveawaysController < FacebookController
 
   def tab
     if @signed_request
+      @giveaway_hash = Giveaway.tab(@signed_request) rescue nil
 
-      @giveaway_hash = Giveaway.tab(@signed_request)
-
-      if @giveaway_hash.giveaway.nil?
+      if @giveaway_hash.nil? || @giveaway_hash.giveaway.nil?
         redirect_to root_path
       else
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
 
-        if last_giveaway_cookie.nil?
-          GiveawayUniquesWorker.perform_async(@giveaway.id, bool_to_i(!!@giveaway_hash.has_liked), bool_to_i(@giveaway_hash.referrer_id.is_a?(String)))
-        end
+        update_giveaway_cookie
+        count_uncounted_like
+        log_unique_visit
 
-        @giveaway_cookie = GiveawayCookie.new(last_giveaway_cookie)
-        @giveaway_cookie.giveaway_id = @giveaway.id
-        @giveaway_cookie.update_cookie(@giveaway_hash)
-
-        if @giveaway_cookie.uncounted_like
-          if Like.create_from_cookie(@giveaway_cookie)
-            @giveaway_cookie.like_counted = true
-          end
-        end
-
-        ga_event("Giveaways", "Giveaway#tab", @giveaway.title, @giveaway.id)
-        render layout: "tab"
+        ga_event('Giveaways', 'Giveaway#tab', @giveaway.title, @giveaway.id)
+        render layout: 'tab'
       end
-
     else
       redirect_to root_path
     end

@@ -23,14 +23,14 @@
               %strong= giveaway.uniques
             %small.text-muted.text-uc Unique Visitors
       .col-sm-6.col-md-3.padder-v.b-r.b-light.lt.kpi
-        .stat.likes.clearfix{ data: { toggle: "popover", container: "#hover_popover_container", placement: "auto top", html: "true", trigger: "hover", title: "Likes", content: "The total number of likes added to your page since the giveaway has gone live." } }
+        .stat.likes.clearfix{ data: { toggle: "popover", container: "#hover_popover_container", placement: "auto top", html: "true", trigger: "hover", title: "Visitor Likes", content: "The total number of likes added to your page by giveaway visitors." } }
           %span.fa-stack.fa-2x.pull-left.m-r-sm
             %i.fa.fa-circle.fa-stack-2x.text-info
             %i.fa.fa-thumbs-o-up.fa-stack-1x.text-white
           %a.clear{href: "#"}
             %span.h3.block.m-t-xs
-              %strong= giveaway.page_likes_while_active
-            %small.text-muted.text-uc Likes
+              %strong= giveaway.giveaway_likes_count
+            %small.text-muted.text-uc Visitor Likes
         .stat.viral-likes.clearfix{ data: { toggle: "popover", container: "#hover_popover_container", placement: "auto top", html: "true", trigger: "hover", title: "Viral Likes", content: "The total number of likes added to your page from visitors referred by Wall Posts, Requests, and External Shares of the giveaway." } }
           %span.fa-stack.fa-2x.pull-left.m-r-sm
           %a.clear{href: "#"}

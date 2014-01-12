@@ -35,11 +35,9 @@ class EntriesController < ApplicationController
         render json: @entry.as_json(only: %w(id shortlink)), status: :created
         ga_event("Entries", "Entry#create", @entry.giveaway.title, @entry.id)
       else
-        @delete_cookie = false
         head :not_acceptable
       end
     else
-      @delete_cookie = false
       head :failed_dependency
     end
   end
@@ -69,7 +67,6 @@ class EntriesController < ApplicationController
 
   def after_entry_callbacks
     register_like_from_entry
-    @giveaway_cookie = GiveawayCookie.new if @delete_cookie
     set_giveaway_cookie
   end
 
@@ -82,7 +79,7 @@ class EntriesController < ApplicationController
   end
 
   def register_like_from_entry
-    if @like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id)
+    if @entry.uid && (@like = Like.find_by_fb_uid_and_giveaway_id(@entry.uid, @entry.giveaway_id))
       @like.update_attributes(
         entry_id: @giveaway_cookie.entry_id,
         from_entry: true
@@ -93,6 +90,9 @@ class EntriesController < ApplicationController
         from_entry: true,
         fb_uid: @entry.uid
       )
+      if @like.invalid? && @like.errors.keys.include?(:entry_id)
+        @like.destroy
+      end
     end
   end
 

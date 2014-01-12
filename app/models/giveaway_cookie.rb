@@ -23,6 +23,10 @@ class GiveawayCookie
     uid == @last_cookie["uid"]
   end
 
+  def does_not_belong_to_user
+    !belongs_to_user
+  end
+
   def update_cookie(giveaway_hash)
     self.giveaway_id = giveaway_hash.giveaway.id
 

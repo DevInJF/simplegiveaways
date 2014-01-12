@@ -8,6 +8,9 @@ class Like < ActiveRecord::Base
 
   serialize :ref_ids, Array
 
+  validates :fb_uid, uniqueness: { scope: :giveaway_id }
+  validates :entry_id, uniqueness: { scope: :giveaway_id }
+
   before_save :assess_virality
 
   def self.create_from_cookie(giveaway_cookie)

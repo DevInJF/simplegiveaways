@@ -407,6 +407,10 @@ class Giveaway < ActiveRecord::Base
     likes.where("from_entry IS TRUE")
   end
 
+  def giveaway_likes_count
+    likes.size
+  end
+
   def page_likes
     facebook_page.likes
   end
@@ -464,7 +468,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def fan_conversion_rate
-    (non_fan_uniques > 0) ? "#{((page_likes_while_active.to_f / (non_fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
+    (non_fan_uniques > 0) ? "#{((giveaway_likes_count.to_f / (non_fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end
@@ -503,6 +507,8 @@ class Giveaway < ActiveRecord::Base
 
   class << self
 
+    include PublicUtils
+
     def cookie_key(id)
       "_sg_gid_#{id}".to_sym
     end
@@ -513,7 +519,6 @@ class Giveaway < ActiveRecord::Base
     end
 
     def tab(signed_request)
-      bp signed_request
       app_data = signed_request["app_data"]
       referrer_id = app_data.split("ref_")[1] rescue []
       current_page = FacebookPage.select("id, url, name, slug").find_by_pid(signed_request["page"]["id"])
@@ -555,10 +560,12 @@ class Giveaway < ActiveRecord::Base
     end
 
     def uniques_worker(options = {})
+      puts to_bool(options[:is_fan]).inspect.yellow
+      puts to_bool(options[:is_viral]).inspect.green
       @giveaway = Giveaway.find_by_id(options[:giveaway_id])
       @giveaway.uniques += 1
-      options[:is_fan] ? (@giveaway.fan_uniques += 1) : (@giveaway.non_fan_uniques += 1)
-      (@giveaway.viral_uniques += 1) if options[:is_viral]
+      to_bool(options[:is_fan]) ? (@giveaway.fan_uniques += 1) : (@giveaway.non_fan_uniques += 1)
+      (@giveaway.viral_uniques += 1) if to_bool(options[:is_viral])
       @giveaway.save
     end
   end
