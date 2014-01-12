@@ -6,6 +6,8 @@ Devise.setup do |config|
 
   Devise.router_name = :main_app
 
+  config.secret_key = '4454f845632a81f3cb24c88f0900871ba493441e56a88b24afac7bb78aeb77cf61fc1d7432ce4baf83c0bcd0d2dfd1003955f233e95befba138e40b1a4d0ffda'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.

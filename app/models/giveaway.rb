@@ -387,10 +387,6 @@ class Giveaway < ActiveRecord::Base
     unique_impression_count_ip
   end
 
-  def fb_user_uniques
-    impressions.where("message LIKE ?", "%fb_uid: %").pluck("message").uniq.count rescue 0
-  end
-
   def viral_views
     impressions.where("message LIKE ?", "%ref_id: %").size
   end

@@ -10,8 +10,6 @@ Simplegiveaways::Application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  ActiveAdmin.routes(self)
-
   match '/terms', to: 'welcome#terms'
   match '/privacy', to: 'welcome#privacy'
   match '/support', to: 'welcome#support'
@@ -57,6 +55,8 @@ Simplegiveaways::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/logout', to: 'sessions#destroy'
+
+  ActiveAdmin.routes(self)
 
   match '/:giveaway_id', to: 'giveaways#enter', as: 'enter'
 
