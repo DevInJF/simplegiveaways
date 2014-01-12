@@ -28,6 +28,13 @@ GIT
     omniauth-facebook (1.6.0.rc1)
       omniauth-oauth2 (~> 1.1)
 
+GIT
+  remote: git://github.com/nicck/browser_print.git
+  revision: 477408e4062a8508aa19d5caae49e43821ecdf70
+  specs:
+    browser_print (0.0.1)
+      awesome_print
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -476,6 +483,7 @@ DEPENDENCIES
   binding_of_caller
   bitly!
   brakeman
+  browser_print!
   cancan
   coffee-rails (~> 3.2.1)
   colored

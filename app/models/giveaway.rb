@@ -513,6 +513,7 @@ class Giveaway < ActiveRecord::Base
     end
 
     def tab(signed_request)
+      bp signed_request
       app_data = signed_request["app_data"]
       referrer_id = app_data.split("ref_")[1] rescue []
       current_page = FacebookPage.select("id, url, name, slug").find_by_pid(signed_request["page"]["id"])

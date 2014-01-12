@@ -64,6 +64,7 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'rails_best_practices'
   gem 'awesome_print'
+  gem 'browser_print', git: 'git://github.com/nicck/browser_print.git'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'

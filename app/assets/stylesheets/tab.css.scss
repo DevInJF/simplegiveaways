@@ -6,6 +6,14 @@
 *= require_self
 */
 
+#bp-pane pre {
+  font-size: 13px;
+  font-family: 'Bitstream Vera Sans Mono', 'Consolas', 'Inconsolata', monospace !important;
+  line-height: 20px;
+  background-color: transparent;
+  border: none;
+}
+
 @import 'mixins';
 
 @font-face {

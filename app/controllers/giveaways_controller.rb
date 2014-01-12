@@ -11,6 +11,8 @@ class GiveawaysController < FacebookController
   before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy, :start_modal]
   before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy, :start_modal]
 
+  before_filter :parse_signed_request, only: [:tab], if: -> { params[:signed_request] }
+
   after_filter  :register_impression, only: [:tab]
   after_filter  :set_giveaway_cookie, only: [:tab]
 
@@ -147,15 +149,12 @@ class GiveawaysController < FacebookController
   end
 
   def tab
-    if params[:signed_request]
-
-      oauth = Koala::Facebook::OAuth.new(FB_APP_ID, FB_APP_SECRET)
-      @signed_request = oauth.parse_signed_request(params[:signed_request])
+    if @signed_request
 
       @giveaway_hash = Giveaway.tab(@signed_request)
 
       if @giveaway_hash.giveaway.nil?
-        redirect_to "/404.html"
+        redirect_to root_path
       else
         @giveaway = Giveaway.find_by_id(@giveaway_hash.giveaway.id)
 
@@ -178,7 +177,7 @@ class GiveawaysController < FacebookController
       end
 
     else
-      redirect_to "/500.html"
+      redirect_to root_path
     end
   end
 
