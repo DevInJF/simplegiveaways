@@ -407,7 +407,7 @@ class Giveaway < ActiveRecord::Base
     likes.where("from_entry IS TRUE")
   end
 
-  def giveaway_likes_count
+  def visitor_likes_count
     likes.size
   end
 
@@ -468,7 +468,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def fan_conversion_rate
-    (non_fan_uniques > 0) ? "#{((giveaway_likes_count.to_f / (non_fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
+    (non_fan_uniques > 0) ? "#{((visitor_likes_count.to_f / (non_fan_uniques.to_f)) * 100).round(2)}%" : "N/A"
   rescue StandardError
     "N/A"
   end

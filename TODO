@@ -165,11 +165,13 @@ Simple Giveaways:
 
       ☐ Implement UI.
 
- ☐ Verify/Clean/Simplify giveaway cookie referrals.
-
  ✔ More robust free_trial_remaining method. @done (13-12-21 01:53)
 
  ✔ Don't actually delete giveaways — hide them. @done (13-12-21 01:53)
+
+ ☐ Make giveaway cookie allow multiple users so we don't log so many uniques.
+
+ ☐ Test non-auth giveaways.
 
  ☐ UI
 
