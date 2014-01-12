@@ -1,5 +1,9 @@
 module UiHelper
 
+  def percentage_number(percentage_str)
+    percentage_str.gsub("%", "")
+  end
+
   def callout(options = {}, &block)
     type = options[:type] || 'info'
 

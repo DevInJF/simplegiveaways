@@ -185,6 +185,10 @@ Simple Giveaways:
 
       ☐ Pagination
 
+      ☐ Sanitize WYSIHTML5 Markup (css, etc.)
+
+      ☐ Convert <br /> to /n for textarea content
+
       ☐ Render editable errors via ajax
 
       ☐ Add info callouts for giveaway images and preferences

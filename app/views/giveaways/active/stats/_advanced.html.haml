@@ -62,7 +62,8 @@
           %span.fa-stack.fa-2x.pull-left.m-r-sm
           %a.clear{href: "#"}
             %span.h3.block.m-t-xs
-              %strong= giveaway.entry_conversion_rate
+              %strong<
+                = "#{percentage_number(giveaway.entry_conversion_rate)}<small class='percent-sign'>%</small>".html_safe
             %small.text-muted.text-uc Entry Rate
       .col-sm-6.col-md-3.padder-v.b-r.b-light.lt.kpi
         .stat.shares.clearfix{ data: { toggle: "popover", container: "#hover_popover_container", placement: "auto top", html: "true", trigger: "hover", title: "Shares", content: "The total number of share actions (Wall Posts, Requests, and External Shares) taken by visitors and entrants." } }
