@@ -7,8 +7,21 @@ module GiveawaysHelper
   include ActionView::Helpers::DateHelper
 
   def time_from_now(time, options = {})
-    only_options = options[:only] || %w(days hours)
-    distance_of_time_in_words(Time.now, time, false, only: only_options, accumulate_on: :days)
+    only_options = if options[:only]
+      options[:only]
+    elsif time < 24.hours.from_now
+      %w(hours minutes)
+    elsif time > 1.month.from_now
+      %w(months days)
+    elsif time > 1.year.from_now
+      %w(years months)
+    else
+      %w(days hours)
+    end
+
+    accumulate_options = only_options.first.to_sym rescue :days
+
+    distance_of_time_in_words(Time.now, time, false, only: only_options, accumulate_on: accumulate_options)
   end
 
   def giveaway_header_class(giveaway)
@@ -96,7 +109,7 @@ module GiveawaysHelper
 
     return start_date if giveaway.active? || giveaway.completed?
     if giveaway.cannot_schedule?
-      "<span class='giveaway-start-date-warning' data-toggle='popover' data-placement='auto top' data-html='true' data-title='<p>Inactive Start Date' data-content='A Pro subscription is required in order to schedule a giveaway.</p><a class=\"btn btn-primary btn-block\" href=\"#{facebook_page_subscription_plans_path(giveaway.facebook_page)}\">Choose a Plan</a>'><s>#{start_date}</s></span>".html_safe
+      "<span class=\"giveaway-start-date-warning\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"<p>Inactive Start Date\" data-content=\"A Pro subscription is required in order to schedule a giveaway.</p><a class='btn btn-primary btn-block' href='#{facebook_page_subscription_plans_path(giveaway.facebook_page)}''>Choose a Plan</a>\"><s>#{start_date}</s></span>".html_safe
     elsif giveaway.has_scheduling_conflict?
       "<span class=\"giveaway-start-date-warning\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"Inactive Start Date\" data-content=\"<p>This giveaway has scheduling conflicts with the following giveaways:</p><p>#{conflicts(giveaway)}</p><p>Please update your giveaway schedules in order to activate this start date.</p><a class='btn btn-default btn-block' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'><i class='fa fa-pencil'></i>&nbsp;&nbsp;Edit Giveaway</a>\"><s>#{start_date}</s></span>".html_safe
     else

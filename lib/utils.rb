@@ -34,6 +34,7 @@ class Utils
         Like.destroy_all
         FacebookPage.destroy_all
         User.destroy_all
+        Impression.destroy_all
       end
     end
   end

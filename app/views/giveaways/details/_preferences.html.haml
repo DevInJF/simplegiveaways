@@ -4,7 +4,7 @@
   %ul.list-group
     %li.list-group-item{class: "bool-#{to_bool(giveaway.email_required)}"}
       .m-b-xs.editable-trigger
-        Email Required for Entry?
+        Auth Required for Entry?
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
       = editable giveaway, :email_required, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: to_bool(giveaway.email_required), source: {"0" => "False", "1" => "True"}, classes: { "1" => 'label bg-primary', "0" => 'label bg-danger' }
