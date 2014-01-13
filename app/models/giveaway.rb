@@ -452,39 +452,39 @@ class Giveaway < ActiveRecord::Base
   end
 
   def entry_share_conversion_rate
-    (entry_count > 0) ? "#{((sharing_entry_count.to_f / entry_count.to_f) * 100).round(1)}%" : "N/A"
+    (entry_count > 0) ? "#{((sharing_entry_count.to_f / entry_count.to_f) * 100).round(1)}%" : "0%"
   rescue StandardError
-    "N/A"
+    "0%"
   end
 
   def entry_conversion_rate
-    (uniques > 0) ? "#{((entry_count.to_f / uniques.to_f) * 100).round(1)}%" : "N/A"
+    (uniques > 0) ? "#{((entry_count.to_f / uniques.to_f) * 100).round(1)}%" : "0%"
   rescue StandardError
-    "N/A"
+    "0%"
   end
 
   def viral_entry_conversion_rate
-    (viral_uniques > 0) ? "#{((viral_entry_count.to_f / (viral_uniques.to_f)) * 100).round(1)}%" : "N/A"
+    (viral_uniques > 0) ? "#{((viral_entry_count.to_f / (viral_uniques.to_f)) * 100).round(1)}%" : "0%"
   rescue StandardError
-    "N/A"
+    "0%"
   end
 
   def fan_visitor_rate
-    (uniques > 0) ? "#{((fan_uniques.to_f / (uniques.to_f)) * 100).round(1)}%" : "N/A"
+    (uniques > 0) ? "#{((fan_uniques.to_f / (uniques.to_f)) * 100).round(1)}%" : "0%"
   rescue StandardError
-    "N/A"
+    "0%"
   end
 
   def non_fan_visitor_rate
-    (uniques > 0) ? "#{((non_fan_uniques.to_f / (uniques.to_f)) * 100).round(1)}%" : "N/A"
+    (uniques > 0) ? "#{((non_fan_uniques.to_f / (uniques.to_f)) * 100).round(1)}%" : "0%"
   rescue StandardError
-    "N/A"
+    "0%"
   end
 
   def fan_conversion_rate
-    (non_fan_uniques > 0) ? "#{((visitor_like_count.to_f / (non_fan_uniques.to_f)) * 100).round(1)}%" : "N/A"
+    (non_fan_uniques > 0) ? "#{((visitor_like_count.to_f / (non_fan_uniques.to_f)) * 100).round(1)}%" : "0%"
   rescue StandardError
-    "N/A"
+    "0%"
   end
 
   def refresh_analytics
