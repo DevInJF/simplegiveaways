@@ -11,49 +11,49 @@
 
     .row
       .col-lg-4
-        %section.panel.panel-default
+        %section.panel.panel-default.chart-panel
           %header.panel-heading
             %strong Visitors
             %span.pull-right Like Status
           .panel-body.text-center
-            .sparkline.inline{"data-height" => "150", "data-slice-colors" => "['#99c7ce','#f2f2f2']", "data-type" => "pie", values: "#{giveaway.fan_uniques},#{giveaway.non_fan_uniques}"}
+            .sparkline.inline{"data-height" => "150", "data-slice-colors" => "['#fb6b5b','#eee']", "data-type" => "pie", values: "#{giveaway.fan_uniques},#{giveaway.non_fan_uniques}"}
             .line.pull-in
             .text-xs
               .col-xs-6
                 %span
-                  %i.fa.fa-circle.text-info
+                  %i.fa.fa-circle.text-danger
                   = giveaway.fan_uniques
                   %br
-                  Has Liked
+                  Had Already Liked
               .col-xs-6
                 %span
                   %i.fa.fa-circle.text-muted
                   = giveaway.non_fan_uniques
                   %br
-                  Has Not Liked
+                  Had Not Yet Liked
       .col-lg-4
-        %section.panel.panel-default
+        %section.panel.panel-default.chart-panel
           %header.panel-heading
             %strong Visitors
             %span.pull-right Virality
           .panel-body.text-center
-            .sparkline.inline{"data-height" => "150", "data-slice-colors" => "['#99c7ce','#f2f2f2']", "data-type" => "pie", values: "#{giveaway.fan_uniques},#{giveaway.non_fan_uniques}"}
+            .sparkline.inline{"data-height" => "150", "data-slice-colors" => "['#fb6b5b','#eee']", "data-type" => "pie", values: "#{giveaway.viral_uniques},#{giveaway.direct_uniques}"}
             .line.pull-in
             .text-xs
               .col-xs-6
                 %span
-                  %i.fa.fa-circle.text-info
-                  = giveaway.fan_uniques
+                  %i.fa.fa-circle.text-danger
+                  = giveaway.viral_uniques
                   %br
                   Viral
               .col-xs-6
                 %span
                   %i.fa.fa-circle.text-muted
-                  = giveaway.non_fan_uniques
+                  = giveaway.direct_uniques
                   %br
                   Direct
       .col-lg-4
-        %section.panel.panel-default
+        %section.panel.panel-default.chart-panel
           %header.panel-heading
             %strong Conversion Rate
             %span.pull-right Likes

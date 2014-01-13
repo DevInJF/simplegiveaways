@@ -6,6 +6,8 @@ class LikesController < ApplicationController
 
   def create
     if @like = Like.create_from_cookie(@giveaway_cookie)
+      puts @like.inspect.yellow
+      puts @like.errors.inspect.red
       @giveaway_cookie.is_fan = true
       @giveaway_cookie.like_counted = true
       render json: @like.id, status: :ok

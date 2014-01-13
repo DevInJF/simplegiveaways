@@ -169,9 +169,7 @@ Simple Giveaways:
 
  ✔ Don't actually delete giveaways — hide them. @done (13-12-21 01:53)
 
- ☐ Make giveaway cookie allow multiple users so we don't log so many uniques.
-
- ☐ Test non-auth giveaways.
+ ✔ Test non-auth giveaways. @done (14-01-12 18:48)
 
  ☐ UI
 

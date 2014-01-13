@@ -8,8 +8,8 @@ class Like < ActiveRecord::Base
 
   serialize :ref_ids, Array
 
-  validates :fb_uid, uniqueness: { scope: :giveaway_id }
-  validates :entry_id, uniqueness: { scope: :giveaway_id }
+  validates :fb_uid, uniqueness: { scope: :giveaway_id }, allow_blank: true, allow_nil: true
+  validates :entry_id, uniqueness: { scope: :giveaway_id }, allow_blank: true, allow_nil: true
 
   before_save :assess_virality
 

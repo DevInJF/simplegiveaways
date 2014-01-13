@@ -12,6 +12,7 @@ class FacebookController < ApplicationController
   end
 
   def log_unique_visit
+    puts bool_to_i(@giveaway_hash.referrer_id.is_a?(String)).inspect.red
     if last_giveaway_cookie.nil? || @giveaway_cookie.does_not_belong_to_user
       GiveawayUniquesWorker.perform_async(@giveaway.id, bool_to_i(!!@giveaway_hash.has_liked), bool_to_i(@giveaway_hash.referrer_id.is_a?(String)))
     end

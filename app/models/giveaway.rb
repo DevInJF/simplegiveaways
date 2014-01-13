@@ -391,6 +391,10 @@ class Giveaway < ActiveRecord::Base
     impressions.where("message LIKE ?", "%ref_id: %").size
   end
 
+  def direct_uniques
+    uniques - viral_uniques rescue 0
+  end
+
   def viral_like_count
     viral_likes.size
   end
@@ -521,6 +525,7 @@ class Giveaway < ActiveRecord::Base
     def tab(signed_request)
       app_data = signed_request["app_data"]
       referrer_id = app_data.split("ref_")[1] rescue []
+      puts referrer_id.inspect.red
       current_page = FacebookPage.select("id, url, name, slug").find_by_pid(signed_request["page"]["id"])
       giveaway = current_page.active_giveaway
 
