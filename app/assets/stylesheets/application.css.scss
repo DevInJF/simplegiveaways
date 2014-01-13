@@ -664,8 +664,20 @@ button {
 
   .chart-panel {
 
+    .panel-body {
+      padding: 15px 0;
+    }
+
     .text-muted {
       color: #ddd;
+    }
+
+    .sparkline.pie {
+      line-height: 150px;
+    }
+
+    .easypie-text {
+      line-height: 11px;
     }
   }
 
@@ -705,6 +717,33 @@ button {
   #graph_placeholder {
     height: 260px;
   }
+}
+
+.jqstooltip {
+  padding: 3px 5px 4px !important;
+  background-color: rgba(0,0,0,0.7) !important;
+  z-index: 100 !important;
+  color: #FFF !important;
+  opacity: 1 !important;
+  border-radius: 4px !important;
+  border: 0 none !important;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  line-height: 18px !important;
+
+  div {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    line-height: 18px !important;
+    font-size: 13px !important;
+  }
+
+  .jqstitle {
+    font-weight: bold !important;
+    font-size: 11px !important;
+  }
+}
+
+#flotTip {
+  padding: 3px 5px 4px !important;
 }
 
 @media (min-width: 768px) {

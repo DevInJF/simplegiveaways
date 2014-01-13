@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 class Entry < ActiveRecord::Base
 
-  attr_accessible :email, :has_liked, :name, :fb_url, :datetime_entered,
-                  :wall_post_count, :entry_count, :request_count,
-                  :convert_count, :status, :uid, :ref_ids, :referrer_id,
-                  :is_viral, :shortlink
+  attr_accessible :email, :has_liked, :has_shared, :name, :fb_url,
+                  :datetime_entered, :wall_post_count, :entry_count,
+                  :request_count, :convert_count, :status, :uid, :ref_ids,
+                  :referrer_id, :is_viral, :shortlink
 
   attr_accessor :referrer_id
 
@@ -17,7 +17,13 @@ class Entry < ActiveRecord::Base
 
   serialize :ref_ids, Array
 
+  before_validation(on: :update) do
+    self.has_shared = true if total_shares > 0
+  end
+
   after_commit :create_shortlink, unless: -> { self.shortlink.present? }
+
+  scope :shared, -> { where("has_shared IS TRUE") }
 
   def as_json(options = {})
     { id: id,
