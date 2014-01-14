@@ -45,6 +45,8 @@
 //= require users
 //= require giveaways
 //= require giveaways/active_giveaway
+//= require giveaways/active/graphs
 //= require giveaways/start_giveaway
 //= require giveaways/form
 //= require giveaways/form/wysiwyg
+//= require giveaways/details

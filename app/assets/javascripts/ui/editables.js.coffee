@@ -47,7 +47,6 @@ SG.UI.Editables =
 
   initEditableUploadTrigger: (el) ->
     $(el).on 'click', (e) ->
-      console.log $(el)
       $(el).parents('section').toggleClass('edit-mode')
       return false
     $('form .form-group').on 'click', (e) ->

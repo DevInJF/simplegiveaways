@@ -2,33 +2,46 @@
 
   = stylesheet_link_tag :footable
 
-  .ui.small.fluid.borderless.teal.menu
-    = link_to '<i class="list icon"></i> View All Entries'.html_safe, facebook_page_giveaway_entries_path(page, giveaway), class: 'item'
-    = link_to '<i class="save icon"></i>Export Entries'.html_safe, export_entries_facebook_page_giveaway_path(page, giveaway), class: 'item', target: '_blank'
-
-  %p.help-text
-    %i.info.icon
-    Click a header to sort that column. Click a row for detailed info.
-
-  %table#entries.footable{data: { :'page-navigation' => '.entries-pager', :'page-size' => '10' }}
-    %thead
-      %tr
-        %th.header.first-child{"data-toggle" => "true"} Name/Email
-        %th.header{"data-hide" => "all"} Email
-        - if giveaway.canhaz_referral_tracking?
-          %th.header{"data-hide" => "phone"} Viral?
-        %th.header{"data-hide" => "phone"} New Fan?
-        %th.header{"data-hide" => "phone", "data-type" => "numeric"} Shares
-        - if giveaway.canhaz_advanced_analytics?
-          %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Wall Posts
-          %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Requests
-        - if giveaway.canhaz_referral_tracking?
-          %th.header{"data-hide" => "phone,tablet,full", "data-type" => "numeric"} Conversions
-        %th.header{"data-hide" => "all", "data-type" => "numeric"} Bonus Entries
-        %th.header.last-child{"data-hide" => "phone,tablet", "data-type" => "numeric", "data-sort-initial" => "descending"} Entry Time
-    %tbody
-      = render collection: entries, partial: 'giveaways/entry', as: :entry
-    %tfoot
-      %tr
-        %td{colspan: '11'}
-          .entries-pager.ui.pagination.menu
+  .panel.panel-default.entries-panel
+    .panel-body
+      = link_to '<i class="fa fa-save m-r-sm"></i>Export Entries'.html_safe, export_entries_facebook_page_giveaway_path(page, giveaway), class: 'btn btn-sm btn-default', target: '_blank'
+    %table#entries.footable.table{data: { :'page-navigation' => '.entries-pager', :'page-size' => '10' }}
+      %thead
+        %tr
+          %th.header.first-child.th-sortable{"data-toggle" => "true"}
+            Name/Email
+            = render 'shared/sort_arrows'
+          %th.header.th-sortable{"data-hide" => "all"} Email
+          - if giveaway.canhaz_referral_tracking?
+            %th.header.th-sortable{"data-hide" => "phone"}
+              Viral?
+              = render 'shared/sort_arrows'
+          %th.header.th-sortable{"data-hide" => "phone"}
+            New Fan?
+            = render 'shared/sort_arrows'
+          %th.header.th-sortable{"data-hide" => "phone", "data-type" => "numeric"}
+            Shares
+            = render 'shared/sort_arrows'
+          - if giveaway.canhaz_advanced_analytics?
+            %th.header.th-sortable{"data-hide" => "phone,tablet,full", "data-type" => "numeric"}
+              Wall Posts
+              = render 'shared/sort_arrows'
+            %th.header.th-sortable{"data-hide" => "phone,tablet,full", "data-type" => "numeric"}
+              Requests
+              = render 'shared/sort_arrows'
+          - if giveaway.canhaz_referral_tracking?
+            %th.header.th-sortable{"data-hide" => "phone,tablet,full", "data-type" => "numeric"}
+              Conversions
+              = render 'shared/sort_arrows'
+          %th.header.th-sortable{"data-hide" => "all", "data-type" => "numeric"}
+            Bonus Entries
+            = render 'shared/sort_arrows'
+          %th.header.last-child.th-sortable{"data-hide" => "phone,tablet", "data-type" => "numeric", "data-sort-initial" => "descending"}
+            Entry Time
+            = render 'shared/sort_arrows'
+      %tbody
+        = render collection: entries, partial: 'giveaways/entry', as: :entry
+      %tfoot
+        %tr
+          %td{colspan: '11'}
+            %ul.entries-pager.pagination.pagination-sm.m-t-none.m-b-none

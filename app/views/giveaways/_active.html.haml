@@ -6,13 +6,9 @@
           %i.fa.fa-dashboard.text-default.m-r-xs
           Overview
       %li
-        %a#entries_tab_trigger{"data-toggle" => "tab", href: "#entries_tab"}
-          %i.fa.fa-users.text-default.m-r-xs
-          Entries
+        = link_to "<i class='fa fa-users text-default m-r-xs'></i>Entries".html_safe, facebook_page_giveaway_entries_path(page, giveaway), remote: true, 'data-toggle' => 'tab', 'data-target' => '#entries_tab', id: 'entries_tab_trigger'
       %li
-        %a#details_tab_trigger{"data-toggle" => "tab", href: "#details_tab"}
-          %i.fa.fa-cogs.text-default.m-r-xs
-          Settings
+        = link_to "<i class='fa fa-cogs text-default m-r-xs'></i>Details".html_safe, facebook_page_giveaway_path(page, giveaway), remote: true, 'data-toggle' => 'tab', 'data-target' => '#details_tab', id: 'details_tab_trigger'
     %ul.nav.nav-tabs.pull-right
       %li= link_to "<i class='fa fa-facebook-square m-r-xs'></i>View on Facebook".html_safe, giveaway.giveaway_url, target: '_blank'
 
@@ -23,6 +19,11 @@
         = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot if giveaway.canhaz_advanced_analytics?
         -# = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries if entries.any?
       #entries_tab.tab-pane.fade
-        = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries
+        .text-center.progress-wrapper
+          .sg-progress-block
+            .bar
+        -# = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries
       #details_tab.tab-pane.fade
-        = render 'giveaways/details', giveaway: giveaway, page: page
+        .text-center.progress-wrapper
+          .sg-progress-block
+            .bar

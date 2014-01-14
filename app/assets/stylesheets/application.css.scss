@@ -22,7 +22,9 @@
   padding: 2px;
 }
 
+@import 'bourbon';
 @import 'mixins';
+@import 'variables';
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -417,11 +419,11 @@ input[type="file"] {
       }
 
       input + span {
-        background-color: #FB6B5B;
+        background-color: $bg-danger;
       }
 
       input:checked + span {
-        background-color: #8ec165;
+        background-color: $bg-success;
       }
     }
   }
@@ -717,6 +719,11 @@ button {
   #graph_placeholder {
     height: 260px;
   }
+
+  .entries-panel {
+    margin: -15px;
+    border: 0 none;
+  }
 }
 
 .jqstooltip {
@@ -762,4 +769,35 @@ button {
       }
     }
   }
+}
+
+.sg-progress {
+  display: inline-block;
+  width: 150px;
+  height: 20px;
+  border: solid 4px $bg-primary;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 auto;
+
+  .bar {
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    width: 0;
+    background: $bg-primary;
+    border-radius: 3px;
+    @include transition (width 2.50s ease);
+
+    &.loading {
+      width: 134px;
+    }
+  }
+}
+
+.sg-progress-block {
+  @extend .sg-progress;
+  margin: 9% auto 20%;
 }

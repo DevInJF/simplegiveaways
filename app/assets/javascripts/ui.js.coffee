@@ -38,6 +38,15 @@ SG.UI =
   initReadmore: (el) ->
     $(el).jTruncate()
 
+  initFilestyle: ->
+    @fileInputEls().filestyle
+      classButton: 'btn btn-default btn-lg'
+      classInput: 'form-control inline input-s'
+      icon: true
+      buttonText: 'Upload'
+      input: false
+      classIcon: 'fa fa-cloud-upload text'
+
   dropdownEls: -> $('.ui.dropdown')
 
   checkboxEls: -> $('.ui.checkbox').not('.radio')
@@ -47,3 +56,5 @@ SG.UI =
   popupEls: -> $('.popup-trigger')
 
   readmoreEls: -> $('.readmore')
+
+  fileInputEls: -> $(':file')

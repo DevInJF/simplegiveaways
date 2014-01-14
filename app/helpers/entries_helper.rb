@@ -6,7 +6,7 @@ module EntriesHelper
     if entry.name.present?
       link_to entry.name, entry.fb_url, target: '_blank'
     else
-      "&mdash;".html_safe
+      ''
     end
   end
 

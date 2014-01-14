@@ -36,12 +36,17 @@ class GiveawaysController < FacebookController
   def show
     @giveaway = Giveaway.find(params[:id])
     @page = @giveaway.facebook_page
-    if @giveaway.active?
-      flash.keep
-      redirect_to active_facebook_page_giveaways_path(@page)
-    elsif @giveaway.completed?
-      @entries = @giveaway.entries.sort_by(&:created_at).reverse.first(50)
-      @flot = flot_hash
+
+    if request.xhr?
+      render partial: 'giveaways/details', locals: { giveaway: @giveaway, page: @page }, status: :ok
+    else
+      if @giveaway.active?
+        flash.keep
+        redirect_to active_facebook_page_giveaways_path(@page)
+      elsif @giveaway.completed?
+        @entries = @giveaway.entries.sort_by(&:created_at).reverse.first(50)
+        @flot = flot_hash
+      end
     end
   end
 

@@ -56,6 +56,10 @@ class EntriesController < ApplicationController
     @giveaway = Giveaway.find(params[:giveaway_id])
     @page = @giveaway.facebook_page
     @entries = @giveaway.entries
+
+    if request.xhr?
+      render partial: 'giveaways/active/entries', locals: { giveaway: @giveaway, page: @page, entries: @entries }, status: :ok
+    end
   end
 
   private

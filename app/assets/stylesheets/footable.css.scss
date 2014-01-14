@@ -18,6 +18,10 @@
 .footable {
   width: 100%;
 }
+
+.footable.breakpoint > tbody > tr.footable-detail-show {
+  background-color: rgba(0, 0, 50, 0.02);
+}
 .footable.breakpoint > tbody > tr.footable-detail-show > td {
   border-bottom: none;
 }
@@ -130,24 +134,33 @@
 .footable.no-paging .hide-if-no-paging {
   display: none;
 }
+td.footable-row-detail-cell {
+  padding: 0 !important;
+}
 .footable-row-detail-inner {
   display: table;
+  width: 100%;
 }
 .footable-row-detail-row {
   display: table-row;
   line-height: 1.5em;
+  width: 100%;
+  border-bottom: 1px solid #E8E8E8;
 }
 .footable-row-detail-group {
   display: block;
   line-height: 2em;
   font-size: 1.2em;
-  font-weight: bold;
 }
 .footable-row-detail-name {
   display: table-cell;
-  font-weight: bold;
-  padding-right: 0.5em;
+  padding: 6px 15px;
+  vertical-align: middle;
+  width: 13%;
+  min-width: 100px;
 }
 .footable-row-detail-value {
   display: table-cell;
+  vertical-align: middle;
+  padding: 6px 15px;
 }
