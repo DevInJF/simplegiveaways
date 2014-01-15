@@ -201,25 +201,23 @@ Simple Giveaways:
 
       ☐ Fix sidebar nav fixed position issue (at smaller breakpoints)
 
- ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
+      ☐ Loading indicators site-wide.
 
- ☐ Giveaway Preview
+            ☐ Start Giveaway
+
+            ☐ End Giveaway
+
+            ☐ Subscribe
+
+            ☐ Update Subscription
+
+            ☐ Cancel Subscription
+
+ ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 
  ☐ Subscription Emails.
 
  ☐ Create FAQ.
-
- ☐ Loading indicators site-wide.
-
-      ☐ Start Giveaway
-
-      ☐ End Giveaway
-
-      ☐ Subscribe
-
-      ☐ Update Subscription
-
-      ☐ Cancel Subscription
 
  ☐ Ensure user will never be surprised by an action taken by the app.
 
@@ -256,3 +254,7 @@ Simple Giveaways:
  ☐ Market research for subscription and feature modifications/additions.
 
  ☐ A/B testing on UI, UX, and features.
+
+ ☐ Giveaway Preview
+
+ ☐ Standalone Giveaway
