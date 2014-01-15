@@ -4,7 +4,7 @@
   %td
     .entry-name-email
       .entry-name= entry_name(entry)
-      .entry-email= truncate(entry.email, :length => 30)
+      .entry-email.wrap= truncate(entry.email, :length => 30)
   %td.wrap= entry.email
   - if entry.giveaway.canhaz_referral_tracking?
     %td= boolean_table_item(entry.is_viral)
@@ -18,4 +18,4 @@
   %td= entry.bonus_entries
   %td.last-child{"data-value" => entry_unix_timestamp(entry)}
     .entry-time
-      = entry.created_at.strftime('%m/%d/%Y<br />%l:%M %p').html_safe
+      = entry.created_at.strftime('%b %d, %Y @ %l:%M %p').html_safe

@@ -1,13 +1,8 @@
-@import 'bourbon';
-@import 'mixins';
-@import 'variables';
-
 table {
 
   &.footable {
 
     thead {
-      // border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 
       th {
         cursor: pointer;
@@ -15,7 +10,6 @@ table {
         background-color: rgba(0, 0, 0, 0.05);
         text-align: center;
         color: #717171;
-        padding: .5em .7em;
         vertical-align: middle;
 
         &:hover,
@@ -24,6 +18,22 @@ table {
         &.footable-sorted-asc {
           background-color: rgba(0, 0, 0, 0.13);
           color: rgba(0, 0, 0, 0.8);
+        }
+
+        &.footable-sortable {
+
+          .footable-sort-indicator {
+            color: rgba(0, 0, 0, 0.3);
+          }
+
+          &.footable-sorted,
+          &.footable-sorted-desc,
+          &.footable-sorted-asc {
+
+            .footable-sort-indicator {
+              color: rgba(0, 0, 0, 0.8);
+            }
+          }
         }
 
         &:first-child {
@@ -37,10 +47,6 @@ table {
         &.last-child {
           text-align: left;
         }
-
-        // .footable-sort-indicator {
-        //   display: none;
-        // }
       }
     }
 
@@ -55,7 +61,6 @@ table {
       }
 
       td {
-        padding: .4em .7em;
         vertical-align: middle;
         text-align: center;
 
@@ -79,23 +84,18 @@ table {
         background-color: rgba(0, 0, 0, 0.05);
         text-align: center;
         color: rgba(0, 0, 0, 0.8);
-        padding: .5em .7em;
         vertical-align: middle;
       }
     }
   }
 
-  &#entries {
+  &#entries_table {
 
     td {
 
       .entry-name-email {
-        float: left;
-
-        .entry-email {}
+        display: inline-block;
       }
-
-      .entry-time {}
     }
 
     tfoot {

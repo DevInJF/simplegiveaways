@@ -1,44 +1,33 @@
 - if entries
 
-  = stylesheet_link_tag :footable
-
   .panel.panel-default.entries-panel
     .panel-body
       = link_to '<i class="fa fa-save m-r-sm"></i>Export Entries'.html_safe, export_entries_facebook_page_giveaway_path(page, giveaway), class: 'btn btn-sm btn-default', target: '_blank'
-    %table#entries.footable.table{data: { :'page-navigation' => '.entries-pager', :'page-size' => '10' }}
+    %table#entries_table.footable.toggle-arrow-tiny.table{data: { :'page-navigation' => '.entries-pager', :'page-size' => '10' }}
       %thead
         %tr
           %th.header.first-child.th-sortable{"data-toggle" => "true"}
             Name/Email
-            = render 'shared/sort_arrows'
           %th.header.th-sortable{"data-hide" => "all"} Email
           - if giveaway.canhaz_referral_tracking?
-            %th.header.th-sortable{"data-hide" => "phone"}
+            %th.header.th-sortable{"data-hide" => "mini"}
               Viral?
-              = render 'shared/sort_arrows'
-          %th.header.th-sortable{"data-hide" => "phone"}
+          %th.header.th-sortable{"data-hide" => "mini"}
             New Fan?
-            = render 'shared/sort_arrows'
-          %th.header.th-sortable{"data-hide" => "phone", "data-type" => "numeric"}
+          %th.header.th-sortable{"data-hide" => "mini,phone", "data-type" => "numeric"}
             Shares
-            = render 'shared/sort_arrows'
           - if giveaway.canhaz_advanced_analytics?
-            %th.header.th-sortable{"data-hide" => "phone,tablet,full", "data-type" => "numeric"}
+            %th.header.th-sortable{"data-hide" => "mini,phone,tablet,full", "data-type" => "numeric"}
               Wall Posts
-              = render 'shared/sort_arrows'
-            %th.header.th-sortable{"data-hide" => "phone,tablet,full", "data-type" => "numeric"}
+            %th.header.th-sortable{"data-hide" => "mini,phone,tablet,full", "data-type" => "numeric"}
               Requests
-              = render 'shared/sort_arrows'
           - if giveaway.canhaz_referral_tracking?
-            %th.header.th-sortable{"data-hide" => "phone,tablet,full", "data-type" => "numeric"}
+            %th.header.th-sortable{"data-hide" => "mini,phone,tablet,full", "data-type" => "numeric"}
               Conversions
-              = render 'shared/sort_arrows'
           %th.header.th-sortable{"data-hide" => "all", "data-type" => "numeric"}
             Bonus Entries
-            = render 'shared/sort_arrows'
-          %th.header.last-child.th-sortable{"data-hide" => "phone,tablet", "data-type" => "numeric", "data-sort-initial" => "descending"}
+          %th.header.last-child.th-sortable{"data-hide" => "mini,phone,tablet", "data-type" => "numeric", "data-sort-initial" => "descending"}
             Entry Time
-            = render 'shared/sort_arrows'
       %tbody
         = render collection: entries, partial: 'giveaways/entry', as: :entry
       %tfoot

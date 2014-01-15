@@ -25,6 +25,7 @@
 @import 'bourbon';
 @import 'mixins';
 @import 'variables';
+@import 'footable';
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -723,6 +724,20 @@ button {
   .entries-panel {
     margin: -15px;
     border: 0 none;
+
+    .table {
+
+      th {
+        padding: 10px 15px;
+      }
+
+      tfoot {
+
+        td {
+          padding: 10px 15px;
+        }
+      }
+    }
   }
 }
 
@@ -771,14 +786,14 @@ button {
   }
 }
 
-.sg-progress {
+.sg-progress-block {
   display: inline-block;
   width: 150px;
   height: 20px;
   border: solid 4px $bg-primary;
   border-radius: 10px;
   position: relative;
-  margin: 0 auto;
+  margin: 9% auto 20%;
 
   .bar {
     display: block;
@@ -797,7 +812,6 @@ button {
   }
 }
 
-.sg-progress-block {
-  @extend .sg-progress;
-  margin: 9% auto 20%;
+.wrap {
+  @include word-wrap;
 }

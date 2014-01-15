@@ -2,7 +2,6 @@ SG.Giveaways.Active =
 
   initialize: ->
     @initTabListeners() if @tabsContainerEl().length
-    @initEntriesTable() if @entriesTableEl().length
     SG.Giveaways.Active.Graphs.initialize()
 
   initTabListeners: ->
@@ -18,6 +17,9 @@ SG.Giveaways.Active =
     $(document).on 'ajax:success', '#entries_tab_trigger', (xhr, data, s) =>
       @initEntriesTab(data)
 
+    $(document).on 'footable_initialized', '#entries_table', ->
+      setTimeout (=> $(this).trigger('footable_resize')), 100
+
     @tabEls().on 'shown.bs.tab', (e) =>
       if $(e.target).is @detailsTabTriggerEl()
         @detailsTabEl().find('.sg-progress-block .bar').addClass('loading')
@@ -26,11 +28,12 @@ SG.Giveaways.Active =
 
   initEntriesTable: ->
     @entriesTableEl().footable
-      delay: 20
+      delay: 0
       breakpoints:
-        phone: 480
-        tablet: 705
-        full: 900
+        mini: 420
+        phone: 500
+        tablet: 768
+        full: 992
 
   initDetailsTab: (data) ->
     @detailsTabEl().html(data) if data
@@ -42,7 +45,7 @@ SG.Giveaways.Active =
     @entriesTabTriggerEl().addClass('loaded')
     @initEntriesTable()
 
-  entriesTableEl: -> $('.footable')
+  entriesTableEl: -> $('#entries_table')
 
   detailsTabTriggerEl: -> $('#details_tab_trigger')
 

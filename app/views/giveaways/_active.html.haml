@@ -17,12 +17,10 @@
       #overview_tab.tab-pane.fade.active.in
         = render 'giveaways/active/stats', giveaway: giveaway
         = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot if giveaway.canhaz_advanced_analytics?
-        -# = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries if entries.any?
       #entries_tab.tab-pane.fade
         .text-center.progress-wrapper
           .sg-progress-block
             .bar
-        -# = render 'giveaways/active/entries', giveaway: giveaway, page: page, entries: entries
       #details_tab.tab-pane.fade
         .text-center.progress-wrapper
           .sg-progress-block

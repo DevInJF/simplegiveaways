@@ -18,10 +18,6 @@
 .footable {
   width: 100%;
 }
-
-.footable.breakpoint > tbody > tr.footable-detail-show {
-  background-color: rgba(0, 0, 50, 0.02);
-}
 .footable.breakpoint > tbody > tr.footable-detail-show > td {
   border-bottom: none;
 }
@@ -36,7 +32,7 @@
   border-top: none;
 }
 .footable.breakpoint > tbody > tr > td > span.footable-toggle {
-  display: none;
+  display: inline-block;
   font-family: 'footable';
   speak: none;
   font-style: normal;
@@ -44,8 +40,8 @@
   font-variant: normal;
   text-transform: none;
   -webkit-font-smoothing: antialiased;
-  padding-right: 4px;
-  font-size: 12px;
+  padding-right: 5px;
+  font-size: 14px;
   color: #888888;
 }
 .footable.breakpoint > tbody > tr > td > span.footable-toggle:before {
@@ -128,12 +124,58 @@
 .footable > thead > tr > th.footable-sortable:hover {
   cursor: pointer;
 }
+.footable > thead > tr > th.footable-sorted > span.footable-sort-indicator:before {
+  content: "\e013";
+}
+.footable > thead > tr > th.footable-sorted-desc > span.footable-sort-indicator:before {
+  content: "\e012";
+}
+.footable > thead > tr > th > span.footable-sort-indicator {
+  display: inline-block;
+  font-family: 'footable';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  padding-left: 5px;
+}
+.footable > thead > tr > th > span.footable-sort-indicator:before {
+  content: "\e022";
+}
 .footable > tfoot .pagination {
   margin: 0;
 }
 .footable.no-paging .hide-if-no-paging {
   display: none;
 }
+.footable-row-detail-inner {
+  display: table;
+}
+.footable-row-detail-row {
+  display: table-row;
+  line-height: 1.5em;
+}
+.footable-row-detail-group {
+  display: block;
+  line-height: 2em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.footable-row-detail-name {
+  display: table-cell;
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+.footable-row-detail-value {
+  display: table-cell;
+}
+.footable-odd {
+  background-color: #f7f7f7;
+}
+
+/** CUSTOM **/
 td.footable-row-detail-cell {
   padding: 0 !important;
 }

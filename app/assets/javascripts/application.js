@@ -4,9 +4,6 @@
 //= require zeroclipboard
 //= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb
-//= require ../../../vendor/assets/javascripts/footable
-//= require ../../../vendor/assets/javascripts/footable.paginate
-//= require ../../../vendor/assets/javascripts/footable.sort
 //= require jquery-flot/jquery.flot
 //= require jquery-flot/jquery.flot.resize
 //= require jquery-flot/jquery.flot.time
@@ -35,6 +32,9 @@
 //= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min
 //= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 //= require ../../../vendor/assets/javascripts/wysiwyg/jquery.wysihtml5_size_matters
+//= require ../../../vendor/assets/javascripts/footable
+//= require ../../../vendor/assets/javascripts/footable.paginate
+//= require ../../../vendor/assets/javascripts/footable.sort
 //= require facebook
 //= require stripe-client
 //= require ui

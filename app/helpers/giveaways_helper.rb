@@ -9,11 +9,19 @@ module GiveawaysHelper
   def time_from_now(time, options = {})
     only_options = if options[:only]
       options[:only]
-    elsif time < 24.hours.from_now
+    elsif time.between?(1.seconds.ago, 24.hours.from_now)
       %w(hours minutes)
     elsif time > 1.month.from_now
       %w(months days)
     elsif time > 1.year.from_now
+      %w(years months)
+    elsif time.between?(2.seconds.ago, 24.hours.ago)
+      %w(hours)
+    elsif time.between?(24.hours.ago, 1.month.ago)
+      %w(days)
+    elsif time.between?(1.month.ago, 1.year.ago)
+      %w(months days)
+    elsif time < 1.year.ago
       %w(years months)
     else
       %w(days hours)
@@ -123,7 +131,7 @@ module GiveawaysHelper
     end_date = if options[:blank]
       nil
     elsif options[:relative]
-      "#{time_from_now(giveaway.end_date, only: %w(days))} ago"
+      "#{time_from_now(giveaway.start_date)} ago"
     else
       giveaway.end_date
     end
