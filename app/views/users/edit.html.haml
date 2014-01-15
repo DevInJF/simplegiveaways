@@ -1,0 +1,73 @@
+%section.hbox.stretch.users-edit-container
+  %aside.aside-lg.bg-light.lter.b-r
+    %section.vbox
+      %section.scrollable
+        .wrapper
+          .clearfix.m-b
+            %a.pull-left.thumb.m-r{href: "#"}
+              = image_tag current_user.avatar, alt: current_user.name, class: 'img-circle'
+            .clear
+              .h3.m-t-xs.m-b-xs.wrap= current_user.name
+              %small.text-muted
+                %i.fa.fa-facebook-square &nbsp;
+                #{current_user.facebook_pages.size} Facebook Pages
+          %div
+            %small.text-uc.text-xs.text-muted email
+            %p= current_user.email
+            .line
+            %small.text-uc.text-xs.text-muted plan
+            %p= current_user.subscription_plan_name
+            .line
+            %small.text-uc.text-xs.text-muted billing info
+  %aside.col-lg-8
+    %section.vbox
+      %section.scrollable
+        .wrapper
+          %section.panel.panel-default
+            %form
+              %textarea.form-control.no-border{placeholder: "What are you doing...", rows: "3"}
+            %footer.panel-footer.bg-light.lter
+              %button.btn.btn-info.pull-right.btn-sm POST
+              %ul.nav.nav-pills.nav-sm
+                %li
+                  %a{href: "#"}
+                    %i.fa.fa-camera.text-muted
+                %li
+                  %a{href: "#"}
+                    %i.fa.fa-video-camera.text-muted
+          %section.panel.panel-default
+            %h4.font-thin.padder Latest Tweets
+            %ul.list-group
+              %li.list-group-item
+                %p
+                  Wellcome
+                  %a.text-info{href: "#"} @Drew Wllon
+                  and play this web application template, have fun1
+                %small.block.text-muted
+                  %i.fa.fa-clock-o
+                  2 minuts ago
+              %li.list-group-item
+                %p
+                  Morbi nec
+                  %a.text-info{href: "#"} @Jonathan George
+                  nunc condimentum ipsum dolor sit amet, consectetur
+                %small.block.text-muted
+                  %i.fa.fa-clock-o
+                  1 hour ago
+              %li.list-group-item
+                %p
+                  %a.text-info{href: "#"} @Josh Long
+                  Vestibulum ullamcorper sodales nisi nec adipiscing elit.
+                %small.block.text-muted
+                  %i.fa.fa-clock-o
+                  2 hours ago
+          %section.panel.clearfix.bg-info.lter
+            .panel-body
+              %a.thumb.pull-left.m-r{href: "#"}
+                %img.img-circle{src: "images/avatar.jpg"}/
+              .clear
+                %a.text-info{href: "#"}
+                  @Mike Mcalidek
+                  %i.fa.fa-twitter
+                %small.block.text-muted 2,415 followers / 225 tweets
+                %a.btn.btn-xs.btn-success.m-t-xs{href: "#"} Follow

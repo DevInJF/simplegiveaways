@@ -37,6 +37,6 @@ module SubscriptionStatus
   end
 
   def subscription_plan_name
-    subscription.subscription_plan.name rescue nil
+    subscription.subscription_plan.name rescue "Free Trial"
   end
 end

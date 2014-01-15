@@ -213,6 +213,8 @@ Simple Giveaways:
 
             ☐ Cancel Subscription
 
+      ☐ Fix content flashing on page loads
+
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 
  ☐ Subscription Emails.

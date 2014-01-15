@@ -30,6 +30,24 @@ class User < ActiveRecord::Base
     facebook_pages.map(&:giveaways).flatten
   end
 
+  def active_giveaways_count
+    facebook_pages.sum do |page|
+      page.giveaways.active.size
+    end
+  end
+
+  def pending_giveaways_count
+    facebook_pages.sum do |page|
+      page.giveaways.pending.size
+    end
+  end
+
+  def completed_giveaways_count
+    facebook_pages.sum do |page|
+      page.giveaways.completed.size
+    end
+  end
+
   def stripe_customer(stripe_token = nil)
     if stripe_customer_id
       Stripe::Customer.retrieve(stripe_customer_id)
