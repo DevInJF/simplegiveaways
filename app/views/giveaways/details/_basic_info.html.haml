@@ -13,7 +13,10 @@
         Description
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
-      = editable giveaway, :description, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: h(giveaway.description), type: 'textarea', class: 'editable-wysiwyg', escape: false
+      - if giveaway.completed?
+        = giveaway.description.html_safe
+      - else
+        = editable giveaway, :description, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: h(giveaway.description), type: 'textarea', class: 'editable-wysiwyg', escape: false
     %li.list-group-item
       .m-b-xs.editable-trigger
         Custom Tab Name

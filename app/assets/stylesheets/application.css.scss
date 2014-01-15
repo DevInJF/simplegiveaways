@@ -635,6 +635,20 @@ button {
   }
 }
 
+.completed-giveaway-tabs {
+
+  .editable-trigger {
+
+    a {
+      display: none;
+    }
+  }
+
+  .btn-group.editable-upload-trigger {
+    display: none;
+  }
+}
+
 #editor {
   height: 100px;
 }

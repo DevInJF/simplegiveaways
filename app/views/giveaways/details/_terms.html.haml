@@ -13,4 +13,4 @@
         Text
         %a.pull-right{href: "#"}
           %i.fa.fa-pencil
-      = editable giveaway, :terms_text, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: giveaway.terms_text, type: 'textarea', class: 'editable-readmore editable-textarea'
+      = editable giveaway, :terms_text, url: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), value: giveaway.terms_text, type: 'textarea', class: "#{giveaway.completed? ? 'editable-textarea editable-readmore readmore' : 'editable-readmore editable-textarea'}"

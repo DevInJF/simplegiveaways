@@ -9,8 +9,6 @@
         = link_to "<i class='fa fa-users text-default m-r-xs'></i>Entries".html_safe, facebook_page_giveaway_entries_path(page, giveaway), remote: true, 'data-toggle' => 'tab', 'data-target' => '#entries_tab', id: 'entries_tab_trigger'
       %li
         = link_to "<i class='fa fa-cogs text-default m-r-xs'></i>Details".html_safe, facebook_page_giveaway_path(page, giveaway), remote: true, 'data-toggle' => 'tab', 'data-target' => '#details_tab', id: 'details_tab_trigger'
-    %ul.nav.nav-tabs.pull-right
-      %li= link_to "<i class='fa fa-facebook-square m-r-xs'></i>View on Facebook".html_safe, giveaway.giveaway_url, target: '_blank'
 
   .panel-body
     .tab-content

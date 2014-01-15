@@ -1,7 +1,9 @@
 SG.UI.Editables =
 
+  _sg: _SG
+
   initialize: ->
-    @initEditables() if @editableEls().length
+    @initEditables() if @editableEls().length && @isNotCompleted()
 
   initEditables: ->
     $.fn.editableform.buttons = '<button type="submit" class="editable-submit btn btn-xs btn-primary"><i class="fa fa-check"></i></button><button type="button" class="editable-cancel btn btn-xs btn-default"><i class="fa fa-times"></i></button>'
@@ -65,3 +67,5 @@ SG.UI.Editables =
   editableUploadEls: -> $('form input[type="file"]')
 
   editableEls: -> $('.editable')
+
+  isNotCompleted: -> @_sg.CurrentGiveaway.status != 'Completed'
