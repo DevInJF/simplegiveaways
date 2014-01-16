@@ -2,9 +2,12 @@
 
 - sub_object = facebook_page ? facebook_page : current_user
 
-.ui.stackable.grid.subscription-plans
-  .sixteen.wide.column
-    = subscription_message(sub_object)
-  #plan_columns.center.aligned.equal.height.row{ 'data-is-user-centric' => "#{sub_object.is_a?(User) ? 'true' : nil}" }
+.subscription-plans.clearfix
+
+  .bs-callout.bs-callout-info
+    %h4 Subscription Status
+    %p= subscription_message(sub_object)
+
+  #plan_columns.row{ 'data-is-user-centric' => "#{sub_object.is_a?(User) ? 'true' : nil}" }
     = render SubscriptionPlan.public, sub_object: sub_object
 

@@ -24,19 +24,7 @@
       %section.scrollable
         .wrapper
           %section.panel.panel-default
-            %form
-              %textarea.form-control.no-border{placeholder: "What are you doing...", rows: "3"}
-            %footer.panel-footer.bg-light.lter
-              %button.btn.btn-info.pull-right.btn-sm POST
-              %ul.nav.nav-pills.nav-sm
-                %li
-                  %a{href: "#"}
-                    %i.fa.fa-camera.text-muted
-                %li
-                  %a{href: "#"}
-                    %i.fa.fa-video-camera.text-muted
-          %section.panel.panel-default
-            %h4.font-thin.padder Latest Tweets
+            %h4.font-thin.padder Recent Activity
             %ul.list-group
               %li.list-group-item
                 %p
@@ -61,13 +49,3 @@
                 %small.block.text-muted
                   %i.fa.fa-clock-o
                   2 hours ago
-          %section.panel.clearfix.bg-info.lter
-            .panel-body
-              %a.thumb.pull-left.m-r{href: "#"}
-                %img.img-circle{src: "images/avatar.jpg"}/
-              .clear
-                %a.text-info{href: "#"}
-                  @Mike Mcalidek
-                  %i.fa.fa-twitter
-                %small.block.text-muted 2,415 followers / 225 tweets
-                %a.btn.btn-xs.btn-success.m-t-xs{href: "#"} Follow

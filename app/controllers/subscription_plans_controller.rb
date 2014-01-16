@@ -1,6 +1,6 @@
 class SubscriptionPlansController < ApplicationController
 
-  layout Proc.new { |controller| params[:facebook_page_id] ? 'facebook_pages' : 'users' }
+  # layout Proc.new { |controller| params[:facebook_page_id] ? 'facebook_pages' : 'users' }
 
   def index
     if request.post? && params[:starting]
