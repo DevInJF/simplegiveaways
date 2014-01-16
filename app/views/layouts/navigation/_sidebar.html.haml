@@ -40,7 +40,7 @@
                 = active_link_to facebook_page_path(page), wrap_tag: :li do
                   %i.fa.fa-angle-right
                   %span= page.name
-        - if body_class.include?('users-edit')
+        - if body_class.match(/users-edit|subscription_plans-index/)
           %li.active
             %a.active{href: "#"}
               %i.fa.fa-user.icon

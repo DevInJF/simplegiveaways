@@ -1,10 +1,11 @@
-.pages
+.pages.list-group
 
   - if is_current_plan && subscription_plan.is_multi_page?
 
-    %h5.ui.icon.header
-      %i.info.icon
-      You are currently subscribed to this plan.
+    .list-group-item
+      %h5.ui.icon.header
+        %i.info.icon
+        You are currently subscribed to this plan.
 
   - else
 

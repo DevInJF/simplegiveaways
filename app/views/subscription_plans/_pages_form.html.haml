@@ -1,4 +1,4 @@
-%form.ui.fluid.form
+%form.form.list-group{style: "display:none"}
   %legend Choose a Page
   .ui.divider
 
@@ -20,7 +20,7 @@
 
     - page_change_warning = sub_object && sub_object.subscription_plan && sub_object.subscription_plan.is_single_page? && !sub_object.subscription.facebook_pages.include?(page)
 
-    .field{class: "#{already_subscribed ? 'popup-trigger' : ''}", 'data-title' => "#{if has_better_plan; 'This page is already subscribed to a better plan belonging to another user.'; elsif has_worse_plan; 'This page is currently subscribed to a lower plan belonging to another user. If you continue, we will upgrade the plan and move the subscription to your account.'; elsif is_exact_current_plan; 'This is your current subscription.'; end}"}
+    .field.list-group-item{class: "#{already_subscribed ? 'popup-trigger' : ''}", 'data-title' => "#{if has_better_plan; 'This page is already subscribed to a better plan belonging to another user.'; elsif has_worse_plan; 'This page is currently subscribed to a lower plan belonging to another user. If you continue, we will upgrade the plan and move the subscription to your account.'; elsif is_exact_current_plan; 'This is your current subscription.'; end}"}
 
       .ui.radio.checkbox{class: auto_select ? 'default' : 'resetable'}
         = radio_button_tag "#{subscription_plan.name.parameterize}[pages]", page.id, auto_select, disabled: has_better_plan || is_exact_current_plan, class: "#{page_change_warning ? 'page-change-warning' : ''}", 'data-page-change-warning' => "Are you sure you want to change the subscribed page to #{page.name}? #{current_sub_page_name} will be immediately unsubscribed and replaced by #{page.name}. If you would like to subscribe both pages, please upgrade to a multi page plan."
