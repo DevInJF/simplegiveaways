@@ -6,7 +6,7 @@
 *= require ../../../vendor/assets/stylesheets/animate
 *= require ../../../vendor/assets/stylesheets/font-awesome.min
 *= require ../../../vendor/assets/stylesheets/font
-*= require ../../../vendor/assets/javascripts/calendar/bootstrap_calendar
+*= require ../../../vendor/assets/stylesheets/icheck/aero
 *= require ../../../vendor/assets/stylesheets/app
 *= require ../../../vendor/assets/javascripts/fuelux/fuelux
 *= require ../../../vendor/assets/javascripts/pickadate/default
@@ -838,4 +838,39 @@ button {
 
 .plan-price {
   font-size: 42px;
+}
+
+.subscription-plan {
+  cursor: pointer;
+
+  .feature-list {
+    display: block;
+  }
+
+  .page-selector {
+    display: none;
+  }
+
+  &.page-selector {
+
+    .feature-list {
+      display: none;
+    }
+
+    .page-selector {
+      display: block;
+    }
+
+    .icheck-container {
+      width: 100%;
+
+      label {
+        cursor: pointer;
+      }
+
+      input {
+        cursor: pointer;
+      }
+    }
+  }
 }

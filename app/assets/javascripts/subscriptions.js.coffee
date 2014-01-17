@@ -1,4 +1,4 @@
-SG.StripeClient =
+SG.Subscriptions =
 
   _sg: _SG
 
@@ -6,6 +6,7 @@ SG.StripeClient =
     if @stripeEl().length
       @configureHandler()
       @attachListener()
+      @initRadios()
 
   configureHandler: ->
     @handler = StripeCheckout.configure
@@ -21,6 +22,15 @@ SG.StripeClient =
         @planEl = $(e.target).hasClass('subscription-plan') && $(e.target) || $(e.target).parents('.subscription-plan')
         @handleClick()
         e.preventDefault()
+
+  initRadios: ->
+    $('input[type="radio"]').each ->
+      label = $(this).next()
+      label_text = label.text()
+      label.remove()
+      $(this).iCheck
+        radioClass: 'iradio_line-aero'
+        insert: "<div class='icheck_line-icon'></div><span class='label-text'>#{label_text}</span>"
 
   handleClick: ->
     @closePageSelector()
@@ -60,12 +70,11 @@ SG.StripeClient =
       @openStripeCheckout()
 
   openPageSelector: ->
-    $(@planEl).removeClass('five').addClass('page-selector six')
+    $(@planEl).addClass('page-selector')
 
   closePageSelector: ->
-    $('.page-selector').find('.resetable').checkbox('disable').
-    end().find('.default').checkbox('enable').
-    end().removeClass('page-selector six').addClass('five')
+    @openPlanContainerEls().find('.resetable input').iCheck('uncheck').end().find('.default input').iCheck('check')
+    @openPlanContainerEls().removeClass('page-selector')
 
   pageSelectorVisible: (event) ->
     $(event.target).parents('.page-selector').length || $(event.target).hasClass('page-selector')
@@ -98,7 +107,7 @@ SG.StripeClient =
       @pageChangeWarning = $(input).hasClass('page-change-warning') && "#{$(input).data('page-change-warning')}" || null
       $(input).val()
 
-  checkboxEl: -> $('.ui.checkbox')
+  openPlanContainerEls: -> $('.subscription-plan.page-selector')
 
   planContainerEls: -> $('.subscription-plan')
 

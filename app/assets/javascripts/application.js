@@ -14,6 +14,7 @@
 //= require ../../../vendor/assets/javascripts/pickadate/picker.date
 //= require ../../../vendor/assets/javascripts/pickadate/picker.time
 //= require ../../../vendor/assets/javascripts/jquery.jtruncate
+//= require ../../../vendor/assets/javascripts/icheck
 //= require ../../../vendor/assets/javascripts/bootstrap
 //= require ../../../vendor/assets/javascripts/file-input/bootstrap-filestyle.min
 //= require ../../../vendor/assets/javascripts/parsley/parsley.min
@@ -36,7 +37,7 @@
 //= require ../../../vendor/assets/javascripts/footable.paginate
 //= require ../../../vendor/assets/javascripts/footable.sort
 //= require facebook
-//= require stripe-client
+//= require subscriptions
 //= require ui
 //= require ui/editables
 //= require ui/datetime_pickers

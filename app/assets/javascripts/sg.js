@@ -30,5 +30,5 @@ $(function() {
   SG.UI.initialize();
   SG.Users.initialize();
   SG.Giveaways.initialize();
-  SG.StripeClient.initialize();
+  SG.Subscriptions.initialize();
 });
