@@ -1,12 +1,11 @@
-.pages.list-group
+- if is_current_plan && subscription_plan.is_multi_page?
 
-  - if is_current_plan && subscription_plan.is_multi_page?
-
+  .pages.list-group
     .list-group-item
       %h5.ui.icon.header
         %i.info.icon
         You are currently subscribed to this plan.
 
-  - else
+- else
 
-    = render 'subscription_plans/pages_form', subscription_plan: subscription_plan, is_current_plan: is_current_plan, is_next_plan: is_next_plan, sub_object: sub_object
+  = render 'subscription_plans/pages_form', subscription_plan: subscription_plan, is_current_plan: is_current_plan, is_next_plan: is_next_plan, sub_object: sub_object

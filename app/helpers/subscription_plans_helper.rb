@@ -4,20 +4,68 @@ module SubscriptionPlansHelper
     haml_tag :script, class: 'stripe-button', "data-amount" => "#{plan.price_in_cents_per_cycle}", "data-name" => "Simple Giveaways", "data-description" => "#{plan.name}", "data-label" => price_label(plan), "data-key" => Rails.configuration.stripe.publishable_key, :src => "https://checkout.stripe.com/v2/checkout.js"
   end
 
-  def price_label(plan)
-    if plan.is_free_trial?
-      "FREE"
-    elsif plan.is_onetime?
-      plan.price
-    elsif plan.is_monthly?
-      "#{plan.price}<span class='billing-cycle'>/month</span>".html_safe
-    elsif plan.is_yearly?
-      "#{plan.price}<span class='billing-cycle'>/year</span>".html_safe
+  def panel_wrapper_class(plan)
+    if plan.is_single_page_plan?
+      'fadeInLeftBig'
+    elsif plan.is_single_page_pro_plan?
+      'fadeInUp'
+    elsif plan.is_multi_page_pro_plan?
+      'fadeInRightBig'
     end
   end
 
+  def panel_class(plan, options = {})
+    class_string = options[:is_current_plan] ? "current-subscription" : ""
+    if plan.is_single_page_pro_plan?
+      class_string += "b-primary"
+    else
+      class_string += "b-light m-t"
+    end
+    class_string
+  end
+
+  def panel_heading_class(plan)
+    if plan.is_single_page_plan?
+      'bg-white b-light'
+    elsif plan.is_single_page_pro_plan?
+      'bg-primary'
+    elsif plan.is_multi_page_pro_plan?
+      'bg-white b-light'
+    end
+  end
+
+  def price_label(plan)
+    if plan.is_single_page_plan?
+      "<span class='plan-price text-danger font-bold h1'>#{basic_price_string(plan)}</span> / month".html_safe
+    elsif plan.is_single_page_pro_plan?
+      "<div class='padder-v'><span class='plan-price text-danger font-bold h1'>#{basic_price_string(plan)}</span> / month</div>".html_safe
+    elsif plan.is_multi_page_pro_plan?
+      "<span class='plan-price text-danger font-bold h1'>#{basic_price_string(plan)}</span> / month".html_safe
+    end
+  end
+
+  def basic_price_string(plan)
+    plan.price.split('.00')[0]
+  end
+
   def basic_plan_name_string(plan)
-    plan.name.gsub(/\s\(.*\)/, '')
+    if plan.is_single_page_plan?
+      "Single Page"
+    elsif plan.is_single_page_pro_plan?
+      "Single Page <strong>Pro</strong>".html_safe
+    elsif plan.is_multi_page_pro_plan?
+      "Multi Page <strong>Pro</strong>".html_safe
+    end
+  end
+
+  def basic_plan_tagline(plan)
+    if plan.is_single_page_plan?
+      "the essentials"
+    elsif plan.is_single_page_pro_plan?
+      "the good stuff"
+    elsif plan.is_multi_page_pro_plan?
+      "for the power user"
+    end
   end
 
   def page_count_string(plan)

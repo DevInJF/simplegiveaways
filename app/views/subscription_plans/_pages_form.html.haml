@@ -1,6 +1,7 @@
-%form.form.list-group{style: "display:none"}
-  %legend Choose a Page
-  .ui.divider
+%form.form.pages.list-group
+
+  %header.panel-heading
+    %h3.m-t-sm Choose a Page
 
   - current_sub_page_name = sub_object && sub_object.subscription_plan && sub_object.subscription_plan.is_single_page? ? "#{sub_object.subscription.facebook_pages.first.name}" : ""
 

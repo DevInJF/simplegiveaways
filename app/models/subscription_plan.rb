@@ -36,6 +36,18 @@ class SubscriptionPlan < ActiveRecord::Base
     price_in_cents_per_cycle == 0
   end
 
+  def is_single_page_plan?
+    self == SubscriptionPlan.single_page
+  end
+
+  def is_single_page_pro_plan?
+    self == SubscriptionPlan.single_page_pro
+  end
+
+  def is_multi_page_pro_plan?
+    self == SubscriptionPlan.multi_page_pro
+  end
+
   def stripe_subscription_id
     name.downcase.gsub(/\s/, '_').gsub(/\(|\)/, '')
   end

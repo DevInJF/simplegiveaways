@@ -2,13 +2,15 @@
 
 - is_next_plan = sub_object && sub_object.subscription_plan && sub_object.next_plan && sub_object.next_plan_id == subscription_plan.id
 
-.col-sm-4
-  %section.panel.panel-default.subscription-plan{id: subscription_plan.stripe_subscription_id, class: "#{is_current_plan ? 'current-subscription' : ''}", data: { description: subscription_plan.name, original_amount: subscription_plan.price_in_cents_per_cycle, checkout_amount: subscription_plan.price_in_cents_per_cycle, subscription_plan_id: subscription_plan.id, is_single_page: "#{subscription_plan.is_single_page?}", is_next_plan: "#{is_next_plan}", is_current_plan: "#{is_current_plan}" }}
-    %header.panel-heading.bg-info.lt.no-border.text-center
-      .h3.m-t-xs.m-b-xs.text-white
-        .plan-name= basic_plan_name_string(subscription_plan)
-      .h4.m-b-xs.text-white
-        .price-label= price_label(subscription_plan)
-    = render 'subscription_plans/features', subscription_plan: subscription_plan
-    = render 'subscription_plans/page_selector', subscription_plan: subscription_plan, is_current_plan: is_current_plan, is_next_plan: is_next_plan, sub_object: sub_object
+.col-sm-4.animated{class: panel_wrapper_class(subscription_plan)}
+  %section.panel.text-center.subscription-plan{id: subscription_plan.stripe_subscription_id, class: "#{panel_class(subscription_plan, is_current_plan: is_current_plan)}", data: { description: subscription_plan.name, original_amount: subscription_plan.price_in_cents_per_cycle, checkout_amount: subscription_plan.price_in_cents_per_cycle, subscription_plan_id: subscription_plan.id, is_single_page: "#{subscription_plan.is_single_page?}", is_next_plan: "#{is_next_plan}", is_current_plan: "#{is_current_plan}" }}
+    %header.panel-heading{class: panel_heading_class(subscription_plan)}
+      %h3.m-t-sm.plan-name= basic_plan_name_string(subscription_plan)
+      %p= basic_plan_tagline(subscription_plan)
+    %ul.list-group
+      %li.list-group-item{style: "display: none"}
+        = render 'subscription_plans/page_selector', subscription_plan: subscription_plan, is_current_plan: is_current_plan, is_next_plan: is_next_plan, sub_object: sub_object
+      %li.list-group-item.text-center.bg-light.lt
+        = price_label(subscription_plan)
+      = render 'subscription_plans/features', subscription_plan: subscription_plan
     = render 'subscription_plans/footer', is_current_plan: is_current_plan, is_next_plan: is_next_plan, sub_object: sub_object

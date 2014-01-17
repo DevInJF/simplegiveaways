@@ -1,22 +1,14 @@
-.plan-features.list-group.text-center
-  .list-group-item.h5
-    .m-b-xs.m-t-xs
-      %strong= page_count_string(subscription_plan)
-  .list-group-item.h5
-    .m-b-xs.m-t-xs
-      = giveaway_count_string(subscription_plan)
-  .list-group-item.h5
-    .m-b-xs.m-t-xs
-      = analytics_string(subscription_plan)
-  .list-group-item.h5
-    .m-b-xs.m-t-xs
-      = schedule_string(subscription_plan)
-  .list-group-item.h5
-    .m-b-xs.m-t-xs
-      = viral_referrals_string(subscription_plan)
-  .list-group-item.h5
-    .m-b-xs.m-t-xs
-      = shortlink_string(subscription_plan)
-  .list-group-item.h5
-    .m-b-xs.m-t-xs
-      = white_label_string(subscription_plan)
+.list-group-item
+  %strong= page_count_string(subscription_plan)
+.list-group-item
+  = giveaway_count_string(subscription_plan)
+.list-group-item
+  = analytics_string(subscription_plan)
+.list-group-item
+  = schedule_string(subscription_plan)
+.list-group-item
+  = viral_referrals_string(subscription_plan)
+.list-group-item
+  = shortlink_string(subscription_plan)
+.list-group-item
+  = white_label_string(subscription_plan)

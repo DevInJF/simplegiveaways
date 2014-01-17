@@ -2,13 +2,10 @@
 
 - sub_object = facebook_page ? facebook_page : current_user
 
-.subscription-plans.clearfix
+.subscription-plans.clearfix.m-b-xl
 
-  .panel.panel-default
-    .panel-body.panel-body-callout.text-center-xs
-      - callout type: 'info', title: "Subscription Status" do
-        %p= subscription_message(sub_object)
+  .m-b-xl.text-center
+    %h2 Find the Right Pricing Plan For You
 
-  #plan_columns.row{ 'data-is-user-centric' => "#{sub_object.is_a?(User) ? 'true' : nil}" }
+  #plan_columns.row.m-b-xl{ 'data-is-user-centric' => "#{sub_object.is_a?(User) ? 'true' : nil}" }
     = render SubscriptionPlan.public, sub_object: sub_object
-
