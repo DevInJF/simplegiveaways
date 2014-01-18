@@ -181,6 +181,12 @@ Simple Giveaways:
 
       ✔ Giveaway Details Edit-In-Place @done (14-01-06 14:39)
 
+      ☐ Entries Table
+
+            ☐ Fixed Header
+
+            ☐ Responsive View
+
       ☐ Pagination
 
       ☐ Sanitize WYSIHTML5 Markup (css, etc.)
@@ -213,7 +219,7 @@ Simple Giveaways:
 
             ☐ Cancel Subscription
 
-      ☐ Fix content flashing on page loads
+      ☐ Fix content flashing on page loads (prob js related — app.plugin.js?)
 
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 

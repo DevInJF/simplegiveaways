@@ -5,7 +5,6 @@
 //= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb
 //= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap3
 //= require jquery-flot/jquery.flot
 //= require jquery-flot/jquery.flot.resize
 //= require jquery-flot/jquery.flot.time

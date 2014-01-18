@@ -3,12 +3,12 @@
 *= require editable/bootstrap-editable
 *= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 *= require ../../../vendor/assets/javascripts/wysiwyg/wysiwyg-color
-*= require dataTables/jquery.dataTables.bootstrap3
 *= require ../../../vendor/assets/stylesheets/animate
 *= require ../../../vendor/assets/stylesheets/font-awesome.min
 *= require ../../../vendor/assets/stylesheets/font
 *= require ../../../vendor/assets/stylesheets/icheck/aero
 *= require ../../../vendor/assets/stylesheets/app
+*= require ../../../vendor/assets/javascripts/datatables/datatables
 *= require ../../../vendor/assets/javascripts/fuelux/fuelux
 *= require ../../../vendor/assets/javascripts/pickadate/default
 *= require ../../../vendor/assets/javascripts/pickadate/default.date
@@ -41,6 +41,13 @@
   font-style: normal
 }
 
+.paginate_disabled_previous,
+.paginate_disabled_next,
+.paginate_button.previous,
+.paginate_button.next {
+  display: none;
+}
+
 .text-right-sm,
 .text-center-sm {
   text-align: left;
@@ -67,6 +74,13 @@
 }
 
 @media (min-width: 768px) {
+
+  .paginate_disabled_previous,
+  .paginate_disabled_next,
+  .paginate_button.previous,
+  .paginate_button.next {
+    display: inline-block;
+  }
 
   .text-right-sm {
     text-align: right;
@@ -738,6 +752,20 @@ button {
   .entries-panel {
     margin: -15px;
     border: 0 none;
+
+    #entries_table_length {
+
+      select {
+        margin: 0 3px;
+      }
+    }
+
+    #entries_table_filter {
+
+      input {
+        margin-left: 5px;
+      }
+    }
 
     .table {
 

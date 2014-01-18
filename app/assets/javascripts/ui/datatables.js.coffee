@@ -11,8 +11,9 @@ SG.UI.DataTables =
       bProcessing: true
       bServerSide: true
       sAjaxSource: "#{@_sg.Paths.giveawayEntries}"
-      sPaginationType: "bootstrap"
       aaSorting: [[@defaultSortIndex(), @defaultSortOrder()]]
+      sDom: "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-12'<'text-center'p><'text-center'i>>>"
+      sPaginationType: "full_numbers"
 
   defaultSortIndex: ->
     @entriesTableEl().find('th.default-sort').index()

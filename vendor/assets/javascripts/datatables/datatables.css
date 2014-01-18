@@ -45,17 +45,18 @@
 .dataTables_wrapper input {
   width: 200px;
 }
-.dataTables_filter,
-.dataTables_paginate {
+.dataTables_filter {
   float: right;
 }
 .dataTables_length,
 .dataTables_filter {
   padding: 15px;
 }
-.dataTables_info,
 .dataTables_paginate {
-  padding: 15px;
+  padding: 20px 15px 15px;
+}
+.dataTables_info {
+  padding: 0 15px 15px;
 }
 .dataTables_wrapper .paginate_button,
 .dataTables_wrapper .paginate_active {
