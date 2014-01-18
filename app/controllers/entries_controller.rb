@@ -55,10 +55,17 @@ class EntriesController < ApplicationController
   def index
     @giveaway = Giveaway.find(params[:giveaway_id])
     @page = @giveaway.facebook_page
-    @entries = @giveaway.entries
 
-    if request.xhr?
-      render partial: 'giveaways/active/entries', locals: { giveaway: @giveaway, page: @page, entries: @entries }, status: :ok
+    respond_to do |format|
+      format.html do
+        @entries = @giveaway.entries
+        if request.xhr?
+          render partial: 'giveaways/active/entries', locals: { giveaway: @giveaway, page: @page, entries: @entries }, status: :ok
+        end
+      end
+      format.json do
+        render json: EntriesDatatable.new(view_context, giveaway_id: params[:giveaway_id])
+      end
     end
   end
 

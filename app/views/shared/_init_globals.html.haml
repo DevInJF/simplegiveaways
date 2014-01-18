@@ -26,6 +26,7 @@
     (function() {
       _SG.CurrentGiveaway.ID = '#{@giveaway.id}';
       _SG.CurrentGiveaway.status = '#{@giveaway.status}';
+      _SG.Paths.giveawayEntries = '#{facebook_page_giveaway_entries_path(@giveaway.facebook_page, @giveaway)}';
     }());
 
 - if current_user && current_user.fb_uid

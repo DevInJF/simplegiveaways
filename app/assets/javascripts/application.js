@@ -4,6 +4,8 @@
 //= require zeroclipboard
 //= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap3
 //= require jquery-flot/jquery.flot
 //= require jquery-flot/jquery.flot.resize
 //= require jquery-flot/jquery.flot.time
@@ -31,13 +33,11 @@
 //= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min
 //= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 //= require ../../../vendor/assets/javascripts/wysiwyg/jquery.wysihtml5_size_matters
-//= require ../../../vendor/assets/javascripts/footable
-//= require ../../../vendor/assets/javascripts/footable.paginate
-//= require ../../../vendor/assets/javascripts/footable.sort
 //= require facebook
 //= require subscriptions
 //= require ui
 //= require ui/editables
+//= require ui/datatables
 //= require ui/datetime_pickers
 //= require ui/flash_messages
 //= require ui/zclip

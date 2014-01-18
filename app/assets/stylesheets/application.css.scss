@@ -3,6 +3,7 @@
 *= require editable/bootstrap-editable
 *= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
 *= require ../../../vendor/assets/javascripts/wysiwyg/wysiwyg-color
+*= require dataTables/jquery.dataTables.bootstrap3
 *= require ../../../vendor/assets/stylesheets/animate
 *= require ../../../vendor/assets/stylesheets/font-awesome.min
 *= require ../../../vendor/assets/stylesheets/font
@@ -25,7 +26,6 @@
 @import 'bourbon';
 @import 'mixins';
 @import 'variables';
-@import 'footable';
 
 @font-face {
   font-family: 'Glyphicons Halflings';

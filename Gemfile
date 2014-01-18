@@ -40,6 +40,9 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'whenever', require: false
 gem 'x-editable-rails'
 
+gem 'jquery-datatables-rails'
+gem 'ajax-datatables-rails', git: 'git://github.com/CyborgMaster/ajax-datatables-rails.git'
+
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'font-awesome-sass-rails'
