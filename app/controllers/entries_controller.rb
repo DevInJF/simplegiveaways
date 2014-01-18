@@ -64,7 +64,7 @@ class EntriesController < ApplicationController
         end
       end
       format.json do
-        render json: EntriesDatatable.new(view_context, giveaway_id: params[:giveaway_id])
+        render json: EntriesDatatable.new(view_context)
       end
     end
   end

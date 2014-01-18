@@ -4,7 +4,7 @@ class Entry < ActiveRecord::Base
   attr_accessible :email, :has_liked, :has_shared, :name, :fb_url,
                   :datetime_entered, :wall_post_count, :entry_count,
                   :request_count, :convert_count, :status, :uid, :ref_ids,
-                  :referrer_id, :is_viral, :shortlink
+                  :referrer_id, :is_viral, :shortlink, :bonus_entries
 
   attr_accessor :referrer_id
 
@@ -19,6 +19,7 @@ class Entry < ActiveRecord::Base
 
   before_validation(on: :update) do
     self.has_shared = true if total_shares > 0
+    self.bonus_entries = calculate_bonus_entries
   end
 
   after_commit :create_shortlink, unless: -> { self.shortlink.present? }
@@ -118,7 +119,7 @@ class Entry < ActiveRecord::Base
     wall_post_count + request_count
   end
 
-  def bonus_entries
+  def calculate_bonus_entries
     ( (giveaway.bonus_value.to_i * convert_count) + (entry_count - 1) ) rescue 0
   end
 
@@ -146,5 +147,9 @@ class Entry < ActiveRecord::Base
   def create_shortlink
     link = bitly_client.shorten(referral_url).short_url rescue referral_url
     self.update_attributes(shortlink: link)
+  end
+
+  def friendly_created_at
+    created_at.strftime('%b %d, %Y @ %l:%M %p')
   end
 end
