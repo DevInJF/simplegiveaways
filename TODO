@@ -221,6 +221,8 @@ Simple Giveaways:
 
       ☐ Fix content flashing on page loads (prob js related — app.plugin.js?)
 
+ ☐ Don't save cloned giveaways until edited.
+
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 
  ☐ Subscription Emails.
