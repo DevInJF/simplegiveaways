@@ -830,18 +830,58 @@ button {
   @include word-wrap;
 }
 
-#content {
-
-  &.users-edit {
-  }
-}
-
 .plan-price {
   font-size: 42px;
 }
 
 .subscription-plan {
   cursor: pointer;
+  @include transition(border-color 0.2s);
+
+  &:hover,
+  &.page-selector {
+    border-color: #4CC0C1;
+
+    .panel-heading {
+      background-color: #4CC0C1;
+      color: #FFF;
+
+      h3 {
+        outline: none;
+      }
+    }
+
+    .plan-price {
+      color: #FA5542;
+    }
+
+    footer {
+
+      .btn.btn-primary {
+        color: #FFF !important;
+        background-color: #4CC0C1;
+        border-color: #4CC0C1;
+      }
+    }
+  }
+
+  .panel-heading {
+    border-radius: 0;
+    position: relative;
+    @include transition(color 0.2s, background-color 0.2s);
+
+    h3 {
+      position: relative;
+    }
+  }
+
+  .price-item.list-group-item {
+    border-bottom: 2px solid #F0F0F0;
+  }
+
+  .plan-price {
+    @include transition(color 0.2s);
+  }
 
   .feature-list {
     display: block;
@@ -849,6 +889,15 @@ button {
 
   .page-selector {
     display: none;
+  }
+
+  footer {
+
+    .btn {
+      @include transition(color 0.2s, background-color 0.2s);
+      @include word-wrap;
+      white-space: normal;
+    }
   }
 
   &.page-selector {
@@ -861,15 +910,27 @@ button {
       display: block;
     }
 
-    .icheck-container {
-      width: 100%;
+    .page-options {
 
-      label {
-        cursor: pointer;
+      &.scroll {
+        max-height: 300px;
+        overflow: auto;
+
+        .icheck-container {
+          width: 97%;
+        }
       }
 
-      input {
-        cursor: pointer;
+      .icheck-container {
+        width: 100%;
+
+        label {
+          cursor: pointer;
+        }
+
+        input {
+          cursor: pointer;
+        }
       }
     }
   }

@@ -24,8 +24,6 @@
 //= require ../../../vendor/assets/javascripts/charts/easypiechart/jquery.easy-pie-chart
 //= require ../../../vendor/assets/javascripts/charts/sparkline/jquery.sparkline.min
 //= require ../../../vendor/assets/javascripts/charts/flot/demo
-//= require ../../../vendor/assets/javascripts/calendar/bootstrap_calendar
-//= require ../../../vendor/assets/javascripts/calendar/demo
 //= require ../../../vendor/assets/javascripts/fuelux/fuelux
 //= require ../../../vendor/assets/javascripts/sortable/jquery.sortable
 //= require editable/bootstrap-editable

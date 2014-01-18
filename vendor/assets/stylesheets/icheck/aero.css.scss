@@ -44,11 +44,12 @@
     .icheckbox_line-aero.checked,
     .iradio_line-aero.checked {
         color: #FFF !important;
-        background-color: #53B567;
-        border-color: #4BAE5F;
+        background-color: #4CC0C1;
+        border-color: #4CC0C1;
     }
         .icheckbox_line-aero.checked .icheck_line-icon,
-        .iradio_line-aero.checked .icheck_line-icon {
+        .iradio_line-aero.checked .icheck_line-icon,
+        .icheck-container.fake-check .icheck_line-icon {
 
             &:before {
                 content: "\f046";

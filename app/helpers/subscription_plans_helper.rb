@@ -17,9 +17,9 @@ module SubscriptionPlansHelper
   def panel_class(plan, options = {})
     class_string = options[:is_current_plan] ? "current-subscription" : ""
     if plan.is_single_page_pro_plan?
-      class_string += "b-primary"
+      class_string += " b-primary"
     else
-      class_string += "b-light m-t"
+      class_string += " b-light m-t"
     end
     class_string
   end
@@ -32,6 +32,12 @@ module SubscriptionPlansHelper
     elsif plan.is_multi_page_pro_plan?
       'bg-white b-light'
     end
+  end
+
+  def radio_container_class(auto_select, is_exact_current_plan)
+    class_string = auto_select ? 'default' : 'resetable'
+    class_string += ' fake-check' if is_exact_current_plan
+    class_string
   end
 
   def price_label(plan)

@@ -8,7 +8,7 @@
       %h3.m-t-sm.plan-name= basic_plan_name_string(subscription_plan)
       %p= basic_plan_tagline(subscription_plan)
     %ul.list-group
-      %li.list-group-item.text-center.bg-light.lt
+      %li.list-group-item.text-center.bg-light.lt.price-item
         = price_label(subscription_plan)
       %span.feature-list
         = render 'subscription_plans/features', subscription_plan: subscription_plan

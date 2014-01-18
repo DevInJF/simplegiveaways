@@ -4,18 +4,25 @@
 
     - if sub_object.subscription.cancellation_pending?
 
-      %span.btn.btn-primary.m-t.m-b.disabled.cancel-subscription.popup-trigger{'data-title' => "Will be cancelled on #{sub_object.subscription.activate_next_after}."}
-        Cancellation Pending
+      .m-t.m-b{ data: { toggle: "popover", container: "#hover_popover_container", placement: "auto top", html: "true", trigger: "hover", title: "Cancellation Pending", content: "Will be cancelled on #{sub_object.subscription.activate_next_after}." } }
+        %span.btn.btn-default.disabled.cancel-subscription<
+          Cancellation Pending
 
     - else
 
-      = link_to 'Unsubscribe', user_unsubscribe_path(current_user), class: 'btn btn-primary m-t m-b cancel-subscription', 'data-confirm' => 'Are you sure you want to cancel your subscription? If you continue, you will be able to enjoy the benfits of your subscription until the end of the current billing cycle.'
+      = link_to 'Unsubscribe', user_unsubscribe_path(current_user), class: 'btn btn-default m-t m-b cancel-subscription', 'data-confirm' => 'Are you sure you want to cancel your subscription? If you continue, you will be able to enjoy the benfits of your subscription until the end of the current billing cycle.'
 
-- if is_next_plan
+- elsif is_next_plan
 
   - if sub_object.subscription.downgrade_pending?
 
     %footer.panel-footer
 
-      %span.btn.btn-primary.m-t.m-b.disabled.cancel-subscription.popup-trigger{'data-title' => "Will be downgraded on #{sub_object.subscription.activate_next_after}."}
-        Downgrade Pending
+      .m-t.m-b{ data: { toggle: "popover", container: "#hover_popover_container", placement: "auto top", html: "true", trigger: "hover", title: "Downgrade Pending", content: "Will be downgraded on #{sub_object.subscription.activate_next_after}." } }
+        %span.btn.btn-default.disabled.cancel-subscription<
+          Downgrade Pending
+
+- else
+
+  %footer.panel-footer
+    %span.btn.btn-primary.m-t.m-b Get Started
