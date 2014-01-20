@@ -189,7 +189,7 @@ Simple Giveaways:
 
       ☐ Pagination
 
-      ☐ Sanitize WYSIHTML5 Markup (css, etc.)
+      ✔ Sanitize WYSIHTML5 Markup (css, etc.) @done (14-01-19 22:14)
 
       ☐ Convert <br /> to /n for textarea content
 
