@@ -245,6 +245,7 @@ class GiveawaysController < FacebookController
     params[:giveaway].each do |key, value|
       value.squish! if value.class.name == "String"
       value = Sanitize.clean(value, Sanitize::Config::BASIC) if key == 'description'
+      value = value.gsub(/<br>|<br\/>|<br \/>/, "\n") if key == 'terms_text'
       @giveaway_params["#{key}"] = value
     end
   end

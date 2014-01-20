@@ -191,7 +191,7 @@ Simple Giveaways:
 
       ✔ Sanitize WYSIHTML5 Markup (css, etc.) @done (14-01-19 22:14)
 
-      ☐ Convert <br /> to /n for textarea content
+      ✔ Convert <br /> to /n for textarea content @done (14-01-19 22:38)
 
       ☐ Render editable errors via ajax
 
