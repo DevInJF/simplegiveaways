@@ -185,7 +185,11 @@ Simple Giveaways:
 
       ✔ Convert <br /> to /n for textarea content @done (14-01-19 22:38)
 
-      ☐ Render editable errors via ajax
+      ✔ Render editable errors via ajax @done (14-01-19 23:28)
+
+      ✔ Render errors for giveaway images @done (14-01-20 02:22)
+
+      ✔ Handle errors in form wizard @done (14-01-20 02:22)
 
       ☐ Kill scheduling conflict callout when user cancels editable edit
 

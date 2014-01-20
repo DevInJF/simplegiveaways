@@ -20,6 +20,7 @@
     %button.btn.btn-default.btn-xs.btn-next{"data-last" => "Finish", "data-target" => "#form-wizard", "data-wizard" => "next", type: "button"} Next
 .step-content
   = simple_form_for [page, giveaway], html: { class: 'giveaway-form fluid', multipart: true } do |f|
+    = render 'shared/error_messages', object: f.object
     #step1.step-pane.active.basic-info
       = render "giveaways/form/basic_info", f: f
     #step2.step-pane.schedule

@@ -43,9 +43,6 @@ class Giveaway < ActiveRecord::Base
   validates :prize, presence: true
   validates :custom_fb_tab_name, presence: true
 
-  validates_attachment_presence :image
-  validates_attachment_presence :feed_image
-
   store :terms, accessors: [ :terms_url, :terms_text ]
 
   validate :terms_present
@@ -158,6 +155,12 @@ class Giveaway < ActiveRecord::Base
 
   has_attached_file :image, image_opts
   has_attached_file :feed_image, feed_image_opts
+
+  validate :image_valid
+  validate :feed_image_valid
+
+  before_image_post_process :process_only_images
+  before_feed_image_post_process :process_only_images
 
   delegate :needs_subscription?, to: :facebook_page
 
@@ -654,6 +657,36 @@ class Giveaway < ActiveRecord::Base
   end
 
   private
+
+  def process_only_images
+    if !(image.content_type =~ %r{^(image|(x-)?application)/(x-png|pjpeg|jpeg|jpg|png|gif)$})
+      return false
+    elsif !(feed_image.content_type =~ %r{^(image|(x-)?application)/(x-png|pjpeg|jpeg|jpg|png|gif)$})
+      return false
+    end
+  end
+
+  def image_valid
+    if self.image?
+      if !self.image.content_type.match(/image/)
+        errors.add(:image, "must be an image.")
+      end
+      if self.image.size > 5.megabytes
+        errors.add(:image, "must be less than 5 megabytes in size.")
+      end
+    end
+  end
+
+  def feed_image_valid
+    if self.feed_image?
+      if !self.feed_image.content_type.match(/image/)
+        errors.add(:feed_image, "must be an image.")
+      end
+      if self.feed_image.size > 5.megabytes
+        errors.add(:feed_image, "must be less than 5 megabytes in size.")
+      end
+    end
+  end
 
   def terms_url_link
     "<a href='#{terms_url}' class='terms-link terms-url' target='_blank'>Official Terms and Conditions</a>".html_safe

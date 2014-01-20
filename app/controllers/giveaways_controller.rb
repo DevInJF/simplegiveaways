@@ -100,7 +100,6 @@ class GiveawaysController < FacebookController
       @giveaway.update_tab if @giveaway.active?
     else
       flash.now[:error] = "There was a problem updating #{@giveaway.title}."
-      @giveaway.reload
 
       respond_to do |format|
         format.html { render :edit }
