@@ -6,4 +6,20 @@ CKEDITOR.editorConfig = function(config) {
     { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] }
   ];
   config.toolbar = 'Basic';
+  config.enterMode = CKEDITOR.ENTER_P;
+  config.shiftEnterMode = CKEDITOR.ENTER_P;
+  config.autoParagraph = false;
+  config.fillEmptyBlocks = false;
+  config.fullPage = false;
+  config.forcePasteAsPlainText = true;
 }
+
+CKEDITOR.on('instanceReady', function(ev) {
+  ev.editor.dataProcessor.writer.setRules('p', {
+    indent : false,
+    breakBeforeOpen : false,
+    breakAfterOpen : false,
+    breakBeforeClose : false,
+    breakAfterClose : false
+  });
+});
