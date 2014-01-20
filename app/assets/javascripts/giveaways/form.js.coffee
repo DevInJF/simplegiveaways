@@ -6,6 +6,7 @@ SG.Giveaways.Form =
     if @wizardEl().length
       @initWizard()
       @initBonusEntriesToggle()
+      @checkSchedule(el) for el in SG.UI.DatetimePickers.dateTimePickerEls()
     @processErrors() if @errors().length
 
   initWizard: ->
@@ -13,8 +14,15 @@ SG.Giveaways.Form =
     @wizardEl().on 'change', (e, data) => @onWizardChange(e, data)
     @wizardEl().on 'finished', (e, data) => @onWizardFinished(e, data)
 
+  checkSchedule: (el) ->
+    $el = $(el)
+    unless SG.UI.DatetimePickers.startConflicts && SG.UI.DatetimePickers.isEnd($el)
+      SG.UI.DatetimePickers.conflictContainerEl($el).find('.conflict').remove()
+      SG.UI.DatetimePickers.checkSchedule($el.val(), $el)
+
   onWizardChange: (e, data) ->
     validated = true
+    CKEDITOR.instances.editor.updateElement()
     $("[data-required='true']", @containerEl().find("#step#{data.step}")).each ->
       validated = $(this).parsley('validate')
     false if data.direction == 'next' && not validated
@@ -27,10 +35,11 @@ SG.Giveaways.Form =
     @containerEl().find('form').submit()
 
   initBonusEntriesToggle: ->
-    $('#giveaway_allow_multi_entries').parents('.checkbox').checkbox(onChange: @toggleBonusEntries)
+    $('#giveaway_allow_multi_entries').on 'change', =>
+      @toggleBonusEntries()
 
   toggleBonusEntries: ->
-    $('#bonus_value_wrapper').toggle()
+    $('.giveaway_bonus_value').toggle()
 
   processErrors: ->
     @wizardEl().find("li[data-target='##{@firstErrorStep()}']").trigger 'click'

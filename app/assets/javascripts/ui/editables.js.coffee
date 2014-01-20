@@ -4,6 +4,7 @@ SG.UI.Editables =
 
   initialize: ->
     @initEditables() if @editableEls().length && @isNotCompleted()
+    @checkSchedule(el) for el in @editableDatetimeEls()
 
   initEditables: ->
     $.fn.editableform.buttons = '<button type="submit" class="editable-submit btn btn-xs btn-primary"><i class="fa fa-check"></i></button><button type="button" class="editable-cancel btn btn-xs btn-default"><i class="fa fa-times"></i></button>'
@@ -11,6 +12,12 @@ SG.UI.Editables =
     @initEditableUploads(el) for el in @editableUploadEls()
     @initEditableTrigger(el) for el in @editableTriggerEls()
     @initEditableUploadTrigger(el) for el in @editableUploadTriggerEls()
+
+  checkSchedule: (el) ->
+    $el = $(el)
+    unless SG.UI.DatetimePickers.startConflicts && SG.UI.DatetimePickers.isEnd($el)
+      SG.UI.DatetimePickers.conflictContainerEl($el).find('.conflict').remove()
+      SG.UI.DatetimePickers.checkSchedule($el.text(), $el)
 
   initEditable: (el) ->
     @initReadmoreEditables(el)
@@ -24,6 +31,7 @@ SG.UI.Editables =
         else
           @onEditableSuccess(el, newValue)
     @initEditableShown(el)
+    @initEditableHidden(el)
 
   onEditableSuccess: (el, newValue) ->
     if $(el).hasClass('editable-datetime')
@@ -49,6 +57,14 @@ SG.UI.Editables =
         else if editable.$element.hasClass('editable-textarea')
           SG.UI.initAutosize()
 
+  initEditableHidden: (el) ->
+    $el = $(el)
+    $el.on 'hidden', (e, reason) ->
+      if $el.hasClass('editable-datetime')
+        unless SG.UI.DatetimePickers.startConflicts && SG.UI.DatetimePickers.isEnd($el)
+          SG.UI.DatetimePickers.conflictContainerEl($el).find('.conflict').remove()
+          SG.UI.DatetimePickers.checkSchedule($el.text(), $el)
+
   initEditableUploads: (el) ->
     $(el).on 'change', ->
       $form = $(this).parents('form')
@@ -67,6 +83,8 @@ SG.UI.Editables =
       e.stopPropagation()
       $(el).next('.editable').editable('toggle')
       return false
+
+  editableDatetimeEls: -> $('.editable-datetime')
 
   editableUploadTriggerEls: -> $('.editable-upload-trigger')
 

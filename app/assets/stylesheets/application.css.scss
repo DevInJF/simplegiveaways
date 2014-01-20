@@ -515,6 +515,14 @@ button {
 
 #giveaway_details {
 
+  textarea {
+    white-space: pre-line;
+  }
+
+  .editable-disabled {
+    outline: none;
+  }
+
   .editable-label {
 
     &.error {
@@ -597,6 +605,13 @@ button {
         .editable-input {
           min-width: 100%;
         }
+      }
+    }
+
+    .editable-textarea {
+
+      &.editable-pre-wrapped {
+        white-space: pre-line;
       }
     }
 

@@ -191,7 +191,11 @@ Simple Giveaways:
 
       ✔ Handle errors in form wizard @done (14-01-20 02:22)
 
-      ☐ Kill scheduling conflict callout when user cancels editable edit
+      ✔ Kill scheduling conflict callout when user cancels editable edit @done (14-01-20 03:39)
+
+      ✔ Remove ckeditor horizontal scrollbar @done (14-01-20 03:52)
+
+      ✔ Fix content flashing on page loads (prob js related — app.plugin.js?) @done (14-01-20 04:23)
 
       ☐ Fix pickadate picker in modals
 
@@ -219,7 +223,7 @@ Simple Giveaways:
 
             ☐ Cancel Subscription
 
-      ☐ Fix content flashing on page loads (prob js related — app.plugin.js?)
+      ☐ Better scheduling conflict logic
 
  ☐ Don't save cloned giveaways until edited.
 
