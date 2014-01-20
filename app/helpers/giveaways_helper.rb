@@ -9,17 +9,17 @@ module GiveawaysHelper
   def time_from_now(time, options = {})
     only_options = if options[:only]
       options[:only]
-    elsif time.between?(1.seconds.ago, 24.hours.from_now)
+    elsif (1.seconds.ago..24.hours.from_now).cover? time
       %w(hours minutes)
     elsif time > 1.month.from_now
       %w(months days)
     elsif time > 1.year.from_now
       %w(years months)
-    elsif time.between?(2.seconds.ago, 24.hours.ago)
-      %w(hours)
-    elsif time.between?(24.hours.ago, 1.month.ago)
+    elsif (24.hours.ago..2.seconds.ago).cover? time
+      %w(hours minutes)
+    elsif (1.month.ago..24.hours.ago).cover? time
       %w(days)
-    elsif time.between?(1.month.ago, 1.year.ago)
+    elsif (1.year.ago..1.month.ago).cover? time
       %w(months days)
     elsif time < 1.year.ago
       %w(years months)
@@ -110,14 +110,15 @@ module GiveawaysHelper
     start_date = if options[:blank]
       nil
     elsif options[:relative]
-      time_from_now(giveaway.start_date)
+      ts = "#{time_from_now(giveaway.start_date)}"
+      giveaway.start_date.past? ? (ts += " ago") : ts
     else
       giveaway.start_date
     end
 
     return start_date if giveaway.active? || giveaway.completed?
     if giveaway.cannot_schedule?
-      "<span class=\"giveaway-start-date-warning\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"Inactive Start Date\" data-content=\"A Pro subscription is required in order to schedule a giveaway.</p><a class='btn btn-primary btn-block' href='#{facebook_page_subscription_plans_path(giveaway.facebook_page)}''>Choose a Plan</a>\"><s>#{start_date}</s></span>".html_safe
+      "<span class=\"giveaway-start-date-warning\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"Inactive Start Date\" data-content=\"<p>A Pro subscription is required in order to schedule a giveaway.</p><a class='btn btn-primary btn-block' href='#{facebook_page_subscription_plans_path(giveaway.facebook_page)}'>Choose a Plan</a>\"><s>#{start_date}</s></span>".html_safe
     elsif giveaway.has_scheduling_conflict?
       "<span class=\"giveaway-start-date-warning\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"Inactive Start Date\" data-content=\"<p>This giveaway has scheduling conflicts with the following giveaways:</p><p>#{conflicts(giveaway)}</p><p>Please update your giveaway schedules in order to activate this start date.</p><a class='btn btn-default btn-block' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'><i class='fa fa-pencil'></i>&nbsp;&nbsp;Edit Giveaway</a>\"><s>#{start_date}</s></span>".html_safe
     else
@@ -131,7 +132,8 @@ module GiveawaysHelper
     end_date = if options[:blank]
       nil
     elsif options[:relative]
-      "#{time_from_now(giveaway.start_date)} ago"
+      ts = "#{time_from_now(giveaway.end_date)}"
+      giveaway.end_date.past? ? (ts += " ago") : ts
     else
       giveaway.end_date
     end
