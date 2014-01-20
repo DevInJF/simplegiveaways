@@ -197,19 +197,13 @@ Simple Giveaways:
 
       ✔ Fix content flashing on page loads (prob js related — app.plugin.js?) @done (14-01-20 04:23)
 
+      01/20/2014
+
       ☐ Fix pickadate picker in modals
 
       ☐ Fix pickadate picker in case where start date is disabled (active giveaway)
 
       ☐ Fix sidebar nav fixed position issue (at smaller breakpoints)
-
-      ☐ Entries Table
-
-            ☐ Fixed Header
-
-            ☐ Responsive View
-
-      ☐ Pagination
 
       ☐ Loading indicators site-wide.
 
@@ -223,11 +217,33 @@ Simple Giveaways:
 
             ☐ Cancel Subscription
 
-      ☐ Better scheduling conflict logic
+      ☐ Dashboard View
+
+      01/21/2014
+
+      ☐ Finish Dashboard View
+
+      ☐ Entries Table
+
+            ☐ Fixed Header
+
+            ☐ Responsive View
+
+      ☐ Pagination
+
+01/22/2014
 
  ☐ Don't save cloned giveaways until edited.
 
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
+
+      ☐ Better scheduling conflict presentation logic?
+
+ ☐ Ensure user will never be surprised by an action taken by the app.
+
+      ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
+
+ 01/23/2014
 
  ☐ Subscription Emails.
 
@@ -239,9 +255,11 @@ Simple Giveaways:
 
       ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
 
- ☐ Ensure user will never be surprised by an action taken by the app.
+ 01/24/2014
 
-      ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
+ ☐ Finish Help Section
+
+01/25/2014
 
  ☐ Acquire assets from Brian Dillon
 
