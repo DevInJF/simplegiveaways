@@ -27,11 +27,10 @@
 //= require ../../../vendor/assets/javascripts/charts/flot/demo
 //= require ../../../vendor/assets/javascripts/fuelux/fuelux
 //= require ../../../vendor/assets/javascripts/sortable/jquery.sortable
+//= require ckeditor/init
+//= require ../../../vendor/assets/javascripts/wysiwyg/ckeditor-jquery
 //= require editable/bootstrap-editable
 //= require editable/rails
-//= require ../../../vendor/assets/javascripts/wysiwyg/wysihtml5-0.3.0.min
-//= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
-//= require ../../../vendor/assets/javascripts/wysiwyg/jquery.wysihtml5_size_matters
 //= require facebook
 //= require subscriptions
 //= require ui

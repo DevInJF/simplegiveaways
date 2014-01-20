@@ -188,10 +188,6 @@
                         this.initHtml(toolbar);
                     }
 
-                    if(key === "link") {
-                        this.initInsertLink(toolbar);
-                    }
-
                     if(key === "image") {
                         this.initInsertImage(toolbar);
                     }

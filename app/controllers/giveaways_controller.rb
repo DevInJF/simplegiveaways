@@ -10,6 +10,7 @@ class GiveawaysController < FacebookController
 
   before_filter :assign_page, only: [:active, :pending, :completed, :new, :create, :clone, :destroy, :start_modal]
   before_filter :assign_giveaway, only: [:edit, :update, :destroy, :start, :end, :export_entries, :clone, :destroy, :start_modal]
+  before_filter :sanitize_params, only: [:create, :update]
 
   before_filter :parse_signed_request, only: [:tab], if: -> { params[:signed_request] }
 
@@ -62,11 +63,7 @@ class GiveawaysController < FacebookController
   end
 
   def create
-    giveaway_params = params[:giveaway].each do |key, value|
-      value.squish! if value.class.name == "String"
-    end
-
-    @giveaway = @page.giveaways.build(giveaway_params)
+    @giveaway = @page.giveaways.build(@giveaway_params)
     @giveaway.giveaway_url = "#{@page.url}?sk=app_#{FB_APP_ID}&ref=ts"
 
     if @giveaway.save
@@ -88,7 +85,7 @@ class GiveawaysController < FacebookController
   def update
     @page = @giveaway.facebook_page
 
-    if @giveaway.update_attributes(params[:giveaway])
+    if @giveaway.update_attributes(@giveaway_params)
       flash[:info] = "#{@giveaway.title} has been updated.".html_safe
 
       if @page.cannot_schedule? && @giveaway.start_date
@@ -240,6 +237,15 @@ class GiveawaysController < FacebookController
       Giveaway.find(params[:giveaway_id])
     else
       Giveaway.find(params[:id])
+    end
+  end
+
+  def sanitize_params
+    @giveaway_params = {}
+    params[:giveaway].each do |key, value|
+      value.squish! if value.class.name == "String"
+      value = Sanitize.clean(value, Sanitize::Config::BASIC) if key == 'description'
+      @giveaway_params["#{key}"] = value
     end
   end
 

@@ -1,8 +1,6 @@
 /*
 *= require ../../../vendor/assets/stylesheets/bootstrap
 *= require editable/bootstrap-editable
-*= require ../../../vendor/assets/javascripts/wysiwyg/bootstrap-wysihtml5
-*= require ../../../vendor/assets/javascripts/wysiwyg/wysiwyg-color
 *= require ../../../vendor/assets/stylesheets/animate
 *= require ../../../vendor/assets/stylesheets/font-awesome.min
 *= require ../../../vendor/assets/stylesheets/font
@@ -569,6 +567,10 @@ button {
 
     .editable-wysiwyg {
       margin-bottom: 5px;
+
+      &.editable-pre-wrapped {
+        white-space: normal;
+      }
 
       & + .editable-container {
 

@@ -1,0 +1,70 @@
+%ul#wysihtml5_toolbar.wysihtml5-toolbar{style: "display: none"}
+  %li.dropdown
+    %a.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+      %i.fa.fa-font>
+      \ 
+      %span.current-font> Normal text
+      \ 
+      %b.caret
+    %ul.dropdown-menu
+      %li
+        %a{"data-wysihtml5-command" => "formatBlock", "data-wysihtml5-command-value" => "div", href: "javascript:;", tabindex: "-1", unselectable: "on"} Normal text
+      %li
+        %a{"data-wysihtml5-command" => "formatBlock", "data-wysihtml5-command-value" => "h1", href: "javascript:;", tabindex: "-1", unselectable: "on"} Heading 1
+      %li
+        %a{"data-wysihtml5-command" => "formatBlock", "data-wysihtml5-command-value" => "h2", href: "javascript:;", tabindex: "-1", unselectable: "on"} Heading 2
+      %li
+        %a{"data-wysihtml5-command" => "formatBlock", "data-wysihtml5-command-value" => "h3", href: "javascript:;", tabindex: "-1", unselectable: "on"} Heading 3
+      %li
+        %a{"data-wysihtml5-command" => "formatBlock", "data-wysihtml5-command-value" => "h4", href: "javascript:;", unselectable: "on"} Heading 4
+      %li
+        %a{"data-wysihtml5-command" => "formatBlock", "data-wysihtml5-command-value" => "h5", href: "javascript:;", unselectable: "on"} Heading 5
+      %li
+        %a{"data-wysihtml5-command" => "formatBlock", "data-wysihtml5-command-value" => "h6", href: "javascript:;", unselectable: "on"} Heading 6
+  %li.dropdown
+    %a.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown", href: "#", tabindex: "-1"}
+      %span.current-color> Black
+      \ 
+      %b.caret
+    %ul.dropdown-menu
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "black"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "black", href: "javascript:;", unselectable: "on"} Black
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "silver"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "silver", href: "javascript:;", unselectable: "on"} Silver
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "gray"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "gray", href: "javascript:;", unselectable: "on"} Grey
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "maroon"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "maroon", href: "javascript:;", unselectable: "on"} Maroon
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "red"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "red", href: "javascript:;", unselectable: "on"} Red
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "purple"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "purple", href: "javascript:;", unselectable: "on"} Purple
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "green"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "green", href: "javascript:;", unselectable: "on"} Green
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "olive"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "olive", href: "javascript:;", unselectable: "on"} Olive
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "navy"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "navy", href: "javascript:;", unselectable: "on"} Navy
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "blue"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "blue", href: "javascript:;", unselectable: "on"} Blue
+      %li
+        .wysihtml5-colors{"data-wysihtml5-command-value" => "orange"}
+        %a.wysihtml5-colors-title{"data-wysihtml5-command" => "foreColor", "data-wysihtml5-command-value" => "orange", href: "javascript:;", unselectable: "on"} Orange
+  %li
+    .btn-group
+      %a.btn.btn-default.btn-sm{"data-wysihtml5-command" => "bold", href: "javascript:;", tabindex: "-1", title: "CTRL+B", unselectable: "on"} Bold
+      %a.btn.btn-default.btn-sm{"data-wysihtml5-command" => "italic", href: "javascript:;", tabindex: "-1", title: "CTRL+I", unselectable: "on"} Italic
+      %a.btn.btn-default.btn-sm{"data-wysihtml5-command" => "underline", href: "javascript:;", tabindex: "-1", title: "CTRL+U", unselectable: "on"} Underline
+  %li
+    %a.btn.btn-default.btn-sm{"data-wysihtml5-command" => "createLink", href: "javascript:;", tabindex: "-1", title: "Insert link", unselectable: "on"}
+      %i.fa.fa-share

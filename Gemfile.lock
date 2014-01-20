@@ -130,6 +130,9 @@ GEM
       timers (~> 1.1.0)
     chronic (0.10.2)
     chunky_png (1.2.6)
+    ckeditor (4.0.8)
+      mime-types
+      orm_adapter
     cocaine (0.2.1)
     code_analyzer (0.4.3)
       sexp_processor
@@ -402,6 +405,8 @@ GEM
     ruport (1.6.3)
       fastercsv
       pdf-writer (= 1.1.8)
+    sanitize (2.1.0)
+      nokogiri (>= 1.4.4)
     sass (3.2.13)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -495,6 +500,7 @@ DEPENDENCIES
   brakeman
   browser_print!
   cancan
+  ckeditor
   coffee-rails (~> 3.2.1)
   colored
   compass-rails
@@ -546,6 +552,7 @@ DEPENDENCIES
   rails-assets-underscore
   rails_best_practices
   rubygems-bundler
+  sanitize
   sass-rails (~> 3.2.3)
   seed_dump
   semantic-ui-rails
