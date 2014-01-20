@@ -515,6 +515,26 @@ button {
 
 #giveaway_details {
 
+  .editable-label {
+
+    &.error {
+      color: #fb6b5b;
+
+      .editable-error {
+        color: #fb6b5b;
+        font-weight: normal;
+        display: block;
+      }
+    }
+  }
+
+  .editable-empty,
+  .editable-empty:hover,
+  .editable-empty:focus {
+    color: #fb6b5b;
+    font-weight: normal;
+  }
+
   .list-group-item {
     @include word-wrap;
 

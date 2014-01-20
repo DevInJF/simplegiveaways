@@ -20,11 +20,19 @@ SG.UI.Editables =
       escape: false
       success: (response, newValue) =>
         if response.errors?
-          setTimeout (-> $(el).editable('setValue', $(el).data('editable').options.value)), 1000
+          setTimeout (=> @onEditableError(el, response.errors)), 1000
         else
-          if $(el).hasClass('editable-datetime')
-            $(el).parents('.date-container').data('date', newValue)
+          @onEditableSuccess(el, newValue)
     @initEditableShown(el)
+
+  onEditableSuccess: (el, newValue) ->
+    if $(el).hasClass('editable-datetime')
+      $(el).parents('.date-container').data('date', newValue)
+    $(el).parents('.editable-parent').find('.editable-label').removeClass('error')
+
+  onEditableError: (el, errors) ->
+    # $(el).editable('setValue', $(el).data('editable').options.value)
+    $(el).parents('.editable-parent').find('.editable-label').addClass('error').end().find('.editable-error').text(errors[0])
 
   initReadmoreEditables: (el) ->
     $(el).on 'init', (e, editable) ->

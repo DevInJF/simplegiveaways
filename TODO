@@ -181,23 +181,11 @@ Simple Giveaways:
 
       ✔ Giveaway Details Edit-In-Place @done (14-01-06 14:39)
 
-      ☐ Entries Table
-
-            ☐ Fixed Header
-
-            ☐ Responsive View
-
-      ☐ Pagination
-
       ✔ Sanitize WYSIHTML5 Markup (css, etc.) @done (14-01-19 22:14)
 
       ✔ Convert <br /> to /n for textarea content @done (14-01-19 22:38)
 
       ☐ Render editable errors via ajax
-
-      ☐ Add info callouts for giveaway images and preferences
-
-      ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
 
       ☐ Kill scheduling conflict callout when user cancels editable edit
 
@@ -206,6 +194,14 @@ Simple Giveaways:
       ☐ Fix pickadate picker in case where start date is disabled (active giveaway)
 
       ☐ Fix sidebar nav fixed position issue (at smaller breakpoints)
+
+      ☐ Entries Table
+
+            ☐ Fixed Header
+
+            ☐ Responsive View
+
+      ☐ Pagination
 
       ☐ Loading indicators site-wide.
 
@@ -227,7 +223,13 @@ Simple Giveaways:
 
  ☐ Subscription Emails.
 
- ☐ Create FAQ.
+ ☐ Help Section
+
+      ☐  Create FAQ
+
+      ☐ Add info callouts for giveaway images and preferences
+
+      ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
 
  ☐ Ensure user will never be surprised by an action taken by the app.
 
