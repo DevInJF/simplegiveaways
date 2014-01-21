@@ -148,8 +148,4 @@ class Entry < ActiveRecord::Base
     link = bitly_client.shorten(referral_url).short_url rescue referral_url
     self.update_attributes(shortlink: link)
   end
-
-  def friendly_created_at
-    created_at.strftime('%b %d, %Y @ %l:%M %p')
-  end
 end

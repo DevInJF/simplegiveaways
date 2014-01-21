@@ -362,8 +362,8 @@ GEM
       rails-assets-jquery (>= 1.7)
     rails-assets-jquery-flot (0.8.2)
       rails-assets-jquery (>= 1.2.6)
+    rails-assets-lodash (2.4.1)
     rails-assets-moment (2.4.0)
-    rails-assets-underscore (1.5.2)
     rails_best_practices (1.14.4)
       activesupport
       awesome_print
@@ -548,8 +548,8 @@ DEPENDENCIES
   rails-assets-jquery (~> 2.0.3)
   rails-assets-jquery-autosize
   rails-assets-jquery-flot
+  rails-assets-lodash
   rails-assets-moment
-  rails-assets-underscore
   rails_best_practices
   rubygems-bundler
   sanitize

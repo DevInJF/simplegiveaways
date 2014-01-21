@@ -7,6 +7,7 @@
 *= require ../../../vendor/assets/stylesheets/icheck/aero
 *= require ../../../vendor/assets/stylesheets/app
 *= require ../../../vendor/assets/javascripts/datatables/datatables
+*= require ../../../vendor/assets/javascripts/datatables/datatables.responsive
 *= require ../../../vendor/assets/javascripts/fuelux/fuelux
 *= require ../../../vendor/assets/javascripts/pickadate/default
 *= require ../../../vendor/assets/javascripts/pickadate/default.date
@@ -790,6 +791,10 @@ button {
     margin: -15px;
     border: 0 none;
 
+    #button_placeholder {
+      padding: 15px;
+    }
+
     #entries_table_length {
 
       select {
@@ -807,13 +812,30 @@ button {
     .table {
 
       th {
-        padding: 10px 15px;
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      tr {
+        cursor: pointer;
+
+        &:hover,
+        &.row-detail {
+
+          td {
+            background: #EEE;
+          }
+        }
+      }
+
+      td {
+        padding: 6px 10px;
       }
 
       tfoot {
 
         td {
-          padding: 10px 15px;
+          padding: 10px;
         }
       }
     }

@@ -54,7 +54,7 @@ group :assets do
   gem 'rails-assets-jquery-autosize'
   gem 'rails-assets-jquery-flot'
   gem 'rails-assets-moment'
-  gem 'rails-assets-underscore'
+  gem 'rails-assets-lodash'
 end
 
 gem 'autoprefixer-rails'

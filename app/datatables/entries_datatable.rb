@@ -18,7 +18,9 @@ class EntriesDatatable < AjaxDatatablesRails
 
   def data
     entries.map do |entry|
-      @display_columns.map { |attr| entry.send(attr) }
+      @display_columns.map do |presenter|
+        self.send(presenter, entry)
+      end
     end
   end
 
@@ -41,16 +43,16 @@ class EntriesDatatable < AjaxDatatablesRails
   end
 
   def display_columns
-    attrs = [:name, :email]
-    attrs.push(:is_viral) if @giveaway.canhaz_referral_tracking?
-    attrs.push(:new_fan?)
-    attrs.push(:total_shares)
+    attrs = ['name', 'email']
+    attrs.push('is_viral?') if @giveaway.canhaz_referral_tracking?
+    attrs.push('new_fan?')
+    attrs.push('total_shares')
     if @giveaway.canhaz_advanced_analytics?
-      attrs.push(:wall_post_count, :request_count)
+      attrs.push('wall_post_count', 'request_count')
     end
-    attrs.push(:convert_count) if @giveaway.canhaz_referral_tracking?
-    attrs.push(:bonus_entries)
-    attrs.push(:friendly_created_at)
+    attrs.push('convert_count') if @giveaway.canhaz_referral_tracking?
+    attrs.push('bonus_entries')
+    attrs.push('created_at')
     attrs
   end
 
@@ -78,5 +80,49 @@ class EntriesDatatable < AjaxDatatablesRails
     else
       :created_at
     end
+  end
+
+  def name(entry)
+    entry.name || "<i>n/a</i>".html_safe
+  end
+
+  def email(entry)
+    entry.email
+  end
+
+  def is_viral?(entry)
+    boolean_label(entry.is_viral?)
+  end
+
+  def new_fan?(entry)
+    boolean_label(entry.new_fan?)
+  end
+
+  def total_shares(entry)
+    "<div class='text-center'>#{entry.total_shares}</div>".html_safe
+  end
+
+  def wall_post_count(entry)
+    "<div class='text-center'>#{entry.wall_post_count}</div>".html_safe
+  end
+
+  def request_count(entry)
+    "<div class='text-center'>#{entry.request_count}</div>".html_safe
+  end
+
+  def convert_count(entry)
+    "<div class='text-center'>#{entry.convert_count}</div>".html_safe
+  end
+
+  def bonus_entries(entry)
+    "<div class='text-center'>#{entry.bonus_entries}</div>".html_safe
+  end
+
+  def created_at(entry)
+    entry.created_at.strftime('%b %d, %Y @ %l:%M %p')
+  end
+
+  def boolean_label(bool)
+    bool ? '<div class="text-center">&#10004;</div>'.html_safe : '<div class="text-center">&#10008;</div>'.html_safe
   end
 end

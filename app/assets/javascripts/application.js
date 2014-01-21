@@ -1,10 +1,11 @@
 //= require jquery_ujs
-//= require underscore
+//= require lodash/lodash.underscore
 //= require moment
 //= require zeroclipboard
 //= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb
 //= require dataTables/jquery.dataTables
+//= require ../../../vendor/assets/javascripts/datatables/datatables.responsive
 //= require jquery-flot/jquery.flot
 //= require jquery-flot/jquery.flot.resize
 //= require jquery-flot/jquery.flot.time
