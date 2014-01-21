@@ -203,9 +203,13 @@ Simple Giveaways:
 
       ✔ Entries Table Responsive View @done (14-01-20 23:50)
 
-      ☐ Fix pickadate picker in modals
+      ✔ Fix pickadate picker in modals @done (14-01-21 03:44)
 
-      ☐ Fix pickadate picker in case where start date is disabled (active giveaway)
+      ✔ Fix pickadate picker in case where start date is disabled (active giveaway) @done (14-01-21 03:45)
+
+      ✔ Fix SG.Giveaways.Start.trigger @done (14-01-21 03:45)
+
+      01/21/2014
 
       ☐ Loading indicators site-wide.
 
@@ -219,11 +223,9 @@ Simple Giveaways:
 
             ☐ Cancel Subscription
 
-      ☐ Dashboard View
-
-      ☐ Finish Dashboard View
-
       ☐ Pagination
+
+      ☐ Dashboard View
 
 01/22/2014
 

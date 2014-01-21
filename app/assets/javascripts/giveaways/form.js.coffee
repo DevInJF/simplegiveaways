@@ -6,7 +6,8 @@ SG.Giveaways.Form =
     if @wizardEl().length
       @initWizard()
       @initBonusEntriesToggle()
-      @checkSchedule(el) for el in SG.UI.DatetimePickers.dateTimePickerEls()
+      unless @_sg.CurrentGiveaway.status == 'Active'
+        @checkSchedule(el) for el in SG.UI.DatetimePickers.dateTimePickerEls()
     @processErrors() if @errors().length
 
   initWizard: ->

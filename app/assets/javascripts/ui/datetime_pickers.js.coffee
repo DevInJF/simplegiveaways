@@ -11,7 +11,12 @@ SG.UI.DatetimePickers =
   attachDatetimePicker: (el) ->
     $el = $(el)
     $container = $el.parents('.date-container')
-    $outlet = $container.find('.pickadate-outlet')
+
+    $outlet = if $el.hasClass('modal-pickadate')
+      $('#modal_pickadate_outlet')
+    else
+      $container.find('.pickadate-outlet')
+
     $dateTriggerEl = $container.find('.date-trigger')
     $timeTriggerEl = $container.find('.time-trigger')
 

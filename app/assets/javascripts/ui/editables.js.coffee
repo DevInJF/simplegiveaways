@@ -4,7 +4,8 @@ SG.UI.Editables =
 
   initialize: ->
     @initEditables() if @editableEls().length && @isNotCompleted()
-    @checkSchedule(el) for el in @editableDatetimeEls()
+    unless @_sg.CurrentGiveaway.status == 'Active'
+      @checkSchedule(el) for el in @editableDatetimeEls()
 
   initEditables: ->
     $.fn.editableform.buttons = '<button type="submit" class="editable-submit btn btn-xs btn-primary"><i class="fa fa-check"></i></button><button type="button" class="editable-cancel btn btn-xs btn-default"><i class="fa fa-times"></i></button>'
@@ -36,7 +37,7 @@ SG.UI.Editables =
   onEditableSuccess: (el, newValue) ->
     if $(el).hasClass('editable-datetime')
       $(el).parents('.date-container').data('date', newValue)
-    $(el).parents('.editable-parent').find('.editable-label').removeClass('error')
+    $(el).parents('.editable-parent').find('.editable-label').removeClass('error').end().find('.editable-error').text('')
 
   onEditableError: (el, errors) ->
     # $(el).editable('setValue', $(el).data('editable').options.value)
