@@ -199,11 +199,17 @@ Simple Giveaways:
 
       01/20/2014
 
+      ✔ Fix sidebar nav fixed position issue (at smaller breakpoints) @done (14-01-21 01:15)
+
+      ☐ Entries Table
+
+            ☐ Fixed Header
+
+            ✔ Responsive View @done (14-01-20 23:50)
+
       ☐ Fix pickadate picker in modals
 
       ☐ Fix pickadate picker in case where start date is disabled (active giveaway)
-
-      ☐ Fix sidebar nav fixed position issue (at smaller breakpoints)
 
       ☐ Loading indicators site-wide.
 
@@ -222,12 +228,6 @@ Simple Giveaways:
       01/21/2014
 
       ☐ Finish Dashboard View
-
-      ☐ Entries Table
-
-            ☐ Fixed Header
-
-            ✔ Responsive View @done (14-01-20 23:50)
 
       ☐ Pagination
 
