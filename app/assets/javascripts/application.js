@@ -27,8 +27,6 @@
 //= require ../../../vendor/assets/javascripts/fuelux/fuelux
 //= require ckeditor/init
 //= require ../../../vendor/assets/javascripts/wysiwyg/ckeditor-jquery
-//= require ../../../vendor/assets/javascripts/app
-//= require ../../../vendor/assets/javascripts/app.plugin
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require facebook
@@ -47,3 +45,5 @@
 //= require giveaways/form
 //= require giveaways/form/wysiwyg
 //= require giveaways/details
+//= require ../../../vendor/assets/javascripts/app
+//= require ../../../vendor/assets/javascripts/app.plugin
