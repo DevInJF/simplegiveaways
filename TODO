@@ -201,11 +201,7 @@ Simple Giveaways:
 
       ✔ Fix sidebar nav fixed position issue (at smaller breakpoints) @done (14-01-21 01:15)
 
-      ☐ Entries Table
-
-            ☐ Fixed Header
-
-            ✔ Responsive View @done (14-01-20 23:50)
+      ✔ Entries Table Responsive View @done (14-01-20 23:50)
 
       ☐ Fix pickadate picker in modals
 
@@ -282,6 +278,8 @@ Simple Giveaways:
  ☐ Security Audit
 
  VERSION 1.0
+
+ ☐ Entries Table Fixed Header Solution
 
  ☐ Move analytics to redis or similar key/value store to ease strain on db.
 
