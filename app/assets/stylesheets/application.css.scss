@@ -40,6 +40,26 @@
   font-style: normal
 }
 
+.panel-footer {
+
+  &.paging-footer {
+    padding-left: 5px;
+    padding-right: 5px;
+
+    .pagination {
+      margin: 20px 0 10px;
+    }
+
+    .paging-info {
+      margin-bottom: 10px;
+    }
+
+    .pagination-model {
+      text-transform: capitalize;
+    }
+  }
+}
+
 .paginate_disabled_previous,
 .paginate_disabled_next,
 .paginate_button.previous,

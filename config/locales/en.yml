@@ -1,5 +1,16 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  will_paginate:
+    previous_label: '<i class="fa fa-chevron-left"></i>'
+    next_label: '<i class="fa fa-chevron-right"></i>'
+    page_entries_info:
+      single_page:
+        zero:  "No %{model} found"
+        one:   "1 %{model} total"
+        other: "All %{count} %{model}"
+      single_page_html:
+        zero:  "No <span class='pagination-model'>%{model}</span> found"
+        one:   "<b>1</b> <span class='pagination-model'>%{model}</span> total"
+        other: "<b>all&nbsp;%{count}</b> <span class='pagination-model'>%{model}</span>"
+
+      multi_page: "%{model} %{from} - %{to} of %{count} total"
+      multi_page_html: "<span class='pagination-model'>%{model}</span> <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> total"

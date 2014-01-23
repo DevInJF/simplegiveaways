@@ -258,7 +258,7 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    kaminari (0.15.0)
+    kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     koala (1.6.0)
@@ -479,6 +479,9 @@ GEM
     whenever (0.8.4)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
+    will_paginate (3.0.5)
+    will_paginate-bootstrap (1.0.0)
+      will_paginate (>= 3.0.3)
     x-editable-rails (1.5.2)
       railties
     zeroclipboard-rails (0.0.10)
@@ -568,5 +571,6 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   validates_timeliness (~> 3.0)
   whenever
+  will_paginate-bootstrap
   x-editable-rails
   zeroclipboard-rails

@@ -40,6 +40,7 @@ gem 'stripe-rails'
 gem 'stripe_tester'
 gem 'validates_timeliness', '~> 3.0'
 gem 'whenever', require: false
+gem 'will_paginate-bootstrap'
 gem 'x-editable-rails'
 
 gem 'jquery-datatables-rails'

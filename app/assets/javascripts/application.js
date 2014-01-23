@@ -25,6 +25,7 @@
 //= require ../../../vendor/assets/javascripts/charts/sparkline/jquery.sparkline.min
 //= require ../../../vendor/assets/javascripts/charts/flot/demo
 //= require ../../../vendor/assets/javascripts/fuelux/fuelux
+//= require ../../../vendor/assets/javascripts/responsive-paginate
 //= require ckeditor/init
 //= require ../../../vendor/assets/javascripts/wysiwyg/ckeditor-jquery
 //= require editable/bootstrap-editable

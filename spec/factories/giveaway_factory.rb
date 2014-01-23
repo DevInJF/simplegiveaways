@@ -14,9 +14,9 @@ FactoryGirl.define do
 
     custom_fb_tab_name { Faker::Name.name }
 
-    image { fixture_file_upload "#{Rails.root}/spec/support/obama-dog.jpg", 'jpeg' }
+    image { fixture_file_upload "#{Rails.root}/spec/support/obama-dog.jpg", 'image/jpeg' }
 
-    feed_image { fixture_file_upload "#{Rails.root}/spec/support/obama-dog.jpg", 'jpeg' }
+    feed_image { fixture_file_upload "#{Rails.root}/spec/support/obama-dog.jpg", 'image/jpeg' }
 
     terms_url { Faker::Internet.http_url }
 

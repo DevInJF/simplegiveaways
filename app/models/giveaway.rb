@@ -164,6 +164,8 @@ class Giveaway < ActiveRecord::Base
 
   delegate :needs_subscription?, to: :facebook_page
 
+  self.per_page = 10
+
   def cannot_schedule?
     !can_schedule?
   end

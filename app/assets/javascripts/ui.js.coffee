@@ -4,15 +4,19 @@ SG.UI =
     SG.UI.FlashMessages.initialize()
     @initReadmores()
     @initAutosize()
+    @initPagination()
     SG.UI.ZClip.initialize()
     SG.UI.DatetimePickers.initialize()
     SG.UI.Editables.initialize()
 
+  initReadmores: ->
+    @initReadmore(el) for el in @readmoreEls()
+
   initAutosize: ->
     $('textarea').autosize()
 
-  initReadmores: ->
-    @initReadmore(el) for el in @readmoreEls()
+  initPagination: ->
+    @paginationEls().rPage()
 
   initReadmore: (el) ->
     $(el).jTruncate()
@@ -27,5 +31,7 @@ SG.UI =
       classIcon: 'fa fa-cloud-upload text'
 
   readmoreEls: -> $('.readmore')
+
+  paginationEls: -> $('ul.pagination')
 
   fileInputEls: -> $(':file')

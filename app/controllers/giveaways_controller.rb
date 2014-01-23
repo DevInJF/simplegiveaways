@@ -27,7 +27,7 @@ class GiveawaysController < FacebookController
   end
 
   def pending
-    @giveaways = @page.giveaways.visible.pending
+    @giveaways = @page.giveaways.visible.pending.paginate(page: params[:page])
   end
 
   def completed
