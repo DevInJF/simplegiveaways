@@ -17,7 +17,7 @@ class GiveawaysController < FacebookController
   after_filter :after_tab_actions, only: [:tab]
 
   def index
-    @giveaways = Giveaway.visible
+    @giveaways = Giveaway.visible.paginate(page: params[:page])
   end
 
   def active
@@ -31,7 +31,7 @@ class GiveawaysController < FacebookController
   end
 
   def completed
-    @giveaways = (@page.giveaways.visible.completed | @page.giveaways.to_end).sort_by(&:end_date).reverse
+    @giveaways = (@page.giveaways.visible.completed | @page.giveaways.to_end).sort_by(&:end_date).reverse.paginate(page: params[:page])
   end
 
   def show

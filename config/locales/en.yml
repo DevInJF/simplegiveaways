@@ -10,7 +10,7 @@ en:
       single_page_html:
         zero:  "No <span class='pagination-model'>%{model}</span> found"
         one:   "<b>1</b> <span class='pagination-model'>%{model}</span> total"
-        other: "<b>all&nbsp;%{count}</b> <span class='pagination-model'>%{model}</span>"
+        other: "All <b>%{count}</b> <span class='pagination-model'>%{model}</span>"
 
       multi_page: "%{model} %{from} - %{to} of %{count} total"
       multi_page_html: "<span class='pagination-model'>%{model}</span> <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> total"

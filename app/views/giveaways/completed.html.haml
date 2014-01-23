@@ -9,6 +9,11 @@
 
     = render 'facebook_pages/giveaways', giveaways: @giveaways
 
+    .panel-footer.paging-footer.text-center
+      = will_paginate @giveaways, renderer: BootstrapPagination::Rails
+      .text-center.paging-info
+        = pagination_info @giveaways, model: "#{'giveaway'.pluralize(@giveaways.size)}"
+
   - else
 
     .panel-body.panel-body-callout.text-center-xs
