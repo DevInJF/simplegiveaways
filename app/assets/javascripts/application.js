@@ -1,6 +1,7 @@
 //= require jquery_ujs
 //= require lodash/lodash.underscore
 //= require moment
+//= require messenger
 //= require zeroclipboard
 //= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb

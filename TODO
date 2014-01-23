@@ -211,7 +211,9 @@ Simple Giveaways:
 
       01/22/2014
 
-      ☐ Pagination
+      ✔ Pagination @done (14-01-23 02:47)
+
+      01/23/2014
 
       ☐ Loading indicators site-wide.
 
@@ -227,7 +229,7 @@ Simple Giveaways:
 
       ☐ Dashboard View
 
-01/22/2014
+01/24/2014
 
  ☐ Don't save cloned giveaways until edited.
 
@@ -235,11 +237,13 @@ Simple Giveaways:
 
       ☐ Better scheduling conflict presentation logic?
 
+      ☐ Can say something like "This start date conflicts... Only the earliest scheduled giveaway will be automatically started."
+
  ☐ Ensure user will never be surprised by an action taken by the app.
 
       ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 
- 01/23/2014
+ 01/25/2014
 
  ☐ Subscription Emails.
 
@@ -251,11 +255,11 @@ Simple Giveaways:
 
       ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
 
- 01/24/2014
+ 01/26/2014
 
  ☐ Finish Help Section
 
-01/25/2014
+01/27/2014
 
  ☐ Acquire assets from Brian Dillon
 
