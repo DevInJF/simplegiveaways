@@ -13,3 +13,23 @@
      -moz-hyphens: auto;
           hyphens: auto;
 }
+
+@mixin bg-primary {
+  background-color: #65bd77;
+  color: #e2f3e5;
+}
+
+@mixin bg-info {
+  background-color: #4cc0c1;
+  color: #d1efef;
+}
+
+@mixin bg-warning {
+  background-color: #ffc333;
+  color: #fff8e6;
+}
+
+@mixin bg-danger {
+  background-color: #fb6b5b;
+  color: #ffffff;
+}

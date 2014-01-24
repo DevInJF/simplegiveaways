@@ -26,6 +26,7 @@
 @import 'bourbon';
 @import 'mixins';
 @import 'variables';
+@import 'messenger-custom';
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -293,6 +294,9 @@
 
 .navbar-brand {
   font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+  margin: 0;
 
   i {
     margin-right: 5px;
