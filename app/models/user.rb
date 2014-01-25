@@ -89,6 +89,10 @@ class User < ActiveRecord::Base
     name.split(' ').first rescue name
   end
 
+  def just_finished_onboarding?
+    finished_onboarding && current_identity.login_count == 1
+  end
+
   ROLES = %w[superadmin admin team restricted banned]
 
   def is?(role)

@@ -14,11 +14,14 @@
 }
 
 ul.messenger.messenger-theme-block.messenger-fixed {
+  width: 350px;
+  max-width: 100%;
 
   .messenger-message {
     padding: 0;
     border: 0 none;
     text-shadow: none;
+    text-align: left;
     position: relative;
 
     &.alert-warning {
@@ -56,12 +59,10 @@ ul.messenger.messenger-theme-block.messenger-fixed {
     }
 
     .messenger-message-inner {
-      padding: 13px 0 11px;
+      padding: 13px 17px;
 
       .message-icon {
-        position: absolute;
-        display: inline-block;
-        width: auto;
+        float: left;
 
         .time-icon {
           width: 30px;
@@ -96,11 +97,12 @@ ul.messenger.messenger-theme-block.messenger-fixed {
       .message-text {
         text-align: left;
         display: inline-block;
-        margin-left: 40px;
+        margin-left: 10px;
+        max-width: 75%;
       }
 
       h4 {
-        margin: 0;
+        margin: 0 0 2px;
         font-size: 14px;
         font-weight: 700;
       }
@@ -112,6 +114,7 @@ ul.messenger.messenger-theme-block.messenger-fixed {
 
       p {
         font-size: 14px;
+        line-height: 14px;
         display: inline-block;
 
         &:last-child {

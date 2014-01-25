@@ -1,7 +1,6 @@
 //= require jquery_ujs
 //= require lodash/lodash.underscore
 //= require moment
-//= require messenger
 //= require zeroclipboard
 //= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb
@@ -32,6 +31,7 @@
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require facebook
+//= require dashboard
 //= require subscriptions
 //= require ui
 //= require ui/editables
@@ -39,7 +39,6 @@
 //= require ui/datetime_pickers
 //= require ui/flash_messages
 //= require ui/zclip
-//= require users
 //= require giveaways
 //= require giveaways/active_giveaway
 //= require giveaways/active/graphs

@@ -1,9 +1,6 @@
-.ui.mini.basic.buttons
-  = link_to 'Giveaways', facebook_page_path(facebook_page), class: 'ui button'
-  .ui.floating.dropdown.icon.button
-    %i.dropdown.icon
-    .menu
-      = active_link_to 'New Giveaway', new_facebook_page_giveaway_path(facebook_page), class: 'item'
-      = active_link_to 'Active Giveaway', active_facebook_page_giveaways_path(facebook_page), class: 'item'
-      = active_link_to 'Pending Giveaways', pending_facebook_page_giveaways_path(facebook_page), class: 'item'
-      = active_link_to 'Completed Giveaways', completed_facebook_page_giveaways_path(facebook_page), class: 'item'
+- size_class ||= 'btn-lg'
+
+= link_to 'New Giveaway', new_facebook_page_giveaway_path(facebook_page), class: "btn #{size_class} btn-default"
+= link_to 'Active Giveaway', active_facebook_page_giveaways_path(facebook_page), class: "btn #{size_class} btn-default"
+= link_to 'Pending Giveaways', pending_facebook_page_giveaways_path(facebook_page), class: "btn #{size_class} btn-default"
+= link_to 'Completed Giveaways', completed_facebook_page_giveaways_path(facebook_page), class: "btn #{size_class} btn-default"

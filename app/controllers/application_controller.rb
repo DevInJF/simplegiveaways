@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :xeditable?
 
   before_filter :user_pages, :if => :signed_in?
+  after_filter :flash_to_headers
 
   protect_from_forgery with: :exception
 
@@ -16,6 +17,29 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def flash_to_headers
+    if request.xhr?
+      response.headers['X-Message'] = flash_message
+      response.headers['X-Message-Type'] = flash_type
+      response.headers['X-Message-Title'] = flash_title
+      flash.discard
+    end
+  end
+
+  def flash_message
+    flash_msg = flash.first.last rescue nil
+    flash_msg.is_a?(Hash) ? flash_msg[:content] : flash_msg
+  end
+
+  def flash_type
+    "#{flash.first.first}" rescue nil
+  end
+
+  def flash_title
+    flash_msg = flash.first.last rescue nil
+    flash_msg.is_a?(Hash) ? flash_msg[:title] : nil
+  end
 
   def user_pages
     @user_pages ||= current_user.facebook_pages.select([:id, :pid, :name]) rescue nil

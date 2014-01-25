@@ -13,9 +13,9 @@ function deepFreeze (o) {
 SG = {
   UI: {},
   Graphs: {},
+  Dashboard: {},
   StripeClient: {},
-  Giveaways: {},
-  Users: {}
+  Giveaways: {}
 };
 
 _SG = {
@@ -27,8 +27,20 @@ _SG = {
 }
 
 $(function() {
-  SG.UI.initialize();
-  SG.Users.initialize();
-  SG.Giveaways.initialize();
-  SG.Subscriptions.initialize();
+
+  if (typeof(SG.UI) !== 'undefined' && typeof(SG.UI.initialize) === 'function') {
+    SG.UI.initialize();
+  }
+
+  if (typeof(SG.Dashboard) !== 'undefined' && typeof(SG.Dashboard.initialize) === 'function') {
+    SG.Dashboard.initialize();
+  }
+
+  if (typeof(SG.Giveaways) !== 'undefined' && typeof(SG.Giveaways.initialize) === 'function') {
+    SG.Giveaways.initialize();
+  }
+
+  if (typeof(SG.Subscriptions) !== 'undefined' && typeof(SG.Subscriptions.initialize) === 'function') {
+    SG.Subscriptions.initialize();
+  }
 });

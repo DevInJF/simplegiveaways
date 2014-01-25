@@ -233,6 +233,10 @@ Simple Giveaways:
 
       ☐ Dashboard View
 
+      ☐ Fix issue where flash messages container is preventing clicks from passing through.
+
+      ☐ Load in menu partials via ajax during onboarding.
+
 01/25/2014
 
  ☐ Don't save cloned giveaways until edited.

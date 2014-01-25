@@ -1,7 +1,8 @@
-//= require jquery
 //= require ../../../vendor/assets/javascripts/jquery.noisy
+//= require ui/flash_messages
 
 $(function() {
+
   $('body').noisy({
     'intensity' : 0.061,
     'size' : '300',
@@ -9,4 +10,6 @@ $(function() {
     'fallback' : '#DFE3E8',
     'monochrome' : false
   }).css('background-color', '#DFE3E8');
+
+  SG.UI.FlashMessages.initialize();
 });

@@ -1,9 +1,15 @@
-.item.facebook-page{ :'data-fb-pid' => facebook_page.pid }
-  = link_to '', facebook_page_path(facebook_page), class: 'ui circular image masked-avatar', style: "background-image: url('#{facebook_page.avatar_large}');"
-  .content.meta
-    = link_to facebook_page.name, facebook_page_path(facebook_page), class: 'header'
-    %small #{facebook_page.likes} Likes
-  .content
-    = render 'facebook_pages/navigation/primary', facebook_page: facebook_page
-
-
+%li.list-group-item.facebook-page.animated.fadeInUp{ 'data-fb-pid' => facebook_page.pid }
+  .row.no-gutter
+    .col-xs-12.col-sm-7
+      .media
+        - avatar link: facebook_page_path(facebook_page), image_url: facebook_page.avatar_large
+        .media-body.m-t-sm.m-b-xs
+          .h4.media-heading= link_to facebook_page.name, facebook_page_path(facebook_page)
+          .meta
+            %p
+              %i.fa.fa-thumbs-o-up.m-r-xs
+              = like_count_label(facebook_page)
+    .col-xs-12.col-sm-5
+      -# .row.m-t-sm-sm.m-b-xs
+      -#   .avatar-push.text-right-sm.m-r-md-sm.m-l-md-xs
+      -#     = render 'facebook_pages/navigation/primary', facebook_page: facebook_page, size_class: 'btn-sm'

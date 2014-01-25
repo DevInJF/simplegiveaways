@@ -1,35 +1,5 @@
-- if flash
-  %ul.messenger.messenger-fixed.messenger-on-top.messenger-theme-block
-    - flash.each do |level, message|
-      %li.messenger-message-slot
-        .messenger-message.message{class: "message-#{level} alert-#{level}"}
-          .messenger-message-inner
-            %span.message-icon
-              %i.fa.fa-bell-o.time-icon{class: "bg-#{level}"}
-            .message-text
-              %h4= "#{level}".titleize
-              %p
-                = message
-            %button.messenger-close{"data-dismiss" => "alert", type: "button"} ×
-          .messenger-spinner
-            %span.messenger-spinner-side.messenger-spinner-side-left
-              %span.messenger-spinner-fill
-            %span.messenger-spinner-side.messenger-spinner-side-right
-              %span.messenger-spinner-fill
-
--# .panel.bg-primary.lter.no-borders
--#   .panel-body
--#     %span.timeline-icon
--#       %i.fa.fa-bell-o.time-icon.bg-primary
--#     %span.timeline-date 7:30 am
--#     %h5
--#       %span Wake up
--#       Me
--#     .m-t-sm.timeline-action
--#       %span.h3.pull-left.m-r-sm 4:51
--#       %button.btn.btn-sm.btn-default.btn-bg
--#         %i.fa.fa-pause
--#         Pause
--#       %button.btn.btn-sm.btn-default.btn-bg
--#         %i.fa.fa-check
--#         Confirm
+#flash_tray
+  %ul.messenger.messenger-fixed.messenger-on-bottom.messenger-on-right.messenger-theme-block
+    - if flash.any?
+      - flash.each do |level, message|
+        = render 'shared/flash_message', level: level, message: message

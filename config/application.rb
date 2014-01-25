@@ -25,19 +25,16 @@ module Simplegiveaways
 
     config.assets.enabled = true
 
+    config.assets.paths << "#{Rails.root}/vendor/assets/fonts"
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.assets.precompile += [
-      'vendor/excanvas.js',
-      'tab.js',
       'application.js',
       'welcome.js',
       'tab.css',
       'application.css',
-      'application-ie.css',
       'welcome.css',
-      'graph.css',
-      'footable.css'
+      'tab.js'
     ]
 
     # Custom directories with classes and modules you want to be autoloadable.

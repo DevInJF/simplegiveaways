@@ -4,8 +4,14 @@ class UsersController < ApplicationController
   before_filter :parse_signed_request, only: [:deauth]
 
   def show
-    redirect_to root_path unless @user = current_user
-    render 'dashboard/index'
+    if @user = current_user
+      unless @user && @user.finished_onboarding?
+        flash[:notice] = { title: "Welcome to Simple Giveaways.", content: "Please hold on a moment while we fetch your Facebook Pages." }
+      end
+      render 'dashboard/index'
+    else
+      redirect_to root_path
+    end
   end
 
   def edit

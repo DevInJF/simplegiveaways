@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     if signed_in?
       flash[:notice] = @identity.add_to_existing_user(current_user)
     else
-      flash[:notice] = @identity.create_or_login_user(auth)
+      @identity.create_or_login_user(auth)
     end
 
     render 'sessions/create', layout: false
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     self.current_user = nil
     session[:user_id] = nil
     if params[:fb] == "true"
-      flash[:error] = "You have been signed out due to a change in your facebook session."
+      flash[:error] = "You have been logged out due to a change in your facebook session."
     else
       flash[:info] = "Logged out!"
     end
