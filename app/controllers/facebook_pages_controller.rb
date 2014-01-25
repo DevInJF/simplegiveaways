@@ -11,17 +11,25 @@ class FacebookPagesController < ApplicationController
       pids.each do |pid|
         html += render_to_string(partial: 'facebook_pages/preview', locals: { facebook_page: FacebookPage.find(pid) })
       end
+
+      flash.clear
+
+      if current_user.finished_onboarding?
+        flash[:success] = { title: "Successfully fetched your Facebook Pages.", content: "You can now start building your first giveaway. Thank you for using <strong>Simple Giveaways</strong>".html_safe }
+        header_nav_html = render_to_string(partial: 'layouts/navigation/my_pages')
+        sidebar_nav_html = render_to_string(partial: 'layouts/navigation/sidebar/facebook_pages', locals: { active: false })
+        new_giveaway_html = render_to_string(partial: 'components/new_giveaway_dropdown')
+      end
     end
 
     respond_to do |format|
       format.json do
-        flash.clear
-        if current_user.finished_onboarding?
-          flash[:success] = {title: "Successfully fetched your Facebook Pages.", content: "You can now start building giveaways. Thank you for using <strong>Simple Giveaways</strong>".html_safe}
-        end
         render json: {
           complete: current_user.finished_onboarding?,
           html: "#{html}",
+          header_nav_html: "#{header_nav_html}",
+          sidebar_nav_html: "#{sidebar_nav_html}",
+          new_giveaway_html: "#{new_giveaway_html}",
           pids: current_pids
         }.to_json
       end

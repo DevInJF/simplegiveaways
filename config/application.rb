@@ -1,14 +1,13 @@
 # -*- encoding : utf-8 -*-
 require File.expand_path('../boot', __FILE__)
 
-# Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "sprockets/railtie"
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'active_resource/railtie'
+require 'sprockets/railtie'
 
-require "json"
+require 'json'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -28,14 +27,7 @@ module Simplegiveaways
     config.assets.paths << "#{Rails.root}/vendor/assets/fonts"
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
-    config.assets.precompile += [
-      'application.js',
-      'welcome.js',
-      'tab.css',
-      'application.css',
-      'welcome.css',
-      'tab.js'
-    ]
+    config.assets.precompile += %w(application.js welcome.js tab.js application.css welcome.css tab.css)
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
@@ -54,6 +46,7 @@ module Simplegiveaways
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    I18n.config.enforce_available_locales = false
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

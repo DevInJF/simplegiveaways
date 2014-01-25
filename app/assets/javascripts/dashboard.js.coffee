@@ -14,15 +14,32 @@ SG.Dashboard =
       dataType: 'json'
       data: "pids=#{@getPids()}&bust=#{new Date().getTime()}"
       success: (response, status) =>
-        if response.complete
-          clearInterval(@pollTimer)
-          @pagesTargetEl().data('pids', response.pids)
-        else if response.pids
-          @pagesTargetEl().data('pids', response.pids)
-        @pagesTargetEl().append(response.html) if response.html.length
+        @pollPagesSuccess(response, status)
+
+  pollPagesSuccess: (response, status) ->
+    @pagesTargetEl().data('pids', response.pids) if response.pids
+    @appendPage($(page), i) for page, i in $(response.html)
+    @pollPagesComplete(response) if response.complete
+
+  pollPagesComplete: (response) ->
+    clearInterval(@pollTimer)
+    @pagesTargetEl().data('pids', response.pids)
+    @headerNavTargetEl().replaceWith(response.header_nav_html) if response.header_nav_html.length
+    @sidebarNavTargetEl().replaceWith(response.sidebar_nav_html) if response.sidebar_nav_html.length
+    @newGiveawayTargetEl().replaceWith(response.new_giveaway_html) if response.new_giveaway_html.length
+
+  appendPage: ($page, i) ->
+    if $page.is('li')
+      setTimeout (=> $page.appendTo(@pagesTargetEl())), (200 * i)
 
   getPids: ->
     @pagesTargetEl().data('pids')
+
+  newGiveawayTargetEl: -> $('#new_giveaway_dropdown')
+
+  sidebarNavTargetEl: -> $('#facebook_pages_nav')
+
+  headerNavTargetEl: -> $('#my_pages_dropdown')
 
   pagesTargetEl: -> $('#user_facebook_pages')
 

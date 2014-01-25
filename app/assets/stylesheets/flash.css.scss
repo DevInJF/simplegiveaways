@@ -33,7 +33,8 @@ ul.messenger.messenger-theme-block.messenger-fixed {
     }
 
     &.alert-error,
-    &.alert-danger {
+    &.alert-danger,
+    &.alert-alert {
       @include bg-danger;
 
       a {
