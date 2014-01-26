@@ -12,7 +12,7 @@ class Giveaway < ActiveRecord::Base
 
   include PublicUtils
 
-  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_uniques, :_fan_uniques, :_non_fan_uniques, :_fan_visitor_rate, :_non_fan_visitor_rate, :_fan_conversion_rate, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_conversion_rate, :_viral_entry_conversion_rate, :_page_likes, :_page_likes_while_active
+  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_uniques, :_fan_uniques, :_non_fan_uniques, :_fan_visitor_rate, :_non_fan_visitor_rate, :_fan_conversion_rate, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_conversion_rate, :_viral_entry_conversion_rate, :_page_likes, :_page_likes_while_active, :_talking_about_count
 
   has_many :audits, as: :auditable
 
@@ -117,6 +117,7 @@ class Giveaway < ActiveRecord::Base
                                  :_likes_from_entries_count,
                                  :_page_likes,
                                  :_page_likes_while_active,
+                                 :_talking_about_count,
                                  :_entry_count,
                                  :_entry_conversion_rate,
                                  :_viral_entry_conversion_rate ]
@@ -448,6 +449,10 @@ class Giveaway < ActiveRecord::Base
         sort.first.is[:likes].to_i
   end
 
+  def talking_about_count
+    facebook_page.talking_about_count
+  end
+
   def entry_count
     entries.size
   end
@@ -506,6 +511,7 @@ class Giveaway < ActiveRecord::Base
     self._viral_like_count = viral_like_count
     self._page_likes = page_likes
     self._page_likes_while_active = page_likes_while_active
+    self._talking_about_count = talking_about_count
     self._likes_from_entries_count = likes_from_entries_count
     self._entry_count = entry_count
     self.audits << analytics_audit

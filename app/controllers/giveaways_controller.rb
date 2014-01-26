@@ -249,7 +249,8 @@ class GiveawaysController < FacebookController
   end
 
   def flot_hash
-    giveaways_graph = Graph.new(@giveaway)
+    giveaways_graph = Graph::GiveawayGraph.new(@giveaway)
+    puts giveaways_graph.inspect.yellow
     { page_likes: giveaways_graph.page_likes,
       net_likes: giveaways_graph.net_likes,
       shares:    giveaways_graph.shares,

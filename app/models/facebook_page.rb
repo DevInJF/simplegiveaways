@@ -7,8 +7,8 @@ class FacebookPage < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
 
   attr_accessible :name, :category, :pid, :token, :avatar_square,
-                  :avatar_large, :description, :likes, :url,
-                  :has_added_app, :subscription_id
+                  :avatar_large, :description, :likes, :talking_about_count,
+                  :url, :has_added_app, :subscription_id
 
   has_many :audits, as: :auditable
 
@@ -76,14 +76,21 @@ class FacebookPage < ActiveRecord::Base
     batch = FacebookPage.graph_data(page: self)
 
     self.likes = batch[:data]["likes"]
+    self.talking_about_count = batch[:data]["talking_about_count"]
     self.audits << likes_audit
     save
   end
 
   def likes_audit
     Audit.new(
-      was: { likes: likes_was },
-      is: { likes: likes }
+      was: {
+        likes: likes_was,
+        talking_about_count: talking_about_count_was
+      },
+      is: {
+        likes: likes,
+        talking_about_count: talking_about_count
+      }
     )
   end
 

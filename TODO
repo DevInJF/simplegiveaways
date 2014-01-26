@@ -227,6 +227,8 @@ Simple Giveaways:
 
       ✔ Fix issue where flash messages container is preventing clicks from passing through. @done (14-01-25 23:04)
 
+      ☐ Dashboard View
+
       ☐ Loading indicators site-wide.
 
             ☐ Start Giveaway
@@ -238,8 +240,6 @@ Simple Giveaways:
             ☐ Update Subscription
 
             ☐ Cancel Subscription
-
-      ☐ Dashboard View
 
 01/26/2014
 

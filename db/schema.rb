@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140118212957) do
+ActiveRecord::Schema.define(:version => 20140126051034) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -93,10 +93,11 @@ ActiveRecord::Schema.define(:version => 20140118212957) do
     t.integer  "likes"
     t.string   "url"
     t.boolean  "has_added_app"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "subscription_id"
     t.string   "slug"
+    t.integer  "talking_about_count", :default => 0
   end
 
   add_index "facebook_pages", ["pid"], :name => "index_facebook_pages_on_pid", :unique => true
