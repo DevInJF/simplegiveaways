@@ -1,3 +1,4 @@
+//= require lodash/lodash.underscore
 //= require ../../../vendor/assets/javascripts/jquery.noisy
 //= require ui/flash_messages
 

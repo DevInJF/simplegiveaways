@@ -1,5 +1,6 @@
 //= require jquery_ujs
 //= require lodash/lodash.underscore
+//= require handlebars.runtime
 //= require moment
 //= require zeroclipboard
 //= require jquery-autosize
@@ -48,3 +49,5 @@
 //= require giveaways/details
 //= require ../../../vendor/assets/javascripts/app
 //= require ../../../vendor/assets/javascripts/app.plugin
+//= require_tree ./plugins
+//= require_tree ./templates

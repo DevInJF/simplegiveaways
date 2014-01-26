@@ -49,6 +49,7 @@ gem 'ajax-datatables-rails', git: 'git://github.com/CyborgMaster/ajax-datatables
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'font-awesome-sass-rails'
+  gem 'handlebars_assets'
   gem 'uglifier', '>= 1.0.3'
   gem 'rails-assets-bourbon'
   gem 'rails-assets-jquery', '~> 2.0.3'

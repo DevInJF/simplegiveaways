@@ -1,15 +1,22 @@
 SG.UI.FlashMessages =
 
   initialize: ->
+    @initFlashEvents()
     @initAjaxFlash()
     @initFlashHide()
     @attachFlashClose()
 
+  initFlashEvents: ->
+    $(document).on 'webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', '.rails-flash', (e) ->
+      $(e.target).remove() if $(e.target).hasClass('fadeOutDown')
+    $(document).on 'append', '#flash_tray ul', (e) =>
+      @initFlashHide @jsFlashEls().first()
+
   initAjaxFlash: ->
-    $(document).ajaxComplete (event, request) =>
+    $(document).on 'ajaxComplete', (e, request) =>
       msg = request.getResponseHeader("X-Message")
       msgType = request.getResponseHeader("X-Message-Type")
-      msgTitle = request.getResponseHeader("X-Message-Title")
+      msgTitle = request.getResponseHeader("X-Message-Title") || msgType
       @showFlash(msg, msgType, msgTitle) if msg?
 
   initFlashHide: (el) ->
@@ -19,17 +26,18 @@ SG.UI.FlashMessages =
   hideFlash: ($el) ->
     $el.addClass('fadeOutDown')
 
-  showFlash: (messageType, header, content) ->
-    flash = @buildFlash(messageType, header, content)
+  showFlash: (msg, msgType, msgTitle) ->
+    flash = @buildFlash(msg, msgType, msgTitle)
     @flashContainerEl().append(flash)
-    @initFlashHide(flash)
 
   attachFlashClose: ->
     @flashContainerEl().on 'click', '.messenger-close', (e) =>
       @hideFlash $(e.target).parents('.rails-flash')
 
   buildFlash: (msg, msgType, msgTitle) ->
-    $("<li class='rails-flash messenger-message-slot animated fadeInUp'><div class='alert-#{msgType} message message-#{msgType} messenger-message'><div class='messenger-message-inner'><span class='message-icon'><i class='bg-#{msgType} fa fa-bell-o time-icon'></i></span><div class='message-text'><h4>#{msgTitle || msgType}</h4><p>#{msg}</p></div><button class='messenger-close' data-dismiss='alert' type='button'>×</button></div><div class='messenger-spinner'><span class='messenger-spinner-side messenger-spinner-side-left'><span class='messenger-spinner-fill'></span></span><span class='messenger-spinner-side messenger-spinner-side-right'><span class='messenger-spinner-fill'></span></span></div></div></li>")
+    JST['shared/flash'](msg: msg, msgType: msgType, msgTitle: msgTitle)
+
+  jsFlashEls: -> @flashContainerEl().find('.js-flash')
 
   flashEls: -> @flashContainerEl().find('.rails-flash')
 
