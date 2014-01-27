@@ -14,6 +14,10 @@ table.has-columns-hidden > tbody > tr > td > span.responsiveExpander:before {
   content: "\f055";
 }
 
+table.has-columns-hidden > tbody > tr.detail-show td:first-child {
+  font-weight: bold;
+}
+
 table.has-columns-hidden > tbody > tr.detail-show > td span.responsiveExpander {
     display: inline-block;
     font-family: FontAwesome;

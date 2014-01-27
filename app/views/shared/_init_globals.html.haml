@@ -1,5 +1,6 @@
 :javascript
   (function() {
+    _SG.Config.SG_DOMAIN = '#{SG_DOMAIN}';
     _SG.Config.FB_APP_ID = '#{FB_APP_ID}';
     _SG.Config.STRIPE_KEY = '#{Rails.configuration.stripe.publishable_key}';
   }());

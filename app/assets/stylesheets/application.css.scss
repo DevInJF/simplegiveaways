@@ -732,6 +732,46 @@ button {
 
 #active_giveaway_tabs {
 
+  li.actions-dropdown,
+  .actions-button {
+
+    .dropdown-menu {
+
+      .text-danger {
+        color: #b94a48;
+
+        &:hover {
+          background-color: #fb6b5b !important;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .actions-button {
+    display: none;
+  }
+
+  .zclip-trigger {
+
+    &.zeroclipboard-is-hover {
+      color: #717171 !important;
+      background-color: #EDEDED;
+      border-color: #C6C6C6;
+      text-decoration: none;
+      outline: 0;
+    }
+
+    &.zeroclipboard-is-active {
+      background-image: none;
+      color: #717171 !important;
+      background-color: #EDEDED;
+      border-color: #C6C6C6;
+      outline: 0;
+      @include box-shadow(inset 0 3px 5px rgba(0, 0, 0, 0.125));
+    }
+  }
+
   .panel-heading .nav-tabs > li > a {
     line-height: 2;
     padding: 10px 13px;
@@ -899,6 +939,20 @@ button {
 
 #flotTip {
   padding: 3px 5px 4px !important;
+}
+
+@media (max-width: 405px) {
+
+  #active_giveaway_tabs {
+
+    li.actions-dropdown {
+      display: none;
+    }
+
+    .actions-button {
+      display: block;
+    }
+  }
 }
 
 @media (min-width: 768px) {

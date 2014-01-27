@@ -2,6 +2,7 @@ SG.Giveaways.Active =
 
   initialize: ->
     @initTabListeners() if @tabsContainerEl().length
+    @initEndGiveawayListener()
     SG.Giveaways.Active.Graphs.initialize()
 
   initTabListeners: ->
@@ -23,6 +24,13 @@ SG.Giveaways.Active =
       else if $(e.target).is @entriesTabTriggerEl()
         @entriesTabEl().find('.sg-progress-block .bar').addClass('loading')
 
+  initEndGiveawayListener: ->
+    $(document).on 'click', '.end-giveaway-button', (e) =>
+      if confirm @endGiveawayConfirmation
+        SG.UI.Loader.createOverlay(true)
+      else
+        return false
+
   initDetailsTab: (data) ->
     @detailsTabEl().html(data) if data
     @detailsTabTriggerEl().addClass('loaded')
@@ -32,6 +40,8 @@ SG.Giveaways.Active =
     @entriesTabEl().html(data) if data
     @entriesTabTriggerEl().addClass('loaded')
     SG.UI.DataTables.initialize('entries')
+
+  endGiveawayConfirmation: "Are you sure you want to end the giveaway right now? If you decide to continue, it will be removed from your Facebook Page immediately."
 
   detailsTabTriggerEl: -> $('#details_tab_trigger')
 

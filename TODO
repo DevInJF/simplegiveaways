@@ -229,6 +229,12 @@ Simple Giveaways:
 
      01/26/2014
 
+     ✔ Restore End Giveaway Button @done (14-01-27 03:32)
+
+     ✔ Create Active Giveaway Actions Menu @done (14-01-27 04:36)
+
+      ☐ Make stat popovers show on click of some kind of generic help or "what's this?" icon.
+
       ☐ Loading indicators site-wide.
 
             AJAX
@@ -245,13 +251,11 @@ Simple Giveaways:
 
             ✔ Cancel Subscription @done (14-01-27 02:44)
 
-            ☐ Start Giveaway
+            ✔ Start Giveaway @done (14-01-27 03:42)
 
-            ☐ End Giveaway
+            ✔ End Giveaway @done (14-01-27 03:30)
 
 01/27/2014
-
- ☐ Restore End Giveaway Button
 
  ☐ Finish Dashboard View
 
@@ -264,6 +268,8 @@ Simple Giveaways:
       ☐ Can say something like "This start date conflicts... Only the earliest scheduled giveaway will be automatically started."
 
  ☐ Ensure user will never be surprised by an action taken by the app.
+
+      ☐ Global Flash Message Review
 
       ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 

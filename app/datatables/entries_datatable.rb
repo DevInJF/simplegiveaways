@@ -123,6 +123,6 @@ class EntriesDatatable < AjaxDatatablesRails
   end
 
   def boolean_label(bool)
-    bool ? '<div class="text-center">&#10004;</div>'.html_safe : '<div class="text-center">&#10008;</div>'.html_safe
+    bool ? '<div class="text-center"><span class="badge bg-primary">&#10004;</span></div>'.html_safe : '<div class="text-center">&#10008;</div>'.html_safe
   end
 end

@@ -9,13 +9,17 @@ module GiveawaysHelper
   def time_from_now(time, options = {})
     only_options = if options[:only]
       options[:only]
-    elsif (1.seconds.ago..24.hours.from_now).cover? time
+    elsif (1.seconds.ago..1.minute.from_now).cover? time
+      %w(seconds)
+    elsif (1.minute.from_now..24.hours.from_now).cover? time
       %w(hours minutes)
     elsif time > 1.month.from_now
       %w(months days)
     elsif time > 1.year.from_now
       %w(years months)
-    elsif (24.hours.ago..2.seconds.ago).cover? time
+    elsif (1.minute.ago..2.seconds.ago).cover? time
+      %w(seconds)
+    elsif (24.hours.ago..1.minute.ago).cover? time
       %w(hours minutes)
     elsif (1.month.ago..24.hours.ago).cover? time
       %w(days)

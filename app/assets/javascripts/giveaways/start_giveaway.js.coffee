@@ -34,8 +34,10 @@ SG.Giveaways.Start =
     current = @currentStepEl()
     next = @nextStepEl()
     if next.find('#no_subscription').length
+      SG.UI.Loader.createOverlay(true)
       @redirectToSubPlans()
     else if next.find("#trigger_start_giveaway").length
+      SG.UI.Loader.createOverlay(true)
       @startGiveaway()
     else
       current.hide()
