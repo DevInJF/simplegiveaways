@@ -27,6 +27,8 @@
 //= require ../../../vendor/assets/javascripts/charts/flot/demo
 //= require ../../../vendor/assets/javascripts/fuelux/fuelux
 //= require ../../../vendor/assets/javascripts/responsive-paginate
+//= require ../../../vendor/assets/javascripts/spin.min
+//= require ../../../vendor/assets/javascripts/iosOverlay
 //= require ckeditor/init
 //= require ../../../vendor/assets/javascripts/wysiwyg/ckeditor-jquery
 //= require editable/bootstrap-editable
@@ -39,6 +41,7 @@
 //= require ui/datatables
 //= require ui/datetime_pickers
 //= require ui/flash_messages
+//= require ui/loader
 //= require ui/zclip
 //= require giveaways
 //= require giveaways/active_giveaway

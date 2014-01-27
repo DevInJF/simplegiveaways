@@ -12,7 +12,7 @@
 *= require ../../../vendor/assets/javascripts/pickadate/default
 *= require ../../../vendor/assets/javascripts/pickadate/default.date
 *= require ../../../vendor/assets/javascripts/pickadate/default.time
-*= require messenger
+*= require ../../../vendor/assets/stylesheets/iosOverlay
 *= require_self
 */
 
@@ -757,6 +757,13 @@ button {
   }
 
   .chart-panel {
+
+    &.no-data {
+
+      .panel-body {
+        padding: 90px 0 91px;
+      }
+    }
 
     .panel-body {
       padding: 15px 0;

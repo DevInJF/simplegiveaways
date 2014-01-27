@@ -1,5 +1,6 @@
 //= require lodash/lodash.underscore
 //= require ../../../vendor/assets/javascripts/jquery.noisy
+//= require ui/loader
 //= require ui/flash_messages
 
 $(function() {

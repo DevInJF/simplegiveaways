@@ -55,7 +55,6 @@ group :assets do
   gem 'rails-assets-jquery', '~> 2.0.3'
   gem 'rails-assets-jquery-autosize'
   gem 'rails-assets-jquery-flot'
-  gem 'rails-assets-messenger'
   gem 'rails-assets-moment'
   gem 'rails-assets-lodash'
 end

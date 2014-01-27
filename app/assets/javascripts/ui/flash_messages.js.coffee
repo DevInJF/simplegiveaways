@@ -21,7 +21,7 @@ SG.UI.FlashMessages =
 
   initFlashHide: (el) ->
     $el = el && $(el) || @flashEls().first()
-    setTimeout (=> @hideFlash($el)), 7500
+    setTimeout (=> @hideFlash($el)), 10000
 
   hideFlash: ($el) ->
     $el.addClass('fadeOutDown')

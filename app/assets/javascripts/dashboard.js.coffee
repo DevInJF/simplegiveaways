@@ -6,6 +6,7 @@ SG.Dashboard =
     @initPagesPoller() if @pagesPollerEl().length
 
   initPagesPoller: ->
+    SG.UI.Loader.createOverlay(true)
     @pollTimer = setInterval (=> @pollPages()), 2250
 
   pollPages: ->
@@ -13,6 +14,8 @@ SG.Dashboard =
       url: @_sg.Paths.userPages
       dataType: 'json'
       data: "pids=#{@getPids()}&bust=#{new Date().getTime()}"
+      error: (response) =>
+        @pollPagesError()
       success: (response, status) =>
         @pollPagesSuccess(response, status)
 
@@ -21,12 +24,20 @@ SG.Dashboard =
     @appendPage($(page), i) for page, i in $(response.html)
     @pollPagesComplete(response) if response.complete
 
+  pollPagesError: ->
+    clearInterval(@pollTimer)
+    SG.UI.Loader.onError()
+
   pollPagesComplete: (response) ->
     clearInterval(@pollTimer)
     @pagesTargetEl().data('pids', response.pids)
-    @headerNavTargetEl().replaceWith(response.header_nav_html) if response.header_nav_html.length
-    @sidebarNavTargetEl().replaceWith(response.sidebar_nav_html) if response.sidebar_nav_html.length
-    @newGiveawayTargetEl().replaceWith(response.new_giveaway_html) if response.new_giveaway_html.length
+    if response.header_nav_html.length
+      @headerNavTargetEl().replaceWith(response.header_nav_html)
+    if response.sidebar_nav_html.length
+      @sidebarNavTargetEl().replaceWith(response.sidebar_nav_html)
+    if response.new_giveaway_html.length
+      @newGiveawayTargetEl().replaceWith(response.new_giveaway_html)
+    SG.UI.Loader.onSuccess()
 
   appendPage: ($page, i) ->
     if $page.is('li')

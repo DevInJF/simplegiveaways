@@ -1,6 +1,6 @@
 .row.virality-pies
   .col-sm-6.col-md-4
-    %section.panel.panel-default.chart-panel
+    %section.panel.panel-default.chart-panel{class: "#{(giveaway.direct_uniques > 0 || giveaway.viral_uniques > 0) ? '' : 'no-data'}"}
       %header.panel-heading
         %strong Visitors
         %span.pull-right Virality
@@ -27,7 +27,7 @@
               N/A
             .m-t-xs We don't have enough data yet.
   .col-sm-6.col-md-4
-    %section.panel.panel-default.chart-panel
+    %section.panel.panel-default.chart-panel{class: "#{(giveaway.viral_like_count > 0 || giveaway.visitor_like_count > 0) ? '' : 'no-data'}"}
       %header.panel-heading
         %strong Likes
         %span.pull-right Virality
@@ -54,7 +54,7 @@
             .m-t-xs We don't have enough data yet.
   .clearfix.visible-sm
   .col-sm-12.col-md-4
-    %section.panel.panel-default.chart-panel
+    %section.panel.panel-default.chart-panel{class: "#{(giveaway.viral_entry_count > 0 || giveaway.entry_count > 0) ? '' : 'no-data'}"}
       %header.panel-heading
         %strong Entries
         %span.pull-right Virality
