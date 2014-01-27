@@ -37,5 +37,16 @@ class Utils
         Impression.destroy_all
       end
     end
+
+    def generate_data
+      unless Rails.env.production?
+        10.times { FactoryGirl.create(:giveaway, facebook_page_id: FacebookPage.all.sample.id) rescue nil }
+        15.times { FactoryGirl.create(:giveaway, :completed, facebook_page_id: FacebookPage.all.sample.id) rescue nil }
+        FacebookPage.find_each do |page|
+          FactoryGirl.create(:giveaway, :active, facebook_page_id: page.id) rescue nil
+        end
+        100.times { FactoryGirl.create(:entry, giveaway_id: Giveaway.all.sample.id) rescue nil }
+      end
+    end
   end
 end

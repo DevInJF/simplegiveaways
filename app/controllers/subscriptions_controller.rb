@@ -6,6 +6,7 @@ class SubscriptionsController < ApplicationController
     begin
       if @subscription = update_sg_subscription
         session[:just_subscribed] = true
+        flash[:info] = { title: "You were successfully subscribed.", content: "You are now subscribed to the #{current_user.subscription_plan_name} plan. Thank you for using <strong>Simple Giveaways</strong>.".html_safe }
         render json: { redirect_path: redirect_path }
       else
         head :unprocessable_entity
@@ -18,9 +19,9 @@ class SubscriptionsController < ApplicationController
   def destroy
     begin
       if @subscription = cancel_sg_subscription
-        flash[:info] = "You were successfully unsubscribed from the #{@subscription.name} plan. You will be able to enjoy the benefits of your subscription until the end of the current billing cycle. Thank you for using <strong>Simple Giveaways</strong>.".html_safe
+        flash[:info] = { title: "You were successfully unsubscribed.", content: "You will still be able to enjoy the benefits of your subscription until the end of the current billing cycle. Thank you for using <strong>Simple Giveaways</strong>.".html_safe }
       else
-        flash[:error] = "We were unable to unsubscribe you from your plan due to an unknown error. Please try again or contact support for assistance. We apologize for the inconvenience."
+        flash[:error] = { title: "An unknown error occurred.", content: "We were unable to unsubscribe you from your plan. Please try again or contact support for assistance. We apologize for the inconvenience." }
       end
       redirect_to user_subscription_plans_path(current_user)
     rescue Stripe::CardError => error

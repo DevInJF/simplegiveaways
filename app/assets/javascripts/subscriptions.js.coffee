@@ -20,8 +20,7 @@ SG.Subscriptions =
         @handlePageSelectorClick(e)
       else
         @planEl = $(e.target).hasClass('subscription-plan') && $(e.target) || $(e.target).parents('.subscription-plan')
-        @handleClick()
-        e.preventDefault()
+        @handleClick() unless $(e.target).hasClass('cancel-subscription')
 
   initRadios: ->
     $('input[type="radio"]').each ->
@@ -73,11 +72,13 @@ SG.Subscriptions =
     $(@planEl).addClass('page-selector')
 
   closePageSelector: ->
-    @openPlanContainerEls().find('.resetable input').iCheck('uncheck').end().find('.default input').iCheck('check')
+    @openPlanContainerEls().find('.resetable input').iCheck('uncheck').
+      end().find('.default input').iCheck('check')
     @openPlanContainerEls().removeClass('page-selector')
 
   pageSelectorVisible: (event) ->
-    $(event.target).parents('.page-selector').length || $(event.target).hasClass('page-selector')
+    $(event.target).parents('.page-selector').length ||
+    $(event.target).hasClass('page-selector')
 
   openStripeCheckout: ->
     amount = $(@planEl).data('checkout_amount')
@@ -89,6 +90,7 @@ SG.Subscriptions =
         email: @_sg.CurrentUser.email
 
   createSubscription: (token) ->
+    SG.UI.Loader.createOverlay(true)
     $.ajax
       url: @ajaxPath()
       type: 'POST'
@@ -97,10 +99,13 @@ SG.Subscriptions =
         stripe_token: token
         subscription_plan_id: $(@planEl).data('subscription_plan_id')
         facebook_page_ids: @mapPageIds()
-      success: (data) =>
-        top.location.href = "#{data.redirect_path}"
-      error: =>
-        SG.UI.FlashMessages.showFlash('error', 'Error', 'There was a problem processing the subscription. Please try again or contact support for assistance.')
+      success: (data) ->
+        SG.UI.Loader.onSuccess()
+        if data.redirect_path.length
+          top.location.href = "#{data.redirect_path}"
+      error: ->
+        SG.UI.Loader.onError()
+        SG.UI.FlashMessages.showFlash('Please try again or contact support for assistance.', 'Error', 'There was a problem processing the subscription.')
 
   mapPageIds: ->
     _.map $(@planEl).find('input:checked'), (input) =>

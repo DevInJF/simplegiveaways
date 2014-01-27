@@ -14,6 +14,8 @@ FactoryGirl.define do
 
     request_count { rand(10) }
 
+    entry_count { rand(20) }
+
     convert_count { rand(3) }
   end
 end

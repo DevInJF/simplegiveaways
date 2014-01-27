@@ -30,11 +30,31 @@ FactoryGirl.define do
 
     bonus_value { generate(:integer) }
 
+    active { false }
+
     trait :scheduled do
 
       start_date { generate(:datetime) }
 
       end_date { generate(:datetime) }
+    end
+
+    trait :active do
+
+      active { true }
+
+      start_date { [1.year.ago, 1.month.ago, 2.weeks.ago, 1.week.ago, 6.days.ago, 4.days.ago, 1.day.ago][rand(7)] }
+
+      end_date { [(Time.now + 1.week), (Time.now + 1.month), (Time.now + 6.months), (Time.now + 1.year), nil][rand(5)] }
+    end
+
+    trait :completed do
+
+      active { false }
+
+      start_date { [1.year.ago, 1.month.ago, 2.weeks.ago, 1.week.ago, 6.days.ago, 4.days.ago, 1.day.ago][rand(7)] }
+
+      end_date { start_date + 18.hours }
     end
   end
 end

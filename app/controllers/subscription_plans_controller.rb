@@ -1,7 +1,5 @@
 class SubscriptionPlansController < ApplicationController
 
-  # layout Proc.new { |controller| params[:facebook_page_id] ? 'facebook_pages' : 'users' }
-
   def index
     if request.post? && params[:starting]
       session[:proposed_end_date] = params[:end_date]
