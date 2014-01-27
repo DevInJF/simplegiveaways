@@ -1,18 +1,19 @@
 class SubscriptionsController < ApplicationController
 
-  respond_to :json
+  respond_to :html
 
   def create
     begin
       if @subscription = update_sg_subscription
         session[:just_subscribed] = true
         flash[:info] = { title: "You were successfully subscribed.", content: "You are now subscribed to the #{current_user.subscription_plan_name} plan. Thank you for using <strong>Simple Giveaways</strong>.".html_safe }
-        render json: { redirect_path: redirect_path }
       else
-        head :unprocessable_entity
+        flash[:error] = { title: "An unknown error occurred.", content: "We were unable to process your subscription request. Please try again or contact support for assistance. We apologize for the inconvenience." }
       end
+      redirect_to redirect_path
     rescue Stripe::CardError => error
-      respond_with error
+      flash[:error] = { title: "An unknown error occurred.", content: "We were unable to process your subscription request. Please try again or contact support for assistance. We apologize for the inconvenience." }
+      redirect_to redirect_path
     end
   end
 

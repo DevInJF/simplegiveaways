@@ -227,21 +227,33 @@ Simple Giveaways:
 
       ✔ Fix issue where flash messages container is preventing clicks from passing through. @done (14-01-25 23:04)
 
-      ☐ Dashboard View
+     01/26/2014
 
       ☐ Loading indicators site-wide.
+
+            AJAX
+
+            ✔ Onboarding @done (14-01-27 02:00)
+
+            ☐ Enter Giveaway
+
+            NON-AJAX
+
+            ✔ Subscribe @done (14-01-27 02:00)
+
+            ✔ Update Subscription @done (14-01-27 02:00)
+
+            ✔ Cancel Subscription @done (14-01-27 02:44)
 
             ☐ Start Giveaway
 
             ☐ End Giveaway
 
-            ☐ Subscribe
+01/27/2014
 
-            ☐ Update Subscription
+ ☐ Restore End Giveaway Button
 
-            ☐ Cancel Subscription
-
-01/26/2014
+ ☐ Finish Dashboard View
 
  ☐ Don't save cloned giveaways until edited.
 
@@ -255,7 +267,7 @@ Simple Giveaways:
 
       ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 
- 01/27/2014
+ 01/28/2014
 
  ☐ Subscription Emails.
 
@@ -267,11 +279,11 @@ Simple Giveaways:
 
       ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
 
- 01/28/2014
+ 01/29/2014
 
  ☐ Finish Help Section
 
-01/29/2014
+01/30/2014
 
  ☐ Acquire assets from Brian Dillon
 

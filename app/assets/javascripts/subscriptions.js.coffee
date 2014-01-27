@@ -20,7 +20,7 @@ SG.Subscriptions =
         @handlePageSelectorClick(e)
       else
         @planEl = $(e.target).hasClass('subscription-plan') && $(e.target) || $(e.target).parents('.subscription-plan')
-        @handleClick() unless $(e.target).hasClass('cancel-subscription')
+        @handleClick(e)
 
   initRadios: ->
     $('input[type="radio"]').each ->
@@ -31,9 +31,11 @@ SG.Subscriptions =
         radioClass: 'iradio_line-aero'
         insert: "<div class='icheck_line-icon'></div><span class='label-text'>#{label_text}</span>"
 
-  handleClick: ->
+  handleClick: (event) ->
     @closePageSelector()
-    if $(@planEl).data('is_single_page')
+    if $(event.target).hasClass('cancel-subscription')
+      @handleCancelPlan event
+    else if $(@planEl).data('is_single_page')
       @openPageSelector()
     else
       if $(@planEl).data('is_current_plan') || $(@planEl).data('is_next_plan')
@@ -68,12 +70,20 @@ SG.Subscriptions =
     else
       @openStripeCheckout()
 
+  handleCancelPlan: (event) ->
+    if confirm @cancelPlanConfirm
+      SG.UI.Loader.createOverlay(true)
+    else
+      return false
+
+  cancelPlanConfirm: "Are you sure you want to cancel your subscription? If you decide to continue, you will still be able to enjoy the benfits of your subscription until the end of the current billing cycle."
+
   openPageSelector: ->
     $(@planEl).addClass('page-selector')
 
   closePageSelector: ->
-    @openPlanContainerEls().find('.resetable input').iCheck('uncheck').
-      end().find('.default input').iCheck('check')
+    @openPlanContainerEls().find('.resetable input').iCheck('uncheck')
+    @openPlanContainerEls().find('.default input').iCheck('check')
     @openPlanContainerEls().removeClass('page-selector')
 
   pageSelectorVisible: (event) ->
@@ -91,21 +101,11 @@ SG.Subscriptions =
 
   createSubscription: (token) ->
     SG.UI.Loader.createOverlay(true)
-    $.ajax
-      url: @ajaxPath()
-      type: 'POST'
-      dataType: 'json'
-      data:
-        stripe_token: token
-        subscription_plan_id: $(@planEl).data('subscription_plan_id')
-        facebook_page_ids: @mapPageIds()
-      success: (data) ->
-        SG.UI.Loader.onSuccess()
-        if data.redirect_path.length
-          top.location.href = "#{data.redirect_path}"
-      error: ->
-        SG.UI.Loader.onError()
-        SG.UI.FlashMessages.showFlash('Please try again or contact support for assistance.', 'Error', 'There was a problem processing the subscription.')
+    $.form @formPath(),
+      stripe_token: token
+      subscription_plan_id: $(@planEl).data('subscription_plan_id')
+      facebook_page_ids: @mapPageIds()
+    .submit()
 
   mapPageIds: ->
     _.map $(@planEl).find('input:checked'), (input) =>
@@ -121,7 +121,7 @@ SG.Subscriptions =
   isUserCentric: ->
     @plansContainerEl().data('is-user-centric')
 
-  ajaxPath: ->
+  formPath: ->
     @isUserCentric() && @_sg.Paths.userSubscribe || @_sg.Paths.pageSubscribe
 
   stripeEl: -> $('script#stripe_js')
