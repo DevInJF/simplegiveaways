@@ -2,8 +2,9 @@ SG.Giveaways.Active =
 
   initialize: ->
     @initTabListeners() if @tabsContainerEl().length
-    @initEndGiveawayListener()
     SG.Giveaways.Active.Graphs.initialize()
+    @initEndGiveawayListener()
+    @initPopoverClose()
 
   initTabListeners: ->
     $(document).on 'ajax:beforeSend', '#details_tab_trigger', (xhr, data, s) =>
@@ -42,6 +43,17 @@ SG.Giveaways.Active =
     SG.UI.DataTables.initialize('entries')
 
   endGiveawayConfirmation: "Are you sure you want to end the giveaway right now? If you decide to continue, it will be removed from your Facebook Page immediately."
+
+  initPopoverClose: ->
+    $(document).on 'show.bs.popover', (event) ->
+      $('.popover-active').popover('toggle')
+      $(event.target).addClass('popover-active')
+    $(document).on 'hide.bs.popover', (event) ->
+      $(event.target).removeClass('popover-active')
+    $(document).on 'mouseup', '.popover-container', ->
+      return false
+    $(document).on 'mouseup', ->
+      $('.popover-active').popover('toggle') if $('.popover-active').length
 
   detailsTabTriggerEl: -> $('#details_tab_trigger')
 

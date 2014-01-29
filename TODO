@@ -197,8 +197,6 @@ Simple Giveaways:
 
       ✔ Fix content flashing on page loads (prob js related — app.plugin.js?) @done (14-01-20 04:23)
 
-      01/20/2014
-
       ✔ Fix sidebar nav fixed position issue (at smaller breakpoints) @done (14-01-21 01:15)
 
       ✔ Entries Table Responsive View @done (14-01-20 23:50)
@@ -209,31 +207,21 @@ Simple Giveaways:
 
       ✔ Fix SG.Giveaways.Start.trigger @done (14-01-21 03:45)
 
-      01/22/2014
-
       ✔ Pagination @done (14-01-23 02:47)
-
-      01/23/2014
 
       ✔ Flash Message styles. @done (14-01-24 02:49)
 
-      01/24/2014
-
       ✔ Start Dashboard View @done (14-01-25 19:01)
-
-      01/25/2014
 
       ✔ Load in menu partials via ajax during onboarding. @done (14-01-25 19:01)
 
       ✔ Fix issue where flash messages container is preventing clicks from passing through. @done (14-01-25 23:04)
 
-     01/26/2014
-
      ✔ Restore End Giveaway Button @done (14-01-27 03:32)
 
      ✔ Create Active Giveaway Actions Menu @done (14-01-27 04:36)
 
-      ☐ Make stat popovers show on click of some kind of generic help or "what's this?" icon.
+     ✔ Make stat popovers show on click of some kind of generic help or "what's this?" icon. @done (14-01-29 02:09)
 
       ☐ Loading indicators site-wide.
 
@@ -255,8 +243,6 @@ Simple Giveaways:
 
             ✔ End Giveaway @done (14-01-27 03:30)
 
-01/27/2014
-
  ☐ Finish Dashboard View
 
  ☐ Don't save cloned giveaways until edited.
@@ -273,8 +259,6 @@ Simple Giveaways:
 
       ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 
- 01/28/2014
-
  ☐ Subscription Emails.
 
  ☐ Help Section
@@ -285,11 +269,7 @@ Simple Giveaways:
 
       ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
 
- 01/29/2014
-
  ☐ Finish Help Section
-
-01/30/2014
 
  ☐ Acquire assets from Brian Dillon
 

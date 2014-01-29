@@ -779,10 +779,30 @@ button {
 
   #giveaway_stats {
 
+    .stat-container {
+      color: #2E3E4E;
+    }
+
+    .stat-title {
+      cursor: pointer;
+
+      &:hover {
+
+        small, i {
+          color: #4A647E;
+        }
+      }
+    }
+
+    i.fa-question-circle {
+      font-size: 14px;
+      color: #ccc;
+      padding-left: 3px;
+    }
+
     .row.kpis {
 
       .kpi {
-        cursor: pointer;
         padding-bottom: 15px;
         margin-bottom: 0;
       }
