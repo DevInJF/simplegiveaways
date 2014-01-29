@@ -151,7 +151,7 @@ Simple Giveaways:
 
  ✔ Subscribe to stripe subscription cancelled webhook to cancel delinquent subscriptions. @done (13-12-20 20:01)
 
- ☐ Provide shortlink analytics.
+ ✔ Provide shortlink analytics. @done (14-01-29 03:13)
 
       ✔ Differentiate between Facebook referrals and outside referrals (for shortlinks). @done (13-12-21 04:38)
 
@@ -162,8 +162,6 @@ Simple Giveaways:
       ✔ Top shortlink referral domains (with click/impression counts). @done (13-12-23 23:24)
 
       ✔ Top shortlink sharing domains (with click/impression counts). @done (13-12-23 23:24)
-
-      ☐ Implement UI.
 
  ✔ More robust free_trial_remaining method. @done (13-12-21 01:53)
 
@@ -243,9 +241,14 @@ Simple Giveaways:
 
             ✔ End Giveaway @done (14-01-27 03:30)
 
+
+ ✔ Don't save cloned giveaways until edited. @done (14-01-29 03:12)
+
  ☐ Finish Dashboard View
 
- ☐ Don't save cloned giveaways until edited.
+ ☐ Switch to CarrierWave for attachments.
+
+ ☐ Shortlink analytics UI
 
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
 
