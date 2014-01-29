@@ -50,7 +50,7 @@ SG.Giveaways.Active =
       $(event.target).addClass('popover-active')
     $(document).on 'hide.bs.popover', (event) ->
       $(event.target).removeClass('popover-active')
-    $(document).on 'mouseup', '.popover-container', ->
+    $(document).on 'mouseup', '.popover-container, .popover-active', ->
       return false
     $(document).on 'mouseup', ->
       $('.popover-active').popover('toggle') if $('.popover-active').length

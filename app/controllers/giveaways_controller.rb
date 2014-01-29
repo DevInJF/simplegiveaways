@@ -211,9 +211,12 @@ class GiveawaysController < FacebookController
     @clone.end_date = nil
     @clone.analytics = nil
     @clone.uniques = 0
+    @clone.image = @giveaway.image
+    @clone.feed_image = @giveaway.feed_image
 
-    if @clone.save
-      redirect_to edit_facebook_page_giveaway_path(@page, @clone)
+    if @clone
+      @giveaway = @clone
+      render :edit
     else
       flash[:error] = "There was a problem cloning the giveaway. Please try again or contact support for assistance."
       redirect_to facebook_page_giveaway_path(@page, @giveaway)

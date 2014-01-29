@@ -28,6 +28,8 @@ _SG = {
 
 $(function() {
 
+  $.ajaxSetup({ cache: false });
+
   if (typeof(SG.UI) !== 'undefined' && typeof(SG.UI.initialize) === 'function') {
     SG.UI.initialize();
   }
