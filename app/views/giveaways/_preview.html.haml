@@ -2,7 +2,7 @@
   .row.no-gutter
     .col-xs-12.col-sm-7
       .media
-        - avatar link: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), image_url: giveaway.image(:medium)
+        - avatar link: facebook_page_giveaway_path(giveaway.facebook_page, giveaway), image_url: giveaway.image.preview.url
         .media-body.m-t-sm.m-b-xs
           .h4.media-heading= link_to giveaway.title, facebook_page_giveaway_path(giveaway.facebook_page, giveaway)
           .meta

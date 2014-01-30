@@ -7,6 +7,7 @@
       %a{href: "#"}
         %i.fa.fa-pencil
   .panel-body.editable-upload-trigger
-    = image_tag giveaway.feed_image(:thumb), alt: giveaway.title
+    = image_tag giveaway.feed_image.thumb.url, alt: giveaway.title
     = simple_form_for [giveaway.facebook_page, giveaway], html: { class: 'giveaway-form fluid', multipart: true } do |f|
       = f.input :feed_image, as: :file, input_html: { class: 'filestyle', 'data-trigger' => 'change', 'data-required' => 'true', 'data-classbutton' => 'btn btn-default btn-lg', 'data-classinput' => 'form-control inline input-s', 'data-icon' => 'true', 'data-buttonText' => 'Upload', 'data-input' => 'false', 'data-classIcon' => 'fa fa-cloud-upload text'}, label: false
+      = f.input :feed_image_cache, as: :hidden

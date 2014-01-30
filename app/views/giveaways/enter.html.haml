@@ -1,7 +1,7 @@
 #enter_giveaway
   %a.btn.btn-primary.btn-xlarge{href: "#"} Enter Giveaway
 #giveaway_image
-  = image_tag @giveaway.image(:tab).gsub("http://", "//") rescue ""
+  = image_tag @giveaway.image.tab.url.gsub("http://", "//") rescue ""
 #giveaway_terms
   - unless @page.canhaz_white_label?
     %p.powered-by Powered by <a href='http://simplegiveaways.com' target='_blank'>Simple Giveaways</a>.

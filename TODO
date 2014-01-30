@@ -241,12 +241,19 @@ Simple Giveaways:
 
             ✔ End Giveaway @done (14-01-27 03:30)
 
-
  ✔ Don't save cloned giveaways until edited. @done (14-01-29 03:12)
 
- ☐ Finish Dashboard View
+ ✔ Switch to CarrierWave for attachments. @done (14-01-30 04:53)
 
- ☐ Switch to CarrierWave for attachments.
+ ☐ Make "New Giveaway" link more obvious (or existant) on pending giveaways page when there are pending giveaways.
+
+ ☐ Don't allow moving forward on form wizard (on create).
+
+ ☐ Mark all form wizard steps with errors in red on submit.
+
+ ☐ Provide default URLs for ImageUploader and FeedImageUploader.
+
+ ☐ Finish Dashboard View
 
  ☐ Shortlink analytics UI
 

@@ -12,7 +12,7 @@ class Giveaway < ActiveRecord::Base
 
   include PublicUtils
 
-  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :feed_image, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_uniques, :_fan_uniques, :_non_fan_uniques, :_fan_visitor_rate, :_non_fan_visitor_rate, :_fan_conversion_rate, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_conversion_rate, :_viral_entry_conversion_rate, :_page_likes, :_page_likes_while_active, :_talking_about_count
+  attr_accessible :is_hidden, :is_free_trial, :title, :description, :start_date, :end_date, :prize, :terms, :preferences, :sticky_post, :preview_mode, :giveaway_url, :facebook_page_id, :image, :image_cache, :feed_image, :feed_image_cache, :custom_fb_tab_name, :analytics, :active, :terms_url, :terms_text, :autoshow_share_dialog, :allow_multi_entries, :email_required, :bonus_value, :_total_shares, :_total_wall_posts, :_total_requests, :_viral_entry_count, :_views, :_uniques, :_viral_uniques, :_fan_uniques, :_non_fan_uniques, :_fan_visitor_rate, :_non_fan_visitor_rate, :_fan_conversion_rate, :_viral_views, :_viral_like_count, :_likes_from_entries_count, :_entry_count, :_entry_conversion_rate, :_viral_entry_conversion_rate, :_page_likes, :_page_likes_while_active, :_talking_about_count
 
   has_many :audits, as: :auditable
 
@@ -122,46 +122,8 @@ class Giveaway < ActiveRecord::Base
                                  :_entry_conversion_rate,
                                  :_viral_entry_conversion_rate ]
 
-  s3_options = {
-    storage: :s3,
-    s3_credentials: S3_CREDENTIALS,
-    s3_protocol: "https",
-    path: "/:style/:id/:filename"
-  }
-
-  image_opts = {
-    styles: {
-      medium: "300x300>",
-      gallery: "256x320#",
-      tab: "810"
-    },
-    convert_options: {
-      medium: "-quality 75 -strip",
-      gallery: "-quality 70 -strip"
-    }
-  }
-  image_opts.merge!(s3_options)
-
-  feed_image_opts = {
-    styles: {
-      thumb: "111x74#",
-      feed: "90x90>"
-    },
-    convert_options: {
-      thumb: "-quality 75 -strip",
-      feed: "-quality 70 -strip"
-    }
-  }
-  feed_image_opts.merge!(s3_options)
-
-  has_attached_file :image, image_opts
-  has_attached_file :feed_image, feed_image_opts
-
-  validate :image_valid
-  validate :feed_image_valid
-
-  before_image_post_process :process_only_images
-  before_feed_image_post_process :process_only_images
+  mount_uploader :image, ImageUploader, mount_on: :image_file_name
+  mount_uploader :feed_image, FeedImageUploader, mount_on: :feed_image_file_name
 
   delegate :needs_subscription?, to: :facebook_page
 
@@ -338,7 +300,7 @@ class Giveaway < ActiveRecord::Base
     begin
       options = { tab: "app_#{FB_APP_ID}",
                   custom_name: custom_fb_tab_name,
-                  custom_image_url: feed_image(:thumb) }
+                  custom_image_url: feed_image.thumb.url }
       full_options = options.merge(position: 2)
       graph_client.put_object( facebook_page.pid, "tabs", full_options )
     rescue
@@ -519,7 +481,7 @@ class Giveaway < ActiveRecord::Base
   end
 
   def tab_height
-    Giveaway.image_dimensions(image(:tab))[:height].to_i + 203
+    Giveaway.image_dimensions(image.tab)[:height].to_i + 203
   end
 
   def countdown_target
@@ -539,8 +501,8 @@ class Giveaway < ActiveRecord::Base
     end
 
     def image_dimensions(img_url)
-      dimensions = Paperclip::Geometry.from_file(img_url).to_s.split("x") rescue []
-      { width: dimensions[0], height: dimensions[1] }
+      image = MiniMagick::Image.open(img_url) rescue []
+      { width: image[:width], height: image[:height] }
     end
 
     def tab(signed_request)
@@ -603,7 +565,7 @@ class Giveaway < ActiveRecord::Base
       description: description,
       giveaway_url: giveaway_url,
       enter_url: Rails.application.routes.url_helpers.enter_url(self, host: SG_DOMAIN),
-      image_url: self.image.url(:tab).gsub("http://", "https://"),
+      image_url: self.image.tab.url.gsub("http://", "https://"),
       feed_image_url: self.feed_image.url.gsub("http://", "https://"),
       bonus_value: bonus_value,
       terms_text: terms_text,
@@ -665,36 +627,6 @@ class Giveaway < ActiveRecord::Base
   end
 
   private
-
-  def process_only_images
-    if !(image.content_type =~ %r{^(image|(x-)?application)/(x-png|pjpeg|jpeg|jpg|png|gif)$})
-      return false
-    elsif !(feed_image.content_type =~ %r{^(image|(x-)?application)/(x-png|pjpeg|jpeg|jpg|png|gif)$})
-      return false
-    end
-  end
-
-  def image_valid
-    if self.image?
-      if !self.image.content_type.match(/image/)
-        errors.add(:image, "must be an image.")
-      end
-      if self.image.size > 5.megabytes
-        errors.add(:image, "must be less than 5 megabytes in size.")
-      end
-    end
-  end
-
-  def feed_image_valid
-    if self.feed_image?
-      if !self.feed_image.content_type.match(/image/)
-        errors.add(:feed_image, "must be an image.")
-      end
-      if self.feed_image.size > 5.megabytes
-        errors.add(:feed_image, "must be less than 5 megabytes in size.")
-      end
-    end
-  end
 
   def terms_url_link
     "<a href='#{terms_url}' class='terms-link terms-url' target='_blank'>Official Terms and Conditions</a>".html_safe
