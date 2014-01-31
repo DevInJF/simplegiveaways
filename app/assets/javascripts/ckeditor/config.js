@@ -23,4 +23,5 @@ CKEDITOR.on('instanceReady', function(ev) {
     breakBeforeClose : false,
     breakAfterClose : false
   });
+  SG.Giveaways.Form.initWYSIWYG(ev.editor)
 });

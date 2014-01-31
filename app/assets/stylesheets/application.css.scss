@@ -185,6 +185,17 @@
 
 .wizard-container {
 
+  ul.steps {
+
+    li.error,
+    li.server-error {
+
+      .badge {
+        background-color: #FB6B5B !important;
+      }
+    }
+  }
+
   #giveaway_start_date,
   #giveaway_end_date {
 
@@ -365,6 +376,23 @@
       &.dker:hover,
       &.dker:focus {
         background-color: #1B252E;
+      }
+    }
+  }
+}
+
+aside#nav {
+
+  ul.nav.pages {
+
+    > li.active {
+
+      > a {
+        font-weight: 600;
+
+        i {
+          font-weight: bold;
+        }
       }
     }
   }

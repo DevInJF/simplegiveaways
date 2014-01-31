@@ -245,11 +245,9 @@ Simple Giveaways:
 
  ✔ Switch to CarrierWave for attachments. @done (14-01-30 04:53)
 
- ☐ Make "New Giveaway" link more obvious (or existant) on pending giveaways page when there are pending giveaways.
+ ✔ Make sidebar nav easier to read. @done (14-01-31 03:24)
 
- ☐ Don't allow moving forward on form wizard (on create).
-
- ☐ Mark all form wizard steps with errors in red on submit.
+ ✔ Mark all form wizard steps with errors in red on submit. @done (14-01-31 04:37)
 
  ☐ Provide default URLs for ImageUploader and FeedImageUploader.
 

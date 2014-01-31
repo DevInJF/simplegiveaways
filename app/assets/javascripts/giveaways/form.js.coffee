@@ -8,7 +8,11 @@ SG.Giveaways.Form =
       @initBonusEntriesToggle()
       unless @_sg.CurrentGiveaway.status == 'Active'
         @checkSchedule(el) for el in SG.UI.DatetimePickers.dateTimePickerEls()
-    @processErrors() if @errors().length
+    @processServerErrors() if @serverErrors().length
+
+  initWYSIWYG: ->
+    CKEDITOR.instances.editor.on 'blur', =>
+      CKEDITOR.instances.editor.updateElement()
 
   initWizard: ->
     @wizardEl().wizard()
@@ -22,38 +26,54 @@ SG.Giveaways.Form =
       SG.UI.DatetimePickers.checkSchedule($el.val(), $el)
 
   onWizardChange: (e, data) ->
-    validated = true
-    CKEDITOR.instances.editor.updateElement()
-    $("[data-required='true']", @containerEl().find("#step#{data.step}")).each ->
-      validated = $(this).parsley('validate')
-    false if data.direction == 'next' && not validated
+    @doValidations()
+    if data.direction == 'next' && not @validated
+      @processParsleyErrors()
+      false
 
   onWizardFinished: (e, data) ->
-    validated = true
-    $("[data-required='true']", @containerEl().find("#step5")).each ->
-      validated = $(this).parsley('validate')
-    return false if not validated
-    @containerEl().find('form').submit()
+    @doValidations()
+    if not @validated && @parsleyErrors().length
+      @processParsleyErrors()
+      false
+    else
+      @containerEl().find('form').submit()
+
+  doValidations: ->
+    @validated = true
+    CKEDITOR.instances.editor.updateElement()
+    @errorStepEls().removeClass('error')
+    $("[data-required='true']", @containerEl().find(".step-pane")).each (i,el) =>
+      @validated = $(el).parsley('validate')
 
   initBonusEntriesToggle: ->
     $('#giveaway_allow_multi_entries').on 'change', =>
       @toggleBonusEntries()
 
   toggleBonusEntries: ->
-    $('.giveaway_bonus_value').toggle()
+    $('#bonus_value_wrapper').toggle()
 
-  processErrors: ->
-    @wizardEl().find("li[data-target='##{@firstErrorStep()}']").trigger 'click'
+  processServerErrors: ->
+    @wizardEl().find("li[data-target='##{@firstServerErrorStep()}']").addClass('server-error').trigger 'click'
 
-  errors: -> @containerEl().find('.has-error')
+  processParsleyErrors: ->
+    @wizardEl().find("li[data-target='##{@firstParsleyErrorStep()}']").addClass('error').trigger 'click'
 
-  firstErrorStep: -> @errors().first().parents('.step-pane').attr('id')
+  serverErrors: -> @containerEl().find('.has-error')
+
+  parsleyErrors: -> @containerEl().find('.parsley-error')
+
+  firstServerErrorStep: -> @serverErrors().first().parents('.step-pane').attr('id')
+
+  firstParsleyErrorStep: -> @parsleyErrors().first().parents('.step-pane').attr('id')
 
   containerEl: -> @wizardEl().parents('.wizard-container')
 
   formErrorsEl: -> @containerEl().find('.error-messages')
 
   wizardEl: -> $('#form-wizard')
+
+  errorStepEls: -> @wizardEl().find('ul.steps .error')
 
   basicInfoStepEl: -> @wizardEl().find('li[data-target="#step1"]')
 
@@ -64,3 +84,5 @@ SG.Giveaways.Form =
   termsStepEl: -> @wizardEl().find('li[data-target="#step4"]')
 
   optionsStepEl: -> @wizardEl().find('li[data-target="#step5"]')
+
+  editorEl: -> $('#editor')
