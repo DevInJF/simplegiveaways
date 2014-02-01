@@ -1,6 +1,10 @@
-- size_class ||= 'btn-lg'
-
-= link_to 'New Giveaway', new_facebook_page_giveaway_path(facebook_page), class: "btn #{size_class} btn-default"
-= link_to 'Active Giveaway', active_facebook_page_giveaways_path(facebook_page), class: "btn #{size_class} btn-default"
-= link_to 'Pending Giveaways', pending_facebook_page_giveaways_path(facebook_page), class: "btn #{size_class} btn-default"
-= link_to 'Completed Giveaways', completed_facebook_page_giveaways_path(facebook_page), class: "btn #{size_class} btn-default"
+.btn-group
+  %a.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown"}
+    Giveaways
+    %span.caret
+  %ul.dropdown-menu.pull-right
+    %li= link_to '<i class="fa fa-bolt"></i>&nbsp;&nbsp;Active Giveaway'.html_safe, active_facebook_page_giveaways_path(facebook_page)
+    %li= link_to '<i class="fa fa-clock-o"></i>&nbsp;&nbsp;Pending Giveaways'.html_safe, pending_facebook_page_giveaways_path(facebook_page)
+    %li= link_to '<i class="fa fa-archive"></i>&nbsp;&nbsp;Completed Giveaways'.html_safe, completed_facebook_page_giveaways_path(facebook_page)
+    %li.divider
+    %li= link_to '<i class="fa fa-plus"></i>&nbsp;&nbsp;New Giveaway'.html_safe, new_facebook_page_giveaway_path(facebook_page)

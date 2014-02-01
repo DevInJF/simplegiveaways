@@ -249,10 +249,6 @@ Simple Giveaways:
 
  ✔ Mark all form wizard steps with errors in red on submit. @done (14-01-31 04:37)
 
- ☐ Provide default URLs for ImageUploader and FeedImageUploader.
-
- ☐ Finish Dashboard View
-
  ☐ Shortlink analytics UI
 
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
@@ -302,6 +298,10 @@ Simple Giveaways:
  ☐ Security Audit
 
  VERSION 1.0
+
+ ☐ Provide default URLs for ImageUploader and FeedImageUploader.
+
+ ☐ Finish Dashboard View (add FacebookGraph sparklines)
 
  ☐ Entries Table Fixed Header Solution
 

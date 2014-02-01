@@ -12,4 +12,7 @@
     .col-xs-12.col-sm-5
       -# .row.m-t-sm-sm.m-b-xs
       -#   .avatar-push.text-right-sm.m-r-md-sm.m-l-md-xs
-      -#     = render 'facebook_pages/navigation/primary', facebook_page: facebook_page, size_class: 'btn-sm'
+      -#     = render 'facebook_pages/navigation/primary', facebook_page: facebook_page
+      -# .text-center.m-b-n
+      -#   %span.text-sm.pull-right.m-b-sm Likes Trend
+      -#   .sparkline.m-b-sm{"data-fill-color" => "", "data-height" => "35", "data-highlight-line-color" => "#fff", "data-line-color" => "#dddddd", "data-line-width" => "2", "data-resize" => "true", "data-spot-color" => "#bbbbbb", "data-spot-radius" => "3", "data-width" => "100%", "data-type" => "line", values: "#{like_graph_values(facebook_page)}"}
