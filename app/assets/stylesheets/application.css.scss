@@ -1228,3 +1228,8 @@ section.giveaways-edit {
     }
   }
 }
+
+.popover-content {
+  max-height: 250px !important;
+  overflow: auto !important;
+}

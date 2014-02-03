@@ -124,7 +124,7 @@ module GiveawaysHelper
     if giveaway.cannot_schedule?
       "<span class=\"giveaway-start-date-warning\" data-container=\"#start_date_popover_container\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"Inactive Start Date\" data-content=\"<p>A Pro subscription is required in order to schedule a giveaway.</p><a class='btn btn-primary btn-block' href='#{facebook_page_subscription_plans_path(giveaway.facebook_page)}'>Choose a Plan</a>\"><s>#{start_date}</s></span>".html_safe
     elsif giveaway.has_start_date_conflict?
-      "<span class=\"giveaway-start-date-warning\" data-container=\"#start_date_popover_container\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"Inactive Start Date\" data-content=\"<p>This giveaway has scheduling conflicts with the following giveaways:</p><p>#{conflicts(giveaway)}</p><p>Please update your giveaway schedules in order to activate this start date.</p><a class='btn btn-default btn-block' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'><i class='fa fa-pencil'></i>&nbsp;&nbsp;Edit Giveaway</a>\"><s>#{start_date}</s></span>".html_safe
+      "<span class=\"giveaway-start-date-warning\" data-container=\"#start_date_popover_container\" data-toggle=\"popover\" data-placement=\"auto top\" data-html=\"true\" data-title=\"Inactive Start Date\" data-content=\"<p>#{giveaway_date_link(giveaway)}</p><p>This giveaway has scheduling conflicts with the following giveaways:</p><p>#{conflicts(giveaway)}</p><p>Please update your giveaway schedules in order to activate this start date.</p><a class='btn btn-default btn-block' href='#{edit_facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'><i class='fa fa-pencil'></i>&nbsp;&nbsp;Edit Giveaway</a>\"><s>#{start_date}</s></span>".html_safe
     else
       start_date
     end
@@ -152,7 +152,11 @@ module GiveawaysHelper
 
   def conflicts(giveaway)
     giveaway.start_date_conflicts.map do |g|
-      "<a href='#{facebook_page_giveaway_path(g.facebook_page, g)}'>#{g.title}</a><br />#{giveaway.start_date.to_formatted_s(:simple_date)} - #{giveaway.end_date.to_formatted_s(:simple_date)}"
+      giveaway_date_link(g)
     end.join('<br />')
+  end
+
+  def giveaway_date_link(giveaway)
+    "<a href='#{facebook_page_giveaway_path(giveaway.facebook_page, giveaway)}'>#{giveaway.title}</a><br />#{giveaway.start_date.to_formatted_s(:simple_date)} - #{giveaway.end_date.to_formatted_s(:simple_date)}"
   end
 end

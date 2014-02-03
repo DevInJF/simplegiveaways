@@ -67,7 +67,7 @@ SG.UI.DatetimePickers =
   onDateTimeSet: ($el, datepicker, timepicker) ->
     newVal = "#{datepicker.get()} @ #{timepicker.get()}"
     $el.off('focus').val(newVal).focus()
-    unless $el.hasClass('datetime-picker-input')
+    unless $el.hasClass('datetime-picker-input') or $el.parents('.editable-input').length
       datepicker.stop()
       timepicker.stop()
     if @isStart($el)
@@ -76,7 +76,7 @@ SG.UI.DatetimePickers =
 
   onDateTimeClear: ($el, datepicker, timepicker) ->
     $el.off('focus').val('').focus()
-    unless $el.hasClass('datetime-picker-input')
+    unless $el.hasClass('datetime-picker-input') or $el.parents('.editable-input').length
       datepicker.stop()
       timepicker.stop()
 
