@@ -249,6 +249,10 @@ class Giveaway < ActiveRecord::Base
     start_date_conflicts.any? || end_date_conflicts.any?
   end
 
+  def has_start_date_conflict?
+    start_date_conflicts.any?
+  end
+
   def all_conflicts
     start_date_conflicts + end_date_conflicts
   end
@@ -260,7 +264,7 @@ class Giveaway < ActiveRecord::Base
 
   def end_date_conflicts
     return [] unless end_date
-    scheduling_conflicts(end_date).reject(&:active?)
+    scheduling_conflicts(end_date)
   end
 
   def scheduling_conflicts(date)

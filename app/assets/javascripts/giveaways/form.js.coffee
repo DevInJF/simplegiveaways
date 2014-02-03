@@ -6,8 +6,7 @@ SG.Giveaways.Form =
     if @wizardEl().length
       @initWizard()
       @initBonusEntriesToggle()
-      unless @_sg.CurrentGiveaway.status == 'Active'
-        @checkSchedule(el) for el in SG.UI.DatetimePickers.dateTimePickerEls()
+      @checkSchedule(el) for el in SG.UI.DatetimePickers.dateTimePickerEls()
     @processServerErrors() if @serverErrors().length
 
   initWYSIWYG: ->
@@ -22,7 +21,7 @@ SG.Giveaways.Form =
 
   checkSchedule: (el) ->
     $el = $(el)
-    unless SG.UI.DatetimePickers.startConflicts && SG.UI.DatetimePickers.isEnd($el)
+    if SG.UI.DatetimePickers.isStart($el)
       SG.UI.DatetimePickers.conflictContainerEl($el).find('.conflict').remove()
       SG.UI.DatetimePickers.checkSchedule($el.val(), $el)
 

@@ -21,12 +21,15 @@
         - callout type: 'info', title: "There is no active giveaway on your page right now." do
           %p Go ahead and publish one.
 
+    #start_date_popover_container.popover-container
     = render 'facebook_pages/giveaways', giveaways: @giveaways
 
     .panel-footer.paging-footer.text-center
       = will_paginate @giveaways, renderer: BootstrapPagination::Rails
       .text-center.paging-info
         = pagination_info @giveaways, model: "#{'giveaway'.pluralize(@giveaways.size)}"
+
+    #start_giveaway_modal.modal.fade
 
   - else
 

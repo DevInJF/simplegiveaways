@@ -129,7 +129,7 @@ class GiveawaysController < FacebookController
     session.delete(:proposed_tab_name)
 
     if @giveaway.publish(params[:giveaway])
-      flash[:info] = "#{@giveaway.title} is now active on your Facebook Page.&nbsp;&nbsp;<a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe
+      flash[:success] = { title: "Successfully started the giveaway", content: "#{@giveaway.title} is now active on your Facebook Page. <a href='#{@giveaway.giveaway_url}' target='_blank' class='btn btn-mini'>Click here</a> to view the live giveaway.".html_safe }
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
       flash[:error] = "There was a problem publishing #{@giveaway.title}. Please try again or contact support for assistance."

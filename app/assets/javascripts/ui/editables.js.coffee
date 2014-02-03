@@ -3,8 +3,8 @@ SG.UI.Editables =
   _sg: _SG
 
   initialize: ->
-    @initEditables() if @editableEls().length && @isNotCompleted()
-    unless @_sg.CurrentGiveaway.status == 'Active'
+    if @editableEls().length && @isNotCompleted()
+      @initEditables()
       @checkSchedule(el) for el in @editableDatetimeEls()
 
   initEditables: ->
@@ -16,7 +16,7 @@ SG.UI.Editables =
 
   checkSchedule: (el) ->
     $el = $(el)
-    unless SG.UI.DatetimePickers.startConflicts && SG.UI.DatetimePickers.isEnd($el)
+    if SG.UI.DatetimePickers.isStart($el)
       SG.UI.DatetimePickers.conflictContainerEl($el).find('.conflict').remove()
       SG.UI.DatetimePickers.checkSchedule($el.text(), $el)
 
@@ -31,8 +31,6 @@ SG.UI.Editables =
           setTimeout (=> @onEditableError(el, response.errors)), 1000
         else
           @onEditableSuccess(el, newValue)
-    if $(el).hasClass('editable-datetime')
-      SG.UI.DatetimePickers.initialize $(el)
     @initEditableShown(el)
     @initEditableHidden(el)
 
@@ -54,6 +52,7 @@ SG.UI.Editables =
       if editable.$element.length
         if editable.$element.hasClass('editable-datetime')
           SG.UI.DatetimePickers.initialize editable.input.$input
+          setTimeout (=> editable.input.$input.trigger('click')), 0
         else if editable.$element.hasClass('editable-wysiwyg')
           SG.Giveaways.Form.WYSIWYG.initialize editable.input.$input
         else if editable.$element.hasClass('editable-textarea')
@@ -61,11 +60,8 @@ SG.UI.Editables =
 
   initEditableHidden: (el) ->
     $el = $(el)
-    $el.on 'hidden', (e, reason) ->
-      if $el.hasClass('editable-datetime')
-        unless SG.UI.DatetimePickers.startConflicts && SG.UI.DatetimePickers.isEnd($el)
-          SG.UI.DatetimePickers.conflictContainerEl($el).find('.conflict').remove()
-          SG.UI.DatetimePickers.checkSchedule($el.text(), $el)
+    $el.on 'hidden', (e, reason) =>
+      @checkSchedule($el) if $el.hasClass('editable-datetime')
 
   initEditableUploads: (el) ->
     $(el).on 'change', ->

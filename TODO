@@ -251,13 +251,11 @@ Simple Giveaways:
 
  ✔ Make datetime editables focus on select. @done (14-02-03 00:57)
 
- ☐ Shortlink analytics UI
+ ✔ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts). @done (14-02-03 04:27)
 
- ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).
+      ✔ Better scheduling conflict presentation logic? @done (14-02-03 04:27)
 
-      ☐ Better scheduling conflict presentation logic?
-
-      ☐ Can say something like "This start date conflicts... Only the earliest scheduled giveaway will be automatically started."
+      ✔ Can say something like "This start date conflicts... Only the earliest scheduled giveaway will be automatically started." @done (14-02-03 04:27)
 
  ☐ Ensure user will never be surprised by an action taken by the app.
 
@@ -274,8 +272,6 @@ Simple Giveaways:
       ☐ Add info callouts for giveaway images and preferences
 
       ☐ Change Email Required? text to "Auth Required?" and explain why user's should choose this option
-
- ☐ Finish Help Section
 
  ☐ Acquire assets from Brian Dillon
 
@@ -304,6 +300,8 @@ Simple Giveaways:
  ☐ Provide default URLs for ImageUploader and FeedImageUploader.
 
  ☐ Finish Dashboard View (add FacebookGraph sparklines)
+
+ ☐ Shortlink analytics UI
 
  ☐ Entries Table Fixed Header Solution
 

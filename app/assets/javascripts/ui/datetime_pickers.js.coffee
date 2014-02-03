@@ -48,12 +48,13 @@ SG.UI.DatetimePickers =
     .pickatime('picker')
 
   initTimepicker: ($el, $timePickerEl, datepicker, timepicker) ->
+    unless timepicker.$root.find('#back_to_date').length
+      $('<span id="back_to_date" class="btn btn-default btn-block">Back to Date</span>').on 'click', ->
+        timepicker.close()
+        datepicker.open()
+      .prependTo timepicker.$root.find('.picker__box')
+
     timepicker.on
-      render: ->
-        $('<span class="btn btn-default btn-block">Back to Date</span>').on 'click', ->
-          timepicker.close()
-          datepicker.open()
-        .prependTo timepicker.$root.find('.picker__box')
       set: (item) =>
         if 'select' of item
           setTimeout (=> @onDateTimeSet($el, datepicker, timepicker)), 0
@@ -69,7 +70,7 @@ SG.UI.DatetimePickers =
     unless $el.hasClass('datetime-picker-input')
       datepicker.stop()
       timepicker.stop()
-    unless @startConflicts && @isEnd($el)
+    if @isStart($el)
       @conflictContainerEl($el).find('.conflict').remove()
       @checkSchedule(newVal, $el)
 
@@ -108,10 +109,8 @@ SG.UI.DatetimePickers =
         date_type: @dateType($el)
       success: (conflicts, status) =>
         if conflicts.length
-          @startConflicts = true if @isStart($el)
           @showConflictMessage($el, conflict) for conflict in conflicts
         else
-          @startConflicts = false if @isStart($el)
           @conflictContainerEl($el).hide()
 
   setMinDate: ($el) ->
@@ -119,8 +118,6 @@ SG.UI.DatetimePickers =
       moment(start).toDate()
     else
       moment().add('minutes', 10).toDate()
-
-  startConflicts: false
 
   showConflictMessage: ($el, conflict) ->
     @conflictContainerEl($el).show().append("<div class='conflict'>#{@conflictLink(conflict)}<br />#{moment(conflict.start_date).format('M/D/YYYY')} - #{moment(conflict.end_date).format('M/D/YYYY')}</div>")

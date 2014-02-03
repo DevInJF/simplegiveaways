@@ -3,18 +3,25 @@ SG.Giveaways.Start =
   _sg: _SG
 
   initialize: ->
-    @initStartModal() if @modalEl().length
-    @triggerStartModal() if @justSubscribed()
+    if @modalEl().length
+      @attachButtonEvents()
+      if @justSubscribed()
+        @triggerStartModal()
+      else
+        @initStartModal()
 
   initStartModal: ->
-    @modalEl().on
-      'hidden.bs.modal': -> $(this).removeData('bs.modal')
-      'shown.bs.modal': =>
-        SG.UI.DatetimePickers.initialize()
-        @attachButtonEvents()
+    $(document).on 'hidden.bs.modal', '#start_giveaway_modal', ->
+      $('#start_giveaway_modal').removeData('bs.modal')
+    $(document).on 'ajaxSuccess', (response) =>
+      @attachModalEvents()
+
+  attachModalEvents: ->
+    if @modalEl().find('.datetime-picker-input').length
+      SG.UI.DatetimePickers.initialize @modalEl().find('.datetime-picker-input')
 
   attachButtonEvents: ->
-    @approveButtonEl().on 'click', (e) =>
+    $(document).on 'click', '#start_giveaway_modal .approve.btn', (e) =>
       @moveForward()
 
   triggerStartModal: ->
@@ -23,8 +30,7 @@ SG.Giveaways.Start =
       @modalEl().find(".modal-step[data-modal-step='2']").show()
       $('#start_giveaway_end_date').val @_sg.CurrentGiveaway.proposedEndDate
       $('#start_giveaway_tab_name').val @_sg.CurrentGiveaway.proposedTabName
-      SG.UI.DatetimePickers.initialize()
-      @attachButtonEvents()
+      @attachModalEvents()
     $('#start_giveaway').trigger 'click'
 
   justSubscribed: ->
