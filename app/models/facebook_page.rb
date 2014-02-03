@@ -138,6 +138,18 @@ class FacebookPage < ActiveRecord::Base
     save
   end
 
+  def active_giveaways_count
+    giveaways.active.count rescue 0
+  end
+
+  def pending_giveaways_count
+    giveaways.pending.count
+  end
+
+  def completed_giveaways_count
+    giveaways.completed.count
+  end
+
   class << self
 
     def select_pages(options = {})

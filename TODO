@@ -249,6 +249,8 @@ Simple Giveaways:
 
  ✔ Mark all form wizard steps with errors in red on submit. @done (14-01-31 04:37)
 
+ ✔ Make datetime editables focus on select. @done (14-02-03 00:57)
+
  ☐ Shortlink analytics UI
 
  ☐ Update scheduling conflicts logic to favor earliest start date (instead of listing both as conflicts).

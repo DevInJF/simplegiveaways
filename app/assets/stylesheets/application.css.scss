@@ -213,6 +213,31 @@
       }
     }
   }
+
+  .wizard {
+
+    .actions {
+      margin: 8px 10px 8px 0;
+    }
+
+    ul {
+
+      li {
+        cursor: pointer;
+
+        &:hover {
+          color: #737373;
+        }
+
+        &.active {
+
+          &:hover {
+            color: #3A87AD;
+          }
+        }
+      }
+    }
+  }
 }
 
 .btn-group {
@@ -1158,6 +1183,46 @@ button {
 
         input {
           cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.list-group-item {
+
+  &.preview {
+
+    .stats {
+
+      a {
+        display: block;
+        width: 42%;
+        min-width: 63px;
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+  }
+}
+
+section.giveaways-edit {
+
+  .wizard {
+
+    ul {
+
+      li {
+
+        &.active {
+
+          .badge {
+            background-color: #4CC0C1;
+          }
+        }
+
+        .badge {
+          background-color: #8EC165;
         }
       }
     }

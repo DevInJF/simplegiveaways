@@ -31,6 +31,8 @@ SG.UI.Editables =
           setTimeout (=> @onEditableError(el, response.errors)), 1000
         else
           @onEditableSuccess(el, newValue)
+    if $(el).hasClass('editable-datetime')
+      SG.UI.DatetimePickers.initialize $(el)
     @initEditableShown(el)
     @initEditableHidden(el)
 
@@ -40,7 +42,6 @@ SG.UI.Editables =
     $(el).parents('.editable-parent').find('.editable-label').removeClass('error').end().find('.editable-error').text('')
 
   onEditableError: (el, errors) ->
-    # $(el).editable('setValue', $(el).data('editable').options.value)
     $(el).parents('.editable-parent').find('.editable-label').addClass('error').end().find('.editable-error').text(errors[0])
 
   initReadmoreEditables: (el) ->

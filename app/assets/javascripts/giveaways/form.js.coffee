@@ -17,6 +17,7 @@ SG.Giveaways.Form =
   initWizard: ->
     @wizardEl().wizard()
     @wizardEl().on 'change', (e, data) => @onWizardChange(e, data)
+    @wizardEl().on 'changed', (e, data) => @onWizardChanged(e, data)
     @wizardEl().on 'finished', (e, data) => @onWizardFinished(e, data)
 
   checkSchedule: (el) ->
@@ -30,6 +31,9 @@ SG.Giveaways.Form =
     if data.direction == 'next' && not @validated
       @processParsleyErrors()
       false
+
+  onWizardChanged: (e, data) ->
+    $(CKEDITOR.instances.editor).trigger 'resize'
 
   onWizardFinished: (e, data) ->
     @doValidations()
