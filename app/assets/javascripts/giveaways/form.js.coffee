@@ -26,7 +26,7 @@ SG.Giveaways.Form =
       SG.UI.DatetimePickers.checkSchedule($el.val(), $el)
 
   onWizardChange: (e, data) ->
-    @doValidations()
+    @validateSteps(data.step)
     if data.direction == 'next' && not @validated
       @processParsleyErrors()
       false
@@ -35,18 +35,23 @@ SG.Giveaways.Form =
     $(CKEDITOR.instances.editor).trigger 'resize'
 
   onWizardFinished: (e, data) ->
-    @doValidations()
+    @validateSteps()
     if not @validated && @parsleyErrors().length
       @processParsleyErrors()
       false
     else
       @containerEl().find('form').submit()
 
-  doValidations: ->
+  validateSteps: (step) ->
+    $panes = @containerEl().find(".step-pane")
+    $panes = $panes.slice(0, step) if step?
+    @doValidations $("[data-required='true']", $panes)
+
+  doValidations: ($steps) ->
     @validated = true
     CKEDITOR.instances.editor.updateElement()
     @errorStepEls().removeClass('error')
-    $("[data-required='true']", @containerEl().find(".step-pane")).each (i,el) =>
+    $steps.each (i,el) =>
       @validated = $(el).parsley('validate')
 
   initBonusEntriesToggle: ->
