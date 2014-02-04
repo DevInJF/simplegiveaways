@@ -261,6 +261,14 @@ Simple Giveaways:
 
       ☐ Global Flash Message Review
 
+            ✔  i18n for all flash messages. @done (14-02-04 03:14)
+
+            ✔ Title/Content for all flash messages. @done (14-02-04 03:14)
+
+            ☐ Language review.
+
+      ☐ Fix wizard issue moving forward after errors (skipping steps)
+
       ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 
  ☐ Subscription Emails.

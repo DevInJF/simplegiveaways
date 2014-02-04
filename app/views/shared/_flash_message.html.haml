@@ -2,7 +2,7 @@
   - title = message[:title].titleize
   - message = message[:content]
 - else
-  - title = level.titleize
+  - title = "#{level}".titleize
 
 %li.rails-flash.messenger-message-slot.animated.fadeInUp
   .messenger-message.message{class: "message-#{level} alert-#{level}"}

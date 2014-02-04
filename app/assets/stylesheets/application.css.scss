@@ -783,6 +783,14 @@ button {
   height: 100px;
 }
 
+.parsley-error ~ #cke_editor {
+  border-color: #FF5F5F;
+}
+
+.ckeditor .parsley-error-list {
+  margin-bottom: 5px;
+}
+
 #active_giveaway_tabs {
 
   li.actions-dropdown,
