@@ -1202,6 +1202,26 @@ button {
         margin: 0 auto;
         text-align: center;
       }
+
+      .active-giveaways {
+
+        a {
+
+          &:hover {
+            color: $text-primary;
+          }
+        }
+      }
+
+      .completed-giveaways {
+
+        a {
+
+          &:hover {
+            color: $text-danger;
+          }
+        }
+      }
     }
   }
 }
