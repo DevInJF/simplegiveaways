@@ -15,3 +15,4 @@ dump.rdb
 /.env
 public/uploads/*
 /public/uploads/
+/public/uploads/**
