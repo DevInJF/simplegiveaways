@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
     if @user = current_user
       unless @user && @user.finished_onboarding?
-        flash[:notice] = { title: t('flash.users.onboarding.title'), content: t('flash.users.onboarding.content_html') }
+        flash[:notice] = { title: t('flash.users.onboarding.title').html_safe, content: t('flash.users.onboarding.content').html_safe }
       end
       render 'dashboard/index'
     else

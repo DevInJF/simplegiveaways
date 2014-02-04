@@ -15,7 +15,7 @@ class FacebookPagesController < ApplicationController
       flash.clear
 
       if current_user.finished_onboarding?
-        flash[:success] = { title: t('flash.facebook_pages.onboarding.title'), content: t('flash.facebook_pages.onboarding.content_html') }
+        flash[:success] = { title: t('flash.facebook_pages.onboarding.title'), content: t('flash.facebook_pages.onboarding.content').html_safe }
         header_nav_html = render_to_string(partial: 'layouts/navigation/my_pages')
         sidebar_nav_html = render_to_string(partial: 'layouts/navigation/sidebar/facebook_pages', locals: { active: false })
         new_giveaway_html = render_to_string(partial: 'components/new_giveaway_dropdown')
@@ -40,7 +40,7 @@ class FacebookPagesController < ApplicationController
     @page = FacebookPage.find(params[:id])
 
     if params.has_key?(:subscribed)
-      flash[:info] = { title: t('flash.facebook_pages.subscribed.title', @page.name), content: t('flash.facebook_pages.subscribed.content_html', @page.subscription_plan_name) }
+      flash[:info] = { title: t('flash.facebook_pages.subscribed.title', page: @page.name), content: t('flash.facebook_pages.subscribed.content', plan: @page.subscription_plan_name).html_safe }
       redirect_to pending_facebook_page_giveaways_path(@page, subscribed: true)
     elsif @page.active_giveaway
       flash.keep

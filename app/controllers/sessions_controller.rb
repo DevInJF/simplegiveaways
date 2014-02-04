@@ -9,13 +9,11 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
 
     unless @identity = Identity.find_or_create_with_omniauth(auth)
-      redirect_to root_url, alert: { title: t('flash.defaults.alert.unknown_error.title'), content: t('flash.defaults.alert.unknown_error.content_html') }
+      redirect_to root_url, alert: { title: t('flash.defaults.alert.unknown_error.title'), content: t('flash.defaults.alert.unknown_error.content').html_safe }
     end
 
-    if signed_in?
-      unless @identity.create_or_login_user(auth)
-        alert: { title: t('flash.defaults.alert.unknown_error.title'), content: t('flash.defaults.alert.unknown_error.content_html') }
-      end
+    unless signed_in? || @identity.create_or_login_user(auth)
+      flash[:alert] = { title: t('flash.defaults.alert.unknown_error.title'), content: t('flash.defaults.alert.unknown_error.content').html_safe }
     end
 
     render 'sessions/create', layout: false
@@ -25,9 +23,9 @@ class SessionsController < ApplicationController
     self.current_user = nil
     session[:user_id] = nil
     if params[:fb] == "true"
-      flash[:alert] = { title: t('flash.identities.logout.facebook_session.title'), content: t('flash.identities.logout.facebook_session.content_html') }
+      flash[:alert] = { title: t('flash.sessions.logout.facebook_session.title'), content: t('flash.sessions.logout.facebook_session.content').html_safe }
     else
-      flash[:info] = { title: t('flash.identities.logout.default.title'), content: t('flash.identities.logout.default.content_html') }
+      flash[:info] = { title: t('flash.sessions.logout.default.title'), content: t('flash.sessions.logout.default.content').html_safe }
     end
     cookies.delete :'_sg-just_logged_in'
     cookies.delete :_sg_uid
