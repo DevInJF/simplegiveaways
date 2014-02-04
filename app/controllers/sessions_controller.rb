@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
 
     unless @identity = Identity.find_or_create_with_omniauth(auth)
-      redirect_to root_url, notice: "Something went wrong. Please try again."
+      redirect_to root_url, alert: { title: t('flash.defaults.alert.unknown_error.title'), content: t('flash.defaults.alert.unknown_error.content_html') }
     end
 
     if signed_in?
-      flash[:notice] = @identity.add_to_existing_user(current_user)
-    else
-      @identity.create_or_login_user(auth)
+      unless @identity.create_or_login_user(auth)
+        alert: { title: t('flash.defaults.alert.unknown_error.title'), content: t('flash.defaults.alert.unknown_error.content_html') }
+      end
     end
 
     render 'sessions/create', layout: false
@@ -25,9 +25,9 @@ class SessionsController < ApplicationController
     self.current_user = nil
     session[:user_id] = nil
     if params[:fb] == "true"
-      flash[:error] = "You have been logged out due to a change in your facebook session."
+      flash[:alert] = { title: t('flash.identities.logout.facebook_session.title'), content: t('flash.identities.logout.facebook_session.content_html') }
     else
-      flash[:info] = "Logged out!"
+      flash[:info] = { title: t('flash.identities.logout.default.title'), content: t('flash.identities.logout.default.content_html') }
     end
     cookies.delete :'_sg-just_logged_in'
     cookies.delete :_sg_uid

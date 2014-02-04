@@ -50,16 +50,16 @@ class Identity < ActiveRecord::Base
   end
 
   def create_or_login_user(auth)
-    return "Logged in!" if user.present?
+    return true if user.present?
 
     self.build_user(name: auth["info"]["name"], roles: ['superadmin'])
 
     if user.save
       GabbaClient.new.event(category: "Users", action: "User#create", label: user.name)
       WelcomeNewUserMailer.welcome(self).deliver
-      "Logged in!"
+      true
     else
-      "Something went wrong."
+      false
     end
   end
 

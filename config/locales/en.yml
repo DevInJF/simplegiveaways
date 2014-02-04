@@ -1,4 +1,31 @@
 en:
+  brand:
+    name: "Simple Giveaways"
+  flash:
+    defaults:
+      alert:
+        unknown_error:
+          title: "An unknown error occurred."
+          content_html: "Please try again or contact support for assistance. We apologize for the inconvenience."
+    users:
+      onboarding:
+        title: "Welcome to Simple Giveaways."
+        content_html: "Please hold on a moment while we fetch your Facebook Pages."
+    identities:
+      logout:
+        facebook_session:
+          title: "Logged Out"
+          content_html: "You have been logged out due to a change in your facebook session."
+        default:
+          title: "Logged Out"
+          content_html: "You have been successfully logged out. Thank you for using <strong>Simple Giveaways</strong>."
+    facebook_pages:
+      onboarding:
+        title: "Successfully fetched your Facebook Pages."
+        content_html: "You can now start building your first giveaway. Thank you for using <strong>Simple Giveaways</strong>"
+      subscribed:
+        title: "%{page} has been successfully subscribed."
+        content_html: "%{page} has been successfully subscribed to the #{plan} plan. Thank you for using <strong>Simple Giveaways</strong>."
   will_paginate:
     previous_label: '<i class="fa fa-chevron-left"></i>'
     next_label: '<i class="fa fa-chevron-right"></i>'
