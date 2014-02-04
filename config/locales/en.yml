@@ -7,6 +7,21 @@ en:
         unknown_error:
           title: "An unknown error occurred."
           content: "Please try again or contact support for assistance. We apologize for the inconvenience."
+    giveaways:
+    subscriptions:
+      subscribed:
+        title: "You were successfully subscribed."
+        content: "You are now subscribed to the %{plan} plan. Thank you for using <strong>Simple Giveaways</strong>."
+      unsubscribed:
+        title: "You were successfully unsubscribed."
+        content: "You will still be able to enjoy the benefits of your subscription until the end of the current billing cycle. Thank you for using <strong>Simple Giveaways</strong>."
+      unknown_error:
+        subscribe:
+          title: "An unknown error occurred."
+          content: "We were unable to process your subscription request. Please try again or contact support for assistance. We apologize for the inconvenience."
+        unsubscribe:
+          title: "An unknown error occurred."
+          content: "We were unable to unsubscribe you from your plan. Please try again or contact support for assistance. We apologize for the inconvenience."
     users:
       onboarding:
         title: "Welcome to <strong>Simple Giveaways.</strong>"

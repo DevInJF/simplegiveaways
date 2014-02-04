@@ -6,13 +6,13 @@ class SubscriptionsController < ApplicationController
     begin
       if @subscription = update_sg_subscription
         session[:just_subscribed] = true
-        flash[:info] = { title: "You were successfully subscribed.", content: "You are now subscribed to the #{current_user.subscription_plan_name} plan. Thank you for using <strong>Simple Giveaways</strong>.".html_safe }
+        flash[:info] = { title: t('flash.subscriptions.subscribed.title'), content: t('flash.subscriptions.subscribed.content', plan: current_user.subscription_plan_name).html_safe }
       else
-        flash[:error] = { title: "An unknown error occurred.", content: "We were unable to process your subscription request. Please try again or contact support for assistance. We apologize for the inconvenience." }
+        flash[:error] = { title: t('flash.subscriptions.unknown_error.subscribe.title'), content: t('flash.subscriptions.unknown_error.subscribe.content') }
       end
       redirect_to redirect_path
     rescue Stripe::CardError => error
-      flash[:error] = { title: "An unknown error occurred.", content: "We were unable to process your subscription request. Please try again or contact support for assistance. We apologize for the inconvenience." }
+      flash[:error] = { title: t('flash.subscriptions.unknown_error.subscribe.title'), content: t('flash.subscriptions.unknown_error.subscribe.content') }
       redirect_to redirect_path
     end
   end
@@ -20,9 +20,9 @@ class SubscriptionsController < ApplicationController
   def destroy
     begin
       if @subscription = cancel_sg_subscription
-        flash[:info] = { title: "You were successfully unsubscribed.", content: "You will still be able to enjoy the benefits of your subscription until the end of the current billing cycle. Thank you for using <strong>Simple Giveaways</strong>.".html_safe }
+        flash[:info] = { title: t('flash.subscriptions.unsubscribed.title'), content: t('flash.subscriptions.unsubscribed.content').html_safe }
       else
-        flash[:error] = { title: "An unknown error occurred.", content: "We were unable to unsubscribe you from your plan. Please try again or contact support for assistance. We apologize for the inconvenience." }
+        flash[:error] = { title: t('flash.subscriptions.unknown_error.unsubscribe.title'), content: t('flash.subscriptions.unknown_error.unsubscribe.content') }
       end
       redirect_to user_subscription_plans_path(current_user)
     rescue Stripe::CardError => error
