@@ -69,10 +69,10 @@ class GiveawaysController < FacebookController
     if @giveaway.save
       ga_event("Giveaways", "Giveaway#create", @giveaway.title, @giveaway.id)
 
-      flash[:info] = "#{@giveaway.title} has been created.".html_safe
+      flash[:success] = { title: t('flash.giveaways.create.success.title'), content: t('flash.giveaways.create.success.content', giveaway: @giveaway.title) }
 
       if @page.cannot_schedule? && @giveaway.start_date
-        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since #{@page.name} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like.".html_safe
+        flash[:success] += t('flash.giveaways.create.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
       end
 
       redirect_to pending_facebook_page_giveaways_path(@page)
@@ -86,10 +86,10 @@ class GiveawaysController < FacebookController
     @page = @giveaway.facebook_page
 
     if @giveaway.update_attributes(@giveaway_params)
-      flash[:info] = "#{@giveaway.title} has been updated.".html_safe
+      flash[:info] = { title: t('flash.giveaways.update.success.title'), content: t('flash.giveaways.update.success.content', giveaway: @giveaway.title) }
 
       if @page.cannot_schedule? && @giveaway.start_date
-        flash[:info] += "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since #{@page.name} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='#{facebook_page_subscription_plans_path(@page)}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like.".html_safe
+        flash[:info] += t('flash.giveaways.update.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
       end
 
       respond_to do |format|
@@ -99,7 +99,7 @@ class GiveawaysController < FacebookController
 
       @giveaway.update_tab if @giveaway.active?
     else
-      flash.now[:error] = "There was a problem updating #{@giveaway.title}."
+      flash.now[:error] = { title: t('flash.giveaways.update.unknown_error.title'), content: t('flash.giveaways.update.unknown_error.content') }
 
       respond_to do |format|
         format.html { render :edit }
@@ -112,10 +112,10 @@ class GiveawaysController < FacebookController
 
   def destroy
     if @giveaway.hide
-      flash[:info] = "#{@giveaway.title} has been successfully deleted."
+      flash[:info] = { title: t('flash.giveaways.destroy.success.title'), content: t('flash.giveaways.destroy.success.content', giveaway: @giveaway.title) }
       redirect_to facebook_page_url(@giveaway.facebook_page)
     else
-      flash[:error] = "There was a problem deleting the giveaway:<br />#{@giveaway.errors.full_messages.to_sentence}".html_safe
+      flash[:error] = { title: t('flash.giveaways.destroy.unknown_error.title'), content: t('flash.giveaways.destroy.unknown_error.content') }
       redirect_to facebook_page_url(@giveaway.facebook_page)
     end
   end
@@ -129,21 +129,20 @@ class GiveawaysController < FacebookController
     session.delete(:proposed_tab_name)
 
     if @giveaway.publish(params[:giveaway])
-      flash[:success] = { title: "Successfully started the giveaway", content: "#{@giveaway.title} is now active on your Facebook Page. <a href='#{@giveaway.giveaway_url}' target='_blank'>Click here</a> to view the live giveaway.".html_safe }
+      flash[:success] = { title: t('flash.giveaways.start.success.title', giveaway: @giveaway.title), content: t('flash.giveaways.start.success.content', giveaway: @giveaway.title, giveaway_url: @giveaway.giveaway_url).html_safe }
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
-      flash[:error] = "There was a problem publishing #{@giveaway.title}. Please try again or contact support for assistance."
+      flash[:error] = { title: t('flash.giveaways.start.unknown_error.title'), content: t('flash.giveaways.start.unknown_error.content', giveaway: @giveaway.title) }
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
 
   def end
     if @giveaway.unpublish
-      flash[:info] = "#{@giveaway.title} has ended and will no longer accept entries."
+      flash[:info] = { title: t('flash.giveaways.end.success.title', giveaway: @giveaway.title), content: t('flash.giveaways.end.success.content', giveaway: @giveaway.title) }
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
     else
-      @giveaway
-      flash[:error] = "There was a problem ending #{@giveaway.title}. Please try again or contact support for assistance."
+      flash[:error] = { title: t('flash.giveaways.end.unknown_error.title'), content: t('flash.giveaways.end.unknown_error.content', giveaway: @giveaway.title) }
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
@@ -216,9 +215,10 @@ class GiveawaysController < FacebookController
 
     if @clone
       @giveaway = @clone
+      flash.now[:info] = { title: t('flash.giveaways.clone.success.title'), content: t('flash.giveaways.clone.success.content', giveaway: @giveaway.title) }
       render :edit
     else
-      flash[:error] = "There was a problem cloning the giveaway. Please try again or contact support for assistance."
+      flash[:error] = { title: t('flash.giveaways.clone.unknown_error.title'), content: t('flash.giveaways.clone.unknown_error.content') }
       redirect_to facebook_page_giveaway_path(@page, @giveaway)
     end
   end
