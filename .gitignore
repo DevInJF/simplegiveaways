@@ -13,3 +13,5 @@ config/database.yml
 dump.rdb
 .env
 /.env
+public/uploads/*
+/public/uploads/
