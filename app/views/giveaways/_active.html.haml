@@ -11,8 +11,8 @@
       = render 'giveaways/active/actions_dropdown', giveaway: giveaway
   .panel-body
     .tab-content
+      = render 'giveaways/active/actions_button', giveaway: giveaway
       #overview_tab.tab-pane.fade.active.in
-        = render 'giveaways/active/actions_button', giveaway: giveaway
         = render 'giveaways/active/stats', giveaway: giveaway
         = render 'giveaways/active/graphs', giveaway: giveaway, page: page, flot: flot if giveaway.canhaz_advanced_analytics?
       #entries_tab.tab-pane.fade

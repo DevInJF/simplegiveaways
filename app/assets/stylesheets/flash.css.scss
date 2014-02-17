@@ -149,11 +149,21 @@ ul.messenger.messenger-theme-block.messenger-fixed {
 
       p {
         font-size: 14px;
-        line-height: 14px;
+        line-height: 16px;
         display: inline-block;
 
         &:last-child {
           margin-bottom: 0;
+        }
+      }
+
+      ul.errors-list {
+        padding-left: 0;
+
+        li {
+          list-style-image: none;
+          list-style-position: outside;
+          list-style-type: circle;
         }
       }
     }

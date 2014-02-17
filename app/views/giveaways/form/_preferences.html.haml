@@ -12,7 +12,7 @@
     = f.input_field :allow_multi_entries, as: :boolean, boolean_style: :inline
     %span
 
-  - if f.object.facebook_page.canhaz_referral_tracking? || f.object.allow_multi_entries == "1"
+  - if f.object.facebook_page.canhaz_referral_tracking? || f.object.allow_multi_entries == "1" || f.object.active?
 
     = f.input :bonus_value, as: :string, input_html: { value: '5', placeholder: 'Bonus Entry Value', 'data-trigger' => 'change', 'data-required' => 'true' }, label: 'Bonus Entry Value'
 

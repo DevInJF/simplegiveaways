@@ -13,11 +13,17 @@ en:
           title: "Success"
           content: "%{giveaway} was successfully created."
           cannot_schedule: "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since %{page} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='%{link}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like."
+        error:
+          title: "Error"
+          content: "There was a problem creating the giveaway. Please fix the following errors and try again.<br />%{errors}"
       update:
         success:
           title: "Success"
           content: "%{giveaway} was successfully updated."
           cannot_schedule: "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since %{page} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='%{link}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like."
+        error:
+          title: "Error"
+          content: "There was a problem updating the giveaway. Please fix the following errors and try again.<br />%{errors}"
         unknown_error:
           title: "An unknown error occurred."
           content: "There was a problem updating the giveaway. Please try again or contact support for assistance. We apologize for the inconvenience."
@@ -25,6 +31,9 @@ en:
         success:
           title: "The giveaway was successfully deleted."
           content: "%{giveaway} has been successfully deleted."
+        error:
+          title: "Error"
+          content: "There was a problem deleting the giveaway. Please fix the following errors and try again.<br />%{errors}"
         unknown_error:
           title: "An unknown error occurred."
           content: "There was a problem deleting the giveaway. Please try again or contact support for assistance. We apologize for the inconvenience."
@@ -32,6 +41,9 @@ en:
         success:
           title: "%{giveaway} was successfully started."
           content: "%{giveaway} is now active on your Facebook Page.<br /><a href='%{giveaway_url}' target='_blank'>Click here</a> to view the live giveaway."
+        error:
+          title: "Error"
+          content: "There was a problem publishing %{giveaway}. Please fix the following errors and try again.<br />%{errors}"
         unknown_error:
           title: "An unknown error occurred."
           content: "There was a problem publishing %{giveaway}. Please try again or contact support for assistance. We apologize for the inconvenience."
@@ -39,6 +51,9 @@ en:
         success:
           title: "%{giveaway} was successfully ended."
           content: "%{giveaway} has ended and will no longer accept entries."
+        error:
+          title: "Error"
+          content: "There was a problem ending %{giveaway}. Please fix the following errors and try again.<br />%{errors}"
         unknown_error:
           title: "An unknown error occurred."
           content: "There was a problem ending %{giveaway}. Please try again or contact support for assistance. We apologize for the inconvenience."
@@ -46,6 +61,9 @@ en:
         success:
           title: "Success"
           content: "%{giveaway} was successfully cloned, however, it still needs to be edited and saved."
+        error:
+          title: "Error"
+          content: "There was a problem cloning %{giveaway}. Please fix the following errors and try again.<br />%{errors}"
         unknown_error:
           title: "An unknown error occurred."
           content: "There was a problem cloning the giveaway. Please try again or contact support for assistance. We apologize for the inconvenience."

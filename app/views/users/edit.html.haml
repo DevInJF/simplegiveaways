@@ -12,13 +12,17 @@
                 %i.fa.fa-facebook-square &nbsp;
                 #{current_user.facebook_pages.size} Facebook Pages
           %div
+            %small.text-uc.text-xs.text-muted member since
+            %p= current_user.created_at.to_formatted_s(:date)
+            .line
             %small.text-uc.text-xs.text-muted email
             %p= current_user.email
             .line
             %small.text-uc.text-xs.text-muted plan
             %p= current_user.subscription_plan_name
-            .line
-            %small.text-uc.text-xs.text-muted billing info
+            - unless current_user.subscription_plan_name == 'Free Trial'
+              .line
+              %small.text-uc.text-xs.text-muted billing info
   %aside.col-lg-8
     %section.vbox
       %section.scrollable

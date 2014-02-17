@@ -25,5 +25,5 @@ CarrierWave.configure do |config|
     aws_secret_access_key: ENV['S3_SECRET'],
     region: 'us-east-1'
   }
-  config.fog_directory  = "_sg_#{ENV['RACK_ENV']}"
+  config.fog_directory  = "sga-#{ENV['RACK_ENV']}"
 end

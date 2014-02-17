@@ -72,7 +72,7 @@ class GiveawaysController < FacebookController
       flash[:success] = { title: t('flash.giveaways.create.success.title'), content: t('flash.giveaways.create.success.content', giveaway: @giveaway.title) }
 
       if @page.cannot_schedule? && @giveaway.start_date
-        flash[:success] += t('flash.giveaways.create.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
+        flash[:success][:content] += t('flash.giveaways.create.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
       end
 
       redirect_to pending_facebook_page_giveaways_path(@page)
@@ -88,8 +88,8 @@ class GiveawaysController < FacebookController
     if @giveaway.update_attributes(@giveaway_params)
       flash[:info] = { title: t('flash.giveaways.update.success.title'), content: t('flash.giveaways.update.success.content', giveaway: @giveaway.title) }
 
-      if @page.cannot_schedule? && @giveaway.start_date
-        flash[:info] += t('flash.giveaways.update.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
+      if @page.cannot_schedule? && @giveaway.start_date && @giveaway.pending?
+        flash[:info][:content] += t('flash.giveaways.update.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
       end
 
       respond_to do |format|
@@ -132,7 +132,7 @@ class GiveawaysController < FacebookController
       flash[:success] = { title: t('flash.giveaways.start.success.title', giveaway: @giveaway.title), content: t('flash.giveaways.start.success.content', giveaway: @giveaway.title, giveaway_url: @giveaway.giveaway_url).html_safe }
       redirect_to active_facebook_page_giveaways_url(@giveaway.facebook_page)
     else
-      flash[:error] = { title: t('flash.giveaways.start.unknown_error.title'), content: t('flash.giveaways.start.unknown_error.content', giveaway: @giveaway.title) }
+      flash[:error] = { title: t('flash.giveaways.start.error.title'), content: t('flash.giveaways.start.error.content', giveaway: @giveaway.title, errors: @giveaway.errors_list).html_safe }
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
@@ -245,7 +245,7 @@ class GiveawaysController < FacebookController
   def sanitize_params
     @giveaway_params = {}
     params[:giveaway].each do |key, value|
-      value = Sanitize.clean(value, Sanitize::Config::BASIC) if key == 'description'
+      value = Sanitize.clean(value, Sanitize::Config::SG) if key == 'description'
       value = value.gsub(/<br>|<br\/>|<br \/>/, "\n") if value.is_a?(String)
       @giveaway_params["#{key}"] = value
     end
@@ -253,7 +253,6 @@ class GiveawaysController < FacebookController
 
   def flot_hash
     giveaways_graph = Graph::GiveawayGraph.new(@giveaway)
-    puts giveaways_graph.inspect.yellow
     { page_likes: giveaways_graph.page_likes,
       net_likes: giveaways_graph.net_likes,
       shares:    giveaways_graph.shares,

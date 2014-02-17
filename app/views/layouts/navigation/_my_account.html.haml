@@ -35,10 +35,7 @@
       %b.caret
     %ul.dropdown-menu.animated.fadeInRight
       %span.arrow.top
-      %li
-        %a{href: "#"} Settings
-      %li
-        %a{href: "profile.html"} Profile
+      %li= link_to 'Account', edit_user_path(current_user)
       %li
         %a{href: "#"}
           %span.badge.bg-danger.pull-right 3

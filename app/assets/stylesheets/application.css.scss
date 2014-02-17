@@ -245,7 +245,7 @@
   &.btn-group-relaxed {
     width: 100%;
 
-    .btn {
+    > .btn {
       width: 48%;
 
       &:first-child:not(:last-child):not(.dropdown-toggle) {

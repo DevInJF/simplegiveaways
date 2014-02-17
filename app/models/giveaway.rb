@@ -27,7 +27,7 @@ class Giveaway < ActiveRecord::Base
 
   scope :active, -> { where("active IS TRUE").limit(1) }
 
-  scope :pending, -> { where("active IS FALSE AND end_date >= ? OR end_date IS NULL", Time.zone.now) }
+  scope :pending, -> { where("active IS FALSE AND (end_date >= ? OR end_date IS NULL)", Time.zone.now) }
 
   scope :completed, -> { where("active IS FALSE AND end_date <= ?", Time.zone.now) }
 
@@ -494,6 +494,16 @@ class Giveaway < ActiveRecord::Base
 
   def terms_link
     terms_url.present? ? terms_url_link : terms_text_link
+  end
+
+  def errors_list
+    ERB.new(<<-BLOCK).result(binding)
+    <ul class='errors-list'>
+      <% errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    BLOCK
   end
 
   class << self
