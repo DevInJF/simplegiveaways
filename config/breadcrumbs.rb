@@ -2,6 +2,15 @@ crumb :root do
   link "<i class='fa fa-home'></i> Dashboard".html_safe, dashboard_path
 end
 
+crumb :user do |user|
+  link user.name, edit_user_path(user)
+end
+
+crumb :subscription_plans do |user|
+  link 'Subscription', user_subscription_plans_path(user)
+  parent :user, user
+end
+
 crumb :facebook_page do |facebook_page|
   link facebook_page.name, facebook_page_path(facebook_page)
   parent :root

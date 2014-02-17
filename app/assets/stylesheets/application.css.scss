@@ -351,6 +351,21 @@
  *
  */
 
+.breadcrumb {
+
+  > li + li:before {
+    padding: 0 2px 0 4px;
+  }
+
+  a {
+
+    &:hover,
+    &:focus {
+      color: #717171;
+    }
+  }
+}
+
 #my_pages_dropdown {
 
   i {

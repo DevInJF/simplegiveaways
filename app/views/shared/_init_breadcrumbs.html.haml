@@ -14,3 +14,9 @@
 
 - if current_action == 'giveaways/completed'
   - breadcrumb :completed_giveaways, @page
+
+- if current_action == 'users/edit'
+  - breadcrumb :user, current_user
+
+- if current_action == 'subscription_plans/index'
+  - breadcrumb :subscription_plans, current_user
