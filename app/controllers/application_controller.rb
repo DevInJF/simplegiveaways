@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def flash_to_headers
-    if request.xhr?
+    if request.xhr? && flash_msg
+      puts flash_message.inspect.yellow
       response.headers['X-Message'] = flash_message
       response.headers['X-Message-Type'] = flash_type
       response.headers['X-Message-Title'] = flash_title
@@ -27,8 +28,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def flash_msg
+    flash.first.last rescue nil
+  end
+
   def flash_message
-    flash_msg = flash.first.last rescue nil
     flash_msg.is_a?(Hash) ? flash_msg[:content] : flash_msg
   end
 
@@ -37,7 +41,6 @@ class ApplicationController < ActionController::Base
   end
 
   def flash_title
-    flash_msg = flash.first.last rescue nil
     flash_msg.is_a?(Hash) ? flash_msg[:title] : nil
   end
 

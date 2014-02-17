@@ -497,13 +497,15 @@ class Giveaway < ActiveRecord::Base
   end
 
   def errors_list
-    ERB.new(<<-BLOCK).result(binding)
-    <ul class='errors-list'>
-      <% errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-    BLOCK
+    if errors.any?
+      ERB.new(<<-BLOCK.squish).result(binding)
+      <ul class='errors-list'>
+        <% errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+      BLOCK
+    end
   end
 
   class << self

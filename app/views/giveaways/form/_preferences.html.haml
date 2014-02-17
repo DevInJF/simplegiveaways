@@ -12,10 +12,14 @@
     = f.input_field :allow_multi_entries, as: :boolean, boolean_style: :inline
     %span
 
-  - if f.object.facebook_page.canhaz_referral_tracking? || f.object.allow_multi_entries == "1" || f.object.active?
+  - if f.object.facebook_page.canhaz_referral_tracking?
 
-    = f.input :bonus_value, as: :string, input_html: { value: '5', placeholder: 'Bonus Entry Value', 'data-trigger' => 'change', 'data-required' => 'true' }, label: 'Bonus Entry Value'
+    = f.input :bonus_value, as: :string, input_html: { value: "#{f.object.persisted? ? f.object.bonus_value : '5'}", placeholder: 'Bonus Entry Value', 'data-trigger' => 'change', 'data-required' => 'true' }, label: 'Bonus Entry Value'
+
+  - elsif f.object.allow_multi_entries == "1" || f.object.active?
+
+    = f.input :bonus_value, as: :string, input_html: { value: "#{f.object.persisted? ? f.object.bonus_value : '5'}", placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value', wrapper_html: { id: 'bonus_value_wrapper' }
 
   - else
 
-    = f.input :bonus_value, as: :string, input_html: { value: '', placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value', wrapper_html: { style: 'display:none', id: 'bonus_value_wrapper' }
+    = f.input :bonus_value, as: :string, input_html: { value: "#{f.object.persisted? ? f.object.bonus_value : '5'}", placeholder: 'Bonus Entry Value' }, label: 'Bonus Entry Value', wrapper_html: { style: 'display:none', id: 'bonus_value_wrapper' }

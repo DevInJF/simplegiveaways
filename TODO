@@ -265,19 +265,19 @@ Simple Giveaways:
 
             ✔ Title/Content for all flash messages. @done (14-02-04 03:14)
 
-            ☐ Language review.
+      ☐ Language review.
 
-                ☐ Don't return 'Unknown Error' messages when we actually know the error (forms).
+          ✔ Don't return 'Unknown Error' messages when we actually know the error (forms). @done (14-02-16 20:46)
 
-                ✔ On giveaway start, if there are errors, return the actual error messages instead of 'Unknown Error' @done (14-02-16 20:00)
+          ✔ On giveaway start, if there are errors, return the actual error messages instead of 'Unknown Error' @done (14-02-16 20:00)
 
       ✔ Fix wizard issue moving forward after errors (skipping steps) @done (14-02-04 04:31)
-
-      ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 
  ☐ Misc Issues
 
       ✔ Pending giveaway scope returning active and pending giveaways. @done (14-02-16 20:00)
+
+      ☐ Look into weird charge issue that happens when you downgrade and then upgrade, Stripe credits you on the downgraded sub that hasn't taken effect yet, so you get less refunded than you might expect.
 
  ☐ Subscription Emails.
 

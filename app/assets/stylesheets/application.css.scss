@@ -282,6 +282,13 @@
   padding: 20px;
   border-left: 3px solid #eee;
 
+  &.error-messages {
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
   h4 {
     margin-top: 0;
     margin-bottom: 5px;

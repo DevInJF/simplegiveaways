@@ -69,15 +69,15 @@ class GiveawaysController < FacebookController
     if @giveaway.save
       ga_event("Giveaways", "Giveaway#create", @giveaway.title, @giveaway.id)
 
-      flash[:success] = { title: t('flash.giveaways.create.success.title'), content: t('flash.giveaways.create.success.content', giveaway: @giveaway.title) }
+      flash[:success] = { title: t('flash.giveaways.create.success.title'), content: t('flash.giveaways.create.success.content', giveaway: @giveaway.title).html_safe }
 
-      if @page.cannot_schedule? && @giveaway.start_date
+      if (@giveaway.start_date || @giveaway.end_date) && @page.cannot_schedule?
         flash[:success][:content] += t('flash.giveaways.create.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
       end
 
       redirect_to pending_facebook_page_giveaways_path(@page)
     else
-      flash.now[:error] = "There was a problem creating #{@giveaway.title}."
+      flash.now[:error] = { title: t('flash.giveaways.create.error.title'), content: t('flash.giveaways.create.error.content', errors: @giveaway.errors_list).html_safe }
       render :new
     end
   end
@@ -85,10 +85,12 @@ class GiveawaysController < FacebookController
   def update
     @page = @giveaway.facebook_page
 
-    if @giveaway.update_attributes(@giveaway_params)
-      flash[:info] = { title: t('flash.giveaways.update.success.title'), content: t('flash.giveaways.update.success.content', giveaway: @giveaway.title) }
+    @schedule_change = detect_schedule_change
 
-      if @page.cannot_schedule? && @giveaway.start_date && @giveaway.pending?
+    if @giveaway.update_attributes(@giveaway_params)
+      flash[:info] = { title: t('flash.giveaways.update.success.title'), content: t('flash.giveaways.update.success.content', giveaway: @giveaway.title).html_safe }
+
+      if @schedule_change
         flash[:info][:content] += t('flash.giveaways.update.success.cannot_schedule', page: @page.name, link: "#{facebook_page_subscription_plans_path(@page)}").html_safe
       end
 
@@ -99,7 +101,7 @@ class GiveawaysController < FacebookController
 
       @giveaway.update_tab if @giveaway.active?
     else
-      flash.now[:error] = { title: t('flash.giveaways.update.unknown_error.title'), content: t('flash.giveaways.update.unknown_error.content') }
+      flash.now[:error] = { title: t('flash.giveaways.update.error.title'), content: t('flash.giveaways.update.error.content', errors: @giveaway.errors_list).html_safe }
 
       respond_to do |format|
         format.html { render :edit }
@@ -115,7 +117,7 @@ class GiveawaysController < FacebookController
       flash[:info] = { title: t('flash.giveaways.destroy.success.title'), content: t('flash.giveaways.destroy.success.content', giveaway: @giveaway.title) }
       redirect_to facebook_page_url(@giveaway.facebook_page)
     else
-      flash[:error] = { title: t('flash.giveaways.destroy.unknown_error.title'), content: t('flash.giveaways.destroy.unknown_error.content') }
+      flash[:error] = { title: t('flash.giveaways.destroy.error.title'), content: t('flash.giveaways.destroy.error.content', errors: @giveaway.errors_list).html_safe }
       redirect_to facebook_page_url(@giveaway.facebook_page)
     end
   end
@@ -142,7 +144,7 @@ class GiveawaysController < FacebookController
       flash[:info] = { title: t('flash.giveaways.end.success.title', giveaway: @giveaway.title), content: t('flash.giveaways.end.success.content', giveaway: @giveaway.title) }
       redirect_to completed_facebook_page_giveaways_path(@giveaway.facebook_page)
     else
-      flash[:error] = { title: t('flash.giveaways.end.unknown_error.title'), content: t('flash.giveaways.end.unknown_error.content', giveaway: @giveaway.title) }
+      flash[:error] = { title: t('flash.giveaways.end.error.title'), content: t('flash.giveaways.end.error.content', giveaway: @giveaway.title, errors: @giveaway.errors_list).html_safe }
       redirect_to facebook_page_giveaway_url(@giveaway.facebook_page, @giveaway)
     end
   end
@@ -218,7 +220,7 @@ class GiveawaysController < FacebookController
       flash.now[:info] = { title: t('flash.giveaways.clone.success.title'), content: t('flash.giveaways.clone.success.content', giveaway: @giveaway.title) }
       render :edit
     else
-      flash[:error] = { title: t('flash.giveaways.clone.unknown_error.title'), content: t('flash.giveaways.clone.unknown_error.content') }
+      flash[:error] = { title: t('flash.giveaways.clone.error.title'), content: t('flash.giveaways.clone.error.content', giveaway: @giveaway.title, errors: @giveaway.errors_list).html_safe }
       redirect_to facebook_page_giveaway_path(@page, @giveaway)
     end
   end
@@ -260,6 +262,13 @@ class GiveawaysController < FacebookController
       views:     giveaways_graph.views }
   rescue StandardError
     {}
+  end
+
+  def detect_schedule_change
+    if @giveaway_params.keys.grep(/_date/).any? && @page.cannot_schedule?
+      return false if (@giveaway_params['start_date'] && Time.zone.parse(@giveaway_params['start_date']) == @giveaway.start_date) || (@giveaway_params['end_date'] && Time.zone.parse(@giveaway_params['end_date']) == @giveaway.end_date)
+      true
+    end
   end
 end
 

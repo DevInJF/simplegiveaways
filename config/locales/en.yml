@@ -12,7 +12,7 @@ en:
         success:
           title: "Success"
           content: "%{giveaway} was successfully created."
-          cannot_schedule: "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since %{page} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='%{link}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like."
+          cannot_schedule: "<br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since %{page} does not currently meet this criteria, the giveaway schedule will be deactivated for now.<br />If you'd like to schedule the giveaway, please <a href='%{link}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like."
         error:
           title: "Error"
           content: "There was a problem creating the giveaway. Please fix the following errors and try again.<br />%{errors}"
@@ -20,7 +20,7 @@ en:
         success:
           title: "Success"
           content: "%{giveaway} was successfully updated."
-          cannot_schedule: "<br /><br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since %{page} does not currently meet this criteria, the giveaway schedule will be deactivated for now. If you'd like to schedule the giveaway, please <a class='ui tiny teal button' href='%{link}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like."
+          cannot_schedule: "<br /><i class='info icon'></i>Scheduling giveaways requires an active Pro subscription. Since %{page} does not currently meet this criteria, the giveaway schedule will be deactivated for now.<br />If you'd like to schedule the giveaway, please <a href='%{link}'>subscribe to a Pro plan</a>. If you're not sure right now, no problem. You can choose or upgrade a plan whenever you like."
         error:
           title: "Error"
           content: "There was a problem updating the giveaway. Please fix the following errors and try again.<br />%{errors}"
