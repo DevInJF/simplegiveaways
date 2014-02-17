@@ -5,6 +5,7 @@
 //= require zeroclipboard
 //= require jquery-autosize
 //= require ../../../vendor/assets/javascripts/jquery.fb
+//= require list.js
 //= require dataTables/jquery.dataTables
 //= require ../../../vendor/assets/javascripts/datatables/datatables.responsive
 //= require jquery-flot/jquery.flot

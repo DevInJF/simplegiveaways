@@ -221,13 +221,11 @@ Simple Giveaways:
 
      ✔ Make stat popovers show on click of some kind of generic help or "what's this?" icon. @done (14-01-29 02:09)
 
-      ☐ Loading indicators site-wide.
+     ✔ Loading indicators site-wide. @done (14-02-17 01:25)
 
             AJAX
 
             ✔ Onboarding @done (14-01-27 02:00)
-
-            ☐ Enter Giveaway
 
             NON-AJAX
 
@@ -259,13 +257,13 @@ Simple Giveaways:
 
  ☐ Ensure user will never be surprised by an action taken by the app.
 
-      ☐ Global Flash Message Review
+      ✔ Global Flash Message Review @done (14-02-17 01:25)
 
             ✔  i18n for all flash messages. @done (14-02-04 03:14)
 
             ✔ Title/Content for all flash messages. @done (14-02-04 03:14)
 
-      ☐ Language review.
+      ✔ Language review. @done (14-02-17 01:25)
 
           ✔ Don't return 'Unknown Error' messages when we actually know the error (forms). @done (14-02-16 20:46)
 
@@ -273,7 +271,11 @@ Simple Giveaways:
 
       ✔ Fix wizard issue moving forward after errors (skipping steps) @done (14-02-04 04:31)
 
+      ☐ Better info about user or page's current subscription status on subscription page.
+
  ☐ Misc Issues
+
+      ✔ Finish giveaway typeahead filter dropdown in top nav bar. @done (14-02-17 01:26)
 
       ✔ Pending giveaway scope returning active and pending giveaways. @done (14-02-16 20:00)
 
@@ -283,7 +285,7 @@ Simple Giveaways:
 
  ☐ Help Section
 
-      ☐  Create FAQ
+      ☐ Create FAQ
 
       ☐ Add info callouts for giveaway images and preferences
 
@@ -316,6 +318,8 @@ Simple Giveaways:
  ☐ Provide default URLs for ImageUploader and FeedImageUploader.
 
  ☐ Finish Dashboard View (add FacebookGraph sparklines)
+
+ ☐ Design-heavy prefab giveaway templates.
 
  ☐ Shortlink analytics UI
 

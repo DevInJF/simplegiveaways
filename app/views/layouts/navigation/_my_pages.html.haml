@@ -3,16 +3,17 @@
     %a.dropdown-toggle.dker{"data-toggle" => "dropdown", href: "#"}
       %i.fa.fa-facebook-square
       %span.font-bold My Pages
-    %section.panel.panel-default.dropdown-menu.aside-xl.on.animated.fadeInLeft.no-borders
+    %section#facebook_pages_list.panel.panel-default.dropdown-menu.aside-xl.on.animated.fadeInLeft.no-borders
       %header.panel-heading
-        %input.form-control{placeholder: "Search", type: "text"}
-      .list-group.bg-white.no-radius.alt
+        %input.search.form-control{placeholder: "Search", type: "text"}
+      %ul.list-group.bg-white.no-radius.alt
         - current_user.facebook_pages.each do |page|
-          = active_link_to facebook_page_path(page), class: 'list-group-item media' do
-            %span.pull-left.thumb-sm
-              %img.img-circle{alt: page.name, src: page.avatar_square}
-            .pull-right.text-success.m-t-sm
-              %i.fa.fa-circle
-            .media-body
-              %div= page.name
-              %small= like_count_label(page)
+          %li
+            = active_link_to facebook_page_path(page), class: 'list-group-item media' do
+              %span.pull-left.thumb-sm
+                %img.img-circle{alt: page.name, src: page.avatar_square}
+              .pull-right.text-success.m-t-sm
+                %i.fa.fa-circle
+              .media-body
+                %div.name= page.name
+                %small= like_count_label(page)
