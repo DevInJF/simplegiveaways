@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
 
   def flash_to_headers
     if request.xhr? && flash_msg
-      puts flash_message.inspect.yellow
       response.headers['X-Message'] = flash_message
       response.headers['X-Message-Type'] = flash_type
       response.headers['X-Message-Title'] = flash_title

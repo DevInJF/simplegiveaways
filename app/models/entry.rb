@@ -64,7 +64,6 @@ class Entry < ActiveRecord::Base
       self.datetime_entered = DateTime.now
 
       if @cookie.belongs_to_user && @referrer_id
-        puts "@cookie.belongs_to_user: #{@cookie.inspect} && @referrer_id: #{@referrer_id}".green
         self.ref_ids = @cookie.ref_ids.push(@referrer_id).uniq
       else
         puts "@referrer_id: #{@referrer_id}".green
@@ -135,7 +134,6 @@ class Entry < ActiveRecord::Base
   def self.conversion_worker(has_liked, ref_ids, giveaway_cookie)
     if has_liked
       ref_ids.uniq.each do |ref|
-        puts ref_ids.inspect.red
         if @ref = Entry.find_by_id_and_giveaway_id(ref, giveaway_cookie['giveaway_id'])
           @ref.convert_count += 1
           @ref.save

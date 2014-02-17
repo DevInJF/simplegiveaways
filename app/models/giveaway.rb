@@ -524,7 +524,6 @@ class Giveaway < ActiveRecord::Base
     def tab(signed_request)
       app_data = signed_request["app_data"]
       referrer_id = app_data.split("ref_")[1] rescue []
-      puts referrer_id.inspect.red
       current_page = FacebookPage.select("id, url, name, slug").find_by_pid(signed_request["page"]["id"])
       giveaway = current_page.active_giveaway
 
@@ -564,8 +563,6 @@ class Giveaway < ActiveRecord::Base
     end
 
     def uniques_worker(options = {})
-      puts to_bool(options[:is_fan]).inspect.yellow
-      puts to_bool(options[:is_viral]).inspect.green
       @giveaway = Giveaway.find_by_id(options[:giveaway_id])
       @giveaway.uniques += 1
       to_bool(options[:is_fan]) ? (@giveaway.fan_uniques += 1) : (@giveaway.non_fan_uniques += 1)
